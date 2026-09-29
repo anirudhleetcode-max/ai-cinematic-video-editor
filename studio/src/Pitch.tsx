@@ -82,7 +82,7 @@ const splitAt = (t: number) => kf(t, [[41.55, 0], [42.45, 1], [51.25, 1], [52.15
 export const Pitch: React.FC = () => {
   const t = useTime();
   const cam = camera(t);
-  const dof = dofAt(t);
+  const dof = 0 * dofAt(t);
   const light = lightScrimAt(t);
   const dark = darkScrimAt(t);
   const split = splitAt(t);
@@ -92,10 +92,10 @@ export const Pitch: React.FC = () => {
   const scrims = (
     <>
       {light > 0.001 && (
-        <AbsoluteFill style={{opacity: light, background: 'linear-gradient(90deg, rgba(246,241,231,0.05) 0%, rgba(246,241,231,0.18) 45%, rgba(246,241,231,0.62) 64%, rgba(246,241,231,0.74) 100%)'}} />
+        <AbsoluteFill style={{opacity: light, background: 'linear-gradient(90deg, rgba(246,241,231,0) 0%, rgba(246,241,231,0.04) 50%, rgba(246,241,231,0.62) 64%, rgba(246,241,231,0.74) 100%)'}} />
       )}
       {dark > 0.001 && (
-        <AbsoluteFill style={{opacity: dark, background: 'linear-gradient(90deg, rgba(8,26,21,0.55) 0%, rgba(8,26,21,0.62) 40%, rgba(8,26,21,0.86) 62%, rgba(8,26,21,0.92) 100%)'}} />
+        <AbsoluteFill style={{opacity: dark, background: 'linear-gradient(90deg, rgba(8,26,21,0) 0%, rgba(8,26,21,0.05) 48%, rgba(8,26,21,0.82) 64%, rgba(8,26,21,0.9) 100%)'}} />
       )}
     </>
   );
@@ -119,7 +119,7 @@ export const Pitch: React.FC = () => {
       <Backdrop t={t} />
       {t < 84.6 && (
         <AbsoluteFill style={{opacity: fadeIn * (1 - toEnd), transform: `scale(${1 - 0.05 * toEnd})`}}>
-          <PresenterStack cam={cam} dof={dof} split={split} scrims={scrims} mid={mid} showFg={dof > 0.001 || light > 0.001 || dark > 0.001} />
+          <PresenterStack cam={cam} dof={dof} split={split} scrims={scrims} mid={mid} showFg={false} />
         </AbsoluteFill>
       )}
       <SolutionReveal t={t} />
