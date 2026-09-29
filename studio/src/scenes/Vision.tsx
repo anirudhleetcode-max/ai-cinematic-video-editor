@@ -68,7 +68,7 @@ export const Vision: React.FC<{t: number}> = ({t}) => {
 // 81.4 – 84.6  "We are <team>. Thank you."  Presenter at full prominence; only a quiet sign-off.
 export const Close: React.FC<{t: number}> = ({t}) => {
   if (t < 81.3 || t > 85.2) return null;
-  const q = prog(t, 83.75, 0.45, ease.in);
+  const q = prog(t, 83.6, 0.3, ease.in);
   return (
     <div style={{position: 'absolute', left: 1380, top: 760, opacity: 1 - q}}>
       {TEAM_NAME && (
@@ -86,7 +86,7 @@ export const Close: React.FC<{t: number}> = ({t}) => {
 // 84.4 – end  End card: the merged motif, the product line as spoken, and the vision in her words.
 export const EndCard: React.FC<{t: number}> = ({t}) => {
   if (t < 83.7) return null;
-  const bg = prog(t, 83.75, 0.8, ease.inOut);
+  const bg = prog(t, 83.6, 0.5, ease.inOut);
   const mark = prog(t, 84.2, 1.1);
   const off = 30 * (1 - mark) + 22;
   const black = prog(t, 86.85, 0.55, ease.inOut);

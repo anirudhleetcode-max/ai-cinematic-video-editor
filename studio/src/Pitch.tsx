@@ -86,7 +86,7 @@ export const Pitch: React.FC = () => {
   const light = lightScrimAt(t);
   const dark = darkScrimAt(t);
   const split = splitAt(t);
-  const toEnd = kf(t, [[83.75, 0], [84.5, 1]], ease.inOut);
+  const toEnd = kf(t, [[83.6, 0], [84.1, 1]], ease.inOut);
   const fadeIn = kf(t, [[0, 0], [0.7, 1]], ease.soft);
 
   const scrims = (
