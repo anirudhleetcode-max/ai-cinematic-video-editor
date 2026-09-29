@@ -1,0 +1,902 @@
+[
+{
+"w": "What",
+"t": 0.37,
+"take": "A"
+},
+{
+"w": "if",
+"t": 0.69,
+"take": "A"
+},
+{
+"w": "an",
+"t": 0.93,
+"take": "A"
+},
+{
+"w": "Ayurvedic",
+"t": 1.17,
+"take": "A"
+},
+{
+"w": "diet",
+"t": 1.89,
+"take": "A"
+},
+{
+"w": "could",
+"t": 2.29,
+"take": "A"
+},
+{
+"w": "be",
+"t": 2.45,
+"take": "A"
+},
+{
+"w": "personalized",
+"t": 2.61,
+"take": "A"
+},
+{
+"w": "not",
+"t": 3.33,
+"take": "A"
+},
+{
+"w": "just",
+"t": 3.49,
+"take": "A"
+},
+{
+"w": "according",
+"t": 3.73,
+"take": "A"
+},
+{
+"w": "to",
+"t": 4.21,
+"take": "A"
+},
+{
+"w": "what",
+"t": 4.37,
+"take": "A"
+},
+{
+"w": "we",
+"t": 4.61,
+"take": "A"
+},
+{
+"w": "eat",
+"t": 4.77,
+"take": "A"
+},
+{
+"w": "but",
+"t": 5.25,
+"take": "A"
+},
+{
+"w": "also",
+"t": 5.49,
+"take": "A"
+},
+{
+"w": "according",
+"t": 5.81,
+"take": "A"
+},
+{
+"w": "to",
+"t": 6.37,
+"take": "A"
+},
+{
+"w": "who",
+"t": 6.53,
+"take": "A"
+},
+{
+"w": "we",
+"t": 6.77,
+"take": "A"
+},
+{
+"w": "are?",
+"t": 7.01,
+"take": "A"
+},
+{
+"w": "Hello",
+"t": 7.49,
+"take": "A"
+},
+{
+"w": "everyone,",
+"t": 7.81,
+"take": "A"
+},
+{
+"w": "we",
+"t": 8.29,
+"take": "A"
+},
+{
+"w": "are",
+"t": 8.45,
+"take": "A"
+},
+{
+"w": "Hawking's",
+"t": 8.69,
+"take": "A"
+},
+{
+"w": "protocol.",
+"t": 9.33,
+"take": "A"
+},
+{
+"w": "Our",
+"t": 9.97,
+"take": "A"
+},
+{
+"w": "problem",
+"t": 10.29,
+"take": "A"
+},
+{
+"w": "is",
+"t": 10.69,
+"take": "A"
+},
+{
+"w": "simple.",
+"t": 10.93,
+"take": "A"
+},
+{
+"w": "Ayurvedic",
+"t": 11.57,
+"take": "A"
+},
+{
+"w": "diet",
+"t": 12.29,
+"take": "A"
+},
+{
+"w": "planning",
+"t": 12.61,
+"take": "A"
+},
+{
+"w": "is",
+"t": 13.01,
+"take": "A"
+},
+{
+"w": "often",
+"t": 13.25,
+"take": "A"
+},
+{
+"w": "manual,",
+"t": 13.57,
+"take": "A"
+},
+{
+"w": "time",
+"t": 14.29,
+"take": "A"
+},
+{
+"w": "consuming",
+"t": 14.61,
+"take": "A"
+},
+{
+"w": "and",
+"t": 15.17,
+"take": "A"
+},
+{
+"w": "difficult",
+"t": 15.41,
+"take": "A"
+},
+{
+"w": "to",
+"t": 15.89,
+"take": "A"
+},
+{
+"w": "combine",
+"t": 16.13,
+"take": "A"
+},
+{
+"w": "with",
+"t": 16.61,
+"take": "A"
+},
+{
+"w": "modern",
+"t": 16.85,
+"take": "A"
+},
+{
+"w": "nutritional",
+"t": 17.33,
+"take": "A"
+},
+{
+"w": "analysis.",
+"t": 17.97,
+"take": "A"
+},
+{
+"w": "Dieticians",
+"t": 18.93,
+"take": "A"
+},
+{
+"w": "need",
+"t": 19.89,
+"take": "A"
+},
+{
+"w": "to",
+"t": 20.05,
+"take": "A"
+},
+{
+"w": "prepare",
+"t": 20.21,
+"take": "A"
+},
+{
+"w": "personalized",
+"t": 20.69,
+"take": "A"
+},
+{
+"w": "diet",
+"t": 21.25,
+"take": "A"
+},
+{
+"w": "tracts,",
+"t": 21.57,
+"take": "A"
+},
+{
+"w": "analyze",
+"t": 22.13,
+"take": "A"
+},
+{
+"w": "recipes,",
+"t": 22.53,
+"take": "A"
+},
+{
+"w": "manage",
+"t": 23.25,
+"take": "A"
+},
+{
+"w": "patient",
+"t": 23.81,
+"take": "A"
+},
+{
+"w": "information",
+"t": 24.45,
+"take": "A"
+},
+{
+"w": "and",
+"t": 25.25,
+"take": "A"
+},
+{
+"w": "ensure",
+"t": 25.49,
+"take": "A"
+},
+{
+"w": "that",
+"t": 26.13,
+"take": "A"
+},
+{
+"w": "recommendations",
+"t": 26.37,
+"take": "A"
+},
+{
+"w": "meet",
+"t": 27.25,
+"take": "A"
+},
+{
+"w": "individual",
+"t": 27.57,
+"take": "A"
+},
+{
+"w": "requirements.",
+"t": 28.21,
+"take": "A"
+},
+{
+"w": "Our",
+"t": 29.05,
+"take": "A"
+},
+{
+"w": "solution",
+"t": 29.53,
+"take": "A"
+},
+{
+"w": "is",
+"t": 30.09,
+"take": "A"
+},
+{
+"w": "a",
+"t": 30.25,
+"take": "A"
+},
+{
+"w": "comprehensive",
+"t": 30.41,
+"take": "A"
+},
+{
+"w": "cloud-based",
+"t": 31.29,
+"take": "A"
+},
+{
+"w": "Ayurvedic",
+"t": 32.01,
+"take": "A"
+},
+{
+"w": "diet",
+"t": 32.81,
+"take": "A"
+},
+{
+"w": "management",
+"t": 33.29,
+"take": "A"
+},
+{
+"w": "and",
+"t": 33.93,
+"take": "A"
+},
+{
+"w": "nutritional",
+"t": 34.17,
+"take": "A"
+},
+{
+"w": "analysis",
+"t": 34.89,
+"take": "A"
+},
+{
+"w": "platform.",
+"t": 35.69,
+"take": "A"
+},
+{
+"w": "Our",
+"t": 36.65,
+"take": "A"
+},
+{
+"w": "platform",
+"t": 36.89,
+"take": "A"
+},
+{
+"w": "brings",
+"t": 37.45,
+"take": "A"
+},
+{
+"w": "Ayurveda",
+"t": 37.85,
+"take": "A"
+},
+{
+"w": "and",
+"t": 38.73,
+"take": "A"
+},
+{
+"w": "modern",
+"t": 38.89,
+"take": "A"
+},
+{
+"w": "nutrition",
+"t": 39.37,
+"take": "A"
+},
+{
+"w": "together",
+"t": 40.01,
+"take": "A"
+},
+{
+"w": "in",
+"t": 40.57,
+"take": "A"
+},
+{
+"w": "one",
+"t": 40.81,
+"take": "A"
+},
+{
+"w": "place.",
+"t": 41.13,
+"take": "A"
+},
+{
+"w": "An",
+"t": 41.77,
+"take": "A"
+},
+{
+"w": "Ayurvedic",
+"t": 41.93,
+"take": "A"
+},
+{
+"w": "dietitian",
+"t": 42.65,
+"take": "A"
+},
+{
+"w": "can",
+"t": 43.29,
+"take": "A"
+},
+{
+"w": "digitally",
+"t": 43.45,
+"take": "A"
+},
+{
+"w": "manage",
+"t": 44.01,
+"take": "A"
+},
+{
+"w": "patient",
+"t": 44.41,
+"take": "A"
+},
+{
+"w": "information,",
+"t": 44.97,
+"take": "A"
+},
+{
+"w": "create",
+"t": 45.77,
+"take": "A"
+},
+{
+"w": "personalized",
+"t": 46.17,
+"take": "A"
+},
+{
+"w": "diet",
+"t": 46.73,
+"take": "A"
+},
+{
+"w": "plans",
+"t": 47.21,
+"take": "A"
+},
+{
+"w": "and",
+"t": 47.69,
+"take": "A"
+},
+{
+"w": "analyze",
+"t": 47.85,
+"take": "A"
+},
+{
+"w": "food",
+"t": 48.41,
+"take": "A"
+},
+{
+"w": "items",
+"t": 48.73,
+"take": "A"
+},
+{
+"w": "and",
+"t": 49.21,
+"take": "A"
+},
+{
+"w": "recipes",
+"t": 49.45,
+"take": "A"
+},
+{
+"w": "using",
+"t": 50.17,
+"take": "A"
+},
+{
+"w": "nutritional",
+"t": 50.49,
+"take": "A"
+},
+{
+"w": "data.",
+"t": 51.13,
+"take": "A"
+},
+{
+"w": "The",
+"t": 51.85,
+"take": "A"
+},
+{
+"w": "system",
+"t": 52.09,
+"take": "A"
+},
+{
+"w": "supports",
+"t": 52.57,
+"take": "A"
+},
+{
+"w": "diet",
+"t": 53.21,
+"take": "A"
+},
+{
+"w": "recommendations",
+"t": 53.69,
+"take": "A"
+},
+{
+"w": "based",
+"t": 54.49,
+"take": "A"
+},
+{
+"w": "on",
+"t": 54.89,
+"take": "A"
+},
+{
+"w": "the",
+"t": 55.05,
+"take": "A"
+},
+{
+"w": "patient's",
+"t": 55.21,
+"take": "A"
+},
+{
+"w": "specific",
+"t": 55.77,
+"take": "A"
+},
+{
+"w": "needs",
+"t": 56.25,
+"take": "A"
+},
+{
+"w": "while",
+"t": 56.73,
+"take": "A"
+},
+{
+"w": "keeping",
+"t": 57.05,
+"take": "A"
+},
+{
+"w": "Ayurvedic",
+"t": 57.61,
+"take": "A"
+},
+{
+"w": "principles",
+"t": 58.49,
+"take": "A"
+},
+{
+"w": "at",
+"t": 59.13,
+"take": "A"
+},
+{
+"w": "the",
+"t": 59.37,
+"take": "A"
+},
+{
+"w": "core.",
+"t": 59.53,
+"take": "A"
+},
+{
+"w": "Users'",
+"t": 60.52,
+"take": "B"
+},
+{
+"w": "repetitive",
+"t": 60.92,
+"take": "B"
+},
+{
+"w": "manual",
+"t": 61.48,
+"take": "B"
+},
+{
+"w": "work",
+"t": 61.96,
+"take": "B"
+},
+{
+"w": "strengthens",
+"t": 62.28,
+"take": "B"
+},
+{
+"w": "the",
+"t": 62.84,
+"take": "B"
+},
+{
+"w": "connection",
+"t": 63.0,
+"take": "B"
+},
+{
+"w": "between",
+"t": 63.56,
+"take": "B"
+},
+{
+"w": "patients",
+"t": 63.88,
+"take": "B"
+},
+{
+"w": "and",
+"t": 64.52,
+"take": "B"
+},
+{
+"w": "dietitians,",
+"t": 64.68,
+"take": "B"
+},
+{
+"w": "reduces",
+"t": 65.56,
+"take": "B"
+},
+{
+"w": "paper",
+"t": 66.12,
+"take": "B"
+},
+{
+"w": "usage",
+"t": 66.68,
+"take": "B"
+},
+{
+"w": "and",
+"t": 67.16,
+"take": "B"
+},
+{
+"w": "makes",
+"t": 67.32,
+"take": "B"
+},
+{
+"w": "personalized",
+"t": 67.72,
+"take": "B"
+},
+{
+"w": "Ayurvedic",
+"t": 68.44,
+"take": "B"
+},
+{
+"w": "nutrition",
+"t": 69.24,
+"take": "B"
+},
+{
+"w": "more",
+"t": 69.96,
+"take": "B"
+},
+{
+"w": "accessible",
+"t": 70.2,
+"take": "B"
+},
+{
+"w": "and",
+"t": 70.92,
+"take": "B"
+},
+{
+"w": "practical.",
+"t": 71.16,
+"take": "B"
+},
+{
+"w": "Our",
+"t": 72.12,
+"take": "B"
+},
+{
+"w": "vision",
+"t": 72.36,
+"take": "B"
+},
+{
+"w": "is",
+"t": 72.84,
+"take": "B"
+},
+{
+"w": "to",
+"t": 73.08,
+"take": "B"
+},
+{
+"w": "bridge",
+"t": 73.24,
+"take": "B"
+},
+{
+"w": "the",
+"t": 73.64,
+"take": "B"
+},
+{
+"w": "wisdom",
+"t": 73.8,
+"take": "B"
+},
+{
+"w": "of",
+"t": 74.28,
+"take": "B"
+},
+{
+"w": "Ayurveda",
+"t": 74.44,
+"take": "B"
+},
+{
+"w": "with",
+"t": 75.56,
+"take": "B"
+},
+{
+"w": "the",
+"t": 75.72,
+"take": "B"
+},
+{
+"w": "power",
+"t": 75.88,
+"take": "B"
+},
+{
+"w": "of",
+"t": 76.2,
+"take": "B"
+},
+{
+"w": "technology,",
+"t": 76.36,
+"take": "B"
+},
+{
+"w": "creating",
+"t": 77.4,
+"take": "B"
+},
+{
+"w": "smarter,",
+"t": 77.88,
+"take": "B"
+},
+{
+"w": "personalized",
+"t": 78.6,
+"take": "B"
+},
+{
+"w": "and",
+"t": 79.4,
+"take": "B"
+},
+{
+"w": "sustainable",
+"t": 79.64,
+"take": "B"
+},
+{
+"w": "nutrition",
+"t": 80.28,
+"take": "B"
+},
+{
+"w": "management.",
+"t": 80.84,
+"take": "B"
+},
+{
+"w": "We",
+"t": 81.64,
+"take": "B"
+},
+{
+"w": "are",
+"t": 81.8,
+"take": "B"
+},
+{
+"w": "Hawkins",
+"t": 82.04,
+"take": "B"
+},
+{
+"w": "Purabal.",
+"t": 82.52,
+"take": "B"
+},
+{
+"w": "Thank",
+"t": 83.4,
+"take": "B"
+},
+{
+"w": "you.",
+"t": 83.64,
+"take": "B"
+}
+]

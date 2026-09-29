@@ -1,0 +1,7 @@
+node_modules/
+studio/public/
+renders/
+out/
+*.mp4
+*.mov
+*.wav

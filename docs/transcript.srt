@@ -1,0 +1,84 @@
+1
+00:00:00,370 --> 00:00:06,530
+What if an Ayurvedic diet could be personalized not just according to what we eat but also according to
+
+2
+00:00:06,530 --> 00:00:07,490
+who we are?
+
+3
+00:00:07,490 --> 00:00:09,970
+Hello everyone, we are [team name]
+
+4
+00:00:09,970 --> 00:00:11,570
+Our problem is simple.
+
+5
+00:00:11,570 --> 00:00:17,970
+Ayurvedic diet planning is often manual, time consuming and difficult to combine with modern nutritional
+
+6
+00:00:17,970 --> 00:00:18,870
+analysis.
+
+7
+00:00:18,930 --> 00:00:22,130
+Dietitians need to prepare personalized diet charts,
+
+8
+00:00:22,130 --> 00:00:29,050
+analyze recipes, manage patient information and ensure that recommendations meet individual requirements.
+
+9
+00:00:29,050 --> 00:00:35,690
+Our solution is a comprehensive cloud-based Ayurvedic diet management and nutritional analysis
+
+10
+00:00:35,690 --> 00:00:36,590
+platform.
+
+11
+00:00:36,650 --> 00:00:41,770
+Our platform brings Ayurveda and modern nutrition together in one place.
+
+12
+00:00:41,770 --> 00:00:45,770
+An Ayurvedic dietitian can digitally manage patient information,
+
+13
+00:00:45,770 --> 00:00:51,850
+create personalized diet plans and analyze food items and recipes using nutritional data.
+
+14
+00:00:51,850 --> 00:00:58,490
+The system supports diet recommendations based on the patient's specific needs while keeping Ayurvedic
+
+15
+00:00:58,490 --> 00:01:00,430
+principles at the core.
+
+16
+00:01:00,520 --> 00:01:05,560
+[It reduces] repetitive manual work strengthens the connection between patients and dietitians,
+
+17
+00:01:05,560 --> 00:01:12,060
+reduces paper usage and makes personalized Ayurvedic nutrition more accessible and practical.
+
+18
+00:01:12,120 --> 00:01:17,260
+Our vision is to bridge the wisdom of Ayurveda with the power of technology,
+
+19
+00:01:17,400 --> 00:01:21,640
+creating smarter, personalized and sustainable nutrition management.
+
+20
+00:01:21,640 --> 00:01:23,400
+We are [team name]
+
+21
+00:01:23,400 --> 00:01:24,240
+Thank you.
+
