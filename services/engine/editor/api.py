@@ -1,6 +1,7 @@
 """HTTP API (FastAPI). Run: `uvicorn editor.api:app --port 8000`."""
 from __future__ import annotations
 
+from contextlib import asynccontextmanager
 import asyncio
 import json
 import os
@@ -24,14 +25,17 @@ from .registry import REGISTRIES, library_stats, search_library, templates
 from .storage import UploadTooLarge, get_storage
 
 logger = get_logger("api")
-app = FastAPI(title="Autonomous AI Video Editor", version="0.1.0")
-app.add_middleware(CORSMiddleware, allow_origins=list(get_settings().cors_origins) + ["http://127.0.0.1:3000"], allow_methods=["*"], allow_headers=["*"])
 
 
-@app.on_event("startup")
-def _startup() -> None:
+@asynccontextmanager
+async def _lifespan(_: FastAPI):
     db.connect()
     get_queue().start()
+    yield
+
+
+app = FastAPI(title="Autonomous AI Video Editor", version="0.1.0", lifespan=_lifespan)
+app.add_middleware(CORSMiddleware, allow_origins=list(get_settings().cors_origins) + ["http://127.0.0.1:3000"], allow_methods=["*"], allow_headers=["*"])
 
 
 @app.exception_handler(KeyError)
