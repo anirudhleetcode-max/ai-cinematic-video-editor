@@ -72,13 +72,13 @@ def parse_duration(p: str) -> float | None:
         mm, ss = int(m.group(1)), int(m.group(2))
         if mm < 60 and not re.search(r"\b(16|9|4|1|21):(9|16|5|1)\b", m.group(0)):
             return float(mm * 60 + ss)
-    m = re.search(r"(\d+(?:\.\d+)?|[a-z\-]+)[\s\-]*(minute|min)s?\b", p)
-    if m and (v := _num(m.group(1))):
-        sec = re.search(r"(\d+(?:\.\d+)?)[\s\-]*(minute|min)s?\s*(and\s*)?(\d+)[\s\-]*(second|sec|s)\b", p)
-        return v * 60 + (float(sec.group(4)) if sec else 0)
-    m = re.search(r"(\d+(?:\.\d+)?|[a-z\-]+)[\s\-]*(second|sec|s)\b(?![\s\-]*(intro|hook|section))", p)
-    if m and (v := _num(m.group(1))) and v >= 3:
-        return v
+    for m in re.finditer(r"\b(\d+(?:\.\d+)?|[a-z\-]+)[\s\-]*(minute|min)s?\b", p):
+        if (v := _num(m.group(1))):
+            sec = re.search(r"(\d+(?:\.\d+)?)[\s\-]*(minute|min)s?\s*(and\s*)?(\d+)[\s\-]*(second|sec|s)\b", p)
+            return v * 60 + (float(sec.group(4)) if sec else 0)
+    for m in re.finditer(r"\b(\d+(?:\.\d+)?|[a-z\-]+)[\s\-]*(seconds?|secs?|s)\b(?![\s\-]*(intro|hook|section))", p):
+        if (v := _num(m.group(1))) and v >= 3:
+            return v
     return None
 
 

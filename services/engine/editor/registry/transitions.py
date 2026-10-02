@@ -185,7 +185,7 @@ def _np_kaleido(a, b, q, p):
     xs, ys = np.meshgrid(np.arange(w, dtype=np.float32), np.arange(h, dtype=np.float32))
     xm = w / 2 - np.abs(xs - w / 2) * p["mirror"]
     ym = h / 2 - np.abs(ys - h / 2) * p["mirror"]
-    mx, my = xs * (1 - k) + xm * k, ys * (1 - k) + ym * k
+    mx, my = (xs * (1 - k) + xm * k).astype(np.float32), (ys * (1 - k) + ym * k).astype(np.float32)
     ra = cv2.remap(a, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
     rb = cv2.remap(b, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
     return ra * (1 - q) + rb * q

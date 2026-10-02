@@ -99,12 +99,31 @@ def frame_metrics(fs: FrameSet) -> dict[str, np.ndarray]:
         hists.append(hh)
         if prev_g is not None:
             out["motion"][i] = np.abs(gf - prev_g).mean()
-            (dx, dy), resp = cv2.phaseCorrelate(prev_g, gf)
-            out["dx"][i], out["dy"][i], out["pc_resp"][i] = dx, dy, resp
+            dx, dy, coh = global_shift(prev_g, gf)
+            out["dx"][i], out["dy"][i], out["pc_resp"][i] = dx, dy, coh
             out["hist_d"][i] = 0.5 * np.abs(hh - hists[-2]).sum()  # total variation distance in [0,1]
         prev_g = gf
     out["hists"] = np.array(hists, np.float32) if hists else np.zeros((0, 256), np.float32)
     return out
+
+
+def global_shift(a: np.ndarray, b: np.ndarray) -> tuple[float, float, float]:
+    """Camera (global) translation between two grey frames in [0,1] with a confidence score.
+
+    Dense Farneback optical flow; the camera shift is the median flow vector and confidence is the
+    fraction of textured pixels moving with it. Moving subjects or animated graphics on a static camera
+    leave the median near zero; genuine camera motion/shake moves (almost) the whole frame coherently."""
+    a8 = (a * 255).astype(np.uint8)
+    b8 = (b * 255).astype(np.uint8)
+    flow = cv2.calcOpticalFlowFarneback(a8, b8, None, 0.5, 5, 13, 3, 5, 1.1, 0)
+    gy, gx = np.gradient(a)
+    tex = np.hypot(gx, gy) > 0.02
+    if tex.mean() < 0.05:
+        return 0.0, 0.0, 0.0
+    fx, fy = flow[..., 0][tex], flow[..., 1][tex]
+    mx, my = float(np.median(fx)), float(np.median(fy))
+    coh = float(np.mean(np.hypot(fx - mx, fy - my) < 1.5))
+    return mx, my, coh
 
 
 _face = None

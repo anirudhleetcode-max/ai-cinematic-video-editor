@@ -77,6 +77,7 @@ class Plan:
     music_energy: list[tuple[float, float]] = field(default_factory=list)  # (t, energy) on output timeline
     drops: list[float] = field(default_factory=list)
     slots: list[Slot] = field(default_factory=list)
+    fixed_sections: set[str] = field(default_factory=set)  # lengths the user asked for explicitly (never beat-snapped)
     segments: list[Segment] = field(default_factory=list)
     texts: list[TextItem] = field(default_factory=list)
     sfx: list[SfxItem] = field(default_factory=list)
@@ -210,6 +211,7 @@ def story_director(plan: Plan, intent: StyleIntent) -> None:
     free_w = sum(w for i, w in enumerate(weights) if i not in fixed)
     free_t = max(1.0, body - sum(fixed.values()))
     lengths = [fixed.get(i, free_t * w / free_w) for i, w in enumerate(weights)]
+    plan.fixed_sections = {struct[i][0] for i in fixed}
     base = PACING_SHOT.get(plan.bible.pacing, 2.3)
     if plan.template.get("_ref_shot_length"):
         base = plan.template["_ref_shot_length"]
@@ -360,9 +362,21 @@ def timeline_director(plan: Plan, intent: StyleIntent) -> None:
     beats = np.array(plan.beats)
     downs = set(round(d, 3) for d in plan.downbeats)
     bi = float(np.median(np.diff(beats))) if len(beats) > 2 else 0.0
-    for sec in plan.sections:
-        t = sec.start
-        end = min(sec.end, body)
+    def snap(x: float) -> float:
+        if not (beat_sync and bi > 0 and len(beats)):
+            return x
+        k = int(np.argmin(np.abs(beats - x)))
+        return float(beats[k]) if abs(beats[k] - x) <= bi else x
+
+    prev_end = 0.0
+    for si, sec in enumerate(plan.sections):
+        t = prev_end
+        if sec.name in plan.fixed_sections:
+            end = min(body, t + (sec.end - sec.start))
+        else:
+            end = body if si == len(plan.sections) - 1 else min(body, max(t + 0.5, snap(sec.end)))
+        sec.start, sec.end = round(t, 3), round(end, 3)
+        prev_end = end
         while t < end - 0.05:
             me = energy_at(plan, t)
             e = sec.energy if me is None else 0.6 * sec.energy + 0.4 * me
@@ -586,21 +600,47 @@ def transition_director(plan: Plan, ctx: ProjectContext) -> None:
     plan.note(f"Transitions: {used} of {len(plan.segments) - 1} boundaries (budget {budget}); all others are hard cuts.")
 
 
-def apply_overlaps(plan: Plan) -> None:
+def apply_overlaps(plan: Plan, ctx: ProjectContext | None = None) -> None:
     """Transitions overlap neighbouring shots: extend the outgoing shot's source by the overlap so the
-    cut point (on the beat) is the *middle* of the transition and total duration stays unchanged."""
+    cut point (on the beat) is the *middle* of the transition and total duration stays unchanged.
+    If a clip has no spare source frames, the shot slides earlier/later within its clip; if even that is
+    impossible the transition is shortened (or becomes a cut)."""
+    def src_dur(seg: Segment) -> float:
+        if seg.image or ctx is None:
+            return 1e9
+        a = ctx.asset(seg.asset_id)
+        return float(a.meta.get("duration") or (a.analysis or {}).get("meta", {}).get("duration") or 1e9) - 0.05
+
     for k in range(1, len(plan.segments)):
         b = plan.segments[k]
         d = b.transition_in.duration if b.transition_in.id != "cut" else 0.0
         if d <= 0:
             continue
         a = plan.segments[k - 1]
-        half = d / 2
+        # how much extra source each side can provide (sliding within the clip if needed)
+        room_a = (src_dur(a) - (a.src_out - a.src_in)) / max(a.speed.rate, 1e-3) if not a.speed.ramp else 0.0
+        room_b = (src_dur(b) - (b.src_out - b.src_in)) / max(b.speed.rate, 1e-3) if not b.speed.ramp else 0.0
+        half = min(d / 2, room_a, room_b)
+        if half < 0.08:
+            b.transition_in = TransitionSpec()
+            continue
+        d = 2 * half
+        b.transition_in.duration = round(d, 3)
+        # outgoing shot: need half more seconds of source after src_out (slide back if the clip ends)
+        need_a = half * a.speed.rate
+        over = a.src_out + need_a - src_dur(a)
+        if over > 0:
+            a.src_in, a.src_out = round(a.src_in - over, 3), round(a.src_out - over, 3)
+        # incoming shot: need half more seconds of source before src_in (slide forward if at 0)
+        need_b = half * b.speed.rate
+        under = need_b - b.src_in
+        if under > 0:
+            b.src_in, b.src_out = round(b.src_in + under, 3), round(b.src_out + under, 3)
         a.out_duration = round(a.out_duration + half, 3)
-        a.src_out = round(a.src_out + half * a.speed.rate, 3)
+        a.src_out = round(a.src_out + need_a, 3)
         b.out_start = round(b.out_start - half, 3)
         b.out_duration = round(b.out_duration + half, 3)
-        b.src_in = round(max(0.0, b.src_in - half * b.speed.rate), 3)
+        b.src_in = round(max(0.0, b.src_in - need_b), 3)
 
 
 # ------------------------------------------------------------------------------- motion & reframing

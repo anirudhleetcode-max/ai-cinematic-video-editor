@@ -16,7 +16,7 @@ from .audio import analyze_audio
 from .probe import probe
 
 logger = get_logger("analyze")
-VERSION = "video-v3"
+VERSION = "video-v5"
 
 MODES = {
     # sample fps, analysis width, face/person sampling interval (s)
@@ -86,14 +86,14 @@ def score_shot(m: dict, a: int, b: int, faces: list[dict], audio: dict, start: f
     dark, bright = float(m["dark_clip"][sl].mean()), float(m["bright_clip"][sl].mean())
     motion = float(m["motion"][sl][1:].mean()) if b - a > 1 else 0.0
     dx, dy = m["dx"][sl], m["dy"][sl]
-    # shake = high-frequency jitter of global translation (second difference), counted only where the
-    # phase-correlation peak is confident; normalised to a 192px-wide, 4 fps sampling grid.
-    resp = m["pc_resp"][sl]
-    reliable = b - a > 3 and float(np.median(resp[1:])) >= 0.35
+    # shake = high-frequency jitter of the global (median optical-flow) translation, normalised to a
+    # 192px-wide, 4 fps sampling grid. Only frames with enough texture to measure motion count.
+    tex = m["pc_resp"][sl] > 0
+    reliable = b - a > 3 and float(tex[1:].mean()) >= 0.5
     if reliable:
         j2 = np.abs(np.diff(dx, 2)) + np.abs(np.diff(dy, 2))
-        conf = resp[2:] > 0.35
-        jitter = float(j2[conf].mean()) if conf.any() else 0.0
+        valid = tex[2:] & tex[1:-1]
+        jitter = float(j2[valid].mean()) if valid.any() else 0.0
         jitter *= (192.0 / m["_width"]) * (m["_fps"] / 4.0) ** 0.5
     else:
         jitter = 0.0
@@ -112,7 +112,7 @@ def score_shot(m: dict, a: int, b: int, faces: list[dict], audio: dict, start: f
     sharpness = _norm(np.log10(sharp + 1), 1.3, 2.7)
     exposure = float(np.clip(1 - abs(luma - 0.47) / 0.4, 0, 1) * (1 - min(1, 3 * (dark + bright))))
     contrast_s = float(np.clip(1 - abs(contrast - 0.22) / 0.2, 0, 1))
-    stability = float(np.clip(1 - jitter / 25.0, 0, 1)) if reliable else 0.75
+    stability = float(np.clip(1 - (jitter - 1.0) / 5.0, 0, 1)) if reliable else 0.75
     motion_s = _norm(motion, 0.003, 0.06)
     face_vis = float(np.clip(face_frac * (0.5 + 4 * face_size), 0, 1))
     audio_s = float(np.clip(audio.get("energy", 0) * (1 - 50 * audio.get("clipping", 0)), 0, 1)) if audio.get("has_audio") else 0.0

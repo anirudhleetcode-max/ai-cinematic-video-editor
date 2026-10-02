@@ -40,7 +40,7 @@ def build_plan(ctx: ProjectContext, intent: StyleIntent | None = None, provenanc
     A.timeline_director(plan, intent)
     A.clip_selector(plan, ctx, intent, prefer_previous, tag_weights)
     A.transition_director(plan, ctx)
-    A.apply_overlaps(plan)
+    A.apply_overlaps(plan, ctx)
     A.motion_designer(plan, ctx, intent)
     A.reframe(plan, ctx)
     A.colorist(plan, ctx, intent, ref_map)

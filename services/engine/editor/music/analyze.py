@@ -13,7 +13,7 @@ from ..logging import get_logger, log
 from ..media.audio import load_mono
 
 logger = get_logger("music")
-VERSION = "music-v2"
+VERSION = "music-v3"
 SR = 22050
 
 
@@ -71,7 +71,7 @@ def analyze_music(path: Path, fingerprint: str | None = None) -> dict:
         return {"version": VERSION, "duration": duration, "bpm": 0.0, "beats": [], "downbeats": [], "sections": [], "energy": [], "ok": False}
     hop = 512
     onset = librosa.onset.onset_strength(y=y, sr=SR, hop_length=hop)
-    tempo, beat_frames = librosa.beat.beat_track(onset_envelope=onset, sr=SR, hop_length=hop, units="frames")
+    tempo, beat_frames = librosa.beat.beat_track(onset_envelope=onset, sr=SR, hop_length=hop, units="frames", trim=False)
     bpm = float(np.atleast_1d(tempo)[0])
     beats = librosa.frames_to_time(beat_frames, sr=SR, hop_length=hop)
     # downbeats: choose the bar phase (of 4) with the strongest accumulated onset + low-frequency energy
