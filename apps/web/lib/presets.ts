@@ -1,0 +1,36 @@
+/** Preset prompts — plain-language starting points; the backend parses them like any other prompt. */
+export const PRESETS: { id: string; label: string; prompt: string }[] = [
+  { id: "cinematic", label: "Cinematic Film", prompt: "Create a 60-second cinematic film. Slow, deliberate pacing, subtle transitions, a cinematic neutral grade with film grain, elegant typography, and a clean fade-out." },
+  { id: "event", label: "Event Highlight", prompt: "Create a 60-second professional event highlight. Start with a strong hook, cut to the beat of the supplied music, build energy toward the climax, use subtle transitions, consistent cinematic color, elegant typography, duck music under speech, and finish with the event logo." },
+  { id: "wedding", label: "Wedding Film", prompt: "Create a 90-second emotional wedding film. Slow pacing, slow motion for emotional moments, soft wedding grade, gentle crossfades, elegant serif titles, and a soft ending." },
+  { id: "college", label: "College Event", prompt: "Create a 60-second energetic college event highlight. Strong hook, fast cuts to the beat, best crowd reactions, speed ramps on high-energy moments, bold titles, subtle whooshes and impacts, and end with the event logo." },
+  { id: "travel", label: "Travel Film", prompt: "Create a 75-second travel film. Establishing wide shots first, golden hour grade, light leaks, cut to the music, and end with a reflective slow shot." },
+  { id: "corporate", label: "Corporate Video", prompt: "Create a 60-second corporate video. Clean corporate grade, minimal transitions, clean lower-third style text, keep dialogue understandable and duck the music under speech." },
+  { id: "product", label: "Product Commercial", prompt: "Create a 30-second product commercial. Strong hook in the first 3 seconds, clean commercial grade, beat-synced cuts, mask-reveal typography, and a branded ending." },
+  { id: "sports", label: "Sports Highlight", prompt: "Create a 45-second sports highlight. Very fast pacing, beat cuts, speed ramps, slow motion on the best moments, punchy sports grade, impact sound effects." },
+  { id: "birthday", label: "Birthday", prompt: "Create a 45-second birthday celebration video. Warm pastel grade, playful bouncy titles, cut to the beat, happy energetic pacing." },
+  { id: "concert", label: "Concert", prompt: "Create a 60-second concert recap. Fast cuts on the beat, concert grade with bloom, kinetic typography, energetic transitions." },
+  { id: "festival", label: "Festival", prompt: "Create a 60-second festival aftermovie. Build energy toward the climax, speed ramps, teal-orange grade, kinetic titles, whooshes and impacts." },
+  { id: "documentary", label: "Documentary", prompt: "Create a 2-minute documentary edit. Slow pacing, warm documentary grade, minimal transitions, keep dialogue clear, captions, and a fade to black." },
+  { id: "youtube", label: "YouTube Video", prompt: "Create a 90-second YouTube video, 16:9, strong hook in the first 5 seconds, clean grade, subtle transitions, captions." },
+  { id: "reel", label: "Instagram Reel", prompt: "Make this an Instagram reel: 30 seconds, vertical, extremely engaging first 2 seconds, fast cuts to the beat, social captions, teal-orange grade." },
+  { id: "tiktok", label: "TikTok", prompt: "Make a 25-second TikTok: vertical, very fast pacing, beat cuts, bold pop captions, high contrast grade, impact sound effects." },
+  { id: "short", label: "Short Film", prompt: "Create a 2-minute short film edit with letterbox, modern film grade, slow emotional pacing, minimal transitions and an elegant serif end title." },
+  { id: "trailer", label: "Trailer", prompt: "Create a 45-second trailer. Moody grade, letterbox, build tension toward the climax, risers and impacts, tracking-reveal titles, end on a title card." },
+  { id: "hype", label: "Hype Video", prompt: "Create a 40-second hype video. Very fast beat cuts, speed ramps, flash transitions on drops, high contrast grade, kinetic bold text." },
+  { id: "montage", label: "Emotional Montage", prompt: "Create a 75-second emotional montage. Longer shots, slow motion, warm grade, gentle dissolves, quiet music sections, and a soft fade-out." },
+  { id: "music", label: "Music Video", prompt: "Create a music video for the full song. Cut on the beat, energetic transitions, cyberpunk grade, kinetic lyric-style text, speed ramps." },
+  { id: "portfolio", label: "Portfolio Film", prompt: "Create a 60-second portfolio film of my best shots only. Modern film grade, subtle transitions, cut to the music, clean titles." },
+];
+
+export const REVISION_EXAMPLES = [
+  "Make it more energetic and reduce the intro to 3 seconds.",
+  "Make the colors warmer.",
+  "Use song 2 for the final section.",
+  "Remove the first scene.",
+  "Use more crowd shots.",
+  "Make the text smaller.",
+  "Slow down the emotional section.",
+  "Make the ending stronger.",
+  "Go back to the version before I changed the music.",
+];

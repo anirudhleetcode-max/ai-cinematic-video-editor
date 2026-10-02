@@ -1,0 +1,17 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html, body { background: #09090b; color: #e7e7ea; }
+body { font-feature-settings: "cv11", "ss01", "ss03"; -webkit-font-smoothing: antialiased; }
+::selection { background: rgba(245,165,36,0.35); }
+* { scrollbar-width: thin; scrollbar-color: #272730 transparent; }
+
+@layer components {
+  .panel { @apply rounded-xl border border-white/[0.06] bg-ink-850/80 shadow-panel backdrop-blur; }
+  .label { @apply text-[11px] font-medium uppercase tracking-[0.14em] text-fog-500; }
+  .grain { background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 3px 3px; }
+}
