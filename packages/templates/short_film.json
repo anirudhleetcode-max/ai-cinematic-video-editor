@@ -1,0 +1,19 @@
+{
+  "name": "Short Film",
+  "story": "cinematic",
+  "pacing": "slow",
+  "color": "modern_film",
+  "transitionStyle": "minimal",
+  "textStyle": "elegant_serif",
+  "textAnimation": "fade",
+  "musicStrategy": "calm",
+  "effects": [
+    "letterbox",
+    "film_grain"
+  ],
+  "tags": [
+    "film",
+    "story"
+  ],
+  "id": "short_film"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Portfolio Film",
+  "story": "cinematic",
+  "pacing": "medium",
+  "color": "modern_film",
+  "transitionStyle": "subtle",
+  "textStyle": "premium_title",
+  "textAnimation": "mask_reveal",
+  "musicStrategy": "build_to_peak",
+  "beatSync": true,
+  "motion": "subtle",
+  "tags": [
+    "portfolio"
+  ],
+  "id": "portfolio_film"
+}

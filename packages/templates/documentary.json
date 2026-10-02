@@ -1,0 +1,16 @@
+{
+  "name": "Documentary",
+  "story": "documentary",
+  "pacing": "slow",
+  "color": "warm_documentary",
+  "transitionStyle": "minimal",
+  "textStyle": "documentary_caption",
+  "textAnimation": "fade",
+  "musicStrategy": "calm",
+  "captions": true,
+  "motion": "subtle",
+  "tags": [
+    "documentary"
+  ],
+  "id": "documentary"
+}

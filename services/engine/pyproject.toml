@@ -1,0 +1,32 @@
+[project]
+name = "editor-engine"
+version = "0.1.0"
+description = "Autonomous AI video editor: media intelligence, AI editing director, FFmpeg render engine"
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.27",
+  "pydantic>=2.6",
+  "python-multipart>=0.0.9",
+  "numpy>=1.26",
+  "scipy>=1.11",
+  "opencv-python-headless>=4.9,<5",
+  "librosa>=0.10",
+  "soundfile>=0.12",
+  "psutil>=5.9",
+  "httpx>=0.27",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+# Optional local speech-to-text for automatic subtitles (free, offline).
+transcribe = ["sherpa-onnx>=1.10"]
+# Optional Claude provider for prompt interpretation (deterministic parser is used without it).
+ai = ["anthropic>=1.0"]
+
+[tool.setuptools.packages.find]
+include = ["editor*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

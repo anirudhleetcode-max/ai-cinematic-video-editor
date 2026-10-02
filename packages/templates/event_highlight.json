@@ -1,0 +1,17 @@
+{
+  "name": "Event Highlight",
+  "story": "event",
+  "pacing": "medium",
+  "color": "teal_orange",
+  "transitionStyle": "subtle",
+  "textStyle": "premium_title",
+  "textAnimation": "fade_up",
+  "musicStrategy": "build_to_peak",
+  "beatSync": true,
+  "motion": "subtle",
+  "tags": [
+    "event",
+    "highlight"
+  ],
+  "id": "event_highlight"
+}

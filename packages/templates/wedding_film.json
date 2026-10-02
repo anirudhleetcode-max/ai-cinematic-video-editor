@@ -1,0 +1,20 @@
+{
+  "name": "Wedding Film",
+  "story": "emotional",
+  "pacing": "slow",
+  "color": "soft_wedding",
+  "transitionStyle": "subtle",
+  "textStyle": "wedding_script",
+  "textAnimation": "blur_reveal",
+  "musicStrategy": "calm",
+  "slowMotion": true,
+  "effects": [
+    "soft_glow"
+  ],
+  "motion": "subtle",
+  "tags": [
+    "wedding",
+    "romantic"
+  ],
+  "id": "wedding_film"
+}

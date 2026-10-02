@@ -1,0 +1,20 @@
+{
+  "name": "Trailer",
+  "story": "trailer",
+  "pacing": "fast",
+  "color": "moody",
+  "transitionStyle": "dynamic",
+  "textStyle": "premium_title",
+  "textAnimation": "tracking_reveal",
+  "musicStrategy": "build_to_peak",
+  "beatSync": true,
+  "sfx": true,
+  "effects": [
+    "letterbox"
+  ],
+  "tags": [
+    "trailer",
+    "dramatic"
+  ],
+  "id": "trailer"
+}

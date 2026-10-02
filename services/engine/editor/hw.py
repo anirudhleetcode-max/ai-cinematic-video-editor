@@ -1,0 +1,111 @@
+"""Hardware & toolchain detection. Encoders are *test-encoded*, not just listed: an ffmpeg build can
+list h264_nvenc without a GPU being present."""
+from __future__ import annotations
+
+import functools
+import os
+import platform
+import re
+import shutil
+
+import psutil
+
+from .config import get_settings
+from .proc import run
+
+# Preference order per codec.
+CANDIDATES = {
+    "h264": ["h264_nvenc", "h264_qsv", "h264_amf", "h264_videotoolbox", "h264_vaapi", "libx264"],
+    "hevc": ["hevc_nvenc", "hevc_qsv", "hevc_amf", "hevc_videotoolbox", "hevc_vaapi", "libx265"],
+}
+
+
+def _version(binary: str) -> str | None:
+    if not shutil.which(binary):
+        return None
+    try:
+        out = run([binary, "-version"], timeout=20).stdout.decode("utf-8", "replace")
+        m = re.search(r"version (\S+)", out)
+        return m.group(1) if m else out.splitlines()[0]
+    except Exception:
+        return None
+
+
+def _encoder_works(enc: str) -> bool:
+    s = get_settings()
+    args = [s.ffmpeg, "-v", "error", "-f", "lavfi", "-i", "testsrc2=s=256x144:r=30:d=0.3"]
+    if enc.endswith("_vaapi"):
+        args += ["-vaapi_device", "/dev/dri/renderD128", "-vf", "format=nv12,hwupload"]
+    args += ["-c:v", enc, "-f", "null", "-"]
+    try:
+        run(args, timeout=30)
+        return True
+    except Exception:
+        return False
+
+
+@functools.lru_cache(maxsize=1)
+def available_encoders() -> dict[str, list[str]]:
+    s = get_settings()
+    try:
+        listed = run([s.ffmpeg, "-hide_banner", "-encoders"], timeout=20).stdout.decode()
+    except Exception:
+        return {"h264": [], "hevc": []}
+    res: dict[str, list[str]] = {}
+    for codec, cands in CANDIDATES.items():
+        res[codec] = [e for e in cands if re.search(rf"\s{e}\s", listed) and _encoder_works(e)]
+    return res
+
+
+def pick_encoder(codec: str = "h264", prefer_hw: bool = True) -> str:
+    encs = available_encoders().get(codec, [])
+    if not prefer_hw:
+        sw = "libx264" if codec == "h264" else "libx265"
+        if sw in encs:
+            return sw
+    if encs:
+        return encs[0]
+    return "libx264"
+
+
+def encoder_args(enc: str, quality: str = "high") -> list[str]:
+    """Quality ladder per encoder family. quality: draft | standard | high."""
+    crf = {"draft": 28, "standard": 21, "high": 17}[quality]
+    if enc in ("libx264", "libx265"):
+        preset = {"draft": "ultrafast", "standard": "veryfast", "high": "medium"}[quality]
+        return ["-c:v", enc, "-preset", preset, "-crf", str(crf), "-pix_fmt", "yuv420p"]
+    if enc.endswith("_nvenc"):
+        return ["-c:v", enc, "-preset", "p5", "-rc", "vbr", "-cq", str(crf + 2), "-b:v", "0", "-pix_fmt", "yuv420p"]
+    if enc.endswith("_qsv"):
+        return ["-c:v", enc, "-global_quality", str(crf + 2), "-pix_fmt", "nv12"]
+    if enc.endswith("_videotoolbox"):
+        return ["-c:v", enc, "-q:v", str(70 - crf), "-pix_fmt", "yuv420p"]
+    if enc.endswith("_amf"):
+        return ["-c:v", enc, "-quality", "quality", "-rc", "cqp", "-qp_i", str(crf), "-qp_p", str(crf)]
+    return ["-c:v", "libx264", "-preset", "veryfast", "-crf", str(crf), "-pix_fmt", "yuv420p"]
+
+
+def diagnostics() -> dict:
+    s = get_settings()
+    du = shutil.disk_usage(s.data_dir)
+    vm = psutil.virtual_memory()
+    gpu = None
+    if shutil.which("nvidia-smi"):
+        gpu = "nvidia-smi present"
+    encs = available_encoders()
+    return {
+        "os": f"{platform.system()} {platform.release()}",
+        "python": platform.python_version(),
+        "ffmpeg": _version(s.ffmpeg),
+        "ffprobe": _version(s.ffprobe),
+        "ffmpeg_path": shutil.which(s.ffmpeg),
+        "cpu_count": os.cpu_count(),
+        "cpu_percent": psutil.cpu_percent(interval=0.1),
+        "ram_total_gb": round(vm.total / 2**30, 2),
+        "ram_available_gb": round(vm.available / 2**30, 2),
+        "disk_free_gb": round(du.free / 2**30, 2),
+        "gpu": gpu,
+        "encoders": encs,
+        "selected_encoder": pick_encoder("h264"),
+        "hardware_encoding": pick_encoder("h264") != "libx264",
+    }

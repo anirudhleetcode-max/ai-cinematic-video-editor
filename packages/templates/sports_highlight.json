@@ -1,0 +1,20 @@
+{
+  "name": "Sports Highlight",
+  "story": "event",
+  "pacing": "very_fast",
+  "color": "sports",
+  "transitionStyle": "energetic",
+  "textStyle": "bold_impact",
+  "textAnimation": "pop",
+  "musicStrategy": "peak",
+  "beatSync": true,
+  "speedRamps": true,
+  "slowMotion": true,
+  "sfx": true,
+  "motion": "dynamic",
+  "tags": [
+    "sports",
+    "hype"
+  ],
+  "id": "sports_highlight"
+}

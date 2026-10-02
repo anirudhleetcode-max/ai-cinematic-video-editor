@@ -1,0 +1,16 @@
+{
+  "name": "YouTube Video",
+  "story": "general",
+  "pacing": "medium",
+  "color": "clean_commercial",
+  "transitionStyle": "subtle",
+  "textStyle": "premium_title",
+  "textAnimation": "fade_up",
+  "musicStrategy": "build_to_peak",
+  "captions": true,
+  "aspect": "16:9",
+  "tags": [
+    "youtube"
+  ],
+  "id": "youtube_video"
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Product Commercial",
+  "story": "product",
+  "pacing": "fast",
+  "color": "clean_commercial",
+  "transitionStyle": "dynamic",
+  "textStyle": "premium_title",
+  "textAnimation": "mask_reveal",
+  "musicStrategy": "build_to_peak",
+  "beatSync": true,
+  "sfx": true,
+  "motion": "dynamic",
+  "tags": [
+    "product",
+    "commercial"
+  ],
+  "id": "product_commercial"
+}

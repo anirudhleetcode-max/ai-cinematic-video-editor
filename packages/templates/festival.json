@@ -1,0 +1,18 @@
+{
+  "name": "Festival",
+  "story": "event",
+  "pacing": "fast",
+  "color": "teal_orange",
+  "transitionStyle": "energetic",
+  "textStyle": "kinetic_bold",
+  "textAnimation": "kinetic_words",
+  "musicStrategy": "build_to_peak",
+  "beatSync": true,
+  "speedRamps": true,
+  "sfx": true,
+  "motion": "dynamic",
+  "tags": [
+    "festival"
+  ],
+  "id": "festival"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Corporate Video",
+  "story": "product",
+  "pacing": "medium",
+  "color": "corporate",
+  "transitionStyle": "minimal",
+  "textStyle": "corporate_clean",
+  "textAnimation": "mask_reveal",
+  "musicStrategy": "calm",
+  "motion": "subtle",
+  "tags": [
+    "corporate",
+    "business"
+  ],
+  "id": "corporate_video"
+}

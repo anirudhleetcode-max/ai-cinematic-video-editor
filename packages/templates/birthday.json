@@ -1,0 +1,17 @@
+{
+  "name": "Birthday",
+  "story": "event",
+  "pacing": "medium",
+  "color": "pastel",
+  "transitionStyle": "dynamic",
+  "textStyle": "social_caption",
+  "textAnimation": "bounce",
+  "musicStrategy": "build_to_peak",
+  "beatSync": true,
+  "motion": "subtle",
+  "tags": [
+    "birthday",
+    "celebration"
+  ],
+  "id": "birthday"
+}

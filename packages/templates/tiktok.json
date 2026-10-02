@@ -1,0 +1,21 @@
+{
+  "name": "TikTok",
+  "story": "general",
+  "pacing": "very_fast",
+  "color": "high_contrast",
+  "transitionStyle": "energetic",
+  "textStyle": "social_caption",
+  "textAnimation": "pop",
+  "musicStrategy": "peak",
+  "beatSync": true,
+  "captions": true,
+  "aspect": "9:16",
+  "duration": 25,
+  "hookSeconds": 1.5,
+  "sfx": true,
+  "tags": [
+    "tiktok",
+    "social"
+  ],
+  "id": "tiktok"
+}

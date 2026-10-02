@@ -1,0 +1,20 @@
+{
+  "name": "Music Video",
+  "story": "music",
+  "pacing": "fast",
+  "color": "cyberpunk",
+  "transitionStyle": "energetic",
+  "textStyle": "lyric",
+  "textAnimation": "kinetic_words",
+  "musicStrategy": "full",
+  "beatSync": true,
+  "speedRamps": true,
+  "effects": [
+    "chromatic_aberration"
+  ],
+  "motion": "dynamic",
+  "tags": [
+    "music"
+  ],
+  "id": "music_video"
+}

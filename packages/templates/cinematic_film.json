@@ -1,0 +1,20 @@
+{
+  "name": "Cinematic Film",
+  "story": "cinematic",
+  "pacing": "slow",
+  "color": "cinematic_neutral",
+  "transitionStyle": "subtle",
+  "textStyle": "premium_title",
+  "textAnimation": "tracking_reveal",
+  "musicStrategy": "build_to_peak",
+  "effects": [
+    "vignette",
+    "film_grain"
+  ],
+  "motion": "subtle",
+  "tags": [
+    "cinematic",
+    "film"
+  ],
+  "id": "cinematic_film"
+}

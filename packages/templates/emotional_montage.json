@@ -1,0 +1,16 @@
+{
+  "name": "Emotional Montage",
+  "story": "emotional",
+  "pacing": "slow",
+  "color": "warm_documentary",
+  "transitionStyle": "subtle",
+  "textStyle": "quote",
+  "textAnimation": "blur_reveal",
+  "musicStrategy": "calm",
+  "slowMotion": true,
+  "motion": "subtle",
+  "tags": [
+    "emotional"
+  ],
+  "id": "emotional_montage"
+}

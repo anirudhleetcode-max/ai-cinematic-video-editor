@@ -5,3 +5,8 @@ out/
 *.mp4
 *.mov
 *.wav
+data/
+__pycache__/
+*.egg-info/
+.next/
+*.sqlite3*

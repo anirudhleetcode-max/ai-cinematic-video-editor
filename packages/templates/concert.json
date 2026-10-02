@@ -1,0 +1,20 @@
+{
+  "name": "Concert",
+  "story": "event",
+  "pacing": "fast",
+  "color": "concert",
+  "transitionStyle": "energetic",
+  "textStyle": "neon",
+  "textAnimation": "kinetic_words",
+  "musicStrategy": "peak",
+  "beatSync": true,
+  "effects": [
+    "bloom"
+  ],
+  "motion": "dynamic",
+  "tags": [
+    "concert",
+    "music"
+  ],
+  "id": "concert"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Instagram Reel",
+  "story": "general",
+  "pacing": "fast",
+  "color": "teal_orange",
+  "transitionStyle": "dynamic",
+  "textStyle": "social_caption",
+  "textAnimation": "pop",
+  "musicStrategy": "peak",
+  "beatSync": true,
+  "captions": true,
+  "aspect": "9:16",
+  "duration": 30,
+  "hookSeconds": 2,
+  "tags": [
+    "instagram",
+    "reel",
+    "social"
+  ],
+  "id": "instagram_reel"
+}

@@ -1,0 +1,1 @@
+All fonts in this folder are licensed under the SIL Open Font License 1.1 (Inter, Montserrat, Playfair Display, Bebas Neue — Google Fonts, via @expo-google-fonts).

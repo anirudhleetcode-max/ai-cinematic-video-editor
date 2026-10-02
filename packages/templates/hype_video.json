@@ -1,0 +1,19 @@
+{
+  "name": "Hype Video",
+  "story": "event",
+  "pacing": "very_fast",
+  "color": "high_contrast",
+  "transitionStyle": "energetic",
+  "textStyle": "bold_impact",
+  "textAnimation": "kinetic_words",
+  "musicStrategy": "peak",
+  "beatSync": true,
+  "speedRamps": true,
+  "sfx": true,
+  "motion": "dynamic",
+  "tags": [
+    "hype",
+    "energetic"
+  ],
+  "id": "hype_video"
+}

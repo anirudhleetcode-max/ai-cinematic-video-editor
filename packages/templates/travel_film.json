@@ -1,0 +1,19 @@
+{
+  "name": "Travel Film",
+  "story": "travel",
+  "pacing": "medium",
+  "color": "golden_hour",
+  "transitionStyle": "dynamic",
+  "textStyle": "elegant_serif",
+  "textAnimation": "fade_up",
+  "musicStrategy": "build_to_peak",
+  "beatSync": true,
+  "effects": [
+    "light_leak"
+  ],
+  "motion": "subtle",
+  "tags": [
+    "travel"
+  ],
+  "id": "travel_film"
+}
