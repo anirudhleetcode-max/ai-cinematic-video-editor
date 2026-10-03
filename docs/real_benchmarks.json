@@ -18,7 +18,8 @@
   },
   "selected_encoder": "libx264",
   "hardware_encoding": false,
-  "os": "Linux-6.18.44-fc-v64-x86_64-with-glibc2.39"
+  "os": "Linux-6.18.44-fc-v64-x86_64-with-glibc2.39",
+  "cpu_model": "Intel(R) Xeon(R) Processor @ 2.80GHz"
  },
  "inputs": {
   "clip": 76,
@@ -28,64 +29,22 @@
  },
  "runs": [
   {
-   "output_seconds": 60.0,
-   "label": "MEASURED",
-   "planning_s": 0.393,
-   "segments": 49,
-   "repeated_shots": 1,
-   "preview_s": 52.2,
-   "preview_qc": true,
-   "final_render_s": 149.27,
-   "render_breakdown": {
-    "segments_s": 87.94,
-    "transitions_s": 0.0,
-    "audio_s": 0.01,
-    "final_pass_s": 33.74,
-    "qc_s": 7.93,
-    "total_s": 129.62,
-    "reviews_s": 19.61
-   },
-   "qc_passed": true,
-   "qc_failures": [],
-   "encoder": "libx264",
-   "output": {
-    "duration": 59.933333,
-    "width": 1920,
-    "height": 1080,
-    "fps": 30.0,
-    "vcodec": "h264",
-    "acodec": "aac"
-   },
-   "loudness_lufs": -16.56,
-   "segments_cached": 0,
-   "review": {
-    "pass": 10,
-    "warn": 1,
-    "fail": 0,
-    "n/a": 0
-   },
-   "reference_similarity": 0.604,
-   "total_s": 201.86,
-   "peak_rss_mb": 1583.0,
-   "cpu_percent_avg": 76.9
-  },
-  {
    "output_seconds": 300.0,
    "label": "MEASURED",
-   "planning_s": 1.576,
+   "planning_s": 1.425,
    "segments": 253,
-   "repeated_shots": 173,
-   "preview_s": 297.57,
+   "repeated_shots": 171,
+   "preview_s": 186.73,
    "preview_qc": true,
-   "final_render_s": 739.37,
+   "final_render_s": 649.86,
    "render_breakdown": {
-    "segments_s": 497.6,
+    "segments_s": 405.7,
     "transitions_s": 0.0,
-    "audio_s": 0.03,
-    "final_pass_s": 123.04,
-    "qc_s": 37.53,
-    "total_s": 658.21,
-    "reviews_s": 81.12
+    "audio_s": 0.04,
+    "final_pass_s": 130.17,
+    "qc_s": 34.08,
+    "total_s": 569.98,
+    "reviews_s": 79.84
    },
    "qc_passed": true,
    "qc_failures": [],
@@ -98,7 +57,7 @@
     "vcodec": "h264",
     "acodec": "aac"
    },
-   "loudness_lufs": -16.29,
+   "loudness_lufs": -16.0,
    "segments_cached": 0,
    "review": {
     "pass": 9,
@@ -106,18 +65,42 @@
     "fail": 0,
     "n/a": 0
    },
-   "reference_similarity": 0.611,
-   "total_s": 1038.51,
-   "peak_rss_mb": 1808.8,
-   "cpu_percent_avg": 79.6
+   "reference_similarity": 0.6,
+   "output_size_bytes": 109214441,
+   "total_s": 838.01,
+   "peak_rss_mb": 1713.0,
+   "cpu_percent_avg": 77.6
   }
  ],
- "upload_s": 74.07,
+ "upload_s": 75.5,
  "source_footage_seconds": 851.6,
+ "source_codecs": {
+  "h264": 70,
+  "vp9": 1,
+  "mjpeg": 1,
+  "prores": 1,
+  "hevc": 1
+ },
+ "source_resolutions": {
+  "640x480": 6,
+  "1024x576": 2,
+  "640x360": 2,
+  "768x432": 31,
+  "1920x1080": 13,
+  "1440x1080": 1,
+  "720x404": 5,
+  "960x540": 5,
+  "3840x2160": 2,
+  "1080x1920": 1,
+  "768x576": 3,
+  "848x384": 1,
+  "848x478": 2
+ },
  "analysis": {
-  "seconds": 148.43,
+  "seconds": 137.44,
   "shots": 103,
   "usable_shots": 90,
-  "peak_rss_mb": 1180.4
- }
+  "peak_rss_mb": 1078.9
+ },
+ "note": "Clean run (2026-10-03): 300 s output only, executed alone (no other CPU-heavy work), fresh data directory (no caches). Official 5-minute measurement."
 }

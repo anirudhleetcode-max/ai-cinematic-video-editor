@@ -77,7 +77,9 @@ export default function Dashboard() {
                   <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
                     <div className="text-[15px] font-semibold tracking-tight">{p.name}</div>
                     <button
-                      className="rounded-md p-1.5 text-fog-500 opacity-0 transition hover:bg-bad/15 hover:text-bad group-hover:opacity-100"
+                      aria-label={`Delete project ${p.name}`}
+                      title="Delete project"
+                      className="rounded-md p-1.5 text-fog-500 opacity-0 transition hover:bg-bad/15 hover:text-bad focus-visible:opacity-100 group-hover:opacity-100"
                       onClick={async (e) => {
                         e.preventDefault();
                         if (confirm(`Delete "${p.name}" and all its media?`)) {

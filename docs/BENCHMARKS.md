@@ -1,5 +1,49 @@
 # Benchmarks (measured)
 
+## Real footage — release measurements
+
+**Machine:** Linux container, Intel Xeon @ 2.80 GHz, **4 CPU cores**, 15.7 GB RAM, **no GPU**, FFmpeg 6.1.1, encoder
+libx264 (CPU only; no hardware encoder exists here, none is claimed).
+**Input:** `tests/real_media/event01` — 76 real clips (851.6 s of footage; H.264 ×70, VP9, MJPEG, ProRes, HEVC; 13
+resolutions from 640×360 to 3840×2160, incl. portrait 1080×1920), 3 songs, 1 reference, 1 logo.
+**Output:** 1920×1080, 30 fps, H.264 / AAC, Fast mode. Analysis is one-off per project and listed separately.
+Raw data: [`real_benchmarks.json`](real_benchmarks.json) (clean run), [`real_benchmarks_run2.json`](real_benchmarks_run2.json).
+
+### Official numbers
+
+| Output | Run | Analysis | Planning | Preview | Final render (incl. QC + reviews) | Total excl. analysis | Peak RSS | Size | QC |
+|---:|---|---:|---:|---:|---:|---:|---:|---:|:-:|
+| 60 s | run 2 ⚠ | 148.4 s | 0.39 s | 52.2 s | **149.3 s** | 201.9 s | 1583 MB | — | pass |
+| 300 s | **clean** | 137.4 s | 1.43 s | **186.7 s** | **649.9 s** | **838.0 s** | 1713 MB | 109.2 MB | pass |
+| 600 s | run 2 ⚠ | 148.4 s | 3.33 s | 520.9 s | **1305.0 s** | 1829.3 s | 2890 MB | — | pass |
+
+⚠ Run 2 was **not isolated**: development work and test runs shared the 4 CPUs during the 60 s and 300 s phases and
+light test-media generation ran during the 600 s preview. Its 300 s preview (297.6 s) was 59 % slower than the clean
+run (186.7 s), so run-2 times are upper bounds. The 300 s point was re-measured alone; the 60 s and 600 s points were
+not (time budget), and are reported as run 2.
+
+Final-render breakdown (clean 300 s): segments 405.7 s · final pass (concat, text, x264 1080p encode) 130.2 s · QC
+34.1 s · reviews (colour continuity, reference match, checklist) 79.8 s · audio 0.04 s (mix cached from the preview).
+600 s (run 2): segments 874.9 s · final pass 220.2 s · QC 63.0 s · reviews 146.9 s.
+
+### Against the 25-minute target
+* **5-minute edit: measured 975 s (16.3 min)** including analysis, preview and final (clean run). Within 25 min.
+* **10-minute edit: measured 1977.7 s (33.0 min)** including analysis (148.4 s), preview and final (run 2, not
+  isolated). Final render alone 1305.0 s (21.8 min). **Above the 25-minute target on this 4-core CPU-only machine**
+  when a preview is rendered first; without the preview it would be analysis + final ≈ 1457 s (24.3 min) — that
+  combination was **not** run, so it is an estimate from measured parts, not a measurement.
+* Improvement from the first real run (before rendering the grade into segments): 300 s final 956.6 → 649.9 s
+  (−32 %); 600 s final 1922.1 → 1305.0 s (−32 %, run 2).
+
+### Earlier real run (run 1, before the render optimisation)
+| Output | Preview | Final | Total excl. analysis | Peak RSS |
+|---:|---:|---:|---:|---:|
+| 60 s | 53.5 s | 190.3 s | 243.9 s | 1505 MB |
+| 300 s | 241.7 s | 956.6 s | 1198.8 s | 1841 MB |
+| 600 s | 525.8 s | 1922.1 s | 2448.6 s | 2833 MB |
+
+## Synthetic media (earlier engine benchmark)
+
 Every number here was measured by `scripts/benchmark.py` and `scripts/acceptance_test.py` on the machine below;
 raw results are in [`benchmarks.json`](benchmarks.json) and [`acceptance_report.json`](acceptance_report.json).
 Re-run on your hardware with `npm run benchmark`. Results on other machines will differ.
@@ -41,8 +85,5 @@ Observations:
 | “Use song 2 for the final section.” | song 2 was already the auto-selected song, so this is reported as a no-op (0 s, no re-render) |
 | “Use song 3 for the final section.” (extra, to exercise a real change) | 138.5 s; final section switched to song 3, earlier sections unchanged, colour kept |
 
-## Against the spec’s 25-minute target
-
-The target (5–10 minute edit from 50–200 clips in ≤ 25 min) was **not measured** here: only 60 s outputs were
-benchmarked. Render time per output-second on this machine was ~2.2–2.9 s (render column ÷ 60), so a 5-minute
-edit would be expected to take roughly 11–15 min of render plus analysis — an extrapolation, not a measurement.
+## Against the spec’s 25-minute target (synthetic section)
+Superseded by the real-footage measurements at the top of this page.

@@ -149,7 +149,7 @@ function AssetCard({ a, onDelete }: { a: AssetSummary; onDelete: () => void }) {
             {a.music ? ` · ${a.music.bpm.toFixed(0)} BPM · ${a.music.sections.length} sections` : a.status === "analyzed" ? "" : " · not analysed"}
           </div>
         </div>
-        <button onClick={onDelete} className="opacity-0 transition group-hover:opacity-100">
+        <button onClick={onDelete} aria-label="Delete asset" title="Delete asset" className="opacity-0 transition focus-visible:opacity-100 group-hover:opacity-100">
           <Trash2 className="h-3.5 w-3.5 text-fog-500 hover:text-bad" />
         </button>
       </div>
@@ -171,7 +171,7 @@ function AssetCard({ a, onDelete }: { a: AssetSummary; onDelete: () => void }) {
             {Math.round(a.best_score * 100)}
           </div>
         ) : null}
-        <button onClick={onDelete} className="absolute left-1 top-1 rounded bg-ink/80 p-1 opacity-0 transition group-hover:opacity-100">
+        <button onClick={onDelete} aria-label="Delete asset" title="Delete asset" className="absolute left-1 top-1 rounded bg-ink/80 p-1 opacity-0 transition focus-visible:opacity-100 group-hover:opacity-100">
           <Trash2 className="h-3 w-3 text-fog-400 hover:text-bad" />
         </button>
       </div>

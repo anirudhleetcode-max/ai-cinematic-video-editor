@@ -134,6 +134,7 @@ function VersionRowView({ v, active, onSelect, onRevert }: { v: VersionRow; acti
       </div>
       <button
         title="Restore this version as a new version"
+        aria-label="Restore this version as a new version"
         onClick={(e) => {
           e.stopPropagation();
           onRevert();

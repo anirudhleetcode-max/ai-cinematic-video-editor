@@ -93,7 +93,7 @@ export function PipelineProgress({ state, onClose }: { state: JobState; onClose:
               <span className="ml-2 font-mono text-xs font-normal text-fog-500">{j.kind}</span>
             </div>
             {state.finished ? (
-              <button onClick={onClose} className="text-fog-500 hover:text-fog">
+              <button onClick={onClose} aria-label="Close progress" className="text-fog-500 hover:text-fog">
                 <X className="h-4 w-4" />
               </button>
             ) : (

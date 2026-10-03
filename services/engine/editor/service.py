@@ -158,9 +158,8 @@ def register_asset(pid: str, path: Path, role: str, kind: str, filename: str | N
             meta = probe(path)
         except Exception as e:  # noqa: BLE001
             path.unlink(missing_ok=True)
-            from .public import scrub
-
-            raise ValueError(f"could not read media file {filename or path.name}: {scrub(str(e), 200)}") from e
+            log(logger, "probe failed", level=30, file=filename or path.name, error=str(e)[:500])
+            raise ValueError(f"could not read media file {filename or path.name}: not a valid or supported audio/video/image file") from e
         if kind == "video" and not meta.get("has_video"):
             if meta.get("has_audio"):
                 kind = "audio"

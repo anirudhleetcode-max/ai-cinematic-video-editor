@@ -1,0 +1,81 @@
+{
+ "label": "MEASURED \u2014 two independent runs, fresh data directories",
+ "stages": {
+  "analysis": {
+   "identical": true,
+   "run1": "cf969f3544424bf1",
+   "run2": "cf969f3544424bf1"
+  },
+  "media": {
+   "identical": true,
+   "run1": "(dict)",
+   "run2": "(dict)"
+  },
+  "plan": {
+   "identical": true,
+   "run1": "690f0e42ebccde6a",
+   "run2": "690f0e42ebccde6a"
+  },
+  "plan_segments": {
+   "identical": true,
+   "run1": 11,
+   "run2": 11
+  },
+  "reference": {
+   "identical": true,
+   "run1": {
+    "cuts_per_minute": 46.15,
+    "median_shot_duration": 1.2,
+    "n_shots": 13,
+    "transition_types": {
+     "cut": 10,
+     "fade": 2
+    }
+   },
+   "run2": {
+    "cuts_per_minute": 46.15,
+    "median_shot_duration": 1.2,
+    "n_shots": 13,
+    "transition_types": {
+     "cut": 10,
+     "fade": 2
+    }
+   }
+  },
+  "reference_media": {
+   "identical": true,
+   "run1": "9d3c00f82e3a7767",
+   "run2": "9d3c00f82e3a7767"
+  },
+  "render_frames": {
+   "identical": true,
+   "run1": "6b369ab772d57f36",
+   "run2": "6b369ab772d57f36"
+  },
+  "render_metadata": {
+   "identical": true,
+   "run1": {
+    "acodec": "aac",
+    "duration": 9.966667,
+    "fps": 30.0,
+    "height": 1080,
+    "vcodec": "h264",
+    "width": 1920
+   },
+   "run2": {
+    "acodec": "aac",
+    "duration": 9.966667,
+    "fps": 30.0,
+    "height": 1080,
+    "vcodec": "h264",
+    "width": 1920
+   }
+  },
+  "retrieval": {
+   "identical": true,
+   "run1": 9,
+   "run2": 9
+  }
+ },
+ "all_identical": true
+}
