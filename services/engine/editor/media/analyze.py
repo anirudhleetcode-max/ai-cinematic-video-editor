@@ -17,7 +17,7 @@ from .probe import probe
 from .semantics import camera_motion, sample_detections, shot_profile
 
 logger = get_logger("analyze")
-VERSION = "video-v11"  # v7: correct colour/geometry sampling, vision provider, semantic profile, usability/creative scores
+VERSION = "video-v12"  # v7: correct colour/geometry sampling, vision provider, semantic profile, usability/creative scores
 
 MODES = {
     # sample fps, analysis width, face/person sampling interval (s)
@@ -67,6 +67,19 @@ def detect_shots(m: dict[str, np.ndarray], times: np.ndarray, fps: float, min_sh
                 cuts.append((mid, "fade"))
             i = j
         i += 1
+    # a hard boundary that is really a fade: luma ramps monotonically up from (or down to) near-black across it
+    # ("cut to black, fade up"). A cut between a bright and a dark shot is a single step, not a ramp.
+    for k, (c, kind) in enumerate(cuts):
+        if kind != "cut":
+            continue
+        up = lum[max(0, c - 3):min(n, c + 3)]
+        lo = int(np.argmin(up))
+        rise = up[lo:]
+        fall = up[:lo + 1]
+        ramp_up = up[lo] <= 0.06 and len(rise) >= 3 and bool(np.all(np.diff(rise[:4]) > 0.01)) and rise[min(3, len(rise) - 1)] >= 3 * max(up[lo], 0.01)
+        ramp_dn = up[lo] <= 0.06 and len(fall) >= 3 and bool(np.all(np.diff(fall[-4:]) < -0.01)) and fall[-min(4, len(fall))] >= 3 * max(up[lo], 0.01)
+        if ramp_up or ramp_dn:
+            cuts[k] = (c, "fade")
     # dissolve: window of 3+ moderate distances whose sum exceeds the cut threshold
     win = max(3, int(round(fps * 0.6)))
     for i in range(1, n - win):

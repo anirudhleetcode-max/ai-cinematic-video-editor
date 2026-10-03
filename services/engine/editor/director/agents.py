@@ -569,18 +569,29 @@ def clip_selector(plan: Plan, ctx: ProjectContext, intent: StyleIntent, prefer_p
 
     cands = ctx.candidates()
     user_avoid = set(intent.avoid or []) - set(HARD_EXCLUDE)
+    # content the user asked to leave out ("no dogs", "no screen recordings"): excluded like avoided issues
+    excluded_content = {t for t, w in (tag_weights or {}).items() if w <= -0.5}
+
+    def content(c: Candidate) -> set[str]:
+        sem = c.semantic or {}
+        return set(c.tags) | {x["label"] for x in sem.get("subjects", [])} | {x["label"] for x in sem.get("objects", [])}
+
+    def allowed(c: Candidate) -> bool:
+        return not (set(c.issues) & (hard | user_avoid)) and not (content(c) & excluded_content)
+
     need_n = max(3, len(plan.slots) // 4)
     relaxed: list[str] = []
     hard = set(HARD_EXCLUDE)
-    usable = [c for c in cands if not (set(c.issues) & (hard | user_avoid))]
+    usable = [c for c in cands if allowed(c)]
     for step, drop in (("user-avoided issues", user_avoid), ("duplicates", {"duplicate"}), ("frozen/too-short", {"frozen", "too_short"}),
-                       ("obstructed/black", {"obstructed", "black"})):
+                       ("obstructed/black", {"obstructed", "black"}), ("user-excluded content", excluded_content)):
         if len(usable) >= need_n:
             break
-        if drop & (hard | user_avoid):
+        if drop & (hard | user_avoid | excluded_content):
             user_avoid -= drop
             hard -= drop
-            usable = [c for c in cands if not (set(c.issues) & (hard | user_avoid))]
+            excluded_content -= drop
+            usable = [c for c in cands if allowed(c)]
             relaxed.append(step)
     if not usable:
         usable = sorted(cands, key=lambda c: -c.overall)[: max(3, len(plan.slots))]
