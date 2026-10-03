@@ -15,12 +15,14 @@ import soundfile as sf
 from .config import get_settings
 from .proc import run
 
+# Every source is deterministic (fixed seeds / explicit colours) so the test dataset is identical on every run.
 SOURCES = [
     "testsrc2=s={w}x{h}:r={fps}",
     "mandelbrot=s={w}x{h}:r={fps}",
-    "life=s={w}x{h}:r={fps}:mold=10:ratio=0.1:death_color=#2b2b40:life_color=#e0b060",
-    "cellauto=s={w}x{h}:r={fps}:rule=110",
-    "gradients=s={w}x{h}:r={fps}:speed=0.04:nb_colors=4",
+    "life=s={w}x{h}:r={fps}:mold=10:ratio=0.1:seed=7:death_color=#2b2b40:life_color=#e0b060",
+    "cellauto=s={w}x{h}:r={fps}:rule=110:seed=7",
+    # smooth moving colour field (FFmpeg's `gradients` source is not reproducible even with a seed)
+    "nullsrc=s={w}x{h}:r={fps},geq=r='128+96*sin(X/97+T*0.9)':g='120+88*sin(Y/71+T*0.6)':b='136+84*sin((X+Y)/113-T*0.5)'",
     "smptehdbars=s={w}x{h}:r={fps}",
     "rgbtestsrc=s={w}x{h}:r={fps}",
 ]
