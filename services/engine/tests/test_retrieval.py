@@ -46,8 +46,11 @@ def test_revision_query_prefers_matching_shots(project):
 
     base = S.create_edit_plan(project["id"], "A 15 second energetic festival recap", "fast")
     # tag one clip's shots as containing a dog, as the deep detector would
-    clips = [a for a in S.list_assets(project["id"]) if a["role"] == "clip" and "overexposed" in a["filename"]]  # usable, low-scoring
-    target = db.get("assets", clips[0]["id"])
+    # a clip the baseline edit uses, chosen from the plan itself (which clips are used depends on the installed detectors)
+    counts = {}
+    for seg in base["plan"]["timeline"]:
+        counts[seg["asset_id"]] = counts.get(seg["asset_id"], 0) + 1
+    target = db.get("assets", min(counts, key=lambda k: (counts[k], k)))
     before = sum(s["asset_id"] == target["id"] for s in base["plan"]["timeline"])
     an = target["analysis"]
     for sh in an["shots"]:
