@@ -334,8 +334,11 @@ def music_director(plan: Plan, ctx: ProjectContext, intent: StyleIntent, section
                 remaining = total - t
                 avail = m["duration"] - src
                 L = min(avail, remaining + (xf if remaining > avail else 0))
+                last = t + L >= total - 0.05
                 segs.append(MusicSegment(asset_id=a.id, src_in=round(src, 3), out_start=round(t, 3), out_end=round(min(total, t + L), 3),
-                                         fade_in=0.4 if t == 0 else xf, fade_out=xf if t + L < total - 0.05 else min(3.0, plan.ending.duration + 0.5)))
+                                         fade_in=0.4 if t == 0 else xf, fade_out=xf if not last else min(3.0, plan.ending.duration + 0.5)))
+                if last:  # this piece reaches the end: no crossfade overlap follows it
+                    break
                 t += L - xf
                 src = loop_from
             plan.note(f"Music: '{a.filename}' is shorter than the edit — extended by re-entering its high-energy section at {loop_from:.1f}s with {xf:.0f}s crossfades.")

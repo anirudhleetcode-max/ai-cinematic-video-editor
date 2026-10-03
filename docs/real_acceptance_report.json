@@ -28,12 +28,12 @@
  },
  "steps": {
   "upload": {
-   "seconds": 73.1,
+   "seconds": 71.6,
    "accepted": 79,
    "rejected": [
     {
      "file": "derived_corrupt_not_video.mp4",
-     "reason": "could not read media file derived_corrupt_not_video.mp4: ffprobe exited 1: [mov,mp4,m4a,3gp,3g2,mj2 @ 0x55f7605a66c0] moov atom not found | /tmp/claude-0/ra3/projects/prj_6cdc319a8cac/media/clip/deriv"
+     "reason": "could not read media file derived_corrupt_not_video.mp4: ffprobe exited 1: [mov,mp4,m4a,3gp,3g2,mj2 @ 0x555a9179a6c0] moov atom not found | derived_corrupt_not_video.mp4: Invalid data found when proce"
     },
     {
      "file": "derived_corrupt_truncated.mp4",
@@ -42,7 +42,7 @@
    ]
   },
   "analysis": {
-   "seconds": 142.2,
+   "seconds": 136.33,
    "shots": 103,
    "usable_shots": 90,
    "rejected": {
@@ -73,12 +73,12 @@
    }
   },
   "planning": {
-   "seconds": 0.377,
+   "seconds": 0.342,
    "segments": 49,
-   "unique_shots": 48,
-   "same_take_reused": 1,
+   "unique_shots": 47,
+   "same_take_reused": 2,
    "repeated_footage": [],
-   "distinct_source_files": 47,
+   "distinct_source_files": 45,
    "sections": [
     "hook",
     "opening",
@@ -93,12 +93,12 @@
    "ending": "logo_title"
   },
   "preview": {
-   "seconds": 55.83,
+   "seconds": 39.0,
    "qc": true,
    "qc_failures": []
   },
   "final_render": {
-   "seconds": 211.7,
+   "seconds": 134.62,
    "qc_passed": true,
    "qc_failures": [],
    "qc_warnings": [],
@@ -107,35 +107,35 @@
    "fps": 30.0,
    "vcodec": "h264",
    "acodec": "aac",
-   "lufs": -16.56,
-   "true_peak": -1.0,
+   "lufs": -16.01,
+   "true_peak": -1.47,
    "encoder": "libx264",
    "timings": {
-    "segments_s": 79.65,
+    "segments_s": 81.93,
     "transitions_s": 0.0,
-    "audio_s": 24.21,
-    "final_pass_s": 76.65,
-    "qc_s": 7.13,
-    "total_s": 187.64,
-    "reviews_s": 23.97
+    "audio_s": 0.01,
+    "final_pass_s": 30.33,
+    "qc_s": 6.46,
+    "total_s": 118.73,
+    "reviews_s": 15.85
    },
    "segments_cached": 0,
    "fallbacks": [],
-   "output": "/tmp/claude-0/ra3/projects/prj_6cdc319a8cac/outputs/final_v1_rnd_04c4f8f75518.mp4",
+   "output": "/tmp/claude-0/acc/projects/prj_85dbe7e99dbb/outputs/final_v1_rnd_43da604e6ea1.mp4",
    "reference_match": {
     "metrics": [
      {
       "metric": "median shot length (s)",
       "reference": 1.2,
-      "output": 1.1,
-      "similarity": 0.874,
+      "output": 1.167,
+      "similarity": 0.96,
       "basis": "measured"
      },
      {
       "metric": "cuts per minute",
       "reference": 38.33,
-      "output": 51.06,
-      "similarity": 0.586,
+      "output": 50.06,
+      "similarity": 0.615,
       "basis": "measured"
      },
      {
@@ -152,9 +152,9 @@
        0
       ],
       "output": [
-       0,
-       18,
-       17,
+       3,
+       15,
+       16,
        13,
        3,
        1,
@@ -162,63 +162,63 @@
        0,
        0
       ],
-      "similarity": 0.404,
+      "similarity": 0.392,
       "basis": "measured"
      },
      {
       "metric": "transition density",
       "reference": 0.0,
-      "output": 0.02,
-      "similarity": 0.933,
+      "output": 0.04,
+      "similarity": 0.867,
       "basis": "inferred (frame-statistics transition classifier)"
      },
      {
       "metric": "colour: brightness",
       "reference": 0.5189,
-      "output": 0.4765,
-      "similarity": 0.788,
+      "output": 0.4851,
+      "similarity": 0.831,
       "basis": "measured"
      },
      {
       "metric": "colour: contrast",
       "reference": 0.1938,
-      "output": 0.1596,
-      "similarity": 0.658,
+      "output": 0.1592,
+      "similarity": 0.654,
       "basis": "measured"
      },
      {
       "metric": "colour: saturation",
       "reference": 0.2686,
-      "output": 0.2102,
-      "similarity": 0.708,
+      "output": 0.2396,
+      "similarity": 0.855,
       "basis": "measured"
      },
      {
       "metric": "colour: temperature",
       "reference": 0.0634,
-      "output": 0.0675,
-      "similarity": 0.959,
+      "output": 0.0861,
+      "similarity": 0.773,
       "basis": "measured"
      },
      {
       "metric": "colour: tint",
       "reference": 0.0137,
-      "output": 0.0033,
-      "similarity": 0.792,
+      "output": 0.0039,
+      "similarity": 0.804,
       "basis": "measured"
      },
      {
       "metric": "colour: shadows warmth",
       "reference": 0.1123,
-      "output": 0.0287,
-      "similarity": 0.164,
+      "output": 0.044,
+      "similarity": 0.317,
       "basis": "measured"
      },
      {
       "metric": "colour: highlights warmth",
       "reference": -0.0093,
-      "output": 0.0901,
-      "similarity": 0.006,
+      "output": 0.0473,
+      "similarity": 0.434,
       "basis": "measured"
      },
      {
@@ -231,12 +231,12 @@
      {
       "metric": "music energy (mean)",
       "reference": 0.851,
-      "output": 0.673,
-      "similarity": 0.407,
+      "output": 0.714,
+      "similarity": 0.543,
       "basis": "measured"
      }
     ],
-    "overall_similarity": 0.637,
+    "overall_similarity": 0.696,
     "note": "Measured similarity between the reference and this edit on each metric (1 = identical value). It describes how closely measurable properties match; it is not a claim of stylistic replication. The output includes a 3.5s end card, which the reference may not have."
    },
    "review": {
@@ -264,6 +264,7 @@
       "status": "pass",
       "evidence": {
        "shots_within_role_range": 1.0,
+       "editing_mode": "montage",
        "beat_synced_cut_notes": [
         "Timeline: 49 shots from the pacing engine on the beat grid (112 BPM), median shot 1.09s; cut relations: on_beat 63%, downbeat 20%, section_end 14%, before_beat 2%."
        ]
@@ -274,8 +275,8 @@
       "question": "Are the best usable shots selected?",
       "status": "pass",
       "evidence": {
-       "mean_score_used": 0.711,
-       "mean_score_available": 0.63,
+       "mean_score_used": 0.708,
+       "mean_score_available": 0.627,
        "unusable_shots_used": 0
       }
      },
@@ -285,8 +286,8 @@
       "status": "pass",
       "evidence": {
        "adjacent_same_clip": 0,
-       "repeated_shots": 1,
-       "distinct_clips": 47
+       "repeated_shots": 2,
+       "distinct_clips": 45
       }
      },
      {
@@ -304,11 +305,13 @@
       "question": "Are neighbouring shots consistent (measured on the render)?",
       "status": "warn",
       "evidence": {
-       "segments_measured": 49,
-       "max_adjacent_luma_jump": 0.142,
-       "max_adjacent_temperature_jump": 0.067,
-       "max_adjacent_saturation_jump": 0.098,
-       "worst_luma_jump_at": "s021"
+       "segments_measured": 44,
+       "max_adjacent_luma_jump": 0.32,
+       "max_adjacent_temperature_jump": 0.159,
+       "max_adjacent_saturation_jump": 0.084,
+       "worst_luma_jump_at": "s039",
+       "adjacent_pairs_compared": 33,
+       "boundaries_skipped_screen_content": 4
       }
      },
      {
@@ -316,12 +319,12 @@
       "question": "Is dialogue intelligible and the mix controlled?",
       "status": "pass",
       "evidence": {
-       "integrated_lufs": -16.56,
+       "integrated_lufs": -16.01,
        "target_lufs": -16.0,
-       "true_peak_db": -1.0,
-       "speech_seconds": 7.4,
-       "ducked_seconds": 13.22,
-       "dialogue_levels_matched": 5
+       "true_peak_db": -1.47,
+       "speech_seconds": null,
+       "ducked_seconds": null,
+       "dialogue_levels_matched": 0
       }
      },
      {
@@ -365,37 +368,38 @@
     "summary": {
      "pass": 10,
      "warn": 1,
-     "fail": 0
+     "fail": 0,
+     "n/a": 0
     },
     "note": "Deterministic checks over the plan and measurements of the rendered file; a 'pass' means the measured criterion was met, not that the edit is aesthetically perfect."
    }
   },
   "revision_1": {
    "text": "Make it more energetic and reduce the intro to 3 seconds.",
-   "seconds": 226.06,
+   "seconds": 157.6,
    "ops": [
     "pacing",
     "section_length"
    ],
    "noop": false,
    "qc": true,
-   "segments_cached": 0,
+   "segments_cached": 1,
    "segments": 76
   },
   "revision_2": {
    "text": "Make the colors warmer.",
-   "seconds": 108.42,
+   "seconds": 150.63,
    "ops": [
     "color_adjust"
    ],
    "noop": false,
    "qc": true,
-   "segments_cached": 76,
+   "segments_cached": 0,
    "segments": 76
   },
   "revision_3": {
    "text": "Use song 2 for the final section.",
-   "seconds": 0.02,
+   "seconds": 0.03,
    "ops": [
     "section_song"
    ],
@@ -407,8 +411,8 @@
  },
  "measured": true,
  "resources": {
-  "peak_rss_mb": 1619.8,
-  "cpu_percent_avg": 69.6,
+  "peak_rss_mb": 1718.8,
+  "cpu_percent_avg": 75.6,
   "cache": {
    "hits": 0,
    "misses": 78,
@@ -417,7 +421,7 @@
   "gpu": null,
   "hardware_encoding": false
  },
- "total_seconds": 817.7,
+ "total_seconds": 690.2,
  "checks": {
   "all_inputs_accounted_for": true,
   "final_qc_passed": true,

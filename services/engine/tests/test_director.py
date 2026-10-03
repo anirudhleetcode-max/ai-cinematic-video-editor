@@ -102,3 +102,25 @@ def test_dialogue_led_trigger_wording():
     assert not re.search(DIALOGUE_WORDS, "60-second event highlight, duck music under speech, cut to the beat")
     for t in ("keep the presenter's speech intelligible", "a 45-second pitch", "keep the speaker visible while she talks", "interview cut-down"):
         assert re.search(DIALOGUE_WORDS, t), t
+
+
+def test_short_song_is_extended_without_duplicate_pieces(tmp_path, dataset):
+    """A song shorter than the edit is looped with crossfades; the last piece must end the loop (it used to append
+    zero-length duplicates until a 200-piece bound and then fail EditPlan validation — found on real footage)."""
+    from editor import service as S, testmedia
+
+    song = testmedia.make_song(tmp_path / "short.wav", 11.0, 120, seed=3)
+    p = S.create_project("short song")
+    for c in dataset["clips"][:6]:
+        with open(c, "rb") as fh:
+            S.add_asset(p["id"], c.name, fh)
+    with open(song, "rb") as fh:
+        S.add_asset(p["id"], "short.wav", fh, "music")
+    S.analyze_project(p["id"], "fast")
+    for dur in (20, 25, 31):
+        v = S.create_edit_plan(p["id"], f"A {dur} second recap cut to the music", "fast")
+        mus = v["plan"]["music"]
+        assert 2 <= len(mus) <= 8, len(mus)
+        assert mus[0]["out_start"] == 0 and abs(mus[-1]["out_end"] - v["plan"]["duration"]) < 0.05
+        assert all(m["out_end"] - m["out_start"] > 2.5 for m in mus), mus
+        assert all(b["out_start"] < a["out_end"] for a, b in zip(mus, mus[1:]))  # contiguous (crossfaded) coverage
