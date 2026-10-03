@@ -517,8 +517,11 @@ def render_version(pid: str, vid: str | None = None, preview: bool = False, prog
 
         t_r = time.perf_counter()
         progress("finalizing", 0.985, "measuring colour continuity, reference match and review checklist")
+        shots = {f"{a['id']}:{sh['index']}": sh for a in db.query("SELECT id, analysis FROM assets WHERE project_id=? AND role IN ('clip','broll')", (pid,))
+                 for sh in ((a.get("analysis") or {}).get("shots") or [])}
+        screen = {s.id for s in plan.timeline if "screen_recording" in (shots.get(f"{s.asset_id}:{s.shot_index}") or {}).get("tags", [])}
         try:
-            report["color_continuity"] = segment_color_continuity(out, plan)
+            report["color_continuity"] = segment_color_continuity(out, plan, screen)
         except Exception as e:  # noqa: BLE001
             report["color_continuity"] = {"error": str(e)[:200]}
         ref = (get_project(pid).get("settings") or {}).get("reference_profile")
@@ -527,8 +530,6 @@ def render_version(pid: str, vid: str | None = None, preview: bool = False, prog
                 report["reference_match"] = reference_match(ref, out, plan)
             except Exception as e:  # noqa: BLE001
                 report["reference_match"] = {"error": str(e)[:200]}
-        shots = {f"{a['id']}:{sh['index']}": sh for a in db.query("SELECT id, analysis FROM assets WHERE project_id=? AND role IN ('clip','broll')", (pid,))
-                 for sh in ((a.get("analysis") or {}).get("shots") or [])}
         try:
             report["review"] = review_checklist(plan, report.get("qc", {}), report.get("audio", {}), report, shots, report.get("color_continuity"))
         except Exception as e:  # noqa: BLE001

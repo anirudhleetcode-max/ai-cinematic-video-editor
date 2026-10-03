@@ -14,7 +14,7 @@ import numpy as np
 from ..media.frames import hamming
 from ..music.analyze import best_window
 from ..registry import templates
-from ..registry.color import COLOR_PRESETS, calibrate_split, solve_technical, technical_correction
+from ..registry.color import COLOR_PRESETS, calibrate_shadow_lift, calibrate_split, solve_technical, technical_correction
 from ..registry.editing import DENSITY
 from ..schemas import (AudioPlan, CaptionSpec, ColorAdjust, ColorGrade, CreativeBible, CropSpec, EffectInstance, Ending, ExportSpec, MotionSpec,
                        MusicSegment, Segment, SfxItem, SpeedSpec, StorySection, StyleIntent, TextItem, TransitionSpec)
@@ -90,6 +90,8 @@ class Plan:
     audio: AudioPlan = field(default_factory=AudioPlan)
     effects_global: list[EffectInstance] = field(default_factory=list)
     captions: CaptionSpec = field(default_factory=CaptionSpec)
+    dialogue_led: bool = False  # speech-heavy footage / presenter-style prompt: cut on phrases, not every beat
+    phrase_seconds: float = 0.0  # median measured speech-phrase length in the footage
 
     def note(self, msg: str) -> None:
         if len(self.decisions) < 590:
@@ -173,7 +175,11 @@ def map_reference(ref: dict, intent: StyleIntent) -> dict:
 
             sh_h, sh_m = cast_hue(g.get("shadows", {}))
             hl_h, hl_m = cast_hue(g.get("highlights", {}))
-            if sh_h is not None or hl_h is not None:
+            if sh_h is not None and hl_h is None:
+                # warm/cool shadows with neutral highlights: a shadow lift reproduces it without tinting highlights
+                sh = g.get("shadows") or {}
+                ov.update(calibrate_shadow_lift(sh.get("temperature", 0.0), sh.get("tint", 0.0)))
+            elif sh_h is not None or hl_h is not None:
                 ov["split_shadow_hue"] = sh_h if sh_h is not None else 190.0
                 ov["split_highlight_hue"] = hl_h if hl_h is not None else (sh_h if sh_h is not None else 35.0)
                 # amount calibrated through the grading model so the shadows reach the reference's measured warmth
@@ -404,6 +410,35 @@ def energy_at(plan: Plan, t: float) -> float | None:
 
 
 # ------------------------------------------------------------------------------- timeline
+DIALOGUE_WORDS = r"speech|speak|presenter|presentation|interview|testimonial|talking|talk|speaker|pitch|dialogue|vlog|keynote|lecture"
+
+
+def dialogue_director(plan: Plan, ctx: ProjectContext, intent: StyleIntent) -> None:
+    """Decide whether the edit is dialogue-led: mostly-speech footage (VAD) or a presenter / interview / pitch prompt.
+    A dialogue-led edit keeps sentences whole — shots ≥ 2.5 s sized to the measured phrase lengths, starting at phrase
+    boundaries — instead of cutting a speaking person on every beat."""
+    import re as _re
+
+    if intent.keep_dialogue is False:
+        return
+    total = speech = 0.0
+    phrases: list[float] = []
+    for a in ctx.clips:
+        aud = (a.analysis or {}).get("audio") or {}
+        dur = float((a.analysis or {}).get("meta", {}).get("duration") or a.meta.get("duration") or 0)
+        total += dur
+        for x, y in aud.get("speech", []):
+            speech += y - x
+            phrases.append(y - x)
+    share = speech / total if total else 0.0
+    asked = bool(_re.search(DIALOGUE_WORDS, (ctx.prompt or "").lower()))
+    if share > 0.4 or (asked and share > 0.15):
+        plan.dialogue_led = True
+        plan.phrase_seconds = float(np.clip(np.median(phrases), 2.5, 7.0)) if phrases else 3.5
+        plan.note(f"Dialogue-led edit: {100 * share:.0f}% of the footage is speech (VAD){' and the prompt asks for it' if asked else ''}; "
+                  f"shots follow phrases (median {plan.phrase_seconds:.1f}s) and start at phrase boundaries.")
+
+
 def timeline_director(plan: Plan, intent: StyleIntent) -> None:
     """Cut points from the pacing engine (director/pacing.py) on the music's beat grid.
 
@@ -446,9 +481,22 @@ def timeline_director(plan: Plan, intent: StyleIntent) -> None:
             e = sec.energy if me is None else 0.6 * sec.energy + 0.4 * me
             pt = target_for(sec.name, e, bpm=bpm if beat_sync else None, reference_median=ref_med, pacing_factor=pf)
             L = max(0.3, pt.target * rng.uniform(0.88, 1.12))
+            if plan.dialogue_led and role != "hook":
+                # phrases, not beats: about one measured phrase per shot (≥ 2.5 s), energetic sections a bit shorter
+                L = max(2.5, plan.phrase_seconds * (1.15 - 0.3 * e) * rng.uniform(0.9, 1.1) * (pf if pf < 1 else 1))
             nxt = t + L
             on_down, rel = False, "free"
-            if beat_sync and bi > 0:
+            if plan.dialogue_led and role != "hook":
+                # snap to a beat only when one is within 0.25 s — the sentence decides, the music only refines
+                if beat_sync and bi > 0 and len(beats):
+                    k_ = int(np.argmin(np.abs(beats - nxt)))
+                    if abs(beats[k_] - nxt) <= 0.25:
+                        nxt, rel = float(beats[k_]), "on_beat"
+                    else:
+                        rel = "phrase"
+                else:
+                    rel = "phrase"
+            elif beat_sync and bi > 0:
                 n_beats = pt.beats or max(1, round(L / bi))
                 cand = beats[(beats > t + max(0.3, pt.lo * pf * 0.8)) & (beats <= min(end, t + (n_beats + 1) * bi + 0.01))]
                 if len(cand):
@@ -618,6 +666,15 @@ def clip_selector(plan: Plan, ctx: ProjectContext, intent: StyleIntent, prefer_p
             n_ramps += 1
         src_len = _src_needed(sl.duration, rate, ramp)
         src_in = _place(c, src_len, used_ranges.get(c.key, []))
+        if plan.dialogue_led and c.speech > 0.3 and ramp is None and rate == 1.0:
+            # start at a phrase boundary (150 ms before the first word) that leaves room for the whole slot
+            regions = [(x, y) for x, y in ((c.asset.analysis or {}).get("audio") or {}).get("speech", []) if c.start <= x < c.end]
+            used = used_ranges.get(c.key, [])
+            for x, _ in regions:
+                st_ = max(c.start, x - 0.15)
+                if st_ + src_len <= c.end and all(st_ + src_len <= a_ or st_ >= b_ for a_, b_ in used):
+                    src_in = st_
+                    break
         avail = (c.end - src_in) if not c.image else 1e9
         if src_len > avail + 1e-3:
             if ramp is None and avail / sl.duration >= 0.75:
@@ -943,6 +1000,8 @@ def colorist(plan: Plan, ctx: ProjectContext, intent: StyleIntent, ref_map: dict
     rows = []
     for s in plan.segments:
         c = cand.get(f"{s.asset_id}:{s.shot_index}")
+        if c and c.metrics and "screen_recording" in c.tags:
+            continue  # screen content keeps neutral whites — never "matched" toward camera footage
         if c and c.metrics:
             sh = next((x for x in (ctx.asset(s.asset_id).analysis or {}).get("shots", []) if x["index"] == s.shot_index), {})
             px = np.frombuffer(bytes.fromhex(sh["rgb_thumb"]), np.uint8).reshape(-1, 3).astype(np.float32) / 255 if sh.get("rgb_thumb") else None
@@ -1089,6 +1148,21 @@ def typography_designer(plan: Plan, ctx: ProjectContext, intent: StyleIntent, re
         e0 = plan.duration - plan.ending.duration + 0.3
         texts.append(TextItem(id="end_title", kind="end_title", text=end_text, start=round(e0, 3), end=round(plan.duration - 0.25, 3), style="end_card",
                               animation="tracking_reveal", position="center" if plan.ending.type == "title" else "bottom"))
+    # contrast-aware text: measure the luma behind each text's screen band in the shots it overlaps (16×9 colour
+    # thumbnails from analysis); bright backgrounds get a translucent backing box so the text stays readable
+    bands = {"top": slice(0, 3), "center": slice(3, 6), "lower_third": slice(5, 8), "bottom": slice(6, 9)}
+    for t in texts:
+        lum = []
+        for sg in plan.segments:
+            if sg.out_start < t.end and sg.out_start + sg.out_duration > t.start and not sg.image:
+                sh = next((x for x in (ctx.asset(sg.asset_id).analysis or {}).get("shots", []) if x["index"] == sg.shot_index), {})
+                if sh.get("rgb_thumb"):
+                    px = np.frombuffer(bytes.fromhex(sh["rgb_thumb"]), np.uint8).reshape(9, 16, 3).astype(np.float32) / 255
+                    band = px[bands.get(t.position, slice(3, 6)), 2:14]
+                    lum.append(float((band @ np.array([0.2126, 0.7152, 0.0722], np.float32)).mean()))
+        if lum and max(lum) > 0.55:
+            t.params = {**t.params, "backing": 1.0, "background_luma": round(max(lum), 3)}
+            plan.note(f"Typography: '{t.text}' over a bright background (luma {max(lum):.2f}) → translucent backing for contrast.")
     # music-driven entrances: start each text on the nearest downbeat (within ±0.5 s) so titles land with the music
     snapped = 0
     downs = np.array(plan.downbeats) if plan.downbeats else np.zeros(0)

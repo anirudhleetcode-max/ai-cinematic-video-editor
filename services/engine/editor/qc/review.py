@@ -73,7 +73,7 @@ def reference_match(ref: dict, output: Path, plan: EditPlan) -> dict:
                     + (f" The output includes a {end:.1f}s end card, which the reference may not have." if end else "")}
 
 
-def segment_color_continuity(output: Path, plan: EditPlan) -> dict:
+def segment_color_continuity(output: Path, plan: EditPlan, skip_ids: set[str] | None = None) -> dict:
     """Measured colour continuity of the rendered edit: mean luma / temperature / saturation per segment (sampled at
     4 fps on the output) and the largest jumps between adjacent segments inside the same section."""
     meta = probe(output)
@@ -94,14 +94,20 @@ def segment_color_continuity(output: Path, plan: EditPlan) -> dict:
             stats.append((s, float(luma[m].mean()), float(temp[m].mean()), float(sat[m].mean())))
     jl = jt = js = 0.0
     worst = None
+    skipped = compared = 0
     for (s0, l0, t0, z0), (s1, l1, t1, z1) in zip(stats, stats[1:]):
         if s0.section != s1.section:
             continue
+        if skip_ids and (s0.id in skip_ids or s1.id in skip_ids):
+            skipped += 1  # screen recordings are intentionally not matched to camera footage
+            continue
+        compared += 1
         if abs(l1 - l0) > jl:
             jl, worst = abs(l1 - l0), s1.id
         jt, js = max(jt, abs(t1 - t0)), max(js, abs(z1 - z0))
     return {"segments_measured": len(stats), "max_adjacent_luma_jump": round(jl, 3), "max_adjacent_temperature_jump": round(jt, 3),
-            "max_adjacent_saturation_jump": round(js, 3), "worst_luma_jump_at": worst}
+            "max_adjacent_saturation_jump": round(js, 3), "worst_luma_jump_at": worst, "adjacent_pairs_compared": compared,
+            "boundaries_skipped_screen_content": skipped}
 
 
 def review_checklist(plan: EditPlan, qc: dict, audio: dict, report: dict, ctx_shots: dict[str, dict] | None = None,
@@ -123,10 +129,12 @@ def review_checklist(plan: EditPlan, qc: dict, audio: dict, report: dict, ctx_sh
     inside = 0
     for s in plan.timeline:
         lo, hi = ROLE_RANGE[role_of(s.section)]
+        if plan.editing_mode == "dialogue" and role_of(s.section) != "hook":
+            lo, hi = 2.5, 8.0  # dialogue-led: phrase-length shots are the intended pacing
         inside += int(lo * pf * 0.6 <= s.out_duration <= hi * pf * 1.4)
     frac = inside / max(1, len(plan.timeline))
     item("PACING", "Does pacing follow the narrative roles and the music?", "pass" if frac >= 0.7 else "warn",
-         {"shots_within_role_range": round(frac, 3), "beat_synced_cut_notes": [d for d in plan.decisions if d.startswith("Timeline:")][:1]})
+         {"shots_within_role_range": round(frac, 3), "editing_mode": plan.editing_mode, "beat_synced_cut_notes": [d for d in plan.decisions if d.startswith("Timeline:")][:1]})
     keys = [(s.asset_id, s.shot_index) for s in plan.timeline]
     if ctx_shots:
         used = [ctx_shots.get(f"{a}:{i}", {}) for a, i in keys]
@@ -147,7 +155,8 @@ def review_checklist(plan: EditPlan, qc: dict, audio: dict, report: dict, ctx_sh
          {"transitions": n_tr, "boundaries": len(plan.timeline) - 1, "budget": round(budget, 1)})
     if color:
         ok = color.get("max_adjacent_luma_jump", 0) <= 0.12 and color.get("max_adjacent_temperature_jump", 0) <= 0.06
-        item("COLOR", "Are neighbouring shots consistent (measured on the render)?", "pass" if ok else "warn", color)
+        status = ("pass" if ok else "warn") if color.get("adjacent_pairs_compared", 1) else "n/a"
+        item("COLOR", "Are neighbouring shots consistent (measured on the render)?", status, color)
     speech = audio.get("speech_seconds")
     lufs, target = audio.get("integrated_lufs"), plan.audio.target_lufs
     a_ok = lufs is not None and abs(lufs - target) <= 1.0 and ("clipping" not in " ".join(qc.get("failures", [])))
@@ -165,7 +174,7 @@ def review_checklist(plan: EditPlan, qc: dict, audio: dict, report: dict, ctx_sh
     item("ENDING", "Does the ending feel complete?", "pass" if (plan.ending.type in ("logo", "title", "logo_title", "fade") and plan.ending.duration >= 1.5) or plan.ending.type == "fade" else "warn",
          {"type": plan.ending.type, "duration": plan.ending.duration})
     item("TECHNICAL", "Is the output valid?", "pass" if qc.get("passed") else "fail", {"qc_failures": qc.get("failures"), "qc_warnings": qc.get("warnings")})
-    counts = {k: sum(1 for i in items if i["status"] == k) for k in ("pass", "warn", "fail")}
+    counts = {k: sum(1 for i in items if i["status"] == k) for k in ("pass", "warn", "fail", "n/a")}
     return {"items": items, "summary": counts,
             "note": "Deterministic checks over the plan and measurements of the rendered file; a 'pass' means the measured criterion was met, "
                     "not that the edit is aesthetically perfect."}

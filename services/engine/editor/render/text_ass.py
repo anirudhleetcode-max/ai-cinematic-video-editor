@@ -111,6 +111,9 @@ class AssBuilder:
     def add(self, item: TextItem) -> None:
         sd = TEXT_STYLES.get(item.style if TEXT_STYLES.has(item.style) else "premium_title")
         s = sd.render(sd.resolve({k: v for k, v in item.params.items() if k in {p.name for p in sd.params}}))
+        backed = bool(item.params.get("backing")) and not s["box"]
+        if backed:  # contrast-aware: the planner measured a bright background behind this text → translucent backing box
+            s = {**s, "box": True, "box_color": "#000000", "box_alpha": 0.5}
         an_def = TEXT_ANIMATIONS.get(item.animation if TEXT_ANIMATIONS.has(item.animation) else "fade")
         ap = an_def.resolve(item.params)
         px = int(self.h * s["size"] * s["size_scale"] * item.scale)
@@ -131,7 +134,7 @@ class AssBuilder:
             else:
                 px = int(px * 0.92)
             tw, th = measure(text, s["font"], s["bold"], s["italic"], px, s["tracking"])
-        sname = f"S_{item.style}_{px}"
+        sname = f"S_{item.style}_{px}{'_b' if backed else ''}"
         self.styles[sname] = self._style_line(sname, s, px)
         an, x, y = _anchor(item.position, self.w, self.h, self.sa, tw, th)
         bb = _bbox(an, x, y, tw, th)

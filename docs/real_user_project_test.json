@@ -1,0 +1,231 @@
+{
+ "label": "MEASURED \u2014 real user project (the user's own phone footage: 2 presenter clips + 1 app screen recording), 1 real song, generated logo",
+ "prompt": "Create a 45-second pitch highlight titled \"Hawkins Protocol\". Keep the presenter's speech intelligible, show the app demo, subtle transitions, clean natural colour, duck the music under speech, end with the logo.",
+ "results": {
+  "analysis_s": 0.0,
+  "preview_s": 37.4,
+  "final_s": 120.8,
+  "sources_unchanged": true,
+  "qc": true,
+  "qc_failures": [],
+  "review": {
+   "pass": 10,
+   "warn": 1,
+   "fail": 0
+  },
+  "review_items": [
+   [
+    "STORY",
+    "pass"
+   ],
+   [
+    "PACING",
+    "pass"
+   ],
+   [
+    "SHOT SELECTION",
+    "pass"
+   ],
+   [
+    "VARIETY",
+    "warn"
+   ],
+   [
+    "TRANSITIONS",
+    "pass"
+   ],
+   [
+    "COLOR",
+    "pass"
+   ],
+   [
+    "AUDIO",
+    "pass"
+   ],
+   [
+    "TEXT",
+    "pass"
+   ],
+   [
+    "MOTION",
+    "pass"
+   ],
+   [
+    "ENDING",
+    "pass"
+   ],
+   [
+    "TECHNICAL",
+    "pass"
+   ]
+  ],
+  "color": {
+   "segments_measured": 11,
+   "max_adjacent_luma_jump": 0.0,
+   "max_adjacent_temperature_jump": 0.0,
+   "max_adjacent_saturation_jump": 0.0,
+   "worst_luma_jump_at": null,
+   "boundaries_skipped_screen_content": 4
+  },
+  "analysis": {
+   "shots": 20,
+   "usable_shots": 20,
+   "issues": {
+    "blurry": 1
+   },
+   "vision_provider": "onnx-yunet-nanodet",
+   "speech_detector": "silero-vad"
+  }
+ },
+ "audio": {
+  "integrated_lufs": -16.08,
+  "true_peak_db": -1.0,
+  "speech_seconds": 15.53,
+  "ducked_seconds": 22.05
+ },
+ "dialogue_level_matching": [
+  {
+   "segment": "s000",
+   "speech_rms_db": -16.2,
+   "gain_db": -3.8
+  },
+  {
+   "segment": "s001",
+   "speech_rms_db": -27.6,
+   "gain_db": 7.6
+  },
+  {
+   "segment": "s002",
+   "speech_rms_db": -17.0,
+   "gain_db": -3.0
+  },
+  {
+   "segment": "s005",
+   "speech_rms_db": -24.5,
+   "gain_db": 4.5
+  },
+  {
+   "segment": "s007",
+   "speech_rms_db": -17.3,
+   "gain_db": -2.7
+  },
+  {
+   "segment": "s008",
+   "speech_rms_db": -26.3,
+   "gain_db": 6.3
+  },
+  {
+   "segment": "s010",
+   "speech_rms_db": -29.3,
+   "gain_db": 9.0
+  }
+ ],
+ "timeline": [
+  [
+   0.0,
+   0.929,
+   "9-29_at_16.37.53.mp4",
+   "dialogue",
+   46.154
+  ],
+  [
+   0.929,
+   0.905,
+   "9-29_at_17.14.30.mp4",
+   "dialogue",
+   0.0
+  ],
+  [
+   1.834,
+   1.708,
+   "9-29_at_16.37.53.mp4",
+   "dialogue",
+   0.074
+  ],
+  [
+   2.915,
+   5.421,
+   "9-29_at_17.14.48.mp4",
+   "muted",
+   0.689
+  ],
+  [
+   8.336,
+   6.409,
+   "9-29_at_16.37.53.mp4",
+   "muted",
+   4.4
+  ],
+  [
+   14.745,
+   0.929,
+   "9-29_at_17.14.30.mp4",
+   "dialogue",
+   11.818
+  ],
+  [
+   15.674,
+   6.455,
+   "9-29_at_16.37.53.mp4",
+   "muted",
+   47.64
+  ],
+  [
+   22.129,
+   1.834,
+   "9-29_at_16.37.53.mp4",
+   "dialogue",
+   31.833
+  ],
+  [
+   23.963,
+   6.943,
+   "9-29_at_17.14.30.mp4",
+   "dialogue",
+   17.13
+  ],
+  [
+   30.906,
+   5.549,
+   "9-29_at_16.37.53.mp4",
+   "muted",
+   35.15
+  ],
+  [
+   36.455,
+   5.045,
+   "9-29_at_17.14.48.mp4",
+   "dialogue",
+   7.21
+  ]
+ ],
+ "decisions": [
+  "Story: 'event' structure \u2192 HOOK 3.3s \u2192 OPENING 5.0s \u2192 PEOPLE 7.5s \u2192 ACTIVITIES 8.3s \u2192 ENERGY 6.6s \u2192 BEST_MOMENTS 5.8s \u2192 CLIMAX 5.0s \u2192 END 3.5s",
+  "Music: 'vibe_ace.ogg' 129 BPM, window 0.5\u201345.5s chosen for a build to peak arc.",
+  "Dialogue-led edit: 91% of the footage is speech (VAD) and the prompt asks for it; shots follow phrases (median 6.8s) and start at phrase boundaries.",
+  "Timeline: 11 shots from the pacing engine on the beat grid (129 BPM), median shot 5.04s; cut relations: section_end 64%, on_beat 27%, downbeat 9%.",
+  "Clip selection (sequence): 11 shots from 3 clips / 8 camera set-ups; 3 shot re-uses; adjacent same-clip 1, adjacent same-angle 0; 0 of 20 candidate shots held back (black, duplicate, frozen, obstructed, too_short); 0 speed ramps; 0 imperfect-but-valuable shots used.",
+  "Transition at 3.23s: crossfade (0.63s) \u2014 section change; energy 0.45, subtle.",
+  "Transitions: 1 of 10 boundaries (budget 1, density 'low'); all others are hard cuts.",
+  "Effects (density 'low', budget 0): none placed \u2014 no qualifying drop/accent moments.",
+  "Camera motion (subtle): applied to 4 mostly-static shots; moving shots left untouched.",
+  "Reframing: 6 shots re-framed to 1920x1080, centred on detected faces where available.",
+  "Colour: closed-loop technical match of 5 shots to project median (luma 0.52, temp +0.048); predicted max adjacent jump luma 0.000\u21920.000, temperature 0.000\u21920.000, saturation 0.000\u21920.000; creative look 'natural'.",
+  "Audio: 7 dialogue shots (15.5s of speech, detector silero-vad); music ducked 12 dB, ambience 8 dB, SFX 6 dB under speech; dialogue clips level-matched to -20 dBFS RMS; 0 clips de-clipped; loudness target -16 LUFS.",
+  "Typography: 'Hawkins Protocol' over a bright background (luma 0.93) \u2192 translucent backing for contrast.",
+  "Typography: 'Hawkins Protocol' (premium_title/fade_up), 'Hawkins Protocol pitch' (end_card/tracking_reveal)"
+ ],
+ "visual_inspection": {
+  "first round (before fixes)": [
+   "49 shots, median 0.47 s: a speaking presenter was cut on every beat (pacing engine had no dialogue mode) \u2192 fixed: dialogue-led editing",
+   "app screen recording pushed yellow by technical matching toward the presenter footage \u2192 fixed: screen recordings keep neutral whites",
+   "title 'HAWKINS PROTOCOL' in white over a light wall had weak contrast \u2192 fixed: contrast-aware backing box"
+  ],
+  "after fixes (frames at 1, 4, 8, 15, 22, 30, 38, 43.5 s inspected)": [
+   "presenter shots hold for whole phrases (5\u20137 s); orientation and framing correct; no black, frozen or mis-cropped frames found",
+   "app UI colour matches the source within 2/255 (source bright areas RGB 246,233,200 \u2192 output 245,232,198)",
+   "title readable on a translucent backing; end card shows logo + end title",
+   "loudness -16.1 LUFS / -1.0 dBTP; music ducked during the 15.5 s of detected speech"
+  ]
+ }
+}

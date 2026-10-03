@@ -37,6 +37,7 @@ def build_plan(ctx: ProjectContext, intent: StyleIntent | None = None, provenanc
     A.ending_designer(plan, ctx, intent)
     A.story_director(plan, intent)
     A.music_director(plan, ctx, intent, section_song)
+    A.dialogue_director(plan, ctx, intent)
     A.timeline_director(plan, intent)
     A.clip_selector(plan, ctx, intent, prefer_previous, tag_weights)
     A.transition_director(plan, ctx)
@@ -69,6 +70,7 @@ def finalize(plan: A.Plan, ctx: ProjectContext, provenance: dict) -> EditPlan:
         fps=plan.export.fps, mode=ctx.mode, bible=plan.bible, story_structure=plan.sections, timeline=plan.segments, text=plan.texts,
         captions=plan.captions, effects_global=plan.effects_global, color_grade=plan.color, audio=plan.audio, music=plan.music, sfx=plan.sfx,
         voiceover=[], ending=plan.ending, export=plan.export, reference_profile_used=bool(ctx.reference_profile and plan.intent.use_reference is not False),
+        editing_mode="dialogue" if plan.dialogue_led else "montage",
         intent=plan.intent, provenance={k: v for k, v in provenance.items() if isinstance(v, (str, bool))}, decisions=plan.decisions,
     )
 

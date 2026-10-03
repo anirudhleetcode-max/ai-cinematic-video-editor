@@ -286,6 +286,7 @@ class EditPlan(Strict):
     ending: Ending = Field(default_factory=Ending)
     export: ExportSpec = Field(default_factory=ExportSpec)
     reference_profile_used: bool = False
+    editing_mode: Literal["montage", "dialogue"] = "montage"
     intent: StyleIntent | None = None
     provenance: dict[str, str | bool] = Field(default_factory=dict)
     decisions: list[str] = Field(default_factory=list, max_length=600)

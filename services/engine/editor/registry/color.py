@@ -273,6 +273,22 @@ def calibrate_split(hue: float, cast_temperature: float, luma: float = 0.15, bal
     return round(best, 3)
 
 
+def calibrate_shadow_lift(cast_temperature: float, cast_tint: float = 0.0, luma: float = 0.15) -> dict:
+    """lift_r / lift_b (and lift_g for tint) so a grey of `luma` acquires the measured shadow cast. Lift acts as
+    lift·(1−y): strong in shadows, ~0 in highlights — used when the reference's highlights measure neutral."""
+    g = np.full((1, 3), luma, np.float32)
+    best, err = 0.0, 1e9
+    for x in np.linspace(-0.2, 0.2, 81):
+        out = grade(g, {**IDENTITY, "lift_r": float(x), "lift_b": float(-x)})
+        e = abs(float(out[0, 0] - out[0, 2]) - cast_temperature)
+        if e < err:
+            best, err = float(x), e
+    res = {"lift_r": round(best, 4), "lift_b": round(-best, 4)}
+    if abs(cast_tint) > 0.01:
+        res["lift_g"] = round(float(np.clip(cast_tint * 0.8, -0.1, 0.1)), 4)
+    return res
+
+
 def technical_correction(stats: dict, target: dict) -> dict:
     """Shot matching: map a clip's measured statistics (luma, temperature, tint, saturation, contrast)
     onto the project target. Values are deliberately conservative (partial correction)."""
