@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import BinaryIO
 
 from .config import get_settings
-from .proc import safe_filename, safe_path
+from .proc import replace_file, safe_filename, safe_path
 
 
 class Storage(ABC):
@@ -63,7 +63,7 @@ class LocalStorage(Storage):
                     tmp.unlink(missing_ok=True)
                     raise UploadTooLarge(f"{filename} exceeds {max_bytes // (1 << 20)} MB")
                 f.write(chunk)
-        tmp.rename(dest)
+        replace_file(tmp, dest)
         return dest
 
     def delete_project(self, project_id: str) -> None:

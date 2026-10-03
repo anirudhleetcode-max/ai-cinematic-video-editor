@@ -11,7 +11,28 @@
 
 Everything is free/open-source and runs locally. An LLM is **optional**: the deterministic director works offline; Claude or any OpenAI-compatible model (including a local one) can refine prompt interpretation when configured.
 
-> Status: working end-to-end on this repository’s synthetic acceptance dataset (50 clips + 3 songs + reference). See [docs/BENCHMARKS.md](docs/BENCHMARKS.md) for measured timings and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#limitations) for honest limitations.
+> Status: tested end-to-end on synthetic media **and on real footage**: real camera clips, real music and real
+> speech, plus format variants derived from them (4K, HLG, rotated phone MOV, VFR, anamorphic, 24–120 fps, corrupt
+> files). See [docs/REAL_FOOTAGE_HARDENING.md](docs/REAL_FOOTAGE_HARDENING.md) for what real footage broke and how
+> it was fixed, [docs/BENCHMARKS.md](docs/BENCHMARKS.md) for measured timings, and the limitations sections for
+> what is not covered.
+
+### Optional local models (free, offline)
+```bash
+python scripts/download_models.py   # YuNet faces + NanoDet COCO-80 objects (OpenCV DNN), Silero VAD (onnxruntime)
+```
+Without them the engine falls back to classic OpenCV face/person detection and a DSP speech detector, and every
+analysis records which detector produced it.
+
+### Real-footage testing
+```bash
+python scripts/fetch_real_media.py --all && python scripts/make_real_variants.py   # real CC-licensed media (not committed)
+python scripts/real_media_report.py                  # inspect everything under tests/real_media/
+python scripts/real_acceptance.py --assemble         # 70+ real clips, 3 real songs, reference → report
+python scripts/real_benchmark.py --durations 60 300 600
+```
+To test your own event, put its media in `tests/real_media/event01/` (`clips/ music/ reference/ logo/`, or one
+flat folder) and run `python scripts/real_acceptance.py`. Source files are never modified.
 
 ## Quick start
 
@@ -61,10 +82,11 @@ services/engine/editor/   Python engine + FastAPI
   media/  music/  reference/             media intelligence, music intelligence, reference style profile
   director/                              prompt parser, AI providers, planning agents, revision engine
   registry/                              effect / transition / text / colour / audio / motion registries
-  render/  qc/                           segment renderer, transitions, audio mix, typography (ASS), QC
+  render/  qc/                           segment renderer, colour space, transitions, audio mix, typography (ASS), QC + reviews
+  vision.py  auth.py  cleanup.py         vision providers, authentication/limits, retention
 packages/fonts/           OFL fonts (Inter, Montserrat, Playfair Display, Bebas Neue)
 packages/templates/       21 JSON editing templates
-scripts/                  setup (sh/ps1), dev runner, benchmark, acceptance test, demo media
+scripts/                  setup (sh/ps1), dev runner, benchmarks, acceptance tests (synthetic + real footage), media fetch, models
 docker/ docker-compose.yml  optional containers
 docs/                     architecture and subsystem documentation
 examples/pitch-film/      an earlier hand-directed Remotion edit (kept for reference)
@@ -72,4 +94,8 @@ examples/pitch-film/      an earlier hand-directed Remotion edit (kept for refer
 
 ## Documentation
 
-[ARCHITECTURE](docs/ARCHITECTURE.md) · [API](docs/API.md) · [AI_DIRECTOR](docs/AI_DIRECTOR.md) · [TIMELINE_ENGINE](docs/TIMELINE_ENGINE.md) · [EFFECT_ENGINE](docs/EFFECT_ENGINE.md) · [RENDERING](docs/RENDERING.md) · [BENCHMARKS](docs/BENCHMARKS.md) · [DEPLOYMENT](docs/DEPLOYMENT.md) · [TROUBLESHOOTING](docs/TROUBLESHOOTING.md)
+[ARCHITECTURE](docs/ARCHITECTURE.md) · [REAL_FOOTAGE_HARDENING](docs/REAL_FOOTAGE_HARDENING.md) · [API](docs/API.md) · [AI_DIRECTOR](docs/AI_DIRECTOR.md) · [TIMELINE_ENGINE](docs/TIMELINE_ENGINE.md) · [EFFECT_ENGINE](docs/EFFECT_ENGINE.md) · [RENDERING](docs/RENDERING.md) · [COLOR](docs/COLOR.md) · [AUDIO](docs/AUDIO.md) · [REFERENCE_ANALYSIS](docs/REFERENCE_ANALYSIS.md) · [BENCHMARKS](docs/BENCHMARKS.md) · [DEPLOYMENT](docs/DEPLOYMENT.md) (security) · [TROUBLESHOOTING](docs/TROUBLESHOOTING.md)
+
+Before exposing the API to the internet, read the security section of [DEPLOYMENT](docs/DEPLOYMENT.md): set
+`EDITOR_ENV=production`, which makes token authentication mandatory, and create users with
+`python -m editor.auth create-user NAME`.

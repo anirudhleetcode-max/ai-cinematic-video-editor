@@ -5,13 +5,19 @@
 ## Stages
 
 1. **Segments** (`render/segments.py`, thread pool, 2 FFmpeg threads each). Per segment, one FFmpeg graph does:
-   trim → stabilise (`deshake`) → speed (`setpts`) or speed ramp (10 piecewise-constant pieces, concatenated) →
-   optional `minterpolate` (quality mode slow motion) → `fps` → technical grade (17³ LUT) → cover-scale → crop
-   (static) — or hands raw frames to numpy for camera motion (`warpAffine`, sub-pixel) → per-segment effects →
+   trim → deinterlace if needed → stabilise (off / light `deshake` / standard and strong: two-pass **vid.stab**,
+   motion file cached with the segment) → speed (`setpts`), or a **continuous speed ramp** (the source is decoded at
+   a constant rate high enough for the fastest part, then each output frame maps to its exact source time from
+   the integrated speed curve; slow parts use frame blending in Fast mode and DIS optical-flow interpolation in
+   Quality mode, with no duplicated frames) → optional `minterpolate` (Quality-mode slow motion) → `fps` →
+   **source normalisation** into RGB (own matrix / range, HDR tone-map, square pixels; docs/COLOR.md) and
+   cover-scale → technical grade (17³ LUT) → crop (static), or raw frames to numpy for camera motion
+   (`warpAffine`, sub-pixel) → per-segment effects →
    frame-exact `tpad`/`trim` → split into **head** / **body** / **tail** (head/tail = transition overlap frames,
    lossless FFV1; body = x264). Segment audio is rendered separately at the output speed (`atempo` chain),
-   exactly `out_duration` long. Fallback levels on failure: drop effects → drop motion/stabilisation/interpolation
-   → plain trim.
+   exactly `out_duration` long, **always read from the original file** (preview proxies are video-only); dialogue
+   clips flagged as clipped get `adeclip`. Fallback levels on failure: drop effects → drop motion / stabilisation /
+   interpolation → plain trim; unreadable audio → silence (reported).
 2. **Transitions** (`render/transitions.py`): tail(A) + head(B) → xfade (native) or numpy (procedural) → short
    clip; failure → midpoint cut.
 3. **Audio mix** (`render/audio_mix.py`, 48 kHz float): dialogue assembled with equal-power crossfades on overlaps
@@ -24,6 +30,9 @@
    best *verified* encoder (NVENC/QSV/AMF/VideoToolbox/VAAPI) and automatic **CPU fallback** → AAC 320 kb/s,
    48 kHz stereo, −1 dBTP limiter → MP4 `+faststart`. Progress comes from FFmpeg’s own `out_time` counter.
 5. **QC** (`qc/check.py`).
+6. **Measured reviews** (final renders, `qc/review.py`): colour continuity measured on the output, the Reference
+   Match Report and the review checklist (story, pacing, shot selection, variety, transitions, colour, audio, text,
+   motion, ending, technical), each with the values that decided it.
 
 ## Caching & incremental rendering
 
@@ -32,6 +41,9 @@
   quality, mode). A colour-only revision therefore re-runs **only** the final pass (verified in tests and in the
   acceptance report: all segments reused).
 * Transition clips are cached by a content hash of their inputs and parameters.
+* The **audio mix** is cached by a hash of the audio plan, music, SFX, voice-over, segment audio content and timing,
+  and source fingerprints. A colour, text or ending revision reuses the mix as well as every segment.
+* Every FFmpeg run has a timeout (`EDITOR_PROCESS_TIMEOUT`); filter paths are escaped for Windows drive letters.
 * Analysis results are cached by file fingerprint, so re-uploading or re-analysing is instant.
 
 ## Modes
