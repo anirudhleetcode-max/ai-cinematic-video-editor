@@ -228,6 +228,8 @@ def test_tokens_never_reach_the_logs(token_env, caplog):
     with _client() as c:
         c.get(f"/projects?access_token={tok}")
         c.post("/auth/login", json={"email": "x@example.com", "password": "secret-password-1"})
-    text = "\n".join(f"{r.getMessage()} {getattr(r, 'fields', '')}" for r in caplog.records)
+    # server-side loggers only (the test's HTTP client logs the URL it requests; that is the caller's own log)
+    server = [r for r in caplog.records if r.name.startswith(("editor", "uvicorn"))]
+    text = "\n".join(f"{r.getMessage()} {getattr(r, 'fields', '')}" for r in server)
     assert "request" in text and "/projects" in text
     assert tok not in text and "secret-password-1" not in text
