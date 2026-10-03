@@ -7,7 +7,15 @@ Errors: `400`/`422` validation, `403` diagnostics outside development, `404` unk
 ## Health & system
 | Method | Path | Notes |
 |---|---|---|
-| GET | `/health` | FFmpeg found, version, selected encoder |
+| GET | `/health` | component health (database, storage, worker, queue, FFmpeg, models); 503 if unhealthy |
+| GET | `/health/live` | liveness |
+| GET | `/auth/config` | `{auth, registration}` |
+| POST | `/auth/register` | `{email, password, name?}` → `{token, expires, user}` |
+| POST | `/auth/login` | `{email, password}` → `{token, expires, user}` (401 on bad credentials) |
+| POST | `/auth/logout` | revokes the session token |
+| GET | `/auth/me` | current user |
+| GET | `/projects/{pid}/search?q=` | find analysed shots by description (label match; see `editor/retrieval.py`) |
+| POST | `/jobs/{id}/cancel` | cancel a queued or running job |
 | GET | `/diagnostics` | FFmpeg filters/encoders (verified by test encode), GPU, CPU/RAM, disk — development mode only |
 | GET | `/benchmarks` | stored benchmark runs (`scripts/benchmark.py`) |
 | GET | `/export-history` | every completed render with timings |
@@ -51,7 +59,10 @@ Errors: `400`/`422` validation, `403` diagnostics outside development, `404` unk
 | GET | `/projects/{pid}/renders` · `/renders/{rid}/download` · `/renders/{rid}/report` | MP4 + QC/timing report |
 
 ## Jobs
-`GET /jobs/{id}` → `{status: queued|running|done|failed|cancelled, stage, progress (0–1), result, error}`.
+`GET /jobs/{id}` → `{status: queued|running|done|failed|cancelled, state, stage, progress (0–1), elapsed_s, result, error, error_id}`.
+`state` is the product job state: queued · analyzing · planning · previewing · rendering · validating · completed ·
+failed · cancelled. `error` is a one-line message without server paths or tracebacks; `error_id` is the reference
+to give an operator (the full traceback is in the server log under that id).
 `GET /jobs/{id}/events` emits `data: {...}` on every change and closes when the job ends. Progress values come from
 real work units (assets analysed, segments rendered, FFmpeg `out_time`), never timers.
 
