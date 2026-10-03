@@ -248,7 +248,8 @@ def render_plan(plan: EditPlan, assets: dict[str, AssetInfo], out_path: Path, wo
     elif plan.ending.type == "fade":
         graph += f";[{cur}]fade=t=out:st={max(0.0, plan.duration - 1.2):.3f}:d=1.2[fo]"
         cur = "fo"
-    graph += ";[1:a]alimiter=limit=0.891:level=false:attack=2:release=60,aresample=48000[aout]"
+    # sample-peak limiter 0.7 dB under the true-peak ceiling: leaves room for inter-sample peaks and AAC overshoot
+    graph += f";[1:a]alimiter=limit={10 ** ((plan.audio.true_peak_db - 0.7) / 20):.4f}:level=false:attack=2:release=60,aresample=48000[aout]"
     graph += f";[{cur}]ass={ff_path(ass_path)}:fontsdir={ff_path(st.fonts_dir)},fps={fps},trim=end_frame={frames_for(plan.duration, fps)},{TO_YUV420 if plan.effects_global else 'format=yuv420p'}[vout]"
     enc = pick_encoder(plan.export.vcodec, prefer_hw=prefer_hw and plan.export.prefer_hw and not preview)
     tried = []

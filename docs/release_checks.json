@@ -1,0 +1,191 @@
+{
+ "label": "MEASURED on real footage (derived inputs labelled)",
+ "started": 1791049039.493591,
+ "checks": {
+  "A_dialogue": {
+   "editing_mode": "montage",
+   "segments": 32,
+   "min_shot_s": 0.47,
+   "median_shot_s": 0.99,
+   "sub_second_shots": 16,
+   "speech_seconds": 0.0,
+   "ducked_seconds": null,
+   "report_loudness_lufs": -16.0,
+   "measured": {
+    "integrated_lufs": -16.0,
+    "true_peak_dbtp": -0.8,
+    "sample_peak_db": -0.778191,
+    "peak_count_per_channel": []
+   },
+   "qc_passed": true,
+   "review": {
+    "pass": 9,
+    "warn": 2,
+    "fail": 0,
+    "n/a": 0
+   },
+   "seconds": 118.4,
+   "frames": [
+    "/tmp/claude-0/frames/A_dialogue_000.50.jpg",
+    "/tmp/claude-0/frames/A_dialogue_008.00.jpg",
+    "/tmp/claude-0/frames/A_dialogue_016.00.jpg",
+    "/tmp/claude-0/frames/A_dialogue_024.00.jpg",
+    "/tmp/claude-0/frames/A_dialogue_032.00.jpg",
+    "/tmp/claude-0/frames/A_dialogue_039.00.jpg"
+   ],
+   "pass": false
+  },
+  "B_negative_requests": {
+   "results": {
+    "no dogs": {
+     "ops": [
+      {
+       "op": "prefer_query",
+       "issue": null,
+       "labels": [
+        "dog"
+       ],
+       "weight": -0.8,
+       "noop": true,
+       "reason": "no analysed shot shows 'dogs' (searched labels: dog)",
+       "relaxed": null
+      }
+     ],
+     "matching_shots_in_footage": 0,
+     "other_shots": 103,
+     "segments_matching_before": 0,
+     "segments_matching_after": 0,
+     "segments_after": 54,
+     "relaxation_reported": false,
+     "pass": true
+    },
+    "avoid people": {
+     "ops": [
+      {
+       "op": "prefer_query",
+       "issue": null,
+       "labels": [
+        "crowd",
+        "faces",
+        "group",
+        "people",
+        "person"
+       ],
+       "weight": -0.8,
+       "noop": null,
+       "reason": null,
+       "relaxed": null
+      }
+     ],
+     "matching_shots_in_footage": 37,
+     "other_shots": 66,
+     "segments_matching_before": 28,
+     "segments_matching_after": 15,
+     "segments_after": 54,
+     "relaxation_reported": false,
+     "pass": false
+    },
+    "don't use dark clips": {
+     "ops": [
+      {
+       "op": "avoid_issue",
+       "issue": "underexposed",
+       "labels": null,
+       "weight": null,
+       "noop": null,
+       "reason": null,
+       "relaxed": null
+      },
+      {
+       "op": "prefer_query",
+       "issue": null,
+       "labels": [
+        "dark"
+       ],
+       "weight": -0.8,
+       "noop": null,
+       "reason": null,
+       "relaxed": null
+      }
+     ],
+     "matching_shots_in_footage": 8,
+     "other_shots": 95,
+     "segments_matching_before": 2,
+     "segments_matching_after": 0,
+     "segments_after": 54,
+     "relaxation_reported": false,
+     "pass": true
+    },
+    "avoid blurry footage": {
+     "ops": [
+      {
+       "op": "avoid_issue",
+       "issue": "blurry",
+       "labels": null,
+       "weight": null,
+       "noop": null,
+       "reason": null,
+       "relaxed": null
+      }
+     ],
+     "matching_shots_in_footage": 2,
+     "other_shots": 101,
+     "segments_matching_before": 1,
+     "segments_matching_after": 0,
+     "segments_after": 54,
+     "relaxation_reported": false,
+     "pass": true
+    }
+   },
+   "seconds": 100.8,
+   "pass": false
+  },
+  "C_transitions": {
+   "results": {
+    "hard_cut": {
+     "transition_types": {
+      "cut": 1
+     },
+     "n_shots": 2,
+     "pass": true
+    },
+    "fade_out_then_in": {
+     "transition_types": {
+      "cut": 1,
+      "fade": 1
+     },
+     "n_shots": 3,
+     "pass": true
+    },
+    "fade_in_after_cut": {
+     "transition_types": {
+      "fade": 1
+     },
+     "n_shots": 2,
+     "pass": true
+    },
+    "dissolve": {
+     "transition_types": {
+      "cut": 1
+     },
+     "n_shots": 2,
+     "pass": false
+    },
+    "real_reference_hard_cuts_only": {
+     "transition_types": {
+      "cut": 23
+     },
+     "pass": true
+    },
+    "normal_footage": {
+     "clips": 20,
+     "boundaries": 5,
+     "gradual_transitions_detected": 5,
+     "pass": false
+    }
+   },
+   "seconds": 67.5,
+   "pass": false
+  }
+ }
+}

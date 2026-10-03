@@ -17,7 +17,7 @@ from .probe import probe
 from .semantics import camera_motion, sample_detections, shot_profile
 
 logger = get_logger("analyze")
-VERSION = "video-v12"  # v7: correct colour/geometry sampling, vision provider, semantic profile, usability/creative scores
+VERSION = "video-v13"  # v7: correct colour/geometry sampling, vision provider, semantic profile, usability/creative scores
 
 MODES = {
     # sample fps, analysis width, face/person sampling interval (s)
@@ -27,7 +27,31 @@ MODES = {
 }
 
 
-def detect_shots(m: dict[str, np.ndarray], times: np.ndarray, fps: float, min_shot: float = 0.6) -> list[dict]:
+def _blend_fit(frames: np.ndarray, i0: int, i1: int) -> tuple[bool, int]:
+    """Is frames[i0+1 .. i1-1] a cross-dissolve from frames[i0] to frames[i1]?  Each interior frame is fitted as
+    (1-a)*pre + a*post. A dissolve fits well with intermediate a; a hard cut fits with a≈0 or 1 only; camera or subject
+    motion does not fit (ghosting). Returns (fits, number of interior frames with 0.15 < a < 0.85)."""
+    n = len(frames)
+    i0, i1 = max(0, i0), min(n - 1, i1)
+    if i1 - i0 < 2:
+        return False, 0
+    g = lambda k: frames[k, ::4, ::4].astype(np.float32).mean(axis=2)  # noqa: E731
+    pre, post = g(i0), g(i1)
+    span = post - pre
+    den = float((span * span).sum())
+    if den <= 0 or float(np.abs(span).mean()) < 10.0:  # endpoints too similar to tell a blend from anything else
+        return False, 0
+    mids, res = 0, []
+    for k in range(i0 + 1, i1):
+        f = g(k)
+        a = float(np.clip(((f - pre) * span).sum() / den, 0.0, 1.0))
+        r = f - (pre + a * span)
+        res.append(float(np.sqrt((r * r).mean())) / (float(np.sqrt(den / span.size)) + 1e-6))
+        mids += 0.15 < a < 0.85
+    return bool(np.mean(res) < 0.3), mids
+
+
+def detect_shots(m: dict[str, np.ndarray], times: np.ndarray, fps: float, min_shot: float = 0.6, frames: np.ndarray | None = None) -> list[dict]:
     """Hard cuts: histogram distance spikes above an adaptive threshold.
     Gradual transitions (fades/dissolves): sustained run of moderate distances or luma ramps to/from black."""
     n = len(times)
@@ -80,14 +104,28 @@ def detect_shots(m: dict[str, np.ndarray], times: np.ndarray, fps: float, min_sh
         ramp_dn = up[lo] <= 0.06 and len(fall) >= 3 and bool(np.all(np.diff(fall[-4:]) < -0.01)) and fall[-min(4, len(fall))] >= 3 * max(up[lo], 0.01)
         if ramp_up or ramp_dn:
             cuts[k] = (c, "fade")
-    # dissolve: window of 3+ moderate distances whose sum exceeds the cut threshold
+    # dissolve: window of 3+ moderate distances whose sum exceeds the cut threshold — and, when frames are available,
+    # the frames inside it must actually be a blend of the frames around it (continuous motion is not a dissolve)
     win = max(3, int(round(fps * 0.6)))
     for i in range(1, n - win):
         seg = d[i:i + win]
         if seg.sum() > thr * 1.6 and seg.max() < thr and seg.min() > med + 2 * mad + 0.02:
             c = i + win // 2
+            if frames is not None:
+                ok, mids = _blend_fit(frames, i - 1, i + win)
+                if not (ok and mids >= 2):
+                    continue
             if all(abs(times[c] - times[k]) > min_shot for k, _ in cuts):
                 cuts.append((c, "dissolve"))
+    # a "cut" whose neighbourhood is a measurable blend of the shots on either side is a dissolve that changed fast
+    # enough between samples to look like a spike
+    if frames is not None:
+        w = max(2, int(round(fps * 0.4)))
+        for k, (c, kind) in enumerate(cuts):
+            if kind == "cut":
+                ok, mids = _blend_fit(frames, c - w - 1, c + w)
+                if ok and mids >= 2:
+                    cuts[k] = (c, "dissolve")
     cuts.sort()
     bounds = [0] + [c for c, _ in cuts] + [n]
     kinds = ["start"] + [k for _, k in cuts]
@@ -270,7 +308,7 @@ def analyze_video(path: Path, mode: str = "fast", fingerprint: str | None = None
     m = F.frame_metrics(fs)
     m["_width"], m["_fps"] = width, sfps
     audio = analyze_audio(path) if meta.get("has_audio") else {"has_audio": False, "speech": [], "silence": []}
-    shots_raw = detect_shots(m, fs.times, fs.fps)
+    shots_raw = detect_shots(m, fs.times, fs.fps, frames=fs.rgb)
     # people / faces / objects from the vision provider on 640 px frames (every `face_every` s + each shot's midpoint)
     det_samples: list[dict] = []
     provider, semantic = "none", False

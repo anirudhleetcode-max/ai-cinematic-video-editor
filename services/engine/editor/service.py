@@ -503,9 +503,9 @@ def render_version(pid: str, vid: str | None = None, preview: bool = False, prog
         if qc["passed"]:
             break
         fixed = False
-        if "no_clipping" in qc["failures"]:
+        if "no_clipping" in qc["failures"] or "true_peak" in qc["failures"]:
             progress("quality_check", 0.97, "auto-fix: re-limiting audio")
-            fix_clipping(out)
+            fix_clipping(out, limit=10 ** ((plan.audio.true_peak_db - 1.5) / 20))
             fixed = True
         if fixed:
             from .qc.check import quality_check

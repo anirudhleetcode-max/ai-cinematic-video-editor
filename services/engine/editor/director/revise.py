@@ -274,7 +274,10 @@ def apply_revision(plan: EditPlan, text: str, ctx: ProjectContext) -> tuple[Edit
                 op = {**op, "noop": True, "reason": f"no analysed shot shows {op['query']!r} (searched labels: {', '.join(op['labels'])})"}
             else:
                 for lab in found:
-                    tag_weights[lab] = tag_weights.get(lab, 0) + op["weight"] / len(found) ** 0.5
+                    # a positive request is spread over its labels (one query, not N boosts); an exclusion applies in
+                    # full to every label it names ("avoid people" excludes faces, groups and crowds alike)
+                    w = op["weight"] if op["weight"] < 0 else op["weight"] / len(found) ** 0.5
+                    tag_weights[lab] = min(tag_weights.get(lab, 0), w) if w < 0 else tag_weights.get(lab, 0) + w
                 op = {**op, "matched_labels": found, "matching_shots": res["n_matches"]}
                 structural = True
         elif o == "text_scale":

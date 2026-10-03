@@ -47,6 +47,8 @@ def rgb_frame(path: Path, t: float, w: int, h: int, matrix: str, rng: str) -> np
     p = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{t:.3f}", "-i", str(path), "-frames:v", "1",
                         "-vf", f"scale={w}:{h}:in_color_matrix={matrix}:in_range={rng}:flags=area,format=rgb24", "-f", "rawvideo", "-"],
                        capture_output=True, check=True)
+    if len(p.stdout) < w * h * 3:
+        raise RuntimeError(f"no frame at {t:.2f}s in {path.name}")
     return np.frombuffer(p.stdout[: w * h * 3], np.uint8).reshape(h, w, 3).astype(float)
 
 
@@ -99,6 +101,14 @@ def main() -> int:
     roles = discover(EVENT)
     clips = sorted(roles["clip"])
     plain = [c for c in clips if not c.name.startswith("derived_")]
+
+    def seconds(f: Path) -> float:
+        try:
+            return float(probe(f, "format=duration")[0])
+        except (ValueError, IndexError):
+            return 0.0
+
+    long_clips = [c for c in plain if seconds(c) >= 8.0]  # transition / colour inputs need ≥ 5 s of material
 
     def save():
         Path(a.out).write_text(json.dumps(report, indent=1, default=str))
@@ -199,7 +209,7 @@ def main() -> int:
         from editor.reference.analyze import analyze_reference
 
         t0 = time.time()
-        A_, B_ = plain[0], plain[5]
+        A_, B_ = long_clips[0], long_clips[5]
         mk = work / "trans"
         mk.mkdir(exist_ok=True)
         norm = "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2,setsar=1,fps=30,format=yuv420p"
@@ -244,7 +254,7 @@ def main() -> int:
     if "D" in want or "E" in want:
         t0 = time.time()
         p = S.create_project("release DE colour")
-        src_709 = plain[2]
+        src_709 = long_clips[2]
         der = work / "colour"
         der.mkdir(exist_ok=True)
         bt601 = der / "derived_bt601_sd.mp4"
@@ -316,8 +326,8 @@ def main() -> int:
         der = work / "audio"
         der.mkdir(exist_ok=True)
         noaudio = der / "derived_no_audio.mp4"
-        ff("-ss", "0", "-t", "6", "-i", str(plain[3]), "-an", "-c:v", "copy", str(noaudio))
-        files = [REAL / "derived" / "speech_over_real_video.mp4", noaudio, REAL / "derived" / "container_mjpeg.avi", plain[4], plain[6], plain[8]]
+        ff("-ss", "0", "-t", "6", "-i", str(long_clips[3]), "-an", "-c:v", "copy", str(noaudio))
+        files = [REAL / "derived" / "speech_over_real_video.mp4", noaudio, REAL / "derived" / "container_mjpeg.avi", long_clips[4], long_clips[6], long_clips[8]]
         rates = {}
         for f in files:
             rates[f.name] = (probe(f, "stream=sample_rate,channels", "a:0") or ["none"])

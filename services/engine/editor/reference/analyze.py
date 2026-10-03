@@ -18,7 +18,7 @@ from ..media.probe import probe
 from ..music.analyze import analyze_music
 
 logger = get_logger("reference")
-VERSION = "ref-v5"  # v3: adaptive cut detection, colour-correct sampling
+VERSION = "ref-v6"  # v3: adaptive cut detection, colour-correct sampling
 
 
 def _dominant_colors(rgb_frames: np.ndarray, k: int = 5) -> list[dict]:
@@ -114,7 +114,7 @@ def analyze_reference(path: Path, fingerprint: str | None = None, sample_fps: fl
     sfps = sample_fps
     fs = F.sample_frames(path, sfps, 256, meta=meta)
     m = F.frame_metrics(fs)
-    shots = detect_shots(m, fs.times, fs.fps, min_shot=0.25)
+    shots = detect_shots(m, fs.times, fs.fps, min_shot=0.25, frames=fs.rgb)
     dur = meta.get("duration") or (len(fs.times) / sfps)
     lens = np.array([s["end"] - s["start"] for s in shots]) if shots else np.array([dur])
     trans = [s["in_transition"] for s in shots[1:]]

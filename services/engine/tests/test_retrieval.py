@@ -1,4 +1,5 @@
 """Shot retrieval by description: label vocabulary, ranking, honest misses, and use in revisions."""
+import json
 from editor.retrieval import resolve, search
 
 
@@ -106,3 +107,33 @@ def test_avoid_issue_excludes_footage_or_reports_relaxation(project):
               for i, sh in enumerate((a["analysis"] or {}).get("shots", [])) if "blurry" in sh.get("issues", []) for i in [sh.get("index", i)]}
     # either no blurry shot is used, or the revision says the exclusion had to be relaxed
     assert not (used & blurry) or ch.get("relaxed"), (used & blurry, ch)
+
+
+def test_multi_label_exclusion_applies_in_full(project):
+    """'avoid people' names five labels; the exclusion must not be diluted across them (it was −0.8/√5 ≈ −0.36,
+    above the exclusion threshold, so people stayed in the edit — found on real footage)."""
+    from editor import db, service as S
+
+    base = S.create_edit_plan(project["id"], "A 15 second energetic festival recap", "fast")
+    used = []
+    for seg in base["plan"]["timeline"]:
+        if seg["asset_id"] not in used:
+            used.append(seg["asset_id"])
+    tagged = used[:2]
+    saved = {}
+    for aid in tagged:
+        a = db.get("assets", aid)
+        saved[aid] = a["analysis"]
+        an = json.loads(json.dumps(a["analysis"]))
+        for sh in an["shots"]:
+            sh.setdefault("semantic", {}).setdefault("objects", []).append({"label": "person", "frequency": 1.0})
+            sh["semantic"].setdefault("subjects", []).append({"label": "people", "frequency": 1.0})
+        db.update("assets", aid, analysis=an)
+    try:
+        v = S.revise(project["id"], "avoid people", base["id"])
+        ch = [c for c in v["changes"] if c["op"] == "prefer_query"][0]
+        after = sum(s["asset_id"] in tagged for s in v["plan"]["timeline"])
+        assert after == 0 or ch.get("relaxed"), (after, ch)
+    finally:
+        for aid, an in saved.items():
+            db.update("assets", aid, analysis=an)

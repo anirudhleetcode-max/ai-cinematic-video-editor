@@ -5,6 +5,7 @@ import re
 import subprocess
 from pathlib import Path
 
+from .. import contract as C
 from ..config import get_settings
 from ..media.probe import probe
 from ..schemas import EditPlan
@@ -23,6 +24,17 @@ def _detect(path: Path, vf: str | None, af: str | None, timeout: float = 1800) -
         cmd += ["-an"]
     cmd += ["-f", "null", "-"]
     return subprocess.run(cmd, capture_output=True, text=True, timeout=timeout).stderr
+
+
+def delivered_loudness(path: Path) -> tuple[float | None, float | None]:
+    """Integrated loudness (LUFS) and true peak (dBTP) of the file as delivered (EBU R128, 4× oversampled peak)."""
+    st = get_settings()
+    p = subprocess.run([st.ffmpeg, "-nostats", "-hide_banner", "-i", str(path), "-map", "0:a:0", "-af", "ebur128=peak=true", "-f", "null", "-"],
+                       capture_output=True, text=True, timeout=1800)
+    tail = p.stderr[p.stderr.rfind("Summary:"):]
+    i = re.search(r"I:\s+(-?[\d.]+) LUFS", tail)
+    tp = re.search(r"Peak:\s+(-?[\d.]+|-inf) dBFS", tail)
+    return (float(i.group(1)) if i else None, float(tp.group(1)) if tp and tp.group(1) != "-inf" else None)
 
 
 def _intervals(text: str, start_key: str, end_key: str) -> list[tuple[float, float]]:
@@ -88,6 +100,14 @@ def quality_check(path: Path, plan: EditPlan, expect_audio: bool, text_violation
         pk = re.findall(r"Peak level dB:\s*(-?[\d.inf]+)", dec)
         peak = float(pk[-1]) if pk and pk[-1] not in ("-inf",) else -120.0
         add("no_clipping", peak <= -0.1, f"peak {peak:.2f} dBFS")
+        if expect_audio:
+            # delivered-file loudness and TRUE peak (after AAC encoding), against the product contract
+            lufs, tp = delivered_loudness(path)
+            ceiling = plan.audio.true_peak_db
+            add("true_peak", tp is None or tp <= ceiling + 0.05, f"true peak {tp} dBTP (ceiling {ceiling})",
+                severity="warning" if draft else "error")
+            add("loudness", lufs is None or lufs < -60 or abs(lufs - plan.audio.target_lufs) <= C.LOUDNESS_TOLERANCE_LU,
+                f"{lufs} LUFS (target {plan.audio.target_lufs} ±{C.LOUDNESS_TOLERANCE_LU})", severity="warning" if draft else "error")
     add("text_safe_area", not text_violations, f"{len(text_violations or [])} text items outside safe area")
     missing = [s.id for s in plan.timeline if not s.asset_id]
     add("no_missing_clips", not missing, ",".join(missing))
