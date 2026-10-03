@@ -68,6 +68,48 @@
    "total_s": 201.86,
    "peak_rss_mb": 1583.0,
    "cpu_percent_avg": 76.9
+  },
+  {
+   "output_seconds": 300.0,
+   "label": "MEASURED",
+   "planning_s": 1.576,
+   "segments": 253,
+   "repeated_shots": 173,
+   "preview_s": 297.57,
+   "preview_qc": true,
+   "final_render_s": 739.37,
+   "render_breakdown": {
+    "segments_s": 497.6,
+    "transitions_s": 0.0,
+    "audio_s": 0.03,
+    "final_pass_s": 123.04,
+    "qc_s": 37.53,
+    "total_s": 658.21,
+    "reviews_s": 81.12
+   },
+   "qc_passed": true,
+   "qc_failures": [],
+   "encoder": "libx264",
+   "output": {
+    "duration": 300.0,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "vcodec": "h264",
+    "acodec": "aac"
+   },
+   "loudness_lufs": -16.29,
+   "segments_cached": 0,
+   "review": {
+    "pass": 9,
+    "warn": 2,
+    "fail": 0,
+    "n/a": 0
+   },
+   "reference_similarity": 0.611,
+   "total_s": 1038.51,
+   "peak_rss_mb": 1808.8,
+   "cpu_percent_avg": 79.6
   }
  ],
  "upload_s": 74.07,
