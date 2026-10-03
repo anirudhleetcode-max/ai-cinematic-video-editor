@@ -14,7 +14,7 @@ import numpy as np
 from ..media.frames import hamming
 from ..music.analyze import best_window
 from ..registry import templates
-from ..registry.color import COLOR_PRESETS, technical_correction
+from ..registry.color import COLOR_PRESETS, solve_technical, technical_correction
 from ..registry.editing import DENSITY
 from ..schemas import (AudioPlan, CaptionSpec, ColorAdjust, ColorGrade, CreativeBible, CropSpec, EffectInstance, Ending, ExportSpec, MotionSpec,
                        MusicSegment, Segment, SfxItem, SpeedSpec, StorySection, StyleIntent, TextItem, TransitionSpec)
@@ -152,8 +152,43 @@ def map_reference(ref: dict, intent: StyleIntent) -> dict:
             preset = "muted"
         else:
             preset = "cinematic_neutral"
-        out["color_preset"] = preset
-        out["color_overrides"] = {"saturation": float(np.clip(1 + (sat - 0.3) * 0.8, 0.7, 1.4))}
+        out["closest_named_look"] = preset
+        g = ref.get("grade") or {}
+        if g:
+            # ReferenceGradeProfile → grade: a near-neutral base + overrides derived from the measured look
+            # (the technical shot match moves exposure / white balance / saturation / contrast to the reference's values)
+            ov: dict[str, float] = {}
+
+            def cast_hue(c: dict) -> tuple[float | None, float]:
+                rgb = np.array(c.get("rgb") or [0, 0, 0], np.float32)
+                if not rgb.any():
+                    return None, 0.0
+                v = rgb - rgb.mean()
+                mag = float(np.linalg.norm(v))
+                if mag < 0.015:
+                    return None, mag
+                import colorsys
+                hh, _, _ = colorsys.rgb_to_hsv(*(np.clip(0.5 + v * 3, 0, 1)))
+                return round(float(hh) * 360, 1), mag
+
+            sh_h, sh_m = cast_hue(g.get("shadows", {}))
+            hl_h, hl_m = cast_hue(g.get("highlights", {}))
+            if sh_h is not None or hl_h is not None:
+                ov["split_shadow_hue"] = sh_h if sh_h is not None else 190.0
+                ov["split_highlight_hue"] = hl_h if hl_h is not None else (sh_h if sh_h is not None else 35.0)
+                ov["split_amount"] = round(float(np.clip(max(sh_m, hl_m) * 3.5, 0.05, 0.6)), 3)
+                if hl_h is None:  # neutral highlights measured: weight the toning towards the shadows
+                    ov["split_balance"] = 0.4
+                elif sh_h is None:
+                    ov["split_balance"] = -0.4
+            if g.get("luma_p5", 0) > 0.08:
+                ov["fade"] = round(float(np.clip((g["luma_p5"] - 0.05) * 1.5, 0, 0.25)), 3)
+            out["color_preset"] = "natural" if COLOR_PRESETS.has("natural") else "cinematic_neutral"
+            out["color_overrides"] = ov
+            out["grade_mapping"] = {"shadow_cast_hue": sh_h, "highlight_cast_hue": hl_h, "lifted_blacks_p5": g.get("luma_p5"), "base": out["color_preset"]}
+        else:
+            out["color_preset"] = preset
+            out["color_overrides"] = {"saturation": float(np.clip(1 + (sat - 0.3) * 0.8, 0.7, 1.4))}
     if "motion" in aspects:
         out["camera_motion"] = "dynamic" if ref.get("camera_motion", 0) > 1.0 else ("subtle" if ref.get("zoom_behavior", 0) > 0.05 or ref.get("camera_motion", 0) > 0.2 else "none")
     if "typography" in aspects:
@@ -898,50 +933,113 @@ def colorist(plan: Plan, ctx: ProjectContext, intent: StyleIntent, ref_map: dict
             overrides["grain"] = max(overrides.get("grain", 0), 8)
         if e == "vignette":
             overrides["vignette"] = max(overrides.get("vignette", 0), 0.35)
-    # technical shot matching: target = reference look (if following its colour) else median of selected shots
+    # technical shot matching (closed loop): each shot's 16×9 colour thumbnail is run through the real grading model
+    # and corrected toward the target (reference look if following its colour, else the median of the selected shots);
+    # then adjacent shots in a section are pulled together so temperature / exposure / saturation never jump.
     cand = {c.key: c for c in ctx.candidates()}
-    stats = []
+    rows = []
     for s in plan.segments:
         c = cand.get(f"{s.asset_id}:{s.shot_index}")
         if c and c.metrics:
-            stats.append((s, c.metrics))
-    if stats:
+            sh = next((x for x in (ctx.asset(s.asset_id).analysis or {}).get("shots", []) if x["index"] == s.shot_index), {})
+            px = np.frombuffer(bytes.fromhex(sh["rgb_thumb"]), np.uint8).reshape(-1, 3).astype(np.float32) / 255 if sh.get("rgb_thumb") else None
+            rows.append((s, c.metrics, px))
+    if rows:
         if ref_map and ref_map.get("color_target"):
             target = ref_map["color_target"]
             src = "reference"
         else:
             keys = ("luma", "temperature", "tint", "saturation", "contrast")
-            target = {k: float(np.median([m.get(k, 0) for _, m in stats])) for k in keys}
+            target = {k: float(np.median([m.get(k, 0) for _, m, _ in rows])) for k in keys}
             target["luma"] = float(np.clip(target["luma"], 0.38, 0.52))
             src = "project median"
-        for s, m in stats:
-            corr = technical_correction(m, target)
-            s.technical = ColorAdjust(exposure=round(corr["exposure"], 3), temperature=round(corr["temperature"], 3), tint=round(corr["tint"], 3),
-                                      saturation=round(corr["saturation"], 3), contrast=round(corr["contrast"], 3))
-        plan.note(f"Colour: technical match of {len(stats)} shots to {src} (luma {target['luma']:.2f}, temp {target['temperature']:+.3f}); creative look '{preset}'"
-                  + (f" with overrides {overrides}" if overrides else "") + ".")
+        params, pred = [], []
+        for s, m, px in rows:
+            if px is not None:
+                p_, st_ = solve_technical(px, target, strength=0.75)
+            else:  # older analysis without colour thumbnails: open-loop estimate
+                p_ = technical_correction(m, target)
+                st_ = None
+            params.append(p_)
+            pred.append(st_)
+
+        def gaps() -> tuple[float, float, float]:
+            dl = dt = ds = 0.0
+            for i in range(1, len(rows)):
+                if pred[i] is None or pred[i - 1] is None or rows[i][0].section != rows[i - 1][0].section:
+                    continue
+                dl = max(dl, abs(pred[i]["luma"] - pred[i - 1]["luma"]))
+                dt = max(dt, abs(pred[i]["temperature"] - pred[i - 1]["temperature"]))
+                ds = max(ds, abs(pred[i]["saturation"] - pred[i - 1]["saturation"]))
+            return dl, dt, ds
+
+        before = gaps()
+        for _ in range(3):  # neighbour smoothing: shrink large adjacent jumps inside a section
+            for i in range(1, len(rows)):
+                a_, b_ = pred[i - 1], pred[i]
+                if a_ is None or b_ is None or rows[i][0].section != rows[i - 1][0].section:
+                    continue
+                if abs(a_["luma"] - b_["luma"]) > 0.05 or abs(a_["temperature"] - b_["temperature"]) > 0.025 or abs(a_["saturation"] - b_["saturation"]) > 0.06:
+                    mid = {k: (a_[k] + b_[k]) / 2 for k in a_}
+                    for j in (i - 1, i):
+                        tgt = {k: pred[j][k] + 0.6 * (mid[k] - pred[j][k]) for k in mid}
+                        params[j], pred[j] = solve_technical(rows[j][2], tgt, strength=1.0)
+        after = gaps()
+        for (s, _, _), p_ in zip(rows, params):
+            s.technical = ColorAdjust(exposure=round(float(np.clip(p_["exposure"], -1, 1)), 3), temperature=round(float(np.clip(p_["temperature"], -1, 1)), 3),
+                                      tint=round(float(np.clip(p_["tint"], -1, 1)), 3), saturation=round(float(np.clip(p_["saturation"], 0, 3)), 3),
+                                      contrast=round(float(np.clip(p_["contrast"], 0.5, 2)), 3))
+        plan.note(f"Colour: closed-loop technical match of {len(rows)} shots to {src} (luma {target['luma']:.2f}, temp {target['temperature']:+.3f}); "
+                  f"predicted max adjacent jump luma {before[0]:.3f}→{after[0]:.3f}, temperature {before[1]:.3f}→{after[1]:.3f}, "
+                  f"saturation {before[2]:.3f}→{after[2]:.3f}; creative look '{preset}'" + (f" with overrides {overrides}" if overrides else "") + ".")
     plan.color = ColorGrade(preset=preset, intensity=1.0, overrides={k: round(float(v), 3) for k, v in overrides.items()}, match_shots=True)
 
 
 # ------------------------------------------------------------------------------- audio & sfx
 def audio_engineer(plan: Plan, ctx: ProjectContext, intent: StyleIntent) -> None:
+    """Dialogue priority: shots with detected speech (VAD) keep their audio as DIALOGUE; other kept clip audio is AMBIENCE.
+    Speech regions are mapped to output time so the mixer ducks music, ambience and SFX under speech with smooth
+    automation curves; each dialogue clip is level-matched; clipped source audio gets de-clipping."""
     keep = intent.keep_dialogue if intent.keep_dialogue is not None else True
     has_music = bool(plan.music)
-    n_speech = 0
+    n_speech, regions = 0, []
     for s in plan.segments:
         a = ctx.asset(s.asset_id)
+        aud = (a.analysis or {}).get("audio", {})
         sp = 0.0
-        if a.analysis:
-            for x, y in a.analysis.get("audio", {}).get("speech", []):
-                sp += max(0.0, min(y, s.src_out) - max(x, s.src_in))
+        rate = max(s.speed.rate, 1e-3)
+        seg_regions = []
+        for x, y in aud.get("speech", []):
+            ov0, ov1 = max(x, s.src_in), min(y, s.src_out)
+            if ov1 > ov0:
+                sp += ov1 - ov0
+                seg_regions.append((round(s.out_start + (ov0 - s.src_in) / rate, 3), round(s.out_start + (ov1 - s.src_in) / rate, 3)))
         speech = sp > 0.4 * (s.src_out - s.src_in) and s.speed.rate >= 0.95 and not s.speed.ramp
-        s.keep_audio = bool(a.meta.get("has_audio")) and (speech and keep or not has_music)
-        s.audio_gain_db = 0.0 if speech else -8.0
-        n_speech += int(speech and s.keep_audio)
+        has_audio = bool(a.meta.get("has_audio"))
+        if speech and keep and has_audio:
+            s.keep_audio, s.audio_role, s.audio_gain_db = True, "dialogue", 0.0
+            regions += seg_regions
+            n_speech += 1
+        elif has_audio and not has_music:
+            s.keep_audio, s.audio_role, s.audio_gain_db = True, "ambience", -8.0
+        else:
+            s.keep_audio, s.audio_role = False, "muted"
+        if s.keep_audio and aud.get("clipping_runs", 0) > 0.001:
+            s.audio_repair = ["declip"]
+    merged: list[tuple[float, float]] = []
+    for r in sorted(regions):
+        if merged and r[0] - merged[-1][1] < 0.3:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], r[1]))
+        else:
+            merged.append(r)
     target = -14.0 if (plan.intent.platform or "") in ("instagram_reel", "tiktok", "shorts", "youtube") else -16.0
     plan.audio = AudioPlan(dialogue_preset="dialogue_clean", ducking=intent.duck_music is not False, duck_depth_db=12.0 if n_speech else 0.0,
-                           target_lufs=target, keep_clip_audio="speech_only" if has_music else "all")
-    plan.note(f"Audio: {n_speech} dialogue shots kept and cleaned; music ducked {plan.audio.duck_depth_db:.0f} dB under speech; loudness target {target:.0f} LUFS.")
+                           target_lufs=target, keep_clip_audio="speech_only" if has_music else "all", speech_regions=merged[:2000])
+    det = next(((a.analysis or {}).get("speech_detector") for a in ctx.clips if (a.analysis or {}).get("speech_detector")), "unknown")
+    plan.note(f"Audio: {n_speech} dialogue shots ({sum(b - a for a, b in merged):.1f}s of speech, detector {det}); music ducked "
+              f"{plan.audio.duck_depth_db:.0f} dB, ambience {plan.audio.ambience_duck_db:.0f} dB, SFX {plan.audio.sfx_duck_db:.0f} dB under speech; "
+              f"dialogue clips level-matched to {plan.audio.dialogue_target_db:.0f} dBFS RMS; "
+              f"{sum(1 for s in plan.segments if s.audio_repair)} clips de-clipped; loudness target {target:.0f} LUFS.")
 
 
 def sound_designer(plan: Plan, intent: StyleIntent) -> None:
@@ -988,7 +1086,18 @@ def typography_designer(plan: Plan, ctx: ProjectContext, intent: StyleIntent, re
         e0 = plan.duration - plan.ending.duration + 0.3
         texts.append(TextItem(id="end_title", kind="end_title", text=end_text, start=round(e0, 3), end=round(plan.duration - 0.25, 3), style="end_card",
                               animation="tracking_reveal", position="center" if plan.ending.type == "title" else "bottom"))
+    # music-driven entrances: start each text on the nearest downbeat (within ±0.5 s) so titles land with the music
+    snapped = 0
+    downs = np.array(plan.downbeats) if plan.downbeats else np.zeros(0)
+    for t in texts:
+        if len(downs):
+            k = int(np.argmin(np.abs(downs - t.start)))
+            if abs(downs[k] - t.start) <= 0.5 and downs[k] + 1.5 < t.end:
+                t.start = round(float(downs[k]), 3)
+                snapped += 1
     plan.texts = texts
+    if snapped:
+        plan.note(f"Typography: {snapped} text entrance(s) placed on downbeats.")
     plan.note("Typography: " + (", ".join(f"'{t.text}' ({t.style}/{t.animation})" for t in texts) if texts else "no on-screen text (none was provided — nothing invented)."))
 
 

@@ -35,6 +35,7 @@ GRADE_PARAMS = {
     "vignette": (0.0, 0, 1), "grain": (0.0, 0, 30), "sharpen": (0.0, 0, 2), "halation": (0.0, 0, 1),
 }
 FINISHING = ("vignette", "grain", "sharpen", "halation")
+IDENTITY = {k: v[0] for k, v in GRADE_PARAMS.items()}
 
 
 def clamp_params(p: dict) -> dict:
@@ -220,6 +221,36 @@ _preset("natural", "Natural (technical only)", ("natural", "neutral", "none"), "
 def preset_params(preset_id: str, overrides: dict | None = None) -> dict:
     d = COLOR_PRESETS.get(preset_id)
     return clamp_params(d.render({**(overrides or {})}))
+
+
+def pixel_stats(px: np.ndarray) -> dict:
+    """The same statistics media.frames.frame_metrics measures (luma, temperature, tint, saturation, contrast) for
+    float RGB pixels [..., 3] in [0, 1] — so simulated grades are compared like-for-like with measured footage."""
+    px = np.clip(px.reshape(-1, 3), 0, 1)
+    r, g, b = px[:, 0], px[:, 1], px[:, 2]
+    luma = 0.299 * r + 0.587 * g + 0.114 * b
+    mx, mn = px.max(1), px.min(1)
+    sat = np.where(mx > 1e-3, (mx - mn) / np.maximum(mx, 1e-3), 0)
+    return {"luma": float(luma.mean()), "temperature": float((r - b).mean()), "tint": float((g - 0.5 * (r + b)).mean()),
+            "saturation": float(sat.mean()), "contrast": float(luma.std())}
+
+
+def solve_technical(px: np.ndarray, target: dict, strength: float = 0.75, iters: int = 4) -> tuple[dict, dict]:
+    """Find exposure / temperature / tint / saturation / contrast so that the graded pixels' statistics move
+    `strength` of the way to `target`. Uses the real grading model (closed loop), not a linear guess.
+    Returns (params, predicted stats after correction)."""
+    src = pixel_stats(px)
+    want = {k: src[k] + strength * (target.get(k, src[k]) - src[k]) for k in ("luma", "temperature", "tint", "saturation", "contrast")}
+    p = {"exposure": 0.0, "temperature": 0.0, "tint": 0.0, "saturation": 1.0, "contrast": 1.0}
+    base = {**IDENTITY, "pivot": 0.42}
+    for _ in range(iters):
+        cur = pixel_stats(grade(px, {**base, **p}))
+        p["exposure"] = float(np.clip(p["exposure"] + np.log2(max(1e-3, want["luma"]) / max(1e-3, cur["luma"])), -1.0, 1.0))
+        p["temperature"] = float(np.clip(p["temperature"] + (want["temperature"] - cur["temperature"]) / 0.12 * 0.9, -1.0, 1.0))
+        p["tint"] = float(np.clip(p["tint"] - (want["tint"] - cur["tint"]) / 0.06 * 0.5, -1.0, 1.0))
+        p["saturation"] = float(np.clip(p["saturation"] * (max(1e-3, want["saturation"]) / max(1e-3, cur["saturation"])) ** 0.8, 0.5, 1.8))
+        p["contrast"] = float(np.clip(p["contrast"] * (max(1e-3, want["contrast"]) / max(1e-3, cur["contrast"])) ** 0.7, 0.7, 1.4))
+    return p, pixel_stats(grade(px, {**base, **p}))
 
 
 def technical_correction(stats: dict, target: dict) -> dict:

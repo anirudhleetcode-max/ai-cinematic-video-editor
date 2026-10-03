@@ -8,7 +8,7 @@ import cv2
 import numpy as np
 
 from .config import get_settings
-from .proc import run
+from .proc import ff_path, run
 from .registry import REGISTRIES
 from .registry.color import grade, preset_params
 from .registry.effects import render_effect
@@ -96,7 +96,7 @@ def preview(kind: str, item_id: str) -> Path:
         bg = out.with_suffix(".bg.png")
         _write(cv2.resize((a * 0.55).astype(np.uint8), (W * 2, H * 2)), bg)
         run([st.ffmpeg, "-v", "error", "-y", "-loop", "1", "-t", "2", "-r", "10", "-i", str(bg), "-vf",
-             f"ass='{ass.as_posix()}':fontsdir='{st.fonts_dir.as_posix()}',select=eq(n\\,7),scale={W}:-2", "-frames:v", "1", str(out)])
+             f"ass={ff_path(ass)}:fontsdir={ff_path(st.fonts_dir)},select=eq(n\\,7),scale={W}:-2", "-frames:v", "1", str(out)])
         ass.unlink(missing_ok=True), bg.unlink(missing_ok=True)
         return out
     # audio presets: no visual preview

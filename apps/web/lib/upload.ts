@@ -1,4 +1,4 @@
-import { API_URL } from "./api";
+import { API_URL, authHeaders } from "./api";
 import type { Role } from "./types";
 
 export const ACCEPT = ".mp4,.mov,.mkv,.avi,.webm,.m4v,.mp3,.wav,.aac,.m4a,.flac,.ogg,.png,.jpg,.jpeg,.webp,.cube";
@@ -48,6 +48,7 @@ export async function uploadFile(projectId: string, file: File, role: Role | und
       reject(new Error("network error"));
     };
     xhr.open("POST", `${API_URL}/projects/${projectId}/assets`);
+    for (const [k, v] of Object.entries(authHeaders())) xhr.setRequestHeader(k, v);
     xhr.send(fd);
   });
 }
@@ -55,7 +56,7 @@ export async function uploadFile(projectId: string, file: File, role: Role | und
 async function uploadResumable(projectId: string, file: File, role: Role | undefined, onProgress: (p: UploadProgress) => void): Promise<void> {
   const init = await fetch(`${API_URL}/projects/${projectId}/uploads`, {
     method: "POST",
-    headers: { "content-type": "application/json" },
+    headers: { "content-type": "application/json", ...authHeaders() },
     body: JSON.stringify({ filename: file.name, size: file.size, role }),
   });
   if (!init.ok) throw new Error(`upload init failed: ${init.status}`);
@@ -65,7 +66,7 @@ async function uploadResumable(projectId: string, file: File, role: Role | undef
     const chunk = file.slice(offset, offset + CHUNK);
     let attempt = 0;
     for (;;) {
-      const r = await fetch(`${API_URL}/projects/${projectId}/uploads/${upload_id}?offset=${offset}`, { method: "PUT", body: chunk });
+      const r = await fetch(`${API_URL}/projects/${projectId}/uploads/${upload_id}?offset=${offset}`, { method: "PUT", body: chunk, headers: authHeaders() });
       if (r.ok) break;
       if (r.status === 409) {
         // server has a different offset (e.g. after a reconnect): resume from it
@@ -79,7 +80,7 @@ async function uploadResumable(projectId: string, file: File, role: Role | undef
     offset = Math.min(file.size, offset + chunk.size);
     onProgress({ name: file.name, loaded: offset, total: file.size, done: false });
   }
-  const done = await fetch(`${API_URL}/projects/${projectId}/uploads/${upload_id}/complete`, { method: "POST" });
+  const done = await fetch(`${API_URL}/projects/${projectId}/uploads/${upload_id}/complete`, { method: "POST", headers: authHeaders() });
   if (!done.ok) {
     const msg = ((await done.json()) as { detail?: string }).detail ?? `HTTP ${done.status}`;
     onProgress({ name: file.name, loaded: file.size, total: file.size, done: true, error: msg });

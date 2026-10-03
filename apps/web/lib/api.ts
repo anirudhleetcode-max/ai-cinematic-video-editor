@@ -8,12 +8,50 @@ export class ApiError extends Error {
   }
 }
 
+const TOKEN_KEY = "cutroom_token";
+
+/** API token for servers running with EDITOR_AUTH=token (kept in this browser only). */
+export function getToken(): string | null {
+  try {
+    return typeof window === "undefined" ? null : window.localStorage.getItem(TOKEN_KEY);
+  } catch {
+    return null;
+  }
+}
+
+export function setToken(token: string | null): void {
+  try {
+    if (token) window.localStorage.setItem(TOKEN_KEY, token.trim());
+    else window.localStorage.removeItem(TOKEN_KEY);
+  } catch {
+    /* storage unavailable: token lives for this page only */
+  }
+}
+
+export function authHeaders(): Record<string, string> {
+  const t = getToken();
+  return t ? { authorization: `Bearer ${t}` } : {};
+}
+
+/** GET URLs used by <img>, <video>, downloads and EventSource cannot carry headers: append the token. */
+export function withToken(url: string): string {
+  const t = getToken();
+  return t ? `${url}${url.includes("?") ? "&" : "?"}access_token=${encodeURIComponent(t)}` : url;
+}
+
 async function req<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${API_URL}${path}`, {
     ...init,
-    headers: init?.body && !(init.body instanceof FormData) ? { "content-type": "application/json", ...(init?.headers ?? {}) } : init?.headers,
+    headers: {
+      ...(init?.body && !(init.body instanceof FormData) ? { "content-type": "application/json" } : {}),
+      ...authHeaders(),
+      ...((init?.headers as Record<string, string>) ?? {}),
+    },
     cache: "no-store",
   });
+  if (res.status === 401 && typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent("cutroom:auth-required"));
+  }
   if (!res.ok) {
     let detail = res.statusText;
     try {
@@ -75,8 +113,8 @@ export const api = {
   setProjectBrand: (id: string, brand_kit_id: string) => req<Record<string, unknown>>(`/projects/${id}`, { method: "PATCH", body: JSON.stringify({ brand_kit_id }) }),
 };
 
-export const thumbUrl = (assetId: string) => `${API_URL}/assets/${assetId}/thumbnail`;
-export const fileUrl = (assetId: string) => `${API_URL}/assets/${assetId}/file`;
-export const downloadUrl = (renderId: string) => `${API_URL}/renders/${renderId}/download`;
-export const previewUrl = (kind: string, id: string) => `${API_URL}/library/preview/${kind}/${id}`;
-export const eventsUrl = (jobId: string) => `${API_URL}/jobs/${jobId}/events`;
+export const thumbUrl = (assetId: string) => withToken(`${API_URL}/assets/${assetId}/thumbnail`);
+export const fileUrl = (assetId: string) => withToken(`${API_URL}/assets/${assetId}/file`);
+export const downloadUrl = (renderId: string) => withToken(`${API_URL}/renders/${renderId}/download`);
+export const previewUrl = (kind: string, id: string) => withToken(`${API_URL}/library/preview/${kind}/${id}`);
+export const eventsUrl = (jobId: string) => withToken(`${API_URL}/jobs/${jobId}/events`);

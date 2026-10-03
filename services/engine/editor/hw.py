@@ -107,14 +107,70 @@ def _encoder_args(enc: str, quality: str) -> list[str]:
     return ["-c:v", "libx264", "-preset", "veryfast", "-crf", str(crf), "-pix_fmt", "yuv420p"]
 
 
+PCI_VENDORS = {"0x10de": "NVIDIA", "0x1002": "AMD", "0x1022": "AMD", "0x8086": "Intel", "0x106b": "Apple"}
+
+
+def _fixed_cmd(args: list[str], timeout: float = 10) -> str:
+    """Run a FIXED system query (no user input ever reaches these arguments)."""
+    import subprocess
+
+    try:
+        p = subprocess.run(args, capture_output=True, timeout=timeout, text=True)
+        return p.stdout if p.returncode == 0 else ""
+    except (OSError, subprocess.SubprocessError):
+        return ""
+
+
+@functools.lru_cache(maxsize=1)
+def detect_gpus() -> list[dict]:
+    """Which GPUs exist (vendor + name + how it was detected). Presence of a GPU does NOT mean an encoder works:
+    encoders are only used after a successful test encode (available_encoders)."""
+    found: list[dict] = []
+    system = platform.system()
+    if shutil.which("nvidia-smi"):
+        for line in _fixed_cmd(["nvidia-smi", "--query-gpu=name,driver_version", "--format=csv,noheader"]).splitlines():
+            if line.strip():
+                name, _, drv = line.partition(",")
+                found.append({"vendor": "NVIDIA", "name": name.strip(), "driver": drv.strip(), "source": "nvidia-smi"})
+    if system == "Linux":
+        import glob
+
+        for vf in sorted(glob.glob("/sys/class/drm/card[0-9]*/device/vendor")):
+            try:
+                vendor = open(vf).read().strip().lower()
+                dev = open(vf.replace("vendor", "device")).read().strip().lower()
+            except OSError:
+                continue
+            v = PCI_VENDORS.get(vendor)
+            if v and not any(g["vendor"] == v and g["source"] == "nvidia-smi" for g in found):
+                found.append({"vendor": v, "name": f"PCI {vendor}:{dev}", "source": "sysfs drm"})
+    elif system == "Windows":
+        out = _fixed_cmd(["powershell", "-NoProfile", "-Command", "Get-CimInstance Win32_VideoController | ForEach-Object { $_.Name }"], 20)
+        for name in (x.strip() for x in out.splitlines()):
+            if name:
+                vendor = next((v for k, v in (("nvidia", "NVIDIA"), ("geforce", "NVIDIA"), ("quadro", "NVIDIA"), ("radeon", "AMD"), ("amd", "AMD"),
+                                              ("intel", "Intel"), ("arc", "Intel")) if k in name.lower()), "unknown")
+                if not any(g["name"] == name for g in found):
+                    found.append({"vendor": vendor, "name": name, "source": "Win32_VideoController"})
+    elif system == "Darwin":
+        out = _fixed_cmd(["system_profiler", "SPDisplaysDataType"], 20)
+        for line in out.splitlines():
+            if "Chipset Model:" in line:
+                name = line.split(":", 1)[1].strip()
+                vendor = "Apple" if name.startswith("Apple") else next((v for k, v in (("NVIDIA", "NVIDIA"), ("AMD", "AMD"), ("Radeon", "AMD"),
+                                                                                      ("Intel", "Intel")) if k in name), "unknown")
+                found.append({"vendor": vendor, "name": name, "source": "system_profiler"})
+    return found
+
+
 def diagnostics() -> dict:
     s = get_settings()
     du = shutil.disk_usage(s.data_dir)
     vm = psutil.virtual_memory()
-    gpu = None
-    if shutil.which("nvidia-smi"):
-        gpu = "nvidia-smi present"
+    gpus = detect_gpus()
+    gpu = ", ".join(f"{g['vendor']} {g['name']}" for g in gpus) or None
     encs = available_encoders()
+    hw_verified = [e for c in encs.values() for e in c if not e.startswith("lib")]
     return {
         "os": f"{platform.system()} {platform.release()}",
         "python": platform.python_version(),
@@ -127,7 +183,10 @@ def diagnostics() -> dict:
         "ram_available_gb": round(vm.available / 2**30, 2),
         "disk_free_gb": round(du.free / 2**30, 2),
         "gpu": gpu,
+        "gpus": gpus,
+        "platform_class": "CPU-only" if not gpus else "/".join(sorted({g["vendor"] for g in gpus})),
         "encoders": encs,
+        "verified_hardware_encoders": hw_verified,
         "selected_encoder": pick_encoder("h264"),
         "hardware_encoding": pick_encoder("h264") != "libx264",
     }

@@ -280,7 +280,7 @@ def analyze_video(path: Path, mode: str = "fast", fingerprint: str | None = None
         best_i = a + (b - a) // 6 + int(np.argmax(m["sharp"][inner] * (0.5 + m["motion"][inner] * 20))) if b - a > 2 else a
         sc.update(
             index=k, in_transition=sh["in_transition"], best_moment=round(float(fs.times[min(best_i, len(fs.times) - 1)]), 3),
-            dhash=str(F.dhash(fs.rgb[mid])), hist=[round(float(x), 5) for x in m["hists"][mid]], thumbs=_thumbs(fs.rgb, a, b),
+            dhash=str(F.dhash(fs.rgb[mid])), hist=[round(float(x), 5) for x in m["hists"][mid]], thumbs=_thumbs(fs.rgb, a, b), rgb_thumb=_rgb_thumb(fs.rgb, a, b),
             faces=[f["boxes"] for f in fsamp if f["boxes"]][:1],
             text_bands=F.text_likelihood(fs.rgb[mid]),
         )
@@ -330,6 +330,15 @@ def _thumbs(rgb: np.ndarray, a: int, b: int) -> str:
         g = (g - g.mean()) / (g.std() + 2.0)
         out += bytes(np.clip((g + 3) / 6 * 255, 0, 255).astype(np.uint8).ravel())
     return out.hex()
+
+
+def _rgb_thumb(rgb: np.ndarray, a: int, b: int) -> str:
+    """16×9 RGB thumbnail averaged over 3 frames of the shot (hex) — used to simulate grading decisions."""
+    import cv2
+
+    idx = sorted({min(b - 1, a + int((b - a) * q)) for q in (0.25, 0.5, 0.75)})
+    t = np.mean([cv2.resize(rgb[i], (16, 9), interpolation=cv2.INTER_AREA).astype(np.float32) for i in idx], axis=0)
+    return bytes(np.clip(t, 0, 255).astype(np.uint8).ravel()).hex()
 
 
 def _thumb_array(h: str | None) -> np.ndarray | None:

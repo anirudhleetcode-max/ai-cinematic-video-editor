@@ -45,6 +45,9 @@ CREATE TABLE IF NOT EXISTS renders (
 CREATE TABLE IF NOT EXISTS brand_kits (
   id TEXT PRIMARY KEY, name TEXT NOT NULL, data TEXT NOT NULL, created REAL
 );
+CREATE TABLE IF NOT EXISTS users (
+  id TEXT PRIMARY KEY, name TEXT NOT NULL, token_hash TEXT UNIQUE NOT NULL, is_admin INTEGER DEFAULT 0, created REAL, disabled INTEGER DEFAULT 0
+);
 CREATE TABLE IF NOT EXISTS benchmarks (
   id TEXT PRIMARY KEY, label TEXT, n_clips INTEGER, metrics TEXT NOT NULL, created REAL
 );
@@ -66,7 +69,19 @@ def connect() -> sqlite3.Connection:
             _conn.execute("PRAGMA journal_mode=WAL")
             _conn.execute("PRAGMA foreign_keys=ON")
             _conn.executescript(DDL)
+            _migrate(_conn)
         return _conn
+
+
+MIGRATIONS = [("projects", "owner_id", "TEXT"), ("brand_kits", "owner_id", "TEXT"), ("jobs", "owner_id", "TEXT")]
+
+
+def _migrate(conn: sqlite3.Connection) -> None:
+    """Additive, idempotent column migrations for databases created by earlier versions."""
+    for table, col, typ in MIGRATIONS:
+        cols = {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}
+        if col not in cols:
+            conn.execute(f"ALTER TABLE {table} ADD COLUMN {col} {typ}")
 
 
 def reset_db() -> None:

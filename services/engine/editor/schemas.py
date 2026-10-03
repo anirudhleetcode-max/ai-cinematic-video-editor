@@ -149,6 +149,8 @@ class Segment(Strict):
     stabilize_mode: Literal["off", "light", "standard", "strong"] | None = None  # None → "light" when stabilize is True
     keep_audio: bool = True
     audio_gain_db: float = Field(0.0, ge=-60, le=12)
+    audio_role: Literal["dialogue", "ambience", "muted"] = "ambience"
+    audio_repair: list[Literal["declip"]] = Field(default_factory=list, max_length=2)
     beat_index: int | None = None
     reason: str = Field("", max_length=300)
     image: bool = False
@@ -220,6 +222,10 @@ class AudioPlan(Strict):
     target_lufs: float = Field(-14.0, ge=-30, le=-8)
     true_peak_db: float = Field(-1.0, ge=-6, le=0)
     keep_clip_audio: Literal["speech_only", "all", "none"] = "speech_only"
+    speech_regions: list[tuple[float, float]] = Field(default_factory=list, max_length=2000)  # output time, from VAD
+    dialogue_target_db: float = Field(-20.0, ge=-40, le=-10, description="RMS level each dialogue clip is matched to before the mix")
+    ambience_duck_db: float = Field(8.0, ge=0, le=30)
+    sfx_duck_db: float = Field(6.0, ge=0, le=30)
 
 
 class VoiceoverItem(Strict):

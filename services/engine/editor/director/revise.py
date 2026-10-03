@@ -12,7 +12,7 @@ from dataclasses import dataclass, field
 
 from ..schemas import EditPlan, SpeedSpec, StyleIntent
 from .context import ProjectContext
-from .planner import build_plan, validate
+from .planner import build_plan, repair, validate
 from .prompt_parser import WORDNUM, parse_prompt
 
 SECTION_WORDS = {
@@ -83,6 +83,24 @@ def parse_revision(text: str) -> Revision:
         r.add("slow_section", "timeline", rate=0.7)
     if re.search(r"(ending|end|outro|finish) (much )?stronger|stronger (ending|end|finish)|better ending", p):
         r.add("stronger_ending", "structure")
+    if "stronger_ending" not in [o["op"] for o in r.ops]:
+        if m := re.search(r"end(?:ing)? (?:it )?(?:with|on|to|as) (?:a |an |the )?(logo and (?:a )?title|title and (?:a )?logo|logo|title(?: card)?|fade(?: out)?|hard cut|cut)\b", p):
+            word = m.group(1)
+            typ = "logo_title" if "logo" in word and "title" in word else ("logo" if "logo" in word else "title" if "title" in word else "fade" if "fade" in word else "cut")
+            r.add("ending", "ending", type=typ)
+        elif re.search(r"(change|different|new|another|replace) (the )?(ending|end|outro)", p):
+            r.add("ending", "ending", type="other")
+    if m := re.search(r"(intro|opening|hook) (much )?(shorter|longer)|(shorten|lengthen|shorter|longer) (the )?(intro|opening|hook)", p):
+        which = m.group(1) or m.group(6)
+        longer = "longer" in m.group(0) or "lengthen" in m.group(0)
+        if "section_length" not in [o["op"] for o in r.ops]:
+            r.add("section_length_rel", "structure", which=which, factor=1.4 if longer else 0.6)
+    if re.search(r"(no|remove all|without) (visual )?effects", p):
+        r.add("effect_density", "effects", density="minimal")
+    elif re.search(r"(less|fewer|reduce|tone down|calmer) (the )?(visual )?effects|too many effects", p):
+        r.add("effect_density", "effects", step=-1)
+    elif re.search(r"more (visual )?effects|(add|bolder) effects", p):
+        r.add("effect_density", "effects", step=1)
     if re.search(r"no transitions|only cuts|hard cuts|remove (the )?transitions", p):
         r.add("transitions", "transitions", style="none")
     elif re.search(r"more transitions|(subtle|smoother) transitions", p):
@@ -97,9 +115,11 @@ def parse_revision(text: str) -> Revision:
         r.add("captions", "text", enabled=True)
     if re.search(r"(remove|no|without|turn off) (subtitles|captions)", p):
         r.add("captions", "text", enabled=False)
-    for e in ints.effects:
+    negated = bool(re.search(r"(remove|no|without|less|fewer|drop|lose) (the |any )?[a-z ]{0,12}(grain|leak|glow|vignette|letterbox|bars|vhs|glitch|bloom|effects?)", p))
+    for e in ([] if negated else ints.effects):
         r.add("effect_add", "effects", effect=e)
-    if re.search(r"(remove|no|without) (the )?(effects|grain|light leaks?)", p):
+    if re.search(r"(remove|no|without) (the )?(grain|light leaks?)", p) or ("effect_density" not in [o["op"] for o in r.ops]
+                                                                         and re.search(r"(remove|no|without) (the )?effects", p)):
         r.add("effects_clear", "effects")
     if ints.aspect_ratio and re.search(r"reel|tiktok|shorts|vertical|square|9:16|1:1|4:5|instagram|youtube", p):
         r.add("aspect", "structure", aspect=ints.aspect_ratio, platform=ints.platform)
@@ -146,6 +166,10 @@ def apply_revision(plan: EditPlan, text: str, ctx: ProjectContext) -> tuple[Edit
             intent.pacing_factor = round(min(3.0, max(0.3, (intent.pacing_factor or 1.0) * op["factor"])), 3)
             if op["factor"] < 1:
                 intent.styles = list(dict.fromkeys([*intent.styles, "energetic"]))
+                levels = ["minimal", "low", "medium", "high", "extreme"]
+                cur = intent.effect_density or new.bible.effect_density or "low"
+                if cur in levels and cur != "minimal":
+                    intent.effect_density = levels[min(len(levels) - 1, levels.index(cur) + 1)]
                 intent.speed_ramps = True if intent.speed_ramps is None else intent.speed_ramps
                 intent.beat_sync = True
                 intent.sfx = True if intent.sfx is None else intent.sfx
@@ -235,6 +259,56 @@ def apply_revision(plan: EditPlan, text: str, ctx: ProjectContext) -> tuple[Edit
             if new.ending.duration > 0:
                 new.sfx.append(SfxItem(kind="impact", at=round(new.duration - new.ending.duration, 3), gain_db=-12))
             structural = structural or new.ending.duration > 0
+        elif o == "ending":
+            typ = op["type"]
+            if typ == "other":  # "change the ending": pick a different ending that the project can support
+                order = ["logo_title", "title", "logo", "fade"]
+                typ = next((t for t in order if t != new.ending.type and (ctx.logo or "logo" not in t)), "fade")
+                op = {**op, "type": typ}
+            intent.ending = typ
+            if typ != "cut" and new.ending.duration > 0:
+                # same length → change ONLY the ending (end card + end title); timeline and segments untouched
+                new.ending.type = typ
+                new.ending.logo_asset_id = ctx.logo.id if (ctx.logo and "logo" in typ) else None
+                if "logo" in typ and not ctx.logo:
+                    new.ending.type = "title"
+                others = [t for t in new.text if t.kind != "end_title"]
+                if new.ending.type in ("title", "logo_title"):
+                    from ..schemas import TextItem
+                    end_text = intent.end_title or ctx.name
+                    others.append(TextItem(id="end_title", kind="end_title", text=end_text[:120], start=round(new.duration - new.ending.duration + 0.3, 3),
+                                           end=round(new.duration - 0.25, 3), style="end_card", animation="tracking_reveal",
+                                           position="center" if new.ending.type == "title" else "bottom"))
+                new.text = others
+            else:
+                structural = True  # ending length changes (e.g. a hard cut) → re-time the body
+        elif o == "section_length_rel":
+            sec = next((x for x in new.story_structure if x.name == op["which"] or (op["which"] == "intro" and x.name in ("intro", "opening"))), None)
+            if sec is not None:
+                secs = round(max(0.8, (sec.end - sec.start) * op["factor"]), 2)
+                if op["which"] == "hook" or sec.name == "hook":
+                    intent.hook_seconds = secs
+                else:
+                    intent.intro_seconds = secs
+                op = {**op, "seconds": secs}
+                structural = True
+        elif o == "effect_density":
+            levels = ["minimal", "low", "medium", "high", "extreme"]
+            cur = new.bible.effect_density if new.bible.effect_density in levels else "low"
+            target = op.get("density") or levels[max(0, min(len(levels) - 1, levels.index(cur) + op.get("step", 0)))]
+            intent.effect_density = target
+            op = {**op, "from": cur, "to": target}
+            if levels.index(target) < levels.index(cur):
+                # fewer effects: remove accents in place (no re-plan, segments keep everything else)
+                fx_segs = [s for s in new.timeline if s.effects]
+                keep_n = 0 if target == "minimal" else len(fx_segs) // 2
+                for s in fx_segs[keep_n:]:
+                    s.effects = []
+                if target == "minimal":
+                    new.effects_global = []
+                new.bible.effect_density = target
+            else:
+                structural = True
         elif o == "transitions":
             intent.transition_style = op["style"]
             structural = True
@@ -277,6 +351,7 @@ def apply_revision(plan: EditPlan, text: str, ctx: ProjectContext) -> tuple[Edit
     else:
         new.intent = intent
         new.decisions = [f"Revision '{text}': " + ", ".join(o["op"] for o in applied), *new.decisions][:600]
+    repair(new, ctx)
     validate(new, ctx)
     return new, applied
 

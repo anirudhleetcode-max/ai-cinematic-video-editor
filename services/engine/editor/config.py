@@ -32,6 +32,17 @@ class Settings:
     stt_model_dir: Path | None = field(
         default_factory=lambda: Path(os.environ["EDITOR_STT_MODEL_DIR"]) if os.environ.get("EDITOR_STT_MODEL_DIR") else None
     )
+    env: str = field(default_factory=lambda: os.environ.get("EDITOR_ENV", "development"))
+    # auth: "token" (API tokens, required in production) or "none" (single local user; development only)
+    auth: str = field(default_factory=lambda: os.environ.get("EDITOR_AUTH", "none" if os.environ.get("EDITOR_ENV", "development") == "development" else "token"))
+    rate_limit_per_min: int = field(default_factory=lambda: int(os.environ.get("EDITOR_RATE_LIMIT_PER_MIN", "240")))
+    upload_rate_per_min: int = field(default_factory=lambda: int(os.environ.get("EDITOR_UPLOAD_RATE_PER_MIN", "120")))
+    job_rate_per_min: int = field(default_factory=lambda: int(os.environ.get("EDITOR_JOB_RATE_PER_MIN", "20")))
+    max_jobs_per_user: int = field(default_factory=lambda: int(os.environ.get("EDITOR_MAX_JOBS_PER_USER", "3")))
+    max_projects_per_user: int = field(default_factory=lambda: int(os.environ.get("EDITOR_MAX_PROJECTS_PER_USER", "50")))
+    user_quota_gb: float = field(default_factory=lambda: float(os.environ.get("EDITOR_USER_QUOTA_GB", "50")))
+    process_timeout_s: int = field(default_factory=lambda: int(os.environ.get("EDITOR_PROCESS_TIMEOUT", "7200")))
+    retention_days: int = field(default_factory=lambda: int(os.environ.get("EDITOR_RETENTION_DAYS", "30")))
     cors_origins: tuple[str, ...] = field(
         default_factory=lambda: tuple(o.strip() for o in os.environ.get("EDITOR_CORS_ORIGINS", "http://localhost:3000").split(",") if o.strip())
     )

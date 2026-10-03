@@ -18,7 +18,7 @@ import psutil
 from ..config import get_settings
 from ..hw import encoder_args, pick_encoder
 from ..logging import get_logger, log
-from ..proc import MediaCommandError, run, run_ffmpeg_progress
+from ..proc import MediaCommandError, ff_path, replace_file, run, run_ffmpeg_progress
 from ..qc.check import quality_check
 from ..registry.color import clamp_params, finishing_filters, preset_params, write_cube
 from ..registry.effects import render_effect
@@ -80,7 +80,7 @@ def render_end_card(plan: EditPlan, assets: dict[str, AssetInfo], out: Path, w: 
 def _creative_graph(plan: EditPlan, tmp: Path, w: int, h: int) -> tuple[str, str]:
     gp = preset_params(plan.color_grade.preset, plan.color_grade.overrides)
     lut = write_cube(tmp / "creative.cube", gp, plan.color_grade.intensity)
-    chain = f"[0:v]{MEZZ_TO_RGB},lut3d=file='{lut.as_posix()}':interp=tetrahedral"
+    chain = f"[0:v]{MEZZ_TO_RGB},lut3d=file={ff_path(lut)}:interp=tetrahedral"
     fin = finishing_filters(gp, w, h, plan.color_grade.intensity)
     if fin:
         chain += "," + ",".join(fin)
@@ -107,7 +107,7 @@ def fix_clipping(path: Path, limit: float = 0.79) -> None:
     tmp = path.with_suffix(".fix.mp4")
     run([st.ffmpeg, "-v", "error", "-y", "-i", str(path), "-c:v", "copy", "-af", f"alimiter=limit={limit}:level=false", "-c:a", "aac", "-b:a", "320k",
          "-movflags", "+faststart", str(tmp)], timeout=1800)
-    tmp.replace(path)
+    replace_file(tmp, path)
 
 
 def render_plan(plan: EditPlan, assets: dict[str, AssetInfo], out_path: Path, work: Path, progress: Progress = _noop, preview: bool = False,
@@ -192,8 +192,25 @@ def render_plan(plan: EditPlan, assets: dict[str, AssetInfo], out_path: Path, wo
     progress("mixing_audio", 0.64, "dialogue, music bed, ducking, SFX, loudness")
     mix_path = work / "mix.wav"
     seg_audio = {sid: r.audio for sid, r in results.items()}
+    # the mix depends only on audio-relevant plan fields + the segment audio files + source fingerprints: cache it, so a
+    # colour / text / ending-only revision reuses it (dependency-aware invalidation)
+    mix_key = hashlib.sha256(json.dumps({
+        "v": "mix2", "audio": plan.audio.model_dump(), "music": [m.model_dump() for m in plan.music], "sfx": [x.model_dump() for x in plan.sfx],
+        "vo": [v.model_dump() for v in plan.voiceover], "dur": plan.duration,
+        "segs": [[sg.id, sg.out_start, sg.out_duration, sg.keep_audio, sg.audio_role, sg.audio_gain_db, sg.transition_in.id, sg.transition_in.duration,
+                  str(results[sg.id].audio.parent.name) if sg.id in results else None] for sg in plan.timeline],
+        "fps": {k: v.fingerprint for k, v in assets.items() if any(m.asset_id == k for m in plan.music) or any(x.asset_id == k for x in plan.sfx)},
+    }, sort_keys=True, default=str).encode()).hexdigest()[:24]
+    mix_cache = cache.parent / "mix_cache" / mix_key
     try:
-        report["audio"] = audio_mix.mix(plan, seg_audio, {k: v.path for k, v in assets.items()}, mix_path, tmp)
+        if (mix_cache / "mix.wav").exists() and (mix_cache / "report.json").exists():
+            shutil.copyfile(mix_cache / "mix.wav", mix_path)
+            report["audio"] = {**json.loads((mix_cache / "report.json").read_text()), "cached": True}
+        else:
+            report["audio"] = audio_mix.mix(plan, seg_audio, {k: v.path for k, v in assets.items()}, mix_path, tmp)
+            mix_cache.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(mix_path, mix_cache / "mix.wav")
+            (mix_cache / "report.json").write_text(json.dumps(report["audio"], default=str))
     except Exception as e:  # noqa: BLE001 — keep producing a video even if the mixer fails
         report["fallbacks"].append(f"audio mix failed ({type(e).__name__}: {str(e)[:120]}) → silence")
         run([st.ffmpeg, "-v", "error", "-y", "-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo", "-t", f"{plan.duration:.3f}", str(mix_path)])
@@ -225,7 +242,7 @@ def render_plan(plan: EditPlan, assets: dict[str, AssetInfo], out_path: Path, wo
         graph += f";[{cur}]fade=t=out:st={max(0.0, plan.duration - 1.2):.3f}:d=1.2[fo]"
         cur = "fo"
     graph += ";[1:a]alimiter=limit=0.891:level=false:attack=2:release=60,aresample=48000[aout]"
-    graph += f";[{cur}]ass='{ass_path.as_posix()}':fontsdir='{st.fonts_dir.as_posix()}',fps={fps},trim=end_frame={frames_for(plan.duration, fps)},{TO_YUV420}[vout]"
+    graph += f";[{cur}]ass={ff_path(ass_path)}:fontsdir={ff_path(st.fonts_dir)},fps={fps},trim=end_frame={frames_for(plan.duration, fps)},{TO_YUV420}[vout]"
     enc = pick_encoder(plan.export.vcodec, prefer_hw=prefer_hw and plan.export.prefer_hw and not preview)
     tried = []
     for e in [enc, "libx264"] if enc != "libx264" else ["libx264"]:

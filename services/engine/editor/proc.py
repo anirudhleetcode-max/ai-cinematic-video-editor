@@ -40,10 +40,22 @@ def _check_binary(cmd: Sequence[str]) -> None:
 def run(cmd: Sequence[str], timeout: float | None = None, check: bool = True, input_bytes: bytes | None = None) -> subprocess.CompletedProcess:
     _check_binary(cmd)
     log(logger, "exec", logging.DEBUG, argv0=Path(cmd[0]).name, n_args=len(cmd))
-    p = subprocess.run(list(cmd), capture_output=True, timeout=timeout, input=input_bytes)
+    # every media process has a timeout (EDITOR_PROCESS_TIMEOUT when the caller gives none) — no unbounded FFmpeg runs
+    p = subprocess.run(list(cmd), capture_output=True, timeout=timeout or get_settings().process_timeout_s, input=input_bytes)
     if check and p.returncode != 0:
         raise MediaCommandError(cmd, p.returncode, p.stderr.decode("utf-8", "replace"))
     return p
+
+
+def ff_path(p: Path | str) -> str:
+    """A filesystem path as a quoted FFmpeg *filter option value* (lut3d=file=…, ass=…, fontsdir=…, vidstab input=…).
+    FFmpeg unquotes filtergraph arguments once before splitting options on ':', so the colon of a Windows drive letter
+    must be escaped inside the quotes ('C\\:/x', as documented in ffmpeg-filters "Notes on filtergraph escaping").
+    Paths containing an apostrophe cannot be quoted safely and are rejected."""
+    s = Path(p).as_posix()
+    if "'" in s:
+        raise ValueError(f"path contains an apostrophe, which FFmpeg filter arguments cannot carry safely: {s!r} — move the data directory")
+    return "'" + s.replace(":", "\\:") + "'"
 
 
 _TIME_RE = re.compile(r"out_time_us=(\d+)")
@@ -66,14 +78,34 @@ def run_ffmpeg_progress(cmd: Sequence[str], total_seconds: float, on_progress: C
 
     t = threading.Thread(target=_drain, daemon=True)
     t.start()
+    limit = get_settings().process_timeout_s
+    watchdog = threading.Timer(limit, p.kill)  # hard wall-clock limit for the encode
+    watchdog.daemon = True
+    watchdog.start()
     for line in p.stdout:
         m = _TIME_RE.match(line.strip())
         if m and on_progress and total_seconds > 0:
             on_progress(min(1.0, int(m.group(1)) / 1e6 / total_seconds))
     p.wait()
+    watchdog.cancel()
     t.join(timeout=5)
     if p.returncode != 0:
-        raise MediaCommandError(full, p.returncode, "".join(stderr_chunks[-200:]))
+        raise MediaCommandError(full, p.returncode, "".join(stderr_chunks[-200:]) or f"killed after {limit}s timeout")
+
+
+def replace_file(src: Path, dst: Path, attempts: int = 8) -> None:
+    """os.replace with retries: on Windows a file that another process (a player, the download handler, an antivirus
+    scan) still has open cannot be replaced immediately."""
+    import time as _t
+
+    for k in range(attempts):
+        try:
+            Path(src).replace(dst)
+            return
+        except PermissionError:
+            if k == attempts - 1:
+                raise
+            _t.sleep(0.25 * (k + 1))
 
 
 _SAFE_NAME = re.compile(r"[^A-Za-z0-9._-]+")

@@ -17,7 +17,7 @@ import numpy as np
 
 from ..config import get_settings
 from ..logging import get_logger, log
-from ..proc import MediaCommandError, run
+from ..proc import MediaCommandError, ff_path, run
 from ..registry.color import write_cube
 from ..registry.effects import render_effect
 from ..registry.motion import camera_at
@@ -78,7 +78,7 @@ def frames_for(seconds: float, fps: float) -> int:
 
 
 def job_key(j: SegJob) -> str:
-    spec = j.seg.model_dump(exclude={"out_start", "reason", "beat_index", "section", "id", "audio_gain_db", "keep_audio", "transition_in"})
+    spec = j.seg.model_dump(exclude={"out_start", "reason", "beat_index", "section", "id", "audio_gain_db", "keep_audio", "transition_in", "audio_role"})
     blob = json.dumps({"v": MEZZ_VERSION, "spec": spec, "fp": j.fingerprint, "h": round(j.head, 3), "t": round(j.tail, 3), "w": j.out_w, "hh": j.out_h,
                        "fps": j.fps, "q": j.quality, "m": j.mode}, sort_keys=True, default=str)
     return hashlib.sha256(blob.encode()).hexdigest()[:24]
@@ -127,7 +127,7 @@ def stabilize_filter(s: Segment, tmp: Path) -> str:
     trf = tmp / "stab.trf"
     if mode in ("standard", "strong") and trf.exists():
         smooth = 12 if mode == "standard" else 30
-        return f"vidstabtransform=input='{trf.as_posix()}':smoothing={smooth}:zoom=0:optzoom=1:interpol=bilinear,unsharp=5:5:0.6:3:3:0.0"
+        return f"vidstabtransform=input={ff_path(trf)}:smoothing={smooth}:zoom=0:optzoom=1:interpol=bilinear,unsharp=5:5:0.6:3:3:0.0"
     r = 16 if mode == "light" else 32
     return f"deshake=rx={r}:ry={r}:edge=mirror"
 
@@ -146,7 +146,7 @@ def vidstab_detect(j: "SegJob", s: Segment, tmp: Path) -> bool:
     src_len = s.src_out - s.src_in
     try:
         run([st.ffmpeg, "-v", "error", "-y", "-nostdin", "-ss", f"{s.src_in:.3f}", "-t", f"{src_len + 0.5:.3f}", "-i", str(j.src), "-an",
-             "-vf", f"vidstabdetect=shakiness={shake}:accuracy=12:result='{trf.as_posix()}'", "-f", "null", "-"], timeout=1800)
+             "-vf", f"vidstabdetect=shakiness={shake}:accuracy=12:result={ff_path(trf)}", "-f", "null", "-"], timeout=1800)
     except (MediaCommandError, subprocess.TimeoutExpired):
         trf.unlink(missing_ok=True)
         return False
@@ -201,7 +201,7 @@ def _video_core(j: SegJob, s: Segment, tmp: Path, fallback_level: int) -> tuple[
     tech = {"exposure": t.exposure, "gamma": t.gamma, "temperature": t.temperature, "tint": t.tint, "saturation": t.saturation, "contrast": t.contrast}
     if any(abs(tech[k] - d) > 1e-3 for k, d in (("exposure", 0), ("gamma", 1), ("temperature", 0), ("tint", 0), ("saturation", 1), ("contrast", 1))):
         lut = write_cube(tmp / "tech.cube", tech, size=17)
-        post.append(f"lut3d=file='{lut.as_posix()}':interp=tetrahedral")
+        post.append(f"lut3d=file={ff_path(lut)}:interp=tetrahedral")
     if not motion:
         x = int(np.clip(s.crop.cx * cw - j.out_w / 2, 0, cw - j.out_w))
         y = int(np.clip(s.crop.cy * ch - j.out_h / 2, 0, ch - j.out_h))
@@ -349,7 +349,7 @@ def render_audio(j: SegJob, s: Segment, path: Path) -> Path:
         run([st.ffmpeg, "-v", "error", "-y", "-f", "lavfi", "-i", f"anullsrc=r={SR}:cl=stereo", "-t", f"{s.out_duration:.4f}", "-c:a", "pcm_s16le", str(path)])
         return path
     src_len = s.src_out - s.src_in
-    af = f"{_atempo_chain(s.speed.rate)},aresample={SR},apad,atrim=end_sample={n}"
+    af = ("adeclip," if "declip" in s.audio_repair else "") + f"{_atempo_chain(s.speed.rate)},aresample={SR},apad,atrim=end_sample={n}"
     run([st.ffmpeg, "-v", "error", "-y", "-ss", f"{s.src_in:.3f}", "-t", f"{src_len + 0.3:.3f}", "-i", str(j.audio_src or j.src), "-vn", "-ac", "2", "-af", af,
          "-c:a", "pcm_s16le", str(path)], timeout=600)
     return path

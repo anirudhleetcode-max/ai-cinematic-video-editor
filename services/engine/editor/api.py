@@ -8,12 +8,12 @@ import os
 import time
 from pathlib import Path
 
-from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
+from fastapi import Depends, FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from pydantic import BaseModel, Field
 
-from . import db, service as S
+from . import auth as AUTH, db, service as S
 from .config import get_settings
 from .hw import diagnostics
 from .jobs import STAGES, get_queue
@@ -29,12 +29,66 @@ logger = get_logger("api")
 
 @asynccontextmanager
 async def _lifespan(_: FastAPI):
+    AUTH.check_config()
     db.connect()
     get_queue().start()
+    if os.environ.get("EDITOR_CLEANUP", "1") != "0":
+        from .cleanup import start_periodic
+
+        start_periodic()
     yield
 
 
-app = FastAPI(title="Autonomous AI Video Editor", version="0.1.0", lifespan=_lifespan)
+PUBLIC = ("/health", "/docs", "/openapi.json", "/redoc", "/docs/oauth2-redirect")
+JOB_SUFFIXES = ("/analyze", "/edit-plan", "/generate", "/preview", "/render", "/revise")
+
+
+async def guard(request: Request) -> None:
+    """Runs before EVERY route: authentication, rate limits, job limits and ownership of every path parameter
+    (project / asset / version / render / job). Objects the caller does not own answer 404 (existence is not leaked)."""
+    path = request.url.path
+    if path in PUBLIC:
+        return
+    st = get_settings()
+    if st.auth == "none":
+        user = AUTH.LOCAL_USER
+    else:
+        hdr = request.headers.get("authorization", "")
+        token = hdr[7:] if hdr.lower().startswith("bearer ") else (request.query_params.get("access_token") if request.method == "GET" else None)
+        user = await asyncio.to_thread(AUTH.authenticate, token)
+        if user is None:
+            raise HTTPException(401, "authentication required", headers={"WWW-Authenticate": "Bearer"})
+    if not AUTH.limiter.allow(user.id, "all", st.rate_limit_per_min):
+        raise HTTPException(429, "rate limit exceeded — slow down", headers={"Retry-After": "10"})
+    if request.method in ("POST", "PUT") and ("/assets" in path or "/uploads" in path or path.endswith("/reference")):
+        if not AUTH.limiter.allow(user.id, "upload", st.upload_rate_per_min):
+            raise HTTPException(429, "upload rate limit exceeded", headers={"Retry-After": "10"})
+    if request.method == "POST" and path.endswith(JOB_SUFFIXES):
+        if not AUTH.limiter.allow(user.id, "jobs", st.job_rate_per_min):
+            raise HTTPException(429, "job submission rate limit exceeded", headers={"Retry-After": "30"})
+        if st.auth != "none" and await asyncio.to_thread(AUTH.active_jobs, user) >= st.max_jobs_per_user:
+            raise HTTPException(429, f"you already have {st.max_jobs_per_user} active jobs — wait for one to finish")
+    for name, value in request.path_params.items():
+        ok = await asyncio.to_thread(AUTH.may_access, user, name, value)
+        if ok is False:
+            raise HTTPException(404, "not found")
+    request.state.user = user
+
+
+def _user(request: Request) -> AUTH.User:
+    return getattr(request.state, "user", AUTH.LOCAL_USER)
+
+
+def _check_quota(request: Request, incoming: int) -> None:
+    st = get_settings()
+    u = _user(request)
+    if st.auth == "none" or u.is_admin:
+        return
+    if AUTH.storage_used_bytes(u) + incoming > st.user_quota_gb * 2**30:
+        raise HTTPException(413, f"storage quota of {st.user_quota_gb:g} GB exceeded")
+
+
+app = FastAPI(title="Autonomous AI Video Editor", version="0.2.0", lifespan=_lifespan, dependencies=[Depends(guard)])
 app.add_middleware(CORSMiddleware, allow_origins=list(get_settings().cors_origins) + ["http://127.0.0.1:3000"], allow_methods=["*"], allow_headers=["*"])
 
 
@@ -57,9 +111,9 @@ def health():
 
 
 @app.get("/diagnostics")
-def diag():
-    if os.environ.get("EDITOR_ENV", "development") != "development":
-        raise HTTPException(403, "diagnostics are only available in development")
+def diag(request: Request):
+    if os.environ.get("EDITOR_ENV", "development") != "development" and not _user(request).is_admin:
+        raise HTTPException(403, "diagnostics are only available in development or to admins")
     d = diagnostics()
     jobs = db.query("SELECT status, COUNT(*) AS n FROM jobs GROUP BY status")
     failed = db.query("SELECT id, kind, error, finished FROM jobs WHERE status='failed' ORDER BY finished DESC LIMIT 10")
@@ -151,13 +205,22 @@ class ProjectIn(BaseModel):
 
 
 @app.post("/projects")
-def create_project(body: ProjectIn):
-    return S.create_project(body.name, body.settings)
+def create_project(body: ProjectIn, request: Request):
+    u = _user(request)
+    if get_settings().auth != "none" and not u.is_admin:
+        n = db.query("SELECT COUNT(*) AS n FROM projects WHERE owner_id=?", (u.id,))[0]["n"]
+        if n >= get_settings().max_projects_per_user:
+            raise HTTPException(429, f"project limit ({get_settings().max_projects_per_user}) reached — delete a project first")
+    p = S.create_project(body.name, body.settings)
+    db.update("projects", p["id"], owner_id=u.id)
+    return {**p, "owner_id": u.id}
 
 
 @app.get("/projects")
-def list_projects():
-    return S.list_projects()
+def list_projects(request: Request):
+    u = _user(request)
+    rows = S.list_projects()
+    return rows if u.is_admin else [r for r in rows if r.get("owner_id") == u.id]
 
 
 @app.get("/projects/{pid}")
@@ -179,7 +242,12 @@ class SettingsIn(BaseModel):
 
 
 @app.patch("/projects/{pid}")
-def patch_project(pid: str, body: SettingsIn):
+def patch_project(pid: str, body: SettingsIn, request: Request):
+    if body.brand_kit_id:
+        b = db.get("brand_kits", body.brand_kit_id)
+        u = _user(request)
+        if not b or not (u.is_admin or get_settings().auth == "none" or b.get("owner_id") == u.id):
+            raise HTTPException(404, "brand kit not found")
     return S.update_settings(pid, **body.model_dump(exclude_none=True))
 
 
@@ -188,8 +256,9 @@ ALLOWED = VIDEO_EXT | AUDIO_EXT | IMAGE_EXT | {".cube"}
 
 
 @app.post("/projects/{pid}/assets")
-async def upload_assets(pid: str, files: list[UploadFile] = File(...), role: str | None = Form(None)):
+async def upload_assets(request: Request, pid: str, files: list[UploadFile] = File(...), role: str | None = Form(None)):
     S.get_project(pid)
+    _check_quota(request, int(request.headers.get("content-length") or 0))
     out, errors = [], []
     for f in files:
         name = safe_filename(f.filename or "upload")
@@ -211,9 +280,10 @@ class UploadInit(BaseModel):
 
 
 @app.post("/projects/{pid}/uploads")
-def init_upload(pid: str, body: UploadInit):
+def init_upload(pid: str, body: UploadInit, request: Request):
     """Resumable upload: init → PUT chunks with ?offset= → complete."""
     S.get_project(pid)
+    _check_quota(request, body.size)
     if Path(body.filename).suffix.lower() not in ALLOWED:
         raise HTTPException(400, f"unsupported type {Path(body.filename).suffix}")
     if body.size > get_settings().max_upload_mb << 20:
@@ -484,13 +554,26 @@ class BrandIn(BaseModel):
 
 
 @app.post("/brand-kits")
-def brand_create(body: BrandIn):
-    return S.save_brand_kit(body.name, body.data)
+def brand_create(body: BrandIn, request: Request):
+    b = S.save_brand_kit(body.name, body.data)
+    db.update("brand_kits", b["id"], owner_id=_user(request).id)
+    return b
 
 
 @app.get("/brand-kits")
-def brand_list():
-    return S.list_brand_kits()
+def brand_list(request: Request):
+    u = _user(request)
+    rows = S.list_brand_kits()
+    return rows if u.is_admin else [r for r in rows if r.get("owner_id") == u.id]
+
+
+@app.post("/admin/cleanup")
+def admin_cleanup(request: Request, dry_run: bool = False):
+    if not _user(request).is_admin:
+        raise HTTPException(403, "admin only")
+    from .cleanup import run_cleanup
+
+    return run_cleanup(dry_run=dry_run)
 
 
 @app.get("/benchmarks")
@@ -499,7 +582,9 @@ def benchmarks():
 
 
 @app.get("/export-history")
-def export_history():
-    rows = db.query("SELECT r.id, r.project_id, p.name AS project, r.kind, r.created, r.report FROM renders r JOIN projects p ON p.id=r.project_id "
-                    "ORDER BY r.created DESC LIMIT 100")
+def export_history(request: Request):
+    u = _user(request)
+    rows = db.query("SELECT r.id, r.project_id, p.name AS project, p.owner_id, r.kind, r.created, r.report FROM renders r JOIN projects p ON p.id=r.project_id "
+                    "ORDER BY r.created DESC LIMIT 200")
+    rows = [r for r in rows if u.is_admin or r["owner_id"] == u.id][:100]
     return [{**_render_row({**r, "version_id": None}), "project": r["project"], "project_id": r["project_id"]} for r in rows]

@@ -111,8 +111,44 @@ def add_asset(pid: str, filename: str, stream: BinaryIO, role: str | None = None
     return register_asset(pid, path, role, kind, filename)
 
 
+def validate_cube(path: Path) -> dict:
+    """A user .cube LUT is parsed and checked BEFORE FFmpeg ever reads it: size ≤ 8 MB, LUT_3D_SIZE 2–65, exactly
+    size³ rows of 3 finite numbers, no other directives than TITLE / DOMAIN_MIN / DOMAIN_MAX / LUT_3D_SIZE."""
+    if path.stat().st_size > 8 << 20:
+        raise ValueError("LUT file too large (max 8 MB)")
+    size, rows = None, 0
+    for raw in path.read_text(encoding="utf-8", errors="strict").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        head = line.split()[0].upper()
+        if head == "LUT_3D_SIZE":
+            size = int(line.split()[1])
+            if not 2 <= size <= 65:
+                raise ValueError("LUT_3D_SIZE must be between 2 and 65")
+        elif head in ("TITLE", "DOMAIN_MIN", "DOMAIN_MAX"):
+            continue
+        else:
+            parts = line.split()
+            if len(parts) != 3:
+                raise ValueError(f"invalid LUT row: {line[:40]!r}")
+            vals = [float(x) for x in parts]
+            if any(v != v or abs(v) > 1e6 for v in vals):
+                raise ValueError("LUT contains non-finite values")
+            rows += 1
+    if size is None or rows != size ** 3:
+        raise ValueError(f"not a valid 3D .cube LUT (size {size}, {rows} rows)")
+    return {"lut_size": size}
+
+
 def register_asset(pid: str, path: Path, role: str, kind: str, filename: str | None = None) -> dict:
     meta: dict = {}
+    if kind == "lut":
+        try:
+            meta = validate_cube(path)
+        except ValueError:
+            path.unlink(missing_ok=True)
+            raise
     if kind != "lut":
         try:
             meta = probe(path)
@@ -475,6 +511,29 @@ def render_version(pid: str, vid: str | None = None, preview: bool = False, prog
             shutil.rmtree(work, ignore_errors=True)
     report["attempts"] = attempts
     report["duration"] = plan.duration
+    if not preview and out.exists():
+        # measured post-render reviews (never fail the render because a review could not run)
+        from .qc.review import reference_match, review_checklist, segment_color_continuity
+
+        t_r = time.perf_counter()
+        progress("finalizing", 0.985, "measuring colour continuity, reference match and review checklist")
+        try:
+            report["color_continuity"] = segment_color_continuity(out, plan)
+        except Exception as e:  # noqa: BLE001
+            report["color_continuity"] = {"error": str(e)[:200]}
+        ref = (get_project(pid).get("settings") or {}).get("reference_profile")
+        if ref and plan.reference_profile_used:
+            try:
+                report["reference_match"] = reference_match(ref, out, plan)
+            except Exception as e:  # noqa: BLE001
+                report["reference_match"] = {"error": str(e)[:200]}
+        shots = {f"{a['id']}:{sh['index']}": sh for a in db.query("SELECT id, analysis FROM assets WHERE project_id=? AND role IN ('clip','broll')", (pid,))
+                 for sh in ((a.get("analysis") or {}).get("shots") or [])}
+        try:
+            report["review"] = review_checklist(plan, report.get("qc", {}), report.get("audio", {}), report, shots, report.get("color_continuity"))
+        except Exception as e:  # noqa: BLE001
+            report["review"] = {"error": str(e)[:200]}
+        report.setdefault("timings", {})["reviews_s"] = round(time.perf_counter() - t_r, 2)
     progress("finalizing", 1.0, "done")
     db.insert("renders", id=rid, project_id=pid, version_id=v["id"], kind="preview" if preview else "final", path=str(out), report=report, created=time.time())
     shutil.rmtree(work / "tmp", ignore_errors=True)
