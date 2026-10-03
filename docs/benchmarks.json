@@ -1,0 +1,157 @@
+[
+  {
+    "environment": {
+      "os": "Linux 6.18.44-fc-v64",
+      "cpu_count": 4,
+      "ram_total_gb": 15.72,
+      "gpu": null,
+      "encoders": {
+        "h264": [
+          "libx264"
+        ],
+        "hevc": [
+          "libx265"
+        ]
+      },
+      "ffmpeg": "6.1.1-3ubuntu5"
+    },
+    "runs": [
+      {
+        "n_clips": 11,
+        "mode": "fast",
+        "source_resolution": "1280x720",
+        "output_seconds": 60.0,
+        "analysis_s": 8.8,
+        "planning_s": 0.04,
+        "render_s": 132.5,
+        "total_s": 141.4,
+        "render_breakdown": {
+          "segments_s": 50.25,
+          "transitions_s": 10.02,
+          "audio_s": 5.56,
+          "final_pass_s": 59.71,
+          "qc_s": 6.9,
+          "total_s": 132.44
+        },
+        "peak_rss_mb": 1787.7,
+        "cpu_percent_avg": 76.7,
+        "disk_mb": 499.9,
+        "qc_passed": true,
+        "encoder": "libx264",
+        "gpu": null,
+        "cpu_count": 4,
+        "synthetic_media_generation_s": 29.7,
+        "data": "synthetic DEMO media"
+      },
+      {
+        "n_clips": 26,
+        "mode": "fast",
+        "source_resolution": "1280x720",
+        "output_seconds": 60.0,
+        "analysis_s": 9.5,
+        "planning_s": 0.02,
+        "render_s": 161.3,
+        "total_s": 170.8,
+        "render_breakdown": {
+          "segments_s": 57.21,
+          "transitions_s": 10.03,
+          "audio_s": 6.01,
+          "final_pass_s": 79.14,
+          "qc_s": 8.85,
+          "total_s": 161.24
+        },
+        "peak_rss_mb": 1950.4,
+        "cpu_percent_avg": 75.5,
+        "disk_mb": 898.3,
+        "qc_passed": true,
+        "encoder": "libx264",
+        "gpu": null,
+        "cpu_count": 4,
+        "synthetic_media_generation_s": 56.2,
+        "data": "synthetic DEMO media"
+      },
+      {
+        "n_clips": 51,
+        "mode": "fast",
+        "source_resolution": "1280x720",
+        "output_seconds": 60.0,
+        "analysis_s": 14.6,
+        "planning_s": 0.02,
+        "render_s": 157.8,
+        "total_s": 172.5,
+        "render_breakdown": {
+          "segments_s": 54.52,
+          "transitions_s": 9.48,
+          "audio_s": 6.05,
+          "final_pass_s": 79.87,
+          "qc_s": 7.88,
+          "total_s": 157.81
+        },
+        "peak_rss_mb": 2043.7,
+        "cpu_percent_avg": 74.8,
+        "disk_mb": 991.2,
+        "qc_passed": true,
+        "encoder": "libx264",
+        "gpu": null,
+        "cpu_count": 4,
+        "synthetic_media_generation_s": 105.9,
+        "data": "synthetic DEMO media"
+      },
+      {
+        "n_clips": 101,
+        "mode": "fast",
+        "source_resolution": "1280x720",
+        "output_seconds": 60.0,
+        "analysis_s": 25.1,
+        "planning_s": 0.03,
+        "render_s": 164.0,
+        "total_s": 189.1,
+        "render_breakdown": {
+          "segments_s": 56.19,
+          "transitions_s": 10.46,
+          "audio_s": 6.1,
+          "final_pass_s": 82.29,
+          "qc_s": 8.98,
+          "total_s": 164.02
+        },
+        "peak_rss_mb": 1842.7,
+        "cpu_percent_avg": 75.9,
+        "disk_mb": 1632.1,
+        "qc_passed": true,
+        "encoder": "libx264",
+        "gpu": null,
+        "cpu_count": 4,
+        "synthetic_media_generation_s": 195.1,
+        "data": "synthetic DEMO media"
+      },
+      {
+        "n_clips": 201,
+        "mode": "fast",
+        "source_resolution": "1280x720",
+        "output_seconds": 60.0,
+        "analysis_s": 46.2,
+        "planning_s": 0.04,
+        "render_s": 174.6,
+        "total_s": 220.8,
+        "render_breakdown": {
+          "segments_s": 59.16,
+          "transitions_s": 11.75,
+          "audio_s": 6.45,
+          "final_pass_s": 86.82,
+          "qc_s": 10.33,
+          "total_s": 174.52
+        },
+        "peak_rss_mb": 1767.9,
+        "cpu_percent_avg": 77.5,
+        "disk_mb": 2629.5,
+        "qc_passed": true,
+        "encoder": "libx264",
+        "gpu": null,
+        "cpu_count": 4,
+        "synthetic_media_generation_s": 348.4,
+        "data": "synthetic DEMO media"
+      }
+    ],
+    "when": "2026-10-03 08:04"
+  }
+]

@@ -1,15 +1,15 @@
 {
   "prompt": "Create a 60-second professional cinematic event highlight. Analyze the reference and follow its pacing, color mood, typography philosophy, and transition style without copying its footage. Select the best clips, remove poor-quality shots, begin with a strong hook, synchronize cuts to the supplied music, use slower emotional shots where appropriate, build energy toward the climax, add tasteful motion and transitions, apply consistent professional color grading, add elegant event typography, duck music under speech, and finish with a strong branded ending.",
   "environment": {
-    "os": "Linux 6.18.44-fc-v51",
+    "os": "Linux 6.18.44-fc-v64",
     "python": "3.11.15",
     "ffmpeg": "6.1.1-3ubuntu5",
     "ffprobe": "6.1.1-3ubuntu5",
     "ffmpeg_path": "/usr/bin/ffmpeg",
     "cpu_count": 4,
     "ram_total_gb": 15.72,
-    "ram_available_gb": 14.29,
-    "disk_free_gb": 13.84,
+    "ram_available_gb": 15.14,
+    "disk_free_gb": 13.27,
     "gpu": null,
     "encoders": {
       "h264": [
@@ -25,26 +25,26 @@
   "steps": [
     {
       "step": "generate_synthetic_media",
-      "seconds": 130.7,
+      "seconds": 102.4,
       "clips": 51,
       "songs": 3,
       "note": "DEMO data (synthetic)"
     },
     {
       "step": "upload",
-      "seconds": 13.5,
+      "seconds": 9.7,
       "assets": 56
     },
     {
       "step": "analyze",
-      "seconds": 22.1,
+      "seconds": 17.8,
       "shots": 56,
       "usable": 16,
       "rejected": {
         "blurry": 14,
         "underexposed": 16,
         "overexposed": 2,
-        "shaky": 4,
+        "shaky": 3,
         "black": 4,
         "frozen": 9,
         "duplicate": 13
@@ -60,7 +60,7 @@
     },
     {
       "step": "edit_plan",
-      "seconds": 0.04,
+      "seconds": 0.03,
       "segments": 61,
       "duration": 60.0,
       "sections": [
@@ -77,12 +77,12 @@
       "transitions": 8,
       "music": [
         [
-          "ast_e5c96030704d",
+          "ast_135025139a8b",
           0.0,
           60.0
         ]
       ],
-      "color": "cinematic_neutral"
+      "color": "warm_documentary"
     },
     {
       "step": "clip_selection_check",
@@ -90,13 +90,13 @@
     },
     {
       "step": "preview",
-      "seconds": 64.1,
+      "seconds": 46.7,
       "qc": true,
-      "size": 30242823
+      "size": 30176378
     },
     {
       "step": "final_render",
-      "seconds": 207.9,
+      "seconds": 139.9,
       "qc_passed": true,
       "failures": [],
       "warnings": [],
@@ -108,18 +108,18 @@
       "true_peak": -1.0,
       "encoder": "libx264",
       "timings": {
-        "segments_s": 71.17,
-        "transitions_s": 12.8,
-        "audio_s": 9.94,
-        "final_pass_s": 104.4,
-        "qc_s": 9.5,
-        "total_s": 207.83
+        "segments_s": 55.49,
+        "transitions_s": 10.98,
+        "audio_s": 5.84,
+        "final_pass_s": 60.04,
+        "qc_s": 7.44,
+        "total_s": 139.79
       },
-      "path": "/tmp/claude-0/accept/data/projects/prj_d4e1886cbcd2/outputs/final_v1_rnd_a7e57b2b156f.mp4"
+      "path": "/tmp/claude-0/accept/data/projects/prj_00fd7a858743/outputs/final_v1_rnd_35402b7740db.mp4"
     },
     {
       "step": "revision_1_energetic_intro3",
-      "seconds": 215.5,
+      "seconds": 147.0,
       "ops": [
         "pacing",
         "section_length"
@@ -129,11 +129,11 @@
       "intro_seconds": 3.0,
       "picks_kept": 61,
       "qc": true,
-      "segments_cached": 3
+      "segments_cached": 2
     },
     {
       "step": "revision_2_warmer",
-      "seconds": 125.9,
+      "seconds": 76.0,
       "ops": [
         "color_adjust"
       ],
@@ -146,10 +146,30 @@
     },
     {
       "step": "revision_3_song2_final",
-      "seconds": 208.6,
+      "seconds": 0.0,
       "ops": [
         "section_song"
       ],
+      "noop": true,
+      "decision": "Revision 'Use song 2 for the final section.': section_song",
+      "songs_before": {
+        "hook": "song_2.wav",
+        "opening": "song_2.wav",
+        "people": "song_2.wav",
+        "activities": "song_2.wav",
+        "energy": "song_2.wav",
+        "best_moments": "song_2.wav",
+        "climax": "song_2.wav"
+      },
+      "songs_after": {
+        "hook": "song_2.wav",
+        "opening": "song_2.wav",
+        "people": "song_2.wav",
+        "activities": "song_2.wav",
+        "energy": "song_2.wav",
+        "best_moments": "song_2.wav",
+        "climax": "song_2.wav"
+      },
       "music_plan": [
         [
           "song_2.wav",
@@ -157,9 +177,44 @@
           60.0
         ]
       ],
-      "final_section_song": "song_2.wav",
-      "color_kept": true,
-      "qc": true
+      "qc": null
+    },
+    {
+      "step": "revision_3b_song3_final",
+      "seconds": 138.5,
+      "noop": false,
+      "songs_before": {
+        "hook": "song_2.wav",
+        "opening": "song_2.wav",
+        "people": "song_2.wav",
+        "activities": "song_2.wav",
+        "energy": "song_2.wav",
+        "best_moments": "song_2.wav",
+        "climax": "song_2.wav"
+      },
+      "songs_after": {
+        "hook": "song_2.wav",
+        "opening": "song_2.wav",
+        "people": "song_2.wav",
+        "activities": "song_2.wav",
+        "energy": "song_2.wav",
+        "best_moments": "song_3.wav",
+        "climax": "song_3.wav"
+      },
+      "music_plan": [
+        [
+          "song_2.wav",
+          0.0,
+          42.1
+        ],
+        [
+          "song_3.wav",
+          40.1,
+          60.0
+        ]
+      ],
+      "qc": true,
+      "segments_cached": 10
     }
   ],
   "checks": {
@@ -174,10 +229,10 @@
     "rev1_keeps_picks": true,
     "rev2_color_only": true,
     "rev2_incremental_render": true,
-    "rev3_song2_in_final": true,
-    "rev3_keeps_color": true,
+    "rev3_song2_in_final_rest_kept": true,
+    "rev3_real_section_change": true,
     "all_renders_qc": true
   },
   "passed": true,
-  "total_seconds": 988.3
+  "total_seconds": 678.1
 }
