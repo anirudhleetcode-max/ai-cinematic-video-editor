@@ -23,7 +23,9 @@ def build_plan(ctx: ProjectContext, intent: StyleIntent | None = None, provenanc
     if ref_map and ref_map.get("shot_length"):
         template["_ref_shot_length"] = ref_map["shot_length"]
     bible = A.build_bible(intent, template, ref_map)
-    quality = {"fast": "standard", "quality": "high", "emergency": "draft"}[mode]
+    from .. import contract as C
+
+    quality = C.MODE_QUALITY[mode]
     export = A.export_for(intent, template, ctx.reference_profile, quality)
     usable_total = sum(c.duration for c in ctx.candidates() if not c.issues) or sum(c.duration for c in ctx.candidates())
     duration = intent.duration or template.get("duration") or min(60.0, max(10.0, usable_total * 0.7))

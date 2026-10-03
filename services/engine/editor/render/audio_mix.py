@@ -11,12 +11,13 @@ from pathlib import Path
 import numpy as np
 import soundfile as sf
 
+from .. import contract as C
 from ..config import get_settings
 from ..proc import run
 from ..registry.audio import AUDIO_PRESETS, synth_sfx
 from ..schemas import EditPlan
 
-SR = 48000
+SR = C.AUDIO_SAMPLE_RATE
 
 
 def _decode_stereo(path: Path, start: float = 0.0, dur: float | None = None) -> np.ndarray:

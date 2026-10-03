@@ -92,9 +92,11 @@ def encoder_args(enc: str, quality: str = "high") -> list[str]:
 
 
 def _encoder_args(enc: str, quality: str) -> list[str]:
-    crf = {"draft": 28, "standard": 21, "high": 17}[quality]
+    from . import contract as C
+
+    crf = C.FINAL_CRF[quality]
     if enc in ("libx264", "libx265"):
-        preset = {"draft": "ultrafast", "standard": "veryfast", "high": "medium"}[quality]
+        preset = C.FINAL_PRESET[quality]
         return ["-c:v", enc, "-preset", preset, "-crf", str(crf), "-pix_fmt", "yuv420p"]
     if enc.endswith("_nvenc"):
         return ["-c:v", enc, "-preset", "p5", "-rc", "vbr", "-cq", str(crf + 2), "-b:v", "0", "-pix_fmt", "yuv420p"]

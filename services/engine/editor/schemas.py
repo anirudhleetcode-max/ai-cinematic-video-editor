@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from typing import Literal
 
+from . import contract as C
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 AspectRatio = Literal["16:9", "9:16", "1:1", "4:5", "21:9"]
@@ -219,8 +220,8 @@ class AudioPlan(Strict):
     duck_depth_db: float = Field(12.0, ge=0, le=40)
     duck_attack: float = Field(0.15, ge=0.01, le=2)
     duck_release: float = Field(0.6, ge=0.05, le=5)
-    target_lufs: float = Field(-14.0, ge=-30, le=-8)
-    true_peak_db: float = Field(-1.0, ge=-6, le=0)
+    target_lufs: float = Field(C.LOUDNESS_TARGET_DEFAULT, ge=-30, le=-8)
+    true_peak_db: float = Field(C.TRUE_PEAK_CEILING_DB, ge=-6, le=0)
     keep_clip_audio: Literal["speech_only", "all", "none"] = "speech_only"
     speech_regions: list[tuple[float, float]] = Field(default_factory=list, max_length=2000)  # output time, from VAD
     dialogue_target_db: float = Field(-20.0, ge=-40, le=-10, description="RMS level each dialogue clip is matched to before the mix")
@@ -247,7 +248,7 @@ class ExportSpec(Strict):
     fps: float = Field(30, ge=10, le=120)
     vcodec: Literal["h264", "hevc"] = "h264"
     quality: Literal["draft", "standard", "high"] = "high"
-    audio_bitrate_k: int = Field(320, ge=64, le=512)
+    audio_bitrate_k: int = Field(C.AUDIO_BITRATE_K, ge=64, le=512)
     prefer_hw: bool = True
     preset_name: str = "1080p"
 

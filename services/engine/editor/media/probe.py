@@ -8,9 +8,11 @@ from pathlib import Path
 from ..config import get_settings
 from ..proc import run
 
-VIDEO_EXT = {".mp4", ".mov", ".mkv", ".avi", ".webm", ".m4v"}
-AUDIO_EXT = {".mp3", ".wav", ".aac", ".m4a", ".flac", ".ogg"}
-IMAGE_EXT = {".png", ".jpg", ".jpeg", ".webp"}
+from .. import contract as C
+
+VIDEO_EXT = set(C.VIDEO_EXTENSIONS)
+AUDIO_EXT = set(C.AUDIO_EXTENSIONS)
+IMAGE_EXT = set(C.IMAGE_EXTENSIONS)
 
 
 def kind_for(filename: str) -> str | None:

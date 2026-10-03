@@ -18,11 +18,12 @@ from ..registry.color import COLOR_PRESETS, calibrate_shadow_lift, calibrate_spl
 from ..registry.editing import DENSITY
 from ..schemas import (AudioPlan, CaptionSpec, ColorAdjust, ColorGrade, CreativeBible, CropSpec, EffectInstance, Ending, ExportSpec, MotionSpec,
                        MusicSegment, Segment, SfxItem, SpeedSpec, StorySection, StyleIntent, TextItem, TransitionSpec)
+from .. import contract as C
 from .context import Candidate, ProjectContext
 
 PACING_SHOT = {"slow": 3.6, "medium": 2.3, "fast": 1.45, "very_fast": 0.95}
 
-RESOLUTIONS = {"16:9": (1920, 1080), "9:16": (1080, 1920), "1:1": (1080, 1080), "4:5": (1080, 1350), "21:9": (1920, 822)}
+RESOLUTIONS = C.ASPECT_RESOLUTIONS
 
 STRUCTURES = {
     "event": [("hook", .08, .85), ("opening", .12, .45), ("people", .18, .55), ("activities", .2, .65), ("energy", .16, .8), ("best_moments", .14, .9), ("climax", .12, 1.0)],
@@ -241,7 +242,7 @@ def build_bible(intent: StyleIntent, template: dict, ref_map: dict | None) -> Cr
 def export_for(intent: StyleIntent, template: dict, ref: dict | None, quality: str) -> ExportSpec:
     ar = intent.aspect_ratio or template.get("aspect") or (ref or {}).get("aspect_ratio") or "16:9"
     w, h = RESOLUTIONS.get(ar, RESOLUTIONS["16:9"])
-    return ExportSpec(width=w, height=h, fps=30, quality=quality, preset_name=f"{ar} {h if w > h else w}p")
+    return ExportSpec(width=w, height=h, fps=C.OUTPUT_FPS, quality=quality, preset_name=f"{ar} {h if w > h else w}p")
 
 
 # ------------------------------------------------------------------------------- story
@@ -410,7 +411,10 @@ def energy_at(plan: Plan, t: float) -> float | None:
 
 
 # ------------------------------------------------------------------------------- timeline
-DIALOGUE_WORDS = r"speech|speak|presenter|presentation|interview|testimonial|talking|talk|speaker|pitch|dialogue|vlog|keynote|lecture"
+# a dialogue-led edit is requested by presenter / interview language or an explicit "keep the speech" — NOT by mixing
+# instructions such as "duck the music under speech"
+DIALOGUE_WORDS = (r"\b(presenter|presentation|interview|testimonial|talking[ -]head|speaker|speaking|pitch|keynote|lecture|vlog|podcast)\b"
+                  r"|keep (the |her |his |their )?(speech|dialogue|voice|speaker)|(speech|dialogue)[ -]led|she talks|he talks|while (she|he|they) talks?")
 
 
 def dialogue_director(plan: Plan, ctx: ProjectContext, intent: StyleIntent) -> None:
@@ -1094,7 +1098,7 @@ def audio_engineer(plan: Plan, ctx: ProjectContext, intent: StyleIntent) -> None
             merged[-1] = (merged[-1][0], max(merged[-1][1], r[1]))
         else:
             merged.append(r)
-    target = -14.0 if (plan.intent.platform or "") in ("instagram_reel", "tiktok", "shorts", "youtube") else -16.0
+    target = C.loudness_target(plan.intent.platform)
     plan.audio = AudioPlan(dialogue_preset="dialogue_clean", ducking=intent.duck_music is not False, duck_depth_db=12.0 if n_speech else 0.0,
                            target_lufs=target, keep_clip_audio="speech_only" if has_music else "all", speech_regions=merged[:2000])
     det = next(((a.analysis or {}).get("speech_detector") for a in ctx.clips if (a.analysis or {}).get("speech_detector")), "unknown")

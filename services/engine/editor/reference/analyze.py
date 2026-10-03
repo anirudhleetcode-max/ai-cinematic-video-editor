@@ -86,13 +86,32 @@ def _text_timeline(fs, sfps: float) -> list[dict]:
     return [e for e in events if e["end"] - e["start"] >= 1.0][:50]
 
 
-def analyze_reference(path: Path, fingerprint: str | None = None) -> dict:
+def _light_music(path: Path) -> dict:
+    """Music energy curve exactly as music.analyze defines it (RMS dB → 0..1 at 2 Hz), without beat tracking."""
+    import librosa
+
+    from ..media.audio import load_mono
+
+    y = load_mono(path, sr=22050)
+    if y.size < 22050:
+        return {"ok": False}
+    rms = librosa.feature.rms(y=y, hop_length=512)[0]
+    t = librosa.frames_to_time(np.arange(len(rms)), sr=22050, hop_length=512)
+    grid = np.arange(0, len(y) / 22050, 0.5)
+    e = np.interp(grid, t, librosa.amplitude_to_db(rms, ref=np.max))
+    e = (e - e.min()) / (e.max() - e.min() + 1e-9)
+    return {"ok": True, "bpm": None, "energy": [float(v) for v in e], "sections": [], "beats": []}
+
+
+def analyze_reference(path: Path, fingerprint: str | None = None, sample_fps: float = 10.0, light: bool = False) -> dict:
+    """light=True (used to measure our own outputs for the Reference Match Report): lower sampling rate, music energy from
+    RMS only (no beat tracking), fewer optical-flow samples. Same measurement definitions, cheaper."""
     if fingerprint:
         hit = db.cache_get(fingerprint, "reference", VERSION)
         if hit:
             return hit
     meta = probe(path)
-    sfps = 10.0
+    sfps = sample_fps
     fs = F.sample_frames(path, sfps, 256, meta=meta)
     m = F.frame_metrics(fs)
     shots = detect_shots(m, fs.times, fs.fps, min_shot=0.25)
@@ -102,7 +121,7 @@ def analyze_reference(path: Path, fingerprint: str | None = None) -> dict:
     n_cuts = max(1, len(shots) - 1)
     # camera motion: global translation magnitude and zoom (flow divergence) on a subsample
     zooms, pans = [], []
-    for i in range(1, len(fs.rgb), 3):
+    for i in range(1, len(fs.rgb), 3 if not light else 12):
         a = cv2.cvtColor(fs.rgb[i - 1], cv2.COLOR_RGB2GRAY)
         b = cv2.cvtColor(fs.rgb[i], cv2.COLOR_RGB2GRAY)
         flow = cv2.calcOpticalFlowFarneback(a, b, None, 0.5, 3, 15, 3, 5, 1.2, 0)
@@ -126,7 +145,7 @@ def analyze_reference(path: Path, fingerprint: str | None = None) -> dict:
         for k, v in F.text_likelihood(fs.rgb[i]).items():
             tb[k].append(v)
     text = {k: round(float(np.mean(v)) if v else 0.0, 3) for k, v in tb.items()}
-    music = analyze_music(path) if meta.get("has_audio") else None
+    music = (_light_music(path) if light else analyze_music(path)) if meta.get("has_audio") else None
     beat_alignment = None
     if music and music.get("beats") and len(shots) > 2:
         beats = np.array(music["beats"])

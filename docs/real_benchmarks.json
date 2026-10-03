@@ -1,0 +1,165 @@
+{
+ "label": "MEASURED",
+ "event": "/home/user/ai-cinematic-video-editor/tests/real_media/event01",
+ "mode": "fast",
+ "environment": {
+  "ffmpeg": "6.1.1-3ubuntu5",
+  "cpu_count": 4,
+  "ram_total_gb": 15.72,
+  "gpu": null,
+  "platform_class": "CPU-only",
+  "encoders": {
+   "h264": [
+    "libx264"
+   ],
+   "hevc": [
+    "libx265"
+   ]
+  },
+  "selected_encoder": "libx264",
+  "hardware_encoding": false,
+  "os": "Linux-6.18.44-fc-v64-x86_64-with-glibc2.39"
+ },
+ "inputs": {
+  "clip": 76,
+  "music": 3,
+  "reference": 1,
+  "logo": 1
+ },
+ "runs": [
+  {
+   "output_seconds": 60.0,
+   "label": "MEASURED",
+   "planning_s": 0.105,
+   "segments": 16,
+   "repeated_shots": 0,
+   "preview_s": 53.54,
+   "preview_qc": true,
+   "final_render_s": 190.3,
+   "render_breakdown": {
+    "segments_s": 60.25,
+    "transitions_s": 0.0,
+    "audio_s": 25.33,
+    "final_pass_s": 75.57,
+    "qc_s": 6.71,
+    "total_s": 167.86,
+    "reviews_s": 22.35
+   },
+   "qc_passed": true,
+   "qc_failures": [],
+   "encoder": "libx264",
+   "output": {
+    "duration": 59.966667,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "vcodec": "h264",
+    "acodec": "aac"
+   },
+   "loudness_lufs": -15.72,
+   "segments_cached": 0,
+   "review": {
+    "pass": 10,
+    "warn": 1,
+    "fail": 0,
+    "n/a": 0
+   },
+   "reference_similarity": 0.554,
+   "total_s": 243.94,
+   "peak_rss_mb": 1505.2,
+   "cpu_percent_avg": 66.3
+  },
+  {
+   "output_seconds": 300.0,
+   "label": "MEASURED",
+   "planning_s": 0.449,
+   "segments": 65,
+   "repeated_shots": 4,
+   "preview_s": 241.74,
+   "preview_qc": true,
+   "final_render_s": 956.58,
+   "render_breakdown": {
+    "segments_s": 321.68,
+    "transitions_s": 0.0,
+    "audio_s": 133.64,
+    "final_pass_s": 352.05,
+    "qc_s": 32.51,
+    "total_s": 839.88,
+    "reviews_s": 116.38
+   },
+   "qc_passed": true,
+   "qc_failures": [],
+   "encoder": "libx264",
+   "output": {
+    "duration": 300.0,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "vcodec": "h264",
+    "acodec": "aac"
+   },
+   "loudness_lufs": -15.97,
+   "segments_cached": 0,
+   "review": {
+    "pass": 11,
+    "warn": 0,
+    "fail": 0,
+    "n/a": 0
+   },
+   "reference_similarity": 0.519,
+   "total_s": 1198.76,
+   "peak_rss_mb": 1840.7,
+   "cpu_percent_avg": 67.7
+  },
+  {
+   "output_seconds": 600.0,
+   "label": "MEASURED",
+   "planning_s": 0.729,
+   "segments": 125,
+   "repeated_shots": 53,
+   "preview_s": 525.81,
+   "preview_qc": true,
+   "final_render_s": 1922.06,
+   "render_breakdown": {
+    "segments_s": 635.56,
+    "transitions_s": 0.0,
+    "audio_s": 288.9,
+    "final_pass_s": 695.36,
+    "qc_s": 66.98,
+    "total_s": 1686.81,
+    "reviews_s": 234.63
+   },
+   "qc_passed": true,
+   "qc_failures": [],
+   "encoder": "libx264",
+   "output": {
+    "duration": 600.0,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "vcodec": "h264",
+    "acodec": "aac"
+   },
+   "loudness_lufs": -15.64,
+   "segments_cached": 2,
+   "review": {
+    "pass": 10,
+    "warn": 1,
+    "fail": 0,
+    "n/a": 0
+   },
+   "reference_similarity": 0.487,
+   "total_s": 2448.6,
+   "peak_rss_mb": 2833.3,
+   "cpu_percent_avg": 67.1
+  }
+ ],
+ "upload_s": 70.73,
+ "source_footage_seconds": 851.6,
+ "analysis": {
+  "seconds": 141.98,
+  "shots": 103,
+  "usable_shots": 90,
+  "peak_rss_mb": 1107.5
+ }
+}

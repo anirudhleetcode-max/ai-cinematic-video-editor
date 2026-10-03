@@ -92,3 +92,13 @@ def test_section_song_noop_and_change(project):
     assert changed.music[-1].asset_id == songs[k_other - 1].id and changed.music[0].asset_id == used
     _, ops = apply_revision(plan, "Use song 9 for the final section.", ctx)
     assert ops[0].get("noop") and ops[0]["reason"] == "no such song"
+
+
+def test_dialogue_led_trigger_wording():
+    import re
+
+    from editor.director.agents import DIALOGUE_WORDS
+
+    assert not re.search(DIALOGUE_WORDS, "60-second event highlight, duck music under speech, cut to the beat")
+    for t in ("keep the presenter's speech intelligible", "a 45-second pitch", "keep the speaker visible while she talks", "interview cut-down"):
+        assert re.search(DIALOGUE_WORDS, t), t

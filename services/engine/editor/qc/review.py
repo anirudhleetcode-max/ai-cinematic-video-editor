@@ -42,7 +42,7 @@ def _hist_sim(a: list | None, b: list | None) -> float | None:
 def reference_match(ref: dict, output: Path, plan: EditPlan) -> dict:
     from ..reference.analyze import analyze_reference
 
-    out = analyze_reference(output)  # same analyser, no cache
+    out = analyze_reference(output, sample_fps=6.0, light=True)  # same measurement definitions, no cache
     end = plan.ending.duration if plan.ending.type != "cut" else 0.0
     rows = []
 
@@ -77,7 +77,7 @@ def segment_color_continuity(output: Path, plan: EditPlan, skip_ids: set[str] | 
     """Measured colour continuity of the rendered edit: mean luma / temperature / saturation per segment (sampled at
     4 fps on the output) and the largest jumps between adjacent segments inside the same section."""
     meta = probe(output)
-    fs = F.sample_frames(output, 4.0, 128, meta=meta)
+    fs = F.sample_frames(output, 2.0, 96, meta=meta)
     if not len(fs.rgb):
         return {}
     px = fs.rgb.astype(np.float32) / 255

@@ -15,6 +15,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 
+from .. import contract as C
 from ..config import get_settings
 from ..logging import get_logger, log
 from ..proc import MediaCommandError, ff_path, run
@@ -25,8 +26,8 @@ from ..schemas import Segment
 from .colorspace import TAGS, TO_YUV420, source_to_rgb
 
 logger = get_logger("render.segment")
-MEZZ_VERSION = "mz6"  # mz5: explicit source matrix/range → RGB working space → BT.709 tagged mezzanines
-SR = 48000
+MEZZ_VERSION = "mz7"  # mz7: creative grade + user LUT + finishing baked into segments (final pass stays in YUV)  # mz5: explicit source matrix/range → RGB working space → BT.709 tagged mezzanines
+SR = C.AUDIO_SAMPLE_RATE
 
 
 @dataclass
@@ -47,6 +48,7 @@ class SegJob:
     mode: str
     src_meta: dict | None = None
     audio_src: Path | None = None  # original file: preview proxies are video-only
+    grade: dict | None = None  # {"params", "intensity", "user_lut", "finishing", "halation"} — creative grade baked per segment
 
 
 @dataclass
@@ -68,8 +70,8 @@ def ramp_sampling_fps(out_fps: float, max_rate: float) -> float:
 
 
 def x264_mezz_args(quality: str) -> list[str]:
-    crf = {"draft": 26, "standard": 16, "high": 12}[quality]
-    preset = {"draft": "ultrafast", "standard": "veryfast", "high": "faster"}[quality]
+    crf = C.MEZZANINE_CRF[quality]
+    preset = C.MEZZANINE_PRESET[quality]
     return ["-c:v", "libx264", "-preset", preset, "-crf", str(crf), "-pix_fmt", "yuv420p", "-g", "48", "-bf", "0", "-threads", "2", *TAGS]
 
 
@@ -79,7 +81,7 @@ def frames_for(seconds: float, fps: float) -> int:
 
 def job_key(j: SegJob) -> str:
     spec = j.seg.model_dump(exclude={"out_start", "reason", "beat_index", "section", "id", "audio_gain_db", "keep_audio", "transition_in", "audio_role"})
-    blob = json.dumps({"v": MEZZ_VERSION, "spec": spec, "fp": j.fingerprint, "h": round(j.head, 3), "t": round(j.tail, 3), "w": j.out_w, "hh": j.out_h,
+    blob = json.dumps({"v": MEZZ_VERSION, "spec": spec, "fp": j.fingerprint, "grade": j.grade, "h": round(j.head, 3), "t": round(j.tail, 3), "w": j.out_w, "hh": j.out_h,
                        "fps": j.fps, "q": j.quality, "m": j.mode}, sort_keys=True, default=str)
     return hashlib.sha256(blob.encode()).hexdigest()[:24]
 
@@ -199,9 +201,17 @@ def _video_core(j: SegJob, s: Segment, tmp: Path, fallback_level: int) -> tuple[
     post.append("setsar=1")
     t = s.technical
     tech = {"exposure": t.exposure, "gamma": t.gamma, "temperature": t.temperature, "tint": t.tint, "saturation": t.saturation, "contrast": t.contrast}
-    if any(abs(tech[k] - d) > 1e-3 for k, d in (("exposure", 0), ("gamma", 1), ("temperature", 0), ("tint", 0), ("saturation", 1), ("contrast", 1))):
+    has_tech = any(abs(tech[k] - d) > 1e-3 for k, d in (("exposure", 0), ("gamma", 1), ("temperature", 0), ("tint", 0), ("saturation", 1), ("contrast", 1)))
+    g = j.grade or {}
+    if g.get("params") and g.get("intensity", 0) > 0:
+        # one LUT: technical shot match, then the creative grade (registry/color.py model)
+        lut = write_cube(tmp / "grade.cube", g["params"], g["intensity"], pre=tech if has_tech else None)
+        post.append(f"lut3d=file={ff_path(lut)}:interp=tetrahedral")
+    elif has_tech:
         lut = write_cube(tmp / "tech.cube", tech, size=17)
         post.append(f"lut3d=file={ff_path(lut)}:interp=tetrahedral")
+    if g.get("user_lut"):
+        post.append(f"lut3d=file={ff_path(g['user_lut'])}:interp=tetrahedral")
     if not motion:
         x = int(np.clip(s.crop.cx * cw - j.out_w / 2, 0, cw - j.out_w))
         y = int(np.clip(s.crop.cy * ch - j.out_h / 2, 0, ch - j.out_h))
@@ -213,25 +223,31 @@ def _video_core(j: SegJob, s: Segment, tmp: Path, fallback_level: int) -> tuple[
 
 
 def _effects_chain(s: Segment, j: SegJob, label_in: str, fallback_level: int) -> tuple[str, str]:
-    if fallback_level >= 1 or not s.effects:
+    effects = list(s.effects) if fallback_level < 1 else []
+    hal = (j.grade or {}).get("halation", 0.0)
+    if hal > 0 and not any(e.id == "halation" for e in effects):
+        from ..schemas import EffectInstance
+        effects.append(EffectInstance(id="halation", params={"intensity": hal}))  # part of the grade, kept even at fallback level 1
+    if not effects:
         return "", label_in
     ctx = {"w": j.out_w, "h": j.out_h, "dur": s.out_duration, "fps": j.fps}
     parts, cur = [], label_in
-    for k, e in enumerate(s.effects):
+    for k, e in enumerate(effects):
         nxt = f"fx{k}"
         parts.append(render_effect(e.id, dict(e.params), ctx, cur, nxt))
         cur = nxt
     return ";".join(parts), cur
 
 
-def _split_outputs(final_label: str, N: int, nh: int, nt: int, out: dict[str, Path], quality: str) -> tuple[str, list[str]]:
+def _split_outputs(final_label: str, N: int, nh: int, nt: int, out: dict[str, Path], quality: str, finishing: str = "") -> tuple[str, list[str]]:
     pieces = []
     if nh:
         pieces.append(("head", 0, nh))
     pieces.append(("body", nh, N - nt))
     if nt:
         pieces.append(("tail", N - nt, N))
-    g = f";[{final_label}]trim=end_frame={N},setpts=PTS-STARTPTS,{TO_YUV420},split={len(pieces)}" + "".join(f"[o{i}]" for i in range(len(pieces)))
+    fin = f",{finishing}" if finishing else ""  # vignette / grain / sharpen run in YUV after the single conversion
+    g = f";[{final_label}]trim=end_frame={N},setpts=PTS-STARTPTS,{TO_YUV420}{fin},split={len(pieces)}" + "".join(f"[o{i}]" for i in range(len(pieces)))
     args: list[str] = []
     for i, (name, a, b) in enumerate(pieces):
         g += f";[o{i}]trim=start_frame={a}:end_frame={b},setpts=PTS-STARTPTS[p{name}]"
@@ -257,7 +273,7 @@ def _render_motion(j: SegJob, s: Segment, inp: list[str], graph: str, N: int, cw
     dec = subprocess.Popen([st.ffmpeg, "-v", "error", "-nostdin", *inp, "-filter_complex", graph, "-map", "[vcore]", "-frames:v", str(n_src),
                             "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     fx_graph, fx_out = _effects_chain(s, j, "0:v", fallback_level)
-    split_g, out_args = _split_outputs(fx_out if fx_graph else "0:v", N, nh, nt, out, j.quality)
+    split_g, out_args = _split_outputs(fx_out if fx_graph else "0:v", N, nh, nt, out, j.quality, (j.grade or {}).get("finishing", ""))
     full = (fx_graph + split_g) if fx_graph else split_g.lstrip(";")
     enc = subprocess.Popen([st.ffmpeg, "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{j.out_w}x{j.out_h}", "-r", str(j.fps), "-i", "-",
                             "-filter_complex", full, *out_args], stdin=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -355,6 +371,14 @@ def render_audio(j: SegJob, s: Segment, path: Path) -> Path:
     return path
 
 
+def audio_key(j: SegJob) -> str:
+    """Segment audio depends only on the ORIGINAL source and audio-relevant fields — shared by preview and final."""
+    s = j.seg
+    blob = json.dumps({"v": "a2", "fp": j.fingerprint.rstrip("p"), "in": s.src_in, "out": s.src_out, "speed": s.speed.model_dump(),
+                       "repair": s.audio_repair, "dur": s.out_duration, "img": s.image, "has": j.has_audio}, sort_keys=True)
+    return hashlib.sha256(blob.encode()).hexdigest()[:24]
+
+
 def render_segment(j: SegJob) -> SegResult:
     s = j.seg
     key = job_key(j)
@@ -363,8 +387,14 @@ def render_segment(j: SegJob) -> SegResult:
     N = frames_for(s.out_duration, j.fps)
     nt = min(nt, max(0, N - nh - 1))
     out = {"head": d / "head.mkv", "body": d / "body.mp4", "tail": d / "tail.mkv"}
-    audio = d / "audio.wav"
+    audio = j.cache_dir / "audio" / f"{audio_key(j)}.wav"
+    audio.parent.mkdir(parents=True, exist_ok=True)
     done = d / "done.json"
+    if done.exists() and not audio.exists():
+        try:
+            render_audio(j, s, audio)
+        except (MediaCommandError, subprocess.TimeoutExpired):
+            render_audio(SegJob(**{**j.__dict__, "has_audio": False}), s, audio)
     if done.exists():
         meta = json.loads(done.read_text())
         return SegResult(s.id, out["head"] if nh else None, out["body"], out["tail"] if nt else None, audio, N, nh, nt, True, meta.get("fallbacks", []))
@@ -379,7 +409,7 @@ def render_segment(j: SegJob) -> SegResult:
                 _render_motion(j, s, inp, graph, N, cw, ch, out, nh, nt, level)
             else:
                 fx_graph, fx_out = _effects_chain(s, j, "vcore", level)
-                split_g, out_args = _split_outputs(fx_out, N, nh, nt, out, j.quality)
+                split_g, out_args = _split_outputs(fx_out, N, nh, nt, out, j.quality, (j.grade or {}).get("finishing", ""))
                 g = graph + (";" + fx_graph if fx_graph else "") + split_g
                 run([st.ffmpeg, "-v", "error", "-y", "-nostdin", *inp, "-filter_complex", g, *out_args], timeout=3600)
             break
@@ -389,11 +419,14 @@ def render_segment(j: SegJob) -> SegResult:
             log(logger, "segment render failed; falling back", seg=s.id, level=level, error=str(e)[:300])
             if level == 2:
                 raise
-    try:
-        render_audio(j, s, audio)
-    except (MediaCommandError, subprocess.TimeoutExpired) as e:  # never let one clip's audio fail the film
-        fallbacks.append(f"audio: source audio unreadable for this range → silence ({str(e)[:120]})")
-        silent = SegJob(**{**j.__dict__, "has_audio": False})
-        render_audio(silent, s, audio)
+    if not audio.exists():
+        tmp_a = audio.with_suffix(f".{key}.tmp.wav")
+        try:
+            render_audio(j, s, tmp_a)
+        except (MediaCommandError, subprocess.TimeoutExpired) as e:  # never let one clip's audio fail the film
+            fallbacks.append(f"audio: source audio unreadable for this range → silence ({str(e)[:120]})")
+            silent = SegJob(**{**j.__dict__, "has_audio": False})
+            render_audio(silent, s, tmp_a)
+        tmp_a.replace(audio)
     done.write_text(json.dumps({"key": key, "fallbacks": fallbacks}))
     return SegResult(s.id, out["head"] if nh else None, out["body"], out["tail"] if nt else None, audio, N, nh, nt, False, fallbacks)

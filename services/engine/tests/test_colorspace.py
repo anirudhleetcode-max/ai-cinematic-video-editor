@@ -66,3 +66,39 @@ def test_render_preserves_colour(tmp_path, kind):
                            "-of", "csv=p=0", str(out)], capture_output=True, text=True).stdout.strip()
     assert tags.split(",")[:1] == ["tv"] or "bt709" in tags, tags
     assert err <= 6, f"{kind}: max channel error {err} (got {got.tolist()})"
+
+
+def test_user_lut_is_applied(tmp_path):
+    """An uploaded .cube LUT must actually change the render (it used to be validated and then ignored)."""
+    from editor import service as S
+    from editor.render.engine import render_plan
+    from editor.schemas import CreativeBible, EditPlan, Ending, ExportSpec, Segment, StorySection
+
+    src = tmp_path / "src.mp4"
+    _make_source(src, 640, 360, "bt709", "tv", "bt709", "bt709")
+    lut = tmp_path / "swap.cube"  # swaps red and blue channels
+    rows = []
+    n = 5
+    for b in range(n):
+        for g in range(n):
+            for r in range(n):
+                rows.append(f"{b / (n - 1):.4f} {g / (n - 1):.4f} {r / (n - 1):.4f}")
+    lut.write_text(f"LUT_3D_SIZE {n}\n" + "\n".join(rows) + "\n")
+    p = S.create_project("user lut")
+    with open(src, "rb") as fh:
+        a = S.add_asset(p["id"], src.name, fh, "clip")
+    with open(lut, "rb") as fh:
+        lut_a = S.add_asset(p["id"], lut.name, fh, "lut")
+    sec = [StorySection(name="main", start=0, end=1.5)]
+    plan = EditPlan(duration=1.5, bible=CreativeBible(style="t", color="n", typography="none", transition_philosophy="cuts", effect_philosophy="none",
+                                                      pacing="medium", music_strategy="none", story_structure=["main"]),
+                    story_structure=sec, ending=Ending(type="cut", duration=0),
+                    timeline=[Segment(id="s0", asset_id=a["id"], src_in=0.2, src_out=1.7, out_start=0, out_duration=1.5, keep_audio=False)],
+                    export=ExportSpec(width=640, height=360, quality="high", prefer_hw=False))
+    plan.color_grade.intensity = 0.0
+    plan.color_grade.lut_asset_id = lut_a["id"]
+    out = tmp_path / "o.mp4"
+    render_plan(plan, S._asset_infos(p["id"]), out, tmp_path / "w")
+    got = _decode_patches(out, 0.7)
+    want = np.array([(c[2], c[1], c[0]) for c in PATCHES])
+    assert np.abs(got - want).max() <= 8, got.tolist()

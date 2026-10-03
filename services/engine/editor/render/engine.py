@@ -15,12 +15,13 @@ from typing import Callable
 
 import psutil
 
+from .. import contract as C
 from ..config import get_settings
 from ..hw import encoder_args, pick_encoder
 from ..logging import get_logger, log
 from ..proc import MediaCommandError, ff_path, replace_file, run, run_ffmpeg_progress
 from ..qc.check import quality_check
-from ..registry.color import clamp_params, finishing_filters, preset_params, write_cube
+from ..registry.color import clamp_params, finishing_filters, preset_params
 from ..registry.effects import render_effect
 from ..schemas import EditPlan
 from . import audio_mix
@@ -51,9 +52,7 @@ def _noop(stage: str, frac: float, msg: str) -> None:
 def scaled_export(plan: EditPlan, preview: bool) -> tuple[int, int, float, str]:
     if not preview:
         return plan.export.width, plan.export.height, plan.fps, plan.export.quality
-    s = 640 / max(plan.export.width, plan.export.height)
-    w = int(plan.export.width * s) // 2 * 2
-    h = int(plan.export.height * s) // 2 * 2
+    w, h = C.preview_size(plan.export.width, plan.export.height)
     return w, h, plan.fps, "draft"
 
 
@@ -77,20 +76,27 @@ def render_end_card(plan: EditPlan, assets: dict[str, AssetInfo], out: Path, w: 
     return out
 
 
-def _creative_graph(plan: EditPlan, tmp: Path, w: int, h: int) -> tuple[str, str]:
+def segment_grade(plan: EditPlan, assets: dict[str, "AssetInfo"], w: int, h: int) -> dict:
+    """The creative grade every segment bakes in (one LUT with the technical match), plus user LUT and finishing.
+    Part of each segment's cache key: a colour revision re-renders segments in parallel; the final pass stays YUV."""
     gp = preset_params(plan.color_grade.preset, plan.color_grade.overrides)
-    lut = write_cube(tmp / "creative.cube", gp, plan.color_grade.intensity)
-    chain = f"[0:v]{MEZZ_TO_RGB},lut3d=file={ff_path(lut)}:interp=tetrahedral"
-    fin = finishing_filters(gp, w, h, plan.color_grade.intensity)
-    if fin:
-        chain += "," + ",".join(fin)
-    chain += "[cg]"
-    cur = "cg"
-    parts = [chain]
+    k = plan.color_grade.intensity
+    user_lut = None
+    if plan.color_grade.lut_asset_id and plan.color_grade.lut_asset_id in assets:
+        user_lut = str(assets[plan.color_grade.lut_asset_id].path)
+    return {"params": {kk: round(float(v), 5) for kk, v in gp.items()}, "intensity": k, "user_lut": user_lut,
+            "user_lut_fp": assets[plan.color_grade.lut_asset_id].fingerprint if user_lut else None,
+            "finishing": ",".join(finishing_filters(gp, w, h, k)),
+            "halation": round(0.4 * clamp_params(gp)["halation"] * min(1.0, k), 3) if clamp_params(gp)["halation"] * k > 0 else 0.0}
+
+
+def _creative_graph(plan: EditPlan, tmp: Path, w: int, h: int) -> tuple[str, str]:
+    """Final pass video graph. The grade is already in the segments, so this stays in YUV unless a GLOBAL effect needs RGB."""
     effects = list(plan.effects_global)
-    if clamp_params(gp)["halation"] * plan.color_grade.intensity > 0 and not any(e.id == "halation" for e in effects):
-        from ..schemas import EffectInstance
-        effects.append(EffectInstance(id="halation", params={"intensity": round(0.4 * clamp_params(gp)["halation"] * min(1.0, plan.color_grade.intensity), 3)}))
+    if not effects:
+        return "[0:v]null[cg]", "cg"
+    parts = [f"[0:v]{MEZZ_TO_RGB}[cg]"]
+    cur = "cg"
     ctx = {"w": w, "h": h, "dur": plan.duration, "fps": plan.fps}
     for k, e in enumerate(effects):
         try:
@@ -132,6 +138,7 @@ def render_plan(plan: EditPlan, assets: dict[str, AssetInfo], out_path: Path, wo
     # ---- 1. segments -----------------------------------------------------------------------
     t0 = time.perf_counter()
     jobs = []
+    grade = segment_grade(plan, assets, w, h)
     for k, s in enumerate(plan.timeline):
         ai = assets[s.asset_id]
         src = ai.proxy if (preview and ai.proxy and ai.proxy.exists()) else ai.path
@@ -145,7 +152,7 @@ def render_plan(plan: EditPlan, assets: dict[str, AssetInfo], out_path: Path, wo
         head = s.transition_in.duration if (k > 0 and s.transition_in.id != "cut") else 0.0
         tail = nxt.transition_in.duration if (nxt and nxt.transition_in.id != "cut") else 0.0
         jobs.append(SegJob(s, src, ai.fingerprint + ("p" if src != ai.path else ""), bool(ai.meta.get("has_audio")), int(sw), int(sh), head, tail,
-                           w, h, fps, quality, cache, plan.mode, src_meta, ai.path))
+                           w, h, fps, quality, cache, plan.mode, src_meta, ai.path, grade))
     results: dict[str, SegResult] = {}
     n_workers = max(1, min(4, (psutil.cpu_count() or 2) // 2 + (0 if preview else 0)))
     done = 0
@@ -195,10 +202,10 @@ def render_plan(plan: EditPlan, assets: dict[str, AssetInfo], out_path: Path, wo
     # the mix depends only on audio-relevant plan fields + the segment audio files + source fingerprints: cache it, so a
     # colour / text / ending-only revision reuses it (dependency-aware invalidation)
     mix_key = hashlib.sha256(json.dumps({
-        "v": "mix3", "audio": plan.audio.model_dump(), "music": [m.model_dump() for m in plan.music], "sfx": [x.model_dump() for x in plan.sfx],
+        "v": "mix4", "audio": plan.audio.model_dump(), "music": [m.model_dump() for m in plan.music], "sfx": [x.model_dump() for x in plan.sfx],
         "vo": [v.model_dump() for v in plan.voiceover], "dur": plan.duration,
         "segs": [[sg.id, sg.out_start, sg.out_duration, sg.keep_audio, sg.audio_role, sg.audio_gain_db, sg.transition_in.id, sg.transition_in.duration,
-                  str(results[sg.id].audio.parent.name) if sg.id in results else None] for sg in plan.timeline],
+                  results[sg.id].audio.name if sg.id in results else None] for sg in plan.timeline],
         "fps": {k: v.fingerprint for k, v in assets.items() if any(m.asset_id == k for m in plan.music) or any(x.asset_id == k for x in plan.sfx)},
     }, sort_keys=True, default=str).encode()).hexdigest()[:24]
     mix_cache = cache.parent / "mix_cache" / mix_key
@@ -242,13 +249,13 @@ def render_plan(plan: EditPlan, assets: dict[str, AssetInfo], out_path: Path, wo
         graph += f";[{cur}]fade=t=out:st={max(0.0, plan.duration - 1.2):.3f}:d=1.2[fo]"
         cur = "fo"
     graph += ";[1:a]alimiter=limit=0.891:level=false:attack=2:release=60,aresample=48000[aout]"
-    graph += f";[{cur}]ass={ff_path(ass_path)}:fontsdir={ff_path(st.fonts_dir)},fps={fps},trim=end_frame={frames_for(plan.duration, fps)},{TO_YUV420}[vout]"
+    graph += f";[{cur}]ass={ff_path(ass_path)}:fontsdir={ff_path(st.fonts_dir)},fps={fps},trim=end_frame={frames_for(plan.duration, fps)},{TO_YUV420 if plan.effects_global else 'format=yuv420p'}[vout]"
     enc = pick_encoder(plan.export.vcodec, prefer_hw=prefer_hw and plan.export.prefer_hw and not preview)
     tried = []
     for e in [enc, "libx264"] if enc != "libx264" else ["libx264"]:
         tried.append(e)
         cmd = [st.ffmpeg, "-v", "error", "-y", *inputs, "-filter_complex", graph, "-map", "[vout]", "-map", "[aout]",
-               *encoder_args(e, quality), "-r", str(fps), "-c:a", "aac", "-b:a", f"{plan.export.audio_bitrate_k}k", "-ar", "48000", "-ac", "2",
+               *encoder_args(e, quality), "-r", str(fps), "-c:a", "aac", "-b:a", f"{plan.export.audio_bitrate_k}k", "-ar", str(C.AUDIO_SAMPLE_RATE), "-ac", str(C.AUDIO_CHANNELS),
                "-movflags", "+faststart", "-shortest", str(out_path)]
         try:
             run_ffmpeg_progress(cmd, plan.duration, lambda f: progress("rendering", 0.68 + 0.25 * f, "encoding"))
