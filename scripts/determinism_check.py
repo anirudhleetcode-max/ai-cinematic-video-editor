@@ -8,7 +8,6 @@ directory, so no cache is shared between the two runs.
 """
 from __future__ import annotations
 
-import hashlib
 import json
 import os
 import subprocess

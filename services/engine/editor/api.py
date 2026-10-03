@@ -17,7 +17,7 @@ from . import auth as AUTH, db, service as S
 from .config import get_settings
 from .hw import diagnostics
 from .jobs import STAGES, get_queue
-from .logging import get_logger
+from .logging import get_logger, log
 from .media.probe import AUDIO_EXT, IMAGE_EXT, VIDEO_EXT
 from .previews import preview as library_preview
 from .proc import safe_filename, safe_path
@@ -102,6 +102,22 @@ def _cors_origins() -> list[str]:
     if get_settings().env == "development":
         origins += [o for o in ("http://127.0.0.1:3000", "http://localhost:3000") if o not in origins]
     return origins
+
+
+@app.middleware("http")
+async def _access_log(request: Request, call_next):
+    """Request log without the query string: media / download / SSE URLs carry ?access_token= (uvicorn's own access
+    log, which would record it, is disabled — run uvicorn with --no-access-log)."""
+    t0 = time.perf_counter()
+    status = 500
+    try:
+        resp = await call_next(request)
+        status = resp.status_code
+        return resp
+    finally:
+        u = getattr(request.state, "user", None)
+        log(logger, "request", method=request.method, path=request.url.path, status=status,
+            ms=round((time.perf_counter() - t0) * 1000, 1), user=getattr(u, "id", None))
 
 
 app.add_middleware(CORSMiddleware, allow_origins=_cors_origins(), allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],

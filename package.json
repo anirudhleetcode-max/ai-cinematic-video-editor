@@ -5,10 +5,10 @@
   "description": "Autonomous AI video editor — upload, prompt, generate, download.",
   "scripts": {
     "dev": "node scripts/dev.mjs",
-    "dev:api": "cd services/engine && python -m uvicorn editor.api:app --port 8000 --reload",
+    "dev:api": "cd services/engine && python -m uvicorn editor.api:app --port 8000 --reload --no-access-log",
     "dev:web": "npm --prefix apps/web run dev",
     "build": "npm --prefix apps/web run build",
-    "start:api": "cd services/engine && python -m uvicorn editor.api:app --host 0.0.0.0 --port 8000",
+    "start:api": "cd services/engine && python -m uvicorn editor.api:app --host 0.0.0.0 --port 8000 --no-access-log",
     "start:web": "npm --prefix apps/web run start",
     "test": "npm run test:engine && npm run test:web",
     "test:engine": "cd services/engine && python -m pytest -q",

@@ -214,3 +214,20 @@ def test_unhandled_errors_return_reference_only(monkeypatch):
         r = c.get("/projects")
     assert r.status_code == 500 and r.json()["detail"] == "internal error" and r.json()["error_id"].startswith("err")
     assert "/var/lib" not in r.text
+
+
+def test_tokens_never_reach_the_logs(token_env, caplog):
+    """Media / download / SSE URLs carry ?access_token=; the request log records the path only (uvicorn's own access
+    log is disabled for this reason)."""
+    import logging
+
+    from editor import auth
+
+    u, tok = auth.create_user("alice")
+    caplog.set_level(logging.DEBUG)
+    with _client() as c:
+        c.get(f"/projects?access_token={tok}")
+        c.post("/auth/login", json={"email": "x@example.com", "password": "secret-password-1"})
+    text = "\n".join(f"{r.getMessage()} {getattr(r, 'fields', '')}" for r in caplog.records)
+    assert "request" in text and "/projects" in text
+    assert tok not in text and "secret-password-1" not in text

@@ -16,7 +16,7 @@ if (fs.existsSync(path.join(root, ".env"))) {
   }
 }
 const procs = [
-  spawn(py, ["-m", "uvicorn", "editor.api:app", "--port", env.API_PORT ?? "8000", "--reload", "--reload-dir", "editor"], {
+  spawn(py, ["-m", "uvicorn", "editor.api:app", "--port", env.API_PORT ?? "8000", "--reload", "--reload-dir", "editor", "--no-access-log"], {
     cwd: path.join(root, "services", "engine"), env, stdio: "inherit",
   }),
   spawn(win ? "npm.cmd" : "npm", ["run", "dev"], { cwd: path.join(root, "apps", "web"), env, stdio: "inherit", shell: win }),
