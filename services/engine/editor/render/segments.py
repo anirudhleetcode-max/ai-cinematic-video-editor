@@ -25,7 +25,7 @@ from ..schemas import Segment
 from .colorspace import TAGS, TO_YUV420, source_to_rgb
 
 logger = get_logger("render.segment")
-MEZZ_VERSION = "mz5"  # mz5: explicit source matrix/range → RGB working space → BT.709 tagged mezzanines
+MEZZ_VERSION = "mz6"  # mz5: explicit source matrix/range → RGB working space → BT.709 tagged mezzanines
 SR = 48000
 
 
@@ -46,6 +46,7 @@ class SegJob:
     cache_dir: Path
     mode: str
     src_meta: dict | None = None
+    audio_src: Path | None = None  # original file: preview proxies are video-only
 
 
 @dataclass
@@ -60,6 +61,10 @@ class SegResult:
     n_tail: int
     cached: bool
     fallbacks: list[str]
+
+
+def ramp_sampling_fps(out_fps: float, max_rate: float) -> float:
+    return float(min(240.0, max(out_fps, out_fps * max(1.0, max_rate))))
 
 
 def x264_mezz_args(quality: str) -> list[str]:
@@ -92,19 +97,60 @@ def _atempo_chain(rate: float) -> str:
     return ",".join(parts)
 
 
-def _ramp_pieces(ramp: list[tuple[float, float]], out_dur: float, n: int = 10) -> list[tuple[float, float, float]]:
-    """Piecewise-constant approximation of a speed curve: returns [(src_start, src_end, rate)] (source seconds, relative)."""
-    xs = np.array([p for p, _ in ramp])
-    ys = np.array([r for _, r in ramp])
-    edges = np.linspace(0, 1, n + 1)
-    src_t = 0.0
-    out = []
-    for a, b in zip(edges[:-1], edges[1:]):
-        r = float(np.interp((a + b) / 2, xs, ys))
-        seg_src = r * (b - a) * out_dur
-        out.append((src_t, src_t + seg_src, r))
-        src_t += seg_src
-    return out
+def ramp_time_map(ramp: list[tuple[float, float]], out_dur: float, n_frames: int) -> tuple[np.ndarray, np.ndarray]:
+    """Continuous speed curve → source time (s, relative to src_in) and instantaneous rate for every output frame.
+    rate(u) is piecewise-linear in normalised output time u; source time is its exact integral."""
+    xs = np.array([p for p, _ in ramp], np.float64)
+    ys = np.array([r for _, r in ramp], np.float64)
+    fine = np.linspace(0.0, 1.0, max(2, n_frames * 8 + 1))
+    r = np.interp(fine, xs, ys)
+    cum = np.concatenate([[0.0], np.cumsum((r[1:] + r[:-1]) / 2 * np.diff(fine))]) * out_dur
+    u = (np.arange(n_frames) + 0.5) / max(1, n_frames)
+    return np.interp(u, fine, cum), np.interp(u, xs, ys)
+
+
+def ramp_source_length(ramp: list[tuple[float, float]], out_dur: float) -> float:
+    t, _ = ramp_time_map(ramp, out_dur, 2048)
+    return float(t[-1]) + out_dur / 2048
+
+
+def stabilize_mode(s: Segment) -> str:
+    if not s.stabilize:
+        return "off"
+    return s.stabilize_mode or "light"
+
+
+def stabilize_filter(s: Segment, tmp: Path) -> str:
+    """OFF / LIGHT (single-pass deshake) / STANDARD / STRONG (two-pass vid.stab when FFmpeg has it, else a wider deshake).
+    The vid.stab motion file comes from `vidstab_detect` (run before the main graph, cached with the segment)."""
+    mode = stabilize_mode(s)
+    trf = tmp / "stab.trf"
+    if mode in ("standard", "strong") and trf.exists():
+        smooth = 12 if mode == "standard" else 30
+        return f"vidstabtransform=input='{trf.as_posix()}':smoothing={smooth}:zoom=0:optzoom=1:interpol=bilinear,unsharp=5:5:0.6:3:3:0.0"
+    r = 16 if mode == "light" else 32
+    return f"deshake=rx={r}:ry={r}:edge=mirror"
+
+
+def vidstab_detect(j: "SegJob", s: Segment, tmp: Path) -> bool:
+    """Pass 1 of two-pass stabilisation over exactly the source range the segment uses."""
+    from ..hw import has_filter
+
+    if stabilize_mode(s) not in ("standard", "strong") or s.image or not has_filter("vidstabdetect"):
+        return False
+    trf = tmp / "stab.trf"
+    if trf.exists():
+        return True
+    st = get_settings()
+    shake = 6 if stabilize_mode(s) == "standard" else 9
+    src_len = s.src_out - s.src_in
+    try:
+        run([st.ffmpeg, "-v", "error", "-y", "-nostdin", "-ss", f"{s.src_in:.3f}", "-t", f"{src_len + 0.5:.3f}", "-i", str(j.src), "-an",
+             "-vf", f"vidstabdetect=shakiness={shake}:accuracy=12:result='{trf.as_posix()}'", "-f", "null", "-"], timeout=1800)
+    except (MediaCommandError, subprocess.TimeoutExpired):
+        trf.unlink(missing_ok=True)
+        return False
+    return trf.exists()
 
 
 def _video_core(j: SegJob, s: Segment, tmp: Path, fallback_level: int) -> tuple[list[str], str, int]:
@@ -124,17 +170,15 @@ def _video_core(j: SegJob, s: Segment, tmp: Path, fallback_level: int) -> tuple[
     if not s.image and (meta.get("inspection") or {}).get("field_order") not in (None, "progressive", "unknown"):
         pre.append("bwdif=mode=send_frame")
     if s.stabilize and fallback_level < 2 and not s.image:
-        pre.append("deshake=rx=24:ry=24:edge=mirror")
+        pre.append(stabilize_filter(s, tmp))
     if not pre:
         pre.append("null")
-    if s.speed.ramp and fallback_level < 2 and not s.image:
-        pieces = _ramp_pieces(s.speed.ramp, s.out_duration)
-        chains.append(f"[{cur}]{','.join(pre)},split={len(pieces)}" + "".join(f"[rp{i}]" for i in range(len(pieces))))
-        for i, (a, b, r) in enumerate(pieces):
-            chains.append(f"[rp{i}]trim=start={a:.4f}:end={b:.4f},setpts=(PTS-STARTPTS)/{r:.5f}[rq{i}]")
-        chains.append("".join(f"[rq{i}]" for i in range(len(pieces))) + f"concat=n={len(pieces)}:v=1:a=0[spd]")
-        cur = "spd"
-        post = [f"fps={fps}"]
+    ramp = bool(s.speed.ramp) and fallback_level < 2 and not s.image
+    if ramp:
+        # continuous ramp: decode the source range at a constant sampling rate high enough for the fastest part,
+        # then remap time per output frame in numpy (segments._render_motion)
+        max_rate = max(r for _, r in s.speed.ramp)
+        post = pre + [f"fps={ramp_sampling_fps(fps, max_rate):.3f}"]
     else:
         rate = s.speed.rate if not s.image else 1.0
         post = pre + [f"setpts=(PTS-STARTPTS)/{rate:.5f}"]
@@ -144,7 +188,7 @@ def _video_core(j: SegJob, s: Segment, tmp: Path, fallback_level: int) -> tuple[
             post.append(f"fps={fps}")
     # cover-scale (+ headroom for camera motion) straight into the RGB working space with the source's own matrix /
     # range (or HDR tone-mapping); then the per-shot technical grade LUT, then crop (static) or numpy camera motion
-    motion = s.motion.preset != "none" and fallback_level < 2
+    motion = (s.motion.preset != "none" and fallback_level < 2) or ramp
     sw, sh = j.src_w, j.src_h
     cover = max(j.out_w / sw, j.out_h / sh) * s.crop.zoom
     head = 1.0
@@ -162,7 +206,7 @@ def _video_core(j: SegJob, s: Segment, tmp: Path, fallback_level: int) -> tuple[
         x = int(np.clip(s.crop.cx * cw - j.out_w / 2, 0, cw - j.out_w))
         y = int(np.clip(s.crop.cy * ch - j.out_h / 2, 0, ch - j.out_h))
         post.append(f"crop={j.out_w}:{j.out_h}:{x}:{y}")
-    freeze = s.speed.freeze_end + 2.0 / fps + (1.0 if s.image else 0.0)
+    freeze = s.speed.freeze_end + 2.0 / fps + (1.0 if s.image else 0.0) + (0.5 if ramp else 0.0)
     post.append(f"tpad=stop_mode=clone:stop_duration={freeze:.3f}")
     chains.append(f"[{cur}]{','.join(post)}[vcore]")
     return inp, ";".join(chains), N, motion, (cw, ch)
@@ -201,7 +245,16 @@ def _split_outputs(final_label: str, N: int, nh: int, nt: int, out: dict[str, Pa
 def _render_motion(j: SegJob, s: Segment, inp: list[str], graph: str, N: int, cw: int, ch: int, out: dict, nh: int, nt: int, fallback_level: int) -> None:
     """Decode → numpy sub-pixel camera warp per frame → encode (effects + split)."""
     st = get_settings()
-    dec = subprocess.Popen([st.ffmpeg, "-v", "error", "-nostdin", *inp, "-filter_complex", graph, "-map", "[vcore]", "-frames:v", str(N),
+    ramp = bool(s.speed.ramp) and fallback_level < 2 and not s.image
+    if ramp:
+        F = ramp_sampling_fps(j.fps, max(r for _, r in s.speed.ramp))
+        src_t, inst_rate = ramp_time_map(s.speed.ramp, s.out_duration, N)
+        need_idx = src_t * F
+        n_src = int(math.ceil(need_idx[-1])) + 2
+        flow = cv2.DISOpticalFlow_create(cv2.DISOPTICAL_FLOW_PRESET_FAST) if (j.mode == "quality" and fallback_level == 0) else None
+    else:
+        n_src = N
+    dec = subprocess.Popen([st.ffmpeg, "-v", "error", "-nostdin", *inp, "-filter_complex", graph, "-map", "[vcore]", "-frames:v", str(n_src),
                             "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     fx_graph, fx_out = _effects_chain(s, j, "0:v", fallback_level)
     split_g, out_args = _split_outputs(fx_out if fx_graph else "0:v", N, nh, nt, out, j.quality)
@@ -214,19 +267,60 @@ def _render_motion(j: SegJob, s: Segment, inp: list[str], graph: str, N: int, cw
     params = {**s.motion.params, "intensity": s.motion.intensity, "_dur": s.out_duration}
     i = 0
     last = None
+    buf_frames: dict[int, np.ndarray] = {}
+    read_idx = 0
+    blended = 0
+
+    def src_frame(idx: int) -> np.ndarray | None:
+        """Sequential reader with a small window (frames are only ever requested in non-decreasing order)."""
+        nonlocal read_idx, last
+        while read_idx <= idx:
+            raw = dec.stdout.read(fsz)
+            if len(raw) < fsz:
+                return last
+            last = np.frombuffer(raw, np.uint8).reshape(ch, cw, 3)
+            buf_frames[read_idx] = last
+            buf_frames.pop(read_idx - 3, None)
+            read_idx += 1
+        return buf_frames.get(idx, last)
+
     try:
         assert dec.stdout is not None and enc.stdin is not None
         while i < N:
-            buf = dec.stdout.read(fsz)
-            if len(buf) < fsz:
-                if last is None:
+            if ramp:
+                pos = float(need_idx[i])
+                i0 = int(math.floor(pos))
+                frac = pos - i0
+                fa = src_frame(i0)
+                fb = src_frame(i0 + 1) if frac > 0.02 else fa
+                if fa is None:
                     break
-                frame = last
+                if fb is None or fb is fa or inst_rate[i] >= 0.9 or frac <= 0.02:
+                    frame = fa if frac < 0.5 or fb is None else fb  # normal/fast speed: nearest source frame
+                elif flow is not None:
+                    # quality mode: motion-compensated interpolation (DIS optical flow, both directions)
+                    ga, gb = cv2.cvtColor(fa, cv2.COLOR_RGB2GRAY), cv2.cvtColor(fb, cv2.COLOR_RGB2GRAY)
+                    fab = flow.calc(ga, gb, None)
+                    hgt, wid = ga.shape
+                    gx, gy = np.meshgrid(np.arange(wid, dtype=np.float32), np.arange(hgt, dtype=np.float32))
+                    wa = cv2.remap(fa, gx - frac * fab[..., 0], gy - frac * fab[..., 1], cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
+                    wb = cv2.remap(fb, gx + (1 - frac) * fab[..., 0], gy + (1 - frac) * fab[..., 1], cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
+                    frame = cv2.addWeighted(wa, 1 - frac, wb, frac, 0)
+                    blended += 1
+                else:
+                    frame = cv2.addWeighted(fa, 1 - frac, fb, frac, 0)  # slow parts: frame blending, no duplicated frames
+                    blended += 1
             else:
-                frame = np.frombuffer(buf, np.uint8).reshape(ch, cw, 3)
-                last = frame
+                raw = dec.stdout.read(fsz)
+                if len(raw) < fsz:
+                    if last is None:
+                        break
+                    frame = last
+                else:
+                    frame = np.frombuffer(raw, np.uint8).reshape(ch, cw, 3)
+                    last = frame
             u = i / max(1, N - 1)
-            z, dx, dy, rot = camera_at(s.motion.preset, u, params)
+            z, dx, dy, rot = camera_at(s.motion.preset, u, params) if s.motion.preset != "none" else (1.0, 0.0, 0.0, 0.0)
             k = sc / max(z, 1e-3)
             hw, hh = W * k / 2, H * k / 2
             cxp = float(np.clip(s.crop.cx * cw + dx * cw, hw, cw - hw))
@@ -256,7 +350,7 @@ def render_audio(j: SegJob, s: Segment, path: Path) -> Path:
         return path
     src_len = s.src_out - s.src_in
     af = f"{_atempo_chain(s.speed.rate)},aresample={SR},apad,atrim=end_sample={n}"
-    run([st.ffmpeg, "-v", "error", "-y", "-ss", f"{s.src_in:.3f}", "-t", f"{src_len + 0.3:.3f}", "-i", str(j.src), "-vn", "-ac", "2", "-af", af,
+    run([st.ffmpeg, "-v", "error", "-y", "-ss", f"{s.src_in:.3f}", "-t", f"{src_len + 0.3:.3f}", "-i", str(j.audio_src or j.src), "-vn", "-ac", "2", "-af", af,
          "-c:a", "pcm_s16le", str(path)], timeout=600)
     return path
 
@@ -277,6 +371,7 @@ def render_segment(j: SegJob) -> SegResult:
     d.mkdir(parents=True, exist_ok=True)
     fallbacks: list[str] = []
     st = get_settings()
+    vidstab_detect(j, s, d)
     for level in (0, 1, 2):
         try:
             inp, graph, N2, motion, (cw, ch) = _video_core(j, s, d, level)
@@ -294,6 +389,11 @@ def render_segment(j: SegJob) -> SegResult:
             log(logger, "segment render failed; falling back", seg=s.id, level=level, error=str(e)[:300])
             if level == 2:
                 raise
-    render_audio(j, s, audio)
+    try:
+        render_audio(j, s, audio)
+    except (MediaCommandError, subprocess.TimeoutExpired) as e:  # never let one clip's audio fail the film
+        fallbacks.append(f"audio: source audio unreadable for this range → silence ({str(e)[:120]})")
+        silent = SegJob(**{**j.__dict__, "has_audio": False})
+        render_audio(silent, s, audio)
     done.write_text(json.dumps({"key": key, "fallbacks": fallbacks}))
     return SegResult(s.id, out["head"] if nh else None, out["body"], out["tail"] if nt else None, audio, N, nh, nt, False, fallbacks)

@@ -84,7 +84,9 @@ def frame_metrics(fs: FrameSet) -> dict[str, np.ndarray]:
     global translation (for shake), histogram distance to previous frame."""
     n = len(fs.rgb)
     out = {k: np.zeros(n, np.float32) for k in
-           ("luma", "contrast", "sharp", "dark_clip", "bright_clip", "sat", "colorful", "motion", "dx", "dy", "pc_resp", "hist_d", "temp", "tint")}
+           ("luma", "contrast", "sharp", "dark_clip", "bright_clip", "sat", "colorful", "motion", "dx", "dy", "pc_resp", "hist_d", "struct_d",
+                                       "temp", "tint")}
+    prev_t = None
     hists = []
     prev_g = None
     for i, f in enumerate(fs.rgb):
@@ -104,6 +106,12 @@ def frame_metrics(fs: FrameSet) -> dict[str, np.ndarray]:
         out["tint"][i] = (gg.mean() - 0.5 * (r.mean() + b.mean())) / 255.0
         hh = hsv_hist(f)
         hists.append(hh)
+        # exposure-invariant structure thumbnail (zero mean, unit contrast) for cut detection
+        th = cv2.resize(g, (32, 18), interpolation=cv2.INTER_AREA).astype(np.float32) / 255
+        th = (th - th.mean()) / (th.std() + 0.02)
+        if prev_t is not None:
+            out["struct_d"][i] = float(np.abs(th - prev_t).mean())
+        prev_t = th
         if prev_g is not None:
             out["motion"][i] = np.abs(gf - prev_g).mean()
             dx, dy, coh = global_shift(prev_g, gf)

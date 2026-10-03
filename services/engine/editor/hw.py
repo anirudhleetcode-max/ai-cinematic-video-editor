@@ -68,6 +68,24 @@ def pick_encoder(codec: str = "h264", prefer_hw: bool = True) -> str:
     return "libx264"
 
 
+@functools.lru_cache(maxsize=1)
+def available_filters() -> frozenset[str]:
+    try:
+        out = run([get_settings().ffmpeg, "-hide_banner", "-filters"], timeout=30).stdout.decode("utf-8", "replace")
+    except Exception:  # noqa: BLE001
+        return frozenset()
+    names = set()
+    for line in out.splitlines():
+        parts = line.split()
+        if len(parts) >= 3 and len(parts[0]) == 3 and set(parts[0]) <= set("TSC."):
+            names.add(parts[1])
+    return frozenset(names)
+
+
+def has_filter(name: str) -> bool:
+    return name in available_filters()
+
+
 def encoder_args(enc: str, quality: str = "high") -> list[str]:
     """Quality ladder per encoder family (quality: draft | standard | high), always tagged BT.709 limited range."""
     return [*_encoder_args(enc, quality), "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709", "-color_range", "tv"]

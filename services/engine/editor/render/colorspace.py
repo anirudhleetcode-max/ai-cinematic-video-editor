@@ -33,10 +33,14 @@ def source_to_rgb(meta: dict, w: int, h: int, image: bool = False) -> str:
     if image:
         return f"scale={w}:{h}:flags=lanczos,format=gbrp"
     ins = meta.get("inspection") or {}
-    if ins.get("hdr") or meta.get("hdr"):
+    from ..hw import has_filter
+
+    if (ins.get("hdr") or meta.get("hdr")) and has_filter("zscale") and has_filter("tonemap"):
         # HDR (PQ/HLG, BT.2020) → linear light → BT.709 primaries → Hable tone-map → BT.709 transfer
         # resize first (inside the linearising zscale) so tone-mapping runs at output size, not source 4K
         return (f"zscale=w={w}:h={h}:f=spline36:t=linear:npl=203,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,"
                 f"zscale=t=bt709:m=bt709:r=tv,format=gbrp")
+    # (HDR without zimg/zscale in this FFmpeg build falls through to a plain BT.2020 matrix conversion — no tone-mapping;
+    #  inspection reports the HDR warning so the limitation is visible)
     m, rng, _ = source_matrix(meta)
     return f"scale={w}:{h}:flags=lanczos:in_color_matrix={m}:in_range={rng},format=gbrp"

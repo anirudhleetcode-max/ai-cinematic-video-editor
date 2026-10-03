@@ -65,8 +65,10 @@ def test_revisions_modify_existing_plan(project):
     assert len(e.timeline) > len(plan.timeline)
     intro = next(s for s in e.story_structure if s.name in ("opening", "intro"))
     assert abs((intro.end - intro.start) - 3.0) < 0.01
-    kept = sum(1 for a, b in zip(plan.timeline, e.timeline) if (a.asset_id, a.shot_index) == (b.asset_id, b.shot_index))
-    assert kept >= len(plan.timeline) * 0.6
+    # previous picks retained in the revised edit (positions move because the structure changed)
+    before = {(a.asset_id, a.shot_index) for a in plan.timeline}
+    after = {(b.asset_id, b.shot_index) for b in e.timeline}
+    assert len(before & after) >= len(before) * 0.6, (len(before & after), len(before))
     w, _ = apply_revision(e, "Make the colors warmer.", ctx)
     assert w.color_grade.overrides["temperature"] > e.color_grade.overrides.get("temperature", 0)
     assert [s.model_dump() for s in w.timeline] == [s.model_dump() for s in e.timeline]  # colour-only change

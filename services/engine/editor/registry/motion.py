@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import math
 
-from .base import Definition, Registry, e, f
+from .base import Definition, Registry, f
 
 MOTION_PRESETS = Registry("motion_preset")
 

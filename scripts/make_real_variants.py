@@ -97,7 +97,7 @@ def main() -> int:
         "-i", wz, "-ss", "40", "-t", "8", "-vf",
         "crop=1600:900:160+120*sin(t*13)*cos(t*7.3):90+70*sin(t*11.1+1),scale=1920:1080", *x264)
     add("degraded_clipped_audio.mp4", "speech boosted +24 dB (hard clipping)", {"issue": "clipped_audio"},
-        "-i", ppl, "-i", speech, "-map", "0:v", "-map", "1:a", "-t", "8", "-af", "volume=24dB,alimiter=limit=1:level=false", *x264, "-c:a", "aac", "-b:a", "192k")
+        "-i", ppl, "-i", speech, "-map", "0:v", "-map", "1:a", "-t", "8", "-af", "volume=24dB,aformat=sample_fmts=s16", *x264, "-c:a", "aac", "-b:a", "192k")
     add("near_duplicate_a.mp4", "segment 0–8 s of worker-zone", {"near_duplicate_of": "near_duplicate_b.mp4"}, "-i", wz, "-ss", "50", "-t", "8", *x264)
     add("near_duplicate_b.mp4", "segment 1–9 s of the same shot, re-encoded", {"near_duplicate_of": "near_duplicate_a.mp4"},
         "-i", wz, "-ss", "51", "-t", "8", "-vf", "eq=brightness=0.02", *x264)

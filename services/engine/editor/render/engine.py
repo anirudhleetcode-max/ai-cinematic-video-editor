@@ -145,7 +145,7 @@ def render_plan(plan: EditPlan, assets: dict[str, AssetInfo], out_path: Path, wo
         head = s.transition_in.duration if (k > 0 and s.transition_in.id != "cut") else 0.0
         tail = nxt.transition_in.duration if (nxt and nxt.transition_in.id != "cut") else 0.0
         jobs.append(SegJob(s, src, ai.fingerprint + ("p" if src != ai.path else ""), bool(ai.meta.get("has_audio")), int(sw), int(sh), head, tail,
-                           w, h, fps, quality, cache, plan.mode, src_meta))
+                           w, h, fps, quality, cache, plan.mode, src_meta, ai.path))
     results: dict[str, SegResult] = {}
     n_workers = max(1, min(4, (psutil.cpu_count() or 2) // 2 + (0 if preview else 0)))
     done = 0

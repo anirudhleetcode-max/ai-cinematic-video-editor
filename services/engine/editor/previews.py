@@ -2,7 +2,6 @@
 styles/animations, motion presets), generated on demand from a built-in procedural sample and cached."""
 from __future__ import annotations
 
-import subprocess
 from pathlib import Path
 
 import cv2

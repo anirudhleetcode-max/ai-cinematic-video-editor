@@ -50,6 +50,26 @@ def _merge(segs: list[list[float]], gap: float) -> list[list[float]]:
     return out
 
 
+def clip_runs(path: Path, sr: int = 48000) -> float:
+    """Clipping measure: max of (fraction of samples above 0.99 FS) and (fraction inside flat-topped runs (≥ 3 consecutive samples within 0.2 % of the peak, peak ≥ 0.89),
+    measured at the native-ish rate before any resampling smooths the tops. Hard-clipped audio scores > 0.001."""
+    y = load_mono(path, sr=sr)
+    if y.size == 0:
+        return 0.0
+    a = np.abs(y)
+    pk = float(a.max())
+    over = float((a > 0.99).mean())  # lossy codecs (AAC/MP3) turn flat tops into overshoot above full scale
+    if pk < 0.89:
+        return 0.0
+    m = a >= pk * 0.998
+    if not m.any():
+        return 0.0
+    d = np.diff(np.concatenate([[0], m.view(np.int8), [0]]))
+    starts, ends = np.where(d == 1)[0], np.where(d == -1)[0]
+    lens = ends - starts
+    return round(max(over, float(lens[lens >= 3].sum() / len(a))), 6)
+
+
 def analyze_audio(path: Path) -> dict:
     y = load_mono(path)
     if y.size < SR * 0.1:
@@ -83,12 +103,41 @@ def analyze_audio(path: Path) -> dict:
     speech_mask = (db_m > noise_floor + 9) & (db_m > -50) & (band_ratio > 0.55) & (flat < 0.3) & (mod >= mod_thr * 0.8)
     speech = _merge(_segments(speech_mask, HOP, 0.25), 0.35)
     speech = [s for s in speech if s[1] - s[0] >= 0.5]
+    detector = "dsp-heuristic"
+    from . import vad
+
+    if vad.available():
+        try:
+            speech, _ = vad.speech_segments(y)
+            detector = "silero-vad"
+        except Exception:  # noqa: BLE001 — fall back to the DSP detector, and say so
+            detector = "dsp-heuristic (silero failed)"
     silence = _segments(db < max(-50.0, noise_floor + 3), HOP, 0.5)
     dur = len(y) / SR
     sp = sum(b - a for a, b in speech)
     step = max(1, int(0.1 / HOP))
+    # sound-type features (heuristic classification, documented): music is tonal (low spectral flatness) with steady
+    # energy and little syllabic modulation; crowd/ambience is broadband (high flatness) and sustained above the floor.
+    active = db_m > noise_floor + 6
+    tonal = float(np.mean(flat[active] < 0.08)) if active.any() else 0.0
+    broadband = float(np.mean(flat[active] > 0.25)) if active.any() else 0.0
+    speech_frac = (sum(b - a for a, b in speech) / (len(y) / SR)) if len(y) else 0.0
+    snr_db = float(np.percentile(db_m, 90) - noise_floor) if m else 0.0
+    if not active.any() or float(np.percentile(db_m, 90)) < -55:
+        sound = "silence"
+    elif speech_frac > 0.25:
+        sound = "speech"
+    elif tonal > 0.5:
+        sound = "music"
+    elif broadband > 0.4:
+        sound = "crowd_ambient"
+    else:
+        sound = "mixed"
     return {
         "has_audio": True,
+        "speech_detector": detector, "clipping_runs": clip_runs(path),
+        "noise_floor_db": round(float(noise_floor), 1), "snr_db": round(snr_db, 1), "tonal_fraction": round(tonal, 3),
+        "broadband_fraction": round(broadband, 3), "sound_type": sound, "sound_type_source": "heuristic",
         "rms_db": [round(float(v), 1) for v in db[::step]],
         "rms_hop": HOP * step,
         "speech": speech,

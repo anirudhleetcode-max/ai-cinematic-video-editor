@@ -18,7 +18,7 @@ from ..media.probe import probe
 from ..music.analyze import analyze_music
 
 logger = get_logger("reference")
-VERSION = "ref-v2"
+VERSION = "ref-v4"  # v3: adaptive cut detection, colour-correct sampling
 
 
 def _dominant_colors(rgb_frames: np.ndarray, k: int = 5) -> list[dict]:
@@ -30,6 +30,60 @@ def _dominant_colors(rgb_frames: np.ndarray, k: int = 5) -> list[dict]:
     counts = np.bincount(labels.flatten(), minlength=k) / len(labels)
     order = np.argsort(-counts)
     return [{"hex": "#%02x%02x%02x" % tuple(int(c) for c in centers[i]), "weight": round(float(counts[i]), 3)} for i in order]
+
+
+def grade_profile(frames: np.ndarray) -> dict:
+    """ReferenceGradeProfile: measurable look of a set of RGB frames — luma distribution, saturation distribution,
+    shadow / highlight colour casts, dominant hue. These numbers drive the grade mapping onto the user's footage."""
+    if not len(frames):
+        return {}
+    px = np.concatenate([cv2.resize(f, (96, 54), interpolation=cv2.INTER_AREA).reshape(-1, 3) for f in frames]).astype(np.float32) / 255
+    luma = px @ np.array([0.2126, 0.7152, 0.0722], np.float32)
+    mx, mn = px.max(1), px.min(1)
+    sat = np.where(mx > 1e-3, (mx - mn) / np.maximum(mx, 1e-3), 0)
+
+    def cast(mask: np.ndarray) -> dict:
+        if mask.sum() < 50:
+            return {"temperature": 0.0, "tint": 0.0, "share": round(float(mask.mean()), 3)}
+        c = px[mask].mean(0)
+        return {"temperature": round(float(c[0] - c[2]), 4), "tint": round(float(c[1] - (c[0] + c[2]) / 2), 4), "share": round(float(mask.mean()), 3),
+                "rgb": [round(float(x), 3) for x in c]}
+
+    hsv = cv2.cvtColor((px.reshape(1, -1, 3) * 255).astype(np.uint8), cv2.COLOR_RGB2HSV).reshape(-1, 3).astype(np.float32)
+    w = hsv[:, 1] / 255 * (hsv[:, 2] / 255)
+    ang = hsv[:, 0] / 180 * 2 * np.pi
+    hue = (np.degrees(np.arctan2((w * np.sin(ang)).sum(), (w * np.cos(ang)).sum())) % 360) if w.sum() > 1 else None
+    return {"luma_p5": round(float(np.percentile(luma, 5)), 4), "luma_p50": round(float(np.percentile(luma, 50)), 4),
+            "luma_p95": round(float(np.percentile(luma, 95)), 4), "contrast_spread": round(float(np.percentile(luma, 95) - np.percentile(luma, 5)), 4),
+            "saturation_p50": round(float(np.percentile(sat, 50)), 4), "saturation_p90": round(float(np.percentile(sat, 90)), 4),
+            "shadows": cast(luma < 0.25), "midtones": cast((luma >= 0.25) & (luma <= 0.7)), "highlights": cast(luma > 0.7),
+            "dominant_hue_deg": round(float(hue), 1) if hue is not None else None,
+            "warmth": round(float((px[:, 0] - px[:, 2]).mean()), 4)}
+
+
+def _text_timeline(fs, sfps: float) -> list[dict]:
+    """Heuristic on-screen text intervals (band + relative size) from the stroke-density detector, ~2 samples/s."""
+    step = max(1, int(round(sfps / 2)))
+    present = []
+    for i in range(0, len(fs.rgb), step):
+        tl = F.text_likelihood(fs.rgb[i])
+        band = max(tl, key=tl.get)
+        present.append((float(fs.times[i]), band if tl[band] > 0.12 else None, tl[band]))
+    events, cur = [], None
+    for t, band, sc in present:
+        if band and (cur is None or cur["band"] != band):
+            if cur:
+                events.append(cur)
+            cur = {"start": round(t, 2), "end": round(t + 0.5, 2), "band": band, "coverage": round(sc, 3)}
+        elif band and cur:
+            cur["end"] = round(t + 0.5, 2)
+            cur["coverage"] = round(max(cur["coverage"], sc), 3)
+        elif not band and cur:
+            events.append(cur)
+            cur = None
+    if cur:
+        events.append(cur)
+    return [e for e in events if e["end"] - e["start"] >= 1.0][:50]
 
 
 def analyze_reference(path: Path, fingerprint: str | None = None) -> dict:
@@ -78,6 +132,32 @@ def analyze_reference(path: Path, fingerprint: str | None = None) -> dict:
         beats = np.array(music["beats"])
         offs = [float(np.min(np.abs(beats - s["start"]))) for s in shots[1:]]
         beat_alignment = round(float(np.mean(np.array(offs) < 0.1)), 3)
+    grade = grade_profile(fs.rgb[:: max(1, len(fs.rgb) // 60)]) if len(fs.rgb) else {}
+    # intro / outro: first and last shot lengths and measured fade-in / fade-out (luma ramps from/to black)
+    lum = m["luma"]
+    fade_in = 0.0
+    if len(lum) > 3 and lum[0] < 0.08:
+        k = int(np.argmax(lum > 0.5 * float(np.median(lum))))
+        fade_in = round(float(fs.times[k] - fs.times[0]), 2)
+    fade_out = 0.0
+    if len(lum) > 3 and lum[-1] < 0.08:
+        k = len(lum) - 1 - int(np.argmax(lum[::-1] > 0.5 * float(np.median(lum))))
+        fade_out = round(float(fs.times[-1] - fs.times[k]), 2)
+    # text timing + size (heuristic detector) at ~2 samples/s
+    text_events = _text_timeline(fs, sfps)
+    # audio dynamics (measured on the reference's own soundtrack)
+    dyn = None
+    if meta.get("has_audio"):
+        from ..media.audio import load_mono
+
+        ya = load_mono(path, sr=16000)
+        if ya.size > 16000:
+            fr = ya[: len(ya) // 1600 * 1600].reshape(-1, 1600)
+            rdb = 20 * np.log10(np.sqrt((fr ** 2).mean(1)) + 1e-9)
+            act = rdb[rdb > -60]
+            if act.size:
+                dyn = {"rms_p10_db": round(float(np.percentile(act, 10)), 1), "rms_p95_db": round(float(np.percentile(act, 95)), 1),
+                       "dynamic_range_db": round(float(np.percentile(act, 95) - np.percentile(act, 10)), 1)}
     w, h = meta.get("display_width") or 16, meta.get("display_height") or 9
     ar = w / h
     aspect = "9:16" if ar < 0.7 else "4:5" if ar < 0.9 else "1:1" if ar < 1.1 else "16:9"
@@ -115,7 +195,24 @@ def analyze_reference(path: Path, fingerprint: str | None = None) -> dict:
         "music": {"bpm": music.get("bpm"), "energy_mean": round(float(np.mean(music["energy"])), 3) if music.get("energy") else None,
                   "sections": len(music.get("sections", []))} if music and music.get("ok") else None,
         "beat_alignment": beat_alignment,
-        "heuristic_fields": ["text_presence", "text_position", "slow_motion_estimate", "intro_style", "outro_style"],
+        "grade": grade,
+        "first_shot_seconds": round(float(lens[0]), 3) if len(lens) else None,
+        "last_shot_seconds": round(float(lens[-1]), 3) if len(lens) else None,
+        "fade_in_seconds": fade_in, "fade_out_seconds": fade_out,
+        "text_events": text_events,
+        "audio_dynamics": dyn,
+        "heuristic_fields": ["text_presence", "text_position", "text_events", "slow_motion_estimate", "intro_style", "outro_style"],
+        "provenance": {
+            "measured": ["duration", "n_shots", "avg_shot_duration", "median_shot_duration", "shot_length_p10", "shot_length_p90", "shot_length_hist",
+                         "cuts_per_minute", "pacing_curve", "brightness", "contrast", "saturation", "temperature", "tint", "dark_clip", "bright_clip",
+                         "grade", "dominant_colors", "camera_motion", "zoom_behavior", "motion_intensity", "first_shot_seconds", "last_shot_seconds",
+                         "fade_in_seconds", "fade_out_seconds", "music", "beat_alignment", "audio_dynamics"],
+            "inferred": ["transition_frequency", "transition_types", "intro_style", "outro_style", "slow_motion_estimate", "text_presence",
+                         "text_position", "text_events"],
+            "unavailable": ["font identity", "exact text content", "exact LUT / grading operations", "speed-ramp curves", "per-shot effects"],
+            "notes": "transitions are classified from frame statistics (cut / fade / dissolve), not from edit metadata; text is a stroke-density "
+                     "heuristic (no OCR); slow motion is estimated from repeated frames",
+        },
     }
     if fingerprint:
         db.cache_put(fingerprint, "reference", VERSION, profile)

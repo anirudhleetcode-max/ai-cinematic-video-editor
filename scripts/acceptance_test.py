@@ -98,7 +98,7 @@ def main() -> int:
     v2 = S.revise(p["id"], "Make it more energetic and reduce the intro to 3 seconds.")
     plan2 = EditPlan.model_validate(v2["plan"])
     intro = next(s for s in plan2.story_structure if s.name in ("opening", "intro"))
-    kept = sum(1 for a, b in zip(plan1.timeline, plan2.timeline) if (a.asset_id, a.shot_index) == (b.asset_id, b.shot_index))
+    kept = len({(a.asset_id, a.shot_index) for a in plan1.timeline} & {(b.asset_id, b.shot_index) for b in plan2.timeline})  # retained picks
     r2 = S.render_version(p["id"], v2["id"])
     step("revision_1_energetic_intro3", seconds=round(time.perf_counter() - t, 1), ops=[c["op"] for c in v2["changes"]], segments_before=len(plan1.timeline),
          segments_after=len(plan2.timeline), intro_seconds=round(intro.end - intro.start, 3), picks_kept=kept, qc=r2["report"]["qc"]["passed"],
@@ -158,7 +158,7 @@ def main() -> int:
         "branded_ending": plan1.ending.type in ("logo", "logo_title") and bool(plan1.ending.logo_asset_id),
         "rev1_more_shots": len(plan2.timeline) > len(plan1.timeline),
         "rev1_intro_3s": abs((intro.end - intro.start) - 3.0) < 0.01,
-        "rev1_keeps_picks": kept >= 0.5 * len(plan1.timeline),
+        "rev1_keeps_picks": kept >= 0.5 * len({(a.asset_id, a.shot_index) for a in plan1.timeline}),
         "rev2_color_only": same_tl and (plan3.color_grade.overrides.get("temperature", 0) > plan2.color_grade.overrides.get("temperature", 0)),
         "rev2_incremental_render": r3["report"]["segments_cached"] == len(plan3.timeline),
         "rev3_song2_in_final_rest_kept": ok4,

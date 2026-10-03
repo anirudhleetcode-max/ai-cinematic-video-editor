@@ -5,6 +5,7 @@ cached) · edit plans & versions · revisions & revert · preview/final render w
 from __future__ import annotations
 
 import copy
+from collections import Counter
 import json
 import re
 import shutil
@@ -19,7 +20,7 @@ from .director.context import Asset, ProjectContext
 from .director.planner import build_plan
 from .director.revise import apply_revision
 from .logging import get_logger, log, timed
-from .media.analyze import analyze_video, apply_uniqueness
+from .media.analyze import HARD_ISSUES, analyze_video, apply_uniqueness
 from .media.inspect import inspect_media
 from .media.probe import image_thumbnail, kind_for, make_proxy, probe, thumbnail
 from .music.analyze import analyze_music
@@ -242,8 +243,13 @@ def analyze_project(pid: str, mode: str = "fast", progress: Progress = _noop, fo
             update_settings(pid, reference_profile=prof, reference_asset_id=ref["id"])
     shots = [s for an in clips.values() for s in an.get("shots", [])]
     summary = {**stats, "seconds": round(time.perf_counter() - t0, 2), "clips": len(clips), "shots": len(shots),
-               "usable_shots": sum(1 for s in shots if not s["issues"]), "duplicate_groups": len(dups),
+               "usable_shots": sum(1 for s in shots if not (set(s["issues"]) & (HARD_ISSUES | {"duplicate"}))),
+               "clean_shots": sum(1 for s in shots if not s["issues"]),
+               "unusable_shots": sum(1 for s in shots if set(s["issues"]) & HARD_ISSUES), "duplicate_groups": len(dups),
                "rejected": {k: sum(1 for s in shots if k in s["issues"]) for k in ("blurry", "underexposed", "overexposed", "shaky", "black", "frozen", "duplicate")},
+               "issues": dict(Counter(i for s in shots for i in s["issues"])),
+               "vision_provider": next((an.get("vision_provider") for an in clips.values() if an.get("vision_provider")), None),
+               "speech_detector": next((an.get("speech_detector") for an in clips.values() if an.get("speech_detector")), None),
                "cache": db.cache_stats()}
     update_settings(pid, last_analysis=summary)
     log(logger, "project analysed", project=pid, **{k: v for k, v in summary.items() if not isinstance(v, dict)})

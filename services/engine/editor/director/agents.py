@@ -15,6 +15,7 @@ from ..media.frames import hamming
 from ..music.analyze import best_window
 from ..registry import templates
 from ..registry.color import COLOR_PRESETS, technical_correction
+from ..registry.editing import DENSITY
 from ..schemas import (AudioPlan, CaptionSpec, ColorAdjust, ColorGrade, CreativeBible, CropSpec, EffectInstance, Ending, ExportSpec, MotionSpec,
                        MusicSegment, Segment, SfxItem, SpeedSpec, StorySection, StyleIntent, TextItem, TransitionSpec)
 from .context import Candidate, ProjectContext
@@ -60,6 +61,8 @@ class Slot:
     energy: float
     beat_index: int | None = None
     on_downbeat: bool = False
+    beat_relation: str = "free"  # downbeat | on_beat | before_beat | after_beat | section_end | free
+    role: str = "build"
 
 
 @dataclass
@@ -170,9 +173,11 @@ def build_bible(intent: StyleIntent, template: dict, ref_map: dict | None) -> Cr
     tstyle = intent.transition_style or (ref_map or {}).get("transition_style") or template.get("transitionStyle", "subtle")
     color = intent.color_preset or (ref_map or {}).get("color_preset") or template.get("color", "cinematic_neutral")
     energetic = pacing in ("fast", "very_fast") or "energetic" in styles
+    density = intent.effect_density or ("medium" if (energetic and tstyle in ("energetic", "glitch")) else "low")
+    eff_frac, trans_mult = DENSITY[density]
     trans_budget = (ref_map or {}).get("transition_budget")
-    if trans_budget is None:
-        trans_budget = {"none": 0.0, "minimal": 0.1, "subtle": 0.18, "dynamic": 0.3, "energetic": 0.4, "glitch": 0.35}[tstyle]
+    if trans_budget is None:  # a reference's measured transition frequency wins; otherwise style × density
+        trans_budget = min(0.6, {"none": 0.0, "minimal": 0.1, "subtle": 0.18, "dynamic": 0.3, "energetic": 0.4, "glitch": 0.35}[tstyle] * trans_mult)
     story = intent.story_type or template.get("story", "general")
     return CreativeBible(
         style=", ".join(styles) or "cinematic",
@@ -183,7 +188,8 @@ def build_bible(intent: StyleIntent, template: dict, ref_map: dict | None) -> Cr
         pacing=pacing,
         music_strategy=intent.music_strategy or template.get("musicStrategy", "build_to_peak"),
         story_structure=[s for s, _, _ in STRUCTURES.get(story, STRUCTURES["general"])],
-        effect_budget=0.3 if energetic else 0.15,
+        effect_budget=eff_frac,
+        effect_density=density,
         transition_budget=float(trans_budget),
     )
 
@@ -254,7 +260,8 @@ def music_director(plan: Plan, ctx: ProjectContext, intent: StyleIntent, section
         prefer = "calm" if strategy == "calm" else "peak" if strategy == "peak" else "build_to_peak"
         longest = max(songs, key=lambda a: a.analysis["duration"])
         if longest.analysis["duration"] >= total + 2:
-            scored = sorted(songs, key=lambda a: -_song_fit(a.analysis, total, prefer, plan))
+            long_enough = [a for a in songs if a.analysis["duration"] >= total + 2]  # never pick a song that would need looping
+            scored = sorted(long_enough, key=lambda a: -_song_fit(a.analysis, total, prefer, plan))
             chosen = [scored[0]]
         else:
             chosen = sorted(songs, key=lambda a: -a.analysis["duration"])
@@ -272,8 +279,13 @@ def music_director(plan: Plan, ctx: ProjectContext, intent: StyleIntent, section
             # extend: loop a high-energy section at a downbeat with a crossfade (not an obvious repeat of the intro)
             t, src = 0.0, 0.0
             hi = m.get("high_energy") or [[0, m["duration"]]]
-            loop_from = hi[0][0]
-            while t < total - 0.1:
+            # re-entry point must leave enough material after it for progress (≥ crossfade + 4 s), else the loop stalls
+            need = xf + 4.0
+            starts = [h[0] for h in hi if m["duration"] - h[0] >= need] or [d for d in m.get("downbeats", []) if m["duration"] - d >= need][:1] or [0.0]
+            loop_from = float(starts[0])
+            for _ in range(200):  # hard bound: every pass advances t by ≥ 4 s
+                if t >= total - 0.1:
+                    break
                 remaining = total - t
                 avail = m["duration"] - src
                 L = min(avail, remaining + (xf if remaining > avail else 0))
@@ -355,6 +367,13 @@ def energy_at(plan: Plan, t: float) -> float | None:
 
 # ------------------------------------------------------------------------------- timeline
 def timeline_director(plan: Plan, intent: StyleIntent) -> None:
+    """Cut points from the pacing engine (director/pacing.py) on the music's beat grid.
+
+    Not every cut sits exactly on a beat: phrase starts and section changes land on downbeats; most cuts land on a beat;
+    a deterministic minority are deliberately offset — slightly *before* the beat in hook/climax (anticipation) or
+    *after* it in emotional/opening/resolution sections (a late, relaxed cut). Each slot records its beat relation."""
+    from .pacing import role_of, target_for
+
     body = plan.duration - plan.ending.duration
     beat_sync = bool(plan.beats) and (intent.beat_sync if intent.beat_sync is not None else plan.template.get("beatSync", plan.bible.pacing in ("fast", "very_fast")))
     rng = random.Random(7)
@@ -362,12 +381,17 @@ def timeline_director(plan: Plan, intent: StyleIntent) -> None:
     beats = np.array(plan.beats)
     downs = set(round(d, 3) for d in plan.downbeats)
     bi = float(np.median(np.diff(beats))) if len(beats) > 2 else 0.0
+    bpm = 60.0 / bi if bi > 0 else None
+    ref_med = plan.template.get("_ref_shot_length")
+    pf = float(intent.pacing_factor or 1.0)
+
     def snap(x: float) -> float:
         if not (beat_sync and bi > 0 and len(beats)):
             return x
         k = int(np.argmin(np.abs(beats - x)))
         return float(beats[k]) if abs(beats[k] - x) <= bi else x
 
+    relations: dict[str, int] = {}
     prev_end = 0.0
     for si, sec in enumerate(plan.sections):
         t = prev_end
@@ -377,30 +401,48 @@ def timeline_director(plan: Plan, intent: StyleIntent) -> None:
             end = body if si == len(plan.sections) - 1 else min(body, max(t + 0.5, snap(sec.end)))
         sec.start, sec.end = round(t, 3), round(end, 3)
         prev_end = end
+        role = role_of(sec.name)
+        lens = []
         while t < end - 0.05:
             me = energy_at(plan, t)
             e = sec.energy if me is None else 0.6 * sec.energy + 0.4 * me
-            L = sec.shot_length * (1.25 - 0.5 * e) / 1.0 * rng.uniform(0.85, 1.15)
-            L = max(0.45, L)
+            pt = target_for(sec.name, e, bpm=bpm if beat_sync else None, reference_median=ref_med, pacing_factor=pf)
+            L = max(0.3, pt.target * rng.uniform(0.88, 1.12))
             nxt = t + L
-            on_down = False
+            on_down, rel = False, "free"
             if beat_sync and bi > 0:
-                n_beats = max(1, round(L / bi))
-                # prefer landing on a downbeat for high-energy or section ends
-                cand = beats[(beats > t + 0.35) & (beats <= min(end, t + (n_beats + 1) * bi + 0.01))]
+                n_beats = pt.beats or max(1, round(L / bi))
+                cand = beats[(beats > t + max(0.3, pt.lo * pf * 0.8)) & (beats <= min(end, t + (n_beats + 1) * bi + 0.01))]
                 if len(cand):
                     target = t + n_beats * bi
                     k = int(np.argmin(np.abs(cand - target) - (0.15 * bi) * np.array([round(c, 3) in downs for c in cand])))
                     nxt = float(cand[k])
                     on_down = round(nxt, 3) in downs
+                    rel = "downbeat" if on_down else "on_beat"
+                    roll = rng.random()
+                    if not on_down and role in ("hook", "climax") and roll < 0.12:
+                        nxt -= min(0.08, bi / 8)  # anticipation: cut a couple of frames before the hit
+                        rel = "before_beat"
+                    elif not on_down and role in ("emotional", "opening", "resolution") and roll < 0.2:
+                        nxt += bi / 4  # late, relaxed cut
+                        rel = "after_beat"
             if end - nxt < 0.6:  # don't leave a sliver at the end of a section
-                nxt = end
+                nxt, rel = end, ("section_end" if beat_sync else rel)
+            nxt = min(nxt, end)
+            if nxt - t < 0.3:
+                nxt = min(end, t + 0.3)
             bidx = int(np.argmin(np.abs(beats - t))) if len(beats) else None
-            slots.append(Slot(sec.name, round(t, 3), round(nxt - t, 3), round(float(e), 3), bidx, on_down))
+            slots.append(Slot(sec.name, round(t, 3), round(nxt - t, 3), round(float(e), 3), bidx, on_down, rel, role))
+            relations[rel] = relations.get(rel, 0) + 1
+            lens.append(nxt - t)
             t = nxt
+        if lens:
+            sec.shot_length = round(float(np.clip(np.mean(lens), 0.25, 30)), 3)
     plan.slots = slots
-    plan.note(f"Timeline: {len(slots)} shots, " + (f"cuts snapped to the beat grid ({60 / bi:.0f} BPM)" if beat_sync and bi else "free timing (no beat sync)")
-              + f", median shot {np.median([s.duration for s in slots]):.2f}s.")
+    tot = max(1, sum(relations.values()))
+    plan.note(f"Timeline: {len(slots)} shots from the pacing engine" + (f" on the beat grid ({bpm:.0f} BPM)" if beat_sync and bpm else " (free timing, no beat sync)")
+              + f", median shot {np.median([s.duration for s in slots]):.2f}s; cut relations: "
+              + ", ".join(f"{k} {100 * v / tot:.0f}%" for k, v in sorted(relations.items(), key=lambda kv: -kv[1])) + ".")
 
 
 # ------------------------------------------------------------------------------- clip selection
@@ -415,78 +457,131 @@ SECTION_TAGS = {"opening": ["wide", "static"], "establishing": ["wide", "static"
                 "emotional_peak": ["closeup", "faces"], "climax": ["high_motion"], "energy": ["high_motion"]}
 
 
+HARD_EXCLUDE = ("black", "frozen", "too_short", "obstructed", "duplicate")
+SECTION_SUBJECTS = {"people": ["people", "faces", "group"], "crowd": ["crowd", "group"], "emotional_peak": ["faces"], "ceremony": ["people"],
+                    "opening": ["outdoor"], "establishing": ["outdoor", "wide"], "location": ["outdoor"], "product": ["products"],
+                    "features": ["products", "screen"], "demonstration": ["screen", "products"], "celebration": ["group", "crowd"],
+                    "performance": ["people"], "action": ["sports", "vehicles"]}
+_ROLE_PRIORITY = {"hook": 0, "climax": 1, "opening": 2, "emotional": 3, "build": 4, "resolution": 5}
+
+
 def clip_selector(plan: Plan, ctx: ProjectContext, intent: StyleIntent, prefer_previous: dict[int, str] | None = None,
                   tag_weights: dict[str, float] | None = None) -> None:
+    """Sequence construction, not top-N picking.
+
+    Slots are filled in narrative-priority order (hook → climax → opening → emotional → build → resolution) so the
+    strongest material is reserved for the moments that need it; each choice is scored against the shots already placed
+    on BOTH sides (±3 slots): same clip, same camera angle, visually similar, same shot size, opposite pans and repeated
+    close-ups are penalised; subject continuity inside a section is rewarded. Technically imperfect shots are penalised
+    by their edit score, not excluded — only black/frozen/too-short/obstructed/duplicate shots are held back, and even
+    those only until the footage runs out (progressive relaxation, reported)."""
+    from .pacing import role_of
+
     cands = ctx.candidates()
-    avoid = set(intent.avoid or ["blurry", "black", "frozen", "duplicate"])
-    usable = [c for c in cands if not (set(c.issues) & avoid)]
-    relaxed = ""
-    need_n = max(3, len(plan.slots) // 6)
-    # progressive relaxation: tolerate soft issues first, never blur/black/duplicate unless nothing else exists
-    for soft in (("overexposed", "underexposed"), ("shaky", "too_short"), ("frozen",), ("duplicate", "blurry", "black")):
+    user_avoid = set(intent.avoid or []) - set(HARD_EXCLUDE)
+    need_n = max(3, len(plan.slots) // 4)
+    relaxed: list[str] = []
+    hard = set(HARD_EXCLUDE)
+    usable = [c for c in cands if not (set(c.issues) & (hard | user_avoid))]
+    for step, drop in (("user-avoided issues", user_avoid), ("duplicates", {"duplicate"}), ("frozen/too-short", {"frozen", "too_short"}),
+                       ("obstructed/black", {"obstructed", "black"})):
         if len(usable) >= need_n:
             break
-        avoid -= set(soft)
-        usable = [c for c in cands if not (set(c.issues) & avoid)]
-        relaxed += ("," if relaxed else "") + "/".join(soft)
+        if drop & (hard | user_avoid):
+            user_avoid -= drop
+            hard -= drop
+            usable = [c for c in cands if not (set(c.issues) & (hard | user_avoid))]
+            relaxed.append(step)
     if not usable:
         usable = sorted(cands, key=lambda c: -c.overall)[: max(3, len(plan.slots))]
-    rejected = len(cands) - len(usable)
     if not usable:
         raise RuntimeError("no usable footage")
-    use_count: dict[str, int] = {}
-    used_ranges: dict[str, list[tuple[float, float]]] = {}
+    rejected = len(cands) - len(usable)
     prefer_tags = {t: 0.12 for t in intent.prefer_tags}
     prefer_tags.update(tag_weights or {})
-    slow_ok = intent.slow_motion if intent.slow_motion is not None else plan.template.get("slowMotion", False)
-    ramps_ok = intent.speed_ramps if intent.speed_ramps is not None else plan.template.get("speedRamps", False)
-    n_ramps = 0
-    prev: Candidate | None = None
-    segs: list[Segment] = []
-    for k, sl in enumerate(plan.slots):
-        emotional = sl.section in ("emotional_peak", "reflection", "resolution", "intro") or (sl.energy < 0.45 and "emotional" in intent.styles)
-        want_rate = 1.0
-        if slow_ok and emotional:
-            want_rate = 0.5 if sl.energy < 0.4 else 0.65
+    n = len(plan.slots)
+    prev_keys = set((prefer_previous or {}).values())
+    assigned: list[Candidate | None] = [None] * n
+    use_count: dict[str, int] = {}
+    asset_use: dict[str, int] = {}
+    order = sorted(range(n), key=lambda k: (_ROLE_PRIORITY.get(plan.slots[k].role or role_of(plan.slots[k].section), 4), -plan.slots[k].energy, k))
+
+    def size(c: Candidate) -> str:
+        return (c.semantic or {}).get("shot_size", "unknown")
+
+    def tags(c: Candidate) -> set[str]:
+        return set(c.tags) | {x["label"] for x in (c.semantic or {}).get("subjects", [])}
+
+    for k in order:
+        sl = plan.slots[k]
+        nbs = [(abs(j - k), assigned[j]) for j in range(max(0, k - 3), min(n, k + 4)) if j != k and assigned[j] is not None]
         best, best_s = None, -1e9
         for c in usable:
             s = c.overall
-            for sc in SECTION_PREF.get(sl.section, ("quality_score",)):
-                s += 0.35 * c.scores.get(sc, 0) / len(SECTION_PREF.get(sl.section, ("q",)))
+            prefs = SECTION_PREF.get(sl.section, ("quality_score",))
+            s += 0.35 * sum(c.scores.get(sc, 0) for sc in prefs) / len(prefs)
             s -= 0.4 * abs(c.scores.get("energy_score", 0.5) - sl.energy)
-            s += sum(0.1 for t in SECTION_TAGS.get(sl.section, []) if t in c.tags)
-            s += sum(w for t, w in prefer_tags.items() if t in c.tags)
-            if prefer_previous and prefer_previous.get(k) == c.key:
-                s += 0.5
+            ct = tags(c)
+            s += sum(0.1 for t in SECTION_TAGS.get(sl.section, []) if t in ct)
+            s += sum(0.08 for t in SECTION_SUBJECTS.get(sl.section, []) if t in ct)
+            s += sum(w for t, w in prefer_tags.items() if t in ct)
+            if prefer_previous:
+                if prefer_previous.get(k) == c.key:
+                    s += 0.5  # same slot as before
+                elif c.key in prev_keys and use_count.get(c.key, 0) == 0:
+                    s += 0.3  # retained from the previous version (timing changed, so its slot moved)
             uc = use_count.get(c.key, 0)
-            free = _free_length(c, used_ranges.get(c.key, []))
-            need = sl.duration * want_rate
-            if free < min(need, sl.duration * 0.5) and not c.image:
+            free = _free_length(c, [])
+            if uc and not c.image:
+                free = c.duration / (uc + 1)
+            if free < min(sl.duration, 1.0) and not c.image:
                 s -= 2.0
-            s -= 0.45 * uc
-            if prev is not None:
-                if c.asset.id == prev.asset.id:
-                    s -= 0.35
-                if not c.image and not prev.image and hamming(c.dhash, prev.dhash) < 12:
-                    s -= 0.4  # visually similar consecutive shots → jump-cut feel
-                if "closeup" in c.tags and "closeup" in prev.tags:
+            s -= 0.45 * uc + 0.06 * asset_use.get(c.asset.id, 0)
+            if c.speech > 0.5 and sl.duration < 2.0:
+                s -= 0.15  # would chop someone mid-sentence
+            for d, o in nbs:
+                w = 1.0 if d == 1 else (0.4 if d == 2 else 0.2)
+                if c.asset.id == o.asset.id:
+                    s -= 0.35 * w
+                if c.angle_group and c.angle_group == o.angle_group and c.asset.id != o.asset.id:
+                    s -= 0.3 * w
+                if d == 1 and not c.image and not o.image and hamming(c.dhash, o.dhash) < 12:
+                    s -= 0.4
+                if d == 1 and size(c) == size(o) and size(c) in ("closeup", "extreme_closeup"):
+                    s -= 0.08
+                if d == 1 and plan.slots[k].section == (plan.slots[k - 1].section if k > 0 else "") and "people" in ct and "people" in tags(o):
+                    s += 0.04
+                if d == 1 and "pan_left" in ct and "pan_right" in o.tags or d == 1 and "pan_right" in ct and "pan_left" in o.tags:
                     s -= 0.08
             if k == 0 and sl.section == "hook":
-                s += 0.25 * c.scores.get("cinematic_score", 0) + 0.25 * c.scores.get("energy_score", 0)
+                s += 0.25 * c.scores.get("cinematic_score", 0) + 0.25 * c.scores.get("energy_score", 0) + 0.1 * c.scores.get("creative_score", 0)
+            if sl.role == "opening" and size(c) in ("wide", "unknown") and (c.semantic or {}).get("scene_type", {}).get("setting") in ("outdoor", "indoor"):
+                s += 0.06  # establishing shots open sections
             if s > best_s:
                 best, best_s = c, s
         assert best is not None
-        c = best
-        rate = want_rate
+        assigned[k] = best
+        use_count[best.key] = use_count.get(best.key, 0) + 1
+        asset_use[best.asset.id] = asset_use.get(best.asset.id, 0) + 1
+    # ---- second pass in time order: speed, ramps, source ranges -----------------------------------------------
+    slow_ok = intent.slow_motion if intent.slow_motion is not None else plan.template.get("slowMotion", False)
+    ramps_ok = intent.speed_ramps if intent.speed_ramps is not None else plan.template.get("speedRamps", False)
+    n_ramps = 0
+    used_ranges: dict[str, list[tuple[float, float]]] = {}
+    segs: list[Segment] = []
+    for k, sl in enumerate(plan.slots):
+        c = assigned[k]
+        assert c is not None
+        emotional = sl.section in ("emotional_peak", "reflection", "resolution", "intro") or (sl.energy < 0.45 and "emotional" in intent.styles)
+        rate = (0.5 if sl.energy < 0.4 else 0.65) if (slow_ok and emotional and c.speech < 0.3) else 1.0
         ramp = None
-        if ramps_ok and sl.energy > 0.7 and n_ramps < max(1, len(plan.slots) // 8) and sl.duration > 1.2 and not c.image:
-            ramp = [(0.0, 1.6), (0.4, 1.6), (0.55, 0.45), (0.85, 0.45), (1.0, 1.0)]
+        if ramps_ok and sl.energy > 0.7 and n_ramps < max(1, len(plan.slots) // 8) and sl.duration > 1.2 and not c.image and c.speech < 0.3:
+            ramp = [(0.0, 1.6), (0.35, 1.6), (0.55, 0.45), (0.85, 0.45), (1.0, 1.0)]
             n_ramps += 1
         src_len = _src_needed(sl.duration, rate, ramp)
         src_in = _place(c, src_len, used_ranges.get(c.key, []))
         avail = (c.end - src_in) if not c.image else 1e9
         if src_len > avail + 1e-3:
-            # not enough source: slow down slightly (≤25%) or accept a freeze at the end
             if ramp is None and avail / sl.duration >= 0.75:
                 rate = avail / sl.duration
                 src_len = avail
@@ -496,25 +591,40 @@ def clip_selector(plan: Plan, ctx: ProjectContext, intent: StyleIntent, prefer_p
                 src_len = min(avail, sl.duration * rate)
         src_out = src_in + max(0.1, src_len)
         used_ranges.setdefault(c.key, []).append((src_in, src_out))
-        use_count[c.key] = use_count.get(c.key, 0) + 1
         freeze = max(0.0, sl.duration - (src_out - src_in) / max(rate, 1e-3)) if ramp is None and not c.image else 0.0
-        reason = f"{sl.section}: score {c.overall:.2f}" + (f", tags {','.join(c.tags[:3])}" if c.tags else "")
+        prof = c.semantic or {}
+        reason = f"{sl.section}: edit {c.overall:.2f} (q {c.scores.get('quality_score', 0):.2f} u {c.scores.get('usability_score', 1):.2f} c {c.scores.get('creative_score', 0):.2f})"
+        if prof.get("shot_size") and prof["shot_size"] != "unknown":
+            reason += f", {prof['shot_size']}"
+        subj = [x["label"] for x in prof.get("subjects", [])][:3]
+        if subj:
+            reason += f", {'/'.join(subj)}"
+        if c.issues:
+            reason += f", accepted despite {','.join(c.issues[:2])}"
         if rate < 1 and ramp is None:
             reason += f", slow motion {rate:.2f}x"
         if ramp:
             reason += ", speed ramp"
+        if sl.beat_relation not in ("free",):
+            reason += f", cut {sl.beat_relation.replace('_', ' ')}"
         segs.append(Segment(
             id=f"s{k:03d}", asset_id=c.asset.id, shot_index=c.shot_index, src_in=round(src_in, 3), src_out=round(src_out if not c.image else sl.duration, 3),
             out_start=sl.start, out_duration=sl.duration, section=sl.section,
             speed=SpeedSpec(rate=round(float(np.clip(rate, 0.1, 16)), 3), ramp=ramp, freeze_end=round(min(freeze, 5.0), 3), interpolate=bool(rate < 0.8 and ctx.mode == "quality")),
             beat_index=sl.beat_index, reason=reason[:290], image=c.image,
             stabilize=("shaky" in c.issues and (intent.stabilize is not False)),
+            stabilize_mode=(("standard" if c.scores.get("stability_score", 1) < 0.25 else "light") if "shaky" in c.issues else None),
         ))
-        prev = c
     plan.segments = segs
-    distinct = len({s.asset_id for s in segs})
-    plan.note(f"Clip selection: {len(segs)} shots from {distinct} clips; {rejected} of {len(cands)} candidate shots rejected "
-              f"({', '.join(sorted(avoid))})" + (f" — allowed {relaxed} shots because too little clean footage" if relaxed else "") + f"; {n_ramps} speed ramps.")
+    keys = [f"{s.asset_id}:{s.shot_index}" for s in segs]
+    angles = [assigned[k].angle_group for k in range(n)]
+    adj_same_clip = sum(1 for i in range(1, n) if segs[i].asset_id == segs[i - 1].asset_id)
+    adj_same_angle = sum(1 for i in range(1, n) if angles[i] and angles[i] == angles[i - 1] and segs[i].asset_id != segs[i - 1].asset_id)
+    plan.note(f"Clip selection (sequence): {n} shots from {len(set(s.asset_id for s in segs))} clips / {len(set(angles))} camera set-ups; "
+              f"{len(keys) - len(set(keys))} shot re-uses; adjacent same-clip {adj_same_clip}, adjacent same-angle {adj_same_angle}; "
+              f"{rejected} of {len(cands)} candidate shots held back ({', '.join(sorted(hard | user_avoid)) or 'none'})"
+              + (f" — relaxed: {', '.join(relaxed)} (not enough footage)" if relaxed else "") + f"; {n_ramps} speed ramps; "
+              f"{sum(1 for k in range(n) if assigned[k].issues)} imperfect-but-valuable shots used.")
 
 
 def _free_length(c: Candidate, used: list[tuple[float, float]]) -> float:
@@ -554,8 +664,14 @@ def _src_needed(out_dur: float, rate: float, ramp) -> float:
 
 # ------------------------------------------------------------------------------- transitions
 def transition_director(plan: Plan, ctx: ProjectContext) -> None:
+    """CUT is the default and a first-class choice. A boundary gets a transition only when it has a reason (section
+    change, music drop, unavoidable similar framing), the budget (style × EffectDensity, or the reference's measured
+    frequency) allows it, and a palette transition fits: energy inside its range, duration inside its range, and
+    movement requirements met (pushes/slides/whips need lateral motion in the shots)."""
+    from ..registry.transitions import TRANSITIONS
+
     style = plan.bible.transition_philosophy.split(":")[0]
-    palette = TRANSITION_PALETTES.get(style, TRANSITION_PALETTES["subtle"])
+    palette = [t for t in TRANSITION_PALETTES.get(style, TRANSITION_PALETTES["subtle"]) if TRANSITIONS.has(t)]
     budget = int(round(plan.bible.transition_budget * max(0, len(plan.segments) - 1)))
     used = 0
     beats = np.array(plan.beats)
@@ -568,36 +684,103 @@ def transition_director(plan: Plan, ctx: ProjectContext) -> None:
         if a.section != b.section:
             reason, prio = "section change", 1.0
         ca, cb = cand_by_key.get(f"{a.asset_id}:{a.shot_index}"), cand_by_key.get(f"{b.asset_id}:{b.shot_index}")
-        if ca and cb and not ca.image and not cb.image and hamming(ca.dhash, cb.dhash) < 14 and a.asset_id == b.asset_id:
-            reason, prio = reason or "similar adjacent shots", max(prio, 0.7)
+        if ca and cb and not ca.image and not cb.image and hamming(ca.dhash, cb.dhash) < 14 and (a.asset_id == b.asset_id or ca.angle_group == cb.angle_group):
+            reason, prio = reason or "similar adjacent framing (avoids a jump cut)", max(prio, 0.7)
         if any(abs(b.out_start - d) < 0.3 for d in plan.drops):
             reason, prio = "music drop", 0.9
         if reason:
-            choices.append((prio, k, reason))
+            choices.append((prio, k, reason, ca, cb))
     rng = random.Random(3)
-    for prio, k, reason in sorted(choices, key=lambda x: -x[0]):
+    skipped = 0
+    for prio, k, reason, ca, cb in sorted(choices, key=lambda x: -x[0]):
         if used >= budget or not palette:
             break
         a, b = plan.segments[k - 1], plan.segments[k]
         sec_e = next((s.energy for s in plan.sections if s.name == b.section), 0.5)
+        lateral = bool(ca and cb and ({"pan_left", "pan_right", "moving", "high_motion"} & (set(ca.tags) | set(cb.tags))))
+
+        def fits(tid: str) -> bool:
+            m = TRANSITIONS.get(tid).__dict__.get("editing", {})
+            lo, hi = m.get("energy", [0, 1])
+            if not (lo - 0.1 <= sec_e <= hi + 0.1):
+                return False
+            if m.get("movement") == "lateral_motion" and not lateral:
+                return False
+            return True
+
         if reason == "section change" and sec_e < 0.45:
-            tid = "dip_to_black" if "dip_to_black" in palette else palette[0]
+            order = ["dip_to_black", "fade_slow", "crossfade"]
         elif reason == "music drop":
-            tid = "flash" if "flash" in palette else ("zoom" if "zoom" in palette else palette[0])
-        elif reason == "similar adjacent shots":
-            tid = "crossfade" if "crossfade" in palette else palette[0]
+            order = ["flash", "zoom", "whip"]
+        elif reason.startswith("similar"):
+            order = ["crossfade", "blur_dissolve", "morph"]
         else:
-            tid = palette[rng.randrange(len(palette))] if sec_e > 0.6 else palette[0]
-        dur = {"flash": 0.3, "whip": 0.35, "glitch": 0.35, "zoom": 0.5, "rgb_split": 0.4}.get(tid, 0.8 if sec_e < 0.5 else 0.5)
+            order = palette[:] if sec_e <= 0.6 else rng.sample(palette, len(palette))
+        tid = next((t for t in order if t in palette and fits(t)), None) or next((t for t in palette if fits(t)), None)
+        if tid is None:
+            skipped += 1
+            continue  # nothing in the palette suits this boundary → keep the cut
+        meta = TRANSITIONS.get(tid).__dict__.get("editing", {})
+        dlo, dhi = meta.get("duration_range", [0.3, 1.0])
+        dur = float(np.clip(dhi - (dhi - dlo) * sec_e, dlo, dhi))
         if bi:
             dur = max(0.2, round(dur / (bi / 2)) * (bi / 2))
         dur = min(dur, a.out_duration * 0.45, b.out_duration * 0.45)
-        if dur < 0.15:
+        if dur < max(0.15, dlo * 0.6):
+            skipped += 1
             continue
         b.transition_in = TransitionSpec(id=tid, duration=round(dur, 3))
         used += 1
-        plan.note(f"Transition at {b.out_start:.2f}s: {tid} ({dur:.2f}s) — {reason}.")
-    plan.note(f"Transitions: {used} of {len(plan.segments) - 1} boundaries (budget {budget}); all others are hard cuts.")
+        plan.note(f"Transition at {b.out_start:.2f}s: {tid} ({dur:.2f}s) — {reason}; energy {sec_e:.2f}, {meta.get('style')}.")
+    plan.note(f"Transitions: {used} of {len(plan.segments) - 1} boundaries (budget {budget}, density '{plan.bible.effect_density}'); "
+              f"all others are hard cuts" + (f"; {skipped} candidate boundaries kept as cuts (no fitting transition)" if skipped else "") + ".")
+
+
+def effects_designer(plan: Plan, ctx: ProjectContext, intent: StyleIntent) -> None:
+    """Accent effects with restraint: at most `effect_budget` of the segments (EffectDensity), only where the music or the
+    story gives them a reason (drops / downbeats in high-energy sections, the climax entrance), chosen from the effects
+    whose metadata matches the segment's energy and pacing. Effects the user asked for by name always qualify."""
+    from ..registry.effects import EFFECTS
+
+    if plan.bible.effect_density == "minimal" or plan.bible.effect_budget <= 0:
+        plan.note("Effects: density 'minimal' — no accent effects.")
+        return
+    budget = int(math.floor(plan.bible.effect_budget * len(plan.segments)))
+    asked = [e for e in intent.effects if EFFECTS.has(e)]
+    accents = [d.id for d in EFFECTS.all() if d.__dict__.get("editing", {}).get("role") == "accent"]
+    pool = asked + [a for a in accents if a not in asked]
+    style = plan.bible.transition_philosophy.split(":")[0]
+    allowed_styles = {"none": {"cinematic", "film"}, "minimal": {"cinematic", "film"}, "subtle": {"cinematic", "film", "soft"},
+                      "dynamic": {"cinematic", "film", "energetic", "music", "smooth"}, "energetic": {"energetic", "music", "smooth", "stylised"},
+                      "glitch": {"glitch", "music", "energetic"}}.get(style, {"cinematic", "film"})
+    used, placed = 0, []
+    drops = plan.drops
+    for s in sorted(plan.segments, key=lambda x: -next((z.energy for z in plan.sections if z.name == x.section), 0.5)):
+        if used >= budget:
+            break
+        sec_e = next((z.energy for z in plan.sections if z.name == s.section), 0.5)
+        on_drop = any(abs(s.out_start - d) < 0.25 for d in drops)
+        if not (on_drop or (sec_e >= 0.75 and s.beat_index is not None)) or s.effects:
+            continue
+        for eid in pool:
+            m = EFFECTS.get(eid).__dict__.get("editing", {})
+            lo, hi = m.get("recommended_energy", [0, 1])
+            if eid not in asked and (m.get("style") not in allowed_styles or not (lo <= sec_e <= hi)):
+                continue
+            if eid not in asked and plan.bible.pacing not in m.get("recommended_pacing", ["any"]) and "any" not in m.get("recommended_pacing", []):
+                continue
+            d = EFFECTS.get(eid)
+            params = {}
+            for p_ in d.params:  # recommended intensity: position inside each numeric range
+                if p_.kind != "enum" and p_.min is not None and p_.max is not None and p_.name in ("intensity", "strength", "shift", "amount"):
+                    params[p_.name] = round(p_.min + (p_.max - p_.min) * m.get("recommended_intensity", 0.3), 3)
+            if eid == "flash":
+                params.update({"at": 0.0, "length": 0.12})
+            s.effects = [EffectInstance(id=eid, params=params)]
+            used += 1
+            placed.append(f"{eid}@{s.out_start:.1f}s")
+            break
+    plan.note(f"Effects (density '{plan.bible.effect_density}', budget {budget}): " + (", ".join(placed) if placed else "none placed — no qualifying drop/accent moments") + ".")
 
 
 def apply_overlaps(plan: Plan, ctx: ProjectContext | None = None) -> None:

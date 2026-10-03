@@ -33,6 +33,9 @@ class Candidate:
     dhash: int
     faces: list
     image: bool = False
+    semantic: dict = field(default_factory=dict)
+    angle_group: str = ""
+    speech: float = 0.0  # fraction of the shot with detected speech
 
     @property
     def duration(self) -> float:
@@ -96,5 +99,7 @@ class ProjectContext:
                     continue
                 out.append(Candidate(f"{a.id}:{sh['index']}", a, sh["index"], s, e, float(sh.get("best_moment", (s + e) / 2)), sh["scores"],
                                      list(sh.get("issues", [])), list(sh.get("tags", [])), sh.get("metrics", {}), float(sh.get("overall_edit_score", 0.5)),
-                                     int(sh.get("dhash", 0)), sh.get("faces", [])))
+                                     int(sh.get("dhash", 0)), sh.get("faces", []), semantic=sh.get("semantic") or {},
+                                     angle_group=f"{a.id}:{sh.get('angle_group', sh['index'])}" if not sh.get("angle_group") else sh["angle_group"],
+                                     speech=float((sh.get("semantic") or {}).get("speech_presence") or 0.0)))
         return out

@@ -137,9 +137,9 @@ def make_reference(out: Path, seconds: float = 20.0, shot: float = 1.2, w: int =
     for i in range(nshots):
         p = tmp / f"p{i:03d}.mp4"
         src = SOURCES[(i * 3 + seed) % len(SOURCES)].format(w=w, h=h, fps=30)
-        vf = f"eq=contrast=1.25:saturation=1.35,colorbalance=rm=0.12:bm=-0.12,format=yuv420p"
+        vf = "eq=contrast=1.25:saturation=1.35,colorbalance=rm=0.12:bm=-0.12,format=yuv420p"
         if i % 5 == 4:
-            vf += f",fade=t=in:st=0:d=0.3"
+            vf += ",fade=t=in:st=0:d=0.3"
         run([s.ffmpeg, "-v", "error", "-y", "-f", "lavfi", "-i", src, "-t", f"{shot:.3f}", "-vf", vf,
              "-c:v", "libx264", "-preset", "ultrafast", "-crf", "24", "-an", str(p)], timeout=300)
         parts.append(p)

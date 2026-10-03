@@ -77,6 +77,7 @@ class Definition:
             "constraints": {p.name: ({"choices": list(p.choices)} if p.kind == "enum" else {"min": p.min, "max": p.max}) for p in self.params},
             "configurations": self.configurations(),
             "preview": f"/library/preview/{self.category}/{self.id}",
+            **({"editing": self.__dict__["editing"]} if "editing" in self.__dict__ else {}),
         }
 
 

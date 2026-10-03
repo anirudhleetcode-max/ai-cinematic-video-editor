@@ -166,6 +166,16 @@ def parse_prompt(prompt: str) -> StyleIntent:
                     "bloom": r"bloom", "black_white": r"black and white|b&w|monochrome"}.items():
         if re.search(rx, p):
             it["effects"].append(eff)
+    if re.search(r"no (visual )?effects|without effects|minimal effects|clean look|no fx\b", p):
+        it["effect_density"] = "minimal"
+    elif re.search(r"(extreme|crazy|insane|maximum|over the top) effects|effects?[\s\-]heavy and wild", p):
+        it["effect_density"] = "extreme"
+    elif re.search(r"(lots of|heavy|many|plenty of|more|bold) (visual )?effects|effects?[\s\-]heavy", p):
+        it["effect_density"] = "high"
+    elif re.search(r"(some|moderate|a few) effects", p):
+        it["effect_density"] = "medium"
+    elif re.search(r"(subtle|tasteful|restrained|light) effects", p):
+        it["effect_density"] = "low"
     if re.search(r"handheld|shaky cam", p):
         it["camera_motion"] = "dynamic"
     elif re.search(r"(subtle|tasteful|gentle) (camera )?motion|ken burns|push[\s\-]ins?|slow zoom", p):

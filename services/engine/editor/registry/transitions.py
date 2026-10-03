@@ -5,7 +5,7 @@ glitch, flash, film burn, light leak, kaleidoscope, blur) are implemented as `xf
 per-pixel expressions. In xfade, `P` runs 1→0, so `Q = 1-P` is forward progress; `E` is the eased Q."""
 from __future__ import annotations
 
-from .base import Definition, Registry, e, f, num
+from .base import Definition, Registry, e, f
 
 TRANSITIONS = Registry("transition")
 

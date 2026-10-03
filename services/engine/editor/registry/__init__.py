@@ -12,6 +12,13 @@ from .motion import MOTION_PRESETS
 from .text import TEXT_ANIMATIONS, TEXT_STYLES
 from .transitions import TRANSITIONS
 
+from .editing import effect_meta, transition_meta
+
+for _d in EFFECTS.all():  # editing metadata (what each effect / transition is for) — see registry/editing.py
+    object.__setattr__(_d, "editing", effect_meta(_d))
+for _d in TRANSITIONS.all():
+    object.__setattr__(_d, "editing", transition_meta(_d))
+
 REGISTRIES = {
     "effects": EFFECTS,
     "transitions": TRANSITIONS,

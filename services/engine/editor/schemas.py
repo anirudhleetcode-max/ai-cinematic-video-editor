@@ -33,6 +33,7 @@ class StyleIntent(Strict):
     color_adjust: dict[str, float] = Field(default_factory=dict)
     transition_style: Literal["none", "minimal", "subtle", "dynamic", "energetic", "glitch"] | None = None
     effects: list[str] = Field(default_factory=list, max_length=24)
+    effect_density: Literal["minimal", "low", "medium", "high", "extreme"] | None = None
     slow_motion: bool | None = None
     speed_ramps: bool | None = None
     camera_motion: Literal["none", "subtle", "dynamic"] | None = None
@@ -70,6 +71,7 @@ class CreativeBible(Strict):
     music_strategy: str
     story_structure: list[str]
     effect_budget: float = Field(0.25, ge=0, le=1, description="max fraction of segments that may carry a stylised effect")
+    effect_density: Literal["minimal", "low", "medium", "high", "extreme"] = "low"
     transition_budget: float = Field(0.2, ge=0, le=1, description="max fraction of boundaries that are not hard cuts")
 
 
@@ -144,6 +146,7 @@ class Segment(Strict):
     transition_in: TransitionSpec = Field(default_factory=TransitionSpec)
     technical: ColorAdjust = Field(default_factory=ColorAdjust)
     stabilize: bool = False
+    stabilize_mode: Literal["off", "light", "standard", "strong"] | None = None  # None → "light" when stabilize is True
     keep_audio: bool = True
     audio_gain_db: float = Field(0.0, ge=-60, le=12)
     beat_index: int | None = None
