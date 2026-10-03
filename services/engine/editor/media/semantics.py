@@ -107,6 +107,11 @@ def shot_profile(samples: list[dict], provider: str, semantic: bool, metrics: di
         if s["faces"]:
             subj["faces"] += 1
     subjects = [{"label": k, "frequency": round(v / n, 2)} for k, v in subj.most_common() if v / n >= 0.3]
+    obj = Counter()
+    for s in ss:
+        for lab in {o[0] for o in s["objects"] if o[1] >= (0.4 if o[0] == "person" else 0.5)}:
+            obj[lab] += 1
+    objects = [{"label": k, "frequency": round(v / n, 2)} for k, v in obj.most_common(8) if v / n >= 0.3] if semantic else []
     if people >= 2:
         subjects.append({"label": "group" if people < 6 else "crowd", "frequency": 1.0})
     # shot size from the largest face (or person box) height — standard framing conventions
@@ -132,6 +137,7 @@ def shot_profile(samples: list[dict], provider: str, semantic: bool, metrics: di
     det_src = "model" if semantic else "classic"
     return {
         "subjects": subjects,
+        "objects": objects,
         "people_count": people,
         "faces": int(max(face_counts)) if face_counts else 0,
         "shot_size": size,
@@ -148,7 +154,8 @@ def shot_profile(samples: list[dict], provider: str, semantic: bool, metrics: di
         "orientation": None,
         "samples": len(ss),
         "provider": provider,
-        "provenance": {"subjects": det_src if semantic else "classic (faces/people only; objects unavailable)", "people_count": det_src,
+        "provenance": {"subjects": det_src if semantic else "classic (faces/people only; objects unavailable)",
+                       "objects": "model (COCO-80 detector classes)" if semantic else "unavailable (deep vision models not installed)", "people_count": det_src,
                        "faces": det_src, "shot_size": "heuristic", "scene_type": "heuristic", "camera_motion": "measured",
                        "dominant_colors": "measured", "brightness": "measured", "energy": "measured", "visual_complexity": "measured",
                        "composition": "measured", "emotional_proxy": "heuristic (face size + stillness; not emotion recognition)",

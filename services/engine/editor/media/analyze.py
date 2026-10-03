@@ -17,7 +17,7 @@ from .probe import probe
 from .semantics import camera_motion, sample_detections, shot_profile
 
 logger = get_logger("analyze")
-VERSION = "video-v10"  # v7: correct colour/geometry sampling, vision provider, semantic profile, usability/creative scores
+VERSION = "video-v11"  # v7: correct colour/geometry sampling, vision provider, semantic profile, usability/creative scores
 
 MODES = {
     # sample fps, analysis width, face/person sampling interval (s)

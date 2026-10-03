@@ -72,6 +72,19 @@ def parse_revision(text: str) -> Revision:
             r.add("prefer_tag", "selection", tag=tag, weight=0.35)
         if re.search(rf"(less|fewer|no) ({rx})", p):
             r.add("prefer_tag", "selection", tag=tag, weight=-0.35)
+    handled = {o["tag"] for o in r.ops if o["op"] == "prefer_tag"}
+    if not handled:
+        for m in re.finditer(r"\b(show|feature|include|use|want|see|more|less|fewer|no|without|drop|lose|cut)\b (?:me |us )?(?:more |a lot more |lots of |some |any )?(?:of )?(?:the |a |an )?"
+                             r"(?:(?:shots?|clips?|footage|scenes?|moments?) (?:of|with) (?:the |a |an )?)?([a-z][a-z \-]{1,40}?)(?=\b(?:shots?|clips?|footage|scenes?|moments?)\b|[,.!;]|$| in | at | during | for | and (?:make|add|use|turn|change))", p):
+            from ..retrieval import resolve
+
+            phrase = m.group(2).strip()
+            if re.match(r"(effects?|transitions?|text|titles?|music|songs?|tracks?|captions?|subtitles?|grain|vignette|slow[\s\-]?mo|energy|energetic|colou?r)\b", phrase):
+                continue
+            labels, unknown = resolve(phrase)
+            if labels and len(unknown) <= 2:
+                neg = m.group(1) in ("less", "fewer", "no", "without", "drop", "lose", "cut")
+                r.add("prefer_query", "selection", query=phrase, labels=sorted(labels), weight=-0.8 if neg else 0.6, ignored_words=unknown)
     if m := re.search(r"text (bigger|larger|smaller)|(bigger|larger|smaller) (text|titles?|typography)", p):
         word = m.group(1) or m.group(2)
         r.add("text_scale", "text", factor=0.8 if word == "smaller" else 1.25)
@@ -226,6 +239,18 @@ def apply_revision(plan: EditPlan, text: str, ctx: ProjectContext) -> tuple[Edit
         elif o == "prefer_tag":
             tag_weights[op["tag"]] = tag_weights.get(op["tag"], 0) + op["weight"]
             structural = True
+        elif o == "prefer_query":
+            from ..retrieval import search
+
+            res = search(ctx.clips, op["query"])
+            found = sorted({lab for h in res["matches"] for lab in h["matched"]})
+            if not found:
+                op = {**op, "noop": True, "reason": f"no analysed shot shows {op['query']!r} (searched labels: {', '.join(op['labels'])})"}
+            else:
+                for lab in found:
+                    tag_weights[lab] = tag_weights.get(lab, 0) + op["weight"] / len(found) ** 0.5
+                op = {**op, "matched_labels": found, "matching_shots": res["n_matches"]}
+                structural = True
         elif o == "text_scale":
             for t in new.text:
                 t.scale = round(min(3.0, max(0.3, t.scale * op["factor"])), 3)

@@ -464,6 +464,18 @@ async def upload_complete(pid: str, uid: str):
     return S.asset_summary(a)
 
 
+@app.get("/projects/{pid}/search")
+def search_shots(pid: str, q: str = ""):
+    """Find analysed shots by description (label match — see editor/retrieval.py for what is and is not understood)."""
+    from .retrieval import search
+
+    if not q.strip() or len(q) > 200:
+        raise HTTPException(400, "give a short description, e.g. ?q=crowd")
+    assets = [a for a in S.list_assets(pid) if a.get("role") in ("clip", "broll")]
+    full = [db.get("assets", a["id"]) for a in assets]
+    return search([{"filename": a["filename"], "analysis": a.get("analysis")} for a in full if a], q)
+
+
 @app.get("/projects/{pid}/assets")
 def list_assets(pid: str):
     return [S.asset_summary(a) for a in db.query("SELECT * FROM assets WHERE project_id=? ORDER BY ordinal", (pid,))]

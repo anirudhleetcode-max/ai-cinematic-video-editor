@@ -600,7 +600,7 @@ def clip_selector(plan: Plan, ctx: ProjectContext, intent: StyleIntent, prefer_p
         return (c.semantic or {}).get("shot_size", "unknown")
 
     def tags(c: Candidate) -> set[str]:
-        return set(c.tags) | {x["label"] for x in (c.semantic or {}).get("subjects", [])}
+        return set(c.tags) | {x["label"] for x in (c.semantic or {}).get("subjects", [])} | {x["label"] for x in (c.semantic or {}).get("objects", [])}
 
     for k in order:
         sl = plan.slots[k]
