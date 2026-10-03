@@ -28,3 +28,15 @@ def test_defaults_come_from_contract():
     assert AudioPlan().true_peak_db == C.TRUE_PEAK_CEILING_DB and AudioPlan().target_lufs == C.LOUDNESS_TARGET_DEFAULT
     assert ExportSpec().audio_bitrate_k == C.AUDIO_BITRATE_K
     assert C.preview_size(1920, 1080) == (640, 360) and C.preview_size(1080, 1920) == (360, 640)
+
+
+def test_source_duration_limit_enforced(monkeypatch, dataset):
+    import pytest
+
+    from editor import service as S
+
+    monkeypatch.setattr(C, "MAX_SOURCE_SECONDS", 1)
+    pid = S.create_project("limit")["id"]
+    with open(dataset["clips"][0], "rb") as fh, pytest.raises(ValueError, match="source limit"):
+        S.add_asset(pid, "long.mp4", fh)
+    assert S.list_assets(pid) == []

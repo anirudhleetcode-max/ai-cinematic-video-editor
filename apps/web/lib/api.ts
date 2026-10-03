@@ -72,8 +72,33 @@ export interface JobRef {
   events: string;
 }
 
+export interface Health {
+  ok: boolean;
+  ffmpeg: boolean;
+  encoder: string;
+  hardware_encoding: boolean;
+  components?: Record<string, { ok: boolean } & Record<string, unknown>>;
+}
+
+export interface AuthUser {
+  id: string;
+  name: string;
+  is_admin: boolean;
+}
+
 export const api = {
-  health: () => req<{ ok: boolean; ffmpeg: string | null; encoder: string; hardware_encoding: boolean }>("/health"),
+  /** /health answers 503 with the same body when a component is unhealthy, so read the body either way. */
+  health: async (): Promise<Health> => {
+    const res = await fetch(`${API_URL}/health`, { cache: "no-store" });
+    return (await res.json()) as Health;
+  },
+  authConfig: () => req<{ auth: "token" | "none"; registration: boolean }>("/auth/config"),
+  me: () => req<AuthUser & { auth: string }>("/auth/me"),
+  login: (email: string, password: string) =>
+    req<{ token: string; expires: number; user: AuthUser }>("/auth/login", { method: "POST", body: JSON.stringify({ email, password }) }),
+  register: (email: string, password: string, name?: string) =>
+    req<{ token: string; expires: number; user: AuthUser }>("/auth/register", { method: "POST", body: JSON.stringify({ email, password, name }) }),
+  logout: () => req<{ ok: boolean }>("/auth/logout", { method: "POST" }),
   diagnostics: () => req<Record<string, unknown>>("/diagnostics"),
   projects: () => req<Project[]>("/projects"),
   createProject: (name: string) => req<Project>("/projects", { method: "POST", body: JSON.stringify({ name }) }),
@@ -100,6 +125,7 @@ export const api = {
   renders: (id: string) => req<RenderRow[]>(`/projects/${id}/renders`),
   renderReport: (rid: string) => req<Record<string, unknown>>(`/renders/${rid}/report`),
   job: (jid: string) => req<Job>(`/jobs/${jid}`),
+  cancelJob: (jid: string) => req<Job>(`/jobs/${jid}/cancel`, { method: "POST" }),
   renderStatus: (id: string) => req<{ jobs: Job[]; stages: string[] }>(`/projects/${id}/render-status`),
   library: (kind: string, q?: string) =>
     req<{ kind: string; count: number; parameter_configurations: number; items: LibraryItem[] }>(`/${kind}${q ? `?q=${encodeURIComponent(q)}` : ""}`),

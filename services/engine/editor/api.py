@@ -21,6 +21,7 @@ from .logging import get_logger
 from .media.probe import AUDIO_EXT, IMAGE_EXT, VIDEO_EXT
 from .previews import preview as library_preview
 from .proc import safe_filename, safe_path
+from .public import public_job, scrub
 from .registry import REGISTRIES, library_stats, search_library, templates
 from .storage import UploadTooLarge, get_storage
 
@@ -39,7 +40,7 @@ async def _lifespan(_: FastAPI):
     yield
 
 
-PUBLIC = ("/health", "/docs", "/openapi.json", "/redoc", "/docs/oauth2-redirect")
+PUBLIC = ("/health", "/health/live", "/docs", "/openapi.json", "/redoc", "/docs/oauth2-redirect", "/auth/register", "/auth/login", "/auth/config")
 JOB_SUFFIXES = ("/analyze", "/edit-plan", "/generate", "/preview", "/render", "/revise")
 
 
@@ -48,6 +49,10 @@ async def guard(request: Request) -> None:
     (project / asset / version / render / job). Objects the caller does not own answer 404 (existence is not leaked)."""
     path = request.url.path
     if path in PUBLIC:
+        if path.startswith("/auth/") and request.method == "POST":
+            ip = request.client.host if request.client else "?"
+            if not AUTH.limiter.allow(ip, "login", get_settings().login_rate_per_min):
+                raise HTTPException(429, "too many attempts — wait a minute", headers={"Retry-After": "60"})
         return
     st = get_settings()
     if st.auth == "none":
@@ -89,25 +94,148 @@ def _check_quota(request: Request, incoming: int) -> None:
 
 
 app = FastAPI(title="Autonomous AI Video Editor", version="0.2.0", lifespan=_lifespan, dependencies=[Depends(guard)])
-app.add_middleware(CORSMiddleware, allow_origins=list(get_settings().cors_origins) + ["http://127.0.0.1:3000"], allow_methods=["*"], allow_headers=["*"])
+def _cors_origins() -> list[str]:
+    origins = list(get_settings().cors_origins)
+    if get_settings().env == "development":
+        origins += [o for o in ("http://127.0.0.1:3000", "http://localhost:3000") if o not in origins]
+    return origins
+
+
+app.add_middleware(CORSMiddleware, allow_origins=_cors_origins(), allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
+                   allow_headers=["Authorization", "Content-Type"])
 
 
 @app.exception_handler(KeyError)
 async def _keyerr(_: Request, e: KeyError):
-    return JSONResponse(status_code=404, content={"detail": str(e).strip("'")})
+    return JSONResponse(status_code=404, content={"detail": scrub(str(e).strip("'\""))})
 
 
 @app.exception_handler(ValueError)
 async def _valerr(_: Request, e: ValueError):
-    return JSONResponse(status_code=400, content={"detail": str(e)})
+    return JSONResponse(status_code=400, content={"detail": scrub(str(e))})
+
+
+@app.exception_handler(Exception)
+async def _unhandled(request: Request, e: Exception):
+    """Anything unexpected: log it in full on the server, return a reference id and nothing internal to the client."""
+    import traceback
+
+    ref = db.new_id("err")
+    from .logging import log as _log
+
+    _log(logger, "unhandled error", 40, error_id=ref, path=request.url.path, error=f"{type(e).__name__}: {e}"[:500],
+         traceback=traceback.format_exc()[-3000:])
+    return JSONResponse(status_code=500, content={"detail": "internal error", "error_id": ref})
+
+
+# ------------------------------------------------------------------------------------ accounts
+class RegisterIn(BaseModel):
+    email: str = Field(max_length=254)
+    password: str = Field(max_length=256)
+    name: str | None = Field(None, max_length=80)
+
+
+class LoginIn(BaseModel):
+    email: str = Field(max_length=254)
+    password: str = Field(max_length=256)
+
+
+def _bearer(request: Request) -> str | None:
+    hdr = request.headers.get("authorization", "")
+    return hdr[7:] if hdr.lower().startswith("bearer ") else None
+
+
+@app.get("/auth/config")
+def auth_config():
+    st = get_settings()
+    return {"auth": st.auth, "registration": st.allow_registration and st.auth == "token"}
+
+
+@app.post("/auth/register")
+async def auth_register(body: RegisterIn):
+    st = get_settings()
+    if st.auth != "token":
+        raise HTTPException(400, "accounts are disabled in local single-user mode (EDITOR_AUTH=none)")
+    if not st.allow_registration:
+        raise HTTPException(403, "registration is closed — ask an administrator for an account")
+    try:
+        await asyncio.to_thread(AUTH.register, body.email, body.password, body.name)
+    except AUTH.AuthError as e:
+        raise HTTPException(409 if "exists" in str(e) else 400, str(e)) from None
+    return await auth_login(LoginIn(email=body.email, password=body.password))
+
+
+@app.post("/auth/login")
+async def auth_login(body: LoginIn):
+    if get_settings().auth != "token":
+        raise HTTPException(400, "accounts are disabled in local single-user mode (EDITOR_AUTH=none)")
+    r = await asyncio.to_thread(AUTH.login, body.email, body.password)
+    if r is None:
+        raise HTTPException(401, "invalid email or password")
+    u, token, expires = r
+    return {"token": token, "expires": expires, "user": {"id": u.id, "name": u.name, "is_admin": u.is_admin}}
+
+
+@app.post("/auth/logout")
+def auth_logout(request: Request):
+    AUTH.logout(_bearer(request))
+    return {"ok": True}
+
+
+@app.get("/auth/me")
+def auth_me(request: Request):
+    u = _user(request)
+    return {"id": u.id, "name": u.name, "is_admin": u.is_admin, "auth": get_settings().auth}
 
 
 # ------------------------------------------------------------------------------------ health
+def _component_health() -> dict:
+    """Each dependency checked for real; nothing internal (paths, versions of secrets) is returned."""
+    import shutil
+
+    from .media import vad
+    from .vision import models_dir
+
+    st = get_settings()
+    out: dict[str, dict] = {}
+    try:
+        db.query("SELECT 1")
+        out["database"] = {"ok": True}
+    except Exception:  # noqa: BLE001
+        out["database"] = {"ok": False}
+    try:
+        probe = st.data_dir / ".health"
+        probe.write_text("ok")
+        probe.unlink()
+        free = shutil.disk_usage(st.data_dir).free
+        out["storage"] = {"ok": free > 2 * 2**30, "free_gb": round(free / 2**30, 1), "backend": type(get_storage()).__name__}
+    except OSError:
+        out["storage"] = {"ok": False}
+    q = get_queue()
+    alive = sum(t.is_alive() for t in q.threads)
+    counts = {r["status"]: r["n"] for r in db.query("SELECT status, COUNT(*) AS n FROM jobs WHERE status IN ('queued','running') GROUP BY status")}
+    out["worker"] = {"ok": alive == q.n and q.n > 0, "threads_alive": alive, "threads": q.n}
+    out["queue"] = {"ok": True, "backend": type(q).__name__, "queued": counts.get("queued", 0), "running": counts.get("running", 0)}
+    d = diagnostics()
+    out["ffmpeg"] = {"ok": bool(d["ffmpeg"] and d["ffprobe"]), "encoder": d["selected_encoder"], "hardware_encoding": d["hardware_encoding"]}
+    vis = models_dir()
+    out["models"] = {"ok": True, "vision_deep": (vis / "object_detection_nanodet_2022nov.onnx").exists() and (vis / "face_detection_yunet_2023mar.onnx").exists(),
+                     "vad": vad.available(), "note": "optional — the classic OpenCV / energy fallbacks run without them"}
+    return out
+
+
+@app.get("/health/live")
+def health_live():
+    return {"ok": True}
+
+
 @app.get("/health")
 def health():
-    d = diagnostics()
-    return {"ok": bool(d["ffmpeg"] and d["ffprobe"]), "ffmpeg": d["ffmpeg"], "ffprobe": d["ffprobe"], "encoder": d["selected_encoder"],
-            "hardware_encoding": d["hardware_encoding"], "time": time.time()}
+    comps = _component_health()
+    ok = all(c["ok"] for c in comps.values())
+    d = comps["ffmpeg"]
+    body = {"ok": ok, "ffmpeg": d["ok"], "encoder": d["encoder"], "hardware_encoding": d["hardware_encoding"], "components": comps, "time": time.time()}
+    return JSONResponse(status_code=200 if ok else 503, content=body)
 
 
 @app.get("/diagnostics")
@@ -263,13 +391,13 @@ async def upload_assets(request: Request, pid: str, files: list[UploadFile] = Fi
     for f in files:
         name = safe_filename(f.filename or "upload")
         if Path(name).suffix.lower() not in ALLOWED:
-            errors.append({"file": f.filename, "error": f"unsupported type {Path(name).suffix}"})
+            errors.append({"file": name, "error": f"unsupported type {Path(name).suffix}"})
             continue
         try:
             a = await asyncio.to_thread(S.add_asset, pid, name, f.file, role)
             out.append(S.asset_summary(a))
         except (ValueError, UploadTooLarge) as e:
-            errors.append({"file": f.filename, "error": str(e)})
+            errors.append({"file": name, "error": scrub(str(e))})
     return {"assets": out, "errors": errors}
 
 
@@ -285,7 +413,7 @@ def init_upload(pid: str, body: UploadInit, request: Request):
     S.get_project(pid)
     _check_quota(request, body.size)
     if Path(body.filename).suffix.lower() not in ALLOWED:
-        raise HTTPException(400, f"unsupported type {Path(body.filename).suffix}")
+        raise HTTPException(400, f"unsupported type {safe_filename(Path(body.filename).suffix)}")
     if body.size > get_settings().max_upload_mb << 20:
         raise HTTPException(413, "file too large")
     uid = db.new_id("upl")
@@ -481,8 +609,8 @@ def version_inspector(vid: str):
 
 @app.get("/projects/{pid}/render-status")
 def render_status(pid: str):
-    rows = db.query("SELECT id, kind, status, stage, progress, error, created, started, finished FROM jobs WHERE project_id=? ORDER BY created DESC LIMIT 20", (pid,))
-    return {"jobs": rows, "stages": STAGES}
+    rows = db.query("SELECT * FROM jobs WHERE project_id=? ORDER BY created DESC LIMIT 20", (pid,))
+    return {"jobs": [public_job(r) for r in rows], "stages": STAGES}
 
 
 @app.get("/jobs/{jid}")
@@ -490,7 +618,15 @@ def job(jid: str):
     j = db.get("jobs", jid)
     if not j:
         raise HTTPException(404, "job not found")
-    return j
+    return public_job(j, with_log=True)
+
+
+@app.post("/jobs/{jid}/cancel")
+def job_cancel(jid: str):
+    j = get_queue().cancel(jid)
+    if not j:
+        raise HTTPException(404, "job not found")
+    return public_job(j)
 
 
 @app.get("/jobs/{jid}/events")
@@ -506,13 +642,14 @@ async def job_events(jid: str, request: Request):
             if not j:
                 yield "event: error\ndata: {\"detail\": \"job not found\"}\n\n"
                 break
-            snap = {k: j[k] for k in ("id", "kind", "status", "stage", "progress", "error")}
-            snap["last"] = (j.get("log") or [])[-1:] if j.get("log") else []
+            pj = public_job(j)
+            snap = {k: pj[k] for k in ("id", "kind", "status", "state", "stage", "progress", "error", "error_id", "last")}
             if snap != last:
                 yield f"data: {json.dumps(snap, default=str)}\n\n"
                 last = snap
-            if j["status"] in ("done", "failed"):
-                yield f"event: end\ndata: {json.dumps({'status': j['status'], 'result': j.get('result'), 'error': j.get('error')}, default=str)}\n\n"
+            if j["status"] in ("done", "failed", "cancelled"):
+                end = {k: pj[k] for k in ("status", "state", "result", "error", "error_id", "elapsed_s")}
+                yield f"event: end\ndata: {json.dumps(end, default=str)}\n\n"
                 break
             await asyncio.sleep(0.4)
 

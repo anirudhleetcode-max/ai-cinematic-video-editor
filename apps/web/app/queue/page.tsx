@@ -30,7 +30,7 @@ export default function QueuePage() {
         <div className="divide-y divide-white/[0.04]">
           {rows.map((j) => (
             <div key={j.id} className="flex items-center gap-4 px-4 py-3 text-sm">
-              <Badge tone={j.status === "done" ? "ok" : j.status === "failed" ? "bad" : j.status === "running" ? "ember" : "neutral"}>{j.status}</Badge>
+              <Badge tone={j.status === "done" ? "ok" : j.status === "failed" ? "bad" : j.status === "running" ? "ember" : "neutral"}>{j.state ?? j.status}</Badge>
               <span className="w-20 font-mono text-xs text-fog-400">{j.kind}</span>
               <Link href={`/projects/${j.project.id}`} className="w-48 truncate text-fog-300 hover:text-fog">
                 {j.project.name}

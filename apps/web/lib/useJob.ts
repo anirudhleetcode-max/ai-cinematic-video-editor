@@ -14,7 +14,7 @@ export interface JobState {
 }
 
 /** Subscribes to the backend's SSE stream for a job. Every value shown comes from the worker. */
-export function useJob(jobId: string | null, onDone?: (status: "done" | "failed", result: unknown) => void): JobState {
+export function useJob(jobId: string | null, onDone?: (status: Job["status"], result: unknown) => void): JobState {
   const [state, setState] = useState<JobState>({ job: null, log: [], stagesSeen: [], result: null, error: null, finished: false });
   const cb = useRef(onDone);
   cb.current = onDone;
@@ -33,8 +33,8 @@ export function useJob(jobId: string | null, onDone?: (status: "done" | "failed"
       });
     };
     es.addEventListener("end", (ev) => {
-      const d = JSON.parse((ev as MessageEvent).data) as { status: "done" | "failed"; result: unknown; error: string | null };
-      setState((s) => ({ ...s, finished: true, result: d.result, error: d.error, job: s.job ? { ...s.job, status: d.status } : s.job }));
+      const d = JSON.parse((ev as MessageEvent).data) as { status: Job["status"]; state?: string; result: unknown; error: string | null; error_id?: string | null };
+      setState((s) => ({ ...s, finished: true, result: d.result, error: d.error, job: s.job ? { ...s.job, status: d.status, state: d.state, error_id: d.error_id } : s.job }));
       es.close();
       cb.current?.(d.status, d.result);
     });

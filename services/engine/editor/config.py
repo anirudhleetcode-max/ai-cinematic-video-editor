@@ -43,6 +43,9 @@ class Settings:
     user_quota_gb: float = field(default_factory=lambda: float(os.environ.get("EDITOR_USER_QUOTA_GB", "50")))
     process_timeout_s: int = field(default_factory=lambda: int(os.environ.get("EDITOR_PROCESS_TIMEOUT", "7200")))
     retention_days: int = field(default_factory=lambda: int(os.environ.get("EDITOR_RETENTION_DAYS", "30")))
+    session_days: float = field(default_factory=lambda: float(os.environ.get("EDITOR_SESSION_DAYS", "14")))
+    allow_registration: bool = field(default_factory=lambda: os.environ.get("EDITOR_ALLOW_REGISTRATION", "1") == "1")
+    login_rate_per_min: int = field(default_factory=lambda: int(os.environ.get("EDITOR_LOGIN_RATE_PER_MIN", "10")))
     cors_origins: tuple[str, ...] = field(
         default_factory=lambda: tuple(o.strip() for o in os.environ.get("EDITOR_CORS_ORIGINS", "http://localhost:3000").split(",") if o.strip())
     )

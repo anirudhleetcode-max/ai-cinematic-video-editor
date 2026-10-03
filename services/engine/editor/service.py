@@ -14,7 +14,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import BinaryIO, Callable
 
-from . import db
+from . import contract as C, db
 from .config import get_settings
 from .director.context import Asset, ProjectContext
 from .director.planner import build_plan
@@ -70,6 +70,10 @@ def touch(pid: str) -> None:
 
 
 def delete_project(pid: str) -> None:
+    from .jobs import get_queue
+
+    for j in db.query("SELECT id FROM jobs WHERE project_id=? AND status IN ('queued','running')", (pid,)):
+        get_queue().cancel(j["id"])
     for t in ("assets", "versions", "renders", "jobs"):
         db.execute(f"DELETE FROM {t} WHERE project_id=?", (pid,))
     db.execute("DELETE FROM projects WHERE id=?", (pid,))
@@ -154,7 +158,9 @@ def register_asset(pid: str, path: Path, role: str, kind: str, filename: str | N
             meta = probe(path)
         except Exception as e:  # noqa: BLE001
             path.unlink(missing_ok=True)
-            raise ValueError(f"could not read media file {filename or path.name}: {e}") from e
+            from .public import scrub
+
+            raise ValueError(f"could not read media file {filename or path.name}: {scrub(str(e), 200)}") from e
         if kind == "video" and not meta.get("has_video"):
             if meta.get("has_audio"):
                 kind = "audio"
@@ -165,6 +171,9 @@ def register_asset(pid: str, path: Path, role: str, kind: str, filename: str | N
         if kind == "audio" and not meta.get("has_audio"):
             path.unlink(missing_ok=True)
             raise ValueError(f"{filename}: no audio stream")
+        if kind in ("video", "audio") and (meta.get("duration") or 0) > C.MAX_SOURCE_SECONDS:
+            path.unlink(missing_ok=True)
+            raise ValueError(f"{filename or path.name}: {meta['duration'] / 3600:.1f} h is longer than the {C.MAX_SOURCE_SECONDS // 3600} h source limit")
         if kind in ("video", "audio"):
             rep = inspect_media(path)
             if not rep["ok"]:

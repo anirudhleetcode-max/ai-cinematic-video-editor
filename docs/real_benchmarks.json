@@ -30,33 +30,33 @@
   {
    "output_seconds": 60.0,
    "label": "MEASURED",
-   "planning_s": 0.105,
-   "segments": 16,
-   "repeated_shots": 0,
-   "preview_s": 53.54,
+   "planning_s": 0.393,
+   "segments": 49,
+   "repeated_shots": 1,
+   "preview_s": 52.2,
    "preview_qc": true,
-   "final_render_s": 190.3,
+   "final_render_s": 149.27,
    "render_breakdown": {
-    "segments_s": 60.25,
+    "segments_s": 87.94,
     "transitions_s": 0.0,
-    "audio_s": 25.33,
-    "final_pass_s": 75.57,
-    "qc_s": 6.71,
-    "total_s": 167.86,
-    "reviews_s": 22.35
+    "audio_s": 0.01,
+    "final_pass_s": 33.74,
+    "qc_s": 7.93,
+    "total_s": 129.62,
+    "reviews_s": 19.61
    },
    "qc_passed": true,
    "qc_failures": [],
    "encoder": "libx264",
    "output": {
-    "duration": 59.966667,
+    "duration": 59.933333,
     "width": 1920,
     "height": 1080,
     "fps": 30.0,
     "vcodec": "h264",
     "acodec": "aac"
    },
-   "loudness_lufs": -15.72,
+   "loudness_lufs": -16.56,
    "segments_cached": 0,
    "review": {
     "pass": 10,
@@ -64,102 +64,18 @@
     "fail": 0,
     "n/a": 0
    },
-   "reference_similarity": 0.554,
-   "total_s": 243.94,
-   "peak_rss_mb": 1505.2,
-   "cpu_percent_avg": 66.3
-  },
-  {
-   "output_seconds": 300.0,
-   "label": "MEASURED",
-   "planning_s": 0.449,
-   "segments": 65,
-   "repeated_shots": 4,
-   "preview_s": 241.74,
-   "preview_qc": true,
-   "final_render_s": 956.58,
-   "render_breakdown": {
-    "segments_s": 321.68,
-    "transitions_s": 0.0,
-    "audio_s": 133.64,
-    "final_pass_s": 352.05,
-    "qc_s": 32.51,
-    "total_s": 839.88,
-    "reviews_s": 116.38
-   },
-   "qc_passed": true,
-   "qc_failures": [],
-   "encoder": "libx264",
-   "output": {
-    "duration": 300.0,
-    "width": 1920,
-    "height": 1080,
-    "fps": 30.0,
-    "vcodec": "h264",
-    "acodec": "aac"
-   },
-   "loudness_lufs": -15.97,
-   "segments_cached": 0,
-   "review": {
-    "pass": 11,
-    "warn": 0,
-    "fail": 0,
-    "n/a": 0
-   },
-   "reference_similarity": 0.519,
-   "total_s": 1198.76,
-   "peak_rss_mb": 1840.7,
-   "cpu_percent_avg": 67.7
-  },
-  {
-   "output_seconds": 600.0,
-   "label": "MEASURED",
-   "planning_s": 0.729,
-   "segments": 125,
-   "repeated_shots": 53,
-   "preview_s": 525.81,
-   "preview_qc": true,
-   "final_render_s": 1922.06,
-   "render_breakdown": {
-    "segments_s": 635.56,
-    "transitions_s": 0.0,
-    "audio_s": 288.9,
-    "final_pass_s": 695.36,
-    "qc_s": 66.98,
-    "total_s": 1686.81,
-    "reviews_s": 234.63
-   },
-   "qc_passed": true,
-   "qc_failures": [],
-   "encoder": "libx264",
-   "output": {
-    "duration": 600.0,
-    "width": 1920,
-    "height": 1080,
-    "fps": 30.0,
-    "vcodec": "h264",
-    "acodec": "aac"
-   },
-   "loudness_lufs": -15.64,
-   "segments_cached": 2,
-   "review": {
-    "pass": 10,
-    "warn": 1,
-    "fail": 0,
-    "n/a": 0
-   },
-   "reference_similarity": 0.487,
-   "total_s": 2448.6,
-   "peak_rss_mb": 2833.3,
-   "cpu_percent_avg": 67.1
+   "reference_similarity": 0.604,
+   "total_s": 201.86,
+   "peak_rss_mb": 1583.0,
+   "cpu_percent_avg": 76.9
   }
  ],
- "upload_s": 70.73,
+ "upload_s": 74.07,
  "source_footage_seconds": 851.6,
  "analysis": {
-  "seconds": 141.98,
+  "seconds": 148.43,
   "shots": 103,
   "usable_shots": 90,
-  "peak_rss_mb": 1107.5
+  "peak_rss_mb": 1180.4
  }
 }

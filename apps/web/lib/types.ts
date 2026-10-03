@@ -98,10 +98,14 @@ export interface JobLogLine {
 export interface Job {
   id: string;
   kind: string;
-  status: "queued" | "running" | "done" | "failed";
+  status: "queued" | "running" | "done" | "failed" | "cancelled";
+  /** spec job state: queued · analyzing · planning · previewing · rendering · validating · completed · failed · cancelled */
+  state?: string;
   stage: string;
   progress: number;
+  elapsed_s?: number | null;
   error?: string | null;
+  error_id?: string | null;
   last?: JobLogLine[];
   result?: unknown;
 }

@@ -21,6 +21,10 @@ logger = get_logger("jobs")
 STAGES = ["uploading", "analyzing_media", "finding_best_shots", "analyzing_music", "understanding_reference", "planning_story",
           "building_timeline", "applying_color", "mixing_audio", "rendering", "quality_check", "finalizing"]
 
+class JobCancelled(Exception):
+    pass
+
+
 Handler = Callable[[dict, Callable[[str, float, str], None]], dict]
 
 
@@ -39,6 +43,7 @@ class LocalJobQueue(JobQueue):
         self.n = workers or get_settings().workers
         self.threads: list[threading.Thread] = []
         self._started = False
+        self._cancel: set[str] = set()
 
     def register(self, kind: str, fn: Handler) -> None:
         self.handlers[kind] = fn
@@ -67,6 +72,19 @@ class LocalJobQueue(JobQueue):
     def get(self, job_id: str) -> dict | None:
         return db.get("jobs", job_id)
 
+    def cancel(self, job_id: str) -> dict | None:
+        """Queued jobs are cancelled immediately; running jobs stop at their next progress report (FFmpeg steps already
+        started finish or time out first). Finished jobs are left alone."""
+        j = db.get("jobs", job_id)
+        if not j or j["status"] not in ("queued", "running"):
+            return j
+        if j["status"] == "queued":
+            db.update("jobs", job_id, status="cancelled", stage="cancelled", finished=time.time())
+        else:
+            self._cancel.add(job_id)
+            db.update("jobs", job_id, stage="cancelling")
+        return db.get("jobs", job_id)
+
     def run_sync(self, kind: str, project_id: str | None, params: dict) -> dict:
         """Execute immediately in the calling thread (CLI, tests)."""
         j = self.submit(kind, project_id, params)
@@ -91,6 +109,8 @@ class LocalJobQueue(JobQueue):
         last_write = [0.0]
 
         def progress(stage: str, frac: float, msg: str = "") -> None:
+            if jid in self._cancel:
+                raise JobCancelled()
             now = time.time()
             if not lines or lines[-1]["stage"] != stage or lines[-1]["msg"] != msg:
                 lines.append({"t": round(now, 2), "stage": stage, "progress": round(float(frac), 4), "msg": msg})
@@ -102,11 +122,15 @@ class LocalJobQueue(JobQueue):
             res = self.handlers[j["kind"]](j["params"] or {}, progress)
             db.update("jobs", jid, status="done", stage="finalizing", progress=1.0, result=res, log=lines[-200:], finished=time.time())
             log(logger, "job done", seconds=round(time.time() - (j["created"] or time.time()), 2))
+        except JobCancelled:
+            self._cancel.discard(jid)
+            db.update("jobs", jid, status="cancelled", stage="cancelled", log=lines[-200:], finished=time.time())
+            log(logger, "job cancelled")
         except Exception as e:  # noqa: BLE001
             tb = traceback.format_exc()
             db.update("jobs", jid, status="failed", error=f"{type(e).__name__}: {e}"[:2000], log=lines[-200:] + [{"t": time.time(), "stage": "error", "msg": tb[-1500:]}],
                       finished=time.time())
-            log(logger, "job failed", error=str(e)[:500])
+            log(logger, "job failed", error=str(e)[:500], error_id=jid, traceback=tb[-3000:])
 
 
 _queue: LocalJobQueue | None = None

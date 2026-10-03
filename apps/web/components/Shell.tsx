@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Activity, Boxes, Clapperboard, Gauge, LayoutTemplate, Library, Palette, Stethoscope } from "lucide-react";
 import { useEffect, useState } from "react";
-import { api, getToken, setToken } from "@/lib/api";
+import { api, setToken, type AuthUser, type Health } from "@/lib/api";
+import { AuthDialog } from "@/components/AuthDialog";
 import { cn } from "@/lib/cn";
 
 const NAV = [
@@ -19,12 +20,13 @@ const NAV = [
 
 export function Shell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
-  const [health, setHealth] = useState<{ ok: boolean; encoder: string; hardware_encoding: boolean } | null>(null);
+  const [health, setHealth] = useState<Health | null>(null);
   const [down, setDown] = useState(false);
   const [needAuth, setNeedAuth] = useState(false);
-  const [tokenInput, setTokenInput] = useState("");
+  const [me, setMe] = useState<(AuthUser & { auth: string }) | null>(null);
   useEffect(() => {
     api.health().then(setHealth).catch(() => setDown(true));
+    api.me().then(setMe).catch(() => undefined);
     const onAuth = () => setNeedAuth(true);
     window.addEventListener("cutroom:auth-required", onAuth);
     return () => window.removeEventListener("cutroom:auth-required", onAuth);
@@ -61,7 +63,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
         <div className="mt-auto rounded-lg border border-white/[0.05] bg-ink-850 p-3 text-[11px] text-fog-500">
           <div className="mb-1 flex items-center gap-1.5">
             <span className={cn("h-1.5 w-1.5 rounded-full", down ? "bg-bad" : health?.ok ? "bg-ok" : "bg-warn")} />
-            <span className="text-fog-300">{down ? "Engine offline" : health?.ok ? "Engine online" : "Connecting…"}</span>
+            <span className="text-fog-300">{down ? "Engine offline" : health?.ok ? "Engine online" : health ? "Engine degraded" : "Connecting…"}</span>
           </div>
           {health ? (
             <div>
@@ -71,39 +73,37 @@ export function Shell({ children }: { children: React.ReactNode }) {
           ) : down ? (
             <div>Start the API: <span className="font-mono">npm run dev:api</span></div>
           ) : null}
+          {me && me.auth === "token" ? (
+            <div className="mt-2 flex items-center justify-between border-t border-white/[0.05] pt-2">
+              <span className="truncate text-fog-300" title={me.name}>
+                {me.name}
+              </span>
+              <button
+                className="text-fog-500 hover:text-fog"
+                onClick={() => {
+                  void api
+                    .logout()
+                    .catch(() => undefined)
+                    .finally(() => {
+                      setToken(null);
+                      window.location.reload();
+                    });
+                }}
+              >
+                Sign out
+              </button>
+            </div>
+          ) : null}
         </div>
       </aside>
       <main className="min-w-0 flex-1">{children}</main>
       {needAuth ? (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4" role="dialog" aria-modal="true" aria-labelledby="auth-title">
-          <form
-            className="w-full max-w-sm rounded-xl border border-white/[0.08] bg-ink-850 p-5"
-            onSubmit={(e) => {
-              e.preventDefault();
-              setToken(tokenInput || null);
-              setNeedAuth(false);
-              window.location.reload();
-            }}
-          >
-            <h2 id="auth-title" className="mb-1 text-[15px] font-semibold">Sign in to this Cutroom server</h2>
-            <p className="mb-3 text-[12px] text-fog-400">
-              This server requires an API token. Ask the administrator (they create one with{" "}
-              <span className="font-mono">python -m editor.auth create-user</span>). It is stored only in this browser.
-            </p>
-            <input
-              autoFocus
-              type="password"
-              className="mb-3 w-full rounded-lg border border-white/[0.08] bg-ink-900 px-3 py-2 font-mono text-[12px]"
-              placeholder="ctr_…"
-              defaultValue={getToken() ?? ""}
-              onChange={(e) => setTokenInput(e.target.value)}
-              aria-label="API token"
-            />
-            <button type="submit" className="w-full rounded-lg bg-ember px-3 py-2 text-[13px] font-medium text-ink">
-              Save token
-            </button>
-          </form>
-        </div>
+        <AuthDialog
+          onDone={() => {
+            setNeedAuth(false);
+            window.location.reload();
+          }}
+        />
       ) : null}
     </div>
   );

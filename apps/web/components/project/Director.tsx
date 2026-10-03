@@ -82,14 +82,14 @@ export function PipelineProgress({ state, onClose }: { state: JobState; onClose:
   const isPreview = (state.log[state.log.length - 1]?.msg ?? "").startsWith("preview");
   const current = j.stage;
   const curIdx = PIPELINE.indexOf(current);
-  const failed = j.status === "failed";
+  const failed = j.status === "failed" || j.status === "cancelled";
   return (
     <AnimatePresence>
       <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
         <Card className="p-4">
           <div className="mb-3 flex items-center justify-between">
             <div className="text-sm font-semibold">
-              {failed ? "Job failed" : state.finished ? "Finished" : `${STAGE_LABELS[current] ?? current}${isPreview ? " (preview)" : ""}`}
+              {j.status === "cancelled" ? "Cancelled" : failed ? "Job failed" : state.finished ? "Finished" : `${STAGE_LABELS[current] ?? current}${isPreview ? " (preview)" : ""}`}
               <span className="ml-2 font-mono text-xs font-normal text-fog-500">{j.kind}</span>
             </div>
             {state.finished ? (
@@ -97,7 +97,16 @@ export function PipelineProgress({ state, onClose }: { state: JobState; onClose:
                 <X className="h-4 w-4" />
               </button>
             ) : (
-              <span className="font-mono text-xs text-fog-400">{Math.round(j.progress * 100)}%</span>
+              <span className="flex items-center gap-3">
+                <span className="font-mono text-xs text-fog-400">{Math.round(j.progress * 100)}%</span>
+                <button
+                  onClick={() => void api.cancelJob(j.id).catch(() => undefined)}
+                  disabled={j.stage === "cancelling"}
+                  className="text-[11px] text-fog-500 underline-offset-2 hover:text-fog hover:underline disabled:opacity-50"
+                >
+                  {j.stage === "cancelling" ? "Cancelling…" : "Cancel"}
+                </button>
+              </span>
             )}
           </div>
           <Progress value={state.finished ? 1 : j.progress} />
@@ -120,7 +129,12 @@ export function PipelineProgress({ state, onClose }: { state: JobState; onClose:
                 <span className="text-fog-400">{STAGE_LABELS[l.stage] ?? l.stage}</span> · {l.msg}
               </div>
             ))}
-            {failed ? <div className="text-bad">{state.error}</div> : null}
+            {j.status === "failed" ? (
+              <div className="text-bad">
+                {state.error ?? "The job failed."}
+                {j.error_id ? <span className="text-fog-500"> (reference {j.error_id})</span> : null}
+              </div>
+            ) : null}
           </div>
         </Card>
       </motion.div>

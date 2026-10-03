@@ -48,6 +48,14 @@ CREATE TABLE IF NOT EXISTS brand_kits (
 CREATE TABLE IF NOT EXISTS users (
   id TEXT PRIMARY KEY, name TEXT NOT NULL, token_hash TEXT UNIQUE NOT NULL, is_admin INTEGER DEFAULT 0, created REAL, disabled INTEGER DEFAULT 0
 );
+CREATE TABLE IF NOT EXISTS sessions (
+  id TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, token_hash TEXT UNIQUE NOT NULL,
+  created REAL, expires REAL, last_used REAL
+);
+CREATE INDEX IF NOT EXISTS ix_sessions_user ON sessions(user_id);
+CREATE INDEX IF NOT EXISTS ix_renders_project ON renders(project_id);
+CREATE INDEX IF NOT EXISTS ix_renders_version ON renders(version_id);
+CREATE INDEX IF NOT EXISTS ix_jobs_status ON jobs(status);
 CREATE TABLE IF NOT EXISTS benchmarks (
   id TEXT PRIMARY KEY, label TEXT, n_clips INTEGER, metrics TEXT NOT NULL, created REAL
 );
@@ -73,7 +81,15 @@ def connect() -> sqlite3.Connection:
         return _conn
 
 
-MIGRATIONS = [("projects", "owner_id", "TEXT"), ("brand_kits", "owner_id", "TEXT"), ("jobs", "owner_id", "TEXT")]
+MIGRATIONS = [("projects", "owner_id", "TEXT"), ("brand_kits", "owner_id", "TEXT"), ("jobs", "owner_id", "TEXT"),
+              ("users", "email", "TEXT"), ("users", "password_hash", "TEXT")]
+# indexes on migrated columns (created after the columns exist)
+POST_MIGRATION_DDL = """
+CREATE INDEX IF NOT EXISTS ix_projects_owner ON projects(owner_id);
+CREATE INDEX IF NOT EXISTS ix_jobs_owner ON jobs(owner_id);
+CREATE INDEX IF NOT EXISTS ix_brand_kits_owner ON brand_kits(owner_id);
+CREATE UNIQUE INDEX IF NOT EXISTS ux_users_email ON users(email) WHERE email IS NOT NULL;
+"""
 
 
 def _migrate(conn: sqlite3.Connection) -> None:
@@ -82,6 +98,7 @@ def _migrate(conn: sqlite3.Connection) -> None:
         cols = {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}
         if col not in cols:
             conn.execute(f"ALTER TABLE {table} ADD COLUMN {col} {typ}")
+    conn.executescript(POST_MIGRATION_DDL)
 
 
 def reset_db() -> None:
