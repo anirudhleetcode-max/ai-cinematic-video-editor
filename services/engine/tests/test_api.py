@@ -44,3 +44,13 @@ def test_api_flow(dataset):
         assert len(vs) == 1 and c.get(f"/versions/{vs[0]['id']}/inspector").json()[0]["scene"] == 1
         assert c.post(f"/projects/{pid}/render", json={"export": {"bogus": 1}}).status_code == 400
         assert c.get("/projects/nope").status_code == 404
+        # no server path, traceback or command line in any response the client can read
+        from editor.config import get_settings
+
+        root = str(get_settings().data_dir)
+        urls = [f"/projects/{pid}", f"/projects/{pid}/assets", f"/projects/{pid}/versions", f"/versions/{vs[0]['id']}",
+                f"/versions/{vs[0]['id']}/inspector", f"/projects/{pid}/renders", f"/renders/{rid}/report", f"/jobs/{j['job_id']}",
+                f"/projects/{pid}/render-status", "/export-history", "/projects"]
+        for u in urls:
+            body = c.get(u).text
+            assert root not in body and "Traceback" not in body and "ffmpeg -" not in body, u

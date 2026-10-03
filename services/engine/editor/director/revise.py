@@ -31,8 +31,43 @@ class Revision:
         self.domains.add(domain)
 
 
+# footage-quality words in a negative request map to the selector's issue avoidance (excluded, relaxed only if footage
+# runs out — and then reported)
+ISSUE_WORDS = {"dark": "underexposed", "underexposed": "underexposed", "too dark": "underexposed", "blurry": "blurry", "blurred": "blurry",
+               "out of focus": "blurry", "soft": "blurry", "shaky": "shaky", "wobbly": "shaky", "unstable": "shaky", "overexposed": "overexposed",
+               "washed out": "overexposed", "too bright": "overexposed", "blown out": "overexposed"}
+NEG_VERBS = ("avoid", "exclude", "skip", "remove", "without", "no", "less", "fewer", "drop", "lose", "ban")
+POS_VERBS = ("show", "feature", "include", "use", "want", "see", "more", "add", "keep")
+_QUERY = re.compile(
+    r"(?:\b(?P<neg>don't|dont|do not|never|not|stop|no longer)\s+(?:\w+\s+)?)?"
+    r"\b(?P<verb>" + "|".join(NEG_VERBS + POS_VERBS) + r")\b\s+(?:me |us )?(?:using |showing )?(?:any |more |a lot more |lots of |some |all )?(?:of )?(?:the |a |an |those |these )?"
+    r"(?:(?:shots?|clips?|footage|scenes?|moments?) (?:of|with) (?:the |a |an )?)?"
+    r"(?P<phrase>[a-z][a-z \-]{1,40}?)(?=\s*\b(?:shots?|clips?|footage|scenes?|moments?|ones)\b|[,.!;]|\s*$| in | at | during | for | and (?:make|add|use|turn|change))")
+_NOT_CONTENT = re.compile(r"(effects?|transitions?|text|titles?|music|songs?|tracks?|captions?|subtitles?|grain|vignette|slow[\s\-]?mo|energy|"
+                          r"energetic|colou?rs?|grade|logo|intro|outro|ending|first|last|second|third|\d)\b")
+
+
+def _content_queries(p: str, r: "Revision") -> None:
+    """'show the crowd', 'no dogs', "don't use dark clips", 'avoid blurry footage', 'skip the shaky shots'."""
+    from ..retrieval import resolve
+
+    for m in _QUERY.finditer(p):
+        phrase = m.group("phrase").strip()
+        if not phrase or _NOT_CONTENT.match(phrase):
+            continue
+        neg = m.group("verb") in NEG_VERBS or (m.group("neg") is not None and m.group("verb") in POS_VERBS)
+        issues = sorted({iss for w, iss in ISSUE_WORDS.items() if re.search(rf"\b{w}\b", phrase)})
+        if neg:
+            for iss in issues:
+                r.add("avoid_issue", "selection", issue=iss, query=phrase)
+        labels, unknown = resolve(phrase)
+        unknown = [w for w in unknown if not any(w in k.split() for k in ISSUE_WORDS)]
+        if labels and len(unknown) <= 2:
+            r.add("prefer_query", "selection", query=phrase, labels=sorted(labels), weight=-0.8 if neg else 0.6, ignored_words=unknown)
+
+
 def parse_revision(text: str) -> Revision:
-    p = " " + text.lower() + " "
+    p = " " + text.lower().replace("\u2019", "'") + " "
     r = Revision()
     if re.search(r"more (energetic|energy|exciting|dynamic|hype)|faster pac|speed (it )?up|punchier", p):
         r.add("pacing", "timeline", factor=0.72, pacing="fast")
@@ -68,23 +103,11 @@ def parse_revision(text: str) -> Revision:
         r.add("remove_segment", "timeline", index=idx)
     tags = {"crowd": r"crowd", "faces": r"faces|people|reactions?", "closeup": r"close[\s\-]?ups?", "wide": r"wide shots?|establishing", "high_motion": r"action|movement"}
     for tag, rx in tags.items():
-        if re.search(rf"more ({rx})", p):
+        if re.search(rf"(?<!not )(?<!n't )\bmore ({rx})", p):
             r.add("prefer_tag", "selection", tag=tag, weight=0.35)
-        if re.search(rf"(less|fewer|no) ({rx})", p):
-            r.add("prefer_tag", "selection", tag=tag, weight=-0.35)
     handled = {o["tag"] for o in r.ops if o["op"] == "prefer_tag"}
     if not handled:
-        for m in re.finditer(r"\b(show|feature|include|use|want|see|more|less|fewer|no|without|drop|lose|cut)\b (?:me |us )?(?:more |a lot more |lots of |some |any )?(?:of )?(?:the |a |an )?"
-                             r"(?:(?:shots?|clips?|footage|scenes?|moments?) (?:of|with) (?:the |a |an )?)?([a-z][a-z \-]{1,40}?)(?=\b(?:shots?|clips?|footage|scenes?|moments?)\b|[,.!;]|$| in | at | during | for | and (?:make|add|use|turn|change))", p):
-            from ..retrieval import resolve
-
-            phrase = m.group(2).strip()
-            if re.match(r"(effects?|transitions?|text|titles?|music|songs?|tracks?|captions?|subtitles?|grain|vignette|slow[\s\-]?mo|energy|energetic|colou?r)\b", phrase):
-                continue
-            labels, unknown = resolve(phrase)
-            if labels and len(unknown) <= 2:
-                neg = m.group(1) in ("less", "fewer", "no", "without", "drop", "lose", "cut")
-                r.add("prefer_query", "selection", query=phrase, labels=sorted(labels), weight=-0.8 if neg else 0.6, ignored_words=unknown)
+        _content_queries(p, r)
     if m := re.search(r"text (bigger|larger|smaller)|(bigger|larger|smaller) (text|titles?|typography)", p):
         word = m.group(1) or m.group(2)
         r.add("text_scale", "text", factor=0.8 if word == "smaller" else 1.25)
@@ -239,6 +262,9 @@ def apply_revision(plan: EditPlan, text: str, ctx: ProjectContext) -> tuple[Edit
         elif o == "prefer_tag":
             tag_weights[op["tag"]] = tag_weights.get(op["tag"], 0) + op["weight"]
             structural = True
+        elif o == "avoid_issue":
+            intent.avoid = list(dict.fromkeys([*(intent.avoid or []), op["issue"]]))
+            structural = True
         elif o == "prefer_query":
             from ..retrieval import search
 
@@ -371,7 +397,13 @@ def apply_revision(plan: EditPlan, text: str, ctx: ProjectContext) -> tuple[Edit
         for m in rebuilt.music:
             if m.asset_id in keep_music_gain and "audio" in rev.domains:
                 m.gain_db = keep_music_gain[m.asset_id]
-        rebuilt.decisions.insert(0, f"Revision '{text}': " + ", ".join(o["op"] for o in applied))
+        relax = next((d for d in rebuilt.decisions if "relaxed:" in d), "")
+        for o in applied:  # never violate an exclusion silently: say when footage ran out
+            if o["op"] == "avoid_issue" and "user-avoided issues" in relax or o["op"] == "prefer_query" and o.get("weight", 0) < 0 and "user-excluded content" in relax:
+                o["relaxed"] = True
+                o["reason"] = "not enough other footage — some matching shots had to be used"
+        rebuilt.decisions.insert(0, f"Revision '{text}': " + ", ".join(o["op"] + (" (relaxed: not enough other footage)" if o.get("relaxed") else "")
+                                                                  for o in applied))
         new = rebuilt
     else:
         new.intent = intent

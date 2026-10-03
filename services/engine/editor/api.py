@@ -21,7 +21,7 @@ from .logging import get_logger
 from .media.probe import AUDIO_EXT, IMAGE_EXT, VIDEO_EXT
 from .previews import preview as library_preview
 from .proc import safe_filename, safe_path
-from .public import public_job, scrub
+from .public import clean_result, public_job, scrub
 from .registry import REGISTRIES, library_stats, search_library, templates
 from .storage import UploadTooLarge, get_storage
 
@@ -93,7 +93,10 @@ def _check_quota(request: Request, incoming: int) -> None:
         raise HTTPException(413, f"storage quota of {st.user_quota_gb:g} GB exceeded")
 
 
-app = FastAPI(title="Autonomous AI Video Editor", version="0.2.0", lifespan=_lifespan, dependencies=[Depends(guard)])
+_DEV = get_settings().env == "development"
+# interactive API docs only in development (the schema is not needed by the web app)
+app = FastAPI(title="Autonomous AI Video Editor", version="0.2.0", lifespan=_lifespan, dependencies=[Depends(guard)],
+              docs_url="/docs" if _DEV else None, redoc_url="/redoc" if _DEV else None, openapi_url="/openapi.json" if _DEV else None)
 def _cors_origins() -> list[str]:
     origins = list(get_settings().cors_origins)
     if get_settings().env == "development":
@@ -328,7 +331,7 @@ def lib_preview(kind: str, item_id: str):
     try:
         return FileResponse(library_preview(kind, item_id), media_type="image/png", headers={"Cache-Control": "max-age=86400"})
     except KeyError as e:
-        raise HTTPException(404, str(e))
+        raise HTTPException(404, scrub(str(e).strip("'\""))) from None
 
 
 # ------------------------------------------------------------------------------------ projects
@@ -359,8 +362,8 @@ def list_projects(request: Request):
 @app.get("/projects/{pid}")
 def get_project(pid: str):
     p = S.get_project(pid)
-    return {**p, "assets": [S.asset_summary(a) for a in db.query("SELECT * FROM assets WHERE project_id=? ORDER BY ordinal", (pid,))],
-            "versions": S.list_versions(pid), "renders": [_render_row(r) for r in S.list_renders(pid)]}
+    return clean_result({**p, "assets": [S.asset_summary(a) for a in db.query("SELECT * FROM assets WHERE project_id=? ORDER BY ordinal", (pid,))],
+                         "versions": S.list_versions(pid), "renders": [_render_row(r) for r in S.list_renders(pid)]})
 
 
 @app.delete("/projects/{pid}")
@@ -606,7 +609,7 @@ def revert(pid: str, body: RevertIn):
 
 @app.get("/projects/{pid}/versions")
 def versions(pid: str):
-    return S.list_versions(pid)
+    return clean_result(S.list_versions(pid))
 
 
 @app.get("/versions/{vid}")
@@ -616,12 +619,12 @@ def version(vid: str):
 
     v["estimate"] = {"final": S.estimate_render_seconds(EditPlan.model_validate(v["plan"])),
                      "preview": S.estimate_render_seconds(EditPlan.model_validate(v["plan"]), True)}
-    return v
+    return clean_result(v)
 
 
 @app.get("/versions/{vid}/inspector")
 def version_inspector(vid: str):
-    return S.inspector(vid)
+    return clean_result(S.inspector(vid))
 
 
 @app.get("/projects/{pid}/render-status")
@@ -698,7 +701,7 @@ def render_report(rid: str):
     r = db.get("renders", rid)
     if not r:
         raise HTTPException(404, "render not found")
-    return r["report"]
+    return clean_result(r["report"])
 
 
 # ------------------------------------------------------------------------------------ brand kits / benchmarks
@@ -738,7 +741,7 @@ def benchmarks():
 @app.get("/export-history")
 def export_history(request: Request):
     u = _user(request)
-    rows = db.query("SELECT r.id, r.project_id, p.name AS project, p.owner_id, r.kind, r.created, r.report FROM renders r JOIN projects p ON p.id=r.project_id "
-                    "ORDER BY r.created DESC LIMIT 200")
-    rows = [r for r in rows if u.is_admin or r["owner_id"] == u.id][:100]
+    sql = ("SELECT r.id, r.project_id, p.name AS project, p.owner_id, r.kind, r.created, r.report FROM renders r JOIN projects p ON p.id=r.project_id"
+           + ("" if u.is_admin else " WHERE p.owner_id=?") + " ORDER BY r.created DESC LIMIT 100")
+    rows = db.query(sql, () if u.is_admin else (u.id,))
     return [{**_render_row({**r, "version_id": None}), "project": r["project"], "project_id": r["project_id"]} for r in rows]

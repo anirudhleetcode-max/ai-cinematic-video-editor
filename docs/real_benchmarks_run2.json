@@ -1,0 +1,166 @@
+{
+ "label": "MEASURED",
+ "event": "/home/user/ai-cinematic-video-editor/tests/real_media/event01",
+ "mode": "fast",
+ "environment": {
+  "ffmpeg": "6.1.1-3ubuntu5",
+  "cpu_count": 4,
+  "ram_total_gb": 15.72,
+  "gpu": null,
+  "platform_class": "CPU-only",
+  "encoders": {
+   "h264": [
+    "libx264"
+   ],
+   "hevc": [
+    "libx265"
+   ]
+  },
+  "selected_encoder": "libx264",
+  "hardware_encoding": false,
+  "os": "Linux-6.18.44-fc-v64-x86_64-with-glibc2.39"
+ },
+ "inputs": {
+  "clip": 76,
+  "music": 3,
+  "reference": 1,
+  "logo": 1
+ },
+ "runs": [
+  {
+   "output_seconds": 60.0,
+   "label": "MEASURED",
+   "planning_s": 0.393,
+   "segments": 49,
+   "repeated_shots": 1,
+   "preview_s": 52.2,
+   "preview_qc": true,
+   "final_render_s": 149.27,
+   "render_breakdown": {
+    "segments_s": 87.94,
+    "transitions_s": 0.0,
+    "audio_s": 0.01,
+    "final_pass_s": 33.74,
+    "qc_s": 7.93,
+    "total_s": 129.62,
+    "reviews_s": 19.61
+   },
+   "qc_passed": true,
+   "qc_failures": [],
+   "encoder": "libx264",
+   "output": {
+    "duration": 59.933333,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "vcodec": "h264",
+    "acodec": "aac"
+   },
+   "loudness_lufs": -16.56,
+   "segments_cached": 0,
+   "review": {
+    "pass": 10,
+    "warn": 1,
+    "fail": 0,
+    "n/a": 0
+   },
+   "reference_similarity": 0.604,
+   "total_s": 201.86,
+   "peak_rss_mb": 1583.0,
+   "cpu_percent_avg": 76.9
+  },
+  {
+   "output_seconds": 300.0,
+   "label": "MEASURED",
+   "planning_s": 1.576,
+   "segments": 253,
+   "repeated_shots": 173,
+   "preview_s": 297.57,
+   "preview_qc": true,
+   "final_render_s": 739.37,
+   "render_breakdown": {
+    "segments_s": 497.6,
+    "transitions_s": 0.0,
+    "audio_s": 0.03,
+    "final_pass_s": 123.04,
+    "qc_s": 37.53,
+    "total_s": 658.21,
+    "reviews_s": 81.12
+   },
+   "qc_passed": true,
+   "qc_failures": [],
+   "encoder": "libx264",
+   "output": {
+    "duration": 300.0,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "vcodec": "h264",
+    "acodec": "aac"
+   },
+   "loudness_lufs": -16.29,
+   "segments_cached": 0,
+   "review": {
+    "pass": 9,
+    "warn": 2,
+    "fail": 0,
+    "n/a": 0
+   },
+   "reference_similarity": 0.611,
+   "total_s": 1038.51,
+   "peak_rss_mb": 1808.8,
+   "cpu_percent_avg": 79.6
+  },
+  {
+   "output_seconds": 600.0,
+   "label": "MEASURED",
+   "planning_s": 3.325,
+   "segments": 521,
+   "repeated_shots": 420,
+   "preview_s": 520.94,
+   "preview_qc": true,
+   "final_render_s": 1305.05,
+   "render_breakdown": {
+    "segments_s": 874.9,
+    "transitions_s": 0.0,
+    "audio_s": 0.06,
+    "final_pass_s": 220.23,
+    "qc_s": 62.96,
+    "total_s": 1158.16,
+    "reviews_s": 146.85
+   },
+   "qc_passed": true,
+   "qc_failures": [],
+   "encoder": "libx264",
+   "output": {
+    "duration": 599.8,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "vcodec": "h264",
+    "acodec": "aac"
+   },
+   "loudness_lufs": -16.22,
+   "segments_cached": 2,
+   "review": {
+    "pass": 8,
+    "warn": 3,
+    "fail": 0,
+    "n/a": 0
+   },
+   "reference_similarity": 0.6,
+   "total_s": 1829.32,
+   "peak_rss_mb": 2889.7,
+   "cpu_percent_avg": 75.6
+  }
+ ],
+ "upload_s": 74.07,
+ "source_footage_seconds": 851.6,
+ "analysis": {
+  "seconds": 148.43,
+  "shots": 103,
+  "usable_shots": 90,
+  "peak_rss_mb": 1180.4
+ },
+ "note": "Run 2 (2026-10-03, after the grade-in-segments optimisation). NOT an isolated measurement: development work and test runs (pytest, small FFmpeg clip generation) ran concurrently during the 60 s and 300 s phases, and light niced test-media work during the 600 s preview. The clean 300 s re-run is in docs/real_benchmarks.json."
+}

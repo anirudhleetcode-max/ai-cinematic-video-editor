@@ -18,6 +18,7 @@ import argparse
 import base64
 import hashlib
 import hmac
+import os
 import re
 import secrets
 import threading
@@ -145,6 +146,8 @@ def config_problems() -> list[str]:
         return out
     if s.auth != "token":
         out.append("EDITOR_AUTH=none is only allowed with EDITOR_ENV=development — set EDITOR_AUTH=token for any shared deployment")
+    if not os.environ.get("EDITOR_CORS_ORIGINS", "").strip():
+        out.append("EDITOR_CORS_ORIGINS must be set explicitly in production (the web app's origin)")
     if any(o == "*" for o in s.cors_origins):
         out.append("EDITOR_CORS_ORIGINS must list the web app's origin(s), not '*'")
     if any(o.startswith("http://") and not re.match(r"^http://(localhost|127\.0\.0\.1)(:\d+)?$", o) for o in s.cors_origins):

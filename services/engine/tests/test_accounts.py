@@ -95,6 +95,12 @@ def test_production_refuses_unsafe_config(monkeypatch):
     from editor import auth, config
 
     monkeypatch.setenv("EDITOR_ENV", "production")
+    monkeypatch.delenv("EDITOR_CORS_ORIGINS", raising=False)
+    monkeypatch.setenv("EDITOR_AUTH", "token")
+    config.reset_settings()
+    with pytest.raises(RuntimeError, match="set explicitly"):
+        auth.check_config()
+    monkeypatch.setenv("EDITOR_CORS_ORIGINS", "https://cutroom.example.com")
     cases = [
         ([("EDITOR_AUTH", "none")], "EDITOR_AUTH"),
         ([("EDITOR_AUTH", "token"), ("EDITOR_CORS_ORIGINS", "*")], "'\\*'"),

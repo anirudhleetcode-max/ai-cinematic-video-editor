@@ -71,3 +71,38 @@ def test_revision_query_prefers_matching_shots(project):
         for sh in an["shots"]:
             sh["semantic"]["objects"] = [o for o in sh["semantic"]["objects"] if o["label"] != "dog"]
         db.update("assets", target["id"], analysis=an)
+
+
+def test_negative_requests_parse_with_their_meaning():
+    """Negation must never flip a request: "don't use dark clips" is an exclusion, not a preference."""
+    from editor.director.revise import parse_revision
+
+    def ops(t):
+        return [(o["op"], o.get("issue") or tuple(o.get("labels") or ()), o.get("weight")) for o in parse_revision(t).ops]
+
+    assert ops("no dogs") == [("prefer_query", ("dog",), -0.8)]
+    assert ("prefer_query", ("crowd", "faces", "group", "people", "person"), -0.8) in ops("avoid people")
+    assert ("avoid_issue", "underexposed", None) in ops("don't use dark clips")
+    assert all(w is None or w < 0 for _, _, w in ops("don't use dark clips"))
+    assert ops("avoid blurry footage") == [("avoid_issue", "blurry", None)]
+    assert ops("skip the shaky shots") == [("avoid_issue", "shaky", None)]
+    assert ops("do not show the crowd") == [("prefer_query", ("crowd", "group"), -0.8)]
+    assert ops("never use screen recordings")[0][2] == -0.8
+    assert ops("show the crowd") == [("prefer_query", ("crowd", "group"), 0.6)]
+    # unrelated revisions are not mistaken for content queries
+    assert [o for o, _, _ in ops("remove the first scene")] == ["remove_segment"]
+    assert [o for o, _, _ in ops("no transitions")] == ["transitions"]
+    assert [o for o, _, _ in ops("cut it down to 30 seconds")] == ["duration"]
+
+
+def test_avoid_issue_excludes_footage_or_reports_relaxation(project):
+    from editor import db, service as S
+
+    S.create_edit_plan(project["id"], "A 15 second energetic festival recap", "fast")
+    v = S.revise(project["id"], "avoid blurry footage")
+    ch = [c for c in v["changes"] if c["op"] == "avoid_issue"][0]
+    used = {(s["asset_id"], s["shot_index"]) for s in v["plan"]["timeline"]}
+    blurry = {(a["id"], i) for a in db.query("SELECT id, analysis FROM assets WHERE project_id=? AND role='clip'", (project["id"],))
+              for i, sh in enumerate((a["analysis"] or {}).get("shots", [])) if "blurry" in sh.get("issues", []) for i in [sh.get("index", i)]}
+    # either no blurry shot is used, or the revision says the exclusion had to be relaxed
+    assert not (used & blurry) or ch.get("relaxed"), (used & blurry, ch)

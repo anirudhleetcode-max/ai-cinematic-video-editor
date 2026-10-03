@@ -43,7 +43,7 @@ def main() -> int:
 
     roles = discover(Path(args.event))
     env = {k: v for k, v in diagnostics().items() if k in ("cpu_count", "ram_total_gb", "gpu", "platform_class", "encoders", "selected_encoder",
-                                                          "hardware_encoding", "ffmpeg")} | {"os": platform.platform()}
+                                                          "hardware_encoding", "ffmpeg")} | {"os": platform.platform(), "cpu_model": _cpu_model()}
     out = {"label": "MEASURED", "event": args.event, "mode": args.mode, "environment": env, "inputs": {k: len(v) for k, v in roles.items()}, "runs": []}
     p = S.create_project("Real benchmark")
     t = time.perf_counter()
@@ -57,6 +57,11 @@ def main() -> int:
     out["upload_s"] = round(time.perf_counter() - t, 2)
     src_seconds = sum((a["meta"] or {}).get("duration", 0) for a in db.query("SELECT meta FROM assets WHERE project_id=? AND role='clip'", (p["id"],)))
     out["source_footage_seconds"] = round(src_seconds, 1)
+    from collections import Counter
+
+    metas = [a["meta"] or {} for a in db.query("SELECT meta FROM assets WHERE project_id=? AND role='clip'", (p["id"],))]
+    out["source_codecs"] = dict(Counter(str(m.get("vcodec")) for m in metas))
+    out["source_resolutions"] = dict(Counter(f"{m.get('width')}x{m.get('height')}" for m in metas))
     smp = Sampler()
     smp.start()
     t = time.perf_counter()
@@ -87,6 +92,7 @@ def main() -> int:
                    output={k: q["probe"].get(k) for k in ("duration", "width", "height", "fps", "vcodec", "acodec")},
                    loudness_lufs=(rep.get("audio") or {}).get("integrated_lufs"), segments_cached=rep.get("segments_cached"),
                    review=(rep.get("review") or {}).get("summary"), reference_similarity=(rep.get("reference_match") or {}).get("overall_similarity"))
+        run["output_size_bytes"] = Path(r["path"]).stat().st_size
         run["total_s"] = round(time.perf_counter() - t0, 2)
         run["peak_rss_mb"] = round(smp.rss_peak / 2**20, 1)
         run["cpu_percent_avg"] = round(sum(smp.cpu) / max(1, len(smp.cpu)), 1)
@@ -100,6 +106,16 @@ def main() -> int:
         print(f"{r_['output_seconds']:>7.0f}s {r_['planning_s']:>8.2f}s {r_.get('preview_s', 0):>7.1f}s {r_['final_render_s']:>7.1f}s {r_['total_s']:>7.1f}s "
               f"{'pass' if r_['qc_passed'] else 'FAIL':>4}")
     return 0
+
+
+def _cpu_model() -> str:
+    try:
+        for line in open("/proc/cpuinfo"):
+            if line.startswith("model name"):
+                return line.split(":", 1)[1].strip()
+    except OSError:
+        pass
+    return platform.processor() or "unknown"
 
 
 if __name__ == "__main__":
