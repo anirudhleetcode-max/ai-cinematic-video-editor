@@ -34,6 +34,7 @@ def main() -> int:
     from editor import service as S, testmedia
     from editor.hw import diagnostics
     from editor.schemas import EditPlan
+    from editor.director.revise import _resolve_section, _song_at
 
     rep: dict = {"prompt": PROMPT, "environment": {k: v for k, v in diagnostics().items() if k not in ("cpu_percent",)}, "steps": []}
     t_all = time.perf_counter()
@@ -113,15 +114,40 @@ def main() -> int:
          segments_cached=r3["report"]["segments_cached"], of=len(plan3.timeline), qc=r3["report"]["qc"]["passed"])
 
     t = time.perf_counter()
-    v4 = S.revise(p["id"], "Use song 2 for the final section.")
-    plan4 = EditPlan.model_validate(v4["plan"])
     songs = [a for a in S.build_context(p["id"], "").songs]
-    final_song = plan4.music[-1].asset_id
-    r4 = S.render_version(p["id"], v4["id"])
-    step("revision_3_song2_final", seconds=round(time.perf_counter() - t, 1), ops=[c["op"] for c in v4["changes"]],
-         music_plan=[(next(a.filename for a in songs if a.id == m.asset_id), round(m.out_start, 1), round(m.out_end, 1)) for m in plan4.music],
-         final_section_song=next(a.filename for a in songs if a.id == final_song), color_kept=plan4.color_grade.overrides.get("temperature") == plan3.color_grade.overrides.get("temperature"),
-         qc=r4["report"]["qc"]["passed"])
+    fname = {a.id: a.filename for a in songs}
+
+    def song_map(pl):
+        return {sec.name: fname.get(_song_at(pl, sec)) for sec in pl.story_structure}
+
+    def section_song_revision(text, k, base_plan):
+        v = S.revise(p["id"], text)
+        pl = EditPlan.model_validate(v["plan"])
+        final = set(_resolve_section(pl, "final"))
+        before, after = song_map(base_plan), song_map(pl)
+        noop = all(c.get("noop") for c in v["changes"])
+        r = None if noop else S.render_version(p["id"], v["id"])
+        ok = (all(after[n] == songs[k - 1].filename for n in final)
+              and all(after[n] == before.get(n) for n in after if n not in final)
+              and pl.color_grade.overrides.get("temperature") == base_plan.color_grade.overrides.get("temperature"))
+        return v, pl, r, noop, ok, before, after
+
+    v4, plan4, r4, noop4, ok4, before4, after4 = section_song_revision("Use song 2 for the final section.", 2, plan3)
+    step("revision_3_song2_final", seconds=round(time.perf_counter() - t, 1), ops=[c["op"] for c in v4["changes"]], noop=noop4,
+         decision=plan4.decisions[0] if plan4.decisions else None, songs_before=before4, songs_after=after4,
+         music_plan=[(fname.get(m.asset_id), round(m.out_start, 1), round(m.out_end, 1)) for m in plan4.music],
+         qc=r4["report"]["qc"]["passed"] if r4 else None)
+    renders = [pv, f1, r2, r3] + ([r4] if r4 else [])
+    extra_ok = True
+    if noop4:
+        # song 2 already played there, so the request changed nothing; exercise a real section change as well
+        t = time.perf_counter()
+        v5, plan5, r5, noop5, extra_ok, before5, after5 = section_song_revision("Use song 3 for the final section.", 3, plan4)
+        extra_ok = extra_ok and not noop5
+        renders += [r5] if r5 else []
+        step("revision_3b_song3_final", seconds=round(time.perf_counter() - t, 1), noop=noop5, songs_before=before5, songs_after=after5,
+             music_plan=[(fname.get(m.asset_id), round(m.out_start, 1), round(m.out_end, 1)) for m in plan5.music],
+             qc=r5["report"]["qc"]["passed"] if r5 else None, segments_cached=r5["report"]["segments_cached"] if r5 else None)
 
     checks = {
         "valid_mp4_with_qc": q["passed"],
@@ -135,9 +161,9 @@ def main() -> int:
         "rev1_keeps_picks": kept >= 0.5 * len(plan1.timeline),
         "rev2_color_only": same_tl and (plan3.color_grade.overrides.get("temperature", 0) > plan2.color_grade.overrides.get("temperature", 0)),
         "rev2_incremental_render": r3["report"]["segments_cached"] == len(plan3.timeline),
-        "rev3_song2_in_final": final_song == songs[1].id,
-        "rev3_keeps_color": plan4.color_grade.overrides.get("temperature") == plan3.color_grade.overrides.get("temperature"),
-        "all_renders_qc": all(x["report"]["qc"]["passed"] for x in (pv, f1, r2, r3, r4)),
+        "rev3_song2_in_final_rest_kept": ok4,
+        "rev3_real_section_change": extra_ok,
+        "all_renders_qc": all(x["report"]["qc"]["passed"] for x in renders),
     }
     rep["checks"] = checks
     rep["passed"] = all(checks.values())

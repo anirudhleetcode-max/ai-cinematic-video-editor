@@ -174,9 +174,20 @@ def apply_revision(plan: EditPlan, text: str, ctx: ProjectContext) -> tuple[Edit
             new.color_grade.preset = op["preset"]
             new.bible.color = op["preset"]
         elif o == "section_song":
-            for name in _resolve_section(new, op["where"]):
-                section_song[name] = op["song"]
-            structural = True
+            names = _resolve_section(new, op["where"])
+            songs = [a for a in ctx.songs if a.analysis and a.analysis.get("ok")]
+            k = op["song"]
+            target = songs[k - 1].id if 0 < k <= len(songs) else (songs[-1].id if k == -1 and songs else None)
+            if target is None:
+                new.decisions.insert(0, f"Revision: song {k} does not exist ({len(songs)} songs uploaded) — music unchanged.")
+                op = {**op, "noop": True, "reason": "no such song"}
+            elif all(_song_at(plan, sec) == target for sec in plan.story_structure if sec.name in names):
+                new.decisions.insert(0, f"Revision: song {k} already plays in {', '.join(names)} — music unchanged.")
+                op = {**op, "noop": True, "reason": "already in use"}
+            else:
+                for name in names:
+                    section_song[name] = k
+                structural = True
         elif o == "song":
             intent.music_strategy, intent.music_indices = "single", [op["song"]]
             structural = True
@@ -268,6 +279,16 @@ def apply_revision(plan: EditPlan, text: str, ctx: ProjectContext) -> tuple[Edit
         new.decisions = [f"Revision '{text}': " + ", ".join(o["op"] for o in applied), *new.decisions][:600]
     validate(new, ctx)
     return new, applied
+
+
+def _song_at(plan: EditPlan, sec) -> str | None:
+    """The song that dominates a section's time span (by overlap)."""
+    best, best_ov = None, 0.0
+    for m in plan.music:
+        ov = min(m.out_end, sec.end) - max(m.out_start, sec.start)
+        if ov > best_ov:
+            best, best_ov = m.asset_id, ov
+    return best
 
 
 def _picks(plan: EditPlan) -> dict[int, str]:

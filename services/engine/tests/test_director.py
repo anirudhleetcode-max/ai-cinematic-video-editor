@@ -74,3 +74,19 @@ def test_revisions_modify_existing_plan(project):
     assert len({x.asset_id for x in m.music}) == 2 or m.music[-1].asset_id == ctx.songs[0].id
     assert m.music[-1].asset_id == ctx.songs[0].id
     assert m.color_grade.overrides.get("temperature") == w.color_grade.overrides.get("temperature")
+
+
+def test_section_song_noop_and_change(project):
+    ctx = S.build_context(project["id"], "20 second highlight with music")
+    plan = build_plan(ctx)
+    songs = [a for a in ctx.songs if a.analysis and a.analysis.get("ok")]
+    used = plan.music[-1].asset_id
+    k_used = next(i for i, a in enumerate(songs, 1) if a.id == used)
+    same, ops = apply_revision(plan, f"Use song {k_used} for the final section.", ctx)
+    assert ops[0].get("noop") and [m.model_dump() for m in same.music] == [m.model_dump() for m in plan.music]
+    k_other = next(i for i, a in enumerate(songs, 1) if a.id != used)
+    changed, ops = apply_revision(plan, f"Use song {k_other} for the final section.", ctx)
+    assert not ops[0].get("noop")
+    assert changed.music[-1].asset_id == songs[k_other - 1].id and changed.music[0].asset_id == used
+    _, ops = apply_revision(plan, "Use song 9 for the final section.", ctx)
+    assert ops[0].get("noop") and ops[0]["reason"] == "no such song"

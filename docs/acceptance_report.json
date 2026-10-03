@@ -1,0 +1,183 @@
+{
+  "prompt": "Create a 60-second professional cinematic event highlight. Analyze the reference and follow its pacing, color mood, typography philosophy, and transition style without copying its footage. Select the best clips, remove poor-quality shots, begin with a strong hook, synchronize cuts to the supplied music, use slower emotional shots where appropriate, build energy toward the climax, add tasteful motion and transitions, apply consistent professional color grading, add elegant event typography, duck music under speech, and finish with a strong branded ending.",
+  "environment": {
+    "os": "Linux 6.18.44-fc-v51",
+    "python": "3.11.15",
+    "ffmpeg": "6.1.1-3ubuntu5",
+    "ffprobe": "6.1.1-3ubuntu5",
+    "ffmpeg_path": "/usr/bin/ffmpeg",
+    "cpu_count": 4,
+    "ram_total_gb": 15.72,
+    "ram_available_gb": 14.29,
+    "disk_free_gb": 13.84,
+    "gpu": null,
+    "encoders": {
+      "h264": [
+        "libx264"
+      ],
+      "hevc": [
+        "libx265"
+      ]
+    },
+    "selected_encoder": "libx264",
+    "hardware_encoding": false
+  },
+  "steps": [
+    {
+      "step": "generate_synthetic_media",
+      "seconds": 130.7,
+      "clips": 51,
+      "songs": 3,
+      "note": "DEMO data (synthetic)"
+    },
+    {
+      "step": "upload",
+      "seconds": 13.5,
+      "assets": 56
+    },
+    {
+      "step": "analyze",
+      "seconds": 22.1,
+      "shots": 56,
+      "usable": 16,
+      "rejected": {
+        "blurry": 14,
+        "underexposed": 16,
+        "overexposed": 2,
+        "shaky": 4,
+        "black": 4,
+        "frozen": 9,
+        "duplicate": 13
+      },
+      "duplicates": 14
+    },
+    {
+      "step": "reference_analysis",
+      "median_shot": 1.2,
+      "cuts_per_minute": 57.69,
+      "transition_frequency": 0.133,
+      "bpm": 123.05
+    },
+    {
+      "step": "edit_plan",
+      "seconds": 0.04,
+      "segments": 61,
+      "duration": 60.0,
+      "sections": [
+        "hook",
+        "opening",
+        "people",
+        "activities",
+        "energy",
+        "best_moments",
+        "climax"
+      ],
+      "ending": "logo_title",
+      "reference_used": true,
+      "transitions": 8,
+      "music": [
+        [
+          "ast_e5c96030704d",
+          0.0,
+          60.0
+        ]
+      ],
+      "color": "cinematic_neutral"
+    },
+    {
+      "step": "clip_selection_check",
+      "poor_quality_shots_used": 0
+    },
+    {
+      "step": "preview",
+      "seconds": 64.1,
+      "qc": true,
+      "size": 30242823
+    },
+    {
+      "step": "final_render",
+      "seconds": 207.9,
+      "qc_passed": true,
+      "failures": [],
+      "warnings": [],
+      "duration": 60.0,
+      "resolution": "1920x1080",
+      "vcodec": "h264",
+      "acodec": "aac",
+      "lufs": -16.04,
+      "true_peak": -1.0,
+      "encoder": "libx264",
+      "timings": {
+        "segments_s": 71.17,
+        "transitions_s": 12.8,
+        "audio_s": 9.94,
+        "final_pass_s": 104.4,
+        "qc_s": 9.5,
+        "total_s": 207.83
+      },
+      "path": "/tmp/claude-0/accept/data/projects/prj_d4e1886cbcd2/outputs/final_v1_rnd_a7e57b2b156f.mp4"
+    },
+    {
+      "step": "revision_1_energetic_intro3",
+      "seconds": 215.5,
+      "ops": [
+        "pacing",
+        "section_length"
+      ],
+      "segments_before": 61,
+      "segments_after": 90,
+      "intro_seconds": 3.0,
+      "picks_kept": 61,
+      "qc": true,
+      "segments_cached": 3
+    },
+    {
+      "step": "revision_2_warmer",
+      "seconds": 125.9,
+      "ops": [
+        "color_adjust"
+      ],
+      "timeline_unchanged": true,
+      "temperature_before": 0,
+      "temperature_after": 0.18,
+      "segments_cached": 90,
+      "of": 90,
+      "qc": true
+    },
+    {
+      "step": "revision_3_song2_final",
+      "seconds": 208.6,
+      "ops": [
+        "section_song"
+      ],
+      "music_plan": [
+        [
+          "song_2.wav",
+          0.0,
+          60.0
+        ]
+      ],
+      "final_section_song": "song_2.wav",
+      "color_kept": true,
+      "qc": true
+    }
+  ],
+  "checks": {
+    "valid_mp4_with_qc": true,
+    "duration_60s": true,
+    "1080p": true,
+    "no_poor_quality_shots": true,
+    "reference_used": true,
+    "branded_ending": true,
+    "rev1_more_shots": true,
+    "rev1_intro_3s": true,
+    "rev1_keeps_picks": true,
+    "rev2_color_only": true,
+    "rev2_incremental_render": true,
+    "rev3_song2_in_final": true,
+    "rev3_keeps_color": true,
+    "all_renders_qc": true
+  },
+  "passed": true,
+  "total_seconds": 988.3
+}

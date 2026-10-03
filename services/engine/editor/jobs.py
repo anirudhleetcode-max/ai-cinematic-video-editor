@@ -145,6 +145,11 @@ def _revise_job(p: dict, pr) -> dict:
     pr("planning_story", 0.2, "applying revision")
     v = S.revise(p["project_id"], p["text"], p.get("base_version_id"))
     out = {"version": _strip_plan(v), "changes": v["changes"]}
+    if v["changes"] and all(c.get("noop") for c in v["changes"]):
+        # nothing to change (e.g. that song already plays there): say so instead of re-rendering an identical film
+        out["noop"] = True
+        out["message"] = "; ".join(f"{c['op']}: {c.get('reason', 'no change')}" for c in v["changes"])
+        return out
     if p.get("render", True):
         out["render"] = _render_summary(S.render_version(p["project_id"], v["id"], p.get("preview", False), pr))
     return out
