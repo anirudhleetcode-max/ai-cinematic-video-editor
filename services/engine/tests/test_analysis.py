@@ -68,3 +68,38 @@ def test_reference_profile(dataset):
     assert r["transition_types"].get("fade", 0) >= 1
     assert r["saturation"] > 0.3 and r["aspect_ratio"] == "16:9"
     assert r["music"] and abs(r["music"]["bpm"] - 124) < 6
+
+
+def test_transition_classifier_on_constructed_edits(tmp_path):
+    """Release check C as a regression test (deterministic media): a dissolve is one dissolve, a fade through black is
+    one fade, continuous camera motion and dark footage hovering near black are no transition at all."""
+    import subprocess
+
+    from editor.reference.analyze import analyze_reference
+
+    def ff(*a):
+        subprocess.run(["ffmpeg", "-v", "error", "-y", *a], check=True)
+
+    a, b = tmp_path / "a.mp4", tmp_path / "b.mp4"
+    ff("-f", "lavfi", "-i", "testsrc2=s=640x360:r=30", "-t", "4", "-pix_fmt", "yuv420p", str(a))
+    ff("-f", "lavfi", "-i", "mandelbrot=s=640x360:r=30", "-t", "4", "-pix_fmt", "yuv420p", str(b))
+    cases = {
+        "dissolve": ["-i", str(a), "-i", str(b), "-filter_complex", "[0:v][1:v]xfade=transition=dissolve:duration=1.0:offset=2.5[v]", "-map", "[v]"],
+        "cross_dissolve": ["-i", str(a), "-i", str(b), "-filter_complex", "[0:v][1:v]xfade=transition=fade:duration=1.0:offset=2.5[v]", "-map", "[v]"],
+        "fade_through_black": ["-i", str(a), "-i", str(b), "-filter_complex",
+                               "[0:v]fade=t=out:st=3.4:d=0.6[x];[1:v]fade=t=in:st=0:d=0.6[y];[x][y]concat=n=2:v=1[v]", "-map", "[v]"],
+        "hard_cut": ["-i", str(a), "-i", str(b), "-filter_complex", "[0:v][1:v]concat=n=2:v=1[v]", "-map", "[v]"],
+        "pan": ["-f", "lavfi", "-i", "mandelbrot=s=1280x720:r=30", "-t", "6", "-vf", "crop=640:360:'t*90':'t*40'", "-pix_fmt", "yuv420p"],
+        "dark_hover": ["-f", "lavfi", "-i", "testsrc2=s=640x360:r=30", "-t", "6", "-vf", "eq=brightness=-0.47:contrast=0.15", "-pix_fmt", "yuv420p"],
+    }
+    got = {}
+    for name, args in cases.items():
+        f = tmp_path / f"{name}.mp4"
+        ff(*args, "-c:v", "libx264", "-crf", "16", str(f))
+        got[name] = analyze_reference(f, light=True)["transition_types"]
+    assert got["dissolve"] == {"dissolve": 1}, got
+    assert got["cross_dissolve"] == {"dissolve": 1}, got
+    assert got["fade_through_black"] == {"fade": 1}, got
+    assert set(got["hard_cut"]) <= {"cut"} and got["hard_cut"].get("cut") == 1, got
+    assert not {k for k in got["pan"] if k != "cut"}, got
+    assert not {k for k in got["dark_hover"] if k != "cut"}, got

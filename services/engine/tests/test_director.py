@@ -124,3 +124,22 @@ def test_short_song_is_extended_without_duplicate_pieces(tmp_path, dataset):
         assert mus[0]["out_start"] == 0 and abs(mus[-1]["out_end"] - v["plan"]["duration"]) < 0.05
         assert all(m["out_end"] - m["out_start"] > 2.5 for m in mus), mus
         assert all(b["out_start"] < a["out_end"] for a, b in zip(mus, mus[1:]))  # contiguous (crossfaded) coverage
+
+
+def test_dialogue_led_edit_never_chops_speech(project, monkeypatch):
+    """A dialogue-led edit keeps every shot ≥ 2.5 s — including the hook (it used to cut a speaking presenter into
+    0.9 s flash cuts there; found by release check A on real presenter footage)."""
+    from editor import service as S
+    from editor.director import agents as A
+
+    real = A.dialogue_director
+
+    def speech_heavy(plan, ctx, intent):
+        real(plan, ctx, intent)
+        plan.dialogue_led, plan.phrase_seconds = True, 3.2
+
+    monkeypatch.setattr(A, "dialogue_director", speech_heavy)
+    v = S.create_edit_plan(project["id"], "A 30 second energetic pitch video, keep the presenter's speech", "fast")
+    durs = [s["out_duration"] for s in v["plan"]["timeline"]]
+    assert v["plan"]["editing_mode"] == "dialogue"
+    assert min(durs) >= 2.5 - 1e-3, durs

@@ -1,30 +1,30 @@
 {
  "label": "MEASURED on real footage (derived inputs labelled)",
- "started": 1791049039.493591,
+ "started": 1791053122.7576272,
  "checks": {
   "A_dialogue": {
-   "editing_mode": "montage",
-   "segments": 32,
-   "min_shot_s": 0.47,
-   "median_shot_s": 0.99,
-   "sub_second_shots": 16,
-   "speech_seconds": 0.0,
-   "ducked_seconds": null,
-   "report_loudness_lufs": -16.0,
+   "editing_mode": "dialogue",
+   "segments": 6,
+   "min_shot_s": 4.55,
+   "median_shot_s": 6.8,
+   "sub_second_shots": 0,
+   "speech_seconds": 16.06,
+   "ducked_seconds": 22.35,
+   "report_loudness_lufs": -16.32,
    "measured": {
     "integrated_lufs": -16.0,
-    "true_peak_dbtp": -0.8,
-    "sample_peak_db": -0.778191,
+    "true_peak_dbtp": -1.7,
+    "sample_peak_db": -1.757449,
     "peak_count_per_channel": []
    },
    "qc_passed": true,
    "review": {
-    "pass": 9,
-    "warn": 2,
+    "pass": 10,
+    "warn": 0,
     "fail": 0,
-    "n/a": 0
+    "n/a": 1
    },
-   "seconds": 118.4,
+   "seconds": 95.6,
    "frames": [
     "/tmp/claude-0/frames/A_dialogue_000.50.jpg",
     "/tmp/claude-0/frames/A_dialogue_008.00.jpg",
@@ -33,7 +33,7 @@
     "/tmp/claude-0/frames/A_dialogue_032.00.jpg",
     "/tmp/claude-0/frames/A_dialogue_039.00.jpg"
    ],
-   "pass": false
+   "pass": true
   },
   "B_negative_requests": {
    "results": {
@@ -46,14 +46,14 @@
         "dog"
        ],
        "weight": -0.8,
-       "noop": true,
-       "reason": "no analysed shot shows 'dogs' (searched labels: dog)",
+       "noop": null,
+       "reason": null,
        "relaxed": null
       }
      ],
-     "matching_shots_in_footage": 0,
-     "other_shots": 103,
-     "segments_matching_before": 0,
+     "matching_shots_in_footage": 1,
+     "other_shots": 96,
+     "segments_matching_before": 1,
      "segments_matching_after": 0,
      "segments_after": 54,
      "relaxation_reported": false,
@@ -77,13 +77,13 @@
        "relaxed": null
       }
      ],
-     "matching_shots_in_footage": 37,
-     "other_shots": 66,
-     "segments_matching_before": 28,
-     "segments_matching_after": 15,
+     "matching_shots_in_footage": 57,
+     "other_shots": 40,
+     "segments_matching_before": 43,
+     "segments_matching_after": 0,
      "segments_after": 54,
      "relaxation_reported": false,
-     "pass": false
+     "pass": true
     },
     "don't use dark clips": {
      "ops": [
@@ -108,9 +108,9 @@
        "relaxed": null
       }
      ],
-     "matching_shots_in_footage": 8,
-     "other_shots": 95,
-     "segments_matching_before": 2,
+     "matching_shots_in_footage": 6,
+     "other_shots": 91,
+     "segments_matching_before": 0,
      "segments_matching_after": 0,
      "segments_after": 54,
      "relaxation_reported": false,
@@ -129,7 +129,7 @@
       }
      ],
      "matching_shots_in_footage": 2,
-     "other_shots": 101,
+     "other_shots": 95,
      "segments_matching_before": 1,
      "segments_matching_after": 0,
      "segments_after": 54,
@@ -137,8 +137,8 @@
      "pass": true
     }
    },
-   "seconds": 100.8,
-   "pass": false
+   "seconds": 181.1,
+   "pass": true
   },
   "C_transitions": {
    "results": {
@@ -151,10 +151,9 @@
     },
     "fade_out_then_in": {
      "transition_types": {
-      "cut": 1,
       "fade": 1
      },
-     "n_shots": 3,
+     "n_shots": 2,
      "pass": true
     },
     "fade_in_after_cut": {
@@ -166,10 +165,17 @@
     },
     "dissolve": {
      "transition_types": {
-      "cut": 1
+      "dissolve": 1
      },
      "n_shots": 2,
-     "pass": false
+     "pass": true
+    },
+    "cross_dissolve": {
+     "transition_types": {
+      "dissolve": 1
+     },
+     "n_shots": 2,
+     "pass": true
     },
     "real_reference_hard_cuts_only": {
      "transition_types": {
@@ -179,13 +185,188 @@
     },
     "normal_footage": {
      "clips": 20,
-     "boundaries": 5,
-     "gradual_transitions_detected": 5,
-     "pass": false
+     "boundaries": 0,
+     "gradual_transitions_detected": 0,
+     "pass": true
     }
    },
-   "seconds": 67.5,
-   "pass": false
+   "seconds": 100.3,
+   "pass": true
+  },
+  "E_colour": {
+   "results": {
+    "bt709_limited (real)": {
+     "signed_mean_shift_rgb": [
+      -0.0,
+      0.21,
+      -0.03
+     ],
+     "mean_abs_rgb": 0.45,
+     "output_tags": [
+      "tv",
+      "bt709",
+      "bt709",
+      "bt709"
+     ],
+     "pass": true
+    },
+    "bt601_sd (derived from real)": {
+     "signed_mean_shift_rgb": [
+      -2.74,
+      -2.4,
+      -2.33
+     ],
+     "mean_abs_rgb": 6.73,
+     "output_tags": [
+      "tv",
+      "bt709",
+      "bt709",
+      "bt709"
+     ],
+     "pass": true
+    },
+    "full_range (derived from real)": {
+     "signed_mean_shift_rgb": [
+      -1.98,
+      -0.32,
+      -2.49
+     ],
+     "mean_abs_rgb": 1.74,
+     "output_tags": [
+      "tv",
+      "bt709",
+      "bt709",
+      "bt709"
+     ],
+     "pass": true
+    },
+    "phone 16.37.53 (pc, bt470bg range) (real)": {
+     "signed_mean_shift_rgb": [
+      0.38,
+      -2.26,
+      0.89
+     ],
+     "mean_abs_rgb": 19.19,
+     "output_tags": [
+      "tv",
+      "bt709",
+      "bt709",
+      "bt709"
+     ],
+     "pass": true
+    },
+    "phone 17.14.30 (tv, bt709 range) (real)": {
+     "signed_mean_shift_rgb": [
+      0.35,
+      0.14,
+      0.41
+     ],
+     "mean_abs_rgb": 2.27,
+     "output_tags": [
+      "tv",
+      "bt709",
+      "bt709",
+      "bt709"
+     ],
+     "pass": true
+    },
+    "phone 17.14.48 (tv, bt709 range) (real)": {
+     "signed_mean_shift_rgb": [
+      0.1,
+      -0.07,
+      0.21
+     ],
+     "mean_abs_rgb": 3.45,
+     "output_tags": [
+      "tv",
+      "bt709",
+      "bt709",
+      "bt709"
+     ],
+     "pass": true
+    },
+    "hlg_10bit_hevc (derived; tone-mapped by design)": {
+     "output_mean_rgb": [
+      80.9,
+      71.3,
+      67.2
+     ],
+     "output_tags": [
+      "tv",
+      "bt709",
+      "bt709",
+      "bt709"
+     ],
+     "pass": true,
+     "note": "HDR\u2192SDR tone-map changes values by design; checked for a valid, non-clipped SDR picture"
+    }
+   },
+   "pass": true
+  },
+  "D_lut": {
+   "source": "bt709_limited (real)",
+   "mean_abs_change_vs_no_lut": 10.63,
+   "mean_abs_error_vs_expected_swap": 0.91,
+   "source_mean_abs_red_blue_gap": 15.83,
+   "pass": true,
+   "frames": [
+    "/tmp/claude-0/frames/D_lut_off_000.80.jpg",
+    "/tmp/claude-0/frames/D_lut_on_000.80.jpg"
+   ]
+  },
+  "DE_seconds": 31.8,
+  "F_audio": {
+   "input_audio (sample_rate,channels)": {
+    "speech_over_real_video.mp4": [
+     "16000",
+     "1"
+    ],
+    "derived_no_audio.mp4": [
+     ""
+    ],
+    "container_mjpeg.avi": [
+     "24000",
+     "1"
+    ],
+    "car-detection_take1.mp4": [
+     "48000",
+     "2"
+    ],
+    "classroom_take1.mp4": [
+     ""
+    ],
+    "face-demographics-walking-and-pause_take1.mp4": [
+     "48000",
+     "2"
+    ],
+    "sugar_plum_fairy.flac": [
+     "44100",
+     "2"
+    ]
+   },
+   "target_lufs": -16.0,
+   "measured": {
+    "integrated_lufs": -16.8,
+    "true_peak_dbtp": -1.6,
+    "sample_peak_db": -1.635205,
+    "peak_count_per_channel": []
+   },
+   "report": {
+    "integrated_lufs": -16.94,
+    "true_peak_db": -1.0,
+    "speech_seconds": 6.55,
+    "ducked_seconds": 11.14
+   },
+   "output_audio": [
+    "aac",
+    "48000",
+    "2"
+   ],
+   "qc_passed": true,
+   "seconds": 95.1,
+   "pass": true
   }
- }
+ },
+ "finished": 1791053632.7427452,
+ "pass": true
 }

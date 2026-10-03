@@ -222,6 +222,7 @@ def main() -> int:
                                  "[0:v]fade=t=out:st=3.4:d=0.6[x];[1:v]fade=t=in:st=0:d=0.6[y];[x][y]concat=n=2:v=1[v]", "-map", "[v]"],
             "fade_in_after_cut": ["-i", str(a_), "-i", str(b_), "-filter_complex", "[1:v]fade=t=in:st=0:d=0.5[y];[0:v][y]concat=n=2:v=1[v]", "-map", "[v]"],
             "dissolve": ["-i", str(a_), "-i", str(b_), "-filter_complex", "[0:v][1:v]xfade=transition=dissolve:duration=1.0:offset=3[v]", "-map", "[v]"],
+            "cross_dissolve": ["-i", str(a_), "-i", str(b_), "-filter_complex", "[0:v][1:v]xfade=transition=fade:duration=1.0:offset=3[v]", "-map", "[v]"],
         }
         res = {}
         for name, args in cases.items():
@@ -232,8 +233,10 @@ def main() -> int:
         res["hard_cut"]["pass"] = set(res["hard_cut"]["transition_types"]) <= {"cut"}
         res["fade_out_then_in"]["pass"] = res["fade_out_then_in"]["transition_types"].get("fade", 0) >= 1
         res["fade_in_after_cut"]["pass"] = res["fade_in_after_cut"]["transition_types"].get("fade", 0) >= 1
-        res["dissolve"]["pass"] = (res["dissolve"]["transition_types"].get("dissolve", 0) + res["dissolve"]["transition_types"].get("fade", 0)) >= 1 \
-            and res["dissolve"]["transition_types"].get("cut", 0) <= 1
+        res["dissolve"]["pass"] = res["dissolve"]["transition_types"] == {"dissolve": 1}
+        res["cross_dissolve"]["pass"] = res["cross_dissolve"]["transition_types"] == {"dissolve": 1}
+        res["fade_out_then_in"]["pass"] = res["fade_out_then_in"]["transition_types"] == {"fade": 1}
+        res["fade_in_after_cut"]["pass"] = res["fade_in_after_cut"]["transition_types"] == {"fade": 1}
         # the real reference montage (hard cuts only, by construction)
         ref = sorted(roles["reference"])[0]
         rr = analyze_reference(ref)
@@ -245,7 +248,7 @@ def main() -> int:
             n_bound += sum(r["transition_types"].values())
             false_tr += sum(v for k, v in r["transition_types"].items() if k != "cut")
         res["normal_footage"] = {"clips": min(20, len(plain)), "boundaries": n_bound, "gradual_transitions_detected": false_tr,
-                                 "pass": false_tr <= 1}
+                                 "pass": false_tr == 0}
         report["checks"]["C_transitions"] = {"results": res, "seconds": round(time.time() - t0, 1), "pass": all(v["pass"] for v in res.values())}
         print("C", json.dumps(res, default=str), flush=True)
         save()

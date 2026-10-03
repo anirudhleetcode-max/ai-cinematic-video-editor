@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import cv2
 import numpy as np
 
 from .. import db
@@ -17,7 +18,7 @@ from .probe import probe
 from .semantics import camera_motion, sample_detections, shot_profile
 
 logger = get_logger("analyze")
-VERSION = "video-v13"  # v7: correct colour/geometry sampling, vision provider, semantic profile, usability/creative scores
+VERSION = "video-v20"  # v7: correct colour/geometry sampling, vision provider, semantic profile, usability/creative scores
 
 MODES = {
     # sample fps, analysis width, face/person sampling interval (s)
@@ -27,28 +28,81 @@ MODES = {
 }
 
 
-def _blend_fit(frames: np.ndarray, i0: int, i1: int) -> tuple[bool, int]:
-    """Is frames[i0+1 .. i1-1] a cross-dissolve from frames[i0] to frames[i1]?  Each interior frame is fitted as
-    (1-a)*pre + a*post. A dissolve fits well with intermediate a; a hard cut fits with a≈0 or 1 only; camera or subject
-    motion does not fit (ghosting). Returns (fits, number of interior frames with 0.15 < a < 0.85)."""
+def _blend_fit(frames: np.ndarray, i0: int, i1: int, sharp: np.ndarray | None = None) -> tuple[bool, int]:
+    """Is frames[i0+1 .. i1-1] a cross-dissolve from frames[i0] to frames[i1]?  Each interior frame (8×8-block luma)
+    is fitted as (1-a)*pre + a*post. A dissolve fits with a blend weight `a` that rises steadily through intermediate
+    values; a hard cut only has a≈0 or 1; camera / subject motion fits badly or gives flat / jumping weights.
+    Calibrated on real footage (release check C): a real 1 s dissolve rises 0.14→0.86 with residual 0.24; walking
+    people give flat weights (residual 1.2) or a jump to 1.0. Returns (is_dissolve, intermediate frames)."""
     n = len(frames)
     i0, i1 = max(0, i0), min(n - 1, i1)
-    if i1 - i0 < 2:
+    if i1 - i0 < 3:
         return False, 0
-    g = lambda k: frames[k, ::4, ::4].astype(np.float32).mean(axis=2)  # noqa: E731
+    h, w = frames.shape[1:3]
+    bs = 8
+    H, W = h // bs * bs, w // bs * bs
+
+    def g(k: int) -> np.ndarray:
+        return frames[k, :H, :W].astype(np.float32).mean(axis=2).reshape(H // bs, bs, W // bs, bs).mean(axis=(1, 3))
+
     pre, post = g(i0), g(i1)
     span = post - pre
     den = float((span * span).sum())
     if den <= 0 or float(np.abs(span).mean()) < 10.0:  # endpoints too similar to tell a blend from anything else
         return False, 0
-    mids, res = 0, []
+    alphas, res = [], []
     for k in range(i0 + 1, i1):
         f = g(k)
         a = float(np.clip(((f - pre) * span).sum() / den, 0.0, 1.0))
         r = f - (pre + a * span)
         res.append(float(np.sqrt((r * r).mean())) / (float(np.sqrt(den / span.size)) + 1e-6))
-        mids += 0.15 < a < 0.85
-    return bool(np.mean(res) < 0.3), mids
+        alphas.append(a)
+    mids = sum(0.1 < a < 0.9 for a in alphas)
+    inner = [a for a in alphas if 0.05 < a < 0.95]
+    rising = len(inner) >= 3 and all(b - a > 0.02 for a, b in zip(inner, inner[1:]))
+    coverage = float((np.abs(span) > 12).mean())  # a dissolve replaces the whole picture; a walking subject does not
+    if not (float(np.mean(res)) < 0.45 and rising and mids >= 3 and coverage >= 0.5):
+        return False, mids
+    if sharp is not None and len(sharp) == n:
+        # a whip pan / fast camera swing smears the picture (sharpness collapses below both ends); a dissolve overlays
+        # two sharp pictures (sharpness stays between them)
+        ends = min(float(sharp[i0]), float(sharp[i1]))
+        if ends > 0 and float(np.min(sharp[i0 + 1:i1])) < 0.5 * ends:
+            return False, mids
+    # the two endpoints must be different pictures: same-scene motion (pan, moving car, head turn) keeps its edge
+    # structure under a shift (measured 0.63–0.89), two different shots do not (real dissolve ≤ 0.18)
+    return _edge_similarity(frames[i0], frames[i1]) < 0.45, mids
+
+
+def _active_span(d: np.ndarray, lo: int, hi: int, floor: float) -> tuple[int, int]:
+    """Extend a transition window outwards while consecutive frames keep changing (distance above the noise floor)."""
+    n = len(d)
+    lo, hi = max(0, lo), min(n - 1, hi)
+    while lo > 0 and d[lo] > floor:
+        lo -= 1
+    while hi < n - 1 and d[hi + 1] > floor:
+        hi += 1
+    return lo, hi
+
+
+def _edge_similarity(a: np.ndarray, b: np.ndarray) -> float:
+    """Best correlation of 4×4-max-pooled gradient magnitude over shifts of ±8 pooled cells (±32 px at 256 px).
+    Real footage (release check C): same-scene motion 0.63–0.76 (moving car, head turn), real dissolve ≤ 0.18."""
+    def edges(img: np.ndarray) -> np.ndarray:
+        g = img.astype(np.float32).mean(axis=2)
+        e = np.hypot(cv2.Sobel(g, cv2.CV_32F, 1, 0, ksize=3), cv2.Sobel(g, cv2.CV_32F, 0, 1, ksize=3))
+        hh, ww = e.shape[0] // 4 * 4, e.shape[1] // 4 * 4
+        return e[:hh, :ww].reshape(hh // 4, 4, ww // 4, 4).max(axis=(1, 3))
+
+    e0, e1 = edges(a), edges(b)
+    best = -1.0
+    for dy in range(-8, 9):
+        for dx in range(-8, 9):
+            x0 = e0[max(0, dy):e0.shape[0] + min(0, dy), max(0, dx):e0.shape[1] + min(0, dx)].ravel()
+            x1 = e1[max(0, -dy):e1.shape[0] + min(0, -dy), max(0, -dx):e1.shape[1] + min(0, -dx)].ravel()
+            if x0.std() > 0 and x1.std() > 0:
+                best = max(best, float(np.corrcoef(x0, x1)[0, 1]))
+    return best
 
 
 def detect_shots(m: dict[str, np.ndarray], times: np.ndarray, fps: float, min_shot: float = 0.6, frames: np.ndarray | None = None) -> list[dict]:
@@ -87,7 +141,12 @@ def detect_shots(m: dict[str, np.ndarray], times: np.ndarray, fps: float, min_sh
             while j < n - 1 and lum[j] < 0.04:
                 j += 1
             mid = (i + j) // 2
-            if all(abs(times[mid] - times[c]) > min_shot for c, _ in cuts):
+            k = max(1, int(round(fps)))
+            dip = float(lum[i:j].min()) if j > i else float(lum[i])
+            # a real dip comes from (or goes to) clearly brighter picture; footage that merely hovers around the
+            # near-black threshold is a dark shot, not a fade
+            brighter = max(float(lum[max(0, i - k):i].max(initial=0)), float(lum[j:min(n, j + k)].max(initial=0)))
+            if brighter >= max(0.08, 3 * dip) and all(abs(times[mid] - times[c]) > min_shot for c, _ in cuts):
                 cuts.append((mid, "fade"))
             i = j
         i += 1
@@ -104,28 +163,73 @@ def detect_shots(m: dict[str, np.ndarray], times: np.ndarray, fps: float, min_sh
         ramp_dn = up[lo] <= 0.06 and len(fall) >= 3 and bool(np.all(np.diff(fall[-4:]) < -0.01)) and fall[-min(4, len(fall))] >= 3 * max(up[lo], 0.01)
         if ramp_up or ramp_dn:
             cuts[k] = (c, "fade")
-    # dissolve: window of 3+ moderate distances whose sum exceeds the cut threshold — and, when frames are available,
-    # the frames inside it must actually be a blend of the frames around it (continuous motion is not a dissolve)
+    # one fade through black is one transition: boundaries on the same luma ramp down to / up from the dip merge into
+    # the darkest one
+    merged: list[tuple[int, str]] = []
+    for c, kind in sorted(cuts):
+        if merged and kind == "fade" and merged[-1][1] == "fade":
+            p = merged[-1][0]
+            seg_l = lum[p:c + 1]
+            # same ramp if the luma between the two boundaries never rises back above the brighter of them by much
+            if c - p <= 2 * max(1, int(round(fps))) and float(seg_l.min()) <= 0.06 and float(seg_l.max()) <= max(lum[p], lum[c]) + 0.02:
+                merged[-1] = (p if lum[p] <= lum[c] else c, "fade")
+                continue
+        merged.append((c, kind))
+    cuts = merged
+    # dissolve: window of moderate distances whose sum exceeds the cut threshold — and, when frames are available,
+    # the frames inside it must actually be a steadily rising blend of the frames around it (continuous motion is not
+    # a dissolve); with that proof the window only needs a sustained median change, not a minimum at every sample
     win = max(3, int(round(fps * 0.6)))
+    last_dissolve_end = -1
+    spans: list[tuple[int, int]] = []  # sample ranges covered by a gradual transition
     for i in range(1, n - win):
+        if i <= last_dissolve_end:  # one dissolve, not one per overlapping window
+            continue
         seg = d[i:i + win]
-        if seg.sum() > thr * 1.6 and seg.max() < thr and seg.min() > med + 2 * mad + 0.02:
+        sustained = (float(np.median(seg)) if frames is not None else float(seg.min())) > med + 2 * mad + 0.02
+        if seg.sum() > thr * 1.6 and seg.max() < thr and sustained:
             c = i + win // 2
             if frames is not None:
-                ok, mids = _blend_fit(frames, i - 1, i + win)
-                if not (ok and mids >= 2):
+                ok, _ = _blend_fit(frames, i - 1, i + win, m.get("sharp"))
+                if not ok:
                     continue
             if all(abs(times[c] - times[k]) > min_shot for k, _ in cuts):
                 cuts.append((c, "dissolve"))
-    # a "cut" whose neighbourhood is a measurable blend of the shots on either side is a dissolve that changed fast
-    # enough between samples to look like a spike
+                spans.append(_active_span(d, i - 1, i + win, med + 2 * mad + 0.02))
+                last_dissolve_end = i + win
+    # fades span their whole luma ramp down to / up from the dip
+    for c, kind in cuts:
+        if kind == "fade":
+            lo_, hi_ = c, c
+            while lo_ > 0 and lum[lo_ - 1] > lum[lo_] + 0.003:
+                lo_ -= 1
+            while hi_ < n - 1 and lum[hi_ + 1] > lum[hi_] + 0.003:
+                hi_ += 1
+            spans.append((lo_, hi_))
+
+    def inside(c: int) -> bool:
+        return any(lo_ < c <= hi_ for lo_, hi_ in spans)
+
+    # a spike inside a fade's ramp or a dissolve's span is part of that transition, not a separate cut
+    cuts = [(c, kind) for c, kind in cuts if kind != "cut" or not inside(c)]
     if frames is not None:
-        w = max(2, int(round(fps * 0.4)))
-        for k, (c, kind) in enumerate(cuts):
+        # a remaining "cut" spike that is really a fast cross-dissolve between very different pictures (proved by the
+        # blend fit); if its blend overlaps a transition already found, it is part of that one
+        w = max(2, int(round(fps * 0.5)))
+        out: list[tuple[int, str]] = []
+        for c, kind in sorted(cuts):
             if kind == "cut":
-                ok, mids = _blend_fit(frames, c - w - 1, c + w)
-                if ok and mids >= 2:
-                    cuts[k] = (c, "dissolve")
+                for lo_, hi_ in ((c - w - 1, c + w), (c - 2 * w, c + 1), (c - 1, c + 2 * w)):
+                    if _blend_fit(frames, lo_, hi_, m.get("sharp"))[0]:
+                        if any(lo_ <= b and a <= hi_ for a, b in spans):
+                            kind = ""  # absorbed
+                        else:
+                            kind = "dissolve"
+                            spans.append(_active_span(d, lo_, hi_, med + 2 * mad + 0.02))
+                        break
+            if kind:
+                out.append((c, kind))
+        cuts = out
     cuts.sort()
     bounds = [0] + [c for c, _ in cuts] + [n]
     kinds = ["start"] + [k for _, k in cuts]

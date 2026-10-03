@@ -18,7 +18,7 @@ from ..media.probe import probe
 from ..music.analyze import analyze_music
 
 logger = get_logger("reference")
-VERSION = "ref-v6"  # v3: adaptive cut detection, colour-correct sampling
+VERSION = "ref-v13"  # v3: adaptive cut detection, colour-correct sampling
 
 
 def _dominant_colors(rgb_frames: np.ndarray, k: int = 5) -> list[dict]:

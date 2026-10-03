@@ -488,12 +488,13 @@ def timeline_director(plan: Plan, intent: StyleIntent) -> None:
             e = sec.energy if me is None else 0.6 * sec.energy + 0.4 * me
             pt = target_for(sec.name, e, bpm=bpm if beat_sync else None, reference_median=ref_med, pacing_factor=pf)
             L = max(0.3, pt.target * rng.uniform(0.88, 1.12))
-            if plan.dialogue_led and role != "hook":
-                # phrases, not beats: about one measured phrase per shot (≥ 2.5 s), energetic sections a bit shorter
+            if plan.dialogue_led:
+                # phrases, not beats: about one measured phrase per shot (≥ 2.5 s), energetic sections a bit shorter —
+                # the hook too: a speaking presenter chopped into flash cuts is not a hook, it is noise
                 L = max(2.5, plan.phrase_seconds * (1.15 - 0.3 * e) * rng.uniform(0.9, 1.1) * (pf if pf < 1 else 1))
             nxt = t + L
             on_down, rel = False, "free"
-            if plan.dialogue_led and role != "hook":
+            if plan.dialogue_led:
                 # snap to a beat only when one is within 0.25 s — the sentence decides, the music only refines
                 if beat_sync and bi > 0 and len(beats):
                     k_ = int(np.argmin(np.abs(beats - nxt)))
@@ -519,7 +520,7 @@ def timeline_director(plan: Plan, intent: StyleIntent) -> None:
                     elif not on_down and role in ("emotional", "opening", "resolution") and roll < 0.2:
                         nxt += bi / 4  # late, relaxed cut
                         rel = "after_beat"
-            if end - nxt < 0.6:  # don't leave a sliver at the end of a section
+            if end - nxt < (2.5 if plan.dialogue_led else 0.6):  # don't leave a sliver (or a half phrase) at the end of a section
                 nxt, rel = end, ("section_end" if beat_sync else rel)
             nxt = min(nxt, end)
             if nxt - t < 0.3:
