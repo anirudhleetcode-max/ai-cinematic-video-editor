@@ -69,7 +69,11 @@ def pick_encoder(codec: str = "h264", prefer_hw: bool = True) -> str:
 
 
 def encoder_args(enc: str, quality: str = "high") -> list[str]:
-    """Quality ladder per encoder family. quality: draft | standard | high."""
+    """Quality ladder per encoder family (quality: draft | standard | high), always tagged BT.709 limited range."""
+    return [*_encoder_args(enc, quality), "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709", "-color_range", "tv"]
+
+
+def _encoder_args(enc: str, quality: str) -> list[str]:
     crf = {"draft": 28, "standard": 21, "high": 17}[quality]
     if enc in ("libx264", "libx265"):
         preset = {"draft": "ultrafast", "standard": "veryfast", "high": "medium"}[quality]

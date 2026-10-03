@@ -55,11 +55,22 @@ def probe(path: Path) -> dict:
                 rot = int(sd["rotation"])
         if "rotate" in (v.get("tags") or {}):
             rot = int(v["tags"]["rotate"])
-        dw, dh = (h, w) if abs(rot) % 180 == 90 else (w, h)
+        try:
+            sn, sd_ = (int(x) for x in (v.get("sample_aspect_ratio") or "1:1").split(":"))
+            sar = sn / sd_ if sn > 0 and sd_ > 0 else 1.0
+        except ValueError:
+            sar = 1.0
+        dw, dh = (int(round(w * sar)), h) if sar >= 1 else (w, int(round(h / sar)))
+        dw, dh = dw + dw % 2, dh + dh % 2
+        if abs(rot) % 180 == 90:
+            dw, dh = dh, dw
+        trc = v.get("color_transfer") or "unknown"
         meta.update(
-            width=w, height=h, display_width=dw, display_height=dh, rotation=rot,
+            width=w, height=h, display_width=dw, display_height=dh, rotation=rot, sar=round(sar, 4),
             fps=_fps(v.get("avg_frame_rate")) or _fps(v.get("r_frame_rate")),
             vcodec=v.get("codec_name"), pix_fmt=v.get("pix_fmt"),
+            color_space=v.get("color_space") or "unknown", color_range=v.get("color_range") or "unknown", color_transfer=trc,
+            hdr={"smpte2084": "PQ", "arib-std-b67": "HLG"}.get(trc),
             orientation="portrait" if dh > dw else ("square" if dh == dw else "landscape"),
         )
     if a:
@@ -82,10 +93,16 @@ def image_thumbnail(path: Path, out: Path, width: int = 480) -> Path:
     return out
 
 
-def make_proxy(path: Path, out: Path, height: int = 360, fps: int = 15) -> Path:
-    """Low-res, low-fps proxy used for analysis and preview decisions (originals are used for final render)."""
+def make_proxy(path: Path, out: Path, height: int = 360, fps: int = 15, meta: dict | None = None) -> Path:
+    """Low-res, low-fps preview proxy, normalised to square pixels, BT.709 limited range SDR (HDR tone-mapped), so the
+    preview renderer can treat every proxy identically. Originals are always used for the final render."""
+    from ..render.colorspace import TAGS, TO_YUV420, source_to_rgb
+
     s = get_settings()
+    m = meta or probe(path)
+    dw, dh = m.get("display_width") or m.get("width") or 640, m.get("display_height") or m.get("height") or 360
+    w = max(2, int(round(dw * height / max(1, dh) / 2)) * 2)
     out.parent.mkdir(parents=True, exist_ok=True)
-    run([s.ffmpeg, "-v", "error", "-y", "-i", str(path), "-vf", f"scale=-2:{height},fps={fps}", "-c:v", "libx264",
-         "-preset", "ultrafast", "-crf", "30", "-an", str(out)], timeout=3600)
+    run([s.ffmpeg, "-v", "error", "-y", "-i", str(path), "-vf", f"fps={fps},{source_to_rgb(m, w, height)},setsar=1,{TO_YUV420}",
+         "-c:v", "libx264", "-preset", "ultrafast", "-crf", "30", *TAGS, "-an", str(out)], timeout=3600)
     return out

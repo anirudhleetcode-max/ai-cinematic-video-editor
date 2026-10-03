@@ -20,6 +20,7 @@ from .director.planner import build_plan
 from .director.revise import apply_revision
 from .logging import get_logger, log, timed
 from .media.analyze import analyze_video, apply_uniqueness
+from .media.inspect import inspect_media
 from .media.probe import image_thumbnail, kind_for, make_proxy, probe, thumbnail
 from .music.analyze import analyze_music
 from .reference.analyze import analyze_reference
@@ -127,6 +128,20 @@ def register_asset(pid: str, path: Path, role: str, kind: str, filename: str | N
         if kind == "audio" and not meta.get("has_audio"):
             path.unlink(missing_ok=True)
             raise ValueError(f"{filename}: no audio stream")
+        if kind in ("video", "audio"):
+            rep = inspect_media(path)
+            if not rep["ok"]:
+                path.unlink(missing_ok=True)
+                raise ValueError(f"{filename or path.name}: unusable media ({', '.join(rep['issues'])})")
+            P = rep["props"]
+            meta["inspection"] = {"warnings": rep["warnings"], "normalize": rep["normalize"],
+                                  **{k: P.get(k) for k in ("sar", "sar_value", "color_range", "color_primaries", "color_transfer", "color_space",
+                                                            "hdr", "bit_depth", "chroma", "nominal_fps", "avg_fps", "field_order", "audio_streams")},
+                                  "vfr": bool((P.get("timing") or {}).get("vfr")),
+                                  "fps_from_timestamps": (P.get("timing") or {}).get("fps_from_timestamps")}
+            if P.get("display_width"):
+                meta["display_width"], meta["display_height"] = P["display_width"], P["display_height"]
+                meta["orientation"] = P["orientation"]
     aid = db.new_id("ast")
     thumb = None
     try:
@@ -191,10 +206,11 @@ def analyze_project(pid: str, mode: str = "fast", progress: Progress = _noop, fo
         else:
             res = analyze_video(p, mode, fp)
             # proxy for large sources (used for previews; originals are used for the final render)
-            if (a["meta"].get("height") or 0) > 720 and mode != "emergency":
+            m_ = a["meta"] or {}
+            if min(m_.get("display_width") or m_.get("width") or 0, m_.get("display_height") or m_.get("height") or 0) > 720 and mode != "emergency":
                 proxy = get_storage().work_path(pid, "proxies", f"{a['id']}.mp4")
                 if not proxy.exists():
-                    make_proxy(p, proxy)
+                    make_proxy(p, proxy, meta=a.get("meta") or None)
                     stats["proxies"] += 1
                 db.update("assets", a["id"], proxy=str(proxy))
         if db.cache_stats()["hits"] > before:

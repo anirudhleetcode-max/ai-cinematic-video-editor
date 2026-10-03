@@ -28,7 +28,7 @@ def _zoom_blur(p, ctx, a, b):
     s = 1 + p["strength"] * 0.08
     return (f"[{a}]format=gbrp,split=3[zb0][zb1][zb2];[zb1]scale=iw*{num(s)}:-1,crop={ctx['w']}:{ctx['h']}[zb1s];"
             f"[zb2]scale=iw*{num(s * s)}:-1,crop={ctx['w']}:{ctx['h']}[zb2s];"
-            f"[zb0][zb1s]blend=all_mode=average[zb01];[zb01][zb2s]blend=all_opacity=0.33:all_mode=normal,format=yuv420p[{b}]")
+            f"[zb0][zb1s]blend=all_mode=average[zb01];[zb01][zb2s]blend=all_opacity=0.33:all_mode=normal,format=gbrp[{b}]")
 
 
 _reg("zoom_blur", "Zoom / Radial Blur", "blur", [f("strength", 0.5, 0.1, 1, 0.1)], _zoom_blur, ("impact", "energetic", "radial"), cost=2.5)
@@ -38,7 +38,7 @@ _reg("zoom_blur", "Zoom / Radial Blur", "blur", [f("strength", 0.5, 0.1, 1, 0.1)
 def _glow(p, ctx, a, b):
     thr = p["threshold"]
     return (f"[{a}]format=gbrp,split[gl0][gl1];[gl1]curves=all='0/0 {num(thr)}/0 1/1',gblur=sigma={num(p['radius'])}[gl1b];"
-            f"[gl0][gl1b]blend=all_mode=screen:all_opacity={num(p['intensity'])},format=yuv420p[{b}]")
+            f"[gl0][gl1b]blend=all_mode=screen:all_opacity={num(p['intensity'])},format=gbrp[{b}]")
 
 
 _reg("soft_glow", "Soft Glow", "glow", [f("threshold", 0.6, 0.3, 0.9, 0.05), f("radius", 12.0, 3, 40, 1), f("intensity", 0.35, 0.05, 1, 0.05)], _glow,
@@ -49,7 +49,7 @@ _reg("bloom", "Highlight Bloom", "glow", [f("threshold", 0.75, 0.5, 0.95, 0.05),
 
 def _neon(p, ctx, a, b):
     return (f"[{a}]format=gbrp,split[n0][n1];[n1]eq=saturation={num(1 + p['saturation'])},curves=all='0/0 0.55/0 1/1',gblur=sigma={num(p['radius'])}[n1b];"
-            f"[n0][n1b]blend=all_mode=addition:all_opacity={num(p['intensity'])},format=yuv420p[{b}]")
+            f"[n0][n1b]blend=all_mode=addition:all_opacity={num(p['intensity'])},format=gbrp[{b}]")
 
 
 _reg("neon_glow", "Neon Glow", "glow", [f("saturation", 1.0, 0, 2, 0.25), f("radius", 10.0, 3, 30, 1), f("intensity", 0.5, 0.1, 1, 0.1)], _neon,
@@ -58,7 +58,7 @@ _reg("neon_glow", "Neon Glow", "glow", [f("saturation", 1.0, 0, 2, 0.25), f("rad
 
 def _halation(p, ctx, a, b):
     return (f"[{a}]format=gbrp,split[h0][h1];[h1]curves=all='0/0 0.7/0 1/1',colorchannelmixer=rr=1:gg=0.25:bb=0.1,gblur=sigma={num(p['radius'])}[h1b];"
-            f"[h0][h1b]blend=all_mode=screen:all_opacity={num(p['intensity'])},format=yuv420p[{b}]")
+            f"[h0][h1b]blend=all_mode=screen:all_opacity={num(p['intensity'])},format=gbrp[{b}]")
 
 
 _reg("halation", "Halation", "glow", [f("radius", 8.0, 2, 30, 1), f("intensity", 0.3, 0.05, 0.8, 0.05)], _halation, ("film", "vintage", "cinematic"), cost=2.0)
@@ -78,8 +78,8 @@ _reg("chromatic_aberration", "Chromatic Aberration", "distortion", [i("shift", 4
 
 def _wave(p, ctx, a, b):
     amp, freq, spd = num(p["amplitude"]), num(p["frequency"]), num(p["speed"])
-    return (f"[{a}]format=yuv444p,geq=lum='lum(X+{amp}*sin(2*PI*Y/{freq}+T*{spd}),Y)':"
-            f"cb='cb(X+{amp}*sin(2*PI*Y/{freq}+T*{spd}),Y)':cr='cr(X+{amp}*sin(2*PI*Y/{freq}+T*{spd}),Y)',format=yuv420p[{b}]")
+    xs = f"X+{amp}*sin(2*PI*Y/{freq}+T*{spd})"
+    return f"[{a}]format=gbrp,geq=r='r({xs},Y)':g='g({xs},Y)':b='b({xs},Y)'[{b}]"
 
 
 _reg("wave", "Wave / Ripple", "distortion", [f("amplitude", 6.0, 1, 30, 1), f("frequency", 80.0, 20, 300, 10), f("speed", 4.0, 0, 12, 1)], _wave,
@@ -91,7 +91,7 @@ def _light_leak(p, ctx, a, b):
     col = {"warm": "0xff9a3c", "gold": "0xffd27a", "red": "0xff4a3c", "magenta": "0xff4fd0", "cool": "0x6fb7ff"}[p["color"]]
     return (f"gradients=s={ctx['w']}x{ctx['h']}:r={ctx['fps']}:c0={col}:c1=black:x0=0:y0=0:x1={ctx['w']}:y1={ctx['h']}:"
             f"speed={num(p['speed'])}:d={num(ctx['dur'] + 1)},format=gbrp[lk_{b}];"
-            f"[{a}]format=gbrp[lb_{b}];[lb_{b}][lk_{b}]blend=all_mode=screen:all_opacity={num(p['intensity'])}:shortest=1,format=yuv420p[{b}]")
+            f"[{a}]format=gbrp[lb_{b}];[lb_{b}][lk_{b}]blend=all_mode=screen:all_opacity={num(p['intensity'])}:shortest=1,format=gbrp[{b}]")
 
 
 _reg("light_leak", "Light Leak", "light", [e("color", "warm", "warm", "gold", "red", "magenta", "cool"), f("intensity", 0.3, 0.05, 0.8, 0.05), f("speed", 0.02, 0.005, 0.1, 0.005)],
@@ -109,7 +109,7 @@ _reg("glow_pulse", "Glow Pulse", "light", [f("rate", 1.0, 0.25, 4, 0.25), f("str
 def _flare(p, ctx, a, b):
     return (f"gradients=s={ctx['w']}x{ctx['h']}:r={ctx['fps']}:type=radial:c0=0xfff2d0:c1=black:"
             f"x0={int(ctx['w'] * p['x'])}:y0={int(ctx['h'] * p['y'])}:x1={int(ctx['w'] * p['x'] + ctx['w'] * p['size'])}:y1={int(ctx['h'] * p['y'])}:d={num(ctx['dur'] + 1)},format=gbrp[fl_{b}];"
-            f"[{a}]format=gbrp[fb_{b}];[fb_{b}][fl_{b}]blend=all_mode=screen:all_opacity={num(p['intensity'])}:shortest=1,format=yuv420p[{b}]")
+            f"[{a}]format=gbrp[fb_{b}];[fb_{b}][fl_{b}]blend=all_mode=screen:all_opacity={num(p['intensity'])}:shortest=1,format=gbrp[{b}]")
 
 
 _reg("flare", "Lens Flare (soft)", "light", [f("x", 0.8, 0, 1, 0.1), f("y", 0.2, 0, 1, 0.1), f("size", 0.35, 0.1, 0.8, 0.05), f("intensity", 0.35, 0.1, 0.8, 0.05)],

@@ -23,9 +23,16 @@ class FrameSet:
 
 
 def sample_frames(path: Path, sample_fps: float, width: int = 256, start: float = 0.0, duration: float | None = None,
-                  height: int | None = None) -> FrameSet:
+                  height: int | None = None, meta: dict | None = None) -> FrameSet:
+    """Decode frames at `sample_fps` into a (N, H, W, 3) RGB array. Rotation is applied (FFmpeg autorotate), pixels are
+    squared using the display size, and the source's own colour matrix/range is used (HDR is tone-mapped) so that
+    the measured statistics describe what the viewer actually sees."""
+    from ..render.colorspace import source_to_rgb
+
     s = get_settings()
-    vf = f"fps={sample_fps},scale={width}:{height if height else -2}:flags=area"
+    m = meta if meta is not None else _probe_meta(path)
+    h = height or _infer_height(m, width)
+    vf = f"fps={sample_fps},{source_to_rgb(m, width, h)}"
     cmd = [s.ffmpeg, "-v", "error", "-nostdin"]
     if start > 0:
         cmd += ["-ss", f"{start:.3f}"]
@@ -33,27 +40,27 @@ def sample_frames(path: Path, sample_fps: float, width: int = 256, start: float 
     if duration:
         cmd += ["-t", f"{duration:.3f}"]
     cmd += ["-an", "-vf", vf, "-f", "rawvideo", "-pix_fmt", "rgb24", "-"]
-    # probe output height by decoding one frame size: compute from aspect via a tiny probe frame
     p = subprocess.run(cmd, capture_output=True, timeout=1800)
     if p.returncode != 0:
         raise RuntimeError(p.stderr.decode("utf-8", "replace")[-500:])
     raw = p.stdout
-    h = height or _infer_height(path, width)
     fsz = width * h * 3
     n = len(raw) // fsz if fsz else 0
     arr = np.frombuffer(raw[: n * fsz], np.uint8).reshape(n, h, width, 3) if n else np.zeros((0, h, width, 3), np.uint8)
     return FrameSet(times=start + np.arange(n) / sample_fps, rgb=arr, fps=sample_fps)
 
 
-def _infer_height(path: Path, width: int) -> int:
+def _probe_meta(path: Path) -> dict:
     from .probe import probe
 
-    m = probe(path)
-    w, h = m.get("width") or 16, m.get("height") or 9
-    if abs(m.get("rotation", 0)) % 180 == 90:
-        w, h = h, w
+    return probe(path)
+
+
+def _infer_height(m: dict, width: int) -> int:
+    w = m.get("display_width") or m.get("width") or 16
+    h = m.get("display_height") or m.get("height") or 9
     hh = int(round(width * h / w))
-    return hh + (hh % 2)  # ffmpeg -2 rounds to even
+    return max(2, hh + (hh % 2))
 
 
 def hsv_hist(rgb: np.ndarray) -> np.ndarray:

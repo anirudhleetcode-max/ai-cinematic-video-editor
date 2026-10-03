@@ -22,9 +22,10 @@ from ..registry.color import write_cube
 from ..registry.effects import render_effect
 from ..registry.motion import camera_at
 from ..schemas import Segment
+from .colorspace import TAGS, TO_YUV420, source_to_rgb
 
 logger = get_logger("render.segment")
-MEZZ_VERSION = "mz4"
+MEZZ_VERSION = "mz5"  # mz5: explicit source matrix/range → RGB working space → BT.709 tagged mezzanines
 SR = 48000
 
 
@@ -44,6 +45,7 @@ class SegJob:
     quality: str
     cache_dir: Path
     mode: str
+    src_meta: dict | None = None
 
 
 @dataclass
@@ -63,7 +65,7 @@ class SegResult:
 def x264_mezz_args(quality: str) -> list[str]:
     crf = {"draft": 26, "standard": 16, "high": 12}[quality]
     preset = {"draft": "ultrafast", "standard": "veryfast", "high": "faster"}[quality]
-    return ["-c:v", "libx264", "-preset", preset, "-crf", str(crf), "-pix_fmt", "yuv420p", "-g", "48", "-bf", "0", "-threads", "2"]
+    return ["-c:v", "libx264", "-preset", preset, "-crf", str(crf), "-pix_fmt", "yuv420p", "-g", "48", "-bf", "0", "-threads", "2", *TAGS]
 
 
 def frames_for(seconds: float, fps: float) -> int:
@@ -118,9 +120,13 @@ def _video_core(j: SegJob, s: Segment, tmp: Path, fallback_level: int) -> tuple[
     chains: list[str] = []
     cur = "0:v"
     pre = []
+    meta = j.src_meta or {}
+    if not s.image and (meta.get("inspection") or {}).get("field_order") not in (None, "progressive", "unknown"):
+        pre.append("bwdif=mode=send_frame")
     if s.stabilize and fallback_level < 2 and not s.image:
         pre.append("deshake=rx=24:ry=24:edge=mirror")
-    pre.append("setsar=1")
+    if not pre:
+        pre.append("null")
     if s.speed.ramp and fallback_level < 2 and not s.image:
         pieces = _ramp_pieces(s.speed.ramp, s.out_duration)
         chains.append(f"[{cur}]{','.join(pre)},split={len(pieces)}" + "".join(f"[rp{i}]" for i in range(len(pieces))))
@@ -136,13 +142,8 @@ def _video_core(j: SegJob, s: Segment, tmp: Path, fallback_level: int) -> tuple[
             post.append(f"minterpolate=fps={fps}:mi_mode=mci:mc_mode=aobmc:vsbmc=1")
         else:
             post.append(f"fps={fps}")
-    # technical grade (per-shot normalisation) as a small LUT
-    t = s.technical
-    tech = {"exposure": t.exposure, "gamma": t.gamma, "temperature": t.temperature, "tint": t.tint, "saturation": t.saturation, "contrast": t.contrast}
-    if any(abs(tech[k] - d) > 1e-3 for k, d in (("exposure", 0), ("gamma", 1), ("temperature", 0), ("tint", 0), ("saturation", 1), ("contrast", 1))):
-        lut = write_cube(tmp / "tech.cube", tech, size=17)
-        post.append(f"lut3d=file='{lut.as_posix()}':interp=tetrahedral")
-    # cover-scale (+ headroom for camera motion), then either crop (static) or hand off to numpy motion
+    # cover-scale (+ headroom for camera motion) straight into the RGB working space with the source's own matrix /
+    # range (or HDR tone-mapping); then the per-shot technical grade LUT, then crop (static) or numpy camera motion
     motion = s.motion.preset != "none" and fallback_level < 2
     sw, sh = j.src_w, j.src_h
     cover = max(j.out_w / sw, j.out_h / sh) * s.crop.zoom
@@ -150,7 +151,13 @@ def _video_core(j: SegJob, s: Segment, tmp: Path, fallback_level: int) -> tuple[
     if motion:
         head = min(1.25, max(1.0, 1.0 / cover if cover < 1 else 1.0))  # extra resolution if the source has it
     cw, ch = int(math.ceil(sw * cover * head / 2) * 2), int(math.ceil(sh * cover * head / 2) * 2)
-    post.append(f"scale={cw}:{ch}:flags=lanczos")
+    post.append(source_to_rgb(meta, cw, ch, image=bool(s.image)))
+    post.append("setsar=1")
+    t = s.technical
+    tech = {"exposure": t.exposure, "gamma": t.gamma, "temperature": t.temperature, "tint": t.tint, "saturation": t.saturation, "contrast": t.contrast}
+    if any(abs(tech[k] - d) > 1e-3 for k, d in (("exposure", 0), ("gamma", 1), ("temperature", 0), ("tint", 0), ("saturation", 1), ("contrast", 1))):
+        lut = write_cube(tmp / "tech.cube", tech, size=17)
+        post.append(f"lut3d=file='{lut.as_posix()}':interp=tetrahedral")
     if not motion:
         x = int(np.clip(s.crop.cx * cw - j.out_w / 2, 0, cw - j.out_w))
         y = int(np.clip(s.crop.cy * ch - j.out_h / 2, 0, ch - j.out_h))
@@ -180,14 +187,14 @@ def _split_outputs(final_label: str, N: int, nh: int, nt: int, out: dict[str, Pa
     pieces.append(("body", nh, N - nt))
     if nt:
         pieces.append(("tail", N - nt, N))
-    g = f";[{final_label}]trim=end_frame={N},setpts=PTS-STARTPTS,format=yuv420p,split={len(pieces)}" + "".join(f"[o{i}]" for i in range(len(pieces)))
+    g = f";[{final_label}]trim=end_frame={N},setpts=PTS-STARTPTS,{TO_YUV420},split={len(pieces)}" + "".join(f"[o{i}]" for i in range(len(pieces)))
     args: list[str] = []
     for i, (name, a, b) in enumerate(pieces):
         g += f";[o{i}]trim=start_frame={a}:end_frame={b},setpts=PTS-STARTPTS[p{name}]"
         if name == "body":
             args += ["-map", f"[p{name}]", *x264_mezz_args(quality), "-an", str(out[name])]
         else:  # overlap frames kept lossless for the transition stage
-            args += ["-map", f"[p{name}]", "-c:v", "ffv1", "-level", "3", "-an", str(out[name])]
+            args += ["-map", f"[p{name}]", "-c:v", "ffv1", "-level", "3", *TAGS, "-an", str(out[name])]
     return g, args
 
 

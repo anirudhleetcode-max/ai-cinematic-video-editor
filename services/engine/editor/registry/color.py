@@ -148,8 +148,12 @@ def write_cube(path: Path, params: dict, intensity: float = 1.0, size: int = 33,
     return path
 
 
-def finishing_filters(params: dict, w: int, h: int) -> list[str]:
+def finishing_filters(params: dict, w: int, h: int, intensity: float = 1.0) -> list[str]:
+    """Finishing filters scale with the grade intensity (intensity 0 = no grade at all, finishing included)."""
     p = clamp_params(params)
+    k = max(0.0, min(1.5, intensity))
+    for key in ("halation", "sharpen", "vignette", "grain"):
+        p[key] = p[key] * k
     out = []
     if p["halation"] > 0:
         out.append(("halation", p["halation"]))

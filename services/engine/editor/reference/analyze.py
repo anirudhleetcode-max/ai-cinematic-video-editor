@@ -39,7 +39,7 @@ def analyze_reference(path: Path, fingerprint: str | None = None) -> dict:
             return hit
     meta = probe(path)
     sfps = 10.0
-    fs = F.sample_frames(path, sfps, 256)
+    fs = F.sample_frames(path, sfps, 256, meta=meta)
     m = F.frame_metrics(fs)
     shots = detect_shots(m, fs.times, fs.fps, min_shot=0.25)
     dur = meta.get("duration") or (len(fs.times) / sfps)

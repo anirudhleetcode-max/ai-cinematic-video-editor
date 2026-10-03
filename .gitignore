@@ -12,3 +12,13 @@ __pycache__/
 *.sqlite3*
 apps/web/tsconfig.tsbuildinfo
 e2e-*.png
+tests/real_media/*
+!tests/real_media/README.md
+*.ogg
+*.mkv
+*.avi
+*.m4a
+*.flac
+*.mp3
+*.webm
+*.m4v

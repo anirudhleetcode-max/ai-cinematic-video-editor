@@ -12,6 +12,7 @@ from ..config import get_settings
 from ..logging import get_logger, log
 from ..proc import MediaCommandError, run
 from ..registry.transitions import _ease, transition_spec
+from .colorspace import MEZZ_TO_RGB24, TO_YUV420
 from .segments import x264_mezz_args
 
 logger = get_logger("render.transition")
@@ -19,7 +20,7 @@ logger = get_logger("render.transition")
 
 def _read_frames(path: Path, w: int, h: int) -> np.ndarray:
     st = get_settings()
-    p = subprocess.run([st.ffmpeg, "-v", "error", "-i", str(path), "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], capture_output=True, timeout=600)
+    p = subprocess.run([st.ffmpeg, "-v", "error", "-i", str(path), "-vf", MEZZ_TO_RGB24, "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], capture_output=True, timeout=600)
     if p.returncode != 0:
         raise MediaCommandError(["ffmpeg"], p.returncode, p.stderr.decode("utf-8", "replace"))
     n = len(p.stdout) // (w * h * 3)
@@ -29,7 +30,7 @@ def _read_frames(path: Path, w: int, h: int) -> np.ndarray:
 def _encode_frames(frames, out: Path, w: int, h: int, fps: float, quality: str) -> None:
     st = get_settings()
     enc = subprocess.Popen([st.ffmpeg, "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{w}x{h}", "-r", str(fps), "-i", "-",
-                            *x264_mezz_args(quality), "-an", str(out)], stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+                            "-vf", TO_YUV420, *x264_mezz_args(quality), "-an", str(out)], stdin=subprocess.PIPE, stderr=subprocess.PIPE)
     assert enc.stdin is not None
     for f in frames:
         enc.stdin.write(np.ascontiguousarray(f).tobytes())

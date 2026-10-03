@@ -24,6 +24,7 @@ from ..registry.color import clamp_params, finishing_filters, preset_params, wri
 from ..registry.effects import render_effect
 from ..schemas import EditPlan
 from . import audio_mix
+from .colorspace import MEZZ_TO_RGB, TO_YUV420
 from .segments import SegJob, SegResult, frames_for, render_segment, x264_mezz_args
 from .text_ass import AssBuilder, write_srt
 from .transitions import render_transition
@@ -38,6 +39,9 @@ class AssetInfo:
     fingerprint: str
     meta: dict
     proxy: Path | None = None
+
+
+PROXY_META = {"inspection": {"color_space": "bt709", "color_range": "limited"}}
 
 
 def _noop(stage: str, frac: float, msg: str) -> None:
@@ -58,7 +62,7 @@ def render_end_card(plan: EditPlan, assets: dict[str, AssetInfo], out: Path, w: 
     d = plan.ending.duration
     bg = (brand or {}).get("background", "0x0c0d10").replace("#", "0x")
     # dark backdrop with a soft radial falloff (vignette), no YUV blending
-    g = f"color=c={bg}:s={w}x{h}:r={fps}:d={d:.3f},format=yuv420p,vignette=angle=0.9:mode=backward,vignette=angle=0.6[base]"
+    g = f"color=c={bg}:s={w}x{h}:r={fps}:d={d:.3f},format=gbrp,vignette=angle=0.9:mode=backward,vignette=angle=0.6[base]"
     inputs: list[str] = []
     last = "base"
     if plan.ending.logo_asset_id and plan.ending.logo_asset_id in assets:
@@ -66,9 +70,9 @@ def render_end_card(plan: EditPlan, assets: dict[str, AssetInfo], out: Path, w: 
         inputs = ["-loop", "1", "-t", f"{d:.3f}", "-i", str(assets[plan.ending.logo_asset_id].path)]
         y_expr = "(H-h)/2-H*0.06" if plan.ending.type == "logo_title" else "(H-h)/2"
         g += (f";[0:v]scale={lw}:-2,format=rgba,fade=t=in:st=0.25:d=0.7:alpha=1[lg];"
-              f"[base][lg]overlay=x=(W-w)/2:y={y_expr}:shortest=1[lo]")
+              f"[base][lg]overlay=x=(W-w)/2:y={y_expr}:shortest=1:format=gbrp[lo]")
         last = "lo"
-    g += f";[{last}]fade=t=in:st=0:d=0.45,fps={fps},trim=end_frame={frames_for(d, fps)}[v]"
+    g += f";[{last}]fade=t=in:st=0:d=0.45,fps={fps},trim=end_frame={frames_for(d, fps)},{TO_YUV420}[v]"
     run([st.ffmpeg, "-v", "error", "-y", *inputs, "-filter_complex", g, "-map", "[v]", *x264_mezz_args(quality), "-an", str(out)], timeout=600)
     return out
 
@@ -76,17 +80,17 @@ def render_end_card(plan: EditPlan, assets: dict[str, AssetInfo], out: Path, w: 
 def _creative_graph(plan: EditPlan, tmp: Path, w: int, h: int) -> tuple[str, str]:
     gp = preset_params(plan.color_grade.preset, plan.color_grade.overrides)
     lut = write_cube(tmp / "creative.cube", gp, plan.color_grade.intensity)
-    chain = f"[0:v]lut3d=file='{lut.as_posix()}':interp=tetrahedral"
-    fin = finishing_filters(gp, w, h)
+    chain = f"[0:v]{MEZZ_TO_RGB},lut3d=file='{lut.as_posix()}':interp=tetrahedral"
+    fin = finishing_filters(gp, w, h, plan.color_grade.intensity)
     if fin:
         chain += "," + ",".join(fin)
     chain += "[cg]"
     cur = "cg"
     parts = [chain]
     effects = list(plan.effects_global)
-    if clamp_params(gp)["halation"] > 0 and not any(e.id == "halation" for e in effects):
+    if clamp_params(gp)["halation"] * plan.color_grade.intensity > 0 and not any(e.id == "halation" for e in effects):
         from ..schemas import EffectInstance
-        effects.append(EffectInstance(id="halation", params={"intensity": round(0.4 * clamp_params(gp)["halation"], 3)}))
+        effects.append(EffectInstance(id="halation", params={"intensity": round(0.4 * clamp_params(gp)["halation"] * min(1.0, plan.color_grade.intensity), 3)}))
     ctx = {"w": w, "h": h, "dur": plan.duration, "fps": plan.fps}
     for k, e in enumerate(effects):
         try:
@@ -133,13 +137,15 @@ def render_plan(plan: EditPlan, assets: dict[str, AssetInfo], out_path: Path, wo
         src = ai.proxy if (preview and ai.proxy and ai.proxy.exists()) else ai.path
         sw = ai.meta.get("display_width") or ai.meta.get("width") or w
         sh = ai.meta.get("display_height") or ai.meta.get("height") or h
+        src_meta = ai.meta
         if preview and ai.proxy and ai.proxy.exists():
             sw, sh = int(sw * 360 / sh) // 2 * 2, 360
+            src_meta = PROXY_META  # proxies are already square-pixel BT.709 limited-range SDR
         nxt = plan.timeline[k + 1] if k + 1 < len(plan.timeline) else None
         head = s.transition_in.duration if (k > 0 and s.transition_in.id != "cut") else 0.0
         tail = nxt.transition_in.duration if (nxt and nxt.transition_in.id != "cut") else 0.0
         jobs.append(SegJob(s, src, ai.fingerprint + ("p" if src != ai.path else ""), bool(ai.meta.get("has_audio")), int(sw), int(sh), head, tail,
-                           w, h, fps, quality, cache, plan.mode))
+                           w, h, fps, quality, cache, plan.mode, src_meta))
     results: dict[str, SegResult] = {}
     n_workers = max(1, min(4, (psutil.cpu_count() or 2) // 2 + (0 if preview else 0)))
     done = 0
@@ -219,7 +225,7 @@ def render_plan(plan: EditPlan, assets: dict[str, AssetInfo], out_path: Path, wo
         graph += f";[{cur}]fade=t=out:st={max(0.0, plan.duration - 1.2):.3f}:d=1.2[fo]"
         cur = "fo"
     graph += ";[1:a]alimiter=limit=0.891:level=false:attack=2:release=60,aresample=48000[aout]"
-    graph += f";[{cur}]ass='{ass_path.as_posix()}':fontsdir='{st.fonts_dir.as_posix()}',fps={fps},trim=end_frame={frames_for(plan.duration, fps)},format=yuv420p[vout]"
+    graph += f";[{cur}]ass='{ass_path.as_posix()}':fontsdir='{st.fonts_dir.as_posix()}',fps={fps},trim=end_frame={frames_for(plan.duration, fps)},{TO_YUV420}[vout]"
     enc = pick_encoder(plan.export.vcodec, prefer_hw=prefer_hw and plan.export.prefer_hw and not preview)
     tried = []
     for e in [enc, "libx264"] if enc != "libx264" else ["libx264"]:

@@ -16,7 +16,7 @@ from .audio import analyze_audio
 from .probe import probe
 
 logger = get_logger("analyze")
-VERSION = "video-v5"
+VERSION = "video-v6"  # v6: rotation/SAR/matrix/HDR-correct frame sampling
 
 MODES = {
     # sample fps, analysis width, face/person sampling interval (s)
@@ -191,7 +191,7 @@ def analyze_video(path: Path, mode: str = "fast", fingerprint: str | None = None
             return hit
     meta = probe(path)
     sfps, width, face_every = MODES.get(mode, MODES["fast"])
-    fs = F.sample_frames(path, sfps, width)
+    fs = F.sample_frames(path, sfps, width, meta=meta)
     m = F.frame_metrics(fs)
     m["_width"], m["_fps"] = width, sfps
     audio = analyze_audio(path) if meta.get("has_audio") else {"has_audio": False, "speech": [], "silence": []}
