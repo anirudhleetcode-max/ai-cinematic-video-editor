@@ -1,0 +1,430 @@
+{
+ "event": "tests/real_media/event01",
+ "prompt": "Create a 60-second professional cinematic event highlight. Analyze the reference and follow its pacing, color mood, typography philosophy, and transition style without copying its footage. Select the best clips, remove poor-quality shots, begin with a strong hook, synchronize cuts to the supplied music, use slower emotional shots where appropriate, build energy toward the climax, add tasteful motion and transitions, apply consistent professional color grading, add elegant event typography, duck music under speech, and finish with a strong branded ending.",
+ "mode": "fast",
+ "environment": {
+  "ffmpeg": "6.1.1-3ubuntu5",
+  "cpu_count": 4,
+  "ram_total_gb": 15.72,
+  "gpu": null,
+  "encoders": {
+   "h264": [
+    "libx264"
+   ],
+   "hevc": [
+    "libx265"
+   ]
+  },
+  "selected_encoder": "libx264",
+  "hardware_encoding": false,
+  "os": "Linux-6.18.44-fc-v64-x86_64-with-glibc2.39",
+  "python": "3.11.15"
+ },
+ "inputs": {
+  "clip": 76,
+  "music": 3,
+  "reference": 1,
+  "logo": 1
+ },
+ "steps": {
+  "upload": {
+   "seconds": 76.36,
+   "accepted": 79,
+   "rejected": [
+    {
+     "file": "derived_corrupt_not_video.mp4",
+     "reason": "could not read media file derived_corrupt_not_video.mp4: ffprobe exited 1: [mov,mp4,m4a,3gp,3g2,mj2 @ 0x55abfed026c0] moov atom not found | /tmp/claude-0/ra3/projects/prj_9fd67ce981a6/media/clip/deriv"
+    },
+    {
+     "file": "derived_corrupt_truncated.mp4",
+     "reason": "derived_corrupt_truncated.mp4: unusable media (truncated_or_partially_undecodable)"
+    }
+   ]
+  },
+  "analysis": {
+   "seconds": 139.7,
+   "shots": 103,
+   "usable_shots": 90,
+   "rejected": {
+    "blurry": 2,
+    "underexposed": 2,
+    "overexposed": 12,
+    "shaky": 2,
+    "black": 0,
+    "frozen": 0,
+    "duplicate": 13
+   },
+   "duplicate_groups": 8,
+   "cached": 0,
+   "proxies": 17
+  },
+  "reference_profile": {
+   "median_shot": 1.2,
+   "cuts_per_minute": 38.33,
+   "transition_frequency": 0.0,
+   "color": null,
+   "known": {
+    "shot_seconds": 1.2,
+    "shots": 30,
+    "cuts_per_minute": 50.0,
+    "transitions": "hard cuts only",
+    "grade": "warm (colorbalance +R \u2212B)",
+    "text": "one centred title, lower area, 1\u20135 s"
+   }
+  },
+  "planning": {
+   "seconds": 0.319,
+   "segments": 49,
+   "unique_shots": 48,
+   "repeated_shots": 1,
+   "distinct_source_files": 47,
+   "sections": [
+    "hook",
+    "opening",
+    "people",
+    "activities",
+    "energy",
+    "best_moments",
+    "climax"
+   ],
+   "unusable_shots_used": [],
+   "reference_used": true,
+   "ending": "logo_title"
+  },
+  "preview": {
+   "seconds": 50.68,
+   "qc": true,
+   "qc_failures": []
+  },
+  "final_render": {
+   "seconds": 207.51,
+   "qc_passed": true,
+   "qc_failures": [],
+   "qc_warnings": [],
+   "duration": 59.933333,
+   "resolution": "1920x1080",
+   "fps": 30.0,
+   "vcodec": "h264",
+   "acodec": "aac",
+   "lufs": -17.06,
+   "true_peak": -0.99,
+   "encoder": "libx264",
+   "timings": {
+    "segments_s": 78.68,
+    "transitions_s": 0.0,
+    "audio_s": 21.27,
+    "final_pass_s": 77.85,
+    "qc_s": 6.62,
+    "total_s": 184.42,
+    "reviews_s": 23.02
+   },
+   "segments_cached": 0,
+   "fallbacks": [],
+   "output": "/tmp/claude-0/ra3/projects/prj_9fd67ce981a6/outputs/final_v1_rnd_5f78ff80415b.mp4",
+   "reference_match": {
+    "metrics": [
+     {
+      "metric": "median shot length (s)",
+      "reference": 1.2,
+      "output": 1.1,
+      "similarity": 0.874,
+      "basis": "measured"
+     },
+     {
+      "metric": "cuts per minute",
+      "reference": 38.33,
+      "output": 51.06,
+      "similarity": 0.586,
+      "basis": "measured"
+     },
+     {
+      "metric": "shot-length distribution",
+      "reference": [
+       0,
+       0,
+       19,
+       0,
+       4,
+       1,
+       0,
+       0,
+       0
+      ],
+      "output": [
+       0,
+       18,
+       17,
+       13,
+       3,
+       1,
+       0,
+       0,
+       0
+      ],
+      "similarity": 0.404,
+      "basis": "measured"
+     },
+     {
+      "metric": "transition density",
+      "reference": 0.0,
+      "output": 0.02,
+      "similarity": 0.933,
+      "basis": "inferred (frame-statistics transition classifier)"
+     },
+     {
+      "metric": "colour: brightness",
+      "reference": 0.5189,
+      "output": 0.4708,
+      "similarity": 0.759,
+      "basis": "measured"
+     },
+     {
+      "metric": "colour: contrast",
+      "reference": 0.1938,
+      "output": 0.1606,
+      "similarity": 0.668,
+      "basis": "measured"
+     },
+     {
+      "metric": "colour: saturation",
+      "reference": 0.2686,
+      "output": 0.1884,
+      "similarity": 0.599,
+      "basis": "measured"
+     },
+     {
+      "metric": "colour: temperature",
+      "reference": 0.0634,
+      "output": 0.0324,
+      "similarity": 0.69,
+      "basis": "measured"
+     },
+     {
+      "metric": "colour: tint",
+      "reference": 0.0137,
+      "output": 0.0048,
+      "similarity": 0.822,
+      "basis": "measured"
+     },
+     {
+      "metric": "colour: shadows warmth",
+      "reference": 0.1123,
+      "output": -0.0038,
+      "similarity": 0.0,
+      "basis": "measured"
+     },
+     {
+      "metric": "colour: highlights warmth",
+      "reference": -0.0093,
+      "output": 0.0333,
+      "similarity": 0.574,
+      "basis": "measured"
+     },
+     {
+      "metric": "text events per minute",
+      "reference": 5.0,
+      "output": 3.0,
+      "similarity": 0.601,
+      "basis": "heuristic text detector"
+     },
+     {
+      "metric": "music energy (mean)",
+      "reference": 0.851,
+      "output": 0.687,
+      "similarity": 0.453,
+      "basis": "measured"
+     }
+    ],
+    "overall_similarity": 0.613,
+    "note": "Measured similarity between the reference and this edit on each metric (1 = identical value). It describes how closely measurable properties match; it is not a claim of stylistic replication. The output includes a 3.5s end card, which the reference may not have."
+   },
+   "review": {
+    "items": [
+     {
+      "area": "STORY",
+      "question": "Clear beginning / middle / end?",
+      "status": "pass",
+      "evidence": {
+       "sections": [
+        "hook",
+        "opening",
+        "people",
+        "activities",
+        "energy",
+        "best_moments",
+        "climax"
+       ],
+       "ending": "logo_title"
+      }
+     },
+     {
+      "area": "PACING",
+      "question": "Does pacing follow the narrative roles and the music?",
+      "status": "pass",
+      "evidence": {
+       "shots_within_role_range": 1.0,
+       "beat_synced_cut_notes": [
+        "Timeline: 49 shots from the pacing engine on the beat grid (112 BPM), median shot 1.09s; cut relations: on_beat 63%, downbeat 20%, section_end 14%, before_beat 2%."
+       ]
+      }
+     },
+     {
+      "area": "SHOT SELECTION",
+      "question": "Are the best usable shots selected?",
+      "status": "pass",
+      "evidence": {
+       "mean_score_used": 0.711,
+       "mean_score_available": 0.615,
+       "unusable_shots_used": 0
+      }
+     },
+     {
+      "area": "VARIETY",
+      "question": "Are shots sufficiently varied?",
+      "status": "pass",
+      "evidence": {
+       "adjacent_same_clip": 0,
+       "repeated_shots": 1,
+       "distinct_clips": 47
+      }
+     },
+     {
+      "area": "TRANSITIONS",
+      "question": "Are transitions appropriate (cuts by default, within budget)?",
+      "status": "pass",
+      "evidence": {
+       "transitions": 0,
+       "boundaries": 48,
+       "budget": 0.0
+      }
+     },
+     {
+      "area": "COLOR",
+      "question": "Are neighbouring shots consistent (measured on the render)?",
+      "status": "warn",
+      "evidence": {
+       "segments_measured": 49,
+       "max_adjacent_luma_jump": 0.138,
+       "max_adjacent_temperature_jump": 0.057,
+       "max_adjacent_saturation_jump": 0.088,
+       "worst_luma_jump_at": "s021"
+      }
+     },
+     {
+      "area": "AUDIO",
+      "question": "Is dialogue intelligible and the mix controlled?",
+      "status": "warn",
+      "evidence": {
+       "integrated_lufs": -17.06,
+       "target_lufs": -16.0,
+       "true_peak_db": -0.99,
+       "speech_seconds": 7.4,
+       "ducked_seconds": 13.22,
+       "dialogue_levels_matched": 5
+      }
+     },
+     {
+      "area": "TEXT",
+      "question": "Is typography readable and inside safe areas?",
+      "status": "pass",
+      "evidence": {
+       "text_items": 1,
+       "violations": []
+      }
+     },
+     {
+      "area": "MOTION",
+      "question": "Does motion feel intentional (budgeted, on static shots)?",
+      "status": "pass",
+      "evidence": {
+       "segments_with_camera_motion": 22,
+       "speed_ramps": 0,
+       "stabilised": 0
+      }
+     },
+     {
+      "area": "ENDING",
+      "question": "Does the ending feel complete?",
+      "status": "pass",
+      "evidence": {
+       "type": "logo_title",
+       "duration": 3.5
+      }
+     },
+     {
+      "area": "TECHNICAL",
+      "question": "Is the output valid?",
+      "status": "pass",
+      "evidence": {
+       "qc_failures": [],
+       "qc_warnings": []
+      }
+     }
+    ],
+    "summary": {
+     "pass": 9,
+     "warn": 2,
+     "fail": 0
+    },
+    "note": "Deterministic checks over the plan and measurements of the rendered file; a 'pass' means the measured criterion was met, not that the edit is aesthetically perfect."
+   }
+  },
+  "revision_1": {
+   "text": "Make it more energetic and reduce the intro to 3 seconds.",
+   "seconds": 219.02,
+   "ops": [
+    "pacing",
+    "section_length"
+   ],
+   "noop": false,
+   "qc": true,
+   "segments_cached": 0,
+   "segments": 76
+  },
+  "revision_2": {
+   "text": "Make the colors warmer.",
+   "seconds": 109.52,
+   "ops": [
+    "color_adjust"
+   ],
+   "noop": false,
+   "qc": true,
+   "segments_cached": 76,
+   "segments": 76
+  },
+  "revision_3": {
+   "text": "Use song 2 for the final section.",
+   "seconds": 0.03,
+   "ops": [
+    "section_song"
+   ],
+   "noop": true,
+   "qc": null,
+   "segments_cached": null,
+   "segments": 76
+  }
+ },
+ "measured": true,
+ "resources": {
+  "peak_rss_mb": 1485.2,
+  "cpu_percent_avg": 70.1,
+  "cache": {
+   "hits": 0,
+   "misses": 78,
+   "entries": 78
+  },
+  "gpu": null,
+  "hardware_encoding": false
+ },
+ "total_seconds": 803.5,
+ "checks": {
+  "all_inputs_accounted_for": true,
+  "final_qc_passed": true,
+  "duration_ok": true,
+  "resolution_1080p": true,
+  "no_unusable_shots_used": true,
+  "no_repeated_shots": false,
+  "all_renders_qc": true
+ },
+ "passed": false
+}

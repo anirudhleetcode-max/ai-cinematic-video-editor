@@ -232,6 +232,17 @@ def mix(plan: EditPlan, seg_audio: dict[str, Path], asset_paths: dict[str, Path]
     st = get_settings()
     meas = loudness(raw)
     if meas and float(meas.get("input_i", "-70")) > -60:
+        # linear loudnorm can only add gain while true peaks stay under the ceiling; if the required gain would push
+        # peaks over it, a look-ahead limiter first makes the headroom (otherwise the mix lands below target)
+        gain = plan.audio.target_lufs - float(meas["input_i"])
+        if float(meas["input_tp"]) + gain > plan.audio.true_peak_db - 0.3:
+            ceiling_db = plan.audio.true_peak_db - gain - 0.6
+            lim = tmp / "mix_lim.wav"
+            run([st.ffmpeg, "-v", "error", "-y", "-i", str(raw), "-af",
+                 f"alimiter=limit={10 ** (ceiling_db / 20):.5f}:attack=5:release=60:level=false", "-c:a", "pcm_f32le", str(lim)], timeout=1800)
+            raw = lim
+            meas = loudness(raw)
+            report["prelimit_ceiling_db"] = round(ceiling_db, 2)
         ln = (f"loudnorm=I={plan.audio.target_lufs}:TP={plan.audio.true_peak_db}:LRA=11:measured_I={meas['input_i']}:measured_TP={meas['input_tp']}:"
               f"measured_LRA={meas['input_lra']}:measured_thresh={meas['input_thresh']}:offset={meas['target_offset']}:linear=true")
         run([st.ffmpeg, "-v", "error", "-y", "-i", str(raw), "-af", f"{ln},aresample={SR}", "-ar", str(SR), "-c:a", "pcm_s16le", str(out)], timeout=1800)

@@ -14,7 +14,7 @@ import numpy as np
 from ..media.frames import hamming
 from ..music.analyze import best_window
 from ..registry import templates
-from ..registry.color import COLOR_PRESETS, solve_technical, technical_correction
+from ..registry.color import COLOR_PRESETS, calibrate_split, solve_technical, technical_correction
 from ..registry.editing import DENSITY
 from ..schemas import (AudioPlan, CaptionSpec, ColorAdjust, ColorGrade, CreativeBible, CropSpec, EffectInstance, Ending, ExportSpec, MotionSpec,
                        MusicSegment, Segment, SfxItem, SpeedSpec, StorySection, StyleIntent, TextItem, TransitionSpec)
@@ -176,7 +176,10 @@ def map_reference(ref: dict, intent: StyleIntent) -> dict:
             if sh_h is not None or hl_h is not None:
                 ov["split_shadow_hue"] = sh_h if sh_h is not None else 190.0
                 ov["split_highlight_hue"] = hl_h if hl_h is not None else (sh_h if sh_h is not None else 35.0)
-                ov["split_amount"] = round(float(np.clip(max(sh_m, hl_m) * 3.5, 0.05, 0.6)), 3)
+                # amount calibrated through the grading model so the shadows reach the reference's measured warmth
+                cast_t = (g.get("shadows") or {}).get("temperature", 0.0) if sh_h is not None else (g.get("highlights") or {}).get("temperature", 0.0)
+                ov["split_amount"] = calibrate_split(ov["split_shadow_hue"], cast_t, 0.15 if sh_h is not None else 0.8,
+                                                     0.4 if hl_h is None else (-0.4 if sh_h is None else 0.0)) or round(float(np.clip(max(sh_m, hl_m) * 3.5, 0.05, 0.6)), 3)
                 if hl_h is None:  # neutral highlights measured: weight the toning towards the shadows
                     ov["split_balance"] = 0.4
                 elif sh_h is None:

@@ -235,6 +235,11 @@ def pixel_stats(px: np.ndarray) -> dict:
             "saturation": float(sat.mean()), "contrast": float(luma.std())}
 
 
+# Natural limits for technical matching: beyond these, "matching" turns dull or mismatched footage garish. Remaining
+# differences are reported (predicted and measured jumps), not forced.
+TECH_LIMITS = {"exposure": (-0.8, 0.8), "temperature": (-0.5, 0.5), "tint": (-0.3, 0.3), "saturation": (0.7, 1.35), "contrast": (0.8, 1.25)}
+
+
 def solve_technical(px: np.ndarray, target: dict, strength: float = 0.75, iters: int = 4) -> tuple[dict, dict]:
     """Find exposure / temperature / tint / saturation / contrast so that the graded pixels' statistics move
     `strength` of the way to `target`. Uses the real grading model (closed loop), not a linear guess.
@@ -245,12 +250,27 @@ def solve_technical(px: np.ndarray, target: dict, strength: float = 0.75, iters:
     base = {**IDENTITY, "pivot": 0.42}
     for _ in range(iters):
         cur = pixel_stats(grade(px, {**base, **p}))
-        p["exposure"] = float(np.clip(p["exposure"] + np.log2(max(1e-3, want["luma"]) / max(1e-3, cur["luma"])), -1.0, 1.0))
-        p["temperature"] = float(np.clip(p["temperature"] + (want["temperature"] - cur["temperature"]) / 0.12 * 0.9, -1.0, 1.0))
-        p["tint"] = float(np.clip(p["tint"] - (want["tint"] - cur["tint"]) / 0.06 * 0.5, -1.0, 1.0))
-        p["saturation"] = float(np.clip(p["saturation"] * (max(1e-3, want["saturation"]) / max(1e-3, cur["saturation"])) ** 0.8, 0.5, 1.8))
-        p["contrast"] = float(np.clip(p["contrast"] * (max(1e-3, want["contrast"]) / max(1e-3, cur["contrast"])) ** 0.7, 0.7, 1.4))
+        p["exposure"] = float(np.clip(p["exposure"] + np.log2(max(1e-3, want["luma"]) / max(1e-3, cur["luma"])), *TECH_LIMITS["exposure"]))
+        p["temperature"] = float(np.clip(p["temperature"] + (want["temperature"] - cur["temperature"]) / 0.12 * 0.9, *TECH_LIMITS["temperature"]))
+        p["tint"] = float(np.clip(p["tint"] - (want["tint"] - cur["tint"]) / 0.06 * 0.5, *TECH_LIMITS["tint"]))
+        p["saturation"] = float(np.clip(p["saturation"] * (max(1e-3, want["saturation"]) / max(1e-3, cur["saturation"])) ** 0.8, *TECH_LIMITS["saturation"]))
+        p["contrast"] = float(np.clip(p["contrast"] * (max(1e-3, want["contrast"]) / max(1e-3, cur["contrast"])) ** 0.7, *TECH_LIMITS["contrast"]))
     return p, pixel_stats(grade(px, {**base, **p}))
+
+
+def calibrate_split(hue: float, cast_temperature: float, luma: float = 0.15, balance: float = 0.4) -> float:
+    """Split-toning amount that makes a pixel of `luma` (grey) acquire `cast_temperature` (r − b) under the grading
+    model — so a reference's measured shadow warmth is reproduced, not just its hue."""
+    if abs(cast_temperature) < 0.01:
+        return 0.0
+    g = np.full((1, 3), luma, np.float32)
+    best, err = 0.0, 1e9
+    for a in np.linspace(0, 1, 41):
+        out = grade(g, {**IDENTITY, "split_shadow_hue": hue, "split_highlight_hue": hue, "split_amount": float(a), "split_balance": balance})
+        e = abs(float(out[0, 0] - out[0, 2]) - abs(cast_temperature))
+        if e < err:
+            best, err = float(a), e
+    return round(best, 3)
 
 
 def technical_correction(stats: dict, target: dict) -> dict:

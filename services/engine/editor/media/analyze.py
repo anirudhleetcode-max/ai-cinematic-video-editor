@@ -17,7 +17,7 @@ from .probe import probe
 from .semantics import camera_motion, sample_detections, shot_profile
 
 logger = get_logger("analyze")
-VERSION = "video-v9"  # v7: correct colour/geometry sampling, vision provider, semantic profile, usability/creative scores
+VERSION = "video-v10"  # v7: correct colour/geometry sampling, vision provider, semantic profile, usability/creative scores
 
 MODES = {
     # sample fps, analysis width, face/person sampling interval (s)
@@ -149,7 +149,7 @@ def score_shot(m: dict, a: int, b: int, faces: list[dict], audio: dict, start: f
     blur_kind = ("motion_blur" if motion_s > 0.5 else "out_of_focus") if sharpness < 0.3 else None
     if luma < 0.15 or dark > 0.4:
         issues.append("underexposed")
-    if bright > 0.25 or (luma > 0.85 and (bright > 0.1 or contrast < 0.08)):  # clipped, or washed out (no tonal range left)
+    if bright > 0.25 or (luma > 0.85 and (bright > 0.1 or contrast < 0.03)):  # clipped, or washed out (no tonal range left)
         issues.append("overexposed")
     if stability < 0.45:
         issues.append("shaky")

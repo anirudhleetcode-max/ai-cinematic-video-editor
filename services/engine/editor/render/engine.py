@@ -195,7 +195,7 @@ def render_plan(plan: EditPlan, assets: dict[str, AssetInfo], out_path: Path, wo
     # the mix depends only on audio-relevant plan fields + the segment audio files + source fingerprints: cache it, so a
     # colour / text / ending-only revision reuses it (dependency-aware invalidation)
     mix_key = hashlib.sha256(json.dumps({
-        "v": "mix2", "audio": plan.audio.model_dump(), "music": [m.model_dump() for m in plan.music], "sfx": [x.model_dump() for x in plan.sfx],
+        "v": "mix3", "audio": plan.audio.model_dump(), "music": [m.model_dump() for m in plan.music], "sfx": [x.model_dump() for x in plan.sfx],
         "vo": [v.model_dump() for v in plan.voiceover], "dur": plan.duration,
         "segs": [[sg.id, sg.out_start, sg.out_duration, sg.keep_audio, sg.audio_role, sg.audio_gain_db, sg.transition_in.id, sg.transition_in.duration,
                   str(results[sg.id].audio.parent.name) if sg.id in results else None] for sg in plan.timeline],

@@ -223,13 +223,20 @@ def main() -> int:
     plan1 = EditPlan.model_validate(v1["plan"])
     rows = {a["id"]: a for a in db.query("SELECT id, filename, analysis FROM assets WHERE project_id=?", (p["id"],))}
     used = [(s.asset_id, s.shot_index) for s in plan1.timeline]
+    # repeated FOOTAGE = the same source frames shown twice (overlapping ranges of one clip); using two different
+    # moments of a long take is normal editing and is reported separately
+    repeated_footage = []
+    for i, a_ in enumerate(plan1.timeline):
+        for b_ in plan1.timeline[i + 1:]:
+            if a_.asset_id == b_.asset_id and min(a_.src_out, b_.src_out) - max(a_.src_in, b_.src_in) > 0.1:
+                repeated_footage.append([a_.id, b_.id])
     bad_used = []
     for aid, si in used:
         sh = next((x for x in (rows[aid]["analysis"] or {}).get("shots", []) if x["index"] == si), None)
         if sh and set(sh["issues"]) & {"black", "duplicate", "frozen", "too_short"}:
             bad_used.append({"file": rows[aid]["filename"], "issues": sh["issues"]})
     step("planning", seconds=round(time.perf_counter() - t, 3), segments=len(plan1.timeline), unique_shots=len(set(used)),
-         repeated_shots=len(used) - len(set(used)), distinct_source_files=len({a for a, _ in used}), sections=[s.name for s in plan1.story_structure],
+         same_take_reused=len(used) - len(set(used)), repeated_footage=repeated_footage, distinct_source_files=len({a for a, _ in used}), sections=[s.name for s in plan1.story_structure],
          unusable_shots_used=bad_used, reference_used=plan1.reference_profile_used, ending=plan1.ending.type)
 
     t = time.perf_counter()
@@ -267,7 +274,7 @@ def main() -> int:
         "duration_ok": abs((q["probe"].get("duration") or 0) - args.duration) < 0.3,
         "resolution_1080p": (q["probe"].get("width"), q["probe"].get("height")) == (1920, 1080),
         "no_unusable_shots_used": not bad_used,
-        "no_repeated_shots": len(used) == len(set(used)),
+        "no_repeated_footage": not repeated_footage,
         "all_renders_qc": all(r["report"]["qc"]["passed"] for r in renders),
     }
     rep["checks"], rep["passed"] = checks, all(checks.values())
