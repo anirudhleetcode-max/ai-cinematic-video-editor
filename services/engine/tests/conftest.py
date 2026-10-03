@@ -1,10 +1,13 @@
+import atexit
 import os
+import shutil
 import tempfile
 from pathlib import Path
 
 import pytest
 
 _TMP = Path(tempfile.mkdtemp(prefix="editor-tests-"))
+atexit.register(shutil.rmtree, _TMP, True)  # each session generates ~0.3 GB of media; never leave it behind
 os.environ["EDITOR_DATA_DIR"] = str(_TMP / "data")
 os.environ["EDITOR_AI_PROVIDER"] = "deterministic"
 os.environ["EDITOR_QC_MAX_RETRIES"] = "1"
