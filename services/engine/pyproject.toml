@@ -23,6 +23,8 @@ dev = ["pytest>=8"]
 transcribe = ["sherpa-onnx>=1.10"]
 # Optional Claude provider for prompt interpretation (deterministic parser is used without it).
 ai = ["anthropic>=1.0"]
+# Optional Silero voice-activity detection (models fetched by scripts/download_models.py).
+vad = ["onnxruntime>=1.17"]
 
 [tool.setuptools.packages.find]
 include = ["editor*"]

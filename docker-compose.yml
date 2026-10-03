@@ -1,18 +1,47 @@
-# Optional. Local development does not need Docker (see README).
+# Production-shaped stack on one host: web, API and worker as separate containers sharing a data volume
+# (SQLite database + media). For several hosts, see docs/DEPLOYMENT.md (shared volume / object storage limits).
+#
+#   docker compose up --build -d
+#   docker compose exec api python -m editor.auth create-user "Admin" --admin   # or register in the web app
+#
+# Settings come from .env (copy .env.example). EDITOR_ENV=production refuses unsafe settings at start-up.
 services:
   api:
-    build: { context: ., dockerfile: docker/api.Dockerfile }
+    build: { context: ., dockerfile: docker/engine.Dockerfile, target: api }
+    image: cutroom-api
     ports: ["8000:8000"]
-    volumes: ["editor-data:/data"]
+    volumes: ["cutroom-data:/data"]
+    env_file: [{ path: .env, required: false }]
     environment:
-      - EDITOR_CORS_ORIGINS=http://localhost:3000
-      - EDITOR_ENV=development
-      # - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
-    # For NVIDIA NVENC, uncomment (requires nvidia-container-toolkit and an ffmpeg build with nvenc):
+      EDITOR_ENV: ${EDITOR_ENV:-production}
+      EDITOR_AUTH: token
+      EDITOR_ROLE: api
+      EDITOR_CORS_ORIGINS: ${EDITOR_CORS_ORIGINS:-http://localhost:3000}
+      EDITOR_CLEANUP: "0"            # the worker runs retention cleanup
+    restart: unless-stopped
+  worker:
+    build: { context: ., dockerfile: docker/engine.Dockerfile, target: worker }
+    image: cutroom-worker
+    volumes: ["cutroom-data:/data"]
+    env_file: [{ path: .env, required: false }]
+    environment:
+      EDITOR_ENV: ${EDITOR_ENV:-production}
+      EDITOR_AUTH: token
+      EDITOR_ROLE: worker
+      EDITOR_CORS_ORIGINS: ${EDITOR_CORS_ORIGINS:-http://localhost:3000}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    # NVIDIA NVENC needs nvidia-container-toolkit AND an FFmpeg build with nvenc (Debian's has it; verify with
+    # GET /diagnostics → verified_hardware_encoders). Uncomment:
     # deploy: { resources: { reservations: { devices: [{ capabilities: [gpu] }] } } }
   web:
-    build: { context: ., dockerfile: docker/web.Dockerfile, args: { NEXT_PUBLIC_API_URL: "http://localhost:8000" } }
+    build:
+      context: .
+      dockerfile: docker/web.Dockerfile
+      args: { NEXT_PUBLIC_API_URL: "${NEXT_PUBLIC_API_URL:-http://localhost:8000}" }
+    image: cutroom-web
     ports: ["3000:3000"]
     depends_on: [api]
+    restart: unless-stopped
 volumes:
-  editor-data:
+  cutroom-data:
