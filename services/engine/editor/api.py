@@ -212,9 +212,14 @@ def _component_health() -> dict:
     except OSError:
         out["storage"] = {"ok": False}
     q = get_queue()
-    alive = sum(t.is_alive() for t in q.threads)
     counts = {r["status"]: r["n"] for r in db.query("SELECT status, COUNT(*) AS n FROM jobs WHERE status IN ('queued','running') GROUP BY status")}
-    out["worker"] = {"ok": alive == q.n and q.n > 0, "threads_alive": alive, "threads": q.n}
+    if q.runs_workers:
+        alive = sum(t.is_alive() for t in q.threads)
+        out["worker"] = {"ok": alive == q.n and q.n > 0, "threads_alive": alive, "threads": q.n, "process": "in-process"}
+    else:  # separate worker process: it touches a heartbeat file on the shared data volume every 5 s
+        hb = st.data_dir / ".worker-heartbeat"
+        age = time.time() - hb.stat().st_mtime if hb.exists() else None
+        out["worker"] = {"ok": age is not None and age < 30, "last_heartbeat_s": round(age, 1) if age is not None else None, "process": "separate"}
     out["queue"] = {"ok": True, "backend": type(q).__name__, "queued": counts.get("queued", 0), "running": counts.get("running", 0)}
     d = diagnostics()
     out["ffmpeg"] = {"ok": bool(d["ffmpeg"] and d["ffprobe"]), "encoder": d["selected_encoder"], "hardware_encoding": d["hardware_encoding"]}

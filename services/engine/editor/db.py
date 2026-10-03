@@ -74,6 +74,7 @@ def connect() -> sqlite3.Connection:
             path.parent.mkdir(parents=True, exist_ok=True)
             _conn = sqlite3.connect(str(path), check_same_thread=False, isolation_level=None)
             _conn.row_factory = sqlite3.Row
+            _conn.execute("PRAGMA busy_timeout=15000")  # API and worker processes share the database
             _conn.execute("PRAGMA journal_mode=WAL")
             _conn.execute("PRAGMA foreign_keys=ON")
             _conn.executescript(DDL)
@@ -82,7 +83,9 @@ def connect() -> sqlite3.Connection:
 
 
 MIGRATIONS = [("projects", "owner_id", "TEXT"), ("brand_kits", "owner_id", "TEXT"), ("jobs", "owner_id", "TEXT"),
-              ("users", "email", "TEXT"), ("users", "password_hash", "TEXT")]
+              ("users", "email", "TEXT"), ("users", "password_hash", "TEXT"),
+              ("jobs", "cancel_requested", "INTEGER DEFAULT 0"), ("jobs", "worker_id", "TEXT"), ("jobs", "heartbeat", "REAL"),
+              ("jobs", "attempts", "INTEGER DEFAULT 0")]
 # indexes on migrated columns (created after the columns exist)
 POST_MIGRATION_DDL = """
 CREATE INDEX IF NOT EXISTS ix_projects_owner ON projects(owner_id);
@@ -167,9 +170,10 @@ def query(sql: str, params: tuple = ()) -> list[dict]:
         return [_decode(r) for r in connect().execute(sql, params).fetchall()]  # type: ignore[misc]
 
 
-def execute(sql: str, params: tuple = ()) -> None:
+def execute(sql: str, params: tuple = ()) -> int:
+    """Returns the number of rows changed."""
     with tx() as c:
-        c.execute(sql, params)
+        return c.execute(sql, params).rowcount
 
 
 # ---- analysis cache -------------------------------------------------------------------------
