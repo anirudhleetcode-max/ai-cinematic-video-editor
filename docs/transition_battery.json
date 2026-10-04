@@ -4,7 +4,7 @@
  "boundaries_detected": 20,
  "clips_with_gradual_transitions": {
   "derived_corrupt_not_video.mp4": {
-   "error": "ffprobe exited 1: [mov,mp4,m4a,3gp,3g2,mj2 @ 0x55cd7bc596c0] moov atom not found | ../../tests/real_media/event01/clips/"
+   "error": "ffprobe exited 1: [mov,mp4,m4a,3gp,3g2,mj2 @ 0x55e9b86f26c0] moov atom not found | ../../tests/real_media/event01/clips/"
   }
  },
  "real_reference_hard_cuts_only": {
