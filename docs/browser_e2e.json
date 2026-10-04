@@ -1,0 +1,164 @@
+{
+  "passed": true,
+  "web": "http://localhost:3000",
+  "api": "http://localhost:8000",
+  "steps": [
+    {
+      "t": 0.3,
+      "step": "API refuses unauthenticated requests (401)"
+    },
+    {
+      "t": 1.2,
+      "step": "signed-out visitor sees the sign-in dialog, no outage banner"
+    },
+    {
+      "t": 3.2,
+      "step": "user A signed up in the UI"
+    },
+    {
+      "t": 3.4,
+      "step": "signed out → sign-in dialog"
+    },
+    {
+      "t": 3.6,
+      "step": "invalid credentials refused",
+      "message": "invalid email or password"
+    },
+    {
+      "t": 5.5,
+      "step": "user A signed in"
+    },
+    {
+      "t": 5.6,
+      "step": "project prj_ef79c50bde21"
+    },
+    {
+      "t": 8.3,
+      "step": "uploaded 8 files (clips, music, reference)",
+      "roles": [
+        "clip",
+        "clip",
+        "clip",
+        "clip",
+        "clip",
+        "music",
+        "clip",
+        "reference"
+      ]
+    },
+    {
+      "t": 12.3,
+      "step": "corrupt upload refused, no server path shown"
+    },
+    {
+      "t": 12.4,
+      "step": "generate started (real analysis running)"
+    },
+    {
+      "t": 23.5,
+      "step": "network dropped for 6 s and restored"
+    },
+    {
+      "t": 24.3,
+      "step": "browser refreshed mid-job: progress resumed from the server"
+    },
+    {
+      "t": 75.8,
+      "step": "generate finished: preview and final rendered",
+      "renders": [
+        "final",
+        "preview"
+      ]
+    },
+    {
+      "t": 81.2,
+      "step": "user B: every access to A's project / assets / versions / jobs / download / report / cancel / delete → 404",
+      "codes": {
+        "project": 404,
+        "assets": 404,
+        "asset_file": 404,
+        "versions": 404,
+        "version": 404,
+        "job": 404,
+        "job_events": 404,
+        "download": 404,
+        "report": 404,
+        "cancel_job": 404,
+        "delete_project": 404
+      }
+    },
+    {
+      "t": 102.4,
+      "step": "revision rendered as a new version",
+      "versions": 2
+    },
+    {
+      "t": 136.7,
+      "step": "running job cancelled from the UI"
+    },
+    {
+      "t": 137.7,
+      "step": "downloaded through the browser: 7.2 MB",
+      "duration": "20.000000"
+    },
+    {
+      "t": 138.6,
+      "step": "project reopened after refresh; version history intact",
+      "versions": 2
+    },
+    {
+      "t": 139.7,
+      "step": "expired session → API 401 → sign-in dialog"
+    },
+    {
+      "t": 141.6,
+      "step": "signed in again on the same page; project still there"
+    },
+    {
+      "t": 144.4,
+      "step": "project deleted from the UI (API now 404)"
+    },
+    {
+      "t": 144.8,
+      "step": "repeated failed logins rate limited",
+      "statuses": [
+        401,
+        401,
+        401,
+        401,
+        401,
+        401,
+        401,
+        401,
+        401,
+        429,
+        429,
+        429,
+        429,
+        429
+      ]
+    }
+  ],
+  "measured": {
+    "download": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1920,
+          "height": 1080,
+          "pix_fmt": "yuv420p",
+          "color_space": "bt709"
+        },
+        {
+          "codec_name": "aac",
+          "sample_rate": "48000"
+        }
+      ],
+      "format": {
+        "duration": "20.000000",
+        "size": "7226148"
+      }
+    }
+  }
+}
