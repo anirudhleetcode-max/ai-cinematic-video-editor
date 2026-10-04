@@ -1,17 +1,17 @@
 {
  "label": "MEASURED against local production-config stack (separate API and worker processes, no Docker)",
  "worker_killed_mid_job": {
-  "progress_when_killed": 0.4286,
-  "stage_when_killed": "analyzing_media",
+  "progress_when_killed": 1.0,
+  "stage_when_killed": "building_timeline",
   "final_status": "done",
-  "seconds_from_kill_to_done": 148.8,
+  "seconds_from_kill_to_done": 143.9,
   "error": null,
   "pass": true
  },
  "cancel_running_job": {
   "final_status": "cancelled",
   "state": "cancelled",
-  "seconds_to_stop": 32.3,
+  "seconds_to_stop": 1.0,
   "pass": true
  },
  "persistence_after_restart": {
@@ -32,12 +32,12 @@
    },
    "storage": {
     "ok": true,
-    "free_gb": 6.9,
+    "free_gb": 11.1,
     "backend": "LocalStorage"
    },
    "worker": {
     "ok": true,
-    "last_heartbeat_s": 0.9,
+    "last_heartbeat_s": 0.4,
     "process": "separate"
    },
    "queue": {
@@ -58,7 +58,7 @@
     "note": "optional \u2014 the classic OpenCV / energy fallbacks run without them"
    }
   },
-  "time": 1791095800.0244482
+  "time": 1791103812.3512056
  },
  "pass": true
 }

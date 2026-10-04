@@ -36,10 +36,10 @@
    "detail": {
     "GET /projects": 401,
     "POST /projects": 401,
-    "GET /projects/prj_323438cbd7d5": 401,
-    "GET /projects/prj_323438cbd7d5/assets": 401,
-    "GET /assets/ast_bbf063972c28/file": 401,
-    "GET /assets/ast_bbf063972c28/thumbnail": 401
+    "GET /projects/prj_713e250ce511": 401,
+    "GET /projects/prj_713e250ce511/assets": 401,
+    "GET /assets/ast_5849da4bd835/file": 401,
+    "GET /assets/ast_5849da4bd835/thumbnail": 401
    }
   },
   {
@@ -153,7 +153,7 @@
   {
    "check": "no tokens or passwords in the server logs",
    "pass": true,
-   "detail": "287373 bytes of logs scanned"
+   "detail": "24598 bytes of logs scanned"
   }
  ],
  "passed": 21,

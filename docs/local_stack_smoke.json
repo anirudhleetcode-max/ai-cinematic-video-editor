@@ -1,7 +1,7 @@
 {
   "api": "http://localhost:8000",
-  "web": "http://localhost:3000",
-  "started": 1791095080.9661472,
+  "web": null,
+  "started": 1791103556.5397556,
   "health": {
     "ok": true,
     "ffmpeg": true,
@@ -13,12 +13,12 @@
       },
       "storage": {
         "ok": true,
-        "free_gb": 7.1,
+        "free_gb": 11.2,
         "backend": "LocalStorage"
       },
       "worker": {
         "ok": true,
-        "last_heartbeat_s": 1.4,
+        "last_heartbeat_s": 4.5,
         "process": "separate"
       },
       "queue": {
@@ -39,16 +39,16 @@
         "note": "optional \u2014 the classic OpenCV / energy fallbacks run without them"
       }
     },
-    "time": 1791095081.1670873
+    "time": 1791103556.73631
   },
   "media": "real (from --media)",
   "uploaded": 7,
   "generate_timings": {
     "analysis_s": 0.01,
-    "planning_s": 0.07,
-    "preview_s": 12.21,
-    "render_s": 47.88,
-    "total_s": 60.17
+    "planning_s": 0.06,
+    "preview_s": 11.81,
+    "render_s": 46.36,
+    "total_s": 58.24
   },
   "revision_changes": [
     "music_gain"
@@ -81,19 +81,14 @@
       "seconds": 0.2
     },
     {
-      "step": "web serves",
-      "ok": true,
-      "seconds": 0.04
-    },
-    {
       "step": "register user a",
       "ok": true,
-      "seconds": 0.18
+      "seconds": 0.09
     },
     {
       "step": "register user b",
       "ok": true,
-      "seconds": 0.09
+      "seconds": 0.08
     },
     {
       "step": "unauthenticated is refused",
@@ -108,32 +103,32 @@
     {
       "step": "upload",
       "ok": true,
-      "seconds": 6.58
+      "seconds": 4.53
     },
     {
-      "step": "user b denied /projects/prj_38503be09363",
+      "step": "user b denied /projects/prj_81a19fec55cf",
       "ok": true,
       "seconds": 0.0
     },
     {
-      "step": "user b denied /projects/prj_38503be09363/assets",
+      "step": "user b denied /projects/prj_81a19fec55cf/assets",
       "ok": true,
       "seconds": 0.0
     },
     {
-      "step": "user b denied /projects/prj_38503be09363/versions",
+      "step": "user b denied /projects/prj_81a19fec55cf/versions",
       "ok": true,
       "seconds": 0.0
     },
     {
       "step": "analyze",
       "ok": true,
-      "seconds": 12.09
+      "seconds": 8.06
     },
     {
       "step": "generate (preview + final)",
       "ok": true,
-      "seconds": 61.44
+      "seconds": 59.5
     },
     {
       "step": "revise (natural language)",
@@ -148,7 +143,7 @@
     {
       "step": "download final",
       "ok": true,
-      "seconds": 0.04
+      "seconds": 0.03
     },
     {
       "step": "user b cannot download",
@@ -158,12 +153,12 @@
     {
       "step": "probe final",
       "ok": true,
-      "seconds": 0.06
+      "seconds": 0.07
     },
     {
       "step": "render report",
       "ok": true,
-      "seconds": 0.0
+      "seconds": 0.01
     },
     {
       "step": "delete project",
@@ -171,5 +166,5 @@
       "seconds": 0.16
     }
   ],
-  "finished": 1791095177.9912055
+  "finished": 1791103645.4058747
 }

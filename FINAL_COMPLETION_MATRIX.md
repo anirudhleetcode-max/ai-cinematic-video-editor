@@ -3,7 +3,7 @@
 Status rules: **VERIFIED** = implemented and shown working by a recorded test on real footage or a running stack.
 **PARTIALLY VERIFIED** = implemented and tested, but part of the requirement has no evidence or depends on something
 not available here. **NOT VERIFIED** = implemented, no direct evidence. **NOT IMPLEMENTED** = absent.
-"Production test" means the Docker compose stack with production settings (GitHub run 37185738609 on 4e9f98c) or the
+"Production test" means the Docker compose stack with production settings (GitHub runs 37185738609 on 4e9f98c and 37189374103 on b58095b, the final code) or the
 local production-config stack (separate API and worker processes). **Nothing has been publicly deployed.**
 
 Evidence files are in `docs/`. Engine suite: `services/engine/tests` (`docs/test_results.json`).
@@ -47,7 +47,7 @@ Evidence files are in `docs/`. Engine suite: `services/engine/tests` (`docs/test
 | Accounts, sessions, API tokens | `auth.py` | test_accounts, test_auth | — | browser E2E sign-up / sign-in / expiry | VERIFIED |
 | Two-account isolation | `guard` ownership → 404 | test_accounts | — | security_audit; compose smoke; browser E2E (every object → 404) | VERIFIED |
 | Job queue, progress, SSE | `jobs.py` | test_worker | — | compose smoke; browser E2E refresh + network drop | VERIFIED |
-| Worker crash recovery | heartbeat + stale re-queue | test_worker | — | compose: kill → re-queued → done (142.4 s) | VERIFIED |
+| Worker crash recovery | heartbeat + stale re-queue | test_worker | — | compose (final code): kill → re-queued → done (152.0 s); local stack 143.9 s | VERIFIED |
 | Cancellation (no partial output, no retries) | `JobCancelled`, render cleanup | test_cancelled_render_leaves_no_output, test_cancel_during_render_is_not_retried | — | compose: cancelled in 1.0 s, 0 retries, 0 orphan outputs | VERIFIED |
 | Restart persistence of jobs and outputs | SQLite WAL + volume | — | — | compose restart: job done, download 200, valid MP4 | VERIFIED |
 | Health 503 on a failing component | `/health` | test_health_is_503_when_a_critical_component_is_down (ffmpeg missing, disk low) | — | compose health | VERIFIED |

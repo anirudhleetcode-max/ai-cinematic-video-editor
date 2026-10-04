@@ -4,15 +4,15 @@ Every number below was measured and is recorded in a file under `docs/`. Anythin
 marked NOT VERIFIED. Passing CI is not the same as passing in production: **nothing has been publicly deployed.**
 
 ## 1. Commit
-Code under test: `__CODE_SHA__` on branch `claude/awesome-pasteur-dexhx4` (the repository's only branch). Later
+Code under test: `b28e6ec` on branch `claude/awesome-pasteur-dexhx4` (the repository's only branch). Later
 commits change documentation and evidence files only.
 
 ## 2. CI
 GitHub Actions `CI` workflow (lint with the repo's rule set, engine suite, web typecheck + vitest + build): **success**
-on `94110e6` (run 37187719690) and __CI_FINAL__.
+on `94110e6` (run 37187719690), and on every later commit checked (latest status is listed on the branch; the CI job also builds the three Docker images).
 
 ## 3. Test counts (`docs/test_results.json`)
-Engine suite on `__CODE_SHA__`, three full runs: __SUITES__. Per file: accounts 11 · analysis 7 · api 1 · auth 7 ·
+Engine suite on `b28e6ec`, three full runs (recorded at `b8a7fd4`, identical code): **105 passed, 0 failed, 0 skipped** with the optional models, again 105/0/0 with the models, and 105/0/0 without the models (fallback paths). Per file: accounts 11 · analysis 7 · api 1 · auth 7 ·
 colorspace 4 · contract 3 · director 10 · real_media 35 · registries 6 · render 6 · retrieval 7 · security 6 · worker 2.
 Web: vitest 12/12, typecheck and production build pass (CI).
 
@@ -76,17 +76,17 @@ GitHub run 37185738609 on `4e9f98c` succeeded:
 * Real-media smoke passed 19/19 steps: analyse 40.1 s; generate (preview and final) 55.3 s; revise 14.1 s; final 1920×1080 H.264/AAC, 20.000 s.
 * The two-account browser E2E passed.
 
-__COMPOSE_FINAL__ The development container itself cannot build the engine image, because its network policy blocks `deb.debian.org` (HTTP 403).
+**Final code:** GitHub run 37189374103 on `b58095b` (same code as `b28e6ec`) succeeded. Clean builds took 171 s, and smoke passed 19/19: analyse 49.2 s, generate 67.4 s (planning 0.09 s, preview 13.0 s, final 53.3 s), revise 17.1 s, and the 20.000 s 1080p output was downloaded (9.5 MB). Durability passed, and the two-account browser E2E passed all 22 steps. Earlier run 37185738609 on `4e9f98c` also passed. The development container itself cannot build the engine image, because its network policy blocks `deb.debian.org` (HTTP 403).
 
 ## 7. Worker recovery
-* **Compose:** the worker was killed during a generate job. The next worker re-queued it, and it finished on attempt 2, 142.4 s after the kill. __LOCAL_DUR_KILL__
+* **Compose:** the worker was killed during a generate job. The next worker re-queued it, and it finished on attempt 2, 142.4 s after the kill. * **Final code, compose:** finished 152.0 s after the kill. **Local production-config stack** (separate API and worker processes, `b28e6ec`): finished 143.9 s after the kill.
 
 ## 8. Cancellation
 * **Compose:** a running render was cancelled and stopped in 1.0 s, with **0 render retries** and **0 orphan outputs**.
-* **Defect fixed during this gate:** before `4e9f98c`, a cancellation raised mid-render was retried twice with degraded settings. Regression test: `test_cancel_during_render_is_not_retried`. Partial MP4s are deleted on any failure or cancel (`test_cancelled_render_leaves_no_output`). Unregistered outputs older than 1 h are swept (`test_cleanup_removes_orphan_outputs_only`). **A partial file is never presented as a completed job.** __LOCAL_DUR_CANCEL__
+* **Defect fixed during this gate:** before `4e9f98c`, a cancellation raised mid-render was retried twice with degraded settings. Regression test: `test_cancel_during_render_is_not_retried`. Partial MP4s are deleted on any failure or cancel (`test_cancelled_render_leaves_no_output`). Unregistered outputs older than 1 h are swept (`test_cleanup_removes_orphan_outputs_only`). **A partial file is never presented as a completed job.** * **Final code:** compose stopped in 1.0 s and the local stack in 1.0 s. Neither logged a render retry, and the local stack held 0 unregistered output files afterwards (1 file on disk, 1 registered render).
 
 ## 9. Restart persistence
-* **Compose:** after the api and worker restarted, the job was still `done`, the download returned 200, and the 9,494,108-byte file was a valid MP4. __LOCAL_DUR_RESTART__
+* **Compose:** after the api and worker restarted, the job was still `done`, the download returned 200, and the 9,494,108-byte file was a valid MP4. * **Final code:** compose returned 200 with a 9,484,813-byte MP4; the local stack returned 200 with a 10,035,662-byte MP4.
 
 ## 10. Two-account isolation
 For user B, every access to user A's project returned 404:
@@ -97,7 +97,7 @@ For user B, every access to user A's project returned 404:
 This was checked through the API (security audit, compose smoke) and in the browser (E2E). User B's project list and export history do not include A's objects.
 
 ## 11. Security (`docs/security_audit.json`)
-__SECURITY__ Against a running production-config stack (`EDITOR_ENV=production`, token auth, explicit CORS):
+**21 passed, 0 failed** on the final code (`b28e6ec`). Against a running production-config stack (`EDITOR_ENV=production`, token auth, explicit CORS):
 * Shell metacharacters and path traversal in filenames, ids and prompts were inert.
 * Unauthenticated and forged-token requests got 401.
 * Executable, corrupt and malicious-LUT uploads were refused with clean messages.
@@ -160,4 +160,6 @@ See [`FINAL_COMPLETION_MATRIX.md`](FINAL_COMPLETION_MATRIX.md).
 * No product test is failing.
 
 ## Status
-__STATUS__
+**RELEASE CANDIDATE — DEPLOYMENT BLOCKED**
+
+Every product gate in this report passed on the final code. The one blocker is public deployment, which needs hosting credentials and access that this environment does not have (PUBLIC DEPLOYMENT BLOCKED — CREDENTIALS/ACCESS REQUIRED). The capabilities listed as NOT VERIFIED or NOT IMPLEMENTED in item 13 are excluded from what this release claims.
