@@ -1,4 +1,5 @@
-"""Job durability against the running docker-compose stack (release gate, Phase 9).
+"""Job durability against a running Cutroom stack (release gate): docker compose by default, or separate host
+processes via --kill-worker / --start-worker / --restart-all.
 
   python scripts/compose_durability.py --media DIR [--api http://localhost:8000] [--out docs/compose_durability.json]
 
@@ -22,8 +23,8 @@ VIDEO = {".mp4", ".mov", ".mkv", ".webm", ".m4v"}
 AUDIO = {".mp3", ".wav", ".m4a", ".flac", ".ogg", ".aac"}
 
 
-def compose(*a: str) -> None:
-    subprocess.run(["docker", "compose", *a], check=True, capture_output=True)
+def sh(cmd: str) -> None:
+    subprocess.run(cmd, shell=True, check=True, capture_output=True)  # operator-supplied command lines (not user input)
 
 
 def main() -> int:
@@ -31,6 +32,10 @@ def main() -> int:
     ap.add_argument("--api", default="http://localhost:8000")
     ap.add_argument("--media", required=True)
     ap.add_argument("--out", default="docs/compose_durability.json")
+    ap.add_argument("--kill-worker", default="docker compose kill worker")
+    ap.add_argument("--start-worker", default="docker compose up -d worker")
+    ap.add_argument("--restart-all", default="docker compose restart api worker")
+    ap.add_argument("--label", default="docker compose (api + worker + web containers)")
     a = ap.parse_args()
     c = httpx.Client(base_url=a.api, timeout=300)
     tag = secrets.token_hex(4)
@@ -57,7 +62,7 @@ def main() -> int:
             time.sleep(1)
         raise TimeoutError(jid)
 
-    rep: dict = {"label": "MEASURED against docker compose (api + worker + web containers)"}
+    rep: dict = {"label": f"MEASURED against {a.label}"}
     # 1. kill the worker mid-job
     jid = c.post(f"/projects/{pid}/generate", json={"prompt": "A 20 second energetic recap cut to the music", "preview_first": False}, headers=H).json()["job_id"]
     wait(jid, ("running",))
@@ -65,9 +70,9 @@ def main() -> int:
         time.sleep(1)
     before = job(jid)
     t_kill = time.time()
-    compose("kill", "worker")
+    sh(a.kill_worker)
     time.sleep(3)
-    compose("up", "-d", "worker")
+    sh(a.start_worker)
     done = wait(jid, ("done", "failed", "cancelled"), 2400)
     rep["worker_killed_mid_job"] = {"progress_when_killed": before["progress"], "stage_when_killed": before["stage"],
                                     "final_status": done["status"], "seconds_from_kill_to_done": round(time.time() - t_kill, 1),
@@ -85,7 +90,7 @@ def main() -> int:
     print(json.dumps(rep["cancel_running_job"]), flush=True)
     # 3. persistence across a restart
     final = next(r for r in c.get(f"/projects/{pid}/renders", headers=H).json() if r["kind"] == "final")
-    compose("restart", "api", "worker")
+    sh(a.restart_all)
     for _ in range(60):
         try:
             if c.get("/health").status_code == 200:

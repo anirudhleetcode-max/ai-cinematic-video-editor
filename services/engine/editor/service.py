@@ -470,6 +470,20 @@ def estimate_render_seconds(plan: EditPlan, preview: bool = False) -> dict:
 
 
 def render_version(pid: str, vid: str | None = None, preview: bool = False, progress: Progress = _noop, export: dict | None = None) -> dict:
+    """Render a version. A render that does not complete (failure, cancellation) leaves no output file behind: only a
+    QC-checked, registered render is ever kept (a worker killed outright is covered by cleanup's orphan sweep)."""
+    holder: dict = {}
+    try:
+        return _render_version(pid, vid, preview, progress, export, holder)
+    except BaseException:
+        out = holder.get("out")
+        if out is not None and not db.query("SELECT 1 FROM renders WHERE path=?", (str(out),)):
+            for f in (out, out.with_suffix(".fix.mp4")):
+                f.unlink(missing_ok=True)
+        raise
+
+
+def _render_version(pid: str, vid: str | None, preview: bool, progress: Progress, export: dict | None, holder: dict) -> dict:
     v = get_version(vid) if vid else latest_version(pid)
     if not v:
         raise ValueError("no edit plan to render")
@@ -479,6 +493,7 @@ def render_version(pid: str, vid: str | None = None, preview: bool = False, prog
     st = get_settings()
     rid = db.new_id("rnd")
     out = get_storage().work_path(pid, "outputs", f"{'preview' if preview else 'final'}_v{v['number']}_{rid}.mp4")
+    holder["out"] = out
     work = get_storage().work_path(pid, "work", rid, "x").parent
     assets = _asset_infos(pid)
     attempts = []

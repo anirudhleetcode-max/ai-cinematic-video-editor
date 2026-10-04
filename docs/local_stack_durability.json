@@ -1,0 +1,64 @@
+{
+ "label": "MEASURED against local production-config stack (separate API and worker processes, no Docker)",
+ "worker_killed_mid_job": {
+  "progress_when_killed": 1.0,
+  "stage_when_killed": "building_timeline",
+  "final_status": "done",
+  "seconds_from_kill_to_done": 143.8,
+  "error": null,
+  "pass": true
+ },
+ "cancel_running_job": {
+  "final_status": "cancelled",
+  "state": "cancelled",
+  "seconds_to_stop": 32.3,
+  "pass": true
+ },
+ "persistence_after_restart": {
+  "job_status": "done",
+  "download_status": 200,
+  "bytes": 10035662,
+  "mp4": true,
+  "pass": true
+ },
+ "health_after": {
+  "ok": true,
+  "ffmpeg": true,
+  "encoder": "libx264",
+  "hardware_encoding": false,
+  "components": {
+   "database": {
+    "ok": true
+   },
+   "storage": {
+    "ok": true,
+    "free_gb": 6.9,
+    "backend": "LocalStorage"
+   },
+   "worker": {
+    "ok": true,
+    "last_heartbeat_s": 0.6,
+    "process": "separate"
+   },
+   "queue": {
+    "ok": true,
+    "backend": "LocalJobQueue",
+    "queued": 0,
+    "running": 0
+   },
+   "ffmpeg": {
+    "ok": true,
+    "encoder": "libx264",
+    "hardware_encoding": false
+   },
+   "models": {
+    "ok": true,
+    "vision_deep": true,
+    "vad": true,
+    "note": "optional \u2014 the classic OpenCV / energy fallbacks run without them"
+   }
+  },
+  "time": 1791095384.339854
+ },
+ "pass": true
+}

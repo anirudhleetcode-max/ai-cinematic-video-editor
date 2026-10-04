@@ -1,0 +1,175 @@
+{
+  "api": "http://localhost:8000",
+  "web": "http://localhost:3000",
+  "started": 1791095080.9661472,
+  "health": {
+    "ok": true,
+    "ffmpeg": true,
+    "encoder": "libx264",
+    "hardware_encoding": false,
+    "components": {
+      "database": {
+        "ok": true
+      },
+      "storage": {
+        "ok": true,
+        "free_gb": 7.1,
+        "backend": "LocalStorage"
+      },
+      "worker": {
+        "ok": true,
+        "last_heartbeat_s": 1.4,
+        "process": "separate"
+      },
+      "queue": {
+        "ok": true,
+        "backend": "LocalJobQueue",
+        "queued": 0,
+        "running": 0
+      },
+      "ffmpeg": {
+        "ok": true,
+        "encoder": "libx264",
+        "hardware_encoding": false
+      },
+      "models": {
+        "ok": true,
+        "vision_deep": true,
+        "vad": true,
+        "note": "optional \u2014 the classic OpenCV / energy fallbacks run without them"
+      }
+    },
+    "time": 1791095081.1670873
+  },
+  "media": "real (from --media)",
+  "uploaded": 7,
+  "generate_timings": {
+    "analysis_s": 0.01,
+    "planning_s": 0.07,
+    "preview_s": 12.21,
+    "render_s": 47.88,
+    "total_s": 60.17
+  },
+  "revision_changes": [
+    "music_gain"
+  ],
+  "download_bytes": 10046478,
+  "final_probe": {
+    "programs": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "pix_fmt": "yuv420p",
+        "color_primaries": "bt709"
+      },
+      {
+        "codec_name": "aac"
+      }
+    ],
+    "format": {
+      "duration": "20.000000"
+    }
+  },
+  "qc": true,
+  "passed": true,
+  "steps": [
+    {
+      "step": "health",
+      "ok": true,
+      "seconds": 0.2
+    },
+    {
+      "step": "web serves",
+      "ok": true,
+      "seconds": 0.04
+    },
+    {
+      "step": "register user a",
+      "ok": true,
+      "seconds": 0.18
+    },
+    {
+      "step": "register user b",
+      "ok": true,
+      "seconds": 0.09
+    },
+    {
+      "step": "unauthenticated is refused",
+      "ok": true,
+      "seconds": 0.0
+    },
+    {
+      "step": "create project",
+      "ok": true,
+      "seconds": 0.01
+    },
+    {
+      "step": "upload",
+      "ok": true,
+      "seconds": 6.58
+    },
+    {
+      "step": "user b denied /projects/prj_38503be09363",
+      "ok": true,
+      "seconds": 0.0
+    },
+    {
+      "step": "user b denied /projects/prj_38503be09363/assets",
+      "ok": true,
+      "seconds": 0.0
+    },
+    {
+      "step": "user b denied /projects/prj_38503be09363/versions",
+      "ok": true,
+      "seconds": 0.0
+    },
+    {
+      "step": "analyze",
+      "ok": true,
+      "seconds": 12.09
+    },
+    {
+      "step": "generate (preview + final)",
+      "ok": true,
+      "seconds": 61.44
+    },
+    {
+      "step": "revise (natural language)",
+      "ok": true,
+      "seconds": 16.12
+    },
+    {
+      "step": "list renders",
+      "ok": true,
+      "seconds": 0.0
+    },
+    {
+      "step": "download final",
+      "ok": true,
+      "seconds": 0.04
+    },
+    {
+      "step": "user b cannot download",
+      "ok": true,
+      "seconds": 0.0
+    },
+    {
+      "step": "probe final",
+      "ok": true,
+      "seconds": 0.06
+    },
+    {
+      "step": "render report",
+      "ok": true,
+      "seconds": 0.0
+    },
+    {
+      "step": "delete project",
+      "ok": true,
+      "seconds": 0.16
+    }
+  ],
+  "finished": 1791095177.9912055
+}

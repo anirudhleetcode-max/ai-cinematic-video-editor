@@ -31,7 +31,7 @@ def _age_days(p: Path) -> float:
 def run_cleanup(retention_days: int | None = None, dry_run: bool = False) -> dict:
     st = get_settings()
     days = st.retention_days if retention_days is None else retention_days
-    stats = {"renders_deleted": 0, "cache_dirs_deleted": 0, "upload_parts_deleted": 0, "bytes_freed": 0, "retention_days": days, "dry_run": dry_run}
+    stats = {"renders_deleted": 0, "cache_dirs_deleted": 0, "upload_parts_deleted": 0, "orphan_outputs_deleted": 0, "bytes_freed": 0, "retention_days": days, "dry_run": dry_run}
     if days <= 0:
         return stats
     cutoff = time.time() - days * 86400
@@ -55,6 +55,16 @@ def run_cleanup(retention_days: int | None = None, dry_run: bool = False) -> dic
                 if not dry_run:
                     shutil.rmtree(d, ignore_errors=True) if d.is_dir() else d.unlink(missing_ok=True)
                 stats["cache_dirs_deleted"] += 1
+                stats["bytes_freed"] += size
+        # outputs no render row points to: partial files of a worker that was killed mid-render (a cancelled or failed
+        # render removes its own); an hour of grace so a render still being written is never touched
+        known = {r["path"] for r in db.query("SELECT path FROM renders WHERE project_id=?", (proj.name,))}
+        for f in proj.glob("outputs/*.mp4"):
+            if str(f) not in known and _age_days(f) > 1 / 24:
+                size = f.stat().st_size
+                if not dry_run:
+                    f.unlink(missing_ok=True)
+                stats["orphan_outputs_deleted"] += 1
                 stats["bytes_freed"] += size
         for part in work.glob("uploads/*.part"):
             if _age_days(part) > 1:

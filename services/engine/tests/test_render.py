@@ -51,3 +51,47 @@ def test_delivered_true_peak_and_loudness_are_measured(tmp_path):
     assert th is not None and th > -1.0, th  # would fail the −1 dBTP ceiling
     assert ts is not None and ts < -15, ts
     assert lh is not None and ls is not None and lh - ls > 15
+
+
+def test_cancelled_render_leaves_no_output(project):
+    """A render cancelled (or failing) after its MP4 was written must not leave that file behind: only registered,
+    QC-checked renders are kept (found by the release durability run: a corrupt partial final stayed on disk)."""
+    import pytest
+
+    from editor import db, service as S
+    from editor.jobs import JobCancelled
+
+    S.create_edit_plan(project["id"], "A 6 second recap", "fast")
+    outputs = S.get_storage().work_path(project["id"], "outputs", "x").parent
+    before = set(outputs.glob("*.mp4"))
+
+    def cancel_at_qc(stage, frac, msg=""):
+        if stage == "quality_check":
+            raise JobCancelled()
+
+    with pytest.raises(JobCancelled):
+        S.render_version(project["id"], preview=True, progress=cancel_at_qc)
+    registered = {r["path"] for r in db.query("SELECT path FROM renders WHERE project_id=?", (project["id"],))}
+    leftovers = [p for p in set(outputs.glob("*.mp4")) - before if str(p) not in registered]
+    assert not leftovers, leftovers
+
+
+def test_cleanup_removes_orphan_outputs_only(project, tmp_path):
+    import os
+    import time
+
+    from editor import service as S
+    from editor.cleanup import run_cleanup
+
+    S.create_edit_plan(project["id"], "A 6 second recap", "fast")
+    kept = S.render_version(project["id"], preview=True)
+    outputs = S.get_storage().work_path(project["id"], "outputs", "x").parent
+    old_orphan, fresh_orphan = outputs / "final_v9_rnd_killed.mp4", outputs / "final_v9_rnd_writing.mp4"
+    old_orphan.write_bytes(b"\x00" * 1024)
+    fresh_orphan.write_bytes(b"\x00" * 1024)
+    t = time.time() - 3 * 3600
+    os.utime(old_orphan, (t, t))
+    stats = run_cleanup(retention_days=30)
+    assert stats["orphan_outputs_deleted"] >= 1
+    assert not old_orphan.exists() and fresh_orphan.exists() and os.path.exists(kept["path"])
+    fresh_orphan.unlink()
