@@ -202,6 +202,26 @@ def test_health_reports_components():
     assert "/" not in str({k: v for k, v in comps.items() if k != "models"})  # no filesystem paths
 
 
+def test_health_is_503_when_a_critical_component_is_down(monkeypatch):
+    """A failing dependency must turn /health red (503) so an orchestrator stops routing to the instance."""
+    import shutil
+    from collections import namedtuple
+
+    from editor import api
+
+    with _client() as c:
+        assert c.get("/health").status_code == 200
+        real_diag = api.diagnostics
+        monkeypatch.setattr(api, "diagnostics", lambda: {**real_diag(), "ffmpeg": None})
+        r = c.get("/health")
+        assert r.status_code == 503 and r.json()["components"]["ffmpeg"]["ok"] is False and not r.json()["ok"]
+        monkeypatch.setattr(api, "diagnostics", real_diag)
+        usage = namedtuple("usage", "total used free")
+        monkeypatch.setattr(shutil, "disk_usage", lambda p: usage(10 * 2**30, 10 * 2**30 - 2**29, 2**29))
+        r = c.get("/health")
+        assert r.status_code == 503 and r.json()["components"]["storage"]["ok"] is False
+
+
 def test_unhandled_errors_return_reference_only(monkeypatch):
     from editor import service as S
     from editor.api import app
