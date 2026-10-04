@@ -19,7 +19,7 @@ Evidence files are in `docs/`. Engine suite: `services/engine/tests` (`docs/test
 | Natural-language negative requests ("no dogs", "avoid people", "don't use dark clips", "avoid blurry") | `director/revise.py`, clip selector exclusions | test_retrieval (negation, relaxation, multi-label) | B: 1→0, 43→0, 0→0, 1→0 | — | VERIFIED |
 | Free-text visual search beyond detector labels | — | — | — | — | NOT IMPLEMENTED (needs an embedding model; reported to the user) |
 | Brief parsing (duration, platform, mood, hook, ending) | `director/prompt_parser.py` | test_director | acceptance prompt | compose smoke | VERIFIED |
-| Explicit aspect ratio 16:9 / 9:16 / 1:1 / 4:5 | parser + `contract.ASPECT_RESOLUTIONS` | test_explicit_aspect_ratio_beats_platform_defaults | feature_checks (see below) | — | see feature checks |
+| Explicit aspect ratio 16:9 / 9:16 / 1:1 / 4:5 | parser + `contract.ASPECT_RESOLUTIONS` | test_explicit_aspect_ratio_beats_platform_defaults | feature_checks: 9:16 → 1080×1920, 1:1 → 1080×1080, 4:5 → 1080×1350 (after the fix; before it 1:1 gave 4:5 and 4:5 gave 9:16) | — | VERIFIED |
 | 21:9 output | contract (available, outside the supported set) | — | — | — | NOT VERIFIED |
 | Optional LLM brief interpretation (Claude / OpenAI-compatible) | `director/providers.py` | schema fallback paths only | — | — | NOT VERIFIED (no API key in this environment) |
 | Edit plan: selection, pacing, hook, story structure, energy curve | `director/agents.py`, `planner.py` | test_director, test_registries | acceptance 7/7 | compose smoke | VERIFIED |
@@ -27,11 +27,11 @@ Evidence files are in `docs/`. Engine suite: `services/engine/tests` (`docs/test
 | Music sync, short-song extension | `agents.py` music agent | test_short_song_is_extended_without_duplicate_pieces | 300 s final from songs ≤ 120 s: QC pass, 300.0 s | — | VERIFIED |
 | Music ducking under speech | audio mixer | — | A: 22.35 s ducked; F: 11.14 s ducked | — | VERIFIED |
 | Natural-language revisions, versioned, incremental | `revise.py`, render cache | test_director, test_retrieval | acceptance revisions 1–3 (no-op detected) | compose smoke revise; browser E2E | VERIFIED |
-| Speed ramps / slow motion | `render/segments.py` | test_registries | feature_checks | — | see feature checks |
+| Speed ramps / slow motion | `render/segments.py` | test_registries (every effect renders) | feature_checks: 2 speed segments, QC pass | — | VERIFIED |
 | Optical-flow interpolation (Quality mode) | `minterpolate` in segments | — | — | — | NOT VERIFIED |
-| Zoom / camera motion presets | `render/segments.py` | test_registries | feature_checks | — | see feature checks |
-| Dissolve transitions in output | `render/engine.py` | test_registries | feature_checks (measured in output) | — | see feature checks |
-| Titles / typography | `render/text.py` | test_director | feature_checks; acceptance logo + title ending | — | see feature checks |
+| Zoom / camera motion presets | `render/segments.py` | test_registries | feature_checks: push_in, pull_out, drift; QC pass | — | VERIFIED |
+| Dissolve transitions in output | `render/engine.py` | test_registries | feature_checks: crossfades planned; the analyser measures 2 dissolves in the delivered file | — | VERIFIED |
+| Titles / typography | `render/text.py` | test_registries (text wraps in safe area) | feature_checks: "Field Test" title visible in the frame; acceptance logo + title ending | — | VERIFIED |
 | Captions from speech | STT provider (optional model) | — | feature_checks: skipped and reported, no model | — | NOT VERIFIED (no speech-to-text model here; never faked) |
 | Stabilisation | vid.stab two-pass | — | — | — | NOT VERIFIED |
 | Voice-over / SFX tracks | audio mixer | — | — | — | NOT VERIFIED |
