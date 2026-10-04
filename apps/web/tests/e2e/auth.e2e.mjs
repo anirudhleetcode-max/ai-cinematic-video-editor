@@ -35,7 +35,7 @@ const cred = (who) => ({ email: `e2e-${who}-${tag}@example.com`, password: `e2e-
 const browser = await chromium.launch({ executablePath: findChrome() });
 const files = (dir, re) => fs.readdirSync(path.join(media, dir)).filter((f) => re.test(f)).map((f) => path.join(media, dir, f));
 
-async function authDialog(page, tab, who, expectOk = true) {
+async function authDialog(page, tab, who, expectOk = true, onHome = true) {
   await page.getByRole("dialog").waitFor({ timeout: 20000 });
   if (tab !== "Sign in") await page.getByRole("tab", { name: tab }).click();
   else await page.getByRole("tab", { name: "Sign in" }).click();
@@ -52,7 +52,7 @@ async function authDialog(page, tab, who, expectOk = true) {
   // success reloads the page; wait for the dialog to go away (the form behind the modal is visible all along)
   await page.getByRole("dialog").waitFor({ state: "detached", timeout: 60000 }).catch(() => undefined);
   await page.waitForLoadState("networkidle");
-  await page.getByPlaceholder(/New project name/).waitFor({ timeout: 20000 });
+  if (onHome) await page.getByPlaceholder(/New project name/).waitFor({ timeout: 20000 });
   await page.waitForTimeout(1000);
   if (await page.getByRole("dialog").count()) throw new Error(`${who}: still asked to sign in`);
   return "ok";
@@ -224,7 +224,9 @@ try {
     await A.reload({ waitUntil: "networkidle" });
     await A.getByRole("dialog").waitFor({ timeout: 20000 });
     step("expired session → API 401 → sign-in dialog");
-    await authDialog(A, "Sign in", "a");
+    await authDialog(A, "Sign in", "a", true, false);
+    await A.getByText(/Versions & revisions/).waitFor({ timeout: 20000 });
+    step("signed in again on the same page; project still there");
   } else step("expired session: SKIPPED (no EXPIRE_SESSIONS_CMD)");
 
   // delete project through the UI
