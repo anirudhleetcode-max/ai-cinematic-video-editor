@@ -1,6 +1,6 @@
 {
  "label": "MEASURED on real footage (derived inputs labelled)",
- "started": 1791053122.7576272,
+ "started": 1791056865.7784612,
  "checks": {
   "A_dialogue": {
    "editing_mode": "dialogue",
@@ -24,7 +24,7 @@
     "fail": 0,
     "n/a": 1
    },
-   "seconds": 95.6,
+   "seconds": 87.8,
    "frames": [
     "/tmp/claude-0/frames/A_dialogue_000.50.jpg",
     "/tmp/claude-0/frames/A_dialogue_008.00.jpg",
@@ -137,7 +137,7 @@
      "pass": true
     }
    },
-   "seconds": 181.1,
+   "seconds": 101.8,
    "pass": true
   },
   "C_transitions": {
@@ -190,7 +190,7 @@
      "pass": true
     }
    },
-   "seconds": 100.3,
+   "seconds": 99.3,
    "pass": true
   },
   "E_colour": {
@@ -314,7 +314,7 @@
     "/tmp/claude-0/frames/D_lut_on_000.80.jpg"
    ]
   },
-  "DE_seconds": 31.8,
+  "DE_seconds": 32.2,
   "F_audio": {
    "input_audio (sample_rate,channels)": {
     "speech_over_real_video.mp4": [
@@ -363,10 +363,10 @@
     "2"
    ],
    "qc_passed": true,
-   "seconds": 95.1,
+   "seconds": 98.7,
    "pass": true
   }
  },
- "finished": 1791053632.7427452,
+ "finished": 1791057292.0568528,
  "pass": true
 }
