@@ -9,7 +9,7 @@ commits change documentation and evidence files only.
 
 ## 2. CI
 GitHub Actions `CI` workflow (lint with the repo's rule set, engine suite, web typecheck + vitest + build): **success**
-on `94110e6` (run 37187719690), and on every later commit checked (latest status is listed on the branch; the CI job also builds the three Docker images).
+on `94110e6` (run 37187719690) and on `2fb2428` (run 37190288203), which contains the final code `b28e6ec`. The CI job also builds the three Docker images.
 
 ## 3. Test counts (`docs/test_results.json`)
 Engine suite on `b28e6ec`, three full runs (recorded at `b8a7fd4`, identical code): **105 passed, 0 failed, 0 skipped** with the optional models, again 105/0/0 with the models, and 105/0/0 without the models (fallback paths). Per file: accounts 11 · analysis 7 · api 1 · auth 7 ·
