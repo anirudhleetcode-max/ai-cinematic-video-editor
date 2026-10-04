@@ -15,3 +15,4 @@ Recorded during the release gate; deliberately **not** implemented in this relea
 | Analysis | OCR for reference text content; font identification | marked "unavailable" in reference provenance |
 | UX | in-app shot search box using `/projects/{id}/search` | the endpoint and natural-language revisions exist; no dedicated UI |
 | Windows | run the suite on a Windows host (code paths audited, never executed on Windows) | no Windows machine available |
+| Analysis | detect rotated / cropped / mirrored copies of the same footage as duplicates | found in the release frame inspection: only near-identical copies are flagged today |

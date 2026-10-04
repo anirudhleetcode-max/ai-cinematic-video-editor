@@ -1,10 +1,10 @@
 {
- "commit": "fd62266",
+ "commit": "4e9f98c",
  "final_m1": {
-  "passed": 100,
+  "passed": 103,
   "failed": 0,
   "skipped": 0,
-  "seconds": 251.157,
+  "seconds": 220.326,
   "per_file": {
    "test_accounts": [
     10,
@@ -52,7 +52,7 @@
     0
    ],
    "test_render": [
-    3,
+    6,
     0,
     0
    ],
@@ -75,10 +75,10 @@
   "failures": []
  },
  "final_m2": {
-  "passed": 100,
+  "passed": 103,
   "failed": 0,
   "skipped": 0,
-  "seconds": 250.169,
+  "seconds": 197.688,
   "per_file": {
    "test_accounts": [
     10,
@@ -126,7 +126,7 @@
     0
    ],
    "test_render": [
-    3,
+    6,
     0,
     0
    ],
@@ -149,10 +149,10 @@
   "failures": []
  },
  "final_nm": {
-  "passed": 100,
+  "passed": 103,
   "failed": 0,
   "skipped": 0,
-  "seconds": 251.117,
+  "seconds": 194.917,
   "per_file": {
    "test_accounts": [
     10,
@@ -200,7 +200,7 @@
     0
    ],
    "test_render": [
-    3,
+    6,
     0,
     0
    ],

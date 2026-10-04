@@ -1,6 +1,33 @@
 # Benchmarks (measured)
 
-## Real footage — release measurements
+## Final release measurement (commit 4e9f98c code path, run alone)
+
+**MEASURED.** Raw data: [`real_benchmarks_final.json`](real_benchmarks_final.json),
+[`render_profile.json`](render_profile.json). Nothing else ran on the machine during this run.
+**Machine:** Linux container, **Intel Xeon @ 2.10 GHz** (note: the earlier runs below reported 2.80 GHz — the host
+changed between sessions, so the two sets are **not** a like-for-like code comparison), 4 CPU cores, 15.7 GB RAM,
+no GPU, FFmpeg 6.1.1, libx264 (no hardware encoder available or claimed).
+**Input:** the same 76 real clips (851.6 s; H.264 ×70, VP9, MJPEG, ProRes, HEVC; 13 resolutions, 640×360 – 3840×2160),
+3 songs, 1 reference, 1 logo. Upload 71.1 s. **Analysis 104.4 s** (97 shots, 87 usable, peak RSS 1168 MB), one-off.
+**Output:** 1920×1080, 30 fps, H.264 / AAC, Fast mode.
+
+| Output | Planning | Preview | Final render (incl. QC + reviews) | Total excl. analysis | Total incl. analysis | Peak RSS | Size | Loudness | QC |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|:-:|
+| 60 s | 0.32 s | 37.7 s | 103.9 s | 141.9 s | 246.3 s | 1573 MB | 22.2 MB | −16.2 LUFS | pass |
+| 300 s | 1.10 s | 193.8 s | 511.0 s | 705.9 s | 810.3 s (13.5 min) | 1794 MB | 108.5 MB | −16.2 LUFS | pass |
+
+Final-render breakdown (300 s): segments 316.3 s · final pass 105.0 s · QC 30.6 s · reviews 59.0 s · audio 0.03 s.
+The 600 s output was **not** re-measured on the final code; its last measurement (run 2, not isolated, other host
+CPU) is in the table below. A 10-minute estimate from the final 300 s run scaled linearly (≈ 2 × 705.9 s + analysis)
+would be ≈ 1516 s (25.3 min) — that is an **ESTIMATE**, not a measurement, and render time on other hardware,
+footage and settings will differ. One benchmark does not guarantee performance.
+
+**Stage profile** (one 3 s segment, best of 3, 1080p H.264 source → 1080p mezzanine): decode 0.37 s · RGB working
+space 0.33 s · grade LUT 1.33 s · crop 0.07 s · YUV conversion 0.27 s · finishing (vignette/grain/sharpen) 1.33 s ·
+x264 mezzanine encode 1.70 s. 4K source: decode 1.05 s, LUT 1.60 s, finishing 1.14 s, encode 1.61 s. The grade LUT,
+finishing filters and x264 encode dominate; no optimisation was made in the release gate.
+
+## Real footage — earlier release measurements (2.80 GHz host)
 
 **Machine:** Linux container, Intel Xeon @ 2.80 GHz, **4 CPU cores**, 15.7 GB RAM, **no GPU**, FFmpeg 6.1.1, encoder
 libx264 (CPU only; no hardware encoder exists here, none is claimed).

@@ -43,6 +43,12 @@ Images use `mirror.gcr.io/library/{python,node}` base images (override with `--b
 users, and include FFmpeg from Debian (libx264/x265, zscale, vidstab, libass) and — when the build can download them —
 the optional ONNX models (YuNet, NanoDet-Plus, Silero VAD). `/health` reports whether the models are present.
 
+**Where this was validated:** the clean no-cache builds and the compose stack with real media are exercised by the
+manual GitHub workflow `.github/workflows/release-validation.yml` (smoke flow, worker kill / cancel / restart, two-account
+browser E2E). The development container used for this release cannot build the engine image itself: its network
+policy blocks `deb.debian.org` (HTTP 403), so `apt-get install ffmpeg` fails there; the production-config stack was
+additionally run there as separate API and worker processes without Docker.
+
 For NVIDIA encoding run the worker with `--gpus all` (compose: uncomment `deploy:`); the engine only uses a hardware
 encoder after a successful test encode (`GET /diagnostics` → `verified_hardware_encoders`). Detecting a GPU is not
 the same as using one.
