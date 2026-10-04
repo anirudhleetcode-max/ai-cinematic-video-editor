@@ -1,0 +1,148 @@
+{
+ "label": "MEASURED",
+ "event": "/home/user/ai-cinematic-video-editor/tests/real_media/event01",
+ "mode": "fast",
+ "environment": {
+  "ffmpeg": "6.1.1-3ubuntu5",
+  "cpu_count": 4,
+  "ram_total_gb": 15.72,
+  "gpu": null,
+  "platform_class": "CPU-only",
+  "encoders": {
+   "h264": [
+    "libx264"
+   ],
+   "hevc": [
+    "libx265"
+   ]
+  },
+  "selected_encoder": "libx264",
+  "hardware_encoding": false,
+  "os": "Linux-6.18.44-fc-v64-x86_64-with-glibc2.39",
+  "cpu_model": "Intel(R) Xeon(R) Processor @ 2.10GHz"
+ },
+ "inputs": {
+  "clip": 76,
+  "music": 3,
+  "reference": 1,
+  "logo": 1
+ },
+ "runs": [
+  {
+   "output_seconds": 60.0,
+   "label": "MEASURED",
+   "planning_s": 0.324,
+   "segments": 49,
+   "repeated_shots": 1,
+   "preview_s": 37.71,
+   "preview_qc": true,
+   "final_render_s": 103.86,
+   "render_breakdown": {
+    "segments_s": 61.47,
+    "transitions_s": 0.0,
+    "audio_s": 0.01,
+    "final_pass_s": 24.38,
+    "qc_s": 5.73,
+    "total_s": 91.59,
+    "reviews_s": 12.22
+   },
+   "qc_passed": true,
+   "qc_failures": [],
+   "encoder": "libx264",
+   "output": {
+    "duration": 59.933333,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "vcodec": "h264",
+    "acodec": "aac"
+   },
+   "loudness_lufs": -16.2,
+   "segments_cached": 0,
+   "review": {
+    "pass": 10,
+    "warn": 1,
+    "fail": 0,
+    "n/a": 0
+   },
+   "reference_similarity": 0.621,
+   "output_size_bytes": 22152198,
+   "total_s": 141.9,
+   "peak_rss_mb": 1573.4,
+   "cpu_percent_avg": 72.6
+  },
+  {
+   "output_seconds": 300.0,
+   "label": "MEASURED",
+   "planning_s": 1.097,
+   "segments": 253,
+   "repeated_shots": 174,
+   "preview_s": 193.78,
+   "preview_qc": true,
+   "final_render_s": 511.04,
+   "render_breakdown": {
+    "segments_s": 316.34,
+    "transitions_s": 0.0,
+    "audio_s": 0.03,
+    "final_pass_s": 105.04,
+    "qc_s": 30.56,
+    "total_s": 451.98,
+    "reviews_s": 59.04
+   },
+   "qc_passed": true,
+   "qc_failures": [],
+   "encoder": "libx264",
+   "output": {
+    "duration": 300.0,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "vcodec": "h264",
+    "acodec": "aac"
+   },
+   "loudness_lufs": -16.2,
+   "segments_cached": 0,
+   "review": {
+    "pass": 9,
+    "warn": 2,
+    "fail": 0,
+    "n/a": 0
+   },
+   "reference_similarity": 0.608,
+   "output_size_bytes": 108533772,
+   "total_s": 705.92,
+   "peak_rss_mb": 1794.2,
+   "cpu_percent_avg": 73.6
+  }
+ ],
+ "upload_s": 71.07,
+ "source_footage_seconds": 851.6,
+ "source_codecs": {
+  "h264": 70,
+  "vp9": 1,
+  "mjpeg": 1,
+  "prores": 1,
+  "hevc": 1
+ },
+ "source_resolutions": {
+  "640x480": 6,
+  "1024x576": 2,
+  "640x360": 2,
+  "768x432": 31,
+  "1920x1080": 13,
+  "1440x1080": 1,
+  "720x404": 5,
+  "960x540": 5,
+  "3840x2160": 2,
+  "1080x1920": 1,
+  "768x576": 3,
+  "848x384": 1,
+  "848x478": 2
+ },
+ "analysis": {
+  "seconds": 104.39,
+  "shots": 97,
+  "usable_shots": 87,
+  "peak_rss_mb": 1167.6
+ }
+}

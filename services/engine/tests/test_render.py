@@ -76,6 +76,33 @@ def test_cancelled_render_leaves_no_output(project):
     assert not leftovers, leftovers
 
 
+def test_cancel_during_render_is_not_retried(project, monkeypatch):
+    """A cancellation raised mid-render must stop the job at once: it is not a render failure, so the degraded-retry
+    loop must not run (found in the release-validation worker log: 3 'render attempt failed' lines before cancel)."""
+    import pytest
+
+    from editor import service as S
+    from editor.jobs import JobCancelled
+
+    S.create_edit_plan(project["id"], "A 6 second recap", "fast")
+    calls = []
+    real = S.render_plan
+
+    def counting(*a, **k):
+        calls.append(1)
+        return real(*a, **k)
+
+    monkeypatch.setattr(S, "render_plan", counting)
+
+    def cancel_while_rendering(stage, frac, msg=""):
+        if stage == "rendering":
+            raise JobCancelled()
+
+    with pytest.raises(JobCancelled):
+        S.render_version(project["id"], preview=True, progress=cancel_while_rendering)
+    assert len(calls) == 1, f"render_plan ran {len(calls)} times after a cancellation"
+
+
 def test_cleanup_removes_orphan_outputs_only(project, tmp_path):
     import os
     import time

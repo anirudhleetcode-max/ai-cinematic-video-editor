@@ -19,6 +19,7 @@ from .config import get_settings
 from .director.context import Asset, ProjectContext
 from .director.planner import build_plan
 from .director.revise import apply_revision
+from .jobs import JobCancelled
 from .logging import get_logger, log, timed
 from .media.analyze import HARD_ISSUES, analyze_video, apply_uniqueness
 from .media.inspect import inspect_media
@@ -501,6 +502,8 @@ def _render_version(pid: str, vid: str | None, preview: bool, progress: Progress
     for attempt in range(st.qc_max_retries + 1):
         try:
             report = render_plan(plan, assets, out, work, progress, preview=preview, brand=_brand(pid), prefer_hw=attempt == 0)
+        except JobCancelled:
+            raise  # a cancellation is not a render failure: stop now, no degraded retries
         except Exception as e:  # noqa: BLE001 — recovery: CPU encoder, no global effects, then emergency settings
             attempts.append({"attempt": attempt, "error": str(e)[:500]})
             log(logger, "render attempt failed", project=pid, attempt=attempt, error=str(e)[:300])

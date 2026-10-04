@@ -1,0 +1,101 @@
+{
+ "label": "MEASURED (best of 3 per row)",
+ "machine": "4 CPU, no GPU, libx264",
+ "segment_seconds": 3.0,
+ "sources": {
+  "1080p_h264": {
+   "source": "classroom_take1.mp4 1920x1080 h264",
+   "rows": [
+    {
+     "stage": "decode",
+     "cumulative_s": 0.365,
+     "stage_s": 0.365
+    },
+    {
+     "stage": "+retime (setpts, fps 30)",
+     "cumulative_s": 0.361,
+     "stage_s": -0.004
+    },
+    {
+     "stage": "+RGB working space (scale + matrix)",
+     "cumulative_s": 0.688,
+     "stage_s": 0.327
+    },
+    {
+     "stage": "+grade LUT (lut3d tetrahedral)",
+     "cumulative_s": 2.022,
+     "stage_s": 1.334
+    },
+    {
+     "stage": "+crop",
+     "cumulative_s": 2.093,
+     "stage_s": 0.071
+    },
+    {
+     "stage": "+YUV 4:2:0 BT.709 conversion",
+     "cumulative_s": 2.365,
+     "stage_s": 0.272
+    },
+    {
+     "stage": "+finishing (vignette/grain/sharpen)",
+     "cumulative_s": 3.697,
+     "stage_s": 1.332
+    },
+    {
+     "stage": "+x264 mezzanine encode (CRF 16, veryfast)",
+     "cumulative_s": 5.399,
+     "stage_s": 1.702
+    }
+   ]
+  },
+  "2160p_h264": {
+   "source": "uhd_4k_30.mp4 3840x2160 h264",
+   "rows": [
+    {
+     "stage": "decode",
+     "cumulative_s": 1.051,
+     "stage_s": 1.051
+    },
+    {
+     "stage": "+retime (setpts, fps 30)",
+     "cumulative_s": 0.987,
+     "stage_s": -0.064
+    },
+    {
+     "stage": "+RGB working space (scale + matrix)",
+     "cumulative_s": 1.236,
+     "stage_s": 0.249
+    },
+    {
+     "stage": "+grade LUT (lut3d tetrahedral)",
+     "cumulative_s": 2.84,
+     "stage_s": 1.604
+    },
+    {
+     "stage": "+crop",
+     "cumulative_s": 2.631,
+     "stage_s": -0.209
+    },
+    {
+     "stage": "+YUV 4:2:0 BT.709 conversion",
+     "cumulative_s": 3.0,
+     "stage_s": 0.369
+    },
+    {
+     "stage": "+finishing (vignette/grain/sharpen)",
+     "cumulative_s": 4.136,
+     "stage_s": 1.136
+    },
+    {
+     "stage": "+x264 mezzanine encode (CRF 16, veryfast)",
+     "cumulative_s": 5.745,
+     "stage_s": 1.609
+    }
+   ]
+  }
+ },
+ "final_pass_10s": {
+  "decode_only_s": 0.611,
+  "encode_final_x264_s": 2.675
+ }
+}
