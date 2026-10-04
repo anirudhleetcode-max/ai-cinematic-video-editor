@@ -1,0 +1,161 @@
+{
+ "label": "MEASURED on real footage",
+ "media": [
+  "bottle-detection_take1.mp4",
+  "car-detection_take1.mp4",
+  "classroom_take1.mp4",
+  "face-demographics-walking_take1.mp4",
+  "store-aisle-detection_take1.mp4",
+  "vibe_ace.ogg",
+  "worker-zone-detection_take2.mp4"
+ ],
+ "cases": {
+  "aspect_9_16": {
+   "prompt": "A 10 second Instagram reel, vertical 9:16, energetic",
+   "probe": {
+    "width": 1080,
+    "height": 1920,
+    "vcodec": "h264",
+    "duration": 10.0
+   },
+   "qc_passed": true,
+   "segments": 10,
+   "seconds": 35.9,
+   "requested_effect_present": true,
+   "frame": "/tmp/claude-0/featframes/aspect_9_16.jpg",
+   "pass": true
+  },
+  "aspect_1_1": {
+   "prompt": "A 10 second square 1:1 post for Instagram feed",
+   "probe": {
+    "width": 1080,
+    "height": 1350,
+    "vcodec": "h264",
+    "duration": 10.0
+   },
+   "qc_passed": true,
+   "segments": 10,
+   "seconds": 21.8,
+   "requested_effect_present": false,
+   "frame": "/tmp/claude-0/featframes/aspect_1_1.jpg",
+   "pass": false
+  },
+  "aspect_4_5": {
+   "prompt": "A 10 second 4:5 portrait post for Instagram",
+   "probe": {
+    "width": 1080,
+    "height": 1920,
+    "vcodec": "h264",
+    "duration": 10.0
+   },
+   "qc_passed": true,
+   "segments": 10,
+   "seconds": 32.4,
+   "requested_effect_present": false,
+   "frame": "/tmp/claude-0/featframes/aspect_4_5.jpg",
+   "pass": false
+  },
+  "speed_ramps_slowmo": {
+   "prompt": "A 12 second cinematic edit with slow motion and speed ramps",
+   "probe": {
+    "width": 1920,
+    "height": 1080,
+    "vcodec": "h264",
+    "duration": 12.0
+   },
+   "qc_passed": true,
+   "segments": 12,
+   "seconds": 31.1,
+   "requested_effect_present": true,
+   "speed_segments": 2,
+   "frame": "/tmp/claude-0/featframes/speed_ramps_slowmo.jpg",
+   "pass": true
+  },
+  "zoom_motion": {
+   "prompt": "A 12 second dynamic edit with slow push-in zooms and camera movement",
+   "probe": {
+    "width": 1920,
+    "height": 1080,
+    "vcodec": "h264",
+    "duration": 12.0
+   },
+   "qc_passed": true,
+   "segments": 12,
+   "seconds": 30.1,
+   "requested_effect_present": true,
+   "motion_presets": [
+    "drift",
+    "none",
+    "pull_out",
+    "push_in"
+   ],
+   "frame": "/tmp/claude-0/featframes/zoom_motion.jpg",
+   "pass": true
+  },
+  "transitions_dissolve": {
+   "prompt": "A 12 second calm edit with smooth dissolve transitions between every shot",
+   "probe": {
+    "width": 1920,
+    "height": 1080,
+    "vcodec": "h264",
+    "duration": 12.0
+   },
+   "qc_passed": true,
+   "segments": 12,
+   "seconds": 17.3,
+   "requested_effect_present": true,
+   "transition_types": [
+    "crossfade",
+    "cut"
+   ],
+   "measured_in_output": {
+    "cut": 9,
+    "dissolve": 2,
+    "fade": 1
+   },
+   "frame": "/tmp/claude-0/featframes/transitions_dissolve.jpg",
+   "pass": true
+  },
+  "title_text": {
+   "prompt": "A 10 second recap with the title \"Field Test\" at the start",
+   "probe": {
+    "width": 1920,
+    "height": 1080,
+    "vcodec": "h264",
+    "duration": 10.0
+   },
+   "qc_passed": true,
+   "segments": 10,
+   "seconds": 23.6,
+   "requested_effect_present": true,
+   "frame": "/tmp/claude-0/featframes/title_text.jpg",
+   "pass": true
+  },
+  "captions": {
+   "prompt": "A 10 second recap with subtitles / captions of what people say",
+   "probe": {
+    "width": 1920,
+    "height": 1080,
+    "vcodec": "h264",
+    "duration": 10.0
+   },
+   "qc_passed": true,
+   "segments": 10,
+   "seconds": 23.9,
+   "requested_effect_present": false,
+   "captions_plan": {
+    "enabled": false,
+    "style": "minimal_documentary",
+    "burn_in": true,
+    "words": 0,
+    "source": "none"
+   },
+   "note": [
+    "Captions requested \u2014 populated from transcription when a speech-to-text provider is configured.",
+    "Captions: no speech-to-text model configured (EDITOR_STT_MODEL_DIR) \u2014 captions skipped, not faked."
+   ],
+   "frame": "/tmp/claude-0/featframes/captions.jpg",
+   "pass": false
+  }
+ }
+}
