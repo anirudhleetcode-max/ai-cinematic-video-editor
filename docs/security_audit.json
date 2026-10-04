@@ -1,0 +1,161 @@
+{
+ "label": "MEASURED against a running stack",
+ "api": "http://localhost:8000",
+ "checks": [
+  {
+   "check": "filename with shell metacharacters stored as data, inside the data dir",
+   "pass": true,
+   "detail": [
+    "evil.mp4",
+    "clip_id_rm_-rf_uname_x.mp4"
+   ]
+  },
+  {
+   "check": "path-traversal filename cannot escape the data dir",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "no file created outside the data dir by uploads",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "prompt with shell syntax renders as text, executes nothing",
+   "pass": true,
+   "detail": "done"
+  },
+  {
+   "check": "every non-public route refuses an unauthenticated request (401)",
+   "pass": true,
+   "detail": {}
+  },
+  {
+   "check": "forged token refused",
+   "pass": true,
+   "detail": {
+    "GET /projects": 401,
+    "POST /projects": 401,
+    "GET /projects/prj_323438cbd7d5": 401,
+    "GET /projects/prj_323438cbd7d5/assets": 401,
+    "GET /assets/ast_bbf063972c28/file": 401,
+    "GET /assets/ast_bbf063972c28/thumbnail": 401
+   }
+  },
+  {
+   "check": "user B gets 404 on every one of A's objects (read, write, delete, media, SSE, download)",
+   "pass": true,
+   "detail": {}
+  },
+  {
+   "check": "A's project still intact after B's attempts",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "B's project list does not include A's project",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "B's export history does not include A's renders",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "path traversal / SQL-ish ids are 404, never file contents",
+   "pass": true,
+   "detail": {
+    "/projects/prj_000000000000": 404,
+    "/assets/../../../etc/passwd/file": 404,
+    "/renders/..%2F..%2Fetc%2Fpasswd/download": 404,
+    "/jobs/job_' OR '1'='1": 404,
+    "/library/preview/color-presets/..%2F..%2F..%2Fetc%2Fpasswd": 404
+   }
+  },
+  {
+   "check": "?access_token= is not accepted for state-changing requests",
+   "pass": true,
+   "detail": 401
+  },
+  {
+   "check": "executable / unknown type refused",
+   "pass": true,
+   "detail": [
+    {
+     "file": "tool.sh",
+     "error": "unsupported type .sh"
+    }
+   ]
+  },
+  {
+   "check": "corrupt media refused with a clean reason",
+   "pass": true,
+   "detail": [
+    {
+     "file": "fake.mp4",
+     "error": "could not read media file fake.mp4: not a valid or supported audio/video/image file"
+    }
+   ]
+  },
+  {
+   "check": "malformed LUT refused before FFmpeg reads it",
+   "pass": true,
+   "detail": [
+    {
+     "file": "evil.cube",
+     "error": "invalid LUT row: '../../etc/passwd'"
+    }
+   ]
+  },
+  {
+   "check": "error and data responses contain no paths, tracebacks, SQL or command lines",
+   "pass": true,
+   "detail": []
+  },
+  {
+   "check": "interactive API docs disabled in production",
+   "pass": true,
+   "detail": {
+    "/docs": 404,
+    "/redoc": 404,
+    "/openapi.json": 404
+   }
+  },
+  {
+   "check": "diagnostics / admin endpoints refuse non-admin users (403)",
+   "pass": true,
+   "detail": {
+    "/diagnostics": 403,
+    "/admin/cleanup": 403
+   }
+  },
+  {
+   "check": "CORS: unknown origin not allowed, configured origin allowed",
+   "pass": true,
+   "detail": {
+    "evil": null,
+    "configured": "http://localhost:3000"
+   }
+  },
+  {
+   "check": "public /health exposes no paths or secrets",
+   "pass": true,
+   "detail": [
+    "database",
+    "storage",
+    "worker",
+    "queue",
+    "ffmpeg",
+    "models"
+   ]
+  },
+  {
+   "check": "no tokens or passwords in the server logs",
+   "pass": true,
+   "detail": "287373 bytes of logs scanned"
+  }
+ ],
+ "passed": 21,
+ "failed": 0
+}
