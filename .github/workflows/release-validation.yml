@@ -1,0 +1,73 @@
+name: Release validation (Docker + real media)
+# Manual: clean no-cache builds of the three production images, then the full compose stack driven with REAL media
+# (openly licensed recordings fetched by scripts/fetch_real_media.py): smoke flow, worker-kill / cancel / restart
+# durability, two-account browser E2E. Reports are printed to the log and uploaded as an artifact.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  docker-real-media:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - name: Client tools (ffprobe, httpx, browser)
+        run: |
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+          pip install httpx
+          npm --prefix apps/web ci --no-audit --no-fund
+          (cd apps/web && npx playwright-core install --with-deps chromium)
+          echo "CHROME_PATH=$(cd apps/web && node -e "console.log(require('playwright-core').chromium.executablePath())")" >> "$GITHUB_ENV"
+      - name: Fetch real media
+        run: |
+          python scripts/fetch_real_media.py
+          mkdir -p media/flat media/e2e/clips media/e2e/music media/e2e/reference
+          for f in $(ls tests/real_media/library/video/*.mp4 | head -6); do cp "$f" media/flat/; cp "$f" media/e2e/clips/; done
+          m=$(ls tests/real_media/library/music/* | head -1); cp "$m" media/flat/; cp "$m" media/e2e/music/
+          cp "$(ls tests/real_media/library/video/*.mp4 | tail -1)" media/e2e/reference/reference.mp4
+          ls -la media/flat media/e2e/*
+      - name: Clean builds (no cache)
+        run: |
+          set -o pipefail
+          start=$(date +%s)
+          docker build --no-cache -f docker/engine.Dockerfile --target api -t cutroom-api .
+          docker build --no-cache -f docker/engine.Dockerfile --target worker -t cutroom-worker .
+          docker build --no-cache -f docker/web.Dockerfile --build-arg NEXT_PUBLIC_API_URL=http://localhost:8000 -t cutroom-web .
+          echo "BUILD_SECONDS=$(( $(date +%s) - start ))" | tee -a "$GITHUB_ENV"
+          docker images | grep cutroom
+      - name: Start compose stack (production settings)
+        run: |
+          docker compose up -d --no-build
+          for i in $(seq 1 60); do curl -fsS http://localhost:8000/health >/dev/null && break; sleep 2; done
+          curl -sS http://localhost:8000/health | python -m json.tool
+          curl -sS -o /dev/null -w "web %{http_code}\n" http://localhost:3000/
+          curl -sS -o /dev/null -w "docs %{http_code}\n" http://localhost:8000/docs
+      - name: Smoke flow with real media
+        run: mkdir -p reports && python scripts/smoke_flow.py --api http://localhost:8000 --web http://localhost:3000 --media media/flat --duration 20 --out reports/compose_smoke.json
+      - name: Worker kill / cancel / restart durability
+        run: python scripts/compose_durability.py --api http://localhost:8000 --media media/flat --out reports/compose_durability.json
+      - name: Two-account browser E2E
+        env:
+          WEB_URL: http://localhost:3000
+          API_URL: http://localhost:8000
+          E2E_OUT: ${{ github.workspace }}/reports/browser_e2e.json
+          SHOT: ${{ github.workspace }}/reports/browser_e2e.png
+          EXPIRE_SESSIONS_CMD: docker compose exec -T api python -c "from editor import db; db.connect(); db.execute('UPDATE sessions SET expires=0')"
+        run: sleep 65 && node apps/web/tests/e2e/auth.e2e.mjs media/e2e
+      - name: Reports
+        if: always()
+        run: |
+          for f in reports/*.json; do echo "== $f"; cat "$f"; echo; done
+          docker compose logs --no-color --tail=60 api worker | grep -v '"msg": "request"' || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: release-validation, path: reports/ }
+      - name: Stop
+        if: always()
+        run: docker compose down -v

@@ -58,6 +58,19 @@ async function authDialog(page, tab, who, expectOk = true) {
   return "ok";
 }
 
+// Wait on the job itself (newest job of `kind` created after `since`), not on page text: the previous job's
+// "Finished" card can still be on screen when a new job starts.
+async function waitJob(pid, headers, kind, since, limitMin = 30) {
+  const deadline = Date.now() + limitMin * 60000;
+  for (;;) {
+    const jobs = (await (await fetch(`${API}/projects/${pid}/render-status`, { headers })).json()).jobs.filter((j) => j.kind === kind && j.created >= since);
+    const j = jobs[0];
+    if (j && ["done", "failed", "cancelled"].includes(j.status)) return j;
+    if (Date.now() > deadline) throw new Error(`${kind}: timeout`);
+    await new Promise((r) => setTimeout(r, 1000));
+  }
+}
+
 async function waitFinished(page, label, limitMin = 30) {
   const deadline = Date.now() + limitMin * 60000;
   for (;;) {
@@ -131,6 +144,8 @@ try {
   await A.reload({ waitUntil: "networkidle" });
   await A.getByText(/%/).first().waitFor({ timeout: 60000 });
   step("browser refreshed mid-job: progress resumed from the server");
+  const gj = await waitJob(pid, HA, "generate", 0);
+  if (gj.status !== "done") throw new Error(`generate job ${gj.status}: ${gj.error}`);
   await waitFinished(A, "generate");
   const renders = await (await fetch(`${API}/projects/${pid}/renders`, { headers: HA })).json();
   if (!renders.some((r) => r.kind === "preview") || !renders.some((r) => r.kind === "final")) throw new Error("preview + final not both rendered");
@@ -162,21 +177,25 @@ try {
   step("user B: every access to A's project / assets / versions / jobs / download / report / cancel / delete → 404", { codes });
 
   // revision
+  const tRev = Date.now() / 1000 - 1;
   await A.getByPlaceholder(/Revise in plain language/).fill("make the music quieter");
   await A.getByPlaceholder(/Revise in plain language/).press("Enter");
-  await A.getByText(/Mixing audio|Rendering|Planning story|Building timeline/).first().waitFor({ timeout: 120000 });
+  const rj = await waitJob(pid, HA, "revise", tRev);
+  if (rj.status !== "done") throw new Error(`revision job ${rj.status}: ${rj.error}`);
   await waitFinished(A, "revision");
   const versB = await (await fetch(`${API}/projects/${pid}/versions`, { headers: HA })).json();
   if (versB.length < 2) throw new Error("revision did not create a version");
   step("revision rendered as a new version", { versions: versB.length });
 
   // cancel a running job from the UI
+  const tCan = Date.now() / 1000 - 1;
   await A.getByRole("button", { name: "Render final" }).click();
   await A.getByRole("button", { name: "Cancel" }).waitFor({ timeout: 60000 });
   await A.waitForTimeout(2500);
   await A.getByRole("button", { name: "Cancel" }).click();
-  const cancelled = await waitFinished(A, "cancel", 10);
-  if (cancelled !== "cancelled") throw new Error("job finished instead of cancelling");
+  const cj = await waitJob(pid, HA, "render", tCan, 10);
+  if (cj.status !== "cancelled") throw new Error(`job ${cj.status} instead of cancelled`);
+  await A.getByText("Cancelled").first().waitFor({ timeout: 30000 });
   step("running job cancelled from the UI");
 
   // download through the browser + ffprobe
