@@ -28,7 +28,7 @@
  },
  "steps": {
   "upload": {
-   "seconds": 72.45,
+   "seconds": 56.11,
    "accepted": 79,
    "rejected": [
     {
@@ -42,7 +42,7 @@
    ]
   },
   "analysis": {
-   "seconds": 144.95,
+   "seconds": 111.35,
    "shots": 97,
    "usable_shots": 87,
    "rejected": {
@@ -73,7 +73,7 @@
    }
   },
   "planning": {
-   "seconds": 0.389,
+   "seconds": 0.204,
    "segments": 49,
    "unique_shots": 48,
    "same_take_reused": 1,
@@ -93,12 +93,12 @@
    "ending": "logo_title"
   },
   "preview": {
-   "seconds": 52.23,
+   "seconds": 38.76,
    "qc": true,
    "qc_failures": []
   },
   "final_render": {
-   "seconds": 136.81,
+   "seconds": 106.01,
    "qc_passed": true,
    "qc_failures": [],
    "qc_warnings": [],
@@ -111,17 +111,17 @@
    "true_peak": -1.0,
    "encoder": "libx264",
    "timings": {
-    "segments_s": 79.57,
+    "segments_s": 62.7,
     "transitions_s": 0.0,
     "audio_s": 0.01,
-    "final_pass_s": 31.71,
-    "qc_s": 7.72,
-    "total_s": 119.0,
-    "reviews_s": 17.77
+    "final_pass_s": 24.73,
+    "qc_s": 5.9,
+    "total_s": 93.34,
+    "reviews_s": 12.63
    },
    "segments_cached": 0,
    "fallbacks": [],
-   "output": "/tmp/claude-0/acc2/projects/prj_d8d0a8d6a5e0/outputs/final_v1_rnd_657bab8553b2.mp4",
+   "output": "/tmp/claude-0/acc2/projects/prj_c5e80913367a/outputs/final_v1_rnd_b0928c4222bc.mp4",
    "reference_match": {
     "metrics": [
      {
@@ -376,7 +376,7 @@
   },
   "revision_1": {
    "text": "Make it more energetic and reduce the intro to 3 seconds.",
-   "seconds": 179.39,
+   "seconds": 137.6,
    "ops": [
     "pacing",
     "section_length"
@@ -388,7 +388,7 @@
   },
   "revision_2": {
    "text": "Make the colors warmer.",
-   "seconds": 151.73,
+   "seconds": 115.41,
    "ops": [
     "color_adjust"
    ],
@@ -399,7 +399,7 @@
   },
   "revision_3": {
    "text": "Use song 2 for the final section.",
-   "seconds": 0.03,
+   "seconds": 0.02,
    "ops": [
     "section_song"
    ],
@@ -411,8 +411,8 @@
  },
  "measured": true,
  "resources": {
-  "peak_rss_mb": 2019.8,
-  "cpu_percent_avg": 73.0,
+  "peak_rss_mb": 1755.7,
+  "cpu_percent_avg": 72.4,
   "cache": {
    "hits": 0,
    "misses": 78,
@@ -421,7 +421,7 @@
   "gpu": null,
   "hardware_encoding": false
  },
- "total_seconds": 738.3,
+ "total_seconds": 565.6,
  "checks": {
   "all_inputs_accounted_for": true,
   "final_qc_passed": true,
