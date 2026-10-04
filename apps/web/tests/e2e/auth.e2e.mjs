@@ -107,8 +107,8 @@ try {
   step("invalid credentials refused", { message: bad });
   await authDialog(A, "Sign in", "a");
   step("user A signed in");
-  const tokenA = await A.evaluate(() => localStorage.getItem("cutroom_token"));
-  const HA = { authorization: `Bearer ${tokenA}` };
+  let tokenA = await A.evaluate(() => localStorage.getItem("cutroom_token"));
+  let HA = { authorization: `Bearer ${tokenA}` };
 
   await A.getByPlaceholder(/New project name/).fill(`E2E ${tag}`);
   await A.getByRole("button", { name: /New project/ }).click();
@@ -227,6 +227,8 @@ try {
     await authDialog(A, "Sign in", "a", true, false);
     await A.getByText(/Versions & revisions/).waitFor({ timeout: 20000 });
     step("signed in again on the same page; project still there");
+    tokenA = await A.evaluate(() => localStorage.getItem("cutroom_token"));  // the new session
+    HA = { authorization: `Bearer ${tokenA}` };
   } else step("expired session: SKIPPED (no EXPIRE_SESSIONS_CMD)");
 
   // delete project through the UI
