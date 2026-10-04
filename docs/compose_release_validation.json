@@ -1,0 +1,28 @@
+{
+ "label": "MEASURED on GitHub Actions (ubuntu-24.04 runner), workflow .github/workflows/release-validation.yml",
+ "run": "https://github.com/anirudhleetcode-max/ai-cinematic-video-editor/actions/runs/37185738609",
+ "commit": "4e9f98c3d53079aacce8663a2f53529bce42edfd",
+ "conclusion": "success",
+ "artifact_id": 11296254686,
+ "clean_no_cache_builds_seconds": 168,
+ "steps_wall_clock": {
+  "clean_builds": "07:26:40-07:29:28",
+  "compose_up_healthy": "07:29:28-07:29:36",
+  "smoke_flow_real_media": "07:29:36-07:31:30",
+  "worker_kill_cancel_restart": "07:31:30-07:34:10",
+  "two_account_browser_e2e": "07:34:10-07:37:23"
+ },
+ "smoke": {"passed": true, "steps": 19, "uploaded": 7, "analyze_s": 40.14, "generate_preview_and_final_s": 55.26,
+           "generate_timings": {"planning_s": 0.07, "preview_s": 10.9, "render_s": 43.75},
+           "revise_s": 14.06, "final": {"codec": "h264", "size": "1920x1080", "pix_fmt": "yuv420p", "primaries": "bt709", "audio": "aac", "duration_s": 20.0},
+           "download_bytes": 9522743, "user_b_denied": ["project", "assets", "versions", "download"]},
+ "durability": {
+  "worker_killed_mid_job": {"stage_when_killed": "building_timeline", "final_status": "done", "seconds_from_kill_to_done": 142.4, "log": "re-queued interrupted jobs n=1, then job done"},
+  "cancel_running_render": {"final_status": "cancelled", "seconds_to_stop": 1.0, "render_retries_logged": 0},
+  "persistence_after_restart": {"job_status": "done", "download_status": 200, "bytes": 9494108, "mp4": true},
+  "orphan_outputs_after_run": 0,
+  "health_after": {"ok": true, "worker": "separate process, heartbeat 5.7 s", "encoder": "libx264", "hardware_encoding": false}
+ },
+ "browser_e2e": "step succeeded (two accounts, real media, cancel from UI, download, expired session)",
+ "previous_run_same_workflow": {"run": "37184537806", "note": "passed; its worker log showed a cancelled render retried 3 times (fixed in 4e9f98c)"}
+}
