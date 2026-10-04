@@ -28,7 +28,7 @@
  },
  "steps": {
   "upload": {
-   "seconds": 56.11,
+   "seconds": 58.03,
    "accepted": 79,
    "rejected": [
     {
@@ -42,7 +42,7 @@
    ]
   },
   "analysis": {
-   "seconds": 111.35,
+   "seconds": 110.26,
    "shots": 97,
    "usable_shots": 87,
    "rejected": {
@@ -73,7 +73,7 @@
    }
   },
   "planning": {
-   "seconds": 0.204,
+   "seconds": 0.264,
    "segments": 49,
    "unique_shots": 48,
    "same_take_reused": 1,
@@ -93,12 +93,12 @@
    "ending": "logo_title"
   },
   "preview": {
-   "seconds": 38.76,
+   "seconds": 38.17,
    "qc": true,
    "qc_failures": []
   },
   "final_render": {
-   "seconds": 106.01,
+   "seconds": 107.06,
    "qc_passed": true,
    "qc_failures": [],
    "qc_warnings": [],
@@ -111,17 +111,17 @@
    "true_peak": -1.0,
    "encoder": "libx264",
    "timings": {
-    "segments_s": 62.7,
+    "segments_s": 63.42,
     "transitions_s": 0.0,
     "audio_s": 0.01,
-    "final_pass_s": 24.73,
-    "qc_s": 5.9,
-    "total_s": 93.34,
-    "reviews_s": 12.63
+    "final_pass_s": 25.48,
+    "qc_s": 5.99,
+    "total_s": 94.9,
+    "reviews_s": 12.15
    },
    "segments_cached": 0,
    "fallbacks": [],
-   "output": "/tmp/claude-0/acc2/projects/prj_c5e80913367a/outputs/final_v1_rnd_b0928c4222bc.mp4",
+   "output": "/tmp/claude-0/acc2/projects/prj_f01294c856bc/outputs/final_v1_rnd_241167be2c47.mp4",
    "reference_match": {
     "metrics": [
      {
@@ -376,7 +376,7 @@
   },
   "revision_1": {
    "text": "Make it more energetic and reduce the intro to 3 seconds.",
-   "seconds": 137.6,
+   "seconds": 138.61,
    "ops": [
     "pacing",
     "section_length"
@@ -388,7 +388,7 @@
   },
   "revision_2": {
    "text": "Make the colors warmer.",
-   "seconds": 115.41,
+   "seconds": 116.69,
    "ops": [
     "color_adjust"
    ],
@@ -411,8 +411,8 @@
  },
  "measured": true,
  "resources": {
-  "peak_rss_mb": 1755.7,
-  "cpu_percent_avg": 72.4,
+  "peak_rss_mb": 1740.7,
+  "cpu_percent_avg": 72.5,
   "cache": {
    "hits": 0,
    "misses": 78,
@@ -421,7 +421,7 @@
   "gpu": null,
   "hardware_encoding": false
  },
- "total_seconds": 565.6,
+ "total_seconds": 569.6,
  "checks": {
   "all_inputs_accounted_for": true,
   "final_qc_passed": true,
