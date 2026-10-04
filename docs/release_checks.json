@@ -192,6 +192,181 @@
    },
    "seconds": 74.8,
    "pass": true
+  },
+  "E_colour": {
+   "results": {
+    "bt709_limited (real)": {
+     "signed_mean_shift_rgb": [
+      -0.0,
+      0.21,
+      -0.03
+     ],
+     "mean_abs_rgb": 0.45,
+     "output_tags": [
+      "tv",
+      "bt709",
+      "bt709",
+      "bt709"
+     ],
+     "pass": true
+    },
+    "bt601_sd (derived from real)": {
+     "signed_mean_shift_rgb": [
+      -2.74,
+      -2.4,
+      -2.33
+     ],
+     "mean_abs_rgb": 6.73,
+     "output_tags": [
+      "tv",
+      "bt709",
+      "bt709",
+      "bt709"
+     ],
+     "pass": true
+    },
+    "full_range (derived from real)": {
+     "signed_mean_shift_rgb": [
+      -1.98,
+      -0.32,
+      -2.49
+     ],
+     "mean_abs_rgb": 1.74,
+     "output_tags": [
+      "tv",
+      "bt709",
+      "bt709",
+      "bt709"
+     ],
+     "pass": true
+    },
+    "phone 16.37.53 (pc, bt470bg range) (real)": {
+     "signed_mean_shift_rgb": [
+      0.38,
+      -2.26,
+      0.89
+     ],
+     "mean_abs_rgb": 19.19,
+     "output_tags": [
+      "tv",
+      "bt709",
+      "bt709",
+      "bt709"
+     ],
+     "pass": true
+    },
+    "phone 17.14.30 (tv, bt709 range) (real)": {
+     "signed_mean_shift_rgb": [
+      0.35,
+      0.14,
+      0.41
+     ],
+     "mean_abs_rgb": 2.27,
+     "output_tags": [
+      "tv",
+      "bt709",
+      "bt709",
+      "bt709"
+     ],
+     "pass": true
+    },
+    "phone 17.14.48 (tv, bt709 range) (real)": {
+     "signed_mean_shift_rgb": [
+      0.1,
+      -0.07,
+      0.21
+     ],
+     "mean_abs_rgb": 3.45,
+     "output_tags": [
+      "tv",
+      "bt709",
+      "bt709",
+      "bt709"
+     ],
+     "pass": true
+    },
+    "hlg_10bit_hevc (derived; tone-mapped by design)": {
+     "output_mean_rgb": [
+      80.9,
+      71.3,
+      67.2
+     ],
+     "output_tags": [
+      "tv",
+      "bt709",
+      "bt709",
+      "bt709"
+     ],
+     "pass": true,
+     "note": "HDR\u2192SDR tone-map changes values by design; checked for a valid, non-clipped SDR picture"
+    }
+   },
+   "pass": true
+  },
+  "D_lut": {
+   "source": "bt709_limited (real)",
+   "mean_abs_change_vs_no_lut": 10.63,
+   "mean_abs_error_vs_expected_swap": 0.91,
+   "source_mean_abs_red_blue_gap": 15.83,
+   "pass": true,
+   "frames": [
+    "/tmp/claude-0/frames/D_lut_off_000.80.jpg",
+    "/tmp/claude-0/frames/D_lut_on_000.80.jpg"
+   ]
+  },
+  "DE_seconds": 26.5,
+  "F_audio": {
+   "input_audio (sample_rate,channels)": {
+    "speech_over_real_video.mp4": [
+     "16000",
+     "1"
+    ],
+    "derived_no_audio.mp4": [
+     ""
+    ],
+    "container_mjpeg.avi": [
+     "24000",
+     "1"
+    ],
+    "car-detection_take1.mp4": [
+     "48000",
+     "2"
+    ],
+    "classroom_take1.mp4": [
+     ""
+    ],
+    "face-demographics-walking-and-pause_take1.mp4": [
+     "48000",
+     "2"
+    ],
+    "sugar_plum_fairy.flac": [
+     "44100",
+     "2"
+    ]
+   },
+   "target_lufs": -16.0,
+   "measured": {
+    "integrated_lufs": -16.8,
+    "true_peak_dbtp": -1.6,
+    "sample_peak_db": -1.635205,
+    "peak_count_per_channel": []
+   },
+   "report": {
+    "integrated_lufs": -16.94,
+    "true_peak_db": -1.0,
+    "speech_seconds": 6.55,
+    "ducked_seconds": 11.14
+   },
+   "output_audio": [
+    "aac",
+    "48000",
+    "2"
+   ],
+   "qc_passed": true,
+   "seconds": 76.2,
+   "pass": true
   }
- }
+ },
+ "finished": 1791100237.5871613,
+ "pass": true
 }
