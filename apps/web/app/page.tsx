@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Clapperboard, Film, Plus, Sparkles, Trash2 } from "lucide-react";
-import { api, downloadUrl, thumbUrl } from "@/lib/api";
+import { api, ApiError, downloadUrl, thumbUrl } from "@/lib/api";
 import { ago, fmtBytes } from "@/lib/cn";
 import type { Project, RenderRow } from "@/lib/types";
 import { Button } from "@/components/ui/button";
@@ -18,7 +18,8 @@ export default function Dashboard() {
   const [name, setName] = useState("");
   const [err, setErr] = useState<string | null>(null);
   const load = () => {
-    api.projects().then(setProjects).catch((e: Error) => setErr(e.message));
+    // 401 is not an outage: the sign-in dialog handles it (Shell listens for cutroom:auth-required)
+    api.projects().then(setProjects).catch((e: Error) => setErr(e instanceof ApiError && e.status === 401 ? null : e.message));
     api.exportHistory().then(setHistory).catch(() => undefined);
   };
   useEffect(load, []);
@@ -48,7 +49,7 @@ export default function Dashboard() {
       </div>
 
       {err ? (
-        <Card className="mb-6 border-bad/30 p-4 text-sm text-bad">Engine unreachable: {err}. Start the backend (see README) and reload.</Card>
+        <Card className="mb-6 border-bad/30 p-4 text-sm text-bad">Could not load projects: {err}. If the engine is not running, start it (see README) and reload.</Card>
       ) : null}
 
       <div className="label mb-3">Recent projects</div>

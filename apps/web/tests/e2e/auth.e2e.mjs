@@ -44,11 +44,16 @@ async function authDialog(page, tab, who, expectOk = true) {
   await page.getByLabel("Password").fill(expectOk ? c.password : "wrong-password-123");
   await page.getByRole("button", { name: tab === "Create account" ? "Create account" : "Sign in", exact: true }).click();
   if (!expectOk) {
-    await page.getByRole("alert").waitFor({ timeout: 10000 });
-    return (await page.getByRole("alert").innerText()).trim();
+    // scope to the dialog: Next.js adds its own (empty) role="alert" route announcer to every page
+    const alert = page.getByRole("dialog").getByRole("alert");
+    await alert.waitFor({ timeout: 10000 });
+    return (await alert.innerText()).trim();
   }
+  // success reloads the page; wait for the dialog to go away (the form behind the modal is visible all along)
+  await page.getByRole("dialog").waitFor({ state: "detached", timeout: 60000 }).catch(() => undefined);
   await page.waitForLoadState("networkidle");
   await page.getByPlaceholder(/New project name/).waitFor({ timeout: 20000 });
+  await page.waitForTimeout(1000);
   if (await page.getByRole("dialog").count()) throw new Error(`${who}: still asked to sign in`);
   return "ok";
 }
@@ -75,6 +80,9 @@ try {
   if (unauth.status !== 401) throw new Error(`API without a token answered ${unauth.status}`);
   step("API refuses unauthenticated requests (401)");
   await A.goto(WEB, { waitUntil: "networkidle" });
+  await A.getByRole("dialog").waitFor({ timeout: 20000 });
+  if (/unreachable|could not load projects/i.test(await A.locator("body").innerText())) throw new Error("signed-out page shows an outage banner");
+  step("signed-out visitor sees the sign-in dialog, no outage banner");
   // sign-up first so the account exists, then exercise invalid credentials, sign-out and sign-in
   await authDialog(A, "Create account", "a");
   step("user A signed up in the UI");

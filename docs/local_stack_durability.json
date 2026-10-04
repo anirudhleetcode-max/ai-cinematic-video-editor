@@ -1,10 +1,10 @@
 {
  "label": "MEASURED against local production-config stack (separate API and worker processes, no Docker)",
  "worker_killed_mid_job": {
-  "progress_when_killed": 1.0,
-  "stage_when_killed": "building_timeline",
+  "progress_when_killed": 0.4286,
+  "stage_when_killed": "analyzing_media",
   "final_status": "done",
-  "seconds_from_kill_to_done": 143.8,
+  "seconds_from_kill_to_done": 148.8,
   "error": null,
   "pass": true
  },
@@ -37,7 +37,7 @@
    },
    "worker": {
     "ok": true,
-    "last_heartbeat_s": 0.6,
+    "last_heartbeat_s": 0.9,
     "process": "separate"
    },
    "queue": {
@@ -58,7 +58,7 @@
     "note": "optional \u2014 the classic OpenCV / energy fallbacks run without them"
    }
   },
-  "time": 1791095384.339854
+  "time": 1791095800.0244482
  },
  "pass": true
 }
