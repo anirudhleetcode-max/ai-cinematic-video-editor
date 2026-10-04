@@ -79,6 +79,8 @@ def main() -> int:
             if name == "captions":
                 row["captions_plan"] = {k: (len(v_) if k == "words" else v_) for k, v_ in pl["captions"].items()}
                 row["note"] = [d for d in pl.get("decisions", []) if "caption" in d.lower() or "subtitle" in d.lower() or "transcri" in d.lower()][:3]
+                if not pl["captions"].get("words") and any("no speech-to-text model" in n for n in row["note"]):
+                    row["status"] = "UNAVAILABLE in this environment: no speech-to-text model installed (reported, not faked)"
             fr = frames / f"{name}.jpg"
             subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", "2.5", "-i", r["path"], "-frames:v", "1", "-vf", "scale=-2:480", str(fr)])
             row["frame"] = str(fr)

@@ -106,6 +106,12 @@ def parse_prompt(prompt: str) -> StyleIntent:
             it["platform"], it["aspect_ratio"] = plat, ar
             notes.append(f"platform {plat} → {ar}")
             break
+    # an explicit ratio (or "square") decides the frame; the platform table only fills in when none is given
+    if (m := re.search(r"(?<![\d:])(16:9|9:16|1:1|4:5|21:9)(?![\d:])", p)) or (m := re.search(r"\bsquare\b", p)):
+        ar = "1:1" if m.group(0) == "square" else m.group(0)
+        if it.get("aspect_ratio") != ar:
+            it["aspect_ratio"] = ar
+            notes.append(f"explicit aspect ratio → {ar}")
     for rx, story in STORY:
         if re.search(rx, p):
             it["story_type"] = story

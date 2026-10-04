@@ -143,3 +143,22 @@ def test_dialogue_led_edit_never_chops_speech(project, monkeypatch):
     durs = [s["out_duration"] for s in v["plan"]["timeline"]]
     assert v["plan"]["editing_mode"] == "dialogue"
     assert min(durs) >= 2.5 - 1e-3, durs
+
+
+def test_explicit_aspect_ratio_beats_platform_defaults():
+    """An explicit ratio (or 'square') decides the frame; platform words only fill in when none is given. Found by the
+    release feature checks on real footage: '1:1 … Instagram feed' rendered 4:5 and '4:5 portrait' rendered 9:16."""
+    from editor.director.prompt_parser import parse_prompt
+
+    cases = {
+        "A 10 second square 1:1 post for Instagram feed": "1:1",
+        "A 10 second 4:5 portrait post for Instagram": "4:5",
+        "A square post for my Instagram feed": "1:1",
+        "A 9:16 version for YouTube": "9:16",
+        "An Instagram feed post": "4:5",
+        "A 30 second Instagram reel": "9:16",
+        "A vertical teaser": "9:16",
+        "A YouTube recap": "16:9",
+    }
+    got = {p: parse_prompt(p).aspect_ratio for p in cases}
+    assert got == cases
