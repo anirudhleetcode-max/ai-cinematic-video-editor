@@ -1,0 +1,266 @@
+TITLE: FAILATHON_AV_FINAL
+FCM: NON-DROP FRAME
+
+001  AX       V     C        00:00:00:00 00:00:03:17 00:00:00:00 00:00:03:17
+* FROM CLIP NAME: SHOT_001.mov
+* SOURCE: IMG_7076.MOV @ 0.93s speed=1.0 ramp=None
+
+002  AX       V     C        00:00:00:00 00:00:03:22 00:00:03:17 00:00:07:09
+* FROM CLIP NAME: SHOT_002.mov
+* SOURCE: IMG_7072.MOV @ 0.15s speed=1.0 ramp=None
+
+003  AX       V     C        00:00:00:00 00:00:03:20 00:00:07:09 00:00:10:29
+* FROM CLIP NAME: SHOT_003.mov
+* SOURCE: IMG_7054.MOV @ 0.90s speed=1.0 ramp=None
+
+004  AX       V     C        00:00:00:00 00:00:01:26 00:00:10:29 00:00:12:25
+* FROM CLIP NAME: SHOT_004.mov
+* SOURCE: IMG_7056.MOV @ 0.00s speed=1.0 ramp=None
+
+005  AX       V     C        00:00:00:00 00:00:01:25 00:00:12:25 00:00:14:20
+* FROM CLIP NAME: SHOT_005.mov
+* SOURCE: IMG_7054.MOV @ 3.82s speed=1.0 ramp=None
+
+006  AX       V     C        00:00:00:00 00:00:00:27 00:00:14:20 00:00:15:17
+* FROM CLIP NAME: SHOT_006.mov
+* SOURCE: IMG_7056.MOV @ 1.73s speed=1.0 ramp=None
+
+007  AX       V     C        00:00:00:00 00:00:00:14 00:00:15:17 00:00:16:01
+* FROM CLIP NAME: SHOT_007.mov
+* SOURCE: IMG_7054.MOV @ 3.36s speed=1.0 ramp=None
+
+008  AX       V     C        00:00:00:00 00:00:00:14 00:00:16:01 00:00:16:15
+* FROM CLIP NAME: SHOT_008.mov
+* SOURCE: IMG_7056.MOV @ 5.86s speed=1.0 ramp=None
+
+009  AX       V     C        00:00:00:00 00:00:00:14 00:00:16:15 00:00:16:29
+* FROM CLIP NAME: SHOT_009.mov
+* SOURCE: IMG_7060.MOV @ 0.86s speed=1.0 ramp=None
+
+010  AX       V     C        00:00:00:00 00:00:00:14 00:00:16:29 00:00:17:13
+* FROM CLIP NAME: SHOT_010.mov
+* SOURCE: IMG_7056.MOV @ 5.86s speed=1.0 ramp=None
+
+011  AX       V     C        00:00:00:00 00:00:00:27 00:00:17:13 00:00:18:10
+* FROM CLIP NAME: SHOT_011.mov
+* SOURCE: IMG_7060.MOV @ 4.23s speed=1.0 ramp=None
+
+012  AX       V     C        00:00:00:00 00:00:00:14 00:00:18:10 00:00:18:24
+* FROM CLIP NAME: SHOT_012.mov
+* SOURCE: IMG_7056.MOV @ 4.36s speed=1.0 ramp=None
+
+013  AX       V     C        00:00:00:00 00:00:00:14 00:00:18:24 00:00:19:08
+* FROM CLIP NAME: SHOT_013.mov
+* SOURCE: IMG_7061.MOV @ 0.00s speed=1.0 ramp=None
+
+014  AX       V     C        00:00:00:00 00:00:00:28 00:00:19:08 00:00:20:06
+* FROM CLIP NAME: SHOT_014.mov
+* SOURCE: IMG_7060.MOV @ 2.72s speed=1.0 ramp=None
+
+015  AX       V     C        00:00:00:00 00:00:00:14 00:00:20:06 00:00:20:20
+* FROM CLIP NAME: SHOT_015.mov
+* SOURCE: IMG_7061.MOV @ 1.86s speed=1.0 ramp=None
+
+016  AX       V     C        00:00:00:00 00:00:00:28 00:00:20:20 00:00:21:18
+* FROM CLIP NAME: SHOT_016.mov
+* SOURCE: IMG_7062.MOV @ 0.72s speed=1.0 ramp=None
+
+017  AX       V     C        00:00:00:00 00:00:00:27 00:00:21:18 00:00:22:15
+* FROM CLIP NAME: SHOT_017.mov
+* SOURCE: IMG_7061.MOV @ 3.23s speed=1.0 ramp=None
+
+018  AX       V     C        00:00:00:00 00:00:00:14 00:00:22:15 00:00:22:29
+* FROM CLIP NAME: SHOT_018.mov
+* SOURCE: IMG_7062.MOV @ 2.36s speed=1.0 ramp=None
+
+019  AX       V     C        00:00:00:00 00:00:00:28 00:00:22:29 00:00:23:27
+* FROM CLIP NAME: SHOT_019.mov
+* SOURCE: IMG_7063.MOV @ 0.22s speed=1.0 ramp=None
+
+020  AX       V     C        00:00:00:00 00:00:00:14 00:00:23:27 00:00:24:11
+* FROM CLIP NAME: SHOT_020.mov
+* SOURCE: IMG_7062.MOV @ 4.86s speed=1.0 ramp=None
+
+021  AX       V     C        00:00:00:00 00:00:00:14 00:00:24:11 00:00:24:25
+* FROM CLIP NAME: SHOT_021.mov
+* SOURCE: IMG_7063.MOV @ 1.86s speed=1.0 ramp=None
+
+022  AX       V     C        00:00:00:00 00:00:00:14 00:00:24:25 00:00:25:09
+* FROM CLIP NAME: SHOT_022.mov
+* SOURCE: IMG_7065.MOV @ 0.86s speed=1.0 ramp=None
+
+023  AX       V     C        00:00:00:00 00:00:00:27 00:00:25:09 00:00:26:06
+* FROM CLIP NAME: SHOT_023.mov
+* SOURCE: IMG_7063.MOV @ 4.73s speed=1.0 ramp=None
+
+024  AX       V     C        00:00:00:00 00:00:00:28 00:00:26:06 00:00:27:04
+* FROM CLIP NAME: SHOT_024.mov
+* SOURCE: IMG_7065.MOV @ 2.22s speed=1.0 ramp=None
+
+025  AX       V     C        00:00:00:00 00:00:00:14 00:00:27:04 00:00:27:18
+* FROM CLIP NAME: SHOT_025.mov
+* SOURCE: IMG_7063.MOV @ 6.36s speed=1.0 ramp=None
+
+026  AX       V     C        00:00:00:00 00:00:00:13 00:00:27:18 00:00:28:01
+* FROM CLIP NAME: SHOT_026.mov
+* SOURCE: IMG_7065.MOV @ 2.37s speed=1.0 ramp=None
+
+027  AX       V     C        00:00:00:00 00:00:00:14 00:00:28:01 00:00:28:15
+* FROM CLIP NAME: SHOT_027.mov
+* SOURCE: IMG_7063.MOV @ 6.36s speed=1.0 ramp=None
+
+028  AX       V     C        00:00:00:00 00:00:00:28 00:00:28:15 00:00:29:13
+* FROM CLIP NAME: SHOT_028.mov
+* SOURCE: IMG_7065.MOV @ 3.59s speed=1.0 ramp=slow_fast
+
+029  AX       V     C        00:00:00:00 00:00:01:11 00:00:29:13 00:00:30:24
+* FROM CLIP NAME: SHOT_029.mov
+* SOURCE: IMG_7063.MOV @ 2.89s speed=1.0 ramp=slow_fast
+
+030  AX       V     C        00:00:00:00 00:00:00:14 00:00:30:24 00:00:31:08
+* FROM CLIP NAME: SHOT_030.mov
+* SOURCE: IMG_7066.MOV @ 0.00s speed=1.0 ramp=None
+
+031  AX       V     C        00:00:00:00 00:00:00:28 00:00:31:08 00:00:32:06
+* FROM CLIP NAME: SHOT_031.mov
+* SOURCE: IMG_7065.MOV @ 6.22s speed=1.0 ramp=None
+
+032  AX       V     C        00:00:00:00 00:00:00:14 00:00:32:06 00:00:32:20
+* FROM CLIP NAME: SHOT_032.mov
+* SOURCE: IMG_7066.MOV @ 2.36s speed=1.0 ramp=None
+
+033  AX       V     C        00:00:00:00 00:00:00:13 00:00:32:20 00:00:33:03
+* FROM CLIP NAME: SHOT_033.mov
+* SOURCE: IMG_7069.MOV @ 0.00s speed=1.0 ramp=None
+
+034  AX       V     C        00:00:00:00 00:00:00:28 00:00:33:03 00:00:34:01
+* FROM CLIP NAME: SHOT_034.mov
+* SOURCE: IMG_7066.MOV @ 3.72s speed=1.0 ramp=None
+
+035  AX       V     C        00:00:00:00 00:00:00:27 00:00:34:01 00:00:34:28
+* FROM CLIP NAME: SHOT_035.mov
+* SOURCE: IMG_7069.MOV @ 3.23s speed=1.0 ramp=None
+
+036  AX       V     C        00:00:00:00 00:00:01:25 00:00:34:28 00:00:36:23
+* FROM CLIP NAME: SHOT_036.mov
+* SOURCE: IMG_7066.MOV @ 3.12s speed=1.0 ramp=fast_slow
+
+037  AX       V     C        00:00:00:00 00:00:01:26 00:00:36:23 00:00:38:19
+* FROM CLIP NAME: SHOT_037.mov
+* SOURCE: IMG_7069.MOV @ 0.90s speed=1.0 ramp=fast_slow
+
+038  AX       V     C        00:00:00:00 00:00:01:25 00:00:38:19 00:00:40:14
+* FROM CLIP NAME: SHOT_038.mov
+* SOURCE: IMG_7070.MOV @ 2.95s speed=1.0 ramp=None
+
+039  AX       V     C        00:00:00:00 00:00:00:27 00:00:40:14 00:00:41:11
+* FROM CLIP NAME: SHOT_039.mov
+* SOURCE: IMG_7069.MOV @ 3.23s speed=1.0 ramp=None
+
+040  AX       V     C        00:00:00:00 00:00:01:26 00:00:41:11 00:00:43:07
+* FROM CLIP NAME: SHOT_040.mov
+* SOURCE: IMG_7070.MOV @ 0.00s speed=1.0 ramp=slow_fast
+
+041  AX       V     C        00:00:00:00 00:00:01:11 00:00:43:07 00:00:44:18
+* FROM CLIP NAME: SHOT_041.mov
+* SOURCE: IMG_7071.MOV @ 0.39s speed=1.0 ramp=slow_fast
+
+042  AX       V     C        00:00:00:00 00:00:00:13 00:00:44:18 00:00:45:01
+* FROM CLIP NAME: SHOT_042.mov
+* SOURCE: IMG_7070.MOV @ 4.87s speed=1.0 ramp=None
+
+043  AX       V     C        00:00:00:00 00:00:00:14 00:00:45:01 00:00:45:15
+* FROM CLIP NAME: SHOT_043.mov
+* SOURCE: IMG_7071.MOV @ 2.36s speed=1.0 ramp=None
+
+044  AX       V     C        00:00:00:00 00:00:00:28 00:00:45:15 00:00:46:13
+* FROM CLIP NAME: SHOT_044.mov
+* SOURCE: IMG_7070.MOV @ 1.72s speed=1.0 ramp=None
+
+045  AX       V     C        00:00:00:00 00:00:00:13 00:00:46:13 00:00:46:26
+* FROM CLIP NAME: SHOT_045.mov
+* SOURCE: IMG_7071.MOV @ 3.87s speed=1.0 ramp=None
+
+046  AX       V     C        00:00:00:00 00:00:00:14 00:00:46:26 00:00:47:10
+* FROM CLIP NAME: SHOT_046.mov
+* SOURCE: IMG_7070.MOV @ 6.36s speed=1.0 ramp=None
+
+047  AX       V     C        00:00:00:00 00:00:00:14 00:00:47:10 00:00:47:24
+* FROM CLIP NAME: SHOT_047.mov
+* SOURCE: IMG_7071.MOV @ 5.36s speed=1.0 ramp=None
+
+048  AX       V     C        00:00:00:00 00:00:00:14 00:00:47:24 00:00:48:08
+* FROM CLIP NAME: SHOT_048.mov
+* SOURCE: IMG_7069.MOV @ 4.86s speed=1.0 ramp=None
+
+049  AX       V     C        00:00:00:00 00:00:00:27 00:00:48:08 00:00:49:05
+* FROM CLIP NAME: SHOT_049.mov
+* SOURCE: IMG_7076.MOV @ 0.10s speed=1.0 ramp=slow_fast
+
+050  AX       V     C        00:00:00:00 00:00:01:25 00:00:49:05 00:00:51:00
+* FROM CLIP NAME: SHOT_050.mov
+* SOURCE: IMG_7052.MOV @ 2.15s speed=1.0 ramp=slow_fast
+
+051  AX       V     C        00:00:00:00 00:00:00:14 00:00:51:00 00:00:51:14
+* FROM CLIP NAME: SHOT_051.mov
+* SOURCE: IMG_7076.MOV @ 1.86s speed=1.0 ramp=None
+
+052  AX       V     C        00:00:00:00 00:00:00:14 00:00:51:14 00:00:51:28
+* FROM CLIP NAME: SHOT_052.mov
+* SOURCE: IMG_7052.MOV @ 0.00s speed=1.0 ramp=None
+
+053  AX       V     C        00:00:00:00 00:00:00:27 00:00:51:28 00:00:52:25
+* FROM CLIP NAME: SHOT_053.mov
+* SOURCE: IMG_7076.MOV @ 1.73s speed=1.0 ramp=None
+
+054  AX       V     C        00:00:00:00 00:00:00:14 00:00:52:25 00:00:53:09
+* FROM CLIP NAME: SHOT_054.mov
+* SOURCE: IMG_7059.MOV @ 1.36s speed=1.0 ramp=None
+
+055  AX       V     C        00:00:00:00 00:00:00:28 00:00:53:09 00:00:54:07
+* FROM CLIP NAME: SHOT_055.mov
+* SOURCE: IMG_7076.MOV @ 3.22s speed=1.0 ramp=None
+
+056  AX       V     C        00:00:00:00 00:00:00:27 00:00:54:07 00:00:55:04
+* FROM CLIP NAME: SHOT_056.mov
+* SOURCE: IMG_7052.MOV @ 1.23s speed=1.0 ramp=None
+
+057  AX       V     C        00:00:00:00 00:00:00:14 00:00:55:04 00:00:55:18
+* FROM CLIP NAME: SHOT_057.mov
+* SOURCE: IMG_7059.MOV @ 4.36s speed=1.0 ramp=None
+
+058  AX       V     C        00:00:00:00 00:00:00:27 00:00:55:18 00:00:56:15
+* FROM CLIP NAME: SHOT_058.mov
+* SOURCE: IMG_7079.MOV @ 0.00s speed=1.0 ramp=None
+
+059  AX       V     C        00:00:00:00 00:00:00:28 00:00:56:15 00:00:57:13
+* FROM CLIP NAME: SHOT_059.mov
+* SOURCE: IMG_7059.MOV @ 0.00s speed=1.0 ramp=None
+
+060  AX       V     C        00:00:00:00 00:00:01:25 00:00:57:13 00:00:59:08
+* FROM CLIP NAME: SHOT_060.mov
+* SOURCE: IMG_7079.MOV @ 0.95s speed=1.0 ramp=None
+
+061  AX       V     C        00:00:00:00 00:00:00:27 00:00:59:08 00:01:00:05
+* FROM CLIP NAME: SHOT_061.mov
+* SOURCE: IMG_7059.MOV @ 2.73s speed=1.0 ramp=None
+
+062  AX       V     C        00:00:00:00 00:00:01:25 00:01:00:05 00:01:02:00
+* FROM CLIP NAME: SHOT_062.mov
+* SOURCE: IMG_7079.MOV @ 2.95s speed=1.0 ramp=None
+
+063  AX       V     C        00:00:00:00 00:00:01:25 00:01:02:00 00:01:03:25
+* FROM CLIP NAME: SHOT_063.mov
+* SOURCE: IMG_7059.MOV @ 3.45s speed=1.0 ramp=fast_slow
+
+064  AX       V     C        00:00:00:00 00:00:01:25 00:01:03:25 00:01:05:20
+* FROM CLIP NAME: SHOT_064.mov
+* SOURCE: IMG_7079.MOV @ 2.95s speed=1.0 ramp=None
+
+065  AX       V     C        00:00:00:00 00:00:01:24 00:01:05:20 00:01:07:14
+* FROM CLIP NAME: SHOT_065.mov
+* SOURCE: IMG_7079.MOV @ 4.46s speed=1.0 ramp=None
+
+066  AX       V     C        00:00:00:00 00:00:05:25 00:01:07:14 00:01:13:09
+* FROM CLIP NAME: SHOT_066.mov
+* SOURCE: IMG_7071.MOV @ 4.44s speed=0.5 ramp=None

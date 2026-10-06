@@ -401,20 +401,21 @@ def candidate_segments(it):
     n = len(sh)
     sn = sh / max(1e-9, sh.max())
     q = sn + 0.6 * np.clip(mo / 0.08, 0, 1) - 1.5 * (np.abs(br - 0.45) > 0.38)
-    max_seg = 1 if it['duration'] < 6 else 2 if it['duration'] < 15 else 3
+    # short phone clips: take several distinct moments (>= 1.2 s apart) so a small library doesn't repeat shots
+    max_seg = max(1, min(6, int(it['duration'] / 1.3)))
     segs = []
     for idx in np.argsort(q)[::-1]:
         tt = idx / 2.0
         if tt > it['duration'] - 0.5:
             continue
-        if all(abs(tt - s['t']) > 4 for s in segs):
+        if all(abs(tt - s['t']) > 1.2 for s in segs):
             segs.append(dict(item=it, t=float(tt), q=float(it['score'] * (1 - 0.15 * len(segs)))))
         if len(segs) >= max_seg:
             break
     return segs or [dict(item=it, t=0.0, q=it['score'])]
 
 
-def assign(shots, items, order_keys):
+def assign(shots, items, order_keys, intro=(), hero_name=''):
     usable = [i for i in items if i['status'] == 'ok' and i['grade'] in 'ABC']
     if not usable:
         raise RuntimeError('no usable media found')
@@ -454,6 +455,13 @@ def assign(shots, items, order_keys):
     for sh, s in zip(body, pool):
         sh['src'] = s
     shots[-1]['src'] = hero
+    # editor overrides: branding shots open the film, chosen hero under the end card
+    byname = {i['name'].rsplit('.', 1)[0].upper(): i for i in items if i.get('per_t')}
+    for k, nm in enumerate(intro):
+        if nm.upper() in byname and k < len(body):
+            body[k]['src'] = candidate_segments(byname[nm.upper()])[0]
+    if hero_name.upper() in byname:
+        shots[-1]['src'] = candidate_segments(byname[hero_name.upper()])[0]
     # avoid the same clip back-to-back
     for k in range(1, len(body)):
         if body[k]['src']['item']['path'] == body[k - 1]['src']['item']['path']:
@@ -911,6 +919,8 @@ def main():
     ap.add_argument('--presenter', default='E-CELL PRESENTS')
     ap.add_argument('--tagline', default='FAIL  ·  LEARN  ·  RISE')
     ap.add_argument('--words', default='FAIL FAST,BUILD BOLD,RISE HIGHER', help='impact words for later drops')
+    ap.add_argument('--intro', default='', help='clip names (no extension) forced to open the film')
+    ap.add_argument('--hero', default='', help='clip name forced under the end card')
     ap.add_argument('--endcard', type=float, default=6.0, help='seconds reserved for the end card')
     ap.add_argument('--jobs', type=int, default=max(1, (os.cpu_count() or 2) - 1))
     a = ap.parse_args()
@@ -964,7 +974,7 @@ def main():
 
     # PHASE 7-14 edit plan
     shots, first_drop, end_start = plan_shots(music, cfg)
-    assign(shots, items, order_keys)
+    assign(shots, items, order_keys, [x.strip() for x in a.intro.split(',') if x.strip()], a.hero)
     decorate(shots, music)
     log(f"Plan: {len(shots)} shots, first drop {first_drop:.2f}s, end card {end_start:.2f}s")
     shot_dir = ws / '03_RESOLVE/media/shots'
