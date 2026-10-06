@@ -8,7 +8,7 @@
 | Duration vs BGM | 73.316 s vs 73.316 s — OK |
 | Unintended black frames | none (head/tail fades are intentional: []) |
 | Unexpected silence (> 0.6 s) | none |
-| Audio peak | -0.921969 dBFS — OK |
+| Audio peak | -0.905258 dBFS — OK |
 | Full decode | clean, no errors |
 | Missing media | none |
 | Overall | **PASS** |

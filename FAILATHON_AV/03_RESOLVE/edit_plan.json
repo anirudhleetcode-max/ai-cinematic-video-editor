@@ -206,7 +206,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "flash_soft"
+   ],
    "zoom": 1.1,
    "on_drop": false
   },
@@ -221,7 +223,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "zoomblur"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -236,7 +240,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "whip"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -251,7 +257,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "flash_soft"
+   ],
    "zoom": 1.1,
    "on_drop": false
   },
@@ -266,7 +274,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "whip"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -281,7 +291,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "zoomblur"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -297,7 +309,8 @@
    "speed": 1.0,
    "ramp": null,
    "fx": [
-    "whip"
+    "whip",
+    "flash_soft"
    ],
    "zoom": 1.0,
    "on_drop": false
@@ -313,7 +326,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "zoomblur"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -328,7 +343,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "whip"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -343,7 +360,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "zoomblur"
+   ],
    "zoom": 1.1,
    "on_drop": false
   },
@@ -358,7 +377,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "whip"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -373,7 +394,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "flash_soft"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -388,7 +411,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "whip"
+   ],
    "zoom": 1.1,
    "on_drop": false
   },
@@ -403,7 +428,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "zoomblur"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -418,7 +445,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "whip"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -433,7 +462,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "zoomblur"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -449,7 +480,8 @@
    "speed": 1.0,
    "ramp": null,
    "fx": [
-    "whip"
+    "whip",
+    "zoomblur"
    ],
    "zoom": 1.0,
    "on_drop": false
@@ -465,7 +497,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "flash_soft"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -480,7 +514,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "whip"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -495,7 +531,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": "slow_fast",
-   "fx": [],
+   "fx": [
+    "zoomblur"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -510,7 +548,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": "slow_fast",
-   "fx": [],
+   "fx": [
+    "flash_soft"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -543,7 +583,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "flash_soft"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -558,7 +600,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "zoomblur"
+   ],
    "zoom": 1.1,
    "on_drop": false
   },
@@ -573,7 +617,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "whip"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -588,7 +634,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "flash_soft"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -603,7 +651,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "whip"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -681,7 +731,8 @@
    "speed": 1.0,
    "ramp": "slow_fast",
    "fx": [
-    "whip"
+    "whip",
+    "zoomblur"
    ],
    "zoom": 1.0,
    "on_drop": false
@@ -697,7 +748,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": "slow_fast",
-   "fx": [],
+   "fx": [
+    "whip"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -730,7 +783,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "whip"
+   ],
    "zoom": 1.1,
    "on_drop": false
   },
@@ -746,7 +801,8 @@
    "speed": 1.0,
    "ramp": null,
    "fx": [
-    "whip"
+    "whip",
+    "zoomblur"
    ],
    "zoom": 1.0,
    "on_drop": false
@@ -762,7 +818,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "whip"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -777,7 +835,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "zoomblur"
+   ],
    "zoom": 1.1,
    "on_drop": false
   },
@@ -792,7 +852,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "whip"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -807,7 +869,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "flash_soft"
+   ],
    "zoom": 1.1,
    "on_drop": false
   },
@@ -823,7 +887,8 @@
    "speed": 1.0,
    "ramp": "slow_fast",
    "fx": [
-    "whip"
+    "whip",
+    "zoomblur"
    ],
    "zoom": 1.0,
    "on_drop": false
@@ -839,7 +904,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": "slow_fast",
-   "fx": [],
+   "fx": [
+    "zoomblur"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -854,7 +921,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "whip"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -869,7 +938,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "flash_soft"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -902,7 +973,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "zoomblur"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -917,7 +990,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "flash_soft"
+   ],
    "zoom": 1.0,
    "on_drop": false
   },
@@ -933,7 +1008,8 @@
    "speed": 1.0,
    "ramp": null,
    "fx": [
-    "whip"
+    "whip",
+    "zoomblur"
    ],
    "zoom": 1.0,
    "on_drop": false
@@ -949,7 +1025,9 @@
    "source_kind": "video",
    "speed": 1.0,
    "ramp": null,
-   "fx": [],
+   "fx": [
+    "flash_soft"
+   ],
    "zoom": 1.1,
    "on_drop": false
   },
@@ -1148,7 +1226,7 @@
    "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/riser.wav",
    "name": "riser",
    "at": 14.04498866213152,
-   "gain": 0.22
+   "gain": 0.26
   },
   {
    "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/impact.wav",
@@ -1159,20 +1237,98 @@
   {
    "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
    "name": "whoosh",
+   "at": 16.12938775510204,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 17.058185941043085,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 17.9637641723356,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 18.428163265306125,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
    "at": 19.821360544217686,
-   "gain": 0.32
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 19.821360544217686,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 21.21455782312925,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 22.58453514739229,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 23.513333333333335,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 23.977732426303856,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 24.9065306122449,
+   "gain": 0.24
   },
   {
    "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
    "name": "whoosh",
    "at": 26.74090702947846,
-   "gain": 0.32
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 27.20530612244898,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 27.6697052154195,
+   "gain": 0.24
   },
   {
    "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/riser.wav",
    "name": "riser",
    "at": 28.812879818594105,
-   "gain": 0.22
+   "gain": 0.26
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 29.062902494331066,
+   "gain": 0.24
   },
   {
    "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/impact.wav",
@@ -1183,14 +1339,50 @@
   {
    "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
    "name": "whoosh",
+   "at": 30.897278911564626,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 32.29047619047619,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 32.73165532879818,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 33.660453514739224,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
    "at": 34.56603174603174,
-   "gain": 0.32
+   "gain": 0.24
   },
   {
    "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
    "name": "whoosh",
    "at": 40.997959183673466,
-   "gain": 0.32
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/riser.wav",
+   "name": "riser",
+   "at": 42.6055328798186,
+   "gain": 0.26
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 42.855555555555554,
+   "gain": 0.24
   },
   {
    "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/impact.wav",
@@ -1201,14 +1393,56 @@
   {
    "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
    "name": "whoosh",
+   "at": 44.666712018140586,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
    "at": 45.13111111111111,
-   "gain": 0.32
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 46.05990929705215,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 46.96548752834467,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 47.406666666666666,
+   "gain": 0.24
   },
   {
    "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
    "name": "whoosh",
    "at": 47.87106575963718,
-   "gain": 0.32
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/riser.wav",
+   "name": "riser",
+   "at": 49.919818594104306,
+   "gain": 0.26
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 50.63424036281179,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 51.07541950113379,
+   "gain": 0.24
   },
   {
    "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/impact.wav",
@@ -1219,14 +1453,26 @@
   {
    "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
    "name": "whoosh",
+   "at": 52.909795918367344,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
    "at": 53.838594104308385,
-   "gain": 0.32
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 54.74417233560091,
+   "gain": 0.24
   },
   {
    "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
    "name": "whoosh",
    "at": 55.208571428571425,
-   "gain": 0.32
+   "gain": 0.24
   },
   {
    "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/boom.wav",

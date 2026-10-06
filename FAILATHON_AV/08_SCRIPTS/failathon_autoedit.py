@@ -383,9 +383,9 @@ def plan_shots(music, cfg):
         a, b = (0.0 if j == 0 else beat_t(i)), beat_t(i + n)
         if b - a < 0.25:
             continue
-        shots.append(dict(start=a, end=b, section=sec, beats=n, on_drop=i in drop_idx,
+        shots.append(dict(start=a, end=b, section=sec, beats=n, bi=i, on_drop=i in drop_idx,
                           after_drop=any(0 <= i - d < 8 for d in drop_idx)))
-    shots.append(dict(start=beat_t(end_i), end=dur, section='finale', beats=0, on_drop=False, after_drop=False))
+    shots.append(dict(start=beat_t(end_i), end=dur, section='finale', beats=0, bi=end_i, on_drop=False, after_drop=False))
     # merge tiny tail
     return shots, first_drop, beat_t(end_i)
 
@@ -494,6 +494,23 @@ def decorate(shots, music):
         elif s['section'] in ('drop', 'peak') and rnd.random() < 0.18:
             s['fx'].append('whip')
             s['sfx'].append('whoosh')
+        # MASS layer: constant camera energy
+        hot = s['section'] in ('drop', 'peak', 'build')
+        bar_start = (s['bi'] - music['downbeat_phase']) % 4 == 0
+        if s['on_drop'] or (hot and bar_start):
+            s['zmove'] = 'slam_out'                     # fast 1.35 -> 1.0 zoom-out slam on the bar
+            if not s['on_drop']:
+                s['fx'].append('flash_soft')
+                s['sfx'].append('whoosh')
+        elif s['section'] == 'finale':
+            s['zmove'] = 'out_slow'
+        else:
+            s['zmove'] = 'in' if k % 2 else 'out'      # alternating push-in / pull-out
+            if hot and 'whip' not in s['fx'] and k % 2 == 0:
+                s['fx'].append('whip')
+                s['sfx'].append('whoosh')
+            elif hot:
+                s['fx'].append('zoomblur')
         if it['kind'] == 'video':
             if s['section'] == 'finale':
                 s['speed'] = 0.5
@@ -570,8 +587,14 @@ def render_shot(k, s, out_dir):
                   f"[r2]trim={a:.3f},setpts=(PTS-STARTPTS)/2.2[p2];[p1][p2]concat=n=2:v=1:a=0,fps={FPS}")
         else:
             tm = f"[0:v]setpts=(PTS-STARTPTS)/{sp:.4f},fps={FPS}"
-        fill, comp = frame_fill(it, s['zoom'])
+        fill, comp = frame_fill(it, 1.0)
         chain = tm + ',' + (fill if fill else comp)
+        zm = s.get('zmove', 'in')
+        z = {'in': f"1.0+0.16*on/{nfr}", 'out': f"1.16-0.16*on/{nfr}",
+             'slam_out': f"if(lt(on,9),1.38-0.38*(1-pow(1-on/9,3)),1.0+0.04*(on-9)/{nfr})",
+             'out_slow': f"1.12-0.12*on/{nfr}"}[zm]
+        chain += (f",scale=2304:1296:flags=bicubic,zoompan=z='{z}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+                  f":d=1:s={W}x{H}:fps={FPS}")
         pre = []
     if it['kind'] == 'image':
         chain = '[0:v]' + chain
@@ -580,6 +603,10 @@ def render_shot(k, s, out_dir):
         fx.append(f"scale={W + 64}:{H + 36},crop={W}:{H}:x='32+26*sin(t*71)*exp(-t*7)':y='18+16*cos(t*53)*exp(-t*7)'")
     if 'whip' in s['fx']:
         fx.append("avgblur=sizeX=48:sizeY=1:enable='lt(t,0.1)'")
+    if 'zoomblur' in s['fx']:
+        fx.append("gblur=sigma=18:enable='lt(t,0.07)'")
+    if 'flash_soft' in s['fx']:
+        fx.append("fade=t=in:st=0:d=0.1:color=white")
     if 'flash' in s['fx']:
         fx.append("fade=t=in:st=0:d=0.17:color=white")
     if 'fade_from_black' in s['fx']:
@@ -588,7 +615,7 @@ def render_shot(k, s, out_dir):
         fx.append(f"fade=t=out:st={max(0, d - 1.0):.2f}:d=1.0")
     chain += ',' + ','.join(fx) + f",trim=end_frame={nfr},setsar=1,format=yuv420p[v]"
     cmd = ['ffmpeg', '-v', 'error', '-y'] + inp + ['-filter_complex', chain, '-map', '[v]', '-frames:v', str(nfr),
-                                                   '-r', str(FPS), '-c:v', 'libx264', '-preset', 'fast', '-crf', '14',
+                                                   '-r', str(FPS), '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '15',
                                                    '-pix_fmt', 'yuv420p', '-an', str(out)]
     run(cmd)
     s['src_in'], s['src_len'] = src_in, src_len
@@ -763,13 +790,13 @@ def sfx_events(shots, titles, music):
     for s in shots:
         for name in s['sfx']:
             if name == 'whoosh':
-                ev.append(('whoosh', s['start'] - 0.38, 0.32))
+                ev.append(('whoosh', s['start'] - 0.38, 0.24))
             elif name == 'impact':
                 ev.append(('impact', s['start'], 0.42))
             elif name == 'boom':
                 ev.append(('boom', s['start'] + 0.25, 0.45))
-    for dr in music['drops'][:2]:
-        ev.append(('riser', dr - 2.0, 0.22))
+    for dr in music['drops']:
+        ev.append(('riser', dr - 2.0, 0.26))
     ev = [e for e in ev if e[1] >= 0]
     return sorted(ev, key=lambda e: e[1])
 
@@ -803,7 +830,7 @@ def assemble(shots, titles, sfx_kit, sfx_ev, bgm, music, media_dir, out, title_d
               f"alimiter=limit=0.89:attack=3:release=60:level=0,afade=t=out:st={music['duration'] - 0.6:.3f}:d=0.6[aout]")
     run(['ffmpeg', '-v', 'error', '-y'] + inputs + ['-filter_complex', ';'.join(fc), '-map', '[vout]', '-map', '[aout]',
                                                     '-t', f"{music['duration']:.3f}", '-r', str(FPS),
-                                                    '-c:v', 'libx264', '-preset', 'medium', '-crf', '16', '-profile:v', 'high',
+                                                    '-c:v', 'libx264', '-preset', 'fast', '-crf', '17', '-profile:v', 'high',
                                                     '-pix_fmt', 'yuv420p', '-movflags', '+faststart',
                                                     '-c:a', 'aac', '-b:a', '320k', '-ar', str(SR), str(out)])
     return base
@@ -990,7 +1017,8 @@ def main():
         futs = []
         for t in titles:
             t['file'] = str(ws / '03_RESOLVE/media/titles' / f"{t['name']}.mov")
-            futs.append(ex.submit(render_title, t, t['file'], ws))
+            if not Path(t['file']).exists():
+                futs.append(ex.submit(render_title, t, t['file'], ws))
         for f in futs:
             f.result()
     log(f'{len(titles)} animated titles rendered')
@@ -1004,7 +1032,7 @@ def main():
     assemble(shots, titles, kit, ev, bgm_copy, music, ws / '03_RESOLVE/media', final, ws / '03_RESOLVE/media/titles')
     log('Final MP4 rendered')
     preview = ws / '06_PREVIEWS/FAILATHON_AV_PREVIEW.mp4'
-    run(['ffmpeg', '-v', 'error', '-y', '-i', str(final), '-vf', 'scale=960:540', '-c:v', 'libx264', '-crf', '24',
+    if os.environ.get('FA_PREVIEW'): run(['ffmpeg', '-v', 'error', '-y', '-i', str(final), '-vf', 'scale=960:540', '-c:v', 'libx264', '-crf', '24',
          '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '160k', str(preview)])
     # frame strip for quick visual QA
     run(['ffmpeg', '-v', 'error', '-y', '-i', str(final), '-vf', 'fps=1,scale=320:-2,tile=8x10', '-frames:v', '1',

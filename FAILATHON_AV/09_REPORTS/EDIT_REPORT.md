@@ -1,6 +1,6 @@
 # FAILATHON AV — Edit Report
 
-Generated 2026-10-06 20:55 by `08_SCRIPTS/failathon_autoedit.py`.
+Generated 2026-10-06 21:16 by `08_SCRIPTS/failathon_autoedit.py`.
 
 | Item | Value |
 |---|---|
@@ -13,10 +13,10 @@ Generated 2026-10-06 20:55 by `08_SCRIPTS/failathon_autoedit.py`.
 | Clips used / unused | 16 / 1 |
 | Final duration | 73.316 s |
 | Cuts | 65 (66 shots; avg 1.11 s, min 0.43 s, max 5.83 s) |
-| Transitions | 12 designed transitions (flash/shake impacts on drops, whip blur on section changes), all other edits are hard cuts on beats |
+| Transitions | 26 designed transitions (flash/shake impacts on drops, whip blur on section changes), all other edits are hard cuts on beats |
 | Speed ramps | 9 ramps, 1 constant slow-motion shots |
 | Titles | 6: E-CELL PRESENTS, FAILATHON, FAIL FAST, BUILD BOLD, RISE HIGHER, FAILATHON |
-| SFX | 15 events (boom, impact, riser, whoosh) |
+| SFX | 43 events (boom, impact, riser, whoosh) |
 | Export | H.264 High, CRF 16, yuv420p, 30 fps, AAC 320 kbps 48 kHz, faststart |
 
 ## Pacing by section
