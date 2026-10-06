@@ -1,0 +1,23 @@
+[00:00] Inventory: 17 media files (17 video, 0 photo)
+[00:50] Analysis done: A=5 B=5 C=5 D=2 dup=0 reject/broken=0
+[00:52] BGM: 73.32s, 129.2 BPM, 160 beats, drops at 16.04, 30.81, 44.61, 51.92
+[00:52] Plan: 66 shots, first drop 16.04s, end card 67.48s
+[04:00] Shots rendered
+[04:40] 6 animated titles rendered
+[06:19] Final MP4 rendered
+[06:58] Validation: PASS
+[06:58] Done.
+{
+ "container": "mov,mp4,m4a,3gp,3g2,mj2",
+ "video": "h264 1920x1080 @ 30/1",
+ "audio": "aac 48000 Hz 2ch",
+ "duration": 73.316,
+ "bgm_duration": 73.31619047619047,
+ "duration_ok": true,
+ "unintended_black": [],
+ "silences": [],
+ "audio_peak_db": -0.921969,
+ "clipping": false,
+ "decode_errors": "",
+ "pass": true
+}

@@ -1,0 +1,1485 @@
+{
+ "fps": 30,
+ "width": 1920,
+ "height": 1080,
+ "bgm": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/01_AUDIO/BGM_MASTER.mp3",
+ "duration": 73.31619047619047,
+ "tempo": 129.19921875,
+ "drops": [
+  16.04498866213152,
+  30.812879818594105,
+  44.6055328798186,
+  51.919818594104306
+ ],
+ "hits": [
+  0.06965986394557823,
+  1.7414965986394557,
+  2.2058956916099772,
+  2.670294784580499,
+  3.575873015873016,
+  4.040272108843538,
+  4.504671201814059,
+  5.433469387755102,
+  5.897868480725624,
+  6.362267573696145,
+  8.196643990929704,
+  9.125442176870749,
+  12.353015873015874,
+  12.817414965986394
+ ],
+ "downbeats": [
+  0.06965986394557823,
+  1.7414965986394557,
+  3.575873015873016,
+  5.433469387755102,
+  7.291065759637188,
+  9.125442176870749,
+  10.95981859410431,
+  12.817414965986394,
+  14.675011337868481,
+  16.50938775510204,
+  18.3437641723356,
+  20.201360544217685,
+  22.058956916099774,
+  23.893333333333334,
+  25.727709750566895,
+  27.58530612244898,
+  29.442902494331065,
+  31.277278911564625,
+  33.111655328798186,
+  34.94603174603174,
+  36.78040816326531,
+  38.638004535147395,
+  40.47238095238095,
+  42.30675736961451,
+  44.14113378684807,
+  45.97551020408163,
+  47.78666666666667,
+  49.64426303854875,
+  51.45541950113379,
+  53.289795918367346,
+  55.12417233560091,
+  56.95854875283447,
+  58.792925170068024,
+  60.62730158730159,
+  62.461678004535145,
+  64.2960544217687,
+  66.10721088435375,
+  67.9415873015873,
+  69.77596371882086,
+  71.61034013605442
+ ],
+ "shots": [
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_001.mov",
+   "frames": 107,
+   "start": 0.0,
+   "section": "intro",
+   "source": "00_SOURCE_MEDIA/IMG_7076.MOV",
+   "source_in": 0.9299999999999999,
+   "source_len": 3.566666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "fade_from_black"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_002.mov",
+   "frames": 112,
+   "start": 3.575873015873016,
+   "section": "intro",
+   "source": "00_SOURCE_MEDIA/IMG_7072.MOV",
+   "source_in": 0.14866666666666656,
+   "source_len": 3.7333333333333334,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_003.mov",
+   "frames": 110,
+   "start": 7.291065759637188,
+   "section": "intro",
+   "source": "00_SOURCE_MEDIA/IMG_7054.MOV",
+   "source_in": 0.9000000000000001,
+   "source_len": 3.6666666666666665,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_004.mov",
+   "frames": 56,
+   "start": 10.95981859410431,
+   "section": "intro",
+   "source": "00_SOURCE_MEDIA/IMG_7056.MOV",
+   "source_in": 0.0,
+   "source_len": 1.8666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_005.mov",
+   "frames": 55,
+   "start": 12.817414965986394,
+   "section": "intro",
+   "source": "00_SOURCE_MEDIA/IMG_7054.MOV",
+   "source_in": 3.8166666666666673,
+   "source_len": 1.8333333333333333,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_006.mov",
+   "frames": 27,
+   "start": 14.675011337868481,
+   "section": "intro",
+   "source": "00_SOURCE_MEDIA/IMG_7056.MOV",
+   "source_in": 1.73,
+   "source_len": 0.9,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_007.mov",
+   "frames": 14,
+   "start": 15.580589569160997,
+   "section": "intro",
+   "source": "00_SOURCE_MEDIA/IMG_7054.MOV",
+   "source_in": 3.36,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_008.mov",
+   "frames": 14,
+   "start": 16.04498866213152,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7056.MOV",
+   "source_in": 5.86,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "flash",
+    "shake"
+   ],
+   "zoom": 1.06,
+   "on_drop": true
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_009.mov",
+   "frames": 14,
+   "start": 16.50938775510204,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7060.MOV",
+   "source_in": 0.86,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "flash_soft"
+   ],
+   "zoom": 1.1,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_010.mov",
+   "frames": 14,
+   "start": 16.973786848072564,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7056.MOV",
+   "source_in": 5.86,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "zoomblur"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_011.mov",
+   "frames": 27,
+   "start": 17.438185941043084,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7060.MOV",
+   "source_in": 4.23,
+   "source_len": 0.9,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_012.mov",
+   "frames": 14,
+   "start": 18.3437641723356,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7056.MOV",
+   "source_in": 4.36,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "flash_soft"
+   ],
+   "zoom": 1.1,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_013.mov",
+   "frames": 14,
+   "start": 18.808163265306124,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7061.MOV",
+   "source_in": 0.0,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_014.mov",
+   "frames": 28,
+   "start": 19.272562358276645,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7060.MOV",
+   "source_in": 2.72,
+   "source_len": 0.9333333333333333,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "zoomblur"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_015.mov",
+   "frames": 14,
+   "start": 20.201360544217685,
+   "section": "peak",
+   "source": "00_SOURCE_MEDIA/IMG_7061.MOV",
+   "source_in": 1.86,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip",
+    "flash_soft"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_016.mov",
+   "frames": 28,
+   "start": 20.66575963718821,
+   "section": "peak",
+   "source": "00_SOURCE_MEDIA/IMG_7062.MOV",
+   "source_in": 0.72,
+   "source_len": 0.9333333333333333,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "zoomblur"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_017.mov",
+   "frames": 27,
+   "start": 21.59455782312925,
+   "section": "peak",
+   "source": "00_SOURCE_MEDIA/IMG_7061.MOV",
+   "source_in": 3.23,
+   "source_len": 0.9,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_018.mov",
+   "frames": 14,
+   "start": 22.50013605442177,
+   "section": "peak",
+   "source": "00_SOURCE_MEDIA/IMG_7062.MOV",
+   "source_in": 2.36,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "zoomblur"
+   ],
+   "zoom": 1.1,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_019.mov",
+   "frames": 28,
+   "start": 22.96453514739229,
+   "section": "peak",
+   "source": "00_SOURCE_MEDIA/IMG_7063.MOV",
+   "source_in": 0.22000000000000003,
+   "source_len": 0.9333333333333333,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_020.mov",
+   "frames": 14,
+   "start": 23.893333333333334,
+   "section": "peak",
+   "source": "00_SOURCE_MEDIA/IMG_7062.MOV",
+   "source_in": 4.86,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "flash_soft"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_021.mov",
+   "frames": 14,
+   "start": 24.357732426303855,
+   "section": "peak",
+   "source": "00_SOURCE_MEDIA/IMG_7063.MOV",
+   "source_in": 1.86,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.1,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_022.mov",
+   "frames": 14,
+   "start": 24.822131519274375,
+   "section": "peak",
+   "source": "00_SOURCE_MEDIA/IMG_7065.MOV",
+   "source_in": 0.86,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "zoomblur"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_023.mov",
+   "frames": 27,
+   "start": 25.2865306122449,
+   "section": "peak",
+   "source": "00_SOURCE_MEDIA/IMG_7063.MOV",
+   "source_in": 4.73,
+   "source_len": 0.9,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_024.mov",
+   "frames": 28,
+   "start": 26.192108843537415,
+   "section": "peak",
+   "source": "00_SOURCE_MEDIA/IMG_7065.MOV",
+   "source_in": 2.22,
+   "source_len": 0.9333333333333333,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "zoomblur"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_025.mov",
+   "frames": 14,
+   "start": 27.12090702947846,
+   "section": "build",
+   "source": "00_SOURCE_MEDIA/IMG_7063.MOV",
+   "source_in": 6.36,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip",
+    "zoomblur"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_026.mov",
+   "frames": 13,
+   "start": 27.58530612244898,
+   "section": "build",
+   "source": "00_SOURCE_MEDIA/IMG_7065.MOV",
+   "source_in": 2.37,
+   "source_len": 0.43333333333333335,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "flash_soft"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_027.mov",
+   "frames": 14,
+   "start": 28.0497052154195,
+   "section": "build",
+   "source": "00_SOURCE_MEDIA/IMG_7063.MOV",
+   "source_in": 6.36,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_028.mov",
+   "frames": 28,
+   "start": 28.514104308390024,
+   "section": "build",
+   "source": "00_SOURCE_MEDIA/IMG_7065.MOV",
+   "source_in": 3.5856,
+   "source_len": 1.3813333333333335,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": "slow_fast",
+   "fx": [
+    "zoomblur"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_029.mov",
+   "frames": 41,
+   "start": 29.442902494331065,
+   "section": "build",
+   "source": "00_SOURCE_MEDIA/IMG_7063.MOV",
+   "source_in": 2.8932,
+   "source_len": 2.022666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": "slow_fast",
+   "fx": [
+    "flash_soft"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_030.mov",
+   "frames": 14,
+   "start": 30.812879818594105,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7066.MOV",
+   "source_in": 0.0,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "flash",
+    "shake"
+   ],
+   "zoom": 1.06,
+   "on_drop": true
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_031.mov",
+   "frames": 28,
+   "start": 31.277278911564625,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7065.MOV",
+   "source_in": 6.22,
+   "source_len": 0.9333333333333333,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "flash_soft"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_032.mov",
+   "frames": 14,
+   "start": 32.20607709750567,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7066.MOV",
+   "source_in": 2.36,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "zoomblur"
+   ],
+   "zoom": 1.1,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_033.mov",
+   "frames": 13,
+   "start": 32.670476190476194,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7069.MOV",
+   "source_in": 0.0,
+   "source_len": 0.43333333333333335,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_034.mov",
+   "frames": 28,
+   "start": 33.111655328798186,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7066.MOV",
+   "source_in": 3.72,
+   "source_len": 0.9333333333333333,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "flash_soft"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_035.mov",
+   "frames": 27,
+   "start": 34.04045351473923,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7069.MOV",
+   "source_in": 3.23,
+   "source_len": 0.9,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_036.mov",
+   "frames": 55,
+   "start": 34.94603174603174,
+   "section": "breathe",
+   "source": "00_SOURCE_MEDIA/IMG_7066.MOV",
+   "source_in": 3.120333333333333,
+   "source_len": 1.9616666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": "fast_slow",
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_037.mov",
+   "frames": 56,
+   "start": 36.78040816326531,
+   "section": "breathe",
+   "source": "00_SOURCE_MEDIA/IMG_7069.MOV",
+   "source_in": 0.9008,
+   "source_len": 1.9973333333333334,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": "fast_slow",
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_038.mov",
+   "frames": 55,
+   "start": 38.638004535147395,
+   "section": "breathe",
+   "source": "00_SOURCE_MEDIA/IMG_7070.MOV",
+   "source_in": 2.95,
+   "source_len": 1.8333333333333333,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_039.mov",
+   "frames": 27,
+   "start": 40.47238095238095,
+   "section": "breathe",
+   "source": "00_SOURCE_MEDIA/IMG_7069.MOV",
+   "source_in": 3.23,
+   "source_len": 0.9,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_040.mov",
+   "frames": 56,
+   "start": 41.37795918367347,
+   "section": "build",
+   "source": "00_SOURCE_MEDIA/IMG_7070.MOV",
+   "source_in": 0.0,
+   "source_len": 2.762666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": "slow_fast",
+   "fx": [
+    "whip",
+    "zoomblur"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_041.mov",
+   "frames": 41,
+   "start": 43.23555555555556,
+   "section": "build",
+   "source": "00_SOURCE_MEDIA/IMG_7071.MOV",
+   "source_in": 0.3932,
+   "source_len": 2.022666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": "slow_fast",
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_042.mov",
+   "frames": 13,
+   "start": 44.6055328798186,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7070.MOV",
+   "source_in": 4.87,
+   "source_len": 0.43333333333333335,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "flash",
+    "shake"
+   ],
+   "zoom": 1.06,
+   "on_drop": true
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_043.mov",
+   "frames": 14,
+   "start": 45.04671201814059,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7071.MOV",
+   "source_in": 2.36,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.1,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_044.mov",
+   "frames": 28,
+   "start": 45.51111111111111,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7070.MOV",
+   "source_in": 1.72,
+   "source_len": 0.9333333333333333,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip",
+    "zoomblur"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_045.mov",
+   "frames": 13,
+   "start": 46.439909297052154,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7071.MOV",
+   "source_in": 3.87,
+   "source_len": 0.43333333333333335,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_046.mov",
+   "frames": 14,
+   "start": 46.88108843537415,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7070.MOV",
+   "source_in": 6.36,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "zoomblur"
+   ],
+   "zoom": 1.1,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_047.mov",
+   "frames": 14,
+   "start": 47.34548752834467,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7071.MOV",
+   "source_in": 5.36,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_048.mov",
+   "frames": 14,
+   "start": 47.78666666666667,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7069.MOV",
+   "source_in": 4.86,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "flash_soft"
+   ],
+   "zoom": 1.1,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_049.mov",
+   "frames": 27,
+   "start": 48.251065759637186,
+   "section": "build",
+   "source": "00_SOURCE_MEDIA/IMG_7076.MOV",
+   "source_in": 0.10039999999999993,
+   "source_len": 1.3320000000000003,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": "slow_fast",
+   "fx": [
+    "whip",
+    "zoomblur"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_050.mov",
+   "frames": 55,
+   "start": 49.179863945578234,
+   "section": "build",
+   "source": "00_SOURCE_MEDIA/IMG_7052.MOV",
+   "source_in": 2.154666666666667,
+   "source_len": 2.7133333333333334,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": "slow_fast",
+   "fx": [
+    "zoomblur"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_051.mov",
+   "frames": 14,
+   "start": 51.01424036281179,
+   "section": "build",
+   "source": "00_SOURCE_MEDIA/IMG_7076.MOV",
+   "source_in": 1.86,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_052.mov",
+   "frames": 14,
+   "start": 51.45541950113379,
+   "section": "build",
+   "source": "00_SOURCE_MEDIA/IMG_7052.MOV",
+   "source_in": 0.0,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "flash_soft"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_053.mov",
+   "frames": 27,
+   "start": 51.919818594104306,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7076.MOV",
+   "source_in": 1.73,
+   "source_len": 0.9,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "flash",
+    "shake"
+   ],
+   "zoom": 1.06,
+   "on_drop": true
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_054.mov",
+   "frames": 14,
+   "start": 52.82539682539682,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7059.MOV",
+   "source_in": 1.36,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "zoomblur"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_055.mov",
+   "frames": 28,
+   "start": 53.289795918367346,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7076.MOV",
+   "source_in": 3.22,
+   "source_len": 0.9333333333333333,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "flash_soft"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_056.mov",
+   "frames": 27,
+   "start": 54.21859410430839,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7052.MOV",
+   "source_in": 1.23,
+   "source_len": 0.9,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip",
+    "zoomblur"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_057.mov",
+   "frames": 14,
+   "start": 55.12417233560091,
+   "section": "drop",
+   "source": "00_SOURCE_MEDIA/IMG_7059.MOV",
+   "source_in": 4.36,
+   "source_len": 0.4666666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "flash_soft"
+   ],
+   "zoom": 1.1,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_058.mov",
+   "frames": 27,
+   "start": 55.58857142857143,
+   "section": "breathe",
+   "source": "00_SOURCE_MEDIA/IMG_7079.MOV",
+   "source_in": 0.0,
+   "source_len": 0.9,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [
+    "whip"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_059.mov",
+   "frames": 28,
+   "start": 56.49414965986394,
+   "section": "breathe",
+   "source": "00_SOURCE_MEDIA/IMG_7059.MOV",
+   "source_in": 0.0,
+   "source_len": 0.9333333333333333,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_060.mov",
+   "frames": 55,
+   "start": 57.42294784580499,
+   "section": "breathe",
+   "source": "00_SOURCE_MEDIA/IMG_7079.MOV",
+   "source_in": 0.9500000000000001,
+   "source_len": 1.8333333333333333,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_061.mov",
+   "frames": 27,
+   "start": 59.25732426303855,
+   "section": "breathe",
+   "source": "00_SOURCE_MEDIA/IMG_7059.MOV",
+   "source_in": 2.73,
+   "source_len": 0.9,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_062.mov",
+   "frames": 55,
+   "start": 60.162902494331064,
+   "section": "breathe",
+   "source": "00_SOURCE_MEDIA/IMG_7079.MOV",
+   "source_in": 2.95,
+   "source_len": 1.8333333333333333,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_063.mov",
+   "frames": 55,
+   "start": 61.99727891156463,
+   "section": "breathe",
+   "source": "00_SOURCE_MEDIA/IMG_7059.MOV",
+   "source_in": 3.4463333333333335,
+   "source_len": 1.9616666666666667,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": "fast_slow",
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_064.mov",
+   "frames": 55,
+   "start": 63.831655328798185,
+   "section": "breathe",
+   "source": "00_SOURCE_MEDIA/IMG_7079.MOV",
+   "source_in": 2.95,
+   "source_len": 1.8333333333333333,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_065.mov",
+   "frames": 54,
+   "start": 65.66603174603175,
+   "section": "breathe",
+   "source": "00_SOURCE_MEDIA/IMG_7079.MOV",
+   "source_in": 4.46,
+   "source_len": 1.8,
+   "source_kind": "video",
+   "speed": 1.0,
+   "ramp": null,
+   "fx": [],
+   "zoom": 1.0,
+   "on_drop": false
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/shots/SHOT_066.mov",
+   "frames": 175,
+   "start": 67.47718820861678,
+   "section": "finale",
+   "source": "00_SOURCE_MEDIA/IMG_7071.MOV",
+   "source_in": 4.4383333333333335,
+   "source_len": 2.9166666666666665,
+   "source_kind": "video",
+   "speed": 0.5,
+   "ramp": null,
+   "fx": [
+    "fade_to_black"
+   ],
+   "zoom": 1.0,
+   "on_drop": false
+  }
+ ],
+ "titles": [
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/titles/T01_PRESENTS.mov",
+   "name": "T01_PRESENTS",
+   "text": "E-CELL PRESENTS",
+   "at": 3.575873015873016,
+   "dur": 3.2,
+   "sub": null
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/titles/T02_FAILATHON.mov",
+   "name": "T02_FAILATHON",
+   "text": "FAILATHON",
+   "at": 16.04498866213152,
+   "dur": 2.2,
+   "sub": null
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/titles/T03_FAILFAST.mov",
+   "name": "T03_FAILFAST",
+   "text": "FAIL FAST",
+   "at": 30.812879818594105,
+   "dur": 1.6,
+   "sub": null
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/titles/T04_BUILDBOLD.mov",
+   "name": "T04_BUILDBOLD",
+   "text": "BUILD BOLD",
+   "at": 44.6055328798186,
+   "dur": 1.6,
+   "sub": null
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/titles/T05_RISEHIGHER.mov",
+   "name": "T05_RISEHIGHER",
+   "text": "RISE HIGHER",
+   "at": 51.919818594104306,
+   "dur": 1.6,
+   "sub": null
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/03_RESOLVE/media/titles/T99_ENDCARD.mov",
+   "name": "T99_ENDCARD",
+   "text": "FAILATHON",
+   "at": 67.72718820861678,
+   "dur": 5.58900226757369,
+   "sub": "FAIL  \u00b7  LEARN  \u00b7  RISE"
+  }
+ ],
+ "sfx": [
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/riser.wav",
+   "name": "riser",
+   "at": 14.04498866213152,
+   "gain": 0.26
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/impact.wav",
+   "name": "impact",
+   "at": 16.04498866213152,
+   "gain": 0.42
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 16.12938775510204,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 17.058185941043085,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 17.9637641723356,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 18.428163265306125,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 19.821360544217686,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 19.821360544217686,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 21.21455782312925,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 22.58453514739229,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 23.513333333333335,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 23.977732426303856,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 24.9065306122449,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 26.74090702947846,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 27.20530612244898,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 27.6697052154195,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/riser.wav",
+   "name": "riser",
+   "at": 28.812879818594105,
+   "gain": 0.26
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 29.062902494331066,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/impact.wav",
+   "name": "impact",
+   "at": 30.812879818594105,
+   "gain": 0.42
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 30.897278911564626,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 32.29047619047619,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 32.73165532879818,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 33.660453514739224,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 34.56603174603174,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 40.997959183673466,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/riser.wav",
+   "name": "riser",
+   "at": 42.6055328798186,
+   "gain": 0.26
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 42.855555555555554,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/impact.wav",
+   "name": "impact",
+   "at": 44.6055328798186,
+   "gain": 0.42
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 44.666712018140586,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 45.13111111111111,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 46.05990929705215,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 46.96548752834467,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 47.406666666666666,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 47.87106575963718,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/riser.wav",
+   "name": "riser",
+   "at": 49.919818594104306,
+   "gain": 0.26
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 50.63424036281179,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 51.07541950113379,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/impact.wav",
+   "name": "impact",
+   "at": 51.919818594104306,
+   "gain": 0.42
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 52.909795918367344,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 53.838594104308385,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 54.74417233560091,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/whoosh.wav",
+   "name": "whoosh",
+   "at": 55.208571428571425,
+   "gain": 0.24
+  },
+  {
+   "file": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/05_SFX/boom.wav",
+   "name": "boom",
+   "at": 67.72718820861678,
+   "gain": 0.45
+  }
+ ],
+ "final_mp4": "/home/user/ai-cinematic-video-editor/FAILATHON_AV/07_EXPORTS/FAILATHON_AV_FINAL.mp4"
+}
