@@ -1,5 +1,10 @@
 # Source media, audio and renders stay local (large / user-owned)
 00_SOURCE_MEDIA/
+06_PREVIEWS/
+07_EXPORTS/
+10_BACKUPS/
+03_RESOLVE/media/
+05_SFX/*.wav
 01_AUDIO/
 07_CACHE/
 08_PREVIEWS/
