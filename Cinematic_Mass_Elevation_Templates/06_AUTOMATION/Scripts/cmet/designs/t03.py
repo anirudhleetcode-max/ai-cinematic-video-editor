@@ -52,7 +52,7 @@ class T03(Design):
     ID = "T03"
     NAME = "Molten Core"
     SLUG = "Molten_Core"
-    CATEGORY = "A - Dark Mass Elevation"
+    CATEGORY = "A - Dark, Powerful Mass Elevation"
     CONCEPT = "Volcanic energy: a dark-iron title is born out of a glowing fissure in cracked volcanic rock."
     ENTRANCE = "The title rises vertically out of a molten fissure in the ground (clipped at the crack line), red-hot at its base."
     REVEAL = "As it seats, a radial burst of embers and an illumination pulse light the rock; heat crawls along the letter edges."

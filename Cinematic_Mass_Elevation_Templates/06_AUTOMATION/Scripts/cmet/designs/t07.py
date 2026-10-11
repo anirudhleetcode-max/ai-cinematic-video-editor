@@ -40,7 +40,7 @@ class T07(Design):
     ID = "T07"
     NAME = "Explosive Arrival"
     SLUG = "Explosive_Arrival"
-    CATEGORY = "B - Elemental Fury"
+    CATEGORY = "B - Fire, Explosions and Impact"
     CONCEPT = "A procedural detonation behind the title throws it into frame: fireball, smoke, shockwave and debris."
     ENTRANCE = ("A short charged beat (ignition point flickering in the dark), then the blast hurls the title forward "
                 "out of the fireball core with zoom blur.")

@@ -20,7 +20,7 @@ class T09(Design):
     ID = "T09"
     NAME = "Ashes of Power"
     SLUG = "Ashes_of_Power"
-    CATEGORY = "B - Elemental Fury"
+    CATEGORY = "B - Fire, Explosions and Impact"
     CONCEPT = "Power rebuilt from ruin: falling ash and black dust are drawn together into solid lettering."
     ENTRANCE = ("Ash drifts down through a dark void; grains peel off their fall and travel on curved paths onto points "
                 "of the letter shapes, accumulating until the letters exist as dusty forms.")

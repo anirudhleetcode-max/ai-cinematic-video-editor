@@ -33,7 +33,7 @@ class T08(Design):
     ID = "T08"
     NAME = "Ember Storm"
     SLUG = "Ember_Storm"
-    CATEGORY = "B - Elemental Fury"
+    CATEGORY = "B - Fire, Explosions and Impact"
     CONCEPT = "A slow, elegant reveal inside a storm of embers layered in depth - cinematic focus does the storytelling."
     ENTRANCE = ("Rack focus: the shot opens focused on foreground embers with the title a soft glow behind smoke; focus "
                 "pulls slowly to the title plane while the smoke thins.")

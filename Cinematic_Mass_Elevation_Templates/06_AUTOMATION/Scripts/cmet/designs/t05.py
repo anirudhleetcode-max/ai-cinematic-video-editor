@@ -29,7 +29,7 @@ class T05(Design):
     ID = "T05"
     NAME = "Shattered Monolith"
     SLUG = "Shattered_Monolith"
-    CATEGORY = "A - Dark Mass Elevation"
+    CATEGORY = "A - Dark, Powerful Mass Elevation"
     CONCEPT = "Monumental stone typography assembled from fragments drifting in an atmospheric void - scale, not noise."
     ENTRANCE = ("Dark stone shards float scattered in depth, then converge on staggered paths (translation, tumble, "
                 "depth) and lock together into the title.")

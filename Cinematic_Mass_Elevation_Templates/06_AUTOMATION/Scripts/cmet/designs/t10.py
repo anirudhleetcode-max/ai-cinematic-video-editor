@@ -21,7 +21,7 @@ class T10(Design):
     ID = "T10"
     NAME = "Shockwave Dominance"
     SLUG = "Shockwave_Dominance"
-    CATEGORY = "B - Elemental Fury"
+    CATEGORY = "B - Fire, Explosions and Impact"
     CONCEPT = "A title that lands like a strike: everything around it is pushed outward by a radial shockwave."
     ENTRANCE = ("A short inhale (the air darkens and haze is pulled inward), then the title slams down from in front "
                 "of the camera, accelerating into its mark with zoom blur.")

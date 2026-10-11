@@ -39,7 +39,7 @@ class T06(Design):
     ID = "T06"
     NAME = "Inferno Reveal"
     SLUG = "Inferno_Reveal"
-    CATEGORY = "B - Elemental Fury"
+    CATEGORY = "B - Fire, Explosions and Impact"
     CONCEPT = "The title emerges out of controlled firelight and smoke, seen through rising heat."
     ENTRANCE = ("Behind a curtain of smoke and strong heat shimmer the title slowly comes forward; the smoke thins and the "
                 "distortion settles as the fire rises behind it.")

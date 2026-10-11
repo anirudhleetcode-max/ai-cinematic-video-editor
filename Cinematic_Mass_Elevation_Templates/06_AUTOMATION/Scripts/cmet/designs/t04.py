@@ -31,7 +31,7 @@ class T04(Design):
     ID = "T04"
     NAME = "Black Steel Reckoning"
     SLUG = "Black_Steel_Reckoning"
-    CATEGORY = "A - Dark Mass Elevation"
+    CATEGORY = "A - Dark, Powerful Mass Elevation"
     CONCEPT = "Military-industrial and restrained: a slab of brushed steel lettering is machined into place."
     ENTRANCE = ("Multi-stage mechanical move: lateral slide with motion blur -> hard stop -> beat -> forward seat "
                 "-> two steel locking rails clamp the title.")
