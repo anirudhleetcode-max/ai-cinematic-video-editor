@@ -482,6 +482,62 @@
    "source": true,
    "warnings": []
   },
+  "T31": {
+   "errors": [],
+   "preview": true,
+   "source": true,
+   "warnings": []
+  },
+  "T32": {
+   "errors": [],
+   "preview": true,
+   "source": true,
+   "warnings": []
+  },
+  "T33": {
+   "errors": [],
+   "preview": true,
+   "source": true,
+   "warnings": []
+  },
+  "T34": {
+   "errors": [],
+   "preview": true,
+   "source": true,
+   "warnings": []
+  },
+  "T35": {
+   "errors": [],
+   "preview": true,
+   "source": true,
+   "warnings": []
+  },
+  "T36": {
+   "errors": [],
+   "preview": true,
+   "source": true,
+   "warnings": []
+  },
+  "T37": {
+   "errors": [],
+   "preview": true,
+   "source": true,
+   "warnings": []
+  },
+  "T38": {
+   "errors": [
+    "preview missing or truncated"
+   ],
+   "preview": false,
+   "source": true,
+   "warnings": []
+  },
+  "T39": {
+   "errors": [],
+   "preview": true,
+   "source": true,
+   "warnings": []
+  },
   "T40": {
    "errors": [],
    "preview": true,

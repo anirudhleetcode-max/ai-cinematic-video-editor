@@ -1,0 +1,233 @@
+{
+  "id": "T38",
+  "name": "Royal Insignia",
+  "slug": "Royal_Insignia",
+  "category": "H - Signature Hero Elevations",
+  "version": "1.0.0",
+  "concept": "An original heraldic insignia - rings, ticks, laurel arcs, chevron crest - assembles piece by piece around the title.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 196,
+  "duration_seconds": 8.167,
+  "phases": {
+    "build_up": [
+      0,
+      78
+    ],
+    "impact_frame": 80,
+    "hero_hold": [
+      80,
+      156
+    ],
+    "exit": [
+      156,
+      190
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Cinzel Decorative",
+    "Marcellus SC"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T38_Royal_Insignia.setting",
+  "fusion_composition": "source/T38_Royal_Insignia.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 119,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "PolylineMask",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ImpactIntensity",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "Letterbox",
+    "EmblemScale",
+    "EmblemRotation"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Impact Intensity",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Letterbox (2.39:1)",
+    "Emblem Scale",
+    "Emblem Rotation",
+    "Emblem Color",
+    "Emblem Color",
+    "Emblem Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T38_Royal_Insignia.mp4",
+  "thumbnail": null,
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Regal low pad / hall ambience"
+    },
+    {
+      "frame": 8,
+      "seconds": 0.333,
+      "cue": "metal",
+      "note": "Ring sweep - metallic scrape"
+    },
+    {
+      "frame": 20,
+      "seconds": 0.833,
+      "cue": "shimmer",
+      "note": "Ticks clicking around the dial"
+    },
+    {
+      "frame": 30,
+      "seconds": 1.25,
+      "cue": "metal",
+      "note": "Laurel leaves chiming in"
+    },
+    {
+      "frame": 44,
+      "seconds": 1.833,
+      "cue": "whoosh",
+      "note": "Chevrons slide in"
+    },
+    {
+      "frame": 80,
+      "seconds": 3.333,
+      "cue": "impact",
+      "note": "Lock: deep orchestral hit + metal clang"
+    },
+    {
+      "frame": 80,
+      "seconds": 3.333,
+      "cue": "shimmer",
+      "note": "Gold glint"
+    },
+    {
+      "frame": 156,
+      "seconds": 6.5,
+      "cue": "rwhoosh",
+      "note": "Emblem expands away"
+    },
+    {
+      "frame": 175,
+      "seconds": 7.292,
+      "cue": "tail",
+      "note": "Hall reverb tail"
+    }
+  ],
+  "techniques": [
+    "procedural emblem from primitives",
+    "staggered assembly",
+    "emboss shading",
+    "counter-rotating rings",
+    "light sweep / glint",
+    "independent emblem scale & rotation controls"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t38.py",
+    "parameters_used": []
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 119,
+      "setting_input_evidence": {
+        "S": 641,
+        "K": 259,
+        "?": 7
+      },
+      "setting_expressions": 146,
+      "published_controls": 39,
+      "text_nodes": [
+        "Subtitle",
+        "MainTitle"
+      ],
+      "comp_tools": 119,
+      "comp_input_evidence": {
+        "S": 641,
+        "K": 259,
+        "?": 7
+      },
+      "comp_expressions": 146
+    },
+    "preview": "FAIL: preview missing or truncated",
+    "preview_details": {
+      "errors": [
+        "preview missing or truncated"
+      ],
+      "warnings": []
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T18:48:41+00:00"
+  }
+}
