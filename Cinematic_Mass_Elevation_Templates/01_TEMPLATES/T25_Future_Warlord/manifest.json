@@ -1,0 +1,289 @@
+{
+  "id": "T25",
+  "name": "Future Warlord",
+  "slug": "Future_Warlord",
+  "category": "E - Sci-Fi and Futuristic Motion Graphics",
+  "version": "1.0.0",
+  "concept": "A tactical unveiling: armoured blast shutters part inside a targeting visor to reveal the warlord's name.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 228,
+  "duration_seconds": 9.5,
+  "phases": {
+    "build_up": [
+      0,
+      82
+    ],
+    "impact_frame": 96,
+    "hero_hold": [
+      96,
+      186
+    ],
+    "exit": [
+      186,
+      212
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Black Ops One",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T25_Future_Warlord.setting",
+  "fusion_composition": "source/T25_Future_Warlord.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 101,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ShadowStrength",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Shadow Strength",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T25_Future_Warlord.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Hangar room tone"
+    },
+    {
+      "frame": 6,
+      "seconds": 0.25,
+      "cue": "digital",
+      "note": "HUD boot blips"
+    },
+    {
+      "frame": 34,
+      "seconds": 1.417,
+      "cue": "digital",
+      "note": "Target lock beeps"
+    },
+    {
+      "frame": 60,
+      "seconds": 2.5,
+      "cue": "metal",
+      "note": "Clamp release clunk (unlock jolt)"
+    },
+    {
+      "frame": 64,
+      "seconds": 2.667,
+      "cue": "riser",
+      "note": "Hydraulic riser (64-96)"
+    },
+    {
+      "frame": 96,
+      "seconds": 4.0,
+      "cue": "metal",
+      "note": "Shutter slam open"
+    },
+    {
+      "frame": 96,
+      "seconds": 4.0,
+      "cue": "impact",
+      "note": "Heavy impact"
+    },
+    {
+      "frame": 97,
+      "seconds": 4.042,
+      "cue": "debris",
+      "note": "Dust/grit falling"
+    },
+    {
+      "frame": 186,
+      "seconds": 7.75,
+      "cue": "hammer",
+      "note": "Shutters slam closed"
+    },
+    {
+      "frame": 190,
+      "seconds": 7.917,
+      "cue": "digital",
+      "note": "HUD power-down"
+    },
+    {
+      "frame": 200,
+      "seconds": 8.333,
+      "cue": "tail",
+      "note": "Hangar tail"
+    }
+  ],
+  "techniques": [
+    "HUD bracket lock-on",
+    "reticle",
+    "mechanical shutters",
+    "staged unlock",
+    "slam shake",
+    "dust shake-off",
+    "visor overlay"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t25.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 101,
+      "setting_input_evidence": {
+        "S": 484,
+        "K": 216,
+        "?": 7
+      },
+      "setting_expressions": 49,
+      "published_controls": 37,
+      "text_nodes": [
+        "Subtitle",
+        "MainTitle"
+      ],
+      "comp_tools": 101,
+      "comp_input_evidence": {
+        "S": 484,
+        "K": 216,
+        "?": 7
+      },
+      "comp_expressions": 49
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 9.5,
+      "frames": 228,
+      "audio": true,
+      "bytes": 2942387,
+      "sample_means": [
+        6.0,
+        7.2,
+        7.2,
+        7.1,
+        8.8,
+        8.8,
+        8.8,
+        9.9,
+        2.0
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 20.8,
+      "title_band_contrast": 35.5
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T18:50:47+00:00"
+  }
+}

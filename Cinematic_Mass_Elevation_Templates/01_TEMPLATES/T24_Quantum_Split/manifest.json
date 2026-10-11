@@ -1,0 +1,276 @@
+{
+  "id": "T24",
+  "name": "Quantum Split",
+  "slug": "Quantum_Split",
+  "category": "E - Sci-Fi and Futuristic Motion Graphics",
+  "version": "1.0.0",
+  "concept": "The title exists in three states at once: its RGB channels sit on separate depth planes and collapse into one.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 156,
+  "duration_seconds": 6.5,
+  "phases": {
+    "build_up": [
+      0,
+      48
+    ],
+    "impact_frame": 50,
+    "hero_hold": [
+      50,
+      116
+    ],
+    "exit": [
+      116,
+      144
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Staatliches",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T24_Quantum_Split.setting",
+  "fusion_composition": "source/T24_Quantum_Split.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 58,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ImpactIntensity",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Impact Intensity",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T24_Quantum_Split.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Low tonal bed"
+    },
+    {
+      "frame": 2,
+      "seconds": 0.083,
+      "cue": "swell",
+      "note": "Phasing swell while planes converge (2-50)"
+    },
+    {
+      "frame": 20,
+      "seconds": 0.833,
+      "cue": "shimmer",
+      "note": "Spectral shimmer"
+    },
+    {
+      "frame": 44,
+      "seconds": 1.833,
+      "cue": "rwhoosh",
+      "note": "Reverse whoosh into alignment"
+    },
+    {
+      "frame": 50,
+      "seconds": 2.083,
+      "cue": "impact",
+      "note": "Tight alignment hit"
+    },
+    {
+      "frame": 50,
+      "seconds": 2.083,
+      "cue": "digital",
+      "note": "Snap click"
+    },
+    {
+      "frame": 51,
+      "seconds": 2.125,
+      "cue": "sub",
+      "note": "Short sub"
+    },
+    {
+      "frame": 116,
+      "seconds": 4.833,
+      "cue": "whoosh",
+      "note": "Depth split whoosh"
+    },
+    {
+      "frame": 132,
+      "seconds": 5.5,
+      "cue": "tail",
+      "note": "Tonal tail"
+    }
+  ],
+  "techniques": [
+    "RGB channel separation",
+    "depth planes",
+    "parallax yaw",
+    "timed convergence",
+    "alignment snap",
+    "micro residual fringe",
+    "depth split exit"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t24.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 58,
+      "setting_input_evidence": {
+        "S": 181,
+        "K": 134,
+        "?": 7
+      },
+      "setting_expressions": 40,
+      "published_controls": 37,
+      "text_nodes": [
+        "Subtitle",
+        "MainTitle"
+      ],
+      "comp_tools": 58,
+      "comp_input_evidence": {
+        "S": 181,
+        "K": 134,
+        "?": 7
+      },
+      "comp_expressions": 40
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 6.5,
+      "frames": 156,
+      "audio": true,
+      "bytes": 2572539,
+      "sample_means": [
+        11.1,
+        19.2,
+        18.7,
+        20.7,
+        20.0,
+        20.0,
+        19.8,
+        15.1,
+        8.0
+      ],
+      "hero_blown_fraction": 0.0006,
+      "hero_contrast": 49.2,
+      "title_band_contrast": 78.1
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T18:50:44+00:00"
+  }
+}
