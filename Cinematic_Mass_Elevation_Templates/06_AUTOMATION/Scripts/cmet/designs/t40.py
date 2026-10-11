@@ -21,7 +21,7 @@ class T40(Design):
     ID = "T40"
     NAME = "Ultimate Mass Elevation"
     SLUG = "Ultimate_Mass_Elevation"
-    CATEGORY = "H - Signature Hero Elevation"
+    CATEGORY = "H - Signature Hero Elevations"
     CONCEPT = ("Flagship: a distant light on a dark horizon grows into volumetric shafts that the title cuts "
                "through; a single controlled detonation of light crowns the hero, who then holds in burnished bronze.")
     ENTRANCE = ("Near-black opening with drifting haze and a far horizon light; slow dolly; the title rises from "

@@ -33,7 +33,7 @@ class T36(Design):
     ID = "T36"
     NAME = "Hero Silhouette"
     SLUG = "Hero_Silhouette"
-    CATEGORY = "E - Character and Emotion"
+    CATEGORY = "H - Signature Hero Elevations"
     CONCEPT = "A lone caped figure stands in smoke against a blinding backlight; the title racks into focus in front of it."
     ENTRANCE = ("Rack focus: the title starts large, soft and dim in the foreground and pulls into focus while the "
                 "backlight slowly rises behind the abstract figure silhouette.")

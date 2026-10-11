@@ -21,7 +21,7 @@ class T31(Design):
     ID = "T31"
     NAME = "Midnight Fog"
     SLUG = "Midnight_Fog"
-    CATEGORY = "D - Atmosphere and Environment"
+    CATEGORY = "G - Atmospheric and Environmental Cinema"
     CONCEPT = "A moonlit midnight moor: the title lives inside layered fog and slowly condenses out of it."
     ENTRANCE = ("Fog-condensation reveal: the letterforms resolve out of the mist through a soft noise threshold "
                 "while four fog planes drift past at different depths.")

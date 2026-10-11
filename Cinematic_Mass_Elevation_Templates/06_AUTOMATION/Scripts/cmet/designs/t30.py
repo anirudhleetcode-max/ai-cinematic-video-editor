@@ -23,7 +23,7 @@ class T30(Design):
     ID = "T30"
     NAME = "Speed Ramp Dominance"
     SLUG = "Speed_Ramp_Dominance"
-    CATEGORY = "C - Future Tech and Kinetic Camera"
+    CATEGORY = "F - Cinematic Typography and Camera Movement"
     CONCEPT = "Pure momentum: the title rockets in from the vanishing point and slams into an almost-frozen slow-motion hold."
     ENTRANCE = ("A hyper-fast approach from the vanishing point through rushing speed lines, with zoom/directional "
                 "blur proportional to velocity, then a hard speed-ramp deceleration.")
@@ -120,8 +120,9 @@ class T30(Design):
         # velocity-scaled zoom blur on the title (MOTION_BLUR_AMOUNT)
         amt = min(0.6, vel * 1.6 * MB)
         if amt > 0.004:
-            Lrgb = K.zoom_blur(L.rgb, vx, vy, amt, steps=10)
-            La = K.zoom_blur(L.a[..., None].repeat(3, 2), vx, vy, amt, steps=10)[..., 0]
+            nst = int(min(36, max(8, amt * 70)))
+            Lrgb = K.zoom_blur(L.rgb, vx, vy, amt, steps=nst)
+            La = K.zoom_blur(L.a[..., None].repeat(3, 2), vx, vy, amt, steps=nst)[..., 0]
         else:
             Lrgb, La = L.rgb, L.a
         if t > imp - 0.05:

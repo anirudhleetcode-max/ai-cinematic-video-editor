@@ -27,7 +27,7 @@ class T02(Design):
     ID = "T02"
     NAME = "Thunder God"
     SLUG = "Thunder_God"
-    CATEGORY = "A - Dark Mass Elevation"
+    CATEGORY = "A - Dark, Powerful Mass Elevation"
     CONCEPT = "Storm-powered hero introduction: the title pushes through mist inside a living thunderstorm."
     ENTRANCE = "Title travels forward through drifting mist while electrical light crawls behind the letterforms."
     REVEAL = "A branching lightning strike behind the title flash-lights the scene and the clouds; edge arcs crackle."

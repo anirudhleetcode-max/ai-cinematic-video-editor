@@ -28,7 +28,7 @@ class T22(Design):
     ID = "T22"
     NAME = "Hologram Breach"
     SLUG = "Hologram_Breach"
-    CATEGORY = "C - Future Tech and Kinetic Camera"
+    CATEGORY = "E - Sci-Fi and Futuristic Motion Graphics"
     CONCEPT = "The title is a projected hologram: a floor emitter throws a light beam and the wordmark assembles in it."
     ENTRANCE = ("Emitter pad powers on and opens a volumetric beam; the title materialises as horizontal scan "
                 "segments in a designed non-sequential order, each sliding into register with a short blink.")

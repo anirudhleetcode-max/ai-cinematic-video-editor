@@ -30,7 +30,7 @@ class T33(Design):
     ID = "T33"
     NAME = "Desert Storm"
     SLUG = "Desert_Storm"
-    CATEGORY = "D - Atmosphere and Environment"
+    CATEGORY = "G - Atmospheric and Environmental Cinema"
     CONCEPT = "A towering haboob sweeps across the dunes; when it passes, a sandstone monument title is standing there."
     ENTRANCE = ("A rolling wall of sand crosses the frame from right to left; the title is uncovered behind its "
                 "leading edge, letter by letter, with a sand-blasted edge.")

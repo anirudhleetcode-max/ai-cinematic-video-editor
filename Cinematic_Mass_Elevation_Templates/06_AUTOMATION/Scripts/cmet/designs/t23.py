@@ -34,7 +34,7 @@ class T23(Design):
     ID = "T23"
     NAME = "Digital Awakening"
     SLUG = "Digital_Awakening"
-    CATEGORY = "C - Future Tech and Kinetic Camera"
+    CATEGORY = "E - Sci-Fi and Futuristic Motion Graphics"
     CONCEPT = "A system boots: scattered data points and procedural lines organise themselves into a stable wordmark."
     ENTRANCE = ("Hundreds of disorganised points and short data lines drift in depth, then converge in a left-to-right "
                 "wave onto a lattice inside the letterforms, forming a wireframe of the title.")

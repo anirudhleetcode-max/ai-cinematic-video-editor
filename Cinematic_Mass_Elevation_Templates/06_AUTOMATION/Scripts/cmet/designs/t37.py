@@ -25,7 +25,7 @@ class T37(Design):
     ID = "T37"
     NAME = "Legacy Reveal"
     SLUG = "Legacy_Reveal"
-    CATEGORY = "E - Character and Emotion"
+    CATEGORY = "H - Signature Hero Elevations"
     CONCEPT = ("A quiet, premium tribute reveal for a name, an event or a dedication: warm light, soft bokeh, "
                "letters arriving one by one like a held breath.")
     ENTRANCE = "Letter-by-letter fade with a gentle upward settle and slight tracking contraction; a gold hairline draws outward beneath."

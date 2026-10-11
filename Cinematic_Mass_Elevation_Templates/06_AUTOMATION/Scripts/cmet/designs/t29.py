@@ -43,7 +43,7 @@ class T29(Design):
     ID = "T29"
     NAME = "Cinematic Letter Assembly"
     SLUG = "Cinematic_Letter_Assembly"
-    CATEGORY = "C - Future Tech and Kinetic Camera"
+    CATEGORY = "F - Cinematic Typography and Camera Movement"
     CONCEPT = "An elegant credit-style build: each letter flies in on its own arc and clicks into place on a light rule."
     ENTRANCE = ("Letters travel in individually from depth on curved, rotating paths. Outer letters arrive first, "
                 "alternating sides, with a designed non-uniform rhythm; the centre letter lands last.")

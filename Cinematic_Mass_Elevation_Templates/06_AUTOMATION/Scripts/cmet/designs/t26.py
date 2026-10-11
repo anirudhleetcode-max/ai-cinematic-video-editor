@@ -25,7 +25,7 @@ class T26(Design):
     ID = "T26"
     NAME = "Extreme Close-Up"
     SLUG = "Extreme_Close_Up"
-    CATEGORY = "C - Future Tech and Kinetic Camera"
+    CATEGORY = "F - Cinematic Typography and Camera Movement"
     CONCEPT = "A macro study of the lettering: we start inside the lacquered surface of one letter and pull out to the name."
     ENTRANCE = ("Extreme macro crop on the bevel of the first letter with shallow depth of field and a raking edge "
                 "light; the camera dollies backward on a long eased move while the tilt flattens out.")

@@ -22,7 +22,7 @@ class T27(Design):
     ID = "T27"
     NAME = "Low-Angle Titan"
     SLUG = "Low_Angle_Titan"
-    CATEGORY = "C - Future Tech and Kinetic Camera"
+    CATEGORY = "F - Cinematic Typography and Camera Movement"
     CONCEPT = "We stand at the foot of a colossal monument: the name towers over us against a dusk sky."
     ENTRANCE = ("Low camera near the ground: the giant lettering rises up into frame from below the horizon while "
                 "the camera cranes up and the steep upward perspective slowly eases.")
@@ -70,14 +70,19 @@ class T27(Design):
         # --- dusk sky (camera cranes up => horizon drops)
         hzn = 0.64 + 0.08 * e + (hy / H)            # horizon (fraction of H from top)
         nx, ny = K.grid(H, W)
-        yy = (ny + 1) / 2
-        top = np.array([0.03, 0.035, 0.07], np.float32)
-        mid = np.array([0.16, 0.10, 0.12], np.float32)
-        low = np.array([0.45, 0.24, 0.12], np.float32)
-        f1 = np.clip(yy / hzn, 0, 1)[..., None]
-        sky = top * (1 - f1) ** 1.2 + mid * np.clip(1 - np.abs(f1 - 0.6) * 2.5, 0, 1) + low * f1 ** 3
-        sun = K.soft_spot(H, W, hx / (H / 2) + 0.25, (hzn * 2 - 1) - 0.25, 0.8, 0.5, 1.6)
-        sky = sky + (sun * (0.35 + 0.15 * after))[..., None] * acc
+        skey = ("sky", round(hzn, 3))
+        if skey not in c.cache:
+            yy = (ny + 1) / 2
+            top = np.array([0.03, 0.035, 0.07], np.float32)
+            mid = np.array([0.16, 0.10, 0.12], np.float32)
+            low = np.array([0.45, 0.24, 0.12], np.float32)
+            f1 = np.clip(yy / hzn, 0, 1)[..., None]
+            sky0 = top * (1 - f1) ** 1.2 + mid * np.clip(1 - np.abs(f1 - 0.6) * 2.5, 0, 1) + low * f1 ** 3
+            sun = K.soft_spot(H, W, hx / (H / 2) + 0.25, (hzn * 2 - 1) - 0.25, 0.8, 0.5, 1.6)[..., None] * acc
+            c.cache = {kk: vv for kk, vv in c.cache.items() if not (isinstance(kk, tuple) and kk[0] == "sky")}
+            c.cache[skey] = (sky0.astype(np.float32), sun.astype(np.float32), f1.astype(np.float32))
+        sky0, sun, f1 = c.cache[skey]
+        sky = sky0 + sun * (0.35 + 0.15 * after)
         cl, dn = E.clouds(H, W, t * 0.6, (0.32, 0.2, 0.18), (0.05, 0.04, 0.06), seed=27, scale=0.7, speed=0.006,
                           contrast=1.4)
         sky = sky * (1 - dn[..., None] * 0.5 * (1 - f1)) + cl * 0.45 * (1 - f1)
@@ -104,7 +109,7 @@ class T27(Design):
         side = tc * 0.16 * (1 - 0.8 * sil) + 0.01
         if depth > 0.5:
             place_extruded(L, cam, rgb, a, (0, 0, sp.w, sp.h), sp.anchor, pos, sc,
-                           (lean, 0, p["TEXT_ROTATION"]), depth, side, slices=14,
+                           (lean, 0, p["TEXT_ROTATION"]), depth, side, slices=9,
                            side_light=lambda q: 0.35 + 0.65 * q)
         else:
             from ..typo import place_sprite

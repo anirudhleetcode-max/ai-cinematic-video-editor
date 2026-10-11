@@ -55,7 +55,7 @@ class T38(Design):
     ID = "T38"
     NAME = "Royal Insignia"
     SLUG = "Royal_Insignia"
-    CATEGORY = "E - Character and Emotion"
+    CATEGORY = "H - Signature Hero Elevations"
     CONCEPT = "An original heraldic insignia - rings, ticks, laurel arcs, chevron crest - assembles piece by piece around the title."
     ENTRANCE = ("Ordered assembly: rings sweep on, ticks and beads click around the dial, laurel leaves bloom up "
                 "both sides, chevrons slide in, banner rules extend - while the whole emblem settles its rotation.")

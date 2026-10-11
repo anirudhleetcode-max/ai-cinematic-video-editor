@@ -39,7 +39,7 @@ class T32(Design):
     ID = "T32"
     NAME = "Rain and Steel"
     SLUG = "Rain_And_Steel"
-    CATEGORY = "D - Atmosphere and Environment"
+    CATEGORY = "G - Atmospheric and Environmental Cinema"
     CONCEPT = "A rain-soaked industrial yard at night: wet steel lettering waits in the dark until the floodlights hit."
     ENTRANCE = "The title cranes up from below the eye-line in near darkness, rain falling through cold ambient light."
     REVEAL = ("Three overhead floodlights clunk on in sequence (with a short electrical flicker) - rain turns into "

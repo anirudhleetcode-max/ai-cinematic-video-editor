@@ -21,7 +21,7 @@ class T01(Design):
     ID = "T01"
     NAME = "Obsidian Impact"
     SLUG = "Obsidian_Impact"
-    CATEGORY = "A - Dark Mass Elevation"
+    CATEGORY = "A - Dark, Powerful Mass Elevation"
     CONCEPT = "Monumental black-glass lettering emerges from total darkness and is carved out by a hard backlight."
     ENTRANCE = "Deep forward travel from far depth while the title is still unlit (silhouette emergence)."
     REVEAL = "At the impact frame a sharp warm backlight ignites the letter edges; restrained dust burst and shards."

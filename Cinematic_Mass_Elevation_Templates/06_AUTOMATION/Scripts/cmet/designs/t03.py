@@ -36,6 +36,18 @@ def fissure_glow(H, W, pts, acc, lvl, k):
     return (core[..., None] * hot + halo[..., None] * acc) * lvl
 
 
+def comp_box(bg, layer):
+    """Same as base.comp but only touches the layer's bounding box (much cheaper for a title-sized layer)."""
+    rows = np.flatnonzero(layer.a.max(1) > 0)
+    if len(rows) == 0:
+        return bg
+    cols = np.flatnonzero(layer.a[rows[0]:rows[-1] + 1].max(0) > 0)
+    sl = (slice(rows[0], rows[-1] + 1), slice(cols[0], cols[-1] + 1))
+    a = layer.a[sl][..., None]
+    bg[sl] = bg[sl] * (1 - a) + layer.rgb[sl]
+    return bg
+
+
 class T03(Design):
     ID = "T03"
     NAME = "Molten Core"
@@ -173,7 +185,7 @@ class T03(Design):
         side = (0.05, 0.022, 0.012)
         if depth > 0.5:
             place_extruded(L, cam, rgb, a, (0, 0, sp.w, sp.h), sp.anchor, (hx, hy + rise, 0), 1.0,
-                           (0, 0, p["TEXT_ROTATION"]), depth, side, slices=8,
+                           (0, 0, p["TEXT_ROTATION"]), depth, side, slices=6,
                            side_light=lambda q: 0.5 + 0.9 * q * (1 - cool_ex), opacity=op)
         else:
             c.place(L, cam, rgb, a, sp, 1.0, off=(0, rise, 0), opacity=op)
@@ -182,7 +194,7 @@ class T03(Design):
         rows = np.clip((fy_px - np.arange(H, dtype=np.float32)) / (3 * k), 0, 1)
         L.a *= rows[:, None]
         L.rgb *= rows[:, None, None]
-        img = comp(bg, L)
+        img = comp_box(bg, L)
         img = img + K.blur(np.maximum(L.rgb - 0.45, 0), 9 * k) * 0.6 * p["GLOW_STRENGTH"] * (0.4 + hit)
 
         # --- the fissure itself (in front of the title base)

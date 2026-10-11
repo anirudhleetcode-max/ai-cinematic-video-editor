@@ -18,7 +18,7 @@ class T21(Design):
     ID = "T21"
     NAME = "Neon Overdrive"
     SLUG = "Neon_Overdrive"
-    CATEGORY = "C - Future Tech and Kinetic Camera"
+    CATEGORY = "E - Sci-Fi and Futuristic Motion Graphics"
     CONCEPT = "A night-drive title: neon tubes ignite around the letterforms above a receding light grid."
     ENTRANCE = ("Camera glides over a receding neon floor grid (fast, then decelerating) while a neon tube traces "
                 "the letter edges left-to-right with short starter flickers.")

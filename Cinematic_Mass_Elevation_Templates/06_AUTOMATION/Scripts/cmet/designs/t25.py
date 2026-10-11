@@ -22,7 +22,7 @@ class T25(Design):
     ID = "T25"
     NAME = "Future Warlord"
     SLUG = "Future_Warlord"
-    CATEGORY = "C - Future Tech and Kinetic Camera"
+    CATEGORY = "E - Sci-Fi and Futuristic Motion Graphics"
     CONCEPT = "A tactical unveiling: armoured blast shutters part inside a targeting visor to reveal the warlord's name."
     ENTRANCE = ("A restrained HUD boots (brackets search, then lock onto a recessed bay); the bay's twin armoured "
                 "shutters unlock with a small jolt.")

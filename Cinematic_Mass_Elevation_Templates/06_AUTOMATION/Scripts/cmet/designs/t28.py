@@ -22,7 +22,7 @@ class T28(Design):
     ID = "T28"
     NAME = "Rotating Monolith"
     SLUG = "Rotating_Monolith"
-    CATEGORY = "C - Future Tech and Kinetic Camera"
+    CATEGORY = "F - Cinematic Typography and Camera Movement"
     CONCEPT = "The title is a solid graphite monolith that turns out of darkness under a single overhead shaft of light."
     ENTRANCE = ("The extruded title approaches from depth almost edge-on (78 deg yaw, pitched back 18 deg) and "
                 "rotates on two axes into view - a weighty oblique turn, never a flat spin.")

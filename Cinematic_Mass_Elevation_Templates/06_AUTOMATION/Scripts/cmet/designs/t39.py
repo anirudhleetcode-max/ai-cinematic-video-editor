@@ -30,7 +30,7 @@ class T39(Design):
     ID = "T39"
     NAME = "Final Boss"
     SLUG = "Final_Boss"
-    CATEGORY = "E - Character and Emotion"
+    CATEGORY = "H - Signature Hero Elevations"
     CONCEPT = "The last enemy arrives: a massive dark-iron title slams out of the abyss and holds, breathing red."
     ENTRANCE = ("A long ominous build (smoke, heartbeat red underlight), then a very fast 10-frame launch from deep "
                 "space straight at the lens with zoom motion blur.")

@@ -22,7 +22,7 @@ class T34(Design):
     ID = "T34"
     NAME = "Underwater Colossus"
     SLUG = "Underwater_Colossus"
-    CATEGORY = "D - Atmosphere and Environment"
+    CATEGORY = "G - Atmospheric and Environmental Cinema"
     CONCEPT = "A sunken monument of colossal stone letters rises out of the deep into the light from the surface."
     ENTRANCE = ("Slow-motion ascent: the title rises from below the frame and out of the depth haze, "
                 "the water colour clearing off it as it approaches.")

@@ -121,8 +121,25 @@ class T10(Design):
                 c.place(L, cam, rgb, a, sp, scale, off=(0, 0, z), opacity=op)
             zb = (0.3 * (1 - es) * (us < 1) * (us > 0) + 0.25 * K.smooth(ex) * (ex < 1)) * p["MOTION_BLUR_AMOUNT"]
             if zb > 0.005:
-                z4 = K.zoom_blur(np.dstack([L.rgb, L.a]), W / 2 + hx, H / 2 + hy, zb)
+                z4 = K.zoom_blur(np.dstack([L.rgb, L.a]), W / 2 + hx, H / 2 + hy, zb, steps=14)
                 L.rgb, L.a = np.ascontiguousarray(z4[..., :3]), np.ascontiguousarray(z4[..., 3])
+        # --- debris dust kicked outward with the wave
+        if after and PI > 0 and dt < 2.0:
+            D = c.cache.get("dust")
+            if D is None:
+                r = np.random.default_rng(10)
+                n = int(140 * PI)
+                D = c.cache["dust"] = (n, r.uniform(0, 2 * np.pi, n), r.uniform(0.3, 1.0, n), r.random(n))
+            n, ang, spd, rr2 = D
+            dist = 0.5 * sp.ink_w / (H / 2) * (0.6 + 0.4 * rr2) + spd * 2.0 * K.ease_out(min(dt / 1.2, 1), 2)
+            gx = cx + np.cos(ang) * dist * 1.15
+            gy = cy + np.sin(ang) * dist
+            Pd = E.Particles(n, 1)
+            Pd.z = (0.7 + 0.6 * rr2).astype(np.float32)
+            vx, vy = np.cos(ang) * 0.02 * (1 - dt / 2), np.sin(ang) * 0.02 * (1 - dt / 2)
+            bg += E.particle_layer(H, W, Pd, gx, gy, acc * 0.4 + 0.45, 1.0, 0.7 * (1 - dt / 2.0), glow=0.5,
+                                    streak=(vx, vy))
+
         bg = drop_shadow(bg, L, p["SHADOW_STRENGTH"] * 0.7 * (1 if after else 0.3), (0, 16), 20, k)
         img = comp(bg, L)
         img = img + K.blur(np.maximum(L.rgb - 0.7, 0), 6 * k) * 0.5 * GL * (0.4 + hit)
@@ -137,23 +154,6 @@ class T10(Design):
             rays = K.god_rays(np.ascontiguousarray(src), (W / 2 + hx), (H / 2 + hy), length=0.6, decay=0.94,
                               steps=20, scale=2)
             img = img + cv2.resize(rays, (W, H)) * ray_lvl * 1.4
-
-        # --- debris dust kicked outward with the wave
-        if after and PI > 0 and dt < 2.0:
-            D = c.cache.get("dust")
-            if D is None:
-                r = np.random.default_rng(10)
-                n = int(140 * PI)
-                D = c.cache["dust"] = (n, r.uniform(0, 2 * np.pi, n), r.uniform(0.3, 1.0, n), r.random(n))
-            n, ang, spd, rr2 = D
-            dist = 0.15 + spd * 2.0 * K.ease_out(min(dt / 1.2, 1), 2)
-            gx = cx + np.cos(ang) * dist * 1.15
-            gy = cy + np.sin(ang) * dist
-            Pd = E.Particles(n, 1)
-            Pd.z = (0.7 + 0.6 * rr2).astype(np.float32)
-            vx, vy = np.cos(ang) * 0.02 * (1 - dt / 2), np.sin(ang) * 0.02 * (1 - dt / 2)
-            img += E.particle_layer(H, W, Pd, gx, gy, acc * 0.4 + 0.45, 1.0, 0.7 * (1 - dt / 2.0), glow=0.5,
-                                    streak=(vx, vy))
 
         # --- implosion ring + final point of light
         if ex > 0:

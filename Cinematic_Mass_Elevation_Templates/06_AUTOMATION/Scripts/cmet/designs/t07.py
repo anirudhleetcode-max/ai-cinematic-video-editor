@@ -24,6 +24,18 @@ def blast_colour(acc, temp):
     return deep * np.clip(t * 2.5, 0, 1) + acc * np.clip(t * 1.5 - 0.15, 0, 1.3) + white * np.clip(t - 0.6, 0, 1) * 2.2
 
 
+def comp_box(bg, layer):
+    """Same as base.comp but only touches the layer's bounding box (much cheaper for a title-sized layer)."""
+    rows = np.flatnonzero(layer.a.max(1) > 0)
+    if len(rows) == 0:
+        return bg
+    cols = np.flatnonzero(layer.a[rows[0]:rows[-1] + 1].max(0) > 0)
+    sl = (slice(rows[0], rows[-1] + 1), slice(cols[0], cols[-1] + 1))
+    a = layer.a[sl][..., None]
+    bg[sl] = bg[sl] * (1 - a) + layer.rgb[sl]
+    return bg
+
+
 class T07(Design):
     ID = "T07"
     NAME = "Explosive Arrival"
@@ -151,7 +163,7 @@ class T07(Design):
             depth = 0.14 * sp.cap_px * p["EXTRUSION_DEPTH"]
             if depth > 0.5:
                 place_extruded(L, cam, rgb, a, (0, 0, sp.w, sp.h), sp.anchor, (hx, hy, z), 1.0,
-                               (0, 0, p["TEXT_ROTATION"]), depth, (0.05, 0.035, 0.025), slices=8,
+                               (0, 0, p["TEXT_ROTATION"]), depth, (0.05, 0.035, 0.025), slices=6,
                                side_light=lambda q: 0.4 + 0.8 * q, opacity=op)
             else:
                 c.place(L, cam, rgb, a, sp, 1.0, off=(0, 0, z), opacity=op)
@@ -161,7 +173,7 @@ class T07(Design):
                 z4 = K.zoom_blur(np.dstack([L.rgb, L.a]), ccx, ccy, zb)
                 L.rgb, L.a = np.ascontiguousarray(z4[..., :3]), np.ascontiguousarray(z4[..., 3])
         bg = drop_shadow(bg, L, p["SHADOW_STRENGTH"] * 0.8, (10, 22), 22, k)
-        img = comp(bg, L)
+        img = comp_box(bg, L)
         img = img + K.blur(np.maximum(L.rgb - 0.6, 0), 8 * k) * 0.5 * GL
 
         # --- debris: dark chunks (subtractive) + burning streaks (additive); PARTICLE_INTENSITY 0 disables

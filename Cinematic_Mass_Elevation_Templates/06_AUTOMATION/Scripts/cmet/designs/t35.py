@@ -43,7 +43,7 @@ class T35(Design):
     ID = "T35"
     NAME = "Frozen Kingdom"
     SLUG = "Frozen_Kingdom"
-    CATEGORY = "D - Atmosphere and Environment"
+    CATEGORY = "G - Atmospheric and Environmental Cinema"
     CONCEPT = "In a hall of ice spires the title freezes into existence: frost crawls across an invisible pane and becomes letters."
     ENTRANCE = ("Frost propagation: from four nucleation points, branching frost dendrites grow and the letters "
                 "crystallise behind the advancing frost front (white rime at the front, clear ice behind).")

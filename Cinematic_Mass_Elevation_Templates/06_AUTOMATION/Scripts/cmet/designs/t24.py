@@ -23,7 +23,7 @@ class T24(Design):
     ID = "T24"
     NAME = "Quantum Split"
     SLUG = "Quantum_Split"
-    CATEGORY = "C - Future Tech and Kinetic Camera"
+    CATEGORY = "E - Sci-Fi and Futuristic Motion Graphics"
     CONCEPT = "The title exists in three states at once: its RGB channels sit on separate depth planes and collapse into one."
     ENTRANCE = ("Red, green and blue channel copies of the title float apart on different depth planes (with two "
                 "faint violet depth echoes) and slide together under a camera yaw that reveals their parallax.")
