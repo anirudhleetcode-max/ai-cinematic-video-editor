@@ -1,0 +1,289 @@
+{
+  "id": "T28",
+  "name": "Rotating Monolith",
+  "slug": "Rotating_Monolith",
+  "category": "F - Cinematic Typography and Camera Movement",
+  "version": "1.0.0",
+  "concept": "The title is a solid graphite monolith that turns out of darkness under a single overhead shaft of light.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 204,
+  "duration_seconds": 8.5,
+  "phases": {
+    "build_up": [
+      0,
+      90
+    ],
+    "impact_frame": 90,
+    "hero_hold": [
+      90,
+      168
+    ],
+    "exit": [
+      168,
+      198
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": true,
+  "uses_2_5d": false,
+  "depth_note": "Fusion source uses Text3D/Renderer3D geometry; the preview approximates the extruded solid with perspective-projected slices.",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Anton",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T28_Rotating_Monolith.setting",
+  "fusion_composition": "source/T28_Rotating_Monolith.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 43,
+  "fusion_tool_types": [
+    "Background",
+    "Blur",
+    "Camera3D",
+    "ColorCorrector",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "LightAmbient",
+    "LightDirectional",
+    "LightSpot",
+    "Merge",
+    "Merge3D",
+    "MtlBlinn",
+    "PolylineMask",
+    "RectangleMask",
+    "Renderer3D",
+    "SoftGlow",
+    "Text3D",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ShadowStrength",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "ExtrusionDepth",
+    "BevelAmount",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Shadow Strength",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Extrusion Depth",
+    "Bevel Amount",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title (3D)",
+    "3D Title Font",
+    "3D Title Style",
+    "Material Color",
+    "Material Color",
+    "Material Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T28_Rotating_Monolith.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Cavernous low drone"
+    },
+    {
+      "frame": 6,
+      "seconds": 0.25,
+      "cue": "rwhoosh",
+      "note": "Slow air displacement as it turns"
+    },
+    {
+      "frame": 20,
+      "seconds": 0.833,
+      "cue": "riser",
+      "note": "Grinding stone/metal riser (20-90)"
+    },
+    {
+      "frame": 84,
+      "seconds": 3.5,
+      "cue": "whoosh",
+      "note": "Final turn whoosh"
+    },
+    {
+      "frame": 90,
+      "seconds": 3.75,
+      "cue": "impact",
+      "note": "Deep lock-in impact"
+    },
+    {
+      "frame": 90,
+      "seconds": 3.75,
+      "cue": "metal",
+      "note": "Metallic resonance"
+    },
+    {
+      "frame": 92,
+      "seconds": 3.833,
+      "cue": "debris",
+      "note": "Floor dust"
+    },
+    {
+      "frame": 168,
+      "seconds": 7.0,
+      "cue": "rwhoosh",
+      "note": "Turn-away whoosh"
+    },
+    {
+      "frame": 182,
+      "seconds": 7.583,
+      "cue": "tail",
+      "note": "Long tail"
+    }
+  ],
+  "techniques": [
+    "Text3D + Renderer3D",
+    "two-axis oblique rotation",
+    "perspective extrusion",
+    "overhead light shaft",
+    "floor reflection",
+    "floor dust",
+    "edge-on exit"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t28.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "EXTRUSION_DEPTH",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 43,
+      "setting_input_evidence": {
+        "S": 141,
+        "K": 114,
+        "?": 9
+      },
+      "setting_expressions": 36,
+      "published_controls": 36,
+      "text_nodes": [
+        "Subtitle",
+        "MonolithText3D"
+      ],
+      "comp_tools": 43,
+      "comp_input_evidence": {
+        "S": 141,
+        "K": 114,
+        "?": 9
+      },
+      "comp_expressions": 36
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 8.5,
+      "frames": 204,
+      "audio": true,
+      "bytes": 2012665,
+      "sample_means": [
+        1.0,
+        6.0,
+        9.8,
+        9.3,
+        11.3,
+        10.2,
+        9.9,
+        8.1,
+        0.8
+      ],
+      "hero_blown_fraction": 0.0002,
+      "hero_contrast": 28.5,
+      "title_band_contrast": 47.2
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T18:50:55+00:00"
+  }
+}
