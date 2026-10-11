@@ -199,7 +199,7 @@ python 06_AUTOMATION/Scripts/render_title.py {d.ID} --set MAIN_TITLE="YOUR TITLE
 
 Default font: **{fam[2]} {fam[3]}** (OFL, bundled in `02_SHARED_ASSETS/Fonts/` - install it before opening the macro, or pick any installed font in the Inspector).
 
-## Verification status (honest)
+{_extras(manifest)}## Verification status (honest)
 
 | Level | Status |
 |---|---|
@@ -210,6 +210,27 @@ Default font: **{fam[2]} {fam[3]}** (OFL, bundled in `02_SHARED_ASSETS/Fonts/` -
 
 The preview was rendered by this project's Python reference renderer, which implements the same design, timing and controls but is **not** Fusion. Expect the Fusion render to differ in detail (noise character, particle look, glow falloff). See `COMPATIBILITY_REPORT.md` at the project root.
 """
+
+
+def _extras(m):
+    out = []
+    ex = m.get("extra_parameters") or {}
+    if ex:
+        out += ["## Template-specific controls", "",
+                "| Reference-renderer parameter | Default | Meaning |", "|---|---|---|"]
+        out += [f"| `{k}` | {v['default']} | {v['description']} |" for k, v in ex.items()]
+        out += ["", "The matching Fusion sliders are listed in `documentation/parameters.md`.", ""]
+    notes = m.get("fusion_notes") or []
+    if notes:
+        out += ["## Fusion notes and limitations", ""] + [f"- {n}" for n in notes] + [""]
+    un = m.get("unconfirmed_fusion_inputs") or []
+    if un:
+        out += ["## Check in Resolve (unconfirmed input names)", "",
+                "These inputs are set in the macro but their names could not be confirmed against documentation. "
+                "Fusion ignores unknown inputs when it loads a file, so if one is wrong only that setting falls "
+                "back to its default. Check these first when you open the template:", "",
+                ", ".join(f"`{x}`" for x in un), ""]
+    return "\n".join(out) + ("\n" if out else "")
 
 
 def make_audio(d, path, p=None):

@@ -154,6 +154,11 @@ def cmd_validate(ids):
             "default_params": "configuration/default_params.json",
             "sound_cues": [{"frame": f, "seconds": round(f / FPS, 3), "cue": k, "note": n} for f, k, n in d.SOUND],
             "techniques": d.TECHNIQUES,
+            "design": {"entrance": d.ENTRANCE, "reveal": d.REVEAL, "camera": d.CAMERA, "material": d.MATERIAL,
+                       "exit": d.EXIT},
+            "fusion_notes": list(d.FUSION_NOTES),
+            "extra_parameters": {k: {"default": v[0], "description": v[1]} for k, v in d.EXTRA_PARAMS.items()},
+            "unconfirmed_fusion_inputs": src.get("unconfirmed_inputs", []),
             "reference_renderer": {"module": f"06_AUTOMATION/Scripts/cmet/designs/t{int(d.ID[1:]):02d}.py",
                                    "parameters_used": pst.get("params_read", [])},
             "verification": {

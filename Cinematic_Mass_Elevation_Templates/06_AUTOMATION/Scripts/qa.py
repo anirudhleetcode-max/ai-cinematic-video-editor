@@ -48,6 +48,59 @@ def strip(m):
     return out
 
 
+def strips_sheet(ms):
+    """All templates' six-frame strips stacked in one comparable sheet."""
+    import cv2
+    rows = []
+    for m in ms:
+        p = os.path.join(STRIPS, f"{m['_dir']}_strip.jpg")
+        if not os.path.exists(p):
+            continue
+        im = cv2.resize(cv2.imread(p), (6 * 240, 135), interpolation=cv2.INTER_AREA)
+        lab = np.zeros((135, 260, 3), np.uint8)
+        cv2.putText(lab, m["id"], (12, 50), cv2.FONT_HERSHEY_SIMPLEX, 1.1, (120, 190, 240), 2, cv2.LINE_AA)
+        words = m["name"].upper().split()
+        line, y = "", 85
+        for w in words:
+            if len(line) + len(w) > 16:
+                cv2.putText(lab, line, (12, y), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (230, 230, 230), 1, cv2.LINE_AA)
+                line, y = w, y + 22
+            else:
+                line = (line + " " + w).strip()
+        cv2.putText(lab, line, (12, y), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (230, 230, 230), 1, cv2.LINE_AA)
+        rows.append(np.hstack([lab, im]))
+    if not rows:
+        return None
+    head = np.zeros((60, rows[0].shape[1], 3), np.uint8)
+    hdr = ("BUILD-UP", "PRE-IMPACT", "IMPACT+3", "HERO HOLD", "EXIT", "END")
+    for i, h in enumerate(hdr):
+        cv2.putText(head, h, (260 + i * 240 + 10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (200, 200, 200), 1, cv2.LINE_AA)
+    out = os.path.join(ROOT, "03_PREVIEWS", "Contact_Sheets", "contact_sheet_strips.jpg")
+    cv2.imwrite(out, np.vstack([head] + rows), [cv2.IMWRITE_JPEG_QUALITY, 80])
+    return out
+
+
+def resolve_checklist(ms):
+    """Per-template manual test list for the first Resolve session."""
+    L = ["# DaVinci Resolve manual test checklist", "",
+         "Nothing in this library has been opened in DaVinci Resolve yet. Use this list during the first session.",
+         "It is generated from the validated manifests by `qa.py`.", "",
+         "For each template:",
+         "1. Install it (see Import_Instructions.md), add it to a 24 fps timeline and trim it to the frame count shown.",
+         "2. Check that the title text appears in the expected font. If it doesn't, install the fonts.",
+         "3. Scrub the build-up, the impact frame, the hold and the exit, and compare them with the preview MP4.",
+         "4. Edit *Main Title* and move *Impact Frame*; the effects should re-time.",
+         "5. Check the listed unconfirmed inputs. If one of these settings is missing, set it by hand.",
+         "", "| ID | Name | Frames | Impact | Depth | Unconfirmed inputs to check | Notes |", "|---|---|---|---|---|---|---|"]
+    for m in ms:
+        un = ", ".join(f"`{x}`" for x in m.get("unconfirmed_fusion_inputs", [])) or "-"
+        notes = " ".join(m.get("fusion_notes", []))[:220].replace("|", "/")
+        L.append(f"| {m['id']} | {m['name']} | {m['duration_frames']} | {m['phases']['impact_frame']} | "
+                 f"{'3D' if m['true_3d'] else '2.5D'} | {un} | {notes or '-'} |")
+    L.append("")
+    open(os.path.join(ROOT, "05_RESOLVE_IMPORT", "Resolve_Test_Checklist.md"), "w", encoding="utf-8").write("\n".join(L))
+
+
 def du(path):
     tot = 0
     for dp, dn, fn in os.walk(path):
@@ -69,6 +122,8 @@ def main():
             ms.append(m)
     for m in ms:
         strip(m)
+    strips_sheet(ms)
+    resolve_checklist(ms)
     n = len(ms)
     src_ok = [m for m in ms if m["verification"]["structure"] == "PASS"]
     lua_ok = [m for m in ms if m["verification"]["lua_parse"] == "PASS"]

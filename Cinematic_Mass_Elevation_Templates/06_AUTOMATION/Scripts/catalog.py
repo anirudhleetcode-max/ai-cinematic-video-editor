@@ -70,6 +70,12 @@ def html_catalog(ms):
         ok_prv = v["preview"] == "PASS"
         prev = f"01_TEMPLATES/{d}/{m['preview']}" if m.get("preview") else ""
         thumb = f"01_TEMPLATES/{d}/{m['thumbnail']}" if m.get("thumbnail") else ""
+        ex = m.get("extra_parameters") or {}
+        extra = ("<dt>Template-specific parameters</dt><dd>" + html.escape(", ".join(
+            f"{k} (default {v['default']})" for k, v in ex.items())) + "</dd>") if ex else ""
+        nl = m.get("fusion_notes") or []
+        notes = ("<dt>Fusion notes &amp; limitations</dt><dd><ul>" + "".join(
+            f"<li>{html.escape(n)}</li>" for n in nl) + "</ul></dd>") if nl else ""
         cards.append(f"""
 <article class="card" data-cat="{html.escape(m['category'])}" data-depth="{'3d' if m['true_3d'] else '25d'}">
   <button class="thumb" data-video="{html.escape(prev)}" aria-label="Play preview of {html.escape(m['name'])}">
@@ -81,6 +87,22 @@ def html_catalog(ms):
     <p class="cat">{html.escape(m['category'])} &middot; {m['duration_seconds']:.1f}s &middot;
        <span class="badge {'b3d' if m['true_3d'] else 'b25'}">{'3D (Text3D)' if m['true_3d'] else '2.5D'}</span></p>
     <p class="concept">{html.escape(m['concept'])}</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/{d}_strip.jpg" alt="Six-frame strip of {html.escape(m['name'])}: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>{html.escape(m['design']['entrance'])}</dd>
+        <dt>Impact / reveal</dt><dd>{html.escape(m['design']['reveal'])}</dd>
+        <dt>Camera</dt><dd>{html.escape(m['design']['camera'])}</dd>
+        <dt>Material</dt><dd>{html.escape(m['design']['material'])}</dd>
+        <dt>Exit</dt><dd>{html.escape(m['design']['exit'])}</dd>
+        <dt>Timing</dt><dd>impact frame {m['phases']['impact_frame']}, hold {m['phases']['hero_hold'][0]}&ndash;{m['phases']['hero_hold'][1]}, exit {m['phases']['exit'][0]}&ndash;{m['phases']['exit'][1]} ({m['duration_frames']} frames)</dd>
+        <dt>Fusion controls ({len(m['fusion_published_controls'])})</dt><dd>{html.escape(', '.join(dict.fromkeys(m['fusion_published_controls'])))}</dd>
+        {extra}
+        {notes}
+        <dt>Unconfirmed Fusion inputs</dt><dd>{len(m.get('unconfirmed_fusion_inputs', []))} &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
     <ul class="checks">
       <li class="{'ok' if v['lua_parse'] == 'PASS' else 'bad'}">Fusion source parses (Lua)</li>
       <li class="{'ok' if ok_src else 'bad'}">Graph structure checks</li>
@@ -128,6 +150,11 @@ main {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
 .checks li::before {{ content:"\\25CF  "; }}
 .ok {{ color:var(--ok); }} .bad {{ color:var(--bad); }} .na {{ color:var(--mute); }}
 .links {{ margin:6px 0 0; font-size:13px; }}
+details {{ margin:8px 0; font-size:13px; }}
+summary {{ cursor:pointer; color:var(--acc); }}
+.strip {{ width:100%; display:block; margin:8px 0; border-radius:4px; }}
+dl {{ margin:0; }} dt {{ font-weight:600; margin-top:6px; }} dd {{ margin:2px 0 0; color:var(--mute); }}
+dd ul {{ margin:2px 0; padding-left:18px; }}
 a {{ color:var(--acc); }}
 dialog {{ border:0; padding:0; background:#000; max-width:min(1280px,96vw); width:100%; }}
 dialog video {{ width:100%; display:block; }}

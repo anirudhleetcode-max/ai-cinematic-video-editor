@@ -60,6 +60,8 @@ def check_source(setting_path, comp_path):
                     continue
                 e = input_evidence(tid, inp)
                 ev[e] = ev.get(e, 0) + 1
+                if e == "?" and kind == "setting":
+                    r.setdefault("unconfirmed_inputs", set()).add(f"{tid}.{inp}")
                 if not isinstance(spec, dict):
                     continue
                 so = spec.get("SourceOp")
@@ -112,6 +114,7 @@ def check_source(setting_path, comp_path):
             if out.get("SourceOp") not in names:
                 r["errors"].append("macro output not connected")
             r["text_nodes"] = text_nodes
+    r["unconfirmed_inputs"] = sorted(r.get("unconfirmed_inputs", set()))
     r["ok"] = not r["errors"]
     return r
 
