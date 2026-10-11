@@ -429,6 +429,46 @@
    "thumb_frame": 112
   }
  },
+ "T30": {
+  "preview": {
+   "params_read": [
+    "ACCENT_COLOR",
+    "ANIMATION_DURATION",
+    "ANIMATION_START",
+    "BACKGROUND_INTENSITY",
+    "BEVEL_AMOUNT",
+    "DURATION",
+    "EXIT_DURATION",
+    "EXIT_START",
+    "FONT_FAMILY",
+    "FONT_SIZE",
+    "GLOW_STRENGTH",
+    "IMPACT_FRAME",
+    "IMPACT_INTENSITY",
+    "LETTERBOX",
+    "LETTER_SPACING",
+    "LINE_SPACING",
+    "MAIN_TITLE",
+    "MOTION_BLUR_AMOUNT",
+    "SHADOW_STRENGTH",
+    "SHAKE_AMOUNT",
+    "SUBTITLE",
+    "SUB_FONT_FAMILY",
+    "TEXT_ALIGNMENT",
+    "TEXT_COLOR",
+    "TEXT_POSITION_X",
+    "TEXT_POSITION_Y",
+    "TEXT_ROTATION",
+    "TEXT_SCALE",
+    "TITLE_WIDTH"
+   ],
+   "path": "01_TEMPLATES/T30_Speed_Ramp_Dominance/preview/T30_Speed_Ramp_Dominance.mp4",
+   "rc": 0,
+   "rendered_at": "2026-10-11T18:50:34+00:00",
+   "seconds": 123.9,
+   "thumb_frame": 52
+  }
+ },
  "T32": {
   "preview": {
    "params_read": [
