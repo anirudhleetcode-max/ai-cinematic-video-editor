@@ -153,7 +153,8 @@ class T30(Design):
         BG = ctl("BackgroundIntensity")
         MB = ctl("MotionBlurAmount")
         u = prog(S, D)
-        creep = f"(1 - 0.07*{prog(I, f'({ctl(chr(69) + 'xitStart')} - {I})')})"
+        XS, XD = ctl("ExitStart"), ctl("ExitDuration")
+        creep = f"(1 - 0.07*{prog(I, f'({XS} - {I})')})"
         dist = f"((1 + {ZFAR - 1}*pow(1 - {u}, 3.2))*{creep}*(1 + 14*pow({ex}, 3)))"
         # speed proxy: derivative of the ramp (approach) + exit acceleration
         speed = f"(3.2*{ZFAR - 1}*pow(1 - {u}, 2.2)*{step(S)}*(1 - {step(f'{S} + {D}')}) + 40*pow({ex}, 2))"
@@ -170,7 +171,7 @@ class T30(Design):
         F.masked(rays, hole)
         rtint = F.cc(g, "SpeedLinesTint", rays, gain=0.8)
         bg = F.merge(g, "SpeedLinesMerge", bg, rtint, mode="Screen",
-                     blend=f"{BG}*(0.25 + 0.6*min({speed}/10, 1))*(1 - {step(f'{ctl(chr(69) + chr(120) + chr(105) + chr(116) + chr(83) + chr(116) + chr(97) + chr(114) + chr(116))} + {ctl(chr(69) + chr(120) + chr(105) + chr(116) + chr(68) + chr(117) + chr(114) + chr(97) + chr(116) + chr(105) + chr(111) + chr(110))} + 6')})")
+                     blend=f"{BG}*(0.25 + 0.6*min({speed}/10, 1))*(1 - {step(f'{XS} + {XD} + 6')})")
 
         g.at(0, 2)
         title = F.title_text(g, "MainTitle", p["MAIN_TITLE"], "Russo One", "Regular", 0.13, 1.04, color=p["TEXT_COLOR"])
