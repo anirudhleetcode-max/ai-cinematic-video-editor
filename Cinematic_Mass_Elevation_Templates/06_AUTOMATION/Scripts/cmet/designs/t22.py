@@ -48,12 +48,13 @@ class T22(Design):
              (44, "glitch", "Interference burst"), (70, "rwhoosh", "Reverse air into lock"),
              (76, "impact", "Soft digital lock hit"), (77, "shimmer", "Lock-in scan shimmer"),
              (150, "digital", "Projector cut"), (160, "tail", "Hum tail")]
+    EXTRA_PARAMS = {"FLICKER_AMOUNT": (1.0, "Pre-lock hologram flicker amount (0 = none)", "float"),
+                    "GLITCH_AMOUNT": (1.0, "Interference / slice-glitch amount (0 = none)", "float")}
     FUSION_NOTES = [
         "Extra controls: 'Flicker Amount' (FlickerAmount) and 'Glitch Amount' (GlitchAmount) scale the pre-lock "
         "flicker and the interference slice displacement; set both to 0 for a perfectly stable hologram. The final "
         "hold is always stable.",
-        "Preview renderer mapping: the reference preview has no separate flicker/glitch parameters; both scale "
-        "with IMPACT_INTENSITY there (0 = no flicker, no glitch).",
+        "Reference renderer: the same controls are FLICKER_AMOUNT and GLITCH_AMOUNT (0 = perfectly stable).",
         "Fusion assembles 7 horizontal bands (preview: 9); the interference streaks are a stretched FastNoise.",
     ]
 
@@ -63,7 +64,8 @@ class T22(Design):
         acc = K.col(p["ACCENT_COLOR"])
         tc = K.col(p["TEXT_COLOR"])
         bgI = p["BACKGROUND_INTENSITY"]
-        amt = p["IMPACT_INTENSITY"]  # flicker/glitch scale in the preview
+        amt_f = p["FLICKER_AMOUNT"]
+        amt = p["GLITCH_AMOUNT"]
         ex = c.exit_u()
         imp = c.impact
         sp = c.title()
@@ -115,7 +117,7 @@ class T22(Design):
         rgb = rgb * (1 + 0.35 * np.exp(-(roll / 0.08) ** 2))                                 # refresh band
         # global flicker before lock (purposeful, scaled by IMPACT_INTENSITY)
         fl = max(0.0, math.sin(t * 19.0) * math.sin(t * 7.3 + 1.1) - 0.25) * 1.4
-        gain = 0.9 * (1 - 0.45 * amt * pre * min(1.0, fl)) * (1 + 0.7 * c.hit(0.02, 0.25))
+        gain = 0.9 * (1 - 0.45 * amt_f * pre * min(1.0, fl)) * (1 + 0.7 * c.hit(0.02, 0.25))
         gain *= 1 + 1.5 * collapse
 
         cam = c.cam(zoom=1.0, pan=(-14 * k * math.sin(t * 0.25), 0))

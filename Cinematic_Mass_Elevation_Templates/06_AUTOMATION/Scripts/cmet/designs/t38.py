@@ -66,8 +66,8 @@ class T38(Design):
     TECHNIQUES = ["procedural emblem from primitives", "staggered assembly", "emboss shading", "counter-rotating rings",
                   "light sweep / glint", "independent emblem scale & rotation controls"]
     DURATION_FRAMES = 196
-    EMBLEM_SCALE = 1.0      # preview equivalents of the Fusion 'Emblem Scale' / 'Emblem Rotation' controls
-    EMBLEM_ROTATION = 0.0
+    EXTRA_PARAMS = {"EMBLEM_SCALE": (1.0, "Emblem scale, independent of the title", "float"),
+                    "EMBLEM_ROTATION": (0.0, "Emblem rotation in degrees, independent of the title", "float")}
     DEFAULTS = dict(MAIN_TITLE="SOVEREIGN", SUBTITLE="BY ROYAL DECREE", FONT_FAMILY="cinzel_deco",
                     TEXT_COLOR="#F1ECE2", ACCENT_COLOR="#D9A84A", ANIMATION_START=8, ANIMATION_DURATION=70,
                     IMPACT_FRAME=80, HOLD_DURATION=72, EXIT_START=156, EXIT_DURATION=34, LETTER_SPACING=0.06,
@@ -89,7 +89,7 @@ class T38(Design):
         cx0, cy0 = W / 2 + hx / 2, H / 2 + hy / 2
         R = R_FRAC * H * scale
         m = np.zeros((H, W), np.float32)
-        rot = self.EMBLEM_ROTATION + spin[0]
+        rot = c.p["EMBLEM_ROTATION"] + spin[0]
         dial = spin[1]
 
         def P(x, y, rr=0.0):
@@ -189,7 +189,7 @@ class T38(Design):
         # emblem ------------------------------------------------------------------
         settle = 1 - K.ease_out(u, 3)
         spin = (-50 * settle + 60 * K.ease_in(ex, 2), 3.0 * t)  # (whole emblem, dial-only drift)
-        scale = self.EMBLEM_SCALE * (1 + 0.04 * push + 0.08 * settle + 0.9 * K.ease_in(ex, 2))
+        scale = c.p["EMBLEM_SCALE"] * (1 + 0.04 * push + 0.08 * settle + 0.9 * K.ease_in(ex, 2))
         glint = -1.2 + 3.2 * K.ease_in_out(K.prog(t, imp - 0.05, 1.0))
         ergb, ea = self._emblem(c, u, spin, glint, scale)
         eop = 1 - K.smooth(K.prog(ex, 0.1, 0.7))
@@ -234,7 +234,7 @@ class T38(Design):
             img += E.particle_layer(H, W, P, x, y, acc * 0.8 + 0.2, 1.1, 0.3, zoom=1 + 0.04 * push, focus=1.0,
                                     dof=1.0, flicker=0.5, t=t, glow=0.8)
         img = subtitle(c, img, cam, imp + 0.5, c.exit_start, (0.86, 0.76, 0.52),
-                       y_rel=0.66 * R_FRAC * H * self.EMBLEM_SCALE / max(sp.ink_h, 1), rel=0.17, tracking=0.3)
+                       y_rel=0.66 * R_FRAC * H * c.p["EMBLEM_SCALE"] / max(sp.ink_h, 1), rel=0.17, tracking=0.3)
         return c.finish(img, vignette=0.55, grain=0.025, bloom=(0.8, 0.45),
                         grade=dict(shadows=(-0.002, 0.0, 0.008), highlights=(0.015, 0.008, -0.01), contrast=1.05))
 

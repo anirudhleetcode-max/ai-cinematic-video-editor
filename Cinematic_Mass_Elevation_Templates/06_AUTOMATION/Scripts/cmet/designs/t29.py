@@ -61,6 +61,7 @@ class T29(Design):
     SOUND = [(0, "atmos", "Warm room tone"), (8, "whoosh", "First letters fly in"), (20, "shimmer", "Soft ticks per landing"),
              (40, "whoosh", "Mid letters"), (76, "rwhoosh", "Centre letter approach"), (82, "impact", "Soft lock-in hit"),
              (83, "shimmer", "Sheen sweep"), (140, "whoosh", "Letters lift away"), (160, "tail", "Airy tail")]
+    EXTRA_PARAMS = {"STAGGER_FRAMES": (4, "Base interval between letter arrivals (frames)", "frame")}
     FUSION_NOTES = [
         "Per-letter animation: the preview animates every glyph on its own 3D arc. Fusion's per-character Text+ "
         "Follower could not be verified offline, so the Fusion graph keeps ONE editable Text+ and staggers 8 "
@@ -68,7 +69,7 @@ class T29(Design):
         "lengths, adjust the slot masks' Center/Width to match the letters.",
         "Extra control 'Stagger Interval (frames)' (StaggerFrames) sets the base interval between arrivals; the "
         "designed rhythm multiplies it per slot. 'Reveal Duration' (AnimDuration) is the travel time of each "
-        "letter/slot. In the preview the interval is the design default STAGGER_FRAMES (4).",
+        "letter/slot. In the reference renderer the same control is STAGGER_FRAMES.",
     ]
 
     def _path(self, i, n, k, W, H):

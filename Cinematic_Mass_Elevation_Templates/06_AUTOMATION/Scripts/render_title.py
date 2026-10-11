@@ -30,8 +30,8 @@ from cmet import export as X  # noqa: E402
 from cmet import elements as E  # noqa: E402
 
 
-def coerce(key, val):
-    default, _, kind = PARAM_SCHEMA[key]
+def coerce(schema, key, val):
+    default, _, kind = schema[key]
     if kind in ("float",):
         return float(val)
     if kind == "frame":
@@ -60,16 +60,17 @@ def main():
     n = int(a.template.upper().lstrip("T"))
     d = importlib.import_module(f"cmet.designs.t{n:02d}").DESIGN
     ov = {}
+    sch = d.schema()
     if a.config:
         for k, v in json.load(open(a.config, encoding="utf-8")).items():
-            if k in PARAM_SCHEMA:
-                ov[k] = coerce(k, v)
+            if k in sch:
+                ov[k] = coerce(sch, k, v)
     for kv in a.set:
         k, v = kv.split("=", 1)
         k = k.strip().upper()
-        if k not in PARAM_SCHEMA:
+        if k not in sch:
             sys.exit(f"unknown parameter {k}; see configuration/default_params.json")
-        ov[k] = coerce(k, v)
+        ov[k] = coerce(sch, k, v)
     W, H = (int(x) for x in a.res.lower().split("x"))
     out = a.out or f"{d.ID}_{d.SLUG}_custom." + {"h264": "mp4", "prores": "mov", "png": "png"}[a.codec]
     if a.codec == "png":

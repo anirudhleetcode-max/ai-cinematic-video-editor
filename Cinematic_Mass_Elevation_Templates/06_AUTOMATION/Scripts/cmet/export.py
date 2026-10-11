@@ -97,7 +97,7 @@ def write_docs(d, info, p=None):
                                     "FrameRate": FPS, "Timeline length": f"{dur} frames ({dur / FPS:.2f}s)"},
     }
     json.dump(prof, open(os.path.join(base, "configuration", "render_profile.json"), "w"), indent=2)
-    defaults = {k: p[k] for k in PARAM_SCHEMA}
+    defaults = {k: p[k] for k in d.schema()}
     json.dump(defaults, open(os.path.join(base, "configuration", "default_params.json"), "w"), indent=2,
               ensure_ascii=False)
 
@@ -117,7 +117,7 @@ def write_docs(d, info, p=None):
           "Used by the Python reference renderer that produced the preview (also usable for customised "
           "renders without Resolve). Defaults for this template:", "",
           "| Parameter | Default | Meaning |", "|---|---|---|"]
-    for k, (dflt, desc, kind) in PARAM_SCHEMA.items():
+    for k, (dflt, desc, kind) in d.schema().items():
         v = p[k]
         vs = json.dumps(v, ensure_ascii=False) if isinstance(v, str) else str(v)
         L.append(f"| `{k}` | {vs} | {desc} |")

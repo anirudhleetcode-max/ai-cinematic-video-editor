@@ -250,13 +250,19 @@ class Design:
     DURATION_FRAMES = 192
     FUSION_NOTES: list = []
 
+    EXTRA_PARAMS: dict = {}  # template-specific parameters: KEY -> (default, description, kind)
+
+    def schema(self):
+        return {**PARAM_SCHEMA, **self.EXTRA_PARAMS}
+
     def params(self, overrides=None):
-        p = {k: v[0] for k, v in PARAM_SCHEMA.items()}
+        sch = self.schema()
+        p = {k: v[0] for k, v in sch.items()}
         p["DURATION"] = self.DURATION_FRAMES
         p.update(self.DEFAULTS)
         if overrides:
             for k, v in overrides.items():
-                if k not in PARAM_SCHEMA:
+                if k not in sch:
                     raise KeyError(f"unknown parameter {k}")
                 p[k] = v
         return Params(p)
