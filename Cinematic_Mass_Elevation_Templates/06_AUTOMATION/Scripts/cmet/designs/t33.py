@@ -128,7 +128,10 @@ class T33(Design):
         img += rays * 0.35 * (0.3 + 0.7 * clear) * bgI
 
         # the moving dust wall + mid/front dust planes (in front of the title)
-        wall_n = D.plane(H, W, t, 0.9, (0.22, -0.01), 11, 1.0, (drift * 0.3, 0), stretch=(1.4, 1.0), evolve=0.1)
+        wall_n = (0.65 * D.plane(H, W, t, 0.7, (0.22, -0.01), 11, 1.0, (drift * 0.3, 0), stretch=(1.4, 1.0),
+                                 evolve=0.1, res=8)
+                  + 0.35 * D.plane(H, W, t, 2.0, (0.30, -0.02), 12, 1.0, (drift * 0.3, 0), stretch=(1.8, 1.0),
+                                   evolve=0.1, res=8))
 
         def band(tr):
             rel = nx - (tr - THICK) + (wall_n - 0.5) * 0.9 - ny * 0.12
@@ -137,10 +140,9 @@ class T33(Design):
         wd2 = band(trail2) if ex > 0 else 0.0
         wtot = np.clip((wd + wd2) * (0.8 + 0.3 * (wall_n - 0.5)), 0, 0.95)
         # billow lighting: lit from the sun side (upper right), darker towards the ground
-        sh_n = np.roll(wall_n, (int(14 * k), -int(14 * k)), (0, 1))
-        lit = np.clip(0.5 + (wall_n - sh_n) * 6, 0, 1) * np.clip(0.9 - ny * 0.5, 0.3, 1.2)
-        wcol = (np.array([0.30, 0.16, 0.07], np.float32) * (1 - lit[..., None])
-                + np.array([0.95, 0.62, 0.32], np.float32) * lit[..., None]) * bgI
+        lit = np.clip(0.25 + (wall_n - 0.35) * 1.4, 0.1, 1) * np.clip(0.9 - ny * 0.5 + 0.15 * nx, 0.3, 1.2)
+        wcol = (np.array([0.42, 0.23, 0.11], np.float32) * (1 - lit[..., None])
+                + np.array([0.88, 0.57, 0.30], np.float32) * lit[..., None]) * bgI
         img = D.over_lit(img, wcol, wtot * min(1.0, bgI + 0.3))
         dmid = D.shaped(D.plane(H, W, t, 1.1, (0.22, 0.0), 27, 1.06, (drift * 0.5, 0), stretch=(4.0, 1.0)), 0.4, 1.0)
         img = D.over(img, dcol * 1.05 * bgI, dmid * (0.22 + 0.25 * K.smooth(ex)) * (1 - 0.4 * clear))

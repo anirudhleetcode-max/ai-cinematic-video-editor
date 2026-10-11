@@ -76,7 +76,7 @@ class T04(Design):
         back = K.soft_spot(h2, w2, -0.3 + px * 0.2, -0.45, 1.9, 0.9, 1.2) * (0.25 + 0.5 * smoke)
         bg = bg + (back * 0.045 * dim)[..., None] * np.array([0.75, 0.8, 0.88], np.float32)
         fogl = np.clip((smoke - 0.45) * 1.5, 0, 1) * 0.02
-        bg = bg + (vol * 0.13 * dim)[..., None] * acc + fogl[..., None] * np.array([0.6, 0.65, 0.7], np.float32)
+        bg = bg + (vol * 0.2 * dim)[..., None] * acc + fogl[..., None] * np.array([0.6, 0.65, 0.7], np.float32)
         # pillars (silhouettes with a thin lit edge on the shaft side)
         for x0, hw, dz in PILLARS:
             xc = x0 + px * (0.7 / dz)

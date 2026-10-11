@@ -182,7 +182,7 @@ class T12(Design):
 
         g.at(0, 2)
         ff, fs = fam(p["FONT_FAMILY"])
-        bounce = f"3.5*exp(-max(time - {I}, 0)/6)*sin(max(time - {I}, 0)*0.92)*{step(I)}"
+        bounce = f"3.5*pow(2.718282, -max(time - {I}, 0)/6)*sin(max(time - {I}, 0)*0.92)*{step(I)}"
         rot_x = f"-78*(1 - {e_out(u, 2)}) - 74*{e_in(ex, 2)} + {bounce}"
         render = F.text3d_rig(g, "Chrome", p["MAIN_TITLE"], ff, fs, size=0.4, extrusion=0.14, bevel=0.02,
                               color=p["TEXT_COLOR"], spec=(1, 1, 1), spec_exp=160, rot_x=rot_x, rot_y="0",

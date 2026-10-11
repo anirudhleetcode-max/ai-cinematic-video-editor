@@ -248,23 +248,23 @@
       "duration": 8.0,
       "frames": 192,
       "audio": true,
-      "bytes": 4839154,
+      "bytes": 3085750,
       "sample_means": [
         2.1,
         2.7,
         4.1,
         4.5,
-        12.7,
+        12.6,
         9.2,
-        8.6,
+        8.5,
         4.2,
         2.3
       ],
-      "hero_blown_fraction": 0.0002,
+      "hero_blown_fraction": 0.0003,
       "hero_contrast": 27.9,
       "title_band_contrast": 45.7
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T17:46:25+00:00"
+    "validated_at": "2026-10-11T18:12:16+00:00"
   }
 }

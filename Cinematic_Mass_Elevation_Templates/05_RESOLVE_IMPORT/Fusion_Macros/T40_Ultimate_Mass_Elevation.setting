@@ -841,7 +841,7 @@
 						},
 						Blend = Input {
 							Value = 1,
-							Expression = "min(CONTROLS.BackgroundIntensity*((0.08 + 0.55*min(max((time - (8)) / max(CONTROLS.ImpactFrame - 8, 1), 0), 1))*(1 - min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)) + min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)*(0.75 + 0.6*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * exp(-max(time - (CONTROLS.ImpactFrame), 0) / 18))))*(1 - min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1))*0.6, 1)",
+							Expression = "min(CONTROLS.BackgroundIntensity*((0.08 + 0.55*min(max((time - (8)) / max(CONTROLS.ImpactFrame - 8, 1), 0), 1))*(1 - min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)) + min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)*(0.75 + 0.6*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 18))))*(1 - min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1))*0.6, 1)",
 						},
 					},
 					ViewInfo = OperatorInfo {
@@ -932,7 +932,7 @@
 						},
 						Blend = Input {
 							Value = 1,
-							Expression = "min(CONTROLS.BackgroundIntensity*(0.15 + 0.6*((0.08 + 0.55*min(max((time - (8)) / max(CONTROLS.ImpactFrame - 8, 1), 0), 1))*(1 - min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)) + min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)*(0.75 + 0.6*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * exp(-max(time - (CONTROLS.ImpactFrame), 0) / 18))))*(1 - min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1))), 1)",
+							Expression = "min(CONTROLS.BackgroundIntensity*(0.15 + 0.6*((0.08 + 0.55*min(max((time - (8)) / max(CONTROLS.ImpactFrame - 8, 1), 0), 1))*(1 - min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)) + min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)*(0.75 + 0.6*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 18))))*(1 - min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1))), 1)",
 						},
 					},
 					ViewInfo = OperatorInfo {
@@ -1176,7 +1176,7 @@
 						},
 						Blend = Input {
 							Value = 1,
-							Expression = "min(((0.08 + 0.55*min(max((time - (8)) / max(CONTROLS.ImpactFrame - 8, 1), 0), 1))*(1 - min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)) + min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)*(0.75 + 0.6*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * exp(-max(time - (CONTROLS.ImpactFrame), 0) / 18))))*(1 - min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1)), 1)",
+							Expression = "min(((0.08 + 0.55*min(max((time - (8)) / max(CONTROLS.ImpactFrame - 8, 1), 0), 1))*(1 - min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)) + min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)*(0.75 + 0.6*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 18))))*(1 - min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1)), 1)",
 						},
 					},
 					ViewInfo = OperatorInfo {
@@ -1201,7 +1201,7 @@
 						},
 						Blend = Input {
 							Value = 1,
-							Expression = "min(((0.08 + 0.55*min(max((time - (8)) / max(CONTROLS.ImpactFrame - 8, 1), 0), 1))*(1 - min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)) + min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)*(0.75 + 0.6*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * exp(-max(time - (CONTROLS.ImpactFrame), 0) / 18))))*(1 - min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1)), 1)",
+							Expression = "min(((0.08 + 0.55*min(max((time - (8)) / max(CONTROLS.ImpactFrame - 8, 1), 0), 1))*(1 - min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)) + min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)*(0.75 + 0.6*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 18))))*(1 - min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1)), 1)",
 						},
 					},
 					ViewInfo = OperatorInfo {
@@ -1723,7 +1723,7 @@
 						},
 						Blend = Input {
 							Value = 1,
-							Expression = "min(CONTROLS.GlowStrength*(1 - min(min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1)*1.5, 1))*(0.35*min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) + min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)*(0.8 + 0.2*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * exp(-max(time - (CONTROLS.ImpactFrame), 0) / 20)))), 1)",
+							Expression = "min(CONTROLS.GlowStrength*(1 - min(min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1)*1.5, 1))*(0.35*min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) + min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)*(0.8 + 0.2*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 20)))), 1)",
 						},
 					},
 					ViewInfo = OperatorInfo {
@@ -2148,7 +2148,7 @@
 						},
 						MasterRGBGain = Input {
 							Value = 1,
-							Expression = "(0.12*min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1)*(1 - min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)) + min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)*(0.55 + 0.45*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * exp(-max(time - (CONTROLS.ImpactFrame), 0) / 36))))*(1 - 0.7*min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1)) + 0.02",
+							Expression = "(0.12*min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1)*(1 - min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)) + min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1)*(0.55 + 0.45*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 36))))*(1 - 0.7*min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1)) + 0.02",
 						},
 					},
 					ViewInfo = OperatorInfo {
@@ -2246,7 +2246,7 @@
 						},
 						Gain = Input {
 							Value = 1,
-							Expression = "CONTROLS.GlowStrength*(0.35 + 1.4*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * exp(-max(time - (CONTROLS.ImpactFrame), 0) / 14)))",
+							Expression = "CONTROLS.GlowStrength*(0.35 + 1.4*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 14)))",
 						},
 					},
 					ViewInfo = OperatorInfo {
@@ -2359,7 +2359,7 @@
 						},
 						Blend = Input {
 							Value = 1,
-							Expression = "min(CONTROLS.ImpactIntensity*((min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * exp(-max(time - (CONTROLS.ImpactFrame), 0) / 10))*1.2 + 0.15*min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1))*(1 - min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1)), 1)",
+							Expression = "min(CONTROLS.ImpactIntensity*((min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 10))*1.2 + 0.15*min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1))*(1 - min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1)), 1)",
 						},
 					},
 					ViewInfo = OperatorInfo {
@@ -2653,7 +2653,7 @@
 						},
 						Blend = Input {
 							Value = 1,
-							Expression = "0.15*CONTROLS.ImpactIntensity*(min(max((time - (CONTROLS.ImpactFrame + 0) + 1), 0), 1) * exp(-max(time - (CONTROLS.ImpactFrame + 0), 0) / 6))",
+							Expression = "0.15*CONTROLS.ImpactIntensity*(min(max((time - (CONTROLS.ImpactFrame + 0) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame + 0), 0) / 6))",
 						},
 					},
 					ViewInfo = OperatorInfo {
@@ -3022,7 +3022,7 @@
 						},
 						Center = Input {
 							Value = { 0.5, 0.5 },
-							Expression = "Point(0.5 + (0.005*CONTROLS.ShakeAmount*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * exp(-max(time - (CONTROLS.ImpactFrame), 0) / 8))) * (sin(time*1.900*1.31 + 1.0) * 0.6 + sin(time*1.900*2.71 + 3.100) * 0.3 + sin(time*1.900*5.17 + 7.700) * 0.1), 0.5 + (0.005*CONTROLS.ShakeAmount*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * exp(-max(time - (CONTROLS.ImpactFrame), 0) / 8))) * (sin(time*2.300*1.31 + 2.7) * 0.6 + sin(time*2.300*2.71 + 8.370) * 0.3 + sin(time*2.300*5.17 + 20.790) * 0.1))",
+							Expression = "Point(0.5 + (0.005*CONTROLS.ShakeAmount*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 8))) * (sin(time*1.900*1.31 + 1.0) * 0.6 + sin(time*1.900*2.71 + 3.100) * 0.3 + sin(time*1.900*5.17 + 7.700) * 0.1), 0.5 + (0.005*CONTROLS.ShakeAmount*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 8))) * (sin(time*2.300*1.31 + 2.7) * 0.6 + sin(time*2.300*2.71 + 8.370) * 0.3 + sin(time*2.300*5.17 + 20.790) * 0.1))",
 						},
 						Size = Input {
 							Value = 1,
