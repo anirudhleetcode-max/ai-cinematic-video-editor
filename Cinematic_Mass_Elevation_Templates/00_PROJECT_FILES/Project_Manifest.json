@@ -1,0 +1,484 @@
+{
+ "project": "Cinematic Mass Elevation Templates",
+ "version": "1.0.0",
+ "generated_at": "2026-10-11T18:03:31+00:00",
+ "template_count": 1,
+ "templates": [
+  {
+   "id": "T01",
+   "name": "Obsidian Impact",
+   "category": "A - Dark Mass Elevation",
+   "dir": "01_TEMPLATES/T01_Obsidian_Impact",
+   "duration_frames": 192,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T01_Obsidian_Impact/source/T01_Obsidian_Impact.setting",
+   "fusion_composition": "01_TEMPLATES/T01_Obsidian_Impact/source/T01_Obsidian_Impact.comp",
+   "preview": "01_TEMPLATES/T01_Obsidian_Impact/preview/T01_Obsidian_Impact.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  }
+ ],
+ "totals": {
+  "bytes": 17698094,
+  "files": 114
+ },
+ "files": [
+  {
+   "path": "00_PROJECT_FILES/DaVinci_Resolve_Project/build_resolve_project.py",
+   "bytes": 6234
+  },
+  {
+   "path": "01_TEMPLATES/T01_Obsidian_Impact/README.md",
+   "bytes": 3536
+  },
+  {
+   "path": "01_TEMPLATES/T01_Obsidian_Impact/configuration/default_params.json",
+   "bytes": 867
+  },
+  {
+   "path": "01_TEMPLATES/T01_Obsidian_Impact/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T01_Obsidian_Impact/documentation/parameters.md",
+   "bytes": 6264
+  },
+  {
+   "path": "01_TEMPLATES/T01_Obsidian_Impact/documentation/sound_design.md",
+   "bytes": 888
+  },
+  {
+   "path": "01_TEMPLATES/T01_Obsidian_Impact/manifest.json",
+   "bytes": 6133
+  },
+  {
+   "path": "01_TEMPLATES/T01_Obsidian_Impact/preview/T01_Obsidian_Impact.mp4",
+   "bytes": 4839154
+  },
+  {
+   "path": "01_TEMPLATES/T01_Obsidian_Impact/preview/thumbnail.jpg",
+   "bytes": 57660
+  },
+  {
+   "path": "01_TEMPLATES/T01_Obsidian_Impact/source/T01_Obsidian_Impact.comp",
+   "bytes": 43828
+  },
+  {
+   "path": "01_TEMPLATES/T01_Obsidian_Impact/source/T01_Obsidian_Impact.setting",
+   "bytes": 54612
+  },
+  {
+   "path": "02_SHARED_ASSETS/Backgrounds/README.md",
+   "bytes": 906
+  },
+  {
+   "path": "02_SHARED_ASSETS/Environment_Elements/README.md",
+   "bytes": 1193
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/README.md",
+   "bytes": 2726
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/anton/Anton-Regular.ttf",
+   "bytes": 170812
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/anton/OFL.txt",
+   "bytes": 4484
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/audiowide/Audiowide-Regular.ttf",
+   "bytes": 69916
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/audiowide/OFL.txt",
+   "bytes": 4430
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/bebasneue/BebasNeue-Regular.ttf",
+   "bytes": 61400
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/bebasneue/OFL.txt",
+   "bytes": 4337
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/blackopsone/BlackOpsOne-Regular.ttf",
+   "bytes": 166532
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/blackopsone/OFL.txt",
+   "bytes": 4411
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/cinzel/Cinzel[wght].ttf",
+   "bytes": 125468
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/cinzel/OFL.txt",
+   "bytes": 4383
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/cinzeldecorative/CinzelDecorative-Black.ttf",
+   "bytes": 62692
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/cinzeldecorative/CinzelDecorative-Bold.ttf",
+   "bytes": 62300
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/cinzeldecorative/OFL.txt",
+   "bytes": 4393
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/mandali/Mandali-Regular.ttf",
+   "bytes": 619212
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/mandali/OFL.txt",
+   "bytes": 4455
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/marcellussc/MarcellusSC-Regular.ttf",
+   "bytes": 47888
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/marcellussc/OFL.txt",
+   "bytes": 4430
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/notosanstelugu/NotoSansTelugu[wdth,wght].ttf",
+   "bytes": 888808
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/notosanstelugu/OFL.txt",
+   "bytes": 4382
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/orbitron/OFL.txt",
+   "bytes": 4426
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/orbitron/Orbitron[wght].ttf",
+   "bytes": 38576
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/ramabhadra/OFL.txt",
+   "bytes": 4454
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/ramabhadra/Ramabhadra-Regular.ttf",
+   "bytes": 733308
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/russoone/OFL.txt",
+   "bytes": 4390
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/russoone/RussoOne-Regular.ttf",
+   "bytes": 39124
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/staatliches/OFL.txt",
+   "bytes": 4386
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/staatliches/Staatliches-Regular.ttf",
+   "bytes": 63316
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/teko/OFL.txt",
+   "bytes": 4385
+  },
+  {
+   "path": "02_SHARED_ASSETS/Fonts/teko/Teko[wght].ttf",
+   "bytes": 292108
+  },
+  {
+   "path": "02_SHARED_ASSETS/Particles/README.md",
+   "bytes": 533
+  },
+  {
+   "path": "02_SHARED_ASSETS/Procedural_Textures/README.md",
+   "bytes": 812
+  },
+  {
+   "path": "02_SHARED_ASSETS/Procedural_Textures/brushed_metal_tile_1024.png",
+   "bytes": 344563
+  },
+  {
+   "path": "02_SHARED_ASSETS/Procedural_Textures/fog_tile_1024.png",
+   "bytes": 400145
+  },
+  {
+   "path": "02_SHARED_ASSETS/Procedural_Textures/smoke_ridged_tile_1024.png",
+   "bytes": 630129
+  },
+  {
+   "path": "02_SHARED_ASSETS/Procedural_Textures/stone_grain_tile_1024.png",
+   "bytes": 1042977
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/LICENSE.md",
+   "bytes": 1681
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/debris.wav",
+   "bytes": 288044
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/digital_tone.wav",
+   "bytes": 192044
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/electric_crackle.wav",
+   "bytes": 144044
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/glitch.wav",
+   "bytes": 76844
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/hammer.wav",
+   "bytes": 393644
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/heartbeat.wav",
+   "bytes": 115244
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/ice_crackle.wav",
+   "bytes": 336044
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/impact_heavy.wav",
+   "bytes": 451244
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/metal_hit.wav",
+   "bytes": 528044
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/reverse_whoosh.wav",
+   "bytes": 115244
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/riser_3s.wav",
+   "bytes": 288044
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/shimmer.wav",
+   "bytes": 432044
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/sub_drop.wav",
+   "bytes": 288044
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/swell.wav",
+   "bytes": 672044
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/tail.wav",
+   "bytes": 576044
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/thunder.wav",
+   "bytes": 672044
+  },
+  {
+   "path": "02_SHARED_ASSETS/Sound_Effects/whoosh.wav",
+   "bytes": 134444
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T01_Obsidian_Impact_strip.jpg",
+   "bytes": 33052
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T01_Obsidian_Impact.comp",
+   "bytes": 43828
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T01_Obsidian_Impact.setting",
+   "bytes": 54612
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Import_Instructions.md",
+   "bytes": 4870
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/install_titles.ps1",
+   "bytes": 3850
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/build.py",
+   "bytes": 9544
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/catalog.py",
+   "bytes": 11328
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/check_design.py",
+   "bytes": 1287
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/__init__.py",
+   "bytes": 0
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/base.py",
+   "bytes": 13806
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/core.py",
+   "bytes": 11672
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/__init__.py",
+   "bytes": 0
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/_b_helpers.py",
+   "bytes": 5512
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/_c_helpers.py",
+   "bytes": 5827
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/_d_helpers.py",
+   "bytes": 4030
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t01.py",
+   "bytes": 14026
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t02.py",
+   "bytes": 14562
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t03.py",
+   "bytes": 21977
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t11.py",
+   "bytes": 10955
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t12.py",
+   "bytes": 13298
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t21.py",
+   "bytes": 13251
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t22.py",
+   "bytes": 15243
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t31.py",
+   "bytes": 13051
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t32.py",
+   "bytes": 17061
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t40.py",
+   "bytes": 18559
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/elements.py",
+   "bytes": 18807
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/export.py",
+   "bytes": 11632
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/fcomp.py",
+   "bytes": 23254
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/fusion.py",
+   "bytes": 16991
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/fusion_ref.py",
+   "bytes": 8718
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/luacheck.py",
+   "bytes": 2618
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/sfx.py",
+   "bytes": 10815
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/typo.py",
+   "bytes": 20077
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/validate.py",
+   "bytes": 9239
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/make_sfx_library.py",
+   "bytes": 1516
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/qa.py",
+   "bytes": 8646
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/render_title.py",
+   "bytes": 3714
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/stills.py",
+   "bytes": 1017
+  },
+  {
+   "path": "06_AUTOMATION/Validation/build_state.json",
+   "bytes": 977
+  },
+  {
+   "path": "07_DOCUMENTATION/Developer_Authoring_Guide.md",
+   "bytes": 8638
+  },
+  {
+   "path": "07_DOCUMENTATION/Rendering_Guide.md",
+   "bytes": 3186
+  },
+  {
+   "path": "07_DOCUMENTATION/Template_Editing_Guide.md",
+   "bytes": 4110
+  },
+  {
+   "path": "07_DOCUMENTATION/Text_Customization_Guide.md",
+   "bytes": 2951
+  },
+  {
+   "path": "07_DOCUMENTATION/Troubleshooting.md",
+   "bytes": 3048
+  },
+  {
+   "path": "CHECKPOINT.md",
+   "bytes": 904
+  },
+  {
+   "path": "render_all.ps1",
+   "bytes": 7715
+  },
+  {
+   "path": "render_previews.ps1",
+   "bytes": 1971
+  }
+ ]
+}

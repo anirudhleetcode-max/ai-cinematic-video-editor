@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mass Elevation Templates</title>
+<style>
+:root { --bg:#0b0b0d; --panel:#141418; --ink:#ecebe8; --mute:#9a978f; --acc:#e8b26a; --ok:#7fc98f; --bad:#e07a6a; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) { --bg:#f4f2ee; --panel:#ffffff; --ink:#1b1a18; --mute:#5f5c56; --acc:#9a5d12; --ok:#2e7d3e; --bad:#b03a2a; } }
+:root[data-theme="dark"] { --bg:#0b0b0d; --panel:#141418; --ink:#ecebe8; --mute:#9a978f; --acc:#e8b26a; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+header { padding:28px 16px 8px; max-width:1500px; margin:auto; }
+h1 { margin:0 0 6px; font-size:28px; letter-spacing:.04em; }
+header p { margin:4px 0; color:var(--mute); max-width:900px; }
+.controls { display:flex; gap:10px; flex-wrap:wrap; margin:14px 0; }
+select, input { background:var(--panel); color:var(--ink); border:1px solid #444; border-radius:6px; padding:7px 9px; }
+main { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; padding:8px 16px 40px; max-width:1500px; margin:auto; }
+.card { background:var(--panel); border-radius:10px; overflow:hidden; border:1px solid rgba(128,128,128,.18); }
+.thumb { position:relative; display:block; width:100%; padding:0; border:0; background:#000; cursor:pointer; aspect-ratio:16/9; }
+.thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.play { position:absolute; right:10px; bottom:8px; color:#fff; background:rgba(0,0,0,.55); border-radius:50%; width:34px; height:34px; display:grid; place-items:center; }
+.meta { padding:10px 14px 14px; }
+.meta h2 { margin:0; font-size:18px; }
+.id { color:var(--acc); font-variant-numeric:tabular-nums; }
+.cat { margin:2px 0 6px; color:var(--mute); font-size:13px; }
+.concept { margin:6px 0; font-size:14px; }
+.badge { padding:1px 7px; border-radius:10px; font-size:12px; border:1px solid currentColor; }
+.b3d { color:var(--acc); } .b25 { color:var(--mute); }
+.checks { list-style:none; padding:0; margin:6px 0; font-size:13px; display:flex; flex-wrap:wrap; gap:4px 12px; }
+.checks li::before { content:"\25CF  "; }
+.ok { color:var(--ok); } .bad { color:var(--bad); } .na { color:var(--mute); }
+.links { margin:6px 0 0; font-size:13px; }
+a { color:var(--acc); }
+dialog { border:0; padding:0; background:#000; max-width:min(1280px,96vw); width:100%; }
+dialog video { width:100%; display:block; }
+dialog::backdrop { background:rgba(0,0,0,.8); }
+.close { position:absolute; right:8px; top:6px; background:rgba(0,0,0,.6); color:#fff; border:0; font-size:20px; cursor:pointer; }
+</style></head><body>
+<header>
+<h1>Cinematic Mass Elevation Templates</h1>
+<p>1 editable DaVinci Resolve / Fusion title templates (0 with genuine Text3D geometry, 1 2.5D).
+Each card links the Fusion macro (<code>.setting</code>), the flat composition (<code>.comp</code>), its controls and its sound cue sheet.
+Click a thumbnail to play its 1080p preview.</p>
+<p><strong>Previews</strong> come from the project's Python reference renderer, not from Resolve.
+<strong>Resolve compatibility has not been tested</strong> (no Resolve in the build environment). See COMPATIBILITY_REPORT.md and 05_RESOLVE_IMPORT/Import_Instructions.md.</p>
+<div class="controls">
+<select id="cat"><option value="">All categories</option><option value="A - Dark Mass Elevation">A - Dark Mass Elevation</option></select>
+<select id="depth"><option value="">3D + 2.5D</option><option value="3d">3D only</option><option value="25d">2.5D only</option></select>
+<input id="q" type="search" placeholder="Search name or concept">
+</div>
+</header>
+<main id="grid">
+<article class="card" data-cat="A - Dark Mass Elevation" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T01_Obsidian_Impact/preview/T01_Obsidian_Impact.mp4" aria-label="Play preview of Obsidian Impact">
+    <img src="01_TEMPLATES/T01_Obsidian_Impact/preview/thumbnail.jpg" alt="Obsidian Impact thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T01</span> Obsidian Impact</h2>
+    <p class="cat">A - Dark Mass Elevation &middot; 8.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">Monumental black-glass lettering emerges from total darkness and is carved out by a hard backlight.</p>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: not tested</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T01_Obsidian_Impact/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T01_Obsidian_Impact/source/T01_Obsidian_Impact.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T01_Obsidian_Impact/source/T01_Obsidian_Impact.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T01_Obsidian_Impact/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T01_Obsidian_Impact/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article></main>
+<dialog id="dlg"><button class="close" aria-label="Close">&times;</button><video id="vid" controls playsinline></video></dialog>
+<script>
+const dlg=document.getElementById('dlg'), vid=document.getElementById('vid');
+document.querySelectorAll('.thumb').forEach(b=>b.addEventListener('click',()=>{ if(!b.dataset.video) return; vid.src=b.dataset.video; dlg.showModal(); vid.play().catch(()=>{}); }));
+dlg.querySelector('.close').onclick=()=>dlg.close();
+dlg.addEventListener('close',()=>{ vid.pause(); vid.removeAttribute('src'); vid.load(); });
+function f(){ const c=document.getElementById('cat').value, d=document.getElementById('depth').value, q=document.getElementById('q').value.toLowerCase();
+ document.querySelectorAll('.card').forEach(el=>{ const ok=(!c||el.dataset.cat===c)&&(!d||el.dataset.depth===d)&&(!q||el.textContent.toLowerCase().includes(q)); el.style.display=ok?'':'none'; }); }
+['cat','depth','q'].forEach(i=>document.getElementById(i).addEventListener('input',f));
+</script></body></html>

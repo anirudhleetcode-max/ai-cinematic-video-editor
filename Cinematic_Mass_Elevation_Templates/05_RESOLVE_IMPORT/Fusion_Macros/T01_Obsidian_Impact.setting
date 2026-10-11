@@ -159,12 +159,14 @@
 					SourceOp = "MainTitle",
 					Source = "Font",
 					Name = "Main Title Font",
+					ControlGroup = 110,
 					Page = "Text",
 				},
 				MainTitleStyle = InstanceInput {
 					SourceOp = "MainTitle",
 					Source = "Style",
 					Name = "Main Title Style",
+					ControlGroup = 110,
 					Page = "Text",
 				},
 				MainTitleSize = InstanceInput {
@@ -225,12 +227,14 @@
 					SourceOp = "Subtitle",
 					Source = "Font",
 					Name = "Subtitle Font",
+					ControlGroup = 111,
 					Page = "Text",
 				},
 				SubtitleStyle = InstanceInput {
 					SourceOp = "Subtitle",
 					Source = "Style",
 					Name = "Subtitle Style",
+					ControlGroup = 111,
 					Page = "Text",
 				},
 				SubtitleSize = InstanceInput {
