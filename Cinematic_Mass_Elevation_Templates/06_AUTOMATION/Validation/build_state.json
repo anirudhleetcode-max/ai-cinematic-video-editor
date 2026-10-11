@@ -80,6 +80,46 @@
    "thumb_frame": 110
   }
  },
+ "T04": {
+  "preview": {
+   "params_read": [
+    "ACCENT_COLOR",
+    "ANIMATION_START",
+    "BACKGROUND_INTENSITY",
+    "BEVEL_AMOUNT",
+    "DURATION",
+    "EXIT_DURATION",
+    "EXIT_START",
+    "EXTRUSION_DEPTH",
+    "FONT_FAMILY",
+    "FONT_SIZE",
+    "GLOW_STRENGTH",
+    "IMPACT_FRAME",
+    "IMPACT_INTENSITY",
+    "LETTERBOX",
+    "LETTER_SPACING",
+    "LINE_SPACING",
+    "MAIN_TITLE",
+    "MOTION_BLUR_AMOUNT",
+    "PARTICLE_INTENSITY",
+    "SHAKE_AMOUNT",
+    "SUBTITLE",
+    "SUB_FONT_FAMILY",
+    "TEXT_ALIGNMENT",
+    "TEXT_COLOR",
+    "TEXT_POSITION_X",
+    "TEXT_POSITION_Y",
+    "TEXT_ROTATION",
+    "TEXT_SCALE",
+    "TITLE_WIDTH"
+   ],
+   "path": "01_TEMPLATES/T04_Black_Steel_Reckoning/preview/T04_Black_Steel_Reckoning.mp4",
+   "rc": 0,
+   "rendered_at": "2026-10-11T19:42:00+00:00",
+   "seconds": 200.2,
+   "thumb_frame": 90
+  }
+ },
  "T21": {
   "preview": {
    "params_read": [
