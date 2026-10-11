@@ -1,0 +1,333 @@
+{
+  "id": "T13",
+  "name": "Titanium Edge",
+  "slug": "Titanium_Edge",
+  "category": "C - 3D Metal and Premium Materials",
+  "version": "1.0.0",
+  "concept": "Precision-machined titanium lettering assembled like a mechanism from horizontal slats.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 168,
+  "duration_seconds": 7.0,
+  "phases": {
+    "build_up": [
+      0,
+      62
+    ],
+    "impact_frame": 62,
+    "hero_hold": [
+      62,
+      128
+    ],
+    "exit": [
+      128,
+      154
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": true,
+  "uses_2_5d": false,
+  "depth_note": "Fusion source uses Text3D/Renderer3D geometry; the preview approximates the extruded solid with perspective-projected slices.",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Orbitron",
+    "Russo One"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T13_Titanium_Edge.setting",
+  "fusion_composition": "source/T13_Titanium_Edge.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 72,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "Camera3D",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "LightAmbient",
+    "LightDirectional",
+    "LightSpot",
+    "Merge",
+    "Merge3D",
+    "MtlBlinn",
+    "RectangleMask",
+    "Renderer3D",
+    "Text3D",
+    "TextPlus",
+    "Transform"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "GlowStrength",
+    "ImpactIntensity",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "ExtrusionDepth",
+    "BevelAmount",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Glow Strength",
+    "Impact Intensity",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Extrusion Depth",
+    "Bevel Amount",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title (3D)",
+    "3D Title Font",
+    "3D Title Style",
+    "Material Color",
+    "Material Color",
+    "Material Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T13_Titanium_Edge.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Clean cold room tone"
+    },
+    {
+      "frame": 2,
+      "seconds": 0.083,
+      "cue": "digital",
+      "note": "Guide rails draw on"
+    },
+    {
+      "frame": 12,
+      "seconds": 0.5,
+      "cue": "whoosh",
+      "note": "Slat 1 slide"
+    },
+    {
+      "frame": 19,
+      "seconds": 0.792,
+      "cue": "metal",
+      "note": "Lock click"
+    },
+    {
+      "frame": 26,
+      "seconds": 1.083,
+      "cue": "metal",
+      "note": "Lock click"
+    },
+    {
+      "frame": 34,
+      "seconds": 1.417,
+      "cue": "metal",
+      "note": "Lock click"
+    },
+    {
+      "frame": 41,
+      "seconds": 1.708,
+      "cue": "metal",
+      "note": "Lock click"
+    },
+    {
+      "frame": 48,
+      "seconds": 2.0,
+      "cue": "metal",
+      "note": "Lock click"
+    },
+    {
+      "frame": 62,
+      "seconds": 2.583,
+      "cue": "impact",
+      "note": "Final lock - tight impact"
+    },
+    {
+      "frame": 62,
+      "seconds": 2.583,
+      "cue": "metal",
+      "note": "Machined ring"
+    },
+    {
+      "frame": 66,
+      "seconds": 2.75,
+      "cue": "shimmer",
+      "note": "Edge highlight"
+    },
+    {
+      "frame": 128,
+      "seconds": 5.333,
+      "cue": "digital",
+      "note": "Blinds close ticks"
+    },
+    {
+      "frame": 150,
+      "seconds": 6.25,
+      "cue": "tail",
+      "note": "Tail"
+    }
+  ],
+  "techniques": [
+    "Text3D extrusion",
+    "rectangle-masked slats",
+    "staggered mechanical slide",
+    "seam flashes",
+    "narrow spec sweep",
+    "technical grid + rails",
+    "blinds exit"
+  ],
+  "design": {
+    "entrance": "Guide rails draw on, then six horizontal slats of the extruded titanium title slide in from alternating sides, out of depth, locking into alignment one by one with a crisp mechanical snap.",
+    "reveal": "The final slat locks on the impact frame: a cold seam flash runs along each joint and a narrow silver-blue highlight cuts across the chamfered edges.",
+    "camera": "Slight three-quarter angle that squares up with a measured dolly; micro-jolt on each lock.",
+    "material": "Cold brushed titanium: anisotropic brushed texture, flat chamfer bevel, narrow high-exponent silver-blue specular, cool environment reflection, dark gunmetal sides.",
+    "exit": "The slats close like blinds - each band collapses to a thin line in sequence - and the rails retract."
+  },
+  "fusion_notes": [
+    "Slats are rectangle-masked copies of the single Renderer3D output, each moved by its own Transform. If you change the title size or line count, adjust the slat masks' Center/Height (SlatNShape) so the bands still cover the letters."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "Renderer3D.RendererOpenGL.LightingEnabled",
+    "Renderer3D.RendererOpenGL.Supersampling"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t13.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "EXTRUSION_DEPTH",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "SHADOW_STRENGTH",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 72,
+      "unconfirmed_inputs": [
+        "Renderer3D.RendererOpenGL.LightingEnabled",
+        "Renderer3D.RendererOpenGL.Supersampling"
+      ],
+      "setting_input_evidence": {
+        "S": 269,
+        "K": 146,
+        "?": 2
+      },
+      "setting_expressions": 71,
+      "published_controls": 35,
+      "text_nodes": [
+        "Subtitle",
+        "TitaniumText3D"
+      ],
+      "comp_tools": 72,
+      "comp_input_evidence": {
+        "S": 269,
+        "K": 146,
+        "?": 2
+      },
+      "comp_expressions": 71
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 7.0,
+      "frames": 168,
+      "audio": true,
+      "bytes": 1487221,
+      "sample_means": [
+        7.8,
+        9.1,
+        10.8,
+        12.3,
+        11.3,
+        11.5,
+        11.7,
+        8.5,
+        7.6
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 21.5,
+      "title_band_contrast": 35.6
+    },
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:12:11+00:00"
+  }
+}

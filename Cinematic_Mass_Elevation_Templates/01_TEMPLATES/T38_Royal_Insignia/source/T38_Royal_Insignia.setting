@@ -1,0 +1,4469 @@
+-- T38_Royal_Insignia: Cinematic Mass Elevation Templates
+-- Generated Fusion macro (MacroOperator). Install into
+--   <Fusion support>/Templates/Edit/Titles/ to use as an Edit-page title,
+-- or drag this file into the Fusion page node editor.
+{
+	Tools = ordered() {
+		T38_Royal_Insignia = MacroOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Templates:/Edit/Titles/",
+					},
+				},
+				HelpPage = "Cinematic Mass Elevation Templates - T38_Royal_Insignia",
+			},
+			Inputs = ordered() {
+				CONTROLS_AnimStart = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "AnimStart",
+					Name = "Animation Start (frames)",
+					Page = "Timing",
+					Default = 8,
+				},
+				CONTROLS_AnimDuration = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "AnimDuration",
+					Name = "Reveal Duration (frames)",
+					Page = "Timing",
+					Default = 70,
+				},
+				CONTROLS_ImpactFrame = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "ImpactFrame",
+					Name = "Impact Frame",
+					Page = "Timing",
+					Default = 80,
+				},
+				CONTROLS_ExitStart = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "ExitStart",
+					Name = "Exit Start (frame)",
+					Page = "Timing",
+					Default = 156,
+				},
+				CONTROLS_ExitDuration = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "ExitDuration",
+					Name = "Exit Duration (frames)",
+					Page = "Timing",
+					Default = 34,
+				},
+				CONTROLS_BackgroundIntensity = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "BackgroundIntensity",
+					Name = "Background Intensity",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_ParticleIntensity = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "ParticleIntensity",
+					Name = "Particle Intensity",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_GlowStrength = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "GlowStrength",
+					Name = "Glow Strength",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_ImpactIntensity = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "ImpactIntensity",
+					Name = "Impact Intensity",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_TextScale = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "TextScale",
+					Name = "Text Scale",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_TextPosX = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "TextPosX",
+					Name = "Text Position X",
+					Page = "Look",
+					Default = 0.5,
+				},
+				CONTROLS_TextPosY = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "TextPosY",
+					Name = "Text Position Y",
+					Page = "Look",
+					Default = 0.5,
+				},
+				CONTROLS_TextRotation = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "TextRotation",
+					Name = "Text Rotation",
+					Page = "Look",
+					Default = 0,
+				},
+				CONTROLS_Letterbox = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "Letterbox",
+					Name = "Letterbox (2.39:1)",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_EmblemScale = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "EmblemScale",
+					Name = "Emblem Scale",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_EmblemRotation = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "EmblemRotation",
+					Name = "Emblem Rotation",
+					Page = "Look",
+					Default = 0,
+				},
+				AccentRed = InstanceInput {
+					SourceOp = "ACCENT",
+					Source = "TopLeftRed",
+					Name = "Emblem Color",
+					ControlGroup = 90,
+					Page = "Look",
+				},
+				AccentGreen = InstanceInput {
+					SourceOp = "ACCENT",
+					Source = "TopLeftGreen",
+					Name = "Emblem Color",
+					ControlGroup = 90,
+					Page = "Look",
+				},
+				AccentBlue = InstanceInput {
+					SourceOp = "ACCENT",
+					Source = "TopLeftBlue",
+					Name = "Emblem Color",
+					ControlGroup = 90,
+					Page = "Look",
+				},
+				MainTitleText = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "StyledText",
+					Name = "Main Title",
+					Page = "Text",
+				},
+				MainTitleFont = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Font",
+					Name = "Main Title Font",
+					ControlGroup = 110,
+					Page = "Text",
+				},
+				MainTitleStyle = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Style",
+					Name = "Main Title Style",
+					ControlGroup = 110,
+					Page = "Text",
+				},
+				MainTitleSize = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Size",
+					Name = "Main Title Size",
+					Page = "Text",
+					Default = 0.1,
+				},
+				MainTitleTracking = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "CharacterSpacing",
+					Name = "Main Title Letter Spacing",
+					Page = "Text",
+					Default = 1.06,
+				},
+				MainTitleLeading = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "LineSpacing",
+					Name = "Main Title Line Spacing",
+					Page = "Text",
+					Default = 1,
+				},
+				MainTitleAlign = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "HorizontalJustificationNew",
+					Name = "Main Title Alignment",
+					Page = "Text",
+				},
+				MainTitleRed = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Red1",
+					Name = "Main Title Color",
+					ControlGroup = 10,
+					Page = "Text",
+				},
+				MainTitleGreen = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Green1",
+					Name = "Main Title Color",
+					ControlGroup = 10,
+					Page = "Text",
+				},
+				MainTitleBlue = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Blue1",
+					Name = "Main Title Color",
+					ControlGroup = 10,
+					Page = "Text",
+				},
+				SubtitleText = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "StyledText",
+					Name = "Subtitle",
+					Page = "Text",
+				},
+				SubtitleFont = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Font",
+					Name = "Subtitle Font",
+					ControlGroup = 111,
+					Page = "Text",
+				},
+				SubtitleStyle = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Style",
+					Name = "Subtitle Style",
+					ControlGroup = 111,
+					Page = "Text",
+				},
+				SubtitleSize = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Size",
+					Name = "Subtitle Size",
+					Page = "Text",
+					Default = 0.02,
+				},
+				SubtitleTracking = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "CharacterSpacing",
+					Name = "Subtitle Letter Spacing",
+					Page = "Text",
+					Default = 1.3,
+				},
+				SubtitleLeading = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "LineSpacing",
+					Name = "Subtitle Line Spacing",
+					Page = "Text",
+					Default = 1,
+				},
+				SubtitleAlign = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "HorizontalJustificationNew",
+					Name = "Subtitle Alignment",
+					Page = "Text",
+				},
+				SubtitleRed = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Red1",
+					Name = "Subtitle Color",
+					ControlGroup = 11,
+					Page = "Text",
+				},
+				SubtitleGreen = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Green1",
+					Name = "Subtitle Color",
+					ControlGroup = 11,
+					Page = "Text",
+				},
+				SubtitleBlue = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Blue1",
+					Name = "Subtitle Color",
+					ControlGroup = 11,
+					Page = "Text",
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Letterbox",
+					Source = "Output",
+				},
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 0, 0 },
+			},
+			Tools = ordered() {
+				CONTROLS = Transform {
+					Inputs = {
+						AnimStart = Input {
+							Value = 8,
+						},
+						AnimDuration = Input {
+							Value = 70,
+						},
+						ImpactFrame = Input {
+							Value = 80,
+						},
+						ExitStart = Input {
+							Value = 156,
+						},
+						ExitDuration = Input {
+							Value = 34,
+						},
+						BackgroundIntensity = Input {
+							Value = 1,
+						},
+						ParticleIntensity = Input {
+							Value = 1,
+						},
+						GlowStrength = Input {
+							Value = 1,
+						},
+						ImpactIntensity = Input {
+							Value = 1,
+						},
+						TextScale = Input {
+							Value = 1,
+						},
+						TextPosX = Input {
+							Value = 0.5,
+						},
+						TextPosY = Input {
+							Value = 0.5,
+						},
+						TextRotation = Input {
+							Value = 0,
+						},
+						Letterbox = Input {
+							Value = 1,
+						},
+						EmblemScale = Input {
+							Value = 1,
+						},
+						EmblemRotation = Input {
+							Value = 0,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, -66 },
+					},
+					UserControls = ordered() {
+						AnimStart = {
+							LINKS_Name = "Animation Start (frames)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 8,
+							INP_MinScale = 0,
+							INP_MaxScale = 120,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+						AnimDuration = {
+							LINKS_Name = "Reveal Duration (frames)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 70,
+							INP_MinScale = 1,
+							INP_MaxScale = 144,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+						ImpactFrame = {
+							LINKS_Name = "Impact Frame",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 80,
+							INP_MinScale = 0,
+							INP_MaxScale = 240,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+						ExitStart = {
+							LINKS_Name = "Exit Start (frame)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 156,
+							INP_MinScale = 0,
+							INP_MaxScale = 300,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+						ExitDuration = {
+							LINKS_Name = "Exit Duration (frames)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 34,
+							INP_MinScale = 1,
+							INP_MaxScale = 120,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+						BackgroundIntensity = {
+							LINKS_Name = "Background Intensity",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MaxScale = 2,
+							ICS_ControlPage = "Controls",
+						},
+						ParticleIntensity = {
+							LINKS_Name = "Particle Intensity",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MaxScale = 2,
+							ICS_ControlPage = "Controls",
+						},
+						GlowStrength = {
+							LINKS_Name = "Glow Strength",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MaxScale = 3,
+							ICS_ControlPage = "Controls",
+						},
+						ImpactIntensity = {
+							LINKS_Name = "Impact Intensity",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MaxScale = 2,
+							ICS_ControlPage = "Controls",
+						},
+						TextScale = {
+							LINKS_Name = "Text Scale",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0.2,
+							INP_MaxScale = 3,
+							ICS_ControlPage = "Controls",
+						},
+						TextPosX = {
+							LINKS_Name = "Text Position X",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							INP_MaxScale = 1,
+							ICS_ControlPage = "Controls",
+						},
+						TextPosY = {
+							LINKS_Name = "Text Position Y",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							INP_MaxScale = 1,
+							ICS_ControlPage = "Controls",
+						},
+						TextRotation = {
+							LINKS_Name = "Text Rotation",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0,
+							INP_MinScale = -180,
+							INP_MaxScale = 180,
+							ICS_ControlPage = "Controls",
+						},
+						Letterbox = {
+							LINKS_Name = "Letterbox (2.39:1)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MaxScale = 1,
+							ICS_ControlPage = "Controls",
+						},
+						EmblemScale = {
+							LINKS_Name = "Emblem Scale",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0.2,
+							INP_MaxScale = 3,
+							ICS_ControlPage = "Controls",
+						},
+						EmblemRotation = {
+							LINKS_Name = "Emblem Rotation",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0,
+							INP_MinScale = -180,
+							INP_MaxScale = 180,
+							ICS_ControlPage = "Controls",
+						},
+					},
+				},
+				ACCENT = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0.85098,
+						},
+						TopLeftGreen = Input {
+							Value = 0.658824,
+						},
+						TopLeftBlue = Input {
+							Value = 0.290196,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, -66 },
+					},
+				},
+				RoyalVelvet = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Type = Input {
+							Value = FuID { "Gradient" },
+						},
+						GradientType = Input {
+							Value = FuID { "Radial" },
+						},
+						Start = Input {
+							Value = { 0.5, 0.5 },
+						},
+						End = Input {
+							Value = { 1.1, 0.5 },
+						},
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.054902, 0.082353, 0.188235, 1 },
+									[1] = { 0.007843, 0.011765, 0.035294, 1 }
+								}
+							},
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 0 },
+					},
+				},
+				Damask = FastNoise {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Detail = Input {
+							Value = 3,
+						},
+						XScale = Input {
+							Value = 14,
+						},
+						SeetheRate = Input {
+							Value = 0,
+						},
+						Contrast = Input {
+							Value = 1.8,
+						},
+						Brightness = Input {
+							Value = 0,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						Color1Red = Input {
+							Value = 0,
+						},
+						Color1Green = Input {
+							Value = 0,
+						},
+						Color1Blue = Input {
+							Value = 0,
+						},
+						Color1Alpha = Input {
+							Value = 1,
+						},
+						Color2Red = Input {
+							Value = 0.101961,
+						},
+						Color2Green = Input {
+							Value = 0.137255,
+						},
+						Color2Blue = Input {
+							Value = 0.27451,
+						},
+						Color2Alpha = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 0 },
+					},
+				},
+				DamaskMerge = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "RoyalVelvet",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Damask",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "0.35*CONTROLS.BackgroundIntensity",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 0 },
+					},
+				},
+				EmblemAuraColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftRed*0.35",
+						},
+						TopLeftGreen = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftGreen*0.35",
+						},
+						TopLeftBlue = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftBlue*0.35",
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "EmblemAuraShape",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 0 },
+					},
+				},
+				EmblemAuraShape = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.7,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+						},
+						Width = Input {
+							Value = 0.9,
+						},
+						Height = Input {
+							Value = 1.4,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 0 },
+					},
+				},
+				EmblemAura = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "DamaskMerge",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "EmblemAuraColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "CONTROLS.BackgroundIntensity*(0.25 + 0.35*min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1) + 0.5*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 12)))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 550, 0 },
+					},
+				},
+				Ring0 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+						},
+						Width = Input {
+							Value = 0.264375,
+							Expression = "0.26437*(0.6 + 0.4*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.000)/0.3, 0), 1), 2.5)))",
+						},
+						Height = Input {
+							Value = 0.47,
+							Expression = "0.47000*(0.6 + 0.4*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.000)/0.3, 0), 1), 2.5)))",
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						BorderWidth = Input {
+							Value = 0.003966,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.000)/0.3, 0), 1), 2.5))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 66 },
+					},
+				},
+				Ring1 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+						},
+						Width = Input {
+							Value = 0.237937,
+							Expression = "0.23794*(0.6 + 0.4*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.080)/0.3, 0), 1), 2.5)))",
+						},
+						Height = Input {
+							Value = 0.423,
+							Expression = "0.42300*(0.6 + 0.4*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.080)/0.3, 0), 1), 2.5)))",
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						BorderWidth = Input {
+							Value = 0.001586,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.080)/0.3, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Ring0",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 66 },
+					},
+				},
+				Ring2 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+						},
+						Width = Input {
+							Value = 0.132187,
+							Expression = "0.13219*(0.6 + 0.4*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.300)/0.3, 0), 1), 2.5)))",
+						},
+						Height = Input {
+							Value = 0.235,
+							Expression = "0.23500*(0.6 + 0.4*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.300)/0.3, 0), 1), 2.5)))",
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						BorderWidth = Input {
+							Value = 0.001322,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.300)/0.3, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Ring1",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 66 },
+					},
+				},
+				BeadRing = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+						},
+						Width = Input {
+							Value = 0.251156,
+						},
+						Height = Input {
+							Value = 0.4465,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						BorderWidth = Input {
+							Value = 0.004,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "0.6*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.120)/0.25, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Ring2",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 66 },
+					},
+				},
+				Tick0 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0005,
+						},
+						Center = Input {
+							Value = { 0.611038, 0.5 },
+						},
+						Width = Input {
+							Value = 0.001586,
+						},
+						Height = Input {
+							Value = 0.0188,
+						},
+						Angle = Input {
+							Value = -90,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.150)/0.08, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "BeadRing",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 66 },
+					},
+				},
+				Tick1 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0005,
+						},
+						Center = Input {
+							Value = { 0.596161, 0.4013 },
+						},
+						Width = Input {
+							Value = 0.001586,
+						},
+						Height = Input {
+							Value = 0.0188,
+						},
+						Angle = Input {
+							Value = -120,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.175)/0.08, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Tick0",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 550, 66 },
+					},
+				},
+				Tick2 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0005,
+						},
+						Center = Input {
+							Value = { 0.555519, 0.329047 },
+						},
+						Width = Input {
+							Value = 0.001586,
+						},
+						Height = Input {
+							Value = 0.0188,
+						},
+						Angle = Input {
+							Value = -150,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.200)/0.08, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Tick1",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 660, 66 },
+					},
+				},
+				Tick3 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0005,
+						},
+						Center = Input {
+							Value = { 0.5, 0.3026 },
+						},
+						Width = Input {
+							Value = 0.001586,
+						},
+						Height = Input {
+							Value = 0.0188,
+						},
+						Angle = Input {
+							Value = -180,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.225)/0.08, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Tick2",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 770, 66 },
+					},
+				},
+				Tick4 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0005,
+						},
+						Center = Input {
+							Value = { 0.444481, 0.329047 },
+						},
+						Width = Input {
+							Value = 0.001586,
+						},
+						Height = Input {
+							Value = 0.0188,
+						},
+						Angle = Input {
+							Value = -210,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.250)/0.08, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Tick3",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 880, 66 },
+					},
+				},
+				Tick5 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0005,
+						},
+						Center = Input {
+							Value = { 0.403839, 0.4013 },
+						},
+						Width = Input {
+							Value = 0.001586,
+						},
+						Height = Input {
+							Value = 0.0188,
+						},
+						Angle = Input {
+							Value = -240,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.275)/0.08, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Tick4",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 990, 66 },
+					},
+				},
+				Tick6 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0005,
+						},
+						Center = Input {
+							Value = { 0.388962, 0.5 },
+						},
+						Width = Input {
+							Value = 0.001586,
+						},
+						Height = Input {
+							Value = 0.0188,
+						},
+						Angle = Input {
+							Value = -270,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.300)/0.08, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Tick5",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1100, 66 },
+					},
+				},
+				Tick7 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0005,
+						},
+						Center = Input {
+							Value = { 0.403839, 0.5987 },
+						},
+						Width = Input {
+							Value = 0.001586,
+						},
+						Height = Input {
+							Value = 0.0188,
+						},
+						Angle = Input {
+							Value = -300,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.325)/0.08, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Tick6",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1210, 66 },
+					},
+				},
+				Tick8 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0005,
+						},
+						Center = Input {
+							Value = { 0.444481, 0.670953 },
+						},
+						Width = Input {
+							Value = 0.001586,
+						},
+						Height = Input {
+							Value = 0.0188,
+						},
+						Angle = Input {
+							Value = -330,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.350)/0.08, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Tick7",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1320, 66 },
+					},
+				},
+				Tick9 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0005,
+						},
+						Center = Input {
+							Value = { 0.5, 0.6974 },
+						},
+						Width = Input {
+							Value = 0.001586,
+						},
+						Height = Input {
+							Value = 0.0188,
+						},
+						Angle = Input {
+							Value = -360,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.375)/0.08, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Tick8",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1430, 66 },
+					},
+				},
+				Tick10 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0005,
+						},
+						Center = Input {
+							Value = { 0.555519, 0.670953 },
+						},
+						Width = Input {
+							Value = 0.001586,
+						},
+						Height = Input {
+							Value = 0.0188,
+						},
+						Angle = Input {
+							Value = -390,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.400)/0.08, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Tick9",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1540, 66 },
+					},
+				},
+				Tick11 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0005,
+						},
+						Center = Input {
+							Value = { 0.596161, 0.5987 },
+						},
+						Width = Input {
+							Value = 0.001586,
+						},
+						Height = Input {
+							Value = 0.0188,
+						},
+						Angle = Input {
+							Value = -420,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.425)/0.08, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Tick10",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1650, 66 },
+					},
+				},
+				DialGold = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftRed*1.0",
+						},
+						TopLeftGreen = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftGreen*1.0",
+						},
+						TopLeftBlue = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftBlue*1.0",
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Tick11",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1760, 66 },
+					},
+				},
+				DialSpin = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "DialGold",
+							Source = "Output",
+						},
+						Angle = Input {
+							Value = 0,
+							Expression = "-time*0.125",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1870, 66 },
+					},
+				},
+				Laurel0 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.561064, 0.387585 },
+						},
+						Width = Input {
+							Value = 0.019828,
+							Expression = "0.01983*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.300)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.300)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -164,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1980, 66 },
+					},
+				},
+				Laurel1 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.569328, 0.372371 },
+						},
+						Width = Input {
+							Value = 0.019828,
+							Expression = "0.01983*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.324)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.324)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -108,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel0",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2090, 66 },
+					},
+				},
+				Laurel2 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.570663, 0.407044 },
+						},
+						Width = Input {
+							Value = 0.019233,
+							Expression = "0.01923*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.330)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.330)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -154.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel1",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2200, 66 },
+					},
+				},
+				Laurel3 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.580226, 0.394464 },
+						},
+						Width = Input {
+							Value = 0.019233,
+							Expression = "0.01923*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.354)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.354)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -98.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel2",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2310, 66 },
+					},
+				},
+				Laurel4 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.578324, 0.429053 },
+						},
+						Width = Input {
+							Value = 0.018638,
+							Expression = "0.01864*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.360)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.360)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -145,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel3",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2420, 66 },
+					},
+				},
+				Laurel5 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.588924, 0.419451 },
+						},
+						Width = Input {
+							Value = 0.018638,
+							Expression = "0.01864*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.384)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.384)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -89,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel4",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2530, 66 },
+					},
+				},
+				Laurel6 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.583836, 0.453007 },
+						},
+						Width = Input {
+							Value = 0.018044,
+							Expression = "0.01804*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.390)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.390)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -135.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel5",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2640, 66 },
+					},
+				},
+				Laurel7 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.595182, 0.446647 },
+						},
+						Width = Input {
+							Value = 0.018044,
+							Expression = "0.01804*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.414)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.414)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -79.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel6",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2750, 66 },
+					},
+				},
+				Laurel8 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.587049, 0.478251 },
+						},
+						Width = Input {
+							Value = 0.017449,
+							Expression = "0.01745*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.420)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.420)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -126,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel7",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2860, 66 },
+					},
+				},
+				Laurel9 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.59883, 0.475307 },
+						},
+						Width = Input {
+							Value = 0.017449,
+							Expression = "0.01745*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.444)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.444)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -70,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel8",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2970, 66 },
+					},
+				},
+				Laurel10 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.587875, 0.504091 },
+						},
+						Width = Input {
+							Value = 0.016854,
+							Expression = "0.01685*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.450)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.450)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -116.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel9",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3080, 66 },
+					},
+				},
+				Laurel11 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.599767, 0.504644 },
+						},
+						Width = Input {
+							Value = 0.016854,
+							Expression = "0.01685*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.474)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.474)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -60.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel10",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3190, 66 },
+					},
+				},
+				Laurel12 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.58629, 0.529819 },
+						},
+						Width = Input {
+							Value = 0.016259,
+							Expression = "0.01626*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.480)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.480)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -107,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel11",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3300, 66 },
+					},
+				},
+				Laurel13 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.597968, 0.533854 },
+						},
+						Width = Input {
+							Value = 0.016259,
+							Expression = "0.01626*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.504)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.504)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -51,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel12",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3410, 66 },
+					},
+				},
+				Laurel14 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.582338, 0.554729 },
+						},
+						Width = Input {
+							Value = 0.015664,
+							Expression = "0.01566*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.510)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.510)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -97.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel13",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3520, 66 },
+					},
+				},
+				Laurel15 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.593481, 0.562136 },
+						},
+						Width = Input {
+							Value = 0.015664,
+							Expression = "0.01566*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.534)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.534)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -41.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel14",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3630, 66 },
+					},
+				},
+				Laurel16 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.576128, 0.578137 },
+						},
+						Width = Input {
+							Value = 0.015069,
+							Expression = "0.01507*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.540)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.540)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -88,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel15",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3740, 66 },
+					},
+				},
+				Laurel17 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.586431, 0.588712 },
+						},
+						Width = Input {
+							Value = 0.015069,
+							Expression = "0.01507*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.564)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.564)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -32,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel16",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3850, 66 },
+					},
+				},
+				Laurel18 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.438936, 0.387585 },
+						},
+						Width = Input {
+							Value = 0.019828,
+							Expression = "0.01983*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.300)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.300)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -196,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel17",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3960, 66 },
+					},
+				},
+				Laurel19 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.430672, 0.372371 },
+						},
+						Width = Input {
+							Value = 0.019828,
+							Expression = "0.01983*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.324)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.324)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -252,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel18",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4070, 66 },
+					},
+				},
+				Laurel20 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.429337, 0.407044 },
+						},
+						Width = Input {
+							Value = 0.019233,
+							Expression = "0.01923*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.330)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.330)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -205.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel19",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4180, 66 },
+					},
+				},
+				Laurel21 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.419774, 0.394464 },
+						},
+						Width = Input {
+							Value = 0.019233,
+							Expression = "0.01923*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.354)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.354)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -261.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel20",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4290, 66 },
+					},
+				},
+				Laurel22 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.421676, 0.429053 },
+						},
+						Width = Input {
+							Value = 0.018638,
+							Expression = "0.01864*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.360)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.360)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -215,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel21",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4400, 66 },
+					},
+				},
+				Laurel23 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.411076, 0.419451 },
+						},
+						Width = Input {
+							Value = 0.018638,
+							Expression = "0.01864*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.384)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.384)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -271,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel22",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4510, 66 },
+					},
+				},
+				Laurel24 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.416164, 0.453007 },
+						},
+						Width = Input {
+							Value = 0.018044,
+							Expression = "0.01804*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.390)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.390)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -224.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel23",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4620, 66 },
+					},
+				},
+				Laurel25 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.404818, 0.446647 },
+						},
+						Width = Input {
+							Value = 0.018044,
+							Expression = "0.01804*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.414)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.414)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -280.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel24",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4730, 66 },
+					},
+				},
+				Laurel26 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.412951, 0.478251 },
+						},
+						Width = Input {
+							Value = 0.017449,
+							Expression = "0.01745*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.420)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.420)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -234,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel25",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4840, 66 },
+					},
+				},
+				Laurel27 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.40117, 0.475307 },
+						},
+						Width = Input {
+							Value = 0.017449,
+							Expression = "0.01745*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.444)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.444)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -290,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel26",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4950, 66 },
+					},
+				},
+				Laurel28 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.412125, 0.504091 },
+						},
+						Width = Input {
+							Value = 0.016854,
+							Expression = "0.01685*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.450)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.450)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -243.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel27",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 5060, 66 },
+					},
+				},
+				Laurel29 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.400233, 0.504644 },
+						},
+						Width = Input {
+							Value = 0.016854,
+							Expression = "0.01685*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.474)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.474)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -299.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel28",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 5170, 66 },
+					},
+				},
+				Laurel30 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.41371, 0.529819 },
+						},
+						Width = Input {
+							Value = 0.016259,
+							Expression = "0.01626*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.480)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.480)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -253,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel29",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 5280, 66 },
+					},
+				},
+				Laurel31 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.402032, 0.533854 },
+						},
+						Width = Input {
+							Value = 0.016259,
+							Expression = "0.01626*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.504)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.504)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -309,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel30",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 5390, 66 },
+					},
+				},
+				Laurel32 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.417662, 0.554729 },
+						},
+						Width = Input {
+							Value = 0.015664,
+							Expression = "0.01566*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.510)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.510)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -262.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel31",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 5500, 66 },
+					},
+				},
+				Laurel33 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.406519, 0.562136 },
+						},
+						Width = Input {
+							Value = 0.015664,
+							Expression = "0.01566*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.534)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.534)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -318.5,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel32",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 5610, 66 },
+					},
+				},
+				Laurel34 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.423872, 0.578137 },
+						},
+						Width = Input {
+							Value = 0.015069,
+							Expression = "0.01507*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.540)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.540)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -272,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel33",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 5720, 66 },
+					},
+				},
+				Laurel35 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.002,
+						},
+						Center = Input {
+							Value = { 0.413569, 0.588712 },
+						},
+						Width = Input {
+							Value = 0.015069,
+							Expression = "0.01507*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.564)/0.12, 0), 1), 2.5))",
+						},
+						Height = Input {
+							Value = 0.01316,
+							Expression = "0.01316*(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.564)/0.12, 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = -328,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel34",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 5830, 66 },
+					},
+				},
+				Chevron0 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						BorderWidth = Input {
+							Value = 0.004627,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = -0.03966,
+										Y = 0.24205,
+									},
+									{
+										Linear = true,
+										X = 0,
+										Y = 0.27025,
+									},
+									{
+										Linear = true,
+										X = 0.03966,
+										Y = 0.24205,
+									},
+								},
+							},
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5, 0.5 + 0.1410*(1 - (1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.500)/0.18, 0), 1), 2.5))))",
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "min((1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.500)/0.18, 0), 1), 2.5))*1.5, 1)",
+						},
+						EffectMask = Input {
+							SourceOp = "Laurel35",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 5940, 66 },
+					},
+				},
+				Chevron1 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						BorderWidth = Input {
+							Value = 0.004627,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = -0.0304,
+										Y = 0.2679,
+									},
+									{
+										Linear = true,
+										X = 0,
+										Y = 0.2961,
+									},
+									{
+										Linear = true,
+										X = 0.0304,
+										Y = 0.2679,
+									},
+								},
+							},
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5, 0.5 + 0.1410*(1 - (1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.570)/0.18, 0), 1), 2.5))))",
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "min((1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.570)/0.18, 0), 1), 2.5))*1.5, 1)",
+						},
+						EffectMask = Input {
+							SourceOp = "Chevron0",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 6050, 66 },
+					},
+				},
+				Chevron2 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						BorderWidth = Input {
+							Value = 0.004627,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = -0.02115,
+										Y = 0.29375,
+									},
+									{
+										Linear = true,
+										X = 0,
+										Y = 0.32195,
+									},
+									{
+										Linear = true,
+										X = 0.02115,
+										Y = 0.29375,
+									},
+								},
+							},
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5, 0.5 + 0.1410*(1 - (1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.640)/0.18, 0), 1), 2.5))))",
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "min((1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.640)/0.18, 0), 1), 2.5))*1.5, 1)",
+						},
+						EffectMask = Input {
+							SourceOp = "Chevron1",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 6160, 66 },
+					},
+				},
+				Chevron3 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						BorderWidth = Input {
+							Value = 0.004627,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = -0.02908,
+										Y = -0.2585,
+									},
+									{
+										Linear = true,
+										X = 0,
+										Y = -0.2867,
+									},
+									{
+										Linear = true,
+										X = 0.02908,
+										Y = -0.2585,
+									},
+								},
+							},
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5, 0.5 + -0.1410*(1 - (1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.550)/0.18, 0), 1), 2.5))))",
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "min((1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.550)/0.18, 0), 1), 2.5))*1.5, 1)",
+						},
+						EffectMask = Input {
+							SourceOp = "Chevron2",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 6270, 66 },
+					},
+				},
+				Diamond0 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0,
+										Y = 0.37365,
+									},
+									{
+										Linear = true,
+										X = 0.00555,
+										Y = 0.3572,
+									},
+									{
+										Linear = true,
+										X = 0,
+										Y = 0.34075,
+									},
+									{
+										Linear = true,
+										X = -0.00555,
+										Y = 0.3572,
+									},
+								},
+							},
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.720)/0.12, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Chevron3",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 6380, 66 },
+					},
+				},
+				Diamond1 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0,
+										Y = -0.30785,
+									},
+									{
+										Linear = true,
+										X = 0.00397,
+										Y = -0.3196,
+									},
+									{
+										Linear = true,
+										X = 0,
+										Y = -0.33135,
+									},
+									{
+										Linear = true,
+										X = -0.00397,
+										Y = -0.3196,
+									},
+								},
+							},
+						},
+						Level = Input {
+							Value = 1,
+							Expression = "(1 - pow(1 - min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.700)/0.12, 0), 1), 2.5))",
+						},
+						EffectMask = Input {
+							SourceOp = "Diamond0",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 6490, 66 },
+					},
+				},
+				BannerRule0 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0005,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5846 },
+						},
+						Width = Input {
+							Value = 0,
+							Expression = "0.46266*(0.5 - 0.5*cos(3.14159265*min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.62)/0.25, 0), 1)))",
+						},
+						Height = Input {
+							Value = 0.00376,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "Diamond1",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 6600, 66 },
+					},
+				},
+				BannerRule1 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0005,
+						},
+						Center = Input {
+							Value = { 0.5, 0.4154 },
+						},
+						Width = Input {
+							Value = 0,
+							Expression = "0.46266*(0.5 - 0.5*cos(3.14159265*min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.66)/0.25, 0), 1)))",
+						},
+						Height = Input {
+							Value = 0.00376,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "BannerRule0",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 6710, 66 },
+					},
+				},
+				CrestGold = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftRed*1.0",
+						},
+						TopLeftGreen = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftGreen*1.0",
+						},
+						TopLeftBlue = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftBlue*1.0",
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "BannerRule1",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 6820, 66 },
+					},
+				},
+				EmblemAssembly = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "DialSpin",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "CrestGold",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 6930, 66 },
+					},
+				},
+				GoldEmbossMatte = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "EmblemAssembly",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Alpha" },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 132 },
+					},
+				},
+				GoldEmboss = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Type = Input {
+							Value = FuID { "Gradient" },
+						},
+						GradientType = Input {
+							Value = FuID { "Linear" },
+						},
+						Start = Input {
+							Value = { 0.5, 0.95 },
+						},
+						End = Input {
+							Value = { 0.5, 0.05 },
+						},
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.352941, 0.231373, 0.062745, 1 },
+									[0.45] = { 0.913725, 0.768627, 0.435294, 1 },
+									[0.52] = { 1, 0.94902, 0.784314, 1 },
+									[0.6] = { 0.721569, 0.541176, 0.203922, 1 },
+									[1] = { 0.290196, 0.188235, 0.047059, 1 }
+								}
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "GoldEmbossMatte",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 132 },
+					},
+				},
+				EmblemMetal = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "EmblemAssembly",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "GoldEmboss",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Multiply" },
+						},
+						Blend = Input {
+							Value = 0.85,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 132 },
+					},
+				},
+				EmblemGlintBand = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.056,
+						},
+						Width = Input {
+							Value = 0.07,
+						},
+						Height = Input {
+							Value = 2,
+						},
+						Angle = Input {
+							Value = 35,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(-0.2 + 1.4*(0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.ImpactFrame - 1)) / max(24, 1), 0), 1))), 0.5)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 132 },
+					},
+				},
+				EmblemGlintClip = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "EmblemAssembly",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Alpha" },
+						},
+						PaintMode = Input {
+							Value = FuID { "Multiply" },
+						},
+						EffectMask = Input {
+							SourceOp = "EmblemGlintBand",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 132 },
+					},
+				},
+				EmblemGlintColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+						},
+						TopLeftGreen = Input {
+							Value = 0.95,
+						},
+						TopLeftBlue = Input {
+							Value = 0.85,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "EmblemGlintClip",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 550, 132 },
+					},
+				},
+				EmblemGlint = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "EmblemMetal",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "EmblemGlintColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "1.0*CONTROLS.GlowStrength*min(max(min(max((time - (CONTROLS.ImpactFrame - 1)) / max(24, 1), 0), 1)*20, 0), 1)*(1-min(max((min(max((time - (CONTROLS.ImpactFrame - 1)) / max(24, 1), 0), 1)-0.95)*20, 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 660, 132 },
+					},
+				},
+				EmblemTransform = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "EmblemGlint",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(CONTROLS.TextPosX, CONTROLS.TextPosY)",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "CONTROLS.EmblemScale*(1 + 0.04*(0.5 - 0.5*cos(3.14159265*min(max((time - (0)) / max(196, 1), 0), 1))) + 0.08*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1), 3))) + 0.9*pow(min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1), 2))",
+						},
+						Angle = Input {
+							Value = 0,
+							Expression = "CONTROLS.EmblemRotation + 50*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1), 3))) - 60*pow(min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1), 2)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 770, 132 },
+					},
+				},
+				EmblemGlow = SoftGlow {
+					Inputs = {
+						Input = Input {
+							SourceOp = "EmblemTransform",
+							Source = "Output",
+						},
+						Threshold = Input {
+							Value = 0.4,
+						},
+						XGlowSize = Input {
+							Value = 10,
+						},
+						Gain = Input {
+							Value = 1,
+							Expression = "CONTROLS.GlowStrength*(0.3 + 0.6*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 12)))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 880, 132 },
+					},
+				},
+				EmblemOverVelvet = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "EmblemAura",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "EmblemGlow",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "1 - min(max((min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1) - 0.1)/0.7, 0), 1)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 990, 132 },
+					},
+				},
+				BannerPlateColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0.012,
+						},
+						TopLeftGreen = Input {
+							Value = 0.016,
+						},
+						TopLeftBlue = Input {
+							Value = 0.035,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "BannerPlate",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 198 },
+					},
+				},
+				BannerPlate = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.004,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(CONTROLS.TextPosX, CONTROLS.TextPosY)",
+						},
+						Width = Input {
+							Value = 0.01,
+							Expression = "0.4627*CONTROLS.EmblemScale*(0.5 - 0.5*cos(3.14159265*min(max((min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1) - 0.6)/0.3, 0), 1)))",
+						},
+						Height = Input {
+							Value = 0.1692,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 198 },
+					},
+				},
+				BannerPlateMerge = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "EmblemOverVelvet",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "BannerPlateColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "0.85*(1 - min(max((min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1) - 0.1)/0.7, 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 198 },
+					},
+				},
+				MainTitle = TextPlus {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						StyledText = Input {
+							Value = "SOVEREIGN",
+						},
+						Font = Input {
+							Value = "Cinzel Decorative",
+						},
+						Style = Input {
+							Value = "Black",
+						},
+						Size = Input {
+							Value = 0.1,
+						},
+						CharacterSpacing = Input {
+							Value = 1.06,
+						},
+						LineSpacing = Input {
+							Value = 1,
+						},
+						VerticalJustificationNew = Input {
+							Value = 3,
+						},
+						HorizontalJustificationNew = Input {
+							Value = 3,
+						},
+						Red1 = Input {
+							Value = 0.945098,
+						},
+						Green1 = Input {
+							Value = 0.92549,
+						},
+						Blue1 = Input {
+							Value = 0.886275,
+						},
+						Alpha1 = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 198 },
+					},
+				},
+				SilverPlateMatte = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "MainTitle",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Alpha" },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 198 },
+					},
+				},
+				SilverPlate = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Type = Input {
+							Value = FuID { "Gradient" },
+						},
+						GradientType = Input {
+							Value = FuID { "Linear" },
+						},
+						Start = Input {
+							Value = { 0.5, 0.62 },
+						},
+						End = Input {
+							Value = { 0.5, 0.38 },
+						},
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.419608, 0.407843, 0.384314, 1 },
+									[0.42] = { 0.85098, 0.831373, 0.792157, 1 },
+									[0.5] = { 1, 1, 1, 1 },
+									[0.6] = { 0.635294, 0.611765, 0.572549, 1 },
+									[1] = { 0.333333, 0.321569, 0.301961, 1 }
+								}
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SilverPlateMatte",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 550, 198 },
+					},
+				},
+				TitleFace = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "MainTitle",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SilverPlate",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Multiply" },
+						},
+						Blend = Input {
+							Value = 0.75,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 660, 198 },
+					},
+				},
+				TitleGoldRimShift = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "MainTitle",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.498 },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 770, 198 },
+					},
+				},
+				TitleGoldRimMaskA = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "MainTitle",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Alpha" },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 880, 198 },
+					},
+				},
+				TitleGoldRimMaskB = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "TitleGoldRimShift",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Alpha" },
+						},
+						PaintMode = Input {
+							Value = FuID { "Subtract" },
+						},
+						EffectMask = Input {
+							SourceOp = "TitleGoldRimMaskA",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 990, 198 },
+					},
+				},
+				TitleGoldRimColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftRed*1.2",
+						},
+						TopLeftGreen = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftGreen*1.2",
+						},
+						TopLeftBlue = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftBlue*1.2",
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "TitleGoldRimMaskB",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1100, 198 },
+					},
+				},
+				TitleGoldRimSoft = Blur {
+					Inputs = {
+						Input = Input {
+							SourceOp = "TitleGoldRimColor",
+							Source = "Output",
+						},
+						XBlurSize = Input {
+							Value = 0.8,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1210, 198 },
+					},
+				},
+				TitleRimMerge = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "TitleFace",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "TitleGoldRimSoft",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(CONTROLS.GlowStrength*0.6, 1)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1320, 198 },
+					},
+				},
+				TitleSweepBand = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.048,
+						},
+						Width = Input {
+							Value = 0.06,
+						},
+						Height = Input {
+							Value = 2,
+						},
+						Angle = Input {
+							Value = 25,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(-0.2 + 1.4*(0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.ImpactFrame + 2)) / max(29, 1), 0), 1))), 0.5)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1430, 198 },
+					},
+				},
+				TitleSweepClip = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "MainTitle",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Alpha" },
+						},
+						PaintMode = Input {
+							Value = FuID { "Multiply" },
+						},
+						EffectMask = Input {
+							SourceOp = "TitleSweepBand",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1540, 198 },
+					},
+				},
+				TitleSweepColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+						},
+						TopLeftGreen = Input {
+							Value = 0.95,
+						},
+						TopLeftBlue = Input {
+							Value = 0.85,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "TitleSweepClip",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1650, 198 },
+					},
+				},
+				TitleSweep = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "TitleRimMerge",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "TitleSweepColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "0.9*CONTROLS.GlowStrength*min(max(min(max((time - (CONTROLS.ImpactFrame + 2)) / max(29, 1), 0), 1)*20, 0), 1)*(1-min(max((min(max((time - (CONTROLS.ImpactFrame + 2)) / max(29, 1), 0), 1)-0.95)*20, 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1760, 198 },
+					},
+				},
+				TitleOnBanner = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "TitleSweep",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(CONTROLS.TextPosX + 0, CONTROLS.TextPosY + 0)",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "CONTROLS.TextScale * (1 + 0.06*(1 - (1 - pow(1 - min(max((time - (CONTROLS.ImpactFrame - 3)) / max(12, 1), 0), 1), 2))))",
+						},
+						Angle = Input {
+							Value = 0,
+							Expression = "CONTROLS.TextRotation + 0",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1870, 198 },
+					},
+				},
+				TitleOverEmblem = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "BannerPlateMerge",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "TitleOnBanner",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(max((time - (CONTROLS.ImpactFrame - 3)) / max(12, 1), 0), 1)*(1 - min(max((min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1) - 0.3)/0.7, 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1980, 198 },
+					},
+				},
+				GoldDustEmitter = pEmitter {
+					Inputs = {
+						Number = Input {
+							Value = 6,
+							Expression = "6*CONTROLS.ParticleIntensity",
+						},
+						Lifespan = Input {
+							Value = 180,
+						},
+						LifespanVariance = Input {
+							Value = 54,
+						},
+						Velocity = Input {
+							Value = 0.0015,
+						},
+						VelocityVariance = Input {
+							Value = 0.0009,
+						},
+						Angle = Input {
+							Value = 90,
+						},
+						AngleVariance = Input {
+							Value = 60,
+						},
+						Region = Input {
+							Value = FuID { "CubeRgn" },
+						},
+						["ParticleStyle.ColorControls"] = Input {
+							Value = 1,
+						},
+						["ParticleStyle.Red"] = Input {
+							Value = 0.85098,
+						},
+						["ParticleStyle.Green"] = Input {
+							Value = 0.658824,
+						},
+						["ParticleStyle.Blue"] = Input {
+							Value = 0.290196,
+						},
+						["ParticleStyle.Size"] = Input {
+							Value = 0.25,
+						},
+						["ParticleStyle.SizeVariance"] = Input {
+							Value = 0.15,
+						},
+						["CubeRgn.Width"] = Input {
+							Value = 2.2,
+						},
+						["CubeRgn.Height"] = Input {
+							Value = 1.4,
+						},
+						["CubeRgn.Depth"] = Input {
+							Value = 1,
+						},
+						["Transform3DOp.Translate.Y"] = Input {
+							Value = 0,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 264 },
+					},
+				},
+				GoldDustTurb = pTurbulence {
+					Inputs = {
+						Input = Input {
+							SourceOp = "GoldDustEmitter",
+							Source = "Output",
+						},
+						XStrength = Input {
+							Value = 0.07,
+						},
+						YStrength = Input {
+							Value = 0.07,
+						},
+						ZStrength = Input {
+							Value = 0.035,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 264 },
+					},
+				},
+				GoldDustRender = pRender {
+					Inputs = {
+						Input = Input {
+							SourceOp = "GoldDustTurb",
+							Source = "Output",
+						},
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 264 },
+					},
+				},
+				GoldDustGlow = SoftGlow {
+					Inputs = {
+						Input = Input {
+							SourceOp = "GoldDustRender",
+							Source = "Output",
+						},
+						Threshold = Input {
+							Value = 0.1,
+						},
+						XGlowSize = Input {
+							Value = 3,
+						},
+						Gain = Input {
+							Value = 1,
+							Expression = "1.2*CONTROLS.GlowStrength",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 264 },
+					},
+				},
+				GoldDust = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "TitleOverEmblem",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "GoldDustGlow",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(CONTROLS.ParticleIntensity, 1)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 264 },
+					},
+				},
+				LockFlashColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0.85098,
+						},
+						TopLeftGreen = Input {
+							Value = 0.658824,
+						},
+						TopLeftBlue = Input {
+							Value = 0.290196,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 550, 264 },
+					},
+				},
+				LockFlash = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "GoldDust",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "LockFlashColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "0.08*CONTROLS.ImpactIntensity*(min(max((time - (CONTROLS.ImpactFrame + 0) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame + 0), 0) / 6))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 660, 264 },
+					},
+				},
+				Subtitle = TextPlus {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						StyledText = Input {
+							Value = "BY ROYAL DECREE",
+						},
+						Font = Input {
+							Value = "Marcellus SC",
+						},
+						Style = Input {
+							Value = "Regular",
+						},
+						Size = Input {
+							Value = 0.02,
+						},
+						CharacterSpacing = Input {
+							Value = 1.3,
+						},
+						LineSpacing = Input {
+							Value = 1,
+						},
+						VerticalJustificationNew = Input {
+							Value = 3,
+						},
+						HorizontalJustificationNew = Input {
+							Value = 3,
+						},
+						Red1 = Input {
+							Value = 0.86,
+						},
+						Green1 = Input {
+							Value = 0.76,
+						},
+						Blue1 = Input {
+							Value = 0.52,
+						},
+						Alpha1 = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 770, 264 },
+					},
+				},
+				SubtitlePlace = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Subtitle",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(CONTROLS.TextPosX, CONTROLS.TextPosY + -0.1551)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 880, 264 },
+					},
+				},
+				SubtitleMerge = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "LockFlash",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SubtitlePlace",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "(min(max((time - (CONTROLS.ImpactFrame + 12) + 18) / 18, 0), 1) * (1 - min(max((time - (CONTROLS.ExitStart)) / 12, 0), 1)))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 990, 264 },
+					},
+				},
+				Camera = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "SubtitleMerge",
+							Source = "Output",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "1 + 0.04*(0.5 - 0.5*cos(3.14159265*min(max((time - (0)) / max(196, 1), 0), 1)))",
+						},
+						Edges = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1100, 264 },
+					},
+				},
+				VignetteColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0,
+						},
+						TopLeftGreen = Input {
+							Value = 0,
+						},
+						TopLeftBlue = Input {
+							Value = 0,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "VignetteShape",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1210, 264 },
+					},
+				},
+				VignetteShape = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.45,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+						},
+						Width = Input {
+							Value = 1.25,
+						},
+						Height = Input {
+							Value = 1.25,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Invert = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1320, 264 },
+					},
+				},
+				Vignette = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Camera",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "VignetteColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 0.55,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1430, 264 },
+					},
+				},
+				Grain = FilmGrain {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Vignette",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1540, 264 },
+					},
+				},
+				LetterboxColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0,
+						},
+						TopLeftGreen = Input {
+							Value = 0,
+						},
+						TopLeftBlue = Input {
+							Value = 0,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "LetterboxShape",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1650, 264 },
+					},
+				},
+				LetterboxShape = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+						},
+						Width = Input {
+							Value = 1,
+						},
+						Height = Input {
+							Value = 0.7438,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Invert = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1760, 264 },
+					},
+				},
+				Letterbox = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Grain",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "LetterboxColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "CONTROLS.Letterbox",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1870, 264 },
+					},
+				},
+			},
+		},
+	},
+	ActiveTool = "T38_Royal_Insignia",
+}

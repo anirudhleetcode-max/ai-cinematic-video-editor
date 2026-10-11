@@ -1,0 +1,332 @@
+{
+  "id": "T11",
+  "name": "Golden Emperor",
+  "slug": "Golden_Emperor",
+  "category": "C - 3D Metal and Premium Materials",
+  "version": "1.0.0",
+  "concept": "A regal, restrained gold title: solid polished bullion letterforms turn to face the camera in a dark hall.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 216,
+  "duration_seconds": 9.0,
+  "phases": {
+    "build_up": [
+      0,
+      92
+    ],
+    "impact_frame": 92,
+    "hero_hold": [
+      92,
+      170
+    ],
+    "exit": [
+      170,
+      208
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": true,
+  "uses_2_5d": false,
+  "depth_note": "Fusion source uses Text3D/Renderer3D geometry; the preview approximates the extruded solid with perspective-projected slices.",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Cinzel",
+    "Marcellus SC"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T11_Golden_Emperor.setting",
+  "fusion_composition": "source/T11_Golden_Emperor.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 50,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "BrightnessContrast",
+    "Camera3D",
+    "ColorCorrector",
+    "EllipseMask",
+    "FilmGrain",
+    "LightAmbient",
+    "LightDirectional",
+    "LightSpot",
+    "Merge",
+    "Merge3D",
+    "MtlBlinn",
+    "RectangleMask",
+    "Renderer3D",
+    "SoftGlow",
+    "Text3D",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ImpactIntensity",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "ExtrusionDepth",
+    "BevelAmount",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Impact Intensity",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Extrusion Depth",
+    "Bevel Amount",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title (3D)",
+    "3D Title Font",
+    "3D Title Style",
+    "Material Color",
+    "Material Color",
+    "Material Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T11_Golden_Emperor.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Low warm drone, hall ambience"
+    },
+    {
+      "frame": 8,
+      "seconds": 0.333,
+      "cue": "swell",
+      "note": "Orchestral swell under the turn"
+    },
+    {
+      "frame": 70,
+      "seconds": 2.917,
+      "cue": "riser",
+      "note": "Soft metallic riser into the lock"
+    },
+    {
+      "frame": 92,
+      "seconds": 3.833,
+      "cue": "metal",
+      "note": "Deep resonant gold 'lock' hit"
+    },
+    {
+      "frame": 92,
+      "seconds": 3.833,
+      "cue": "sub",
+      "note": "Sub-bass bloom"
+    },
+    {
+      "frame": 100,
+      "seconds": 4.167,
+      "cue": "shimmer",
+      "note": "Specular sweep shimmer"
+    },
+    {
+      "frame": 104,
+      "seconds": 4.333,
+      "cue": "shimmer",
+      "note": "Glint ping"
+    },
+    {
+      "frame": 170,
+      "seconds": 7.083,
+      "cue": "whoosh",
+      "note": "Slow turning whoosh"
+    },
+    {
+      "frame": 176,
+      "seconds": 7.333,
+      "cue": "tail",
+      "note": "Reverb tail"
+    }
+  ],
+  "techniques": [
+    "Text3D extrusion + bevel",
+    "MtlBlinn gold",
+    "camera push",
+    "yaw reveal",
+    "narrow light sweep",
+    "floor reflection",
+    "star glint",
+    "gold dust bokeh"
+  ],
+  "design": {
+    "entrance": "The extruded gold title glides forward from depth while turning from a three-quarter angle to face the lens (yaw -38 deg to 0) under a slow, elegant camera push.",
+    "reveal": "As it squares up a warm key light blooms behind it; a single narrow specular highlight travels across the bevels; a star glint catches one serif.",
+    "camera": "Continuous slow push-in with a gentle low-angle tilt that levels out; a whisper of settle at the lock.",
+    "material": "Polished gold (Blinn, high specular exponent) with warm-neutral environment reflection, dark horizon band, crisp rounded bevel and darker extruded sides; glossy floor reflection.",
+    "exit": "The title turns away on its vertical axis and recedes while the key light dims to black."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "Renderer3D.RendererOpenGL.LightingEnabled",
+    "Renderer3D.RendererOpenGL.Supersampling",
+    "Transform.FlipVert",
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t11.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "EXTRUSION_DEPTH",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 50,
+      "unconfirmed_inputs": [
+        "Renderer3D.RendererOpenGL.LightingEnabled",
+        "Renderer3D.RendererOpenGL.Supersampling",
+        "Transform.FlipVert",
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 185,
+        "K": 110,
+        "?": 10
+      },
+      "setting_expressions": 41,
+      "published_controls": 36,
+      "text_nodes": [
+        "GoldText3D",
+        "Subtitle"
+      ],
+      "comp_tools": 50,
+      "comp_input_evidence": {
+        "S": 185,
+        "K": 110,
+        "?": 10
+      },
+      "comp_expressions": 41
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 9.0,
+      "frames": 216,
+      "audio": true,
+      "bytes": 2787795,
+      "sample_means": [
+        1.9,
+        3.8,
+        7.6,
+        10.4,
+        12.9,
+        11.6,
+        11.4,
+        7.0,
+        0.7
+      ],
+      "hero_blown_fraction": 0.0001,
+      "hero_contrast": 25.4,
+      "title_band_contrast": 36.5
+    },
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:12:06+00:00"
+  }
+}

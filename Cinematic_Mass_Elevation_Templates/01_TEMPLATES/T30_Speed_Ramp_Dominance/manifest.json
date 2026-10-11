@@ -1,0 +1,306 @@
+{
+  "id": "T30",
+  "name": "Speed Ramp Dominance",
+  "slug": "Speed_Ramp_Dominance",
+  "category": "F - Cinematic Typography and Camera Movement",
+  "version": "1.0.0",
+  "concept": "Pure momentum: the title rockets in from the vanishing point and slams into an almost-frozen slow-motion hold.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 144,
+  "duration_seconds": 6.0,
+  "phases": {
+    "build_up": [
+      0,
+      22
+    ],
+    "impact_frame": 22,
+    "hero_hold": [
+      22,
+      110
+    ],
+    "exit": [
+      110,
+      126
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Russo One",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T30_Speed_Ramp_Dominance.setting",
+  "fusion_composition": "source/T30_Speed_Ramp_Dominance.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 41,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "DirectionalBlur",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "GlowStrength",
+    "ShadowStrength",
+    "ImpactIntensity",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "MotionBlurAmount",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Glow Strength",
+    "Shadow Strength",
+    "Impact Intensity",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Motion Blur Amount",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T30_Speed_Ramp_Dominance.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "riser",
+      "note": "Short aggressive riser (0-22)"
+    },
+    {
+      "frame": 4,
+      "seconds": 0.167,
+      "cue": "whoosh",
+      "note": "Hyper-fast pass-by whoosh"
+    },
+    {
+      "frame": 22,
+      "seconds": 0.917,
+      "cue": "impact",
+      "note": "Hard impact / brake slam"
+    },
+    {
+      "frame": 22,
+      "seconds": 0.917,
+      "cue": "sub",
+      "note": "Sub drop into slow motion"
+    },
+    {
+      "frame": 23,
+      "seconds": 0.958,
+      "cue": "swell",
+      "note": "Slow-motion tonal swell (hold)"
+    },
+    {
+      "frame": 40,
+      "seconds": 1.667,
+      "cue": "heartbeat",
+      "note": "Slowed heartbeat pulse"
+    },
+    {
+      "frame": 106,
+      "seconds": 4.417,
+      "cue": "rwhoosh",
+      "note": "Reverse suck before exit"
+    },
+    {
+      "frame": 110,
+      "seconds": 4.583,
+      "cue": "whoosh",
+      "note": "Exit rush"
+    },
+    {
+      "frame": 126,
+      "seconds": 5.25,
+      "cue": "tail",
+      "note": "Tail"
+    }
+  ],
+  "techniques": [
+    "speed ramp curve",
+    "velocity-scaled zoom blur",
+    "radial speed lines",
+    "impact freeze",
+    "anamorphic streak",
+    "slow-motion creep",
+    "reverse ramp exit"
+  ],
+  "design": {
+    "entrance": "A hyper-fast approach from the vanishing point through rushing speed lines, with zoom/directional blur proportional to velocity, then a hard speed-ramp deceleration.",
+    "reveal": "At the impact frame the title brakes to a near standstill: red edge flash, anamorphic streak, speed lines freeze and drift; a slow-motion creep carries the long, readable hold.",
+    "camera": "Forward rush with impact jolt; then a barely-moving slow-motion creep.",
+    "material": "Gloss white enamel with red (ACCENT) rim and impact accent.",
+    "exit": "Reverse ramp: the title accelerates away into the vanishing point with zoom blur as the lines rush again."
+  },
+  "fusion_notes": [
+    "Motion blur: 'Motion Blur Amount' scales the DirectionalBlur (Zoom type) length on the title and on the speed-line field."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "DirectionalBlur.EffectMask"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t30.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "MOTION_BLUR_AMOUNT",
+      "SHADOW_STRENGTH",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 41,
+      "unconfirmed_inputs": [
+        "DirectionalBlur.EffectMask"
+      ],
+      "setting_input_evidence": {
+        "S": 139,
+        "K": 85,
+        "?": 1
+      },
+      "setting_expressions": 25,
+      "published_controls": 39,
+      "text_nodes": [
+        "MainTitle",
+        "Subtitle"
+      ],
+      "comp_tools": 41,
+      "comp_input_evidence": {
+        "S": 139,
+        "K": 85,
+        "?": 1
+      },
+      "comp_expressions": 25
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 6.0,
+      "frames": 144,
+      "audio": true,
+      "bytes": 2133663,
+      "sample_means": [
+        3.1,
+        8.4,
+        9.6,
+        9.4,
+        9.5,
+        9.7,
+        9.9,
+        3.0,
+        1.5
+      ],
+      "hero_blown_fraction": 0.0001,
+      "hero_contrast": 34.3,
+      "title_band_contrast": 59.7
+    },
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:13:03+00:00"
+  }
+}

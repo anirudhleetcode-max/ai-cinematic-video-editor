@@ -1,0 +1,326 @@
+{
+  "id": "T29",
+  "name": "Cinematic Letter Assembly",
+  "slug": "Cinematic_Letter_Assembly",
+  "category": "F - Cinematic Typography and Camera Movement",
+  "version": "1.0.0",
+  "concept": "An elegant credit-style build: each letter flies in on its own arc and clicks into place on a light rule.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 180,
+  "duration_seconds": 7.5,
+  "phases": {
+    "build_up": [
+      0,
+      36
+    ],
+    "impact_frame": 82,
+    "hero_hold": [
+      82,
+      140
+    ],
+    "exit": [
+      140,
+      168
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Cinzel",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T29_Cinematic_Letter_Assembly.setting",
+  "fusion_composition": "source/T29_Cinematic_Letter_Assembly.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 81,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "EllipseMask",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ShadowStrength",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "MotionBlurAmount",
+    "Letterbox",
+    "StaggerFrames"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Shadow Strength",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Motion Blur Amount",
+    "Letterbox (2.39:1)",
+    "Stagger Interval (frames)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T29_Cinematic_Letter_Assembly.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Warm room tone"
+    },
+    {
+      "frame": 8,
+      "seconds": 0.333,
+      "cue": "whoosh",
+      "note": "First letters fly in"
+    },
+    {
+      "frame": 20,
+      "seconds": 0.833,
+      "cue": "shimmer",
+      "note": "Soft ticks per landing"
+    },
+    {
+      "frame": 40,
+      "seconds": 1.667,
+      "cue": "whoosh",
+      "note": "Mid letters"
+    },
+    {
+      "frame": 76,
+      "seconds": 3.167,
+      "cue": "rwhoosh",
+      "note": "Centre letter approach"
+    },
+    {
+      "frame": 82,
+      "seconds": 3.417,
+      "cue": "impact",
+      "note": "Soft lock-in hit"
+    },
+    {
+      "frame": 83,
+      "seconds": 3.458,
+      "cue": "shimmer",
+      "note": "Sheen sweep"
+    },
+    {
+      "frame": 140,
+      "seconds": 5.833,
+      "cue": "whoosh",
+      "note": "Letters lift away"
+    },
+    {
+      "frame": 160,
+      "seconds": 6.667,
+      "cue": "tail",
+      "note": "Airy tail"
+    }
+  ],
+  "techniques": [
+    "per-glyph 3D arcs (preview)",
+    "slot-based stagger (Fusion)",
+    "designed rhythm",
+    "landing glints",
+    "baseline rule draw",
+    "sheen sweep",
+    "staggered reverse exit"
+  ],
+  "design": {
+    "entrance": "Letters travel in individually from depth on curved, rotating paths. Outer letters arrive first, alternating sides, with a designed non-uniform rhythm; the centre letter lands last.",
+    "reveal": "Each landing ticks a glint on the champagne baseline; at the impact frame the rule flashes and a sheen crosses the word.",
+    "camera": "Gentle locked-off push; depth comes from the letters' own 3D arcs.",
+    "material": "Ivory porcelain lettering with a soft bevel; champagne (ACCENT) baseline rule and glints.",
+    "exit": "Letters lift away in reverse order with the same rhythm, rotating back into depth."
+  },
+  "fusion_notes": [
+    "Per-letter animation: the preview animates every glyph on its own 3D arc. Fusion's per-character Text+ Follower could not be verified offline, so the Fusion graph keeps ONE editable Text+ and staggers 8 vertical slices ('LetterSlot0..7', RectangleMask slots across the title width) instead. For other title lengths, adjust the slot masks' Center/Width to match the letters.",
+    "Extra control 'Stagger Interval (frames)' (StaggerFrames) sets the base interval between arrivals; the designed rhythm multiplies it per slot. 'Reveal Duration' (AnimDuration) is the travel time of each letter/slot. In the reference renderer the same control is STAGGER_FRAMES."
+  ],
+  "extra_parameters": {
+    "STAGGER_FRAMES": {
+      "default": 4,
+      "description": "Base interval between letter arrivals (frames)"
+    }
+  },
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t29.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "MOTION_BLUR_AMOUNT",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "STAGGER_FRAMES",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 81,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 275,
+        "K": 149,
+        "?": 7
+      },
+      "setting_expressions": 60,
+      "published_controls": 39,
+      "text_nodes": [
+        "Subtitle",
+        "MainTitle"
+      ],
+      "comp_tools": 81,
+      "comp_input_evidence": {
+        "S": 275,
+        "K": 149,
+        "?": 7
+      },
+      "comp_expressions": 60
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 7.5,
+      "frames": 180,
+      "audio": true,
+      "bytes": 2857212,
+      "sample_means": [
+        8.6,
+        9.8,
+        11.5,
+        12.1,
+        12.4,
+        12.7,
+        12.7,
+        11.2,
+        8.6
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 25.0,
+      "title_band_contrast": 42.0
+    },
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:12:59+00:00"
+  }
+}

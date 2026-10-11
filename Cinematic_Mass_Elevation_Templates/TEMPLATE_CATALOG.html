@@ -1,0 +1,1705 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mass Elevation Templates</title>
+<style>
+:root { --bg:#0b0b0d; --panel:#141418; --ink:#ecebe8; --mute:#9a978f; --acc:#e8b26a; --ok:#7fc98f; --bad:#e07a6a; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) { --bg:#f4f2ee; --panel:#ffffff; --ink:#1b1a18; --mute:#5f5c56; --acc:#9a5d12; --ok:#2e7d3e; --bad:#b03a2a; } }
+:root[data-theme="dark"] { --bg:#0b0b0d; --panel:#141418; --ink:#ecebe8; --mute:#9a978f; --acc:#e8b26a; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+header { padding:28px 16px 8px; max-width:1500px; margin:auto; }
+h1 { margin:0 0 6px; font-size:28px; letter-spacing:.04em; }
+header p { margin:4px 0; color:var(--mute); max-width:900px; }
+.controls { display:flex; gap:10px; flex-wrap:wrap; margin:14px 0; }
+select, input { background:var(--panel); color:var(--ink); border:1px solid #444; border-radius:6px; padding:7px 9px; }
+main { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; padding:8px 16px 40px; max-width:1500px; margin:auto; }
+.card { background:var(--panel); border-radius:10px; overflow:hidden; border:1px solid rgba(128,128,128,.18); }
+.thumb { position:relative; display:block; width:100%; padding:0; border:0; background:#000; cursor:pointer; aspect-ratio:16/9; }
+.thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.play { position:absolute; right:10px; bottom:8px; color:#fff; background:rgba(0,0,0,.55); border-radius:50%; width:34px; height:34px; display:grid; place-items:center; }
+.meta { padding:10px 14px 14px; }
+.meta h2 { margin:0; font-size:18px; }
+.id { color:var(--acc); font-variant-numeric:tabular-nums; }
+.cat { margin:2px 0 6px; color:var(--mute); font-size:13px; }
+.concept { margin:6px 0; font-size:14px; }
+.badge { padding:1px 7px; border-radius:10px; font-size:12px; border:1px solid currentColor; }
+.b3d { color:var(--acc); } .b25 { color:var(--mute); }
+.checks { list-style:none; padding:0; margin:6px 0; font-size:13px; display:flex; flex-wrap:wrap; gap:4px 12px; }
+.checks li::before { content:"\25CF  "; }
+.ok { color:var(--ok); } .bad { color:var(--bad); } .na { color:var(--mute); }
+.links { margin:6px 0 0; font-size:13px; }
+details { margin:8px 0; font-size:13px; }
+summary { cursor:pointer; color:var(--acc); }
+.strip { width:100%; display:block; margin:8px 0; border-radius:4px; }
+dl { margin:0; } dt { font-weight:600; margin-top:6px; } dd { margin:2px 0 0; color:var(--mute); }
+dd ul { margin:2px 0; padding-left:18px; }
+a { color:var(--acc); }
+dialog { border:0; padding:0; background:#000; max-width:min(1280px,96vw); width:100%; }
+dialog video { width:100%; display:block; }
+dialog::backdrop { background:rgba(0,0,0,.8); }
+.close { position:absolute; right:8px; top:6px; background:rgba(0,0,0,.6); color:#fff; border:0; font-size:20px; cursor:pointer; }
+</style></head><body>
+<header>
+<h1>Cinematic Mass Elevation Templates</h1>
+<p>40 editable DaVinci Resolve / Fusion title templates (5 with genuine Text3D geometry, 35 2.5D).
+Each card links the Fusion macro (<code>.setting</code>), the flat composition (<code>.comp</code>), its controls and its sound cue sheet.
+Click a thumbnail to play its 1080p preview.</p>
+<p><strong>Previews</strong> come from the project's Python reference renderer, not from Resolve.
+<strong>Resolve compatibility has not been tested</strong> (no Resolve in the build environment). See COMPATIBILITY_REPORT.md and 05_RESOLVE_IMPORT/Import_Instructions.md.</p>
+<div class="controls">
+<select id="cat"><option value="">All categories</option><option value="A - Dark, Powerful Mass Elevation">A - Dark, Powerful Mass Elevation</option><option value="B - Fire, Explosions and Impact">B - Fire, Explosions and Impact</option><option value="C - 3D Metal and Premium Materials">C - 3D Metal and Premium Materials</option><option value="D - Mythic, Epic and Fantasy">D - Mythic, Epic and Fantasy</option><option value="E - Sci-Fi and Futuristic Motion Graphics">E - Sci-Fi and Futuristic Motion Graphics</option><option value="F - Cinematic Typography and Camera Movement">F - Cinematic Typography and Camera Movement</option><option value="G - Atmospheric and Environmental Cinema">G - Atmospheric and Environmental Cinema</option><option value="H - Signature Hero Elevations">H - Signature Hero Elevations</option></select>
+<select id="depth"><option value="">3D + 2.5D</option><option value="3d">3D only</option><option value="25d">2.5D only</option></select>
+<input id="q" type="search" placeholder="Search name or concept">
+</div>
+</header>
+<main id="grid">
+<article class="card" data-cat="A - Dark, Powerful Mass Elevation" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T01_Obsidian_Impact/preview/T01_Obsidian_Impact.mp4" aria-label="Play preview of Obsidian Impact">
+    <img src="01_TEMPLATES/T01_Obsidian_Impact/preview/thumbnail.jpg" alt="Obsidian Impact thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T01</span> Obsidian Impact</h2>
+    <p class="cat">A - Dark, Powerful Mass Elevation &middot; 8.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">Monumental black-glass lettering emerges from total darkness and is carved out by a hard backlight.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T01_Obsidian_Impact_strip.jpg" alt="Six-frame strip of Obsidian Impact: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Deep forward travel from far depth while the title is still unlit (silhouette emergence).</dd>
+        <dt>Impact / reveal</dt><dd>At the impact frame a sharp warm backlight ignites the letter edges; restrained dust burst and shards.</dd>
+        <dt>Camera</dt><dd>Slow continuous push-in, short decaying impact shake.</dd>
+        <dt>Material</dt><dd>Obsidian black glass with conchoidal bump, dark-steel bevel, warm rim light; 2.5D extrusion stack.</dd>
+        <dt>Exit</dt><dd>Edge light drains away, then the title sinks back into darkness.</dd>
+        <dt>Timing</dt><dd>impact frame 84, hold 84&ndash;150, exit 150&ndash;186 (192 frames)</dd>
+        <dt>Fusion controls (39)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T01_Obsidian_Impact/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T01_Obsidian_Impact/source/T01_Obsidian_Impact.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T01_Obsidian_Impact/source/T01_Obsidian_Impact.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T01_Obsidian_Impact/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T01_Obsidian_Impact/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="A - Dark, Powerful Mass Elevation" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T02_Thunder_God/preview/T02_Thunder_God.mp4" aria-label="Play preview of Thunder God">
+    <img src="01_TEMPLATES/T02_Thunder_God/preview/thumbnail.jpg" alt="Thunder God thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T02</span> Thunder God</h2>
+    <p class="cat">A - Dark, Powerful Mass Elevation &middot; 8.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">Storm-powered hero introduction: the title pushes through mist inside a living thunderstorm.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T02_Thunder_God_strip.jpg" alt="Six-frame strip of Thunder God: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Title travels forward through drifting mist while electrical light crawls behind the letterforms.</dd>
+        <dt>Impact / reveal</dt><dd>A branching lightning strike behind the title flash-lights the scene and the clouds; edge arcs crackle.</dd>
+        <dt>Camera</dt><dd>Slow forward dolly with a small shock pulse (zoom kick) at the strike.</dd>
+        <dt>Material</dt><dd>Gunmetal with cool sky reflections and electric-blue rim; lightning drawn behind the title only.</dd>
+        <dt>Exit</dt><dd>Storm calms, the title dissolves back into the clouds through a noise-driven dissolve.</dd>
+        <dt>Timing</dt><dd>impact frame 80, hold 80&ndash;154, exit 154&ndash;188 (192 frames)</dd>
+        <dt>Fusion controls (38)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T02_Thunder_God/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T02_Thunder_God/source/T02_Thunder_God.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T02_Thunder_God/source/T02_Thunder_God.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T02_Thunder_God/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T02_Thunder_God/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="A - Dark, Powerful Mass Elevation" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T03_Molten_Core/preview/T03_Molten_Core.mp4" aria-label="Play preview of Molten Core">
+    <img src="01_TEMPLATES/T03_Molten_Core/preview/thumbnail.jpg" alt="Molten Core thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T03</span> Molten Core</h2>
+    <p class="cat">A - Dark, Powerful Mass Elevation &middot; 9.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">Volcanic energy: a dark-iron title is born out of a glowing fissure in cracked volcanic rock.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T03_Molten_Core_strip.jpg" alt="Six-frame strip of Molten Core: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>The title rises vertically out of a molten fissure in the ground (clipped at the crack line), red-hot at its base.</dd>
+        <dt>Impact / reveal</dt><dd>As it seats, a radial burst of embers and an illumination pulse light the rock; heat crawls along the letter edges.</dd>
+        <dt>Camera</dt><dd>Low-angle camera (keystoned ground plane) with a slow continuous push-in; tiny impact jolt.</dd>
+        <dt>Material</dt><dd>Dark forged iron with molten-orange edge emission, cooling colour ramp; cracked basalt ground with lava veins.</dd>
+        <dt>Exit</dt><dd>The heat drains (orange -&gt; deep red -&gt; black), leaving a dark silhouette against the horizon glow, then fades.</dd>
+        <dt>Timing</dt><dd>impact frame 76, hold 76&ndash;150, exit 150&ndash;210 (216 frames)</dd>
+        <dt>Fusion controls (39)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T03_Molten_Core/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T03_Molten_Core/source/T03_Molten_Core.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T03_Molten_Core/source/T03_Molten_Core.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T03_Molten_Core/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T03_Molten_Core/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="A - Dark, Powerful Mass Elevation" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T04_Black_Steel_Reckoning/preview/T04_Black_Steel_Reckoning.mp4" aria-label="Play preview of Black Steel Reckoning">
+    <img src="01_TEMPLATES/T04_Black_Steel_Reckoning/preview/thumbnail.jpg" alt="Black Steel Reckoning thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T04</span> Black Steel Reckoning</h2>
+    <p class="cat">A - Dark, Powerful Mass Elevation &middot; 7.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">Military-industrial and restrained: a slab of brushed steel lettering is machined into place.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T04_Black_Steel_Reckoning_strip.jpg" alt="Six-frame strip of Black Steel Reckoning: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Multi-stage mechanical move: lateral slide with motion blur -&gt; hard stop -&gt; beat -&gt; forward seat -&gt; two steel locking rails clamp the title.</dd>
+        <dt>Impact / reveal</dt><dd>Short metallic impact pulse, slight camera recoil and a narrow specular highlight raking across the steel.</dd>
+        <dt>Camera</dt><dd>Slow lateral track that stops dead on the impact frame; small recoil kick, no drift afterwards.</dd>
+        <dt>Material</dt><dd>Brushed steel face with flat chamfer, blackened metal sides and rails, restrained cold-silver highlights.</dd>
+        <dt>Exit</dt><dd>The rails release and the title slides back and sideways out of the light into shadow.</dd>
+        <dt>Timing</dt><dd>impact frame 60, hold 60&ndash;134, exit 134&ndash;164 (168 frames)</dd>
+        <dt>Fusion controls (39)</dt><dd>Animation Start (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Motion Blur Amount, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T04_Black_Steel_Reckoning/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T04_Black_Steel_Reckoning/source/T04_Black_Steel_Reckoning.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T04_Black_Steel_Reckoning/source/T04_Black_Steel_Reckoning.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T04_Black_Steel_Reckoning/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T04_Black_Steel_Reckoning/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="A - Dark, Powerful Mass Elevation" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T05_Shattered_Monolith/preview/T05_Shattered_Monolith.mp4" aria-label="Play preview of Shattered Monolith">
+    <img src="01_TEMPLATES/T05_Shattered_Monolith/preview/thumbnail.jpg" alt="Shattered Monolith thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T05</span> Shattered Monolith</h2>
+    <p class="cat">A - Dark, Powerful Mass Elevation &middot; 10.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">Monumental stone typography assembled from fragments drifting in an atmospheric void - scale, not noise.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T05_Shattered_Monolith_strip.jpg" alt="Six-frame strip of Shattered Monolith: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Dark stone shards float scattered in depth, then converge on staggered paths (translation, tumble, depth) and lock together into the title.</dd>
+        <dt>Impact / reveal</dt><dd>The last pieces lock on the impact frame: a small outward puff of chips and dust, joints seal over a second.</dd>
+        <dt>Camera</dt><dd>Slow orbit (yaw from left to right) with perspective shift and background parallax; tiny lock jolt.</dd>
+        <dt>Material</dt><dd>Weathered, chipped stone with bump texture, flat chamfer, cool directional rim light from upper left.</dd>
+        <dt>Exit</dt><dd>Fine cracks spread through the surface from several origins, light leaks faintly through them, then the scene fades.</dd>
+        <dt>Timing</dt><dd>impact frame 108, hold 108&ndash;180, exit 180&ndash;236 (240 frames)</dd>
+        <dt>Fusion controls (38)</dt><dd>Animation Start (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T05_Shattered_Monolith/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T05_Shattered_Monolith/source/T05_Shattered_Monolith.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T05_Shattered_Monolith/source/T05_Shattered_Monolith.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T05_Shattered_Monolith/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T05_Shattered_Monolith/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="B - Fire, Explosions and Impact" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T06_Inferno_Reveal/preview/T06_Inferno_Reveal.mp4" aria-label="Play preview of Inferno Reveal">
+    <img src="01_TEMPLATES/T06_Inferno_Reveal/preview/thumbnail.jpg" alt="Inferno Reveal thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T06</span> Inferno Reveal</h2>
+    <p class="cat">B - Fire, Explosions and Impact &middot; 8.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">The title emerges out of controlled firelight and smoke, seen through rising heat.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T06_Inferno_Reveal_strip.jpg" alt="Six-frame strip of Inferno Reveal: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Behind a curtain of smoke and strong heat shimmer the title slowly comes forward; the smoke thins and the distortion settles as the fire rises behind it.</dd>
+        <dt>Impact / reveal</dt><dd>A restrained flare: flames lick up, a burst of sparks rises and the orange rim light peaks, then settles.</dd>
+        <dt>Camera</dt><dd>Locked-off with a gentle forward creep; small heat-jolt at the flare.</dd>
+        <dt>Material</dt><dd>Charred bronze lettering lit from below by the fire, orange rim from behind, warm halo for separation.</dd>
+        <dt>Exit</dt><dd>The title burns away from the bottom up behind a glowing ember edge, releasing embers that rise with the heat.</dd>
+        <dt>Timing</dt><dd>impact frame 72, hold 72&ndash;154, exit 154&ndash;188 (192 frames)</dd>
+        <dt>Fusion controls (40)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Motion Blur Amount, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>8 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T06_Inferno_Reveal/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T06_Inferno_Reveal/source/T06_Inferno_Reveal.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T06_Inferno_Reveal/source/T06_Inferno_Reveal.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T06_Inferno_Reveal/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T06_Inferno_Reveal/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="B - Fire, Explosions and Impact" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T07_Explosive_Arrival/preview/T07_Explosive_Arrival.mp4" aria-label="Play preview of Explosive Arrival">
+    <img src="01_TEMPLATES/T07_Explosive_Arrival/preview/thumbnail.jpg" alt="Explosive Arrival thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T07</span> Explosive Arrival</h2>
+    <p class="cat">B - Fire, Explosions and Impact &middot; 6.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A procedural detonation behind the title throws it into frame: fireball, smoke, shockwave and debris.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T07_Explosive_Arrival_strip.jpg" alt="Six-frame strip of Explosive Arrival: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>A short charged beat (ignition point flickering in the dark), then the blast hurls the title forward out of the fireball core with zoom blur.</dd>
+        <dt>Impact / reveal</dt><dd>Expanding fireball cooling into billowing lit smoke, a fast shockwave ring with refraction, ballistic debris and embers - all behind/around the title, never permanently over it.</dd>
+        <dt>Camera</dt><dd>Locked-off, heavy concussive shake on detonation, then a very slow settle-in push.</dd>
+        <dt>Material</dt><dd>Pale blast-worn concrete/steel plate, flat chamfer, fire rim light from behind, hard drop shadow on the smoke.</dd>
+        <dt>Exit</dt><dd>The title rushes past camera (fly-through with zoom blur) as the smoke closes in.</dd>
+        <dt>Timing</dt><dd>impact frame 24, hold 24&ndash;114, exit 114&ndash;136 (144 frames)</dd>
+        <dt>Fusion controls (40)</dt><dd>Animation Start (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Shadow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Motion Blur Amount, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>Debris on/off: set Particle Intensity to 0 to disable all debris and embers (DebrisEmitter/EmberEmitter Number = count x ParticleIntensity); values between 0 and 2 scale the amount.</li><li>Explosion strength: Impact Intensity scales fireball size and brightness, the flash, both shockwave rings and the shockwave refraction (0 = title arrives without the blast).</li><li>The fireball is FastNoise inside an expanding soft EllipseMask; to re-centre the blast move FireballShape, FireCoreShape, SmokeShape, ShockRingA/B Shape centres together.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>10 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T07_Explosive_Arrival/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T07_Explosive_Arrival/source/T07_Explosive_Arrival.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T07_Explosive_Arrival/source/T07_Explosive_Arrival.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T07_Explosive_Arrival/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T07_Explosive_Arrival/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="B - Fire, Explosions and Impact" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T08_Ember_Storm/preview/T08_Ember_Storm.mp4" aria-label="Play preview of Ember Storm">
+    <img src="01_TEMPLATES/T08_Ember_Storm/preview/thumbnail.jpg" alt="Ember Storm thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T08</span> Ember Storm</h2>
+    <p class="cat">B - Fire, Explosions and Impact &middot; 10.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A slow, elegant reveal inside a storm of embers layered in depth - cinematic focus does the storytelling.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T08_Ember_Storm_strip.jpg" alt="Six-frame strip of Ember Storm: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Rack focus: the shot opens focused on foreground embers with the title a soft glow behind smoke; focus pulls slowly to the title plane while the smoke thins.</dd>
+        <dt>Impact / reveal</dt><dd>As focus locks, a gentle warm swell blooms behind the letters, the embers swirl and a satin sheen glides across.</dd>
+        <dt>Camera</dt><dd>Slow lateral crane with real parallax between three ember depth layers; selective focus (bokeh near and far).</dd>
+        <dt>Material</dt><dd>Satin gold with soft warm reflections and an ember-orange rim; embers glow with flicker and bokeh.</dd>
+        <dt>Exit</dt><dd>Focus racks back to the near embers; the title melts into bokeh and fades with the storm.</dd>
+        <dt>Timing</dt><dd>impact frame 118, hold 118&ndash;192, exit 192&ndash;240 (240 frames)</dd>
+        <dt>Fusion controls (37)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Text Scale, Text Position X, Text Position Y, Text Rotation, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T08_Ember_Storm/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T08_Ember_Storm/source/T08_Ember_Storm.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T08_Ember_Storm/source/T08_Ember_Storm.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T08_Ember_Storm/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T08_Ember_Storm/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="B - Fire, Explosions and Impact" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T09_Ashes_of_Power/preview/T09_Ashes_of_Power.mp4" aria-label="Play preview of Ashes of Power">
+    <img src="01_TEMPLATES/T09_Ashes_of_Power/preview/thumbnail.jpg" alt="Ashes of Power thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T09</span> Ashes of Power</h2>
+    <p class="cat">B - Fire, Explosions and Impact &middot; 8.5s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">Power rebuilt from ruin: falling ash and black dust are drawn together into solid lettering.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T09_Ashes_of_Power_strip.jpg" alt="Six-frame strip of Ashes of Power: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Ash drifts down through a dark void; grains peel off their fall and travel on curved paths onto points of the letter shapes, accumulating until the letters exist as dusty forms.</dd>
+        <dt>Impact / reveal</dt><dd>On the impact frame the dust compacts into a solid, stable title; a controlled puff and a backlight pulse.</dd>
+        <dt>Camera</dt><dd>Slow push-in while the camera drifts gently downward with the ash.</dd>
+        <dt>Material</dt><dd>Compacted ash / charcoal-stone with grainy bump, pale rim from a narrow vertical backlight slit.</dd>
+        <dt>Exit</dt><dd>An erosion front crosses the title left to right; the released ash falls away under gravity.</dd>
+        <dt>Timing</dt><dd>impact frame 96, hold 96&ndash;166, exit 166&ndash;202 (204 frames)</dd>
+        <dt>Fusion controls (39)</dt><dd>Animation Start (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Shadow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T09_Ashes_of_Power/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T09_Ashes_of_Power/source/T09_Ashes_of_Power.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T09_Ashes_of_Power/source/T09_Ashes_of_Power.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T09_Ashes_of_Power/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T09_Ashes_of_Power/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="B - Fire, Explosions and Impact" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T10_Shockwave_Dominance/preview/T10_Shockwave_Dominance.mp4" aria-label="Play preview of Shockwave Dominance">
+    <img src="01_TEMPLATES/T10_Shockwave_Dominance/preview/thumbnail.jpg" alt="Shockwave Dominance thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T10</span> Shockwave Dominance</h2>
+    <p class="cat">B - Fire, Explosions and Impact &middot; 6.5s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A title that lands like a strike: everything around it is pushed outward by a radial shockwave.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T10_Shockwave_Dominance_strip.jpg" alt="Six-frame strip of Shockwave Dominance: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>A short inhale (the air darkens and haze is pulled inward), then the title slams down from in front of the camera, accelerating into its mark with zoom blur.</dd>
+        <dt>Impact / reveal</dt><dd>Radial impact: a crisp crimson ring, a wide pressure-haze ring and a refraction band travel outward independently of the title; light rays stream from behind the letters.</dd>
+        <dt>Camera</dt><dd>Hard zoom kick and short violent shake at the strike, then a slow dominant push-in.</dd>
+        <dt>Material</dt><dd>Polished dark chrome with crimson rim and floor reflection tint, hard drop shadow on the haze.</dd>
+        <dt>Exit</dt><dd>Implosion: a ring collapses back inward while the title compresses into a point of light.</dd>
+        <dt>Timing</dt><dd>impact frame 26, hold 26&ndash;124, exit 124&ndash;150 (156 frames)</dd>
+        <dt>Fusion controls (40)</dt><dd>Animation Start (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Shadow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Motion Blur Amount, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>The shockwave is fully independent of the title: ShockRingPrimary / ShockRingHaze (expanding EllipseMask rings) and ShockRefraction (Displace driven by RefractRingShape) all key off Impact Frame and scale with Impact Intensity. Move their Center inputs together to relocate the impact point.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>8 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T10_Shockwave_Dominance/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T10_Shockwave_Dominance/source/T10_Shockwave_Dominance.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T10_Shockwave_Dominance/source/T10_Shockwave_Dominance.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T10_Shockwave_Dominance/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T10_Shockwave_Dominance/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="C - 3D Metal and Premium Materials" data-depth="3d">
+  <button class="thumb" data-video="01_TEMPLATES/T11_Golden_Emperor/preview/T11_Golden_Emperor.mp4" aria-label="Play preview of Golden Emperor">
+    <img src="01_TEMPLATES/T11_Golden_Emperor/preview/thumbnail.jpg" alt="Golden Emperor thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T11</span> Golden Emperor</h2>
+    <p class="cat">C - 3D Metal and Premium Materials &middot; 9.0s &middot;
+       <span class="badge b3d">3D (Text3D)</span></p>
+    <p class="concept">A regal, restrained gold title: solid polished bullion letterforms turn to face the camera in a dark hall.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T11_Golden_Emperor_strip.jpg" alt="Six-frame strip of Golden Emperor: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>The extruded gold title glides forward from depth while turning from a three-quarter angle to face the lens (yaw -38 deg to 0) under a slow, elegant camera push.</dd>
+        <dt>Impact / reveal</dt><dd>As it squares up a warm key light blooms behind it; a single narrow specular highlight travels across the bevels; a star glint catches one serif.</dd>
+        <dt>Camera</dt><dd>Continuous slow push-in with a gentle low-angle tilt that levels out; a whisper of settle at the lock.</dd>
+        <dt>Material</dt><dd>Polished gold (Blinn, high specular exponent) with warm-neutral environment reflection, dark horizon band, crisp rounded bevel and darker extruded sides; glossy floor reflection.</dd>
+        <dt>Exit</dt><dd>The title turns away on its vertical axis and recedes while the key light dims to black.</dd>
+        <dt>Timing</dt><dd>impact frame 92, hold 92&ndash;170, exit 170&ndash;208 (216 frames)</dd>
+        <dt>Fusion controls (36)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Bevel Amount, Letterbox (2.39:1), Accent Color, Main Title (3D), 3D Title Font, 3D Title Style, Material Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>10 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T11_Golden_Emperor/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T11_Golden_Emperor/source/T11_Golden_Emperor.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T11_Golden_Emperor/source/T11_Golden_Emperor.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T11_Golden_Emperor/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T11_Golden_Emperor/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="C - 3D Metal and Premium Materials" data-depth="3d">
+  <button class="thumb" data-video="01_TEMPLATES/T12_Chrome_Dominion/preview/T12_Chrome_Dominion.mp4" aria-label="Play preview of Chrome Dominion">
+    <img src="01_TEMPLATES/T12_Chrome_Dominion/preview/thumbnail.jpg" alt="Chrome Dominion thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T12</span> Chrome Dominion</h2>
+    <p class="cat">C - 3D Metal and Premium Materials &middot; 7.5s &middot;
+       <span class="badge b3d">3D (Text3D)</span></p>
+    <p class="concept">A mirror-chrome monolith title stands up in a black studio lit only by hard strip softboxes.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T12_Chrome_Dominion_strip.jpg" alt="Six-frame strip of Chrome Dominion: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Studio strip lights clunk on one by one; the chrome title, lying back on the glossy floor, pivots upright on its base (X rotation 78 deg to 0) toward a low-angle camera.</dd>
+        <dt>Impact / reveal</dt><dd>At the lock the strip-light reflections race across the chrome faces, a cold edge light snaps on and the floor mirror catches the full title.</dd>
+        <dt>Camera</dt><dd>Low-angle dolly-in that rises slightly to eye level; compact shake at the lock.</dd>
+        <dt>Material</dt><dd>Mirror chrome: near-zero diffuse, very high specular exponent, layered strip reflections over a black horizon band, crisp bevels with cool edge illumination, dark extruded walls.</dd>
+        <dt>Exit</dt><dd>The title falls back flat into the floor reflection while the strip lights switch off in reverse order.</dd>
+        <dt>Timing</dt><dd>impact frame 74, hold 74&ndash;140, exit 140&ndash;166 (180 frames)</dd>
+        <dt>Fusion controls (35)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Bevel Amount, Letterbox (2.39:1), Accent Color, Main Title (3D), 3D Title Font, 3D Title Style, Material Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>Approximation: the Fusion MtlBlinn cannot reflect an environment, so the chrome look is built from a very high specular exponent, three animated spot/directional highlights and screen-space strip reflections (masked light sweeps). For true mirror chrome, replace GoldMtl-style Blinn (&#x27;ChromeMtl&#x27;) with a MtlReflect fed by an HDRI SphereMap - not generated because those tool IDs are unverified here.</li><li>The floor reflection is a flipped 2D copy of the rendered title (Transform FlipVert), not a ray-traced mirror; it stays correct while the title is upright and is faded out during the fall-back exit.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>3 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T12_Chrome_Dominion/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T12_Chrome_Dominion/source/T12_Chrome_Dominion.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T12_Chrome_Dominion/source/T12_Chrome_Dominion.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T12_Chrome_Dominion/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T12_Chrome_Dominion/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="C - 3D Metal and Premium Materials" data-depth="3d">
+  <button class="thumb" data-video="01_TEMPLATES/T13_Titanium_Edge/preview/T13_Titanium_Edge.mp4" aria-label="Play preview of Titanium Edge">
+    <img src="01_TEMPLATES/T13_Titanium_Edge/preview/thumbnail.jpg" alt="Titanium Edge thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T13</span> Titanium Edge</h2>
+    <p class="cat">C - 3D Metal and Premium Materials &middot; 7.0s &middot;
+       <span class="badge b3d">3D (Text3D)</span></p>
+    <p class="concept">Precision-machined titanium lettering assembled like a mechanism from horizontal slats.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T13_Titanium_Edge_strip.jpg" alt="Six-frame strip of Titanium Edge: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Guide rails draw on, then six horizontal slats of the extruded titanium title slide in from alternating sides, out of depth, locking into alignment one by one with a crisp mechanical snap.</dd>
+        <dt>Impact / reveal</dt><dd>The final slat locks on the impact frame: a cold seam flash runs along each joint and a narrow silver-blue highlight cuts across the chamfered edges.</dd>
+        <dt>Camera</dt><dd>Slight three-quarter angle that squares up with a measured dolly; micro-jolt on each lock.</dd>
+        <dt>Material</dt><dd>Cold brushed titanium: anisotropic brushed texture, flat chamfer bevel, narrow high-exponent silver-blue specular, cool environment reflection, dark gunmetal sides.</dd>
+        <dt>Exit</dt><dd>The slats close like blinds - each band collapses to a thin line in sequence - and the rails retract.</dd>
+        <dt>Timing</dt><dd>impact frame 62, hold 62&ndash;128, exit 128&ndash;154 (168 frames)</dd>
+        <dt>Fusion controls (35)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Bevel Amount, Letterbox (2.39:1), Accent Color, Main Title (3D), 3D Title Font, 3D Title Style, Material Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>Slats are rectangle-masked copies of the single Renderer3D output, each moved by its own Transform. If you change the title size or line count, adjust the slat masks&#x27; Center/Height (SlatNShape) so the bands still cover the letters.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>2 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T13_Titanium_Edge/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T13_Titanium_Edge/source/T13_Titanium_Edge.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T13_Titanium_Edge/source/T13_Titanium_Edge.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T13_Titanium_Edge/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T13_Titanium_Edge/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="C - 3D Metal and Premium Materials" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T14_Forged_In_Fire/preview/T14_Forged_In_Fire.mp4" aria-label="Play preview of Forged in Fire">
+    <img src="01_TEMPLATES/T14_Forged_In_Fire/preview/thumbnail.jpg" alt="Forged in Fire thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T14</span> Forged in Fire</h2>
+    <p class="cat">C - 3D Metal and Premium Materials &middot; 9.5s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A dark smithy: a glowing blank of iron is hammered, strike by strike, into razor-sharp letterforms.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T14_Forged_In_Fire_strip.jpg" alt="Six-frame strip of Forged in Fire: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>A soft, swollen, dull-red billet in the rough shape of the title heats up in the dark; three hammer strikes (left, right, centre) each flatten it, sharpen the edges and throw sparks.</dd>
+        <dt>Impact / reveal</dt><dd>The final strike on the impact frame locks the crisp forged title at white-orange heat; glowing seams pulse, then the metal cools in a controlled way to dark hammered iron with ember-red seams.</dd>
+        <dt>Camera</dt><dd>Static, heavy framing with a hard jolt on every strike and a slow creep-in during cooling.</dd>
+        <dt>Material</dt><dd>Hammered dark iron (concrete-grain bump, flat chamfer) with emissive heat driven by a blackbody ramp; edge and crack seams stay hot longest; forge underlight from below.</dd>
+        <dt>Exit</dt><dd>The last heat drains from the seams and quench steam rolls over the cold iron until it is gone.</dd>
+        <dt>Timing</dt><dd>impact frame 112, hold 112&ndash;184, exit 184&ndash;220 (228 frames)</dd>
+        <dt>Fusion controls (39)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T14_Forged_In_Fire/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T14_Forged_In_Fire/source/T14_Forged_In_Fire.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T14_Forged_In_Fire/source/T14_Forged_In_Fire.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T14_Forged_In_Fire/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T14_Forged_In_Fire/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="C - 3D Metal and Premium Materials" data-depth="3d">
+  <button class="thumb" data-video="01_TEMPLATES/T15_Diamond_Cut/preview/T15_Diamond_Cut.mp4" aria-label="Play preview of Diamond Cut">
+    <img src="01_TEMPLATES/T15_Diamond_Cut/preview/thumbnail.jpg" alt="Diamond Cut thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T15</span> Diamond Cut</h2>
+    <p class="cat">C - 3D Metal and Premium Materials &middot; 8.5s &middot;
+       <span class="badge b3d">3D (Text3D)</span></p>
+    <p class="concept">A flawless, faceted crystal title displayed like a jewel on midnight velvet.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T15_Diamond_Cut_strip.jpg" alt="Six-frame strip of Diamond Cut: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>A controlled orbit: the camera arcs around the cut-crystal title (yaw 55 deg and a slight pitch resolving to front-on) while hundreds of facets catch and lose the light.</dd>
+        <dt>Impact / reveal</dt><dd>On the impact frame the orbit settles, the display spotlight brightens and one star-shaped glint with a faint spectral fringe fires from a letter crown; facets keep scintillating gently.</dd>
+        <dt>Camera</dt><dd>Measured orbit + dolly that decelerates into a locked front view; no shake.</dd>
+        <dt>Material</dt><dd>Faceted crystal: Voronoi facet planes with per-facet specular flashes driven by the view angle, sharp flat chamfer bevel (crown), cool environment reflection, restrained dispersion (2-3 px RGB split on the brightest sparkles only).</dd>
+        <dt>Exit</dt><dd>The title turns away in the opposite direction as the spotlight closes, leaving a last glint.</dd>
+        <dt>Timing</dt><dd>impact frame 96, hold 96&ndash;164, exit 164&ndash;196 (204 frames)</dd>
+        <dt>Fusion controls (35)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Bevel Amount, Letterbox (2.39:1), Accent Color, Main Title (3D), 3D Title Font, 3D Title Style, Material Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>Facet scintillation in Fusion is approximated by a discontinuous FastNoise cell pattern clipped to the rendered title and modulated by the camera orbit; Text3D itself has smooth faces (no real facets).</li><li>Dispersion is limited to a subtle tinted sweep; enable chromatic aberration in your grade if you want more prismatic separation (keep it restrained for readability).</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>2 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T15_Diamond_Cut/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T15_Diamond_Cut/source/T15_Diamond_Cut.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T15_Diamond_Cut/source/T15_Diamond_Cut.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T15_Diamond_Cut/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T15_Diamond_Cut/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="D - Mythic, Epic and Fantasy" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T16_Ancient_Titan/preview/T16_Ancient_Titan.mp4" aria-label="Play preview of Ancient Titan">
+    <img src="01_TEMPLATES/T16_Ancient_Titan/preview/thumbnail.jpg" alt="Ancient Titan thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T16</span> Ancient Titan</h2>
+    <p class="cat">D - Mythic, Epic and Fantasy &middot; 10.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A colossal carved-stone title rises out of the ground of a ruined, hazy ancient valley.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T16_Ancient_Titan_strip.jpg" alt="Six-frame strip of Ancient Titan: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Under a continuous low rumble the monumental stone letters grind up out of the earth, shedding dust and grit, while ground dust billows along their base.</dd>
+        <dt>Impact / reveal</dt><dd>On the impact frame the title settles to full height with a heavy thud: a ground-hugging dust wave rolls outward and a shaft of low sun rakes across the carved faces.</dd>
+        <dt>Camera</dt><dd>Low worm&#x27;s-eye angle, slow upward tilt with parallax between ruin layers; rumble shake while rising.</dd>
+        <dt>Material</dt><dd>Weathered sandstone: stone texture bump, flat-cut chamfer, hard directional side-light from the left, deep 2.5D extrusion stack; atmospheric perspective on the ruins.</dd>
+        <dt>Exit</dt><dd>Haze thickens and rolls across the valley, swallowing the title into atmosphere.</dd>
+        <dt>Timing</dt><dd>impact frame 112, hold 112&ndash;186, exit 186&ndash;230 (240 frames)</dd>
+        <dt>Fusion controls (39)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T16_Ancient_Titan/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T16_Ancient_Titan/source/T16_Ancient_Titan.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T16_Ancient_Titan/source/T16_Ancient_Titan.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T16_Ancient_Titan/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T16_Ancient_Titan/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="D - Mythic, Epic and Fantasy" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T17_Celestial_Ascent/preview/T17_Celestial_Ascent.mp4" aria-label="Play preview of Celestial Ascent">
+    <img src="01_TEMPLATES/T17_Celestial_Ascent/preview/thumbnail.jpg" alt="Celestial Ascent thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T17</span> Celestial Ascent</h2>
+    <p class="cat">D - Mythic, Epic and Fantasy &middot; 8.8s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A heavenly reveal high above the cloud sea: the title descends through luminous clouds into sunlight.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T17_Celestial_Ascent_strip.jpg" alt="Six-frame strip of Celestial Ascent: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>The camera climbs out of a bank of glowing cloud; layered clouds stream past the lens while the pale title descends slowly from above into frame, half-veiled by passing vapour.</dd>
+        <dt>Impact / reveal</dt><dd>On the impact frame the sun crests directly behind the letters: volumetric shafts of light fan out around the title and its edges ignite with a warm-white rim.</dd>
+        <dt>Camera</dt><dd>Measured vertical ascent (cloud layers parallax downward), slow push; no shake.</dd>
+        <dt>Material</dt><dd>Backlit alabaster/ivory stone with soft specular, strong warm-white rim from the sun behind, gentle 2.5D depth; atmospheric scattering softens the far cloud sea.</dd>
+        <dt>Exit</dt><dd>The title keeps ascending up and out of frame into the light while the clouds close beneath the camera.</dd>
+        <dt>Timing</dt><dd>impact frame 96, hold 96&ndash;162, exit 162&ndash;204 (210 frames)</dd>
+        <dt>Fusion controls (38)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>God rays are made with a Zoom-type DirectionalBlur of the sun disc masked by the inverted title and cloud alpha (no dedicated Rays tool is used, for compatibility). Move SunCore/RaysSmear centre together if you reposition the title.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T17_Celestial_Ascent/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T17_Celestial_Ascent/source/T17_Celestial_Ascent.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T17_Celestial_Ascent/source/T17_Celestial_Ascent.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T17_Celestial_Ascent/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T17_Celestial_Ascent/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="D - Mythic, Epic and Fantasy" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T18_Dark_Sorcery/preview/T18_Dark_Sorcery.mp4" aria-label="Play preview of Dark Sorcery">
+    <img src="01_TEMPLATES/T18_Dark_Sorcery/preview/thumbnail.jpg" alt="Dark Sorcery thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T18</span> Dark Sorcery</h2>
+    <p class="cat">D - Mythic, Epic and Fantasy &middot; 8.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">An occult invocation: a ritual circle of original runes ignites in swirling smoke and summons the title.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T18_Dark_Sorcery_strip.jpg" alt="Six-frame strip of Dark Sorcery: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Smoke spirals inward around a vertical ritual circle whose rings trace on and whose runes ignite one by one; the letters condense out of the vortex through a spiral, edge-glowing dissolve.</dd>
+        <dt>Impact / reveal</dt><dd>At the impact frame the circle flares, an energy ring pulses outward and the runes burn bright, then settle to a slow, breathing glow behind a smoked-silver title.</dd>
+        <dt>Camera</dt><dd>Locked-off with a slow creeping push and a subtle counter-rotation of the circle layers.</dd>
+        <dt>Material</dt><dd>Smoked dark silver with violet rim light and faint inner glow along the edges; glowing runes and rings are emissive and drawn behind the title only.</dd>
+        <dt>Exit</dt><dd>The circle collapses inward and the title is twisted into the vortex and swallowed by the smoke.</dd>
+        <dt>Timing</dt><dd>impact frame 82, hold 82&ndash;146, exit 146&ndash;180 (192 frames)</dd>
+        <dt>Fusion controls (39)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>The Fusion version draws 6 representative runes as PolylineMasks on a rotating Transform; the preview renders the full 29-rune circle. Add or reshape runes by editing the RuneN polylines.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T18_Dark_Sorcery/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T18_Dark_Sorcery/source/T18_Dark_Sorcery.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T18_Dark_Sorcery/source/T18_Dark_Sorcery.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T18_Dark_Sorcery/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T18_Dark_Sorcery/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="D - Mythic, Epic and Fantasy" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T19_Cosmic_Overlord/preview/T19_Cosmic_Overlord.mp4" aria-label="Play preview of Cosmic Overlord">
+    <img src="01_TEMPLATES/T19_Cosmic_Overlord/preview/thumbnail.jpg" alt="Cosmic Overlord thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T19</span> Cosmic Overlord</h2>
+    <p class="cat">D - Mythic, Epic and Fantasy &middot; 9.8s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A sovereign title assembles like a constellation above a planet while a star rises over its limb.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T19_Cosmic_Overlord_strip.jpg" alt="Six-frame strip of Cosmic Overlord: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>A slow camera approach through three parallax star layers and drifting nebula; the letters drift in from deep space as points of light, linked by fading constellation lines, and lock into place.</dd>
+        <dt>Impact / reveal</dt><dd>On the impact frame the star crests the planet&#x27;s limb: the atmosphere ignites, a restrained anamorphic flare crosses the frame and the metal letters catch a warm sunrise rim.</dd>
+        <dt>Camera</dt><dd>Continuous forward dolly (star layers expand at different rates = parallax), gentle drift.</dd>
+        <dt>Material</dt><dd>Dark blue-steel with cool space reflections and a warm sunrise rim from below; glyphs are born as emissive star points that cool into metal.</dd>
+        <dt>Exit</dt><dd>The camera keeps travelling: it flies through the title, which swells past the lens as stars stretch.</dd>
+        <dt>Timing</dt><dd>impact frame 118, hold 118&ndash;192, exit 192&ndash;226 (236 frames)</dd>
+        <dt>Fusion controls (38)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Motion Blur Amount, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>Per-glyph constellation convergence is approximated in Fusion by a point-cell dissolve plus scale/blur convergence of the whole title (TextPlus has no per-character transforms without a Follower modifier).</li><li>Star layers are pEmitter fields rendered by pRender and scaled by expressions for parallax.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>3 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T19_Cosmic_Overlord/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T19_Cosmic_Overlord/source/T19_Cosmic_Overlord.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T19_Cosmic_Overlord/source/T19_Cosmic_Overlord.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T19_Cosmic_Overlord/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T19_Cosmic_Overlord/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="D - Mythic, Epic and Fantasy" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T20_Phoenix_Reborn/preview/T20_Phoenix_Reborn.mp4" aria-label="Play preview of Phoenix Reborn">
+    <img src="01_TEMPLATES/T20_Phoenix_Reborn/preview/thumbnail.jpg" alt="Phoenix Reborn thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T20</span> Phoenix Reborn</h2>
+    <p class="cat">D - Mythic, Epic and Fantasy &middot; 6.5s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">Renewal and power: a rising double spiral of living sparks becomes the title, which ignites reborn.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T20_Phoenix_Reborn_strip.jpg" alt="Six-frame strip of Phoenix Reborn: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Two intertwined helices of glowing particles spiral up from the dark, widen at the top and then stream inward, each spark flying to its own point on the letterforms.</dd>
+        <dt>Impact / reveal</dt><dd>On the impact frame the converged sparks ignite the title in a bright white-gold flash that throws two wing-like arcs of embers outward, then settles into a clean, readable gold hold.</dd>
+        <dt>Camera</dt><dd>Slow upward tilt following the spiral, small lift-and-settle at the ignition.</dd>
+        <dt>Material</dt><dd>Radiant sun-gold metal with crimson rim light and a white-hot edge that cools after ignition; emissive particles with soft bloom.</dd>
+        <dt>Exit</dt><dd>The title is reborn again as embers: it dissolves bottom-to-top into sparks that spiral up and away.</dd>
+        <dt>Timing</dt><dd>impact frame 64, hold 64&ndash;118, exit 118&ndash;150 (156 frames)</dd>
+        <dt>Fusion controls (39)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>The spiral is two pEmitters whose positions orbit the vertical axis by expression (helix); per-particle target convergence onto the glyphs is approximated by a radial zoom-in of the particle render plus the ignition flash (Fusion particles cannot target text pixels without extra tools).</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>9 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T20_Phoenix_Reborn/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T20_Phoenix_Reborn/source/T20_Phoenix_Reborn.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T20_Phoenix_Reborn/source/T20_Phoenix_Reborn.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T20_Phoenix_Reborn/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T20_Phoenix_Reborn/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="E - Sci-Fi and Futuristic Motion Graphics" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T21_Neon_Overdrive/preview/T21_Neon_Overdrive.mp4" aria-label="Play preview of Neon Overdrive">
+    <img src="01_TEMPLATES/T21_Neon_Overdrive/preview/thumbnail.jpg" alt="Neon Overdrive thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T21</span> Neon Overdrive</h2>
+    <p class="cat">E - Sci-Fi and Futuristic Motion Graphics &middot; 7.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A night-drive title: neon tubes ignite around the letterforms above a receding light grid.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T21_Neon_Overdrive_strip.jpg" alt="Six-frame strip of Neon Overdrive: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Camera glides over a receding neon floor grid (fast, then decelerating) while a neon tube traces the letter edges left-to-right with short starter flickers.</dd>
+        <dt>Impact / reveal</dt><dd>At the impact frame the letter faces power up with a single digital slice-distortion hit.</dd>
+        <dt>Camera</dt><dd>Low forward glide over the grid that brakes into a slow drift; no shake (energy is in the light).</dd>
+        <dt>Material</dt><dd>Dark glass faces that fill with cool white light; magenta (ACCENT) neon tube inside the letter edge.</dd>
+        <dt>Exit</dt><dd>Power-down: the tubes cut out right-to-left with a stutter, faces drain, the grid goes dark from the horizon.</dd>
+        <dt>Timing</dt><dd>impact frame 60, hold 60&ndash;126, exit 126&ndash;158 (168 frames)</dd>
+        <dt>Fusion controls (36)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Glow Strength, Impact Intensity, Text Scale, Text Position X, Text Position Y, Text Rotation, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>Floor grid lines are PolylineMask/RectangleMask shapes in the &#x27;FloorGrid*&#x27; nodes; move &#x27;GridLinesV*&#x27; points to change the vanishing point.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>1 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T21_Neon_Overdrive/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T21_Neon_Overdrive/source/T21_Neon_Overdrive.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T21_Neon_Overdrive/source/T21_Neon_Overdrive.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T21_Neon_Overdrive/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T21_Neon_Overdrive/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="E - Sci-Fi and Futuristic Motion Graphics" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T22_Hologram_Breach/preview/T22_Hologram_Breach.mp4" aria-label="Play preview of Hologram Breach">
+    <img src="01_TEMPLATES/T22_Hologram_Breach/preview/thumbnail.jpg" alt="Hologram Breach thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T22</span> Hologram Breach</h2>
+    <p class="cat">E - Sci-Fi and Futuristic Motion Graphics &middot; 8.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">The title is a projected hologram: a floor emitter throws a light beam and the wordmark assembles in it.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T22_Hologram_Breach_strip.jpg" alt="Six-frame strip of Hologram Breach: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Emitter pad powers on and opens a volumetric beam; the title materialises as horizontal scan segments in a designed non-sequential order, each sliding into register with a short blink.</dd>
+        <dt>Impact / reveal</dt><dd>At the impact frame a lock-in scan pass sweeps the title: interference stops and the image stabilises.</dd>
+        <dt>Camera</dt><dd>Locked-off with a slow lateral parallax drift; no shake (precision device).</dd>
+        <dt>Material</dt><dd>Emissive cyan light: scan lines, brighter edge fresnel, bottom-up projector falloff, faint interference.</dd>
+        <dt>Exit</dt><dd>Projector cut: the hologram collapses vertically into the beam, the beam retracts into the emitter.</dd>
+        <dt>Timing</dt><dd>impact frame 76, hold 76&ndash;150, exit 150&ndash;178 (192 frames)</dd>
+        <dt>Fusion controls (38)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Text Scale, Text Position X, Text Position Y, Text Rotation, Letterbox (2.39:1), Flicker Amount, Glitch Amount, Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        <dt>Template-specific parameters</dt><dd>FLICKER_AMOUNT (default 1.0), GLITCH_AMOUNT (default 1.0)</dd>
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>Extra controls: &#x27;Flicker Amount&#x27; (FlickerAmount) and &#x27;Glitch Amount&#x27; (GlitchAmount) scale the pre-lock flicker and the interference slice displacement; set both to 0 for a perfectly stable hologram. The final hold is always stable.</li><li>Reference renderer: the same controls are FLICKER_AMOUNT and GLITCH_AMOUNT (0 = perfectly stable).</li><li>Fusion assembles 7 horizontal bands (preview: 9); the interference streaks are a stretched FastNoise.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>8 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T22_Hologram_Breach/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T22_Hologram_Breach/source/T22_Hologram_Breach.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T22_Hologram_Breach/source/T22_Hologram_Breach.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T22_Hologram_Breach/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T22_Hologram_Breach/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="E - Sci-Fi and Futuristic Motion Graphics" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T23_Digital_Awakening/preview/T23_Digital_Awakening.mp4" aria-label="Play preview of Digital Awakening">
+    <img src="01_TEMPLATES/T23_Digital_Awakening/preview/thumbnail.jpg" alt="Digital Awakening thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T23</span> Digital Awakening</h2>
+    <p class="cat">E - Sci-Fi and Futuristic Motion Graphics &middot; 9.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A system boots: scattered data points and procedural lines organise themselves into a stable wordmark.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T23_Digital_Awakening_strip.jpg" alt="Six-frame strip of Digital Awakening: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Hundreds of disorganised points and short data lines drift in depth, then converge in a left-to-right wave onto a lattice inside the letterforms, forming a wireframe of the title.</dd>
+        <dt>Impact / reveal</dt><dd>At the impact frame the point-lattice resolves block-by-block into the solid wordmark with an edge pulse.</dd>
+        <dt>Camera</dt><dd>Slow drift-in with depth parallax on the background node lattice.</dd>
+        <dt>Material</dt><dd>Clean white emissive face with a mint inner edge; mint data points and lines on a deep navy void.</dd>
+        <dt>Exit</dt><dd>Decompile: the wordmark de-resolves block-by-block back into points that float upward and dissipate.</dd>
+        <dt>Timing</dt><dd>impact frame 104, hold 104&ndash;178, exit 178&ndash;208 (216 frames)</dd>
+        <dt>Fusion controls (36)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Text Scale, Text Position X, Text Position Y, Text Rotation, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>The Fusion version converges a pEmitter point field (Transform scale/centre onto the title) and resolves the wordmark with a FastNoise threshold; the preview converges points sampled from the actual glyph shapes and resolves in square blocks.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T23_Digital_Awakening/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T23_Digital_Awakening/source/T23_Digital_Awakening.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T23_Digital_Awakening/source/T23_Digital_Awakening.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T23_Digital_Awakening/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T23_Digital_Awakening/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="E - Sci-Fi and Futuristic Motion Graphics" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T24_Quantum_Split/preview/T24_Quantum_Split.mp4" aria-label="Play preview of Quantum Split">
+    <img src="01_TEMPLATES/T24_Quantum_Split/preview/thumbnail.jpg" alt="Quantum Split thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T24</span> Quantum Split</h2>
+    <p class="cat">E - Sci-Fi and Futuristic Motion Graphics &middot; 6.5s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">The title exists in three states at once: its RGB channels sit on separate depth planes and collapse into one.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T24_Quantum_Split_strip.jpg" alt="Six-frame strip of Quantum Split: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Red, green and blue channel copies of the title float apart on different depth planes (with two faint violet depth echoes) and slide together under a camera yaw that reveals their parallax.</dd>
+        <dt>Impact / reveal</dt><dd>Precisely on the impact frame all planes align into a single white wordmark; a thin light line snaps outward.</dd>
+        <dt>Camera</dt><dd>Yaw drift that settles to frontal exactly at alignment; micro shake on the snap.</dd>
+        <dt>Material</dt><dd>Satin white face with a soft bevel; additive RGB channel planes; violet echo planes.</dd>
+        <dt>Exit</dt><dd>The planes split again in depth (red back, blue forward) and dissolve with a soft defocus.</dd>
+        <dt>Timing</dt><dd>impact frame 50, hold 50&ndash;116, exit 116&ndash;144 (156 frames)</dd>
+        <dt>Fusion controls (37)</dt><dd>Animation Start (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T24_Quantum_Split/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T24_Quantum_Split/source/T24_Quantum_Split.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T24_Quantum_Split/source/T24_Quantum_Split.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T24_Quantum_Split/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T24_Quantum_Split/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="E - Sci-Fi and Futuristic Motion Graphics" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T25_Future_Warlord/preview/T25_Future_Warlord.mp4" aria-label="Play preview of Future Warlord">
+    <img src="01_TEMPLATES/T25_Future_Warlord/preview/thumbnail.jpg" alt="Future Warlord thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T25</span> Future Warlord</h2>
+    <p class="cat">E - Sci-Fi and Futuristic Motion Graphics &middot; 9.5s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A tactical unveiling: armoured blast shutters part inside a targeting visor to reveal the warlord&#x27;s name.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T25_Future_Warlord_strip.jpg" alt="Six-frame strip of Future Warlord: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>A restrained HUD boots (brackets search, then lock onto a recessed bay); the bay&#x27;s twin armoured shutters unlock with a small jolt.</dd>
+        <dt>Impact / reveal</dt><dd>At the impact frame the shutters slam open, the title pushes forward out of the recess under a hard top light; dust shakes off the frame and the HUD settles to quiet corner brackets.</dd>
+        <dt>Camera</dt><dd>Static tripod with a heavy slam shake; the HUD is a stable visor overlay (unaffected by shake).</dd>
+        <dt>Material</dt><dd>Matte military ceramic lettering; brushed gunmetal shutters with accent hazard stripes; HUD in ACCENT.</dd>
+        <dt>Exit</dt><dd>The shutters slam closed again and the HUD powers down line by line.</dd>
+        <dt>Timing</dt><dd>impact frame 96, hold 96&ndash;186, exit 186&ndash;212 (228 frames)</dd>
+        <dt>Fusion controls (37)</dt><dd>Animation Start (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Shadow Strength, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>HUD elements (BracketFrame*, Reticle*, RangeTicks) follow the Accent colour; their brightness is the &#x27;HUD&#x27; merges&#x27; Blend.</li><li>Shutter plates are RectangleMask-driven solids (ShutterTop/ShutterBottom) clipped to the bay.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T25_Future_Warlord/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T25_Future_Warlord/source/T25_Future_Warlord.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T25_Future_Warlord/source/T25_Future_Warlord.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T25_Future_Warlord/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T25_Future_Warlord/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="F - Cinematic Typography and Camera Movement" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T26_Extreme_Close_Up/preview/T26_Extreme_Close_Up.mp4" aria-label="Play preview of Extreme Close-Up">
+    <img src="01_TEMPLATES/T26_Extreme_Close_Up/preview/thumbnail.jpg" alt="Extreme Close-Up thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T26</span> Extreme Close-Up</h2>
+    <p class="cat">F - Cinematic Typography and Camera Movement &middot; 8.3s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A macro study of the lettering: we start inside the lacquered surface of one letter and pull out to the name.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T26_Extreme_Close_Up_strip.jpg" alt="Six-frame strip of Extreme Close-Up: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Extreme macro crop on the bevel of the first letter with shallow depth of field and a raking edge light; the camera dollies backward on a long eased move while the tilt flattens out.</dd>
+        <dt>Impact / reveal</dt><dd>The pull-back lands exactly on the impact frame with a tiny settle; focus snaps crisp and the edge light flares.</dd>
+        <dt>Camera</dt><dd>Backward dolly from 6.5x with perspective tilt/yaw unwinding to frontal; macro DOF opening to full focus.</dd>
+        <dt>Material</dt><dd>Deep crimson gloss lacquer with fine grain, warm bevel highlights and a travelling specular glint.</dd>
+        <dt>Exit</dt><dd>Rack focus: the title defocuses into soft bokeh and the light fades.</dd>
+        <dt>Timing</dt><dd>impact frame 112, hold 112&ndash;168, exit 168&ndash;194 (200 frames)</dd>
+        <dt>Fusion controls (37)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Shadow Strength, Impact Intensity, Text Scale, Text Position X, Text Position Y, Text Rotation, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>Fusion zooms the vector Text+ itself (Size/Center driven by expressions) so the close-up stays crisp; use &#x27;Text Scale&#x27; to resize the final title. The preview also tilts/yaws the camera for perspective, which the 2D Fusion graph approximates with a slight rotation.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T26_Extreme_Close_Up/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T26_Extreme_Close_Up/source/T26_Extreme_Close_Up.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T26_Extreme_Close_Up/source/T26_Extreme_Close_Up.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T26_Extreme_Close_Up/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T26_Extreme_Close_Up/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="F - Cinematic Typography and Camera Movement" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T27_Low_Angle_Titan/preview/T27_Low_Angle_Titan.mp4" aria-label="Play preview of Low-Angle Titan">
+    <img src="01_TEMPLATES/T27_Low_Angle_Titan/preview/thumbnail.jpg" alt="Low-Angle Titan thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T27</span> Low-Angle Titan</h2>
+    <p class="cat">F - Cinematic Typography and Camera Movement &middot; 10.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">We stand at the foot of a colossal monument: the name towers over us against a dusk sky.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T27_Low_Angle_Titan_strip.jpg" alt="Six-frame strip of Low-Angle Titan: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Low camera near the ground: the giant lettering rises up into frame from below the horizon while the camera cranes up and the steep upward perspective slowly eases.</dd>
+        <dt>Impact / reveal</dt><dd>At the impact frame the monument crests into full view - a low rumble, grit trickles off the letter tops and the setting sun rims the top edges.</dd>
+        <dt>Camera</dt><dd>Worm&#x27;s-eye 2.5D perspective (tilt + wide lens), slow crane with a long ease; one restrained rumble.</dd>
+        <dt>Material</dt><dd>Weathered verdigris bronze with stone-like pitting; thick perspective extrusion showing the underside.</dd>
+        <dt>Exit</dt><dd>Haze rolls in across the ground and the monument drains to a silhouette, then into the dusk.</dd>
+        <dt>Timing</dt><dd>impact frame 116, hold 116&ndash;200, exit 200&ndash;232 (240 frames)</dd>
+        <dt>Fusion controls (38)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>The worm&#x27;s-eye keystone is a CornerPositioner (&#x27;TitanKeystone&#x27;); its corner inputs (TopLeft/TopRight/BottomLeft/BottomRight) are driven by expressions - adjust the 0.6x top factor to change the perspective strength.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>11 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T27_Low_Angle_Titan/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T27_Low_Angle_Titan/source/T27_Low_Angle_Titan.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T27_Low_Angle_Titan/source/T27_Low_Angle_Titan.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T27_Low_Angle_Titan/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T27_Low_Angle_Titan/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="F - Cinematic Typography and Camera Movement" data-depth="3d">
+  <button class="thumb" data-video="01_TEMPLATES/T28_Rotating_Monolith/preview/T28_Rotating_Monolith.mp4" aria-label="Play preview of Rotating Monolith">
+    <img src="01_TEMPLATES/T28_Rotating_Monolith/preview/thumbnail.jpg" alt="Rotating Monolith thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T28</span> Rotating Monolith</h2>
+    <p class="cat">F - Cinematic Typography and Camera Movement &middot; 8.5s &middot;
+       <span class="badge b3d">3D (Text3D)</span></p>
+    <p class="concept">The title is a solid graphite monolith that turns out of darkness under a single overhead shaft of light.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T28_Rotating_Monolith_strip.jpg" alt="Six-frame strip of Rotating Monolith: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>The extruded title approaches from depth almost edge-on (78 deg yaw, pitched back 18 deg) and rotates on two axes into view - a weighty oblique turn, never a flat spin.</dd>
+        <dt>Impact / reveal</dt><dd>At the impact frame the rotation locks at a three-quarter angle (thickness still visible); the overhead light flares across the bevels and floor dust lifts.</dd>
+        <dt>Camera</dt><dd>Real 3D: Camera3D slowly arcs (x-offset) while the solid rotates; light shaft stays fixed.</dd>
+        <dt>Material</dt><dd>Brushed graphite with silver bevels, cool rim; extrusion sides in deep graphite.</dd>
+        <dt>Exit</dt><dd>The monolith keeps turning to edge-on and recedes into the dark while the light shaft closes.</dd>
+        <dt>Timing</dt><dd>impact frame 90, hold 90&ndash;168, exit 168&ndash;198 (204 frames)</dd>
+        <dt>Fusion controls (36)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Shadow Strength, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Bevel Amount, Letterbox (2.39:1), Accent Color, Main Title (3D), 3D Title Font, 3D Title Style, Material Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>True 3D: edit the text in the Text3D node (&#x27;Main Title (3D)&#x27;); rotation is on MonolithText3D Transform3DOp.Rotate.X/Y via expressions.</li><li>Material colour is the &#x27;Material Color&#x27; control (MtlBlinn diffuse).</li><li>The preview adds a faint mirrored floor reflection; the Fusion graph uses a floor light pool instead (add a second Renderer3D with a flipped camera if a true reflection is wanted).</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>9 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T28_Rotating_Monolith/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T28_Rotating_Monolith/source/T28_Rotating_Monolith.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T28_Rotating_Monolith/source/T28_Rotating_Monolith.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T28_Rotating_Monolith/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T28_Rotating_Monolith/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="F - Cinematic Typography and Camera Movement" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T29_Cinematic_Letter_Assembly/preview/T29_Cinematic_Letter_Assembly.mp4" aria-label="Play preview of Cinematic Letter Assembly">
+    <img src="01_TEMPLATES/T29_Cinematic_Letter_Assembly/preview/thumbnail.jpg" alt="Cinematic Letter Assembly thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T29</span> Cinematic Letter Assembly</h2>
+    <p class="cat">F - Cinematic Typography and Camera Movement &middot; 7.5s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">An elegant credit-style build: each letter flies in on its own arc and clicks into place on a light rule.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T29_Cinematic_Letter_Assembly_strip.jpg" alt="Six-frame strip of Cinematic Letter Assembly: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Letters travel in individually from depth on curved, rotating paths. Outer letters arrive first, alternating sides, with a designed non-uniform rhythm; the centre letter lands last.</dd>
+        <dt>Impact / reveal</dt><dd>Each landing ticks a glint on the champagne baseline; at the impact frame the rule flashes and a sheen crosses the word.</dd>
+        <dt>Camera</dt><dd>Gentle locked-off push; depth comes from the letters&#x27; own 3D arcs.</dd>
+        <dt>Material</dt><dd>Ivory porcelain lettering with a soft bevel; champagne (ACCENT) baseline rule and glints.</dd>
+        <dt>Exit</dt><dd>Letters lift away in reverse order with the same rhythm, rotating back into depth.</dd>
+        <dt>Timing</dt><dd>impact frame 82, hold 82&ndash;140, exit 140&ndash;168 (180 frames)</dd>
+        <dt>Fusion controls (39)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Shadow Strength, Text Scale, Text Position X, Text Position Y, Text Rotation, Motion Blur Amount, Letterbox (2.39:1), Stagger Interval (frames), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        <dt>Template-specific parameters</dt><dd>STAGGER_FRAMES (default 4)</dd>
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>Per-letter animation: the preview animates every glyph on its own 3D arc. Fusion&#x27;s per-character Text+ Follower could not be verified offline, so the Fusion graph keeps ONE editable Text+ and staggers 8 vertical slices (&#x27;LetterSlot0..7&#x27;, RectangleMask slots across the title width) instead. For other title lengths, adjust the slot masks&#x27; Center/Width to match the letters.</li><li>Extra control &#x27;Stagger Interval (frames)&#x27; (StaggerFrames) sets the base interval between arrivals; the designed rhythm multiplies it per slot. &#x27;Reveal Duration&#x27; (AnimDuration) is the travel time of each letter/slot. In the reference renderer the same control is STAGGER_FRAMES.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T29_Cinematic_Letter_Assembly/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T29_Cinematic_Letter_Assembly/source/T29_Cinematic_Letter_Assembly.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T29_Cinematic_Letter_Assembly/source/T29_Cinematic_Letter_Assembly.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T29_Cinematic_Letter_Assembly/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T29_Cinematic_Letter_Assembly/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="F - Cinematic Typography and Camera Movement" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T30_Speed_Ramp_Dominance/preview/T30_Speed_Ramp_Dominance.mp4" aria-label="Play preview of Speed Ramp Dominance">
+    <img src="01_TEMPLATES/T30_Speed_Ramp_Dominance/preview/thumbnail.jpg" alt="Speed Ramp Dominance thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T30</span> Speed Ramp Dominance</h2>
+    <p class="cat">F - Cinematic Typography and Camera Movement &middot; 6.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">Pure momentum: the title rockets in from the vanishing point and slams into an almost-frozen slow-motion hold.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T30_Speed_Ramp_Dominance_strip.jpg" alt="Six-frame strip of Speed Ramp Dominance: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>A hyper-fast approach from the vanishing point through rushing speed lines, with zoom/directional blur proportional to velocity, then a hard speed-ramp deceleration.</dd>
+        <dt>Impact / reveal</dt><dd>At the impact frame the title brakes to a near standstill: red edge flash, anamorphic streak, speed lines freeze and drift; a slow-motion creep carries the long, readable hold.</dd>
+        <dt>Camera</dt><dd>Forward rush with impact jolt; then a barely-moving slow-motion creep.</dd>
+        <dt>Material</dt><dd>Gloss white enamel with red (ACCENT) rim and impact accent.</dd>
+        <dt>Exit</dt><dd>Reverse ramp: the title accelerates away into the vanishing point with zoom blur as the lines rush again.</dd>
+        <dt>Timing</dt><dd>impact frame 22, hold 22&ndash;110, exit 110&ndash;126 (144 frames)</dd>
+        <dt>Fusion controls (39)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Glow Strength, Shadow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Motion Blur Amount, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>Motion blur: &#x27;Motion Blur Amount&#x27; scales the DirectionalBlur (Zoom type) length on the title and on the speed-line field.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>1 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T30_Speed_Ramp_Dominance/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T30_Speed_Ramp_Dominance/source/T30_Speed_Ramp_Dominance.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T30_Speed_Ramp_Dominance/source/T30_Speed_Ramp_Dominance.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T30_Speed_Ramp_Dominance/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T30_Speed_Ramp_Dominance/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="G - Atmospheric and Environmental Cinema" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T31_Midnight_Fog/preview/T31_Midnight_Fog.mp4" aria-label="Play preview of Midnight Fog">
+    <img src="01_TEMPLATES/T31_Midnight_Fog/preview/thumbnail.jpg" alt="Midnight Fog thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T31</span> Midnight Fog</h2>
+    <p class="cat">G - Atmospheric and Environmental Cinema &middot; 9.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A moonlit midnight moor: the title lives inside layered fog and slowly condenses out of it.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T31_Midnight_Fog_strip.jpg" alt="Six-frame strip of Midnight Fog: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Fog-condensation reveal: the letterforms resolve out of the mist through a soft noise threshold while four fog planes drift past at different depths.</dd>
+        <dt>Impact / reveal</dt><dd>At the impact frame a slow pressure wave parts the near fog around the title; the moon beam brightens.</dd>
+        <dt>Camera</dt><dd>Very slow push-in with a gentle lateral drift; fog planes zoom at depth-dependent rates (parallax).</dd>
+        <dt>Material</dt><dd>Cool pewter with a soft directional moonlight from the upper left and a pale blue rim.</dd>
+        <dt>Exit</dt><dd>The fog closes back in: front planes thicken and drift across while the title sinks into haze.</dd>
+        <dt>Timing</dt><dd>impact frame 112, hold 112&ndash;172, exit 172&ndash;212 (216 frames)</dd>
+        <dt>Fusion controls (36)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Text Scale, Text Position X, Text Position Y, Text Rotation, Letterbox (2.39:1), Moonlight Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T31_Midnight_Fog/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T31_Midnight_Fog/source/T31_Midnight_Fog.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T31_Midnight_Fog/source/T31_Midnight_Fog.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T31_Midnight_Fog/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T31_Midnight_Fog/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="G - Atmospheric and Environmental Cinema" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T32_Rain_And_Steel/preview/T32_Rain_And_Steel.mp4" aria-label="Play preview of Rain and Steel">
+    <img src="01_TEMPLATES/T32_Rain_And_Steel/preview/thumbnail.jpg" alt="Rain and Steel thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T32</span> Rain and Steel</h2>
+    <p class="cat">G - Atmospheric and Environmental Cinema &middot; 8.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A rain-soaked industrial yard at night: wet steel lettering waits in the dark until the floodlights hit.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T32_Rain_And_Steel_strip.jpg" alt="Six-frame strip of Rain and Steel: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>The title cranes up from below the eye-line in near darkness, rain falling through cold ambient light.</dd>
+        <dt>Impact / reveal</dt><dd>Three overhead floodlights clunk on in sequence (with a short electrical flicker) - rain turns into lit streaks, the wet steel lights up and its reflection appears on the flooded floor.</dd>
+        <dt>Camera</dt><dd>Restrained slow lateral truck (wall, rain and floor at different parallax); tiny clunk shake only.</dd>
+        <dt>Material</dt><dd>Dark brushed wet steel: hard top specular, running water streaks over the faces, mirror-wet floor.</dd>
+        <dt>Exit</dt><dd>The floodlights cut out one by one; the last silhouette fades with the rain.</dd>
+        <dt>Timing</dt><dd>impact frame 64, hold 64&ndash;150, exit 150&ndash;184 (192 frames)</dd>
+        <dt>Fusion controls (37)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Letterbox (2.39:1), Floodlight Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T32_Rain_And_Steel/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T32_Rain_And_Steel/source/T32_Rain_And_Steel.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T32_Rain_And_Steel/source/T32_Rain_And_Steel.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T32_Rain_And_Steel/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T32_Rain_And_Steel/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="G - Atmospheric and Environmental Cinema" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T33_Desert_Storm/preview/T33_Desert_Storm.mp4" aria-label="Play preview of Desert Storm">
+    <img src="01_TEMPLATES/T33_Desert_Storm/preview/thumbnail.jpg" alt="Desert Storm thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T33</span> Desert Storm</h2>
+    <p class="cat">G - Atmospheric and Environmental Cinema &middot; 7.5s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A towering haboob sweeps across the dunes; when it passes, a sandstone monument title is standing there.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T33_Desert_Storm_strip.jpg" alt="Six-frame strip of Desert Storm: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>A rolling wall of sand crosses the frame from right to left; the title is uncovered behind its leading edge, letter by letter, with a sand-blasted edge.</dd>
+        <dt>Impact / reveal</dt><dd>Gust peak as the wall front passes the title centre: sand streak burst, short shake, the sun breaks through.</dd>
+        <dt>Camera</dt><dd>Low-angle composition (low horizon, keystoned title looming up) with a slow lateral drift over parallax dunes.</dd>
+        <dt>Material</dt><dd>Warm weathered sandstone, low sun rim from the right, dusty ambient fill.</dd>
+        <dt>Exit</dt><dd>A second dust front returns and erodes the letters into wind-blown sand from right to left.</dd>
+        <dt>Timing</dt><dd>impact frame 48, hold 48&ndash;134, exit 134&ndash;174 (180 frames)</dd>
+        <dt>Fusion controls (37)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Letterbox (2.39:1), Sun Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>11 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T33_Desert_Storm/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T33_Desert_Storm/source/T33_Desert_Storm.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T33_Desert_Storm/source/T33_Desert_Storm.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T33_Desert_Storm/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T33_Desert_Storm/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="G - Atmospheric and Environmental Cinema" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T34_Underwater_Colossus/preview/T34_Underwater_Colossus.mp4" aria-label="Play preview of Underwater Colossus">
+    <img src="01_TEMPLATES/T34_Underwater_Colossus/preview/thumbnail.jpg" alt="Underwater Colossus thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T34</span> Underwater Colossus</h2>
+    <p class="cat">G - Atmospheric and Environmental Cinema &middot; 10.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A sunken monument of colossal stone letters rises out of the deep into the light from the surface.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T34_Underwater_Colossus_strip.jpg" alt="Six-frame strip of Underwater Colossus: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Slow-motion ascent: the title rises from below the frame and out of the depth haze, the water colour clearing off it as it approaches.</dd>
+        <dt>Impact / reveal</dt><dd>It settles at the impact frame - a slow silt plume billows out from its base and the caustic light from the surface lands on the faces.</dd>
+        <dt>Camera</dt><dd>Weightless slow drift and gentle push; marine snow and haze planes drift at different depths; refraction wobble.</dd>
+        <dt>Material</dt><dd>Algae-tinted weathered stone with animated caustic light projected onto the letter faces.</dd>
+        <dt>Exit</dt><dd>The colossus sinks back into the dark while the light shafts dim and the haze closes.</dd>
+        <dt>Timing</dt><dd>impact frame 124, hold 124&ndash;190, exit 190&ndash;236 (240 frames)</dd>
+        <dt>Fusion controls (37)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Text Scale, Text Position X, Text Position Y, Text Rotation, Letterbox (2.39:1), Surface Light Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T34_Underwater_Colossus/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T34_Underwater_Colossus/source/T34_Underwater_Colossus.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T34_Underwater_Colossus/source/T34_Underwater_Colossus.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T34_Underwater_Colossus/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T34_Underwater_Colossus/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="G - Atmospheric and Environmental Cinema" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T35_Frozen_Kingdom/preview/T35_Frozen_Kingdom.mp4" aria-label="Play preview of Frozen Kingdom">
+    <img src="01_TEMPLATES/T35_Frozen_Kingdom/preview/thumbnail.jpg" alt="Frozen Kingdom thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T35</span> Frozen Kingdom</h2>
+    <p class="cat">G - Atmospheric and Environmental Cinema &middot; 8.5s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">In a hall of ice spires the title freezes into existence: frost crawls across an invisible pane and becomes letters.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T35_Frozen_Kingdom_strip.jpg" alt="Six-frame strip of Frozen Kingdom: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Frost propagation: from four nucleation points, branching frost dendrites grow and the letters crystallise behind the advancing frost front (white rime at the front, clear ice behind).</dd>
+        <dt>Impact / reveal</dt><dd>At the impact frame the ice &#x27;locks&#x27;: a cold glint sweeps the faces and a ring of fine crystals bursts outward.</dd>
+        <dt>Camera</dt><dd>Slow lateral glide with parallax between two layers of ice spires, ground mist and falling ice.</dd>
+        <dt>Material</dt><dd>Clear blue ice with refracted inner texture, sharp cold specular and pale rim light.</dd>
+        <dt>Exit</dt><dd>The ice sublimates: the frost front runs backwards and the letters evaporate into rising cold vapour.</dd>
+        <dt>Timing</dt><dd>impact frame 92, hold 92&ndash;164, exit 164&ndash;200 (204 frames)</dd>
+        <dt>Fusion controls (36)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Text Scale, Text Position X, Text Position Y, Text Rotation, Letterbox (2.39:1), Frost Light Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T35_Frozen_Kingdom/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T35_Frozen_Kingdom/source/T35_Frozen_Kingdom.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T35_Frozen_Kingdom/source/T35_Frozen_Kingdom.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T35_Frozen_Kingdom/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T35_Frozen_Kingdom/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="H - Signature Hero Elevations" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T36_Hero_Silhouette/preview/T36_Hero_Silhouette.mp4" aria-label="Play preview of Hero Silhouette">
+    <img src="01_TEMPLATES/T36_Hero_Silhouette/preview/thumbnail.jpg" alt="Hero Silhouette thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T36</span> Hero Silhouette</h2>
+    <p class="cat">H - Signature Hero Elevations &middot; 7.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A lone caped figure stands in smoke against a blinding backlight; the title racks into focus in front of it.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T36_Hero_Silhouette_strip.jpg" alt="Six-frame strip of Hero Silhouette: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Rack focus: the title starts large, soft and dim in the foreground and pulls into focus while the backlight slowly rises behind the abstract figure silhouette.</dd>
+        <dt>Impact / reveal</dt><dd>Backlight surge at the impact frame: light rays burst around the silhouette, smoke billows outward, title rim ignites.</dd>
+        <dt>Camera</dt><dd>Controlled crane-up and push; smoke, figure and light source at three parallax depths.</dd>
+        <dt>Material</dt><dd>Brushed silver title with warm backlit rim; procedural figure silhouette with light-wrapped edges.</dd>
+        <dt>Exit</dt><dd>The backlight dies, the title racks back out of focus and the figure dissolves into the smoke.</dd>
+        <dt>Timing</dt><dd>impact frame 60, hold 60&ndash;132, exit 132&ndash;164 (168 frames)</dd>
+        <dt>Fusion controls (38)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Motion Blur Amount, Letterbox (2.39:1), Backlight Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T36_Hero_Silhouette/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T36_Hero_Silhouette/source/T36_Hero_Silhouette.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T36_Hero_Silhouette/source/T36_Hero_Silhouette.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T36_Hero_Silhouette/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T36_Hero_Silhouette/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="H - Signature Hero Elevations" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T37_Legacy_Reveal/preview/T37_Legacy_Reveal.mp4" aria-label="Play preview of Legacy Reveal">
+    <img src="01_TEMPLATES/T37_Legacy_Reveal/preview/thumbnail.jpg" alt="Legacy Reveal thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T37</span> Legacy Reveal</h2>
+    <p class="cat">H - Signature Hero Elevations &middot; 9.5s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">A quiet, premium tribute reveal for a name, an event or a dedication: warm light, soft bokeh, letters arriving one by one like a held breath.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T37_Legacy_Reveal_strip.jpg" alt="Six-frame strip of Legacy Reveal: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Letter-by-letter fade with a gentle upward settle and slight tracking contraction; a gold hairline draws outward beneath.</dd>
+        <dt>Impact / reveal</dt><dd>At the impact frame a slow warm light sweep glides across the letters and the scene gently brightens (no shake).</dd>
+        <dt>Camera</dt><dd>Very slow push-in with a subtle drift; bokeh and motes at different depths provide restrained parallax.</dd>
+        <dt>Material</dt><dd>Satin ivory serif with a soft gold edge light; gold ornamental rule.</dd>
+        <dt>Exit</dt><dd>Everything softly lifts and dissolves into warm glow, letters fading last-to-first, to warm black.</dd>
+        <dt>Timing</dt><dd>impact frame 100, hold 100&ndash;180, exit 180&ndash;224 (228 frames)</dd>
+        <dt>Fusion controls (36)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Text Scale, Text Position X, Text Position Y, Text Rotation, Letterbox (2.39:1), Warm Gold Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T37_Legacy_Reveal/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T37_Legacy_Reveal/source/T37_Legacy_Reveal.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T37_Legacy_Reveal/source/T37_Legacy_Reveal.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T37_Legacy_Reveal/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T37_Legacy_Reveal/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="H - Signature Hero Elevations" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T38_Royal_Insignia/preview/T38_Royal_Insignia.mp4" aria-label="Play preview of Royal Insignia">
+    <img src="01_TEMPLATES/T38_Royal_Insignia/preview/thumbnail.jpg" alt="Royal Insignia thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T38</span> Royal Insignia</h2>
+    <p class="cat">H - Signature Hero Elevations &middot; 8.2s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">An original heraldic insignia - rings, ticks, laurel arcs, chevron crest - assembles piece by piece around the title.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T38_Royal_Insignia_strip.jpg" alt="Six-frame strip of Royal Insignia: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Ordered assembly: rings sweep on, ticks and beads click around the dial, laurel leaves bloom up both sides, chevrons slide in, banner rules extend - while the whole emblem settles its rotation.</dd>
+        <dt>Impact / reveal</dt><dd>At the impact frame the emblem locks: a gold glint sweeps it, the title appears on the banner with a light sweep.</dd>
+        <dt>Camera</dt><dd>Near-static premium framing with a very slow push; dust motes drift in the light.</dd>
+        <dt>Material</dt><dd>Polished gold insignia (ACCENT), embossed with a soft top light; ivory-silver title; deep royal velvet.</dd>
+        <dt>Exit</dt><dd>The emblem rotates and expands past the camera while dissolving; the title fades a beat later.</dd>
+        <dt>Timing</dt><dd>impact frame 80, hold 80&ndash;156, exit 156&ndash;190 (196 frames)</dd>
+        <dt>Fusion controls (39)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Text Scale, Text Position X, Text Position Y, Text Rotation, Letterbox (2.39:1), Emblem Scale, Emblem Rotation, Emblem Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        <dt>Template-specific parameters</dt><dd>EMBLEM_SCALE (default 1.0), EMBLEM_ROTATION (default 0.0)</dd>
+        <dt>Fusion notes &amp; limitations</dt><dd><ul><li>Emblem Scale / Emblem Rotation (Look page) transform the insignia independently of the title.</li><li>The emblem colour follows the Accent Color control; the title colour is the Main Title Color.</li></ul></dd>
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T38_Royal_Insignia/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T38_Royal_Insignia/source/T38_Royal_Insignia.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T38_Royal_Insignia/source/T38_Royal_Insignia.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T38_Royal_Insignia/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T38_Royal_Insignia/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="H - Signature Hero Elevations" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T39_Final_Boss/preview/T39_Final_Boss.mp4" aria-label="Play preview of Final Boss">
+    <img src="01_TEMPLATES/T39_Final_Boss/preview/thumbnail.jpg" alt="Final Boss thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T39</span> Final Boss</h2>
+    <p class="cat">H - Signature Hero Elevations &middot; 6.5s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">The last enemy arrives: a massive dark-iron title slams out of the abyss and holds, breathing red.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T39_Final_Boss_strip.jpg" alt="Six-frame strip of Final Boss: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>A long ominous build (smoke, heartbeat red underlight), then a very fast 10-frame launch from deep space straight at the lens with zoom motion blur.</dd>
+        <dt>Impact / reveal</dt><dd>Hard impact: short violent shake, layered smoke blasts outward, red underlight flares; then a dead-stable hero hold.</dd>
+        <dt>Camera</dt><dd>Aggressive low three-quarter perspective on the extruded title; locked-off after a short impact shake.</dd>
+        <dt>Material</dt><dd>Pitted dark iron, deep 2.5D extrusion, blood-red underlight and rim pulsing with a heartbeat.</dd>
+        <dt>Exit</dt><dd>The red light cuts and the title is yanked back into the abyss in a fast pull.</dd>
+        <dt>Timing</dt><dd>impact frame 28, hold 28&ndash;130, exit 130&ndash;148 (156 frames)</dd>
+        <dt>Fusion controls (40)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Motion Blur Amount, Letterbox (2.39:1), Underlight Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>11 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T39_Final_Boss/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T39_Final_Boss/source/T39_Final_Boss.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T39_Final_Boss/source/T39_Final_Boss.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T39_Final_Boss/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T39_Final_Boss/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article>
+<article class="card" data-cat="H - Signature Hero Elevations" data-depth="25d">
+  <button class="thumb" data-video="01_TEMPLATES/T40_Ultimate_Mass_Elevation/preview/T40_Ultimate_Mass_Elevation.mp4" aria-label="Play preview of Ultimate Mass Elevation">
+    <img src="01_TEMPLATES/T40_Ultimate_Mass_Elevation/preview/thumbnail.jpg" alt="Ultimate Mass Elevation thumbnail" loading="lazy">
+    <span class="play">&#9654;</span>
+  </button>
+  <div class="meta">
+    <h2><span class="id">T40</span> Ultimate Mass Elevation</h2>
+    <p class="cat">H - Signature Hero Elevations &middot; 10.0s &middot;
+       <span class="badge b25">2.5D</span></p>
+    <p class="concept">Flagship: a distant light on a dark horizon grows into volumetric shafts that the title cuts through; a single controlled detonation of light crowns the hero, who then holds in burnished bronze.</p>
+    <details>
+      <summary>Design, controls &amp; limitations</summary>
+      <img class="strip" src="03_PREVIEWS/Contact_Sheets/per_template/T40_Ultimate_Mass_Elevation_strip.jpg" alt="Six-frame strip of Ultimate Mass Elevation: build-up, pre-impact, impact, hold, exit, end" loading="lazy">
+      <dl>
+        <dt>Entrance</dt><dd>Near-black opening with drifting haze and a far horizon light; slow dolly; the title rises from below the horizon as a backlit silhouette, its letters casting light shafts toward the camera.</dd>
+        <dt>Impact / reveal</dt><dd>Impact: the horizon light flares into an anamorphic streak, the bronze surface ignites (rim + key), a soft pressure ring and a restrained ember burst, short camera shake, then a premium light sweep.</dd>
+        <dt>Camera</dt><dd>Continuous slow dolly-in with a slight rise; one brief decaying shake at impact; still during the hold.</dd>
+        <dt>Material</dt><dd>Burnished bronze (brushed metal, warm environment reflection, gold rim) with 2.5D perspective extrusion.</dd>
+        <dt>Exit</dt><dd>The light collapses: a horizontal light slit closes over the title like a shutter, leaving a final anamorphic line that shrinks to a point and fades out.</dd>
+        <dt>Timing</dt><dd>impact frame 114, hold 114&ndash;196, exit 196&ndash;232 (240 frames)</dd>
+        <dt>Fusion controls (49)</dt><dd>Animation Start (frames), Reveal Duration (frames), Impact Frame, Exit Start (frame), Exit Duration (frames), Background Intensity, Particle Intensity, Glow Strength, Impact Intensity, Camera Shake, Text Scale, Text Position X, Text Position Y, Text Rotation, Extrusion Depth, Letterbox (2.39:1), Accent Color, Main Title, Main Title Font, Main Title Style, Main Title Size, Main Title Letter Spacing, Main Title Line Spacing, Main Title Alignment, Main Title Color, Subtitle, Subtitle Font, Subtitle Style, Subtitle Size, Subtitle Letter Spacing, Subtitle Line Spacing, Subtitle Alignment, Subtitle Color, Tagline, Tagline Font, Tagline Style, Tagline Size, Tagline Letter Spacing, Tagline Line Spacing, Tagline Alignment, Tagline Color</dd>
+        
+        
+        <dt>Unconfirmed Fusion inputs</dt><dd>7 &mdash; check in Resolve (listed in README)</dd>
+      </dl>
+    </details>
+    <ul class="checks">
+      <li class="ok">Fusion source parses (Lua)</li>
+      <li class="ok">Graph structure checks</li>
+      <li class="ok">Preview media checks</li>
+      <li class="na">Resolve: blocked (not tested)</li>
+    </ul>
+    <p class="links">
+      <a href="01_TEMPLATES/T40_Ultimate_Mass_Elevation/README.md">README</a> &middot;
+      <a href="01_TEMPLATES/T40_Ultimate_Mass_Elevation/source/T40_Ultimate_Mass_Elevation.setting">.setting</a> &middot;
+      <a href="01_TEMPLATES/T40_Ultimate_Mass_Elevation/source/T40_Ultimate_Mass_Elevation.comp">.comp</a> &middot;
+      <a href="01_TEMPLATES/T40_Ultimate_Mass_Elevation/documentation/parameters.md">controls</a> &middot;
+      <a href="01_TEMPLATES/T40_Ultimate_Mass_Elevation/documentation/sound_design.md">sound</a>
+    </p>
+  </div>
+</article></main>
+<dialog id="dlg"><button class="close" aria-label="Close">&times;</button><video id="vid" controls playsinline></video></dialog>
+<script>
+const dlg=document.getElementById('dlg'), vid=document.getElementById('vid');
+document.querySelectorAll('.thumb').forEach(b=>b.addEventListener('click',()=>{ if(!b.dataset.video) return; vid.src=b.dataset.video; dlg.showModal(); vid.play().catch(()=>{}); }));
+dlg.querySelector('.close').onclick=()=>dlg.close();
+dlg.addEventListener('close',()=>{ vid.pause(); vid.removeAttribute('src'); vid.load(); });
+function f(){ const c=document.getElementById('cat').value, d=document.getElementById('depth').value, q=document.getElementById('q').value.toLowerCase();
+ document.querySelectorAll('.card').forEach(el=>{ const ok=(!c||el.dataset.cat===c)&&(!d||el.dataset.depth===d)&&(!q||el.textContent.toLowerCase().includes(q)); el.style.display=ok?'':'none'; }); }
+['cat','depth','q'].forEach(i=>document.getElementById(i).addEventListener('input',f));
+</script></body></html>

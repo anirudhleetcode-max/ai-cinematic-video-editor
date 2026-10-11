@@ -1,0 +1,330 @@
+{
+  "id": "T12",
+  "name": "Chrome Dominion",
+  "slug": "Chrome_Dominion",
+  "category": "C - 3D Metal and Premium Materials",
+  "version": "1.0.0",
+  "concept": "A mirror-chrome monolith title stands up in a black studio lit only by hard strip softboxes.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 180,
+  "duration_seconds": 7.5,
+  "phases": {
+    "build_up": [
+      0,
+      74
+    ],
+    "impact_frame": 74,
+    "hero_hold": [
+      74,
+      140
+    ],
+    "exit": [
+      140,
+      166
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": true,
+  "uses_2_5d": false,
+  "depth_note": "Fusion source uses Text3D/Renderer3D geometry; the preview approximates the extruded solid with perspective-projected slices.",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Orbitron"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T12_Chrome_Dominion.setting",
+  "fusion_composition": "source/T12_Chrome_Dominion.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 59,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "BrightnessContrast",
+    "Camera3D",
+    "ColorCorrector",
+    "EllipseMask",
+    "FilmGrain",
+    "LightAmbient",
+    "LightDirectional",
+    "LightSpot",
+    "Merge",
+    "Merge3D",
+    "MtlBlinn",
+    "RectangleMask",
+    "Renderer3D",
+    "Text3D",
+    "TextPlus",
+    "Transform"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "GlowStrength",
+    "ImpactIntensity",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "ExtrusionDepth",
+    "BevelAmount",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Glow Strength",
+    "Impact Intensity",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Extrusion Depth",
+    "Bevel Amount",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title (3D)",
+    "3D Title Font",
+    "3D Title Style",
+    "Material Color",
+    "Material Color",
+    "Material Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T12_Chrome_Dominion.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Studio room tone"
+    },
+    {
+      "frame": 12,
+      "seconds": 0.5,
+      "cue": "metal",
+      "note": "Strip light 1 clunk"
+    },
+    {
+      "frame": 24,
+      "seconds": 1.0,
+      "cue": "metal",
+      "note": "Strip light 2"
+    },
+    {
+      "frame": 36,
+      "seconds": 1.5,
+      "cue": "metal",
+      "note": "Strip light 3"
+    },
+    {
+      "frame": 40,
+      "seconds": 1.667,
+      "cue": "whoosh",
+      "note": "Heavy pivot whoosh"
+    },
+    {
+      "frame": 60,
+      "seconds": 2.5,
+      "cue": "riser",
+      "note": "Short riser"
+    },
+    {
+      "frame": 74,
+      "seconds": 3.083,
+      "cue": "impact",
+      "note": "Chrome slab lands - hard impact"
+    },
+    {
+      "frame": 74,
+      "seconds": 3.083,
+      "cue": "metal",
+      "note": "Metallic ring"
+    },
+    {
+      "frame": 78,
+      "seconds": 3.25,
+      "cue": "shimmer",
+      "note": "Reflection sweep shimmer"
+    },
+    {
+      "frame": 140,
+      "seconds": 5.833,
+      "cue": "rwhoosh",
+      "note": "Reverse whoosh fall-back"
+    },
+    {
+      "frame": 152,
+      "seconds": 6.333,
+      "cue": "metal",
+      "note": "Lights off clunks"
+    },
+    {
+      "frame": 160,
+      "seconds": 6.667,
+      "cue": "tail",
+      "note": "Tail"
+    }
+  ],
+  "techniques": [
+    "Text3D extrusion",
+    "pivot-up reveal",
+    "strip-light reflections",
+    "edge illumination",
+    "mirror floor",
+    "sequential light rig",
+    "fall-back exit"
+  ],
+  "design": {
+    "entrance": "Studio strip lights clunk on one by one; the chrome title, lying back on the glossy floor, pivots upright on its base (X rotation 78 deg to 0) toward a low-angle camera.",
+    "reveal": "At the lock the strip-light reflections race across the chrome faces, a cold edge light snaps on and the floor mirror catches the full title.",
+    "camera": "Low-angle dolly-in that rises slightly to eye level; compact shake at the lock.",
+    "material": "Mirror chrome: near-zero diffuse, very high specular exponent, layered strip reflections over a black horizon band, crisp bevels with cool edge illumination, dark extruded walls.",
+    "exit": "The title falls back flat into the floor reflection while the strip lights switch off in reverse order."
+  },
+  "fusion_notes": [
+    "Approximation: the Fusion MtlBlinn cannot reflect an environment, so the chrome look is built from a very high specular exponent, three animated spot/directional highlights and screen-space strip reflections (masked light sweeps). For true mirror chrome, replace GoldMtl-style Blinn ('ChromeMtl') with a MtlReflect fed by an HDRI SphereMap - not generated because those tool IDs are unverified here.",
+    "The floor reflection is a flipped 2D copy of the rendered title (Transform FlipVert), not a ray-traced mirror; it stays correct while the title is upright and is faded out during the fall-back exit."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "Renderer3D.RendererOpenGL.LightingEnabled",
+    "Renderer3D.RendererOpenGL.Supersampling",
+    "Transform.FlipVert"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t12.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "EXTRUSION_DEPTH",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "SHADOW_STRENGTH",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 59,
+      "unconfirmed_inputs": [
+        "Renderer3D.RendererOpenGL.LightingEnabled",
+        "Renderer3D.RendererOpenGL.Supersampling",
+        "Transform.FlipVert"
+      ],
+      "setting_input_evidence": {
+        "S": 221,
+        "K": 120,
+        "?": 3
+      },
+      "setting_expressions": 48,
+      "published_controls": 35,
+      "text_nodes": [
+        "Subtitle",
+        "ChromeText3D"
+      ],
+      "comp_tools": 59,
+      "comp_input_evidence": {
+        "S": 221,
+        "K": 120,
+        "?": 3
+      },
+      "comp_expressions": 48
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 7.5,
+      "frames": 180,
+      "audio": true,
+      "bytes": 1453232,
+      "sample_means": [
+        0.6,
+        4.9,
+        12.1,
+        11.9,
+        11.5,
+        13.1,
+        13.2,
+        10.2,
+        0.6
+      ],
+      "hero_blown_fraction": 0.0017,
+      "hero_contrast": 37.6,
+      "title_band_contrast": 51.7
+    },
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:12:08+00:00"
+  }
+}

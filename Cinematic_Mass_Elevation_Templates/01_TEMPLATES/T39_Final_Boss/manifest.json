@@ -1,0 +1,305 @@
+{
+  "id": "T39",
+  "name": "Final Boss",
+  "slug": "Final_Boss",
+  "category": "H - Signature Hero Elevations",
+  "version": "1.0.0",
+  "concept": "The last enemy arrives: a massive dark-iron title slams out of the abyss and holds, breathing red.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 156,
+  "duration_seconds": 6.5,
+  "phases": {
+    "build_up": [
+      0,
+      28
+    ],
+    "impact_frame": 28,
+    "hero_hold": [
+      28,
+      130
+    ],
+    "exit": [
+      130,
+      148
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Black Ops One",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T39_Final_Boss.setting",
+  "fusion_composition": "source/T39_Final_Boss.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 74,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "CornerPositioner",
+    "DirectionalBlur",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ImpactIntensity",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "ExtrusionDepth",
+    "MotionBlurAmount",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Impact Intensity",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Extrusion Depth",
+    "Motion Blur Amount",
+    "Letterbox (2.39:1)",
+    "Underlight Color",
+    "Underlight Color",
+    "Underlight Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T39_Final_Boss.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Abyssal drone"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "heartbeat",
+      "note": "Heavy heartbeat (continues through the hold)"
+    },
+    {
+      "frame": 4,
+      "seconds": 0.167,
+      "cue": "riser",
+      "note": "Tension riser (frames 4-28)"
+    },
+    {
+      "frame": 18,
+      "seconds": 0.75,
+      "cue": "whoosh",
+      "note": "Fast incoming whoosh"
+    },
+    {
+      "frame": 28,
+      "seconds": 1.167,
+      "cue": "impact",
+      "note": "Massive impact + distorted sub"
+    },
+    {
+      "frame": 28,
+      "seconds": 1.167,
+      "cue": "metal",
+      "note": "Iron slam"
+    },
+    {
+      "frame": 29,
+      "seconds": 1.208,
+      "cue": "debris",
+      "note": "Debris / grit"
+    },
+    {
+      "frame": 30,
+      "seconds": 1.25,
+      "cue": "tail",
+      "note": "Impact tail"
+    },
+    {
+      "frame": 130,
+      "seconds": 5.417,
+      "cue": "rwhoosh",
+      "note": "Snap-back suck"
+    },
+    {
+      "frame": 138,
+      "seconds": 5.75,
+      "cue": "sub",
+      "note": "Final sub drop"
+    }
+  ],
+  "techniques": [
+    "fast z-launch with zoom blur",
+    "deep perspective extrusion",
+    "3-layer smoke with radial blast",
+    "heartbeat-driven underlight",
+    "short impact shake",
+    "snap-back exit"
+  ],
+  "design": {
+    "entrance": "A long ominous build (smoke, heartbeat red underlight), then a very fast 10-frame launch from deep space straight at the lens with zoom motion blur.",
+    "reveal": "Hard impact: short violent shake, layered smoke blasts outward, red underlight flares; then a dead-stable hero hold.",
+    "camera": "Aggressive low three-quarter perspective on the extruded title; locked-off after a short impact shake.",
+    "material": "Pitted dark iron, deep 2.5D extrusion, blood-red underlight and rim pulsing with a heartbeat.",
+    "exit": "The red light cuts and the title is yanked back into the abyss in a fast pull."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "CornerPositioner.BottomLeft",
+    "CornerPositioner.BottomRight",
+    "CornerPositioner.TopLeft",
+    "CornerPositioner.TopRight",
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t39.py",
+    "parameters_used": []
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 74,
+      "unconfirmed_inputs": [
+        "CornerPositioner.BottomLeft",
+        "CornerPositioner.BottomRight",
+        "CornerPositioner.TopLeft",
+        "CornerPositioner.TopRight",
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 241,
+        "K": 188,
+        "?": 11
+      },
+      "setting_expressions": 61,
+      "published_controls": 40,
+      "text_nodes": [
+        "MainTitle",
+        "Subtitle"
+      ],
+      "comp_tools": 74,
+      "comp_input_evidence": {
+        "S": 241,
+        "K": 188,
+        "?": 11
+      },
+      "comp_expressions": 61
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 6.5,
+      "frames": 156,
+      "audio": true,
+      "bytes": 2986078,
+      "sample_means": [
+        1.8,
+        3.9,
+        12.0,
+        10.7,
+        10.1,
+        10.2,
+        10.6,
+        5.7,
+        1.0
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 18.7,
+      "title_band_contrast": 29.9
+    },
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:13:33+00:00"
+  }
+}

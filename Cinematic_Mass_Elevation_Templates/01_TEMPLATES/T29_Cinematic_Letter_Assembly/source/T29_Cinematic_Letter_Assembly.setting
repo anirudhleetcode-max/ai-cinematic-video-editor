@@ -1,0 +1,2529 @@
+-- T29_Cinematic_Letter_Assembly: Cinematic Mass Elevation Templates
+-- Generated Fusion macro (MacroOperator). Install into
+--   <Fusion support>/Templates/Edit/Titles/ to use as an Edit-page title,
+-- or drag this file into the Fusion page node editor.
+{
+	Tools = ordered() {
+		T29_Cinematic_Letter_Assembly = MacroOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Templates:/Edit/Titles/",
+					},
+				},
+				HelpPage = "Cinematic Mass Elevation Templates - T29_Cinematic_Letter_Assembly",
+			},
+			Inputs = ordered() {
+				CONTROLS_AnimStart = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "AnimStart",
+					Name = "Animation Start (frames)",
+					Page = "Timing",
+					Default = 8,
+				},
+				CONTROLS_AnimDuration = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "AnimDuration",
+					Name = "Reveal Duration (frames)",
+					Page = "Timing",
+					Default = 28,
+				},
+				CONTROLS_ImpactFrame = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "ImpactFrame",
+					Name = "Impact Frame",
+					Page = "Timing",
+					Default = 82,
+				},
+				CONTROLS_ExitStart = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "ExitStart",
+					Name = "Exit Start (frame)",
+					Page = "Timing",
+					Default = 140,
+				},
+				CONTROLS_ExitDuration = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "ExitDuration",
+					Name = "Exit Duration (frames)",
+					Page = "Timing",
+					Default = 28,
+				},
+				CONTROLS_BackgroundIntensity = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "BackgroundIntensity",
+					Name = "Background Intensity",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_ParticleIntensity = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "ParticleIntensity",
+					Name = "Particle Intensity",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_GlowStrength = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "GlowStrength",
+					Name = "Glow Strength",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_ShadowStrength = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "ShadowStrength",
+					Name = "Shadow Strength",
+					Page = "Look",
+					Default = 0.7,
+				},
+				CONTROLS_TextScale = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "TextScale",
+					Name = "Text Scale",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_TextPosX = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "TextPosX",
+					Name = "Text Position X",
+					Page = "Look",
+					Default = 0.5,
+				},
+				CONTROLS_TextPosY = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "TextPosY",
+					Name = "Text Position Y",
+					Page = "Look",
+					Default = 0.5,
+				},
+				CONTROLS_TextRotation = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "TextRotation",
+					Name = "Text Rotation",
+					Page = "Look",
+					Default = 0,
+				},
+				CONTROLS_MotionBlurAmount = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "MotionBlurAmount",
+					Name = "Motion Blur Amount",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_Letterbox = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "Letterbox",
+					Name = "Letterbox (2.39:1)",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_StaggerFrames = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "StaggerFrames",
+					Name = "Stagger Interval (frames)",
+					Page = "Timing",
+					Default = 4,
+				},
+				AccentRed = InstanceInput {
+					SourceOp = "ACCENT",
+					Source = "TopLeftRed",
+					Name = "Accent Color",
+					ControlGroup = 90,
+					Page = "Look",
+				},
+				AccentGreen = InstanceInput {
+					SourceOp = "ACCENT",
+					Source = "TopLeftGreen",
+					Name = "Accent Color",
+					ControlGroup = 90,
+					Page = "Look",
+				},
+				AccentBlue = InstanceInput {
+					SourceOp = "ACCENT",
+					Source = "TopLeftBlue",
+					Name = "Accent Color",
+					ControlGroup = 90,
+					Page = "Look",
+				},
+				MainTitleText = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "StyledText",
+					Name = "Main Title",
+					Page = "Text",
+				},
+				MainTitleFont = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Font",
+					Name = "Main Title Font",
+					ControlGroup = 110,
+					Page = "Text",
+				},
+				MainTitleStyle = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Style",
+					Name = "Main Title Style",
+					ControlGroup = 110,
+					Page = "Text",
+				},
+				MainTitleSize = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Size",
+					Name = "Main Title Size",
+					Page = "Text",
+					Default = 0.1,
+				},
+				MainTitleTracking = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "CharacterSpacing",
+					Name = "Main Title Letter Spacing",
+					Page = "Text",
+					Default = 1.12,
+				},
+				MainTitleLeading = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "LineSpacing",
+					Name = "Main Title Line Spacing",
+					Page = "Text",
+					Default = 1,
+				},
+				MainTitleAlign = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "HorizontalJustificationNew",
+					Name = "Main Title Alignment",
+					Page = "Text",
+				},
+				MainTitleRed = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Red1",
+					Name = "Main Title Color",
+					ControlGroup = 10,
+					Page = "Text",
+				},
+				MainTitleGreen = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Green1",
+					Name = "Main Title Color",
+					ControlGroup = 10,
+					Page = "Text",
+				},
+				MainTitleBlue = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Blue1",
+					Name = "Main Title Color",
+					ControlGroup = 10,
+					Page = "Text",
+				},
+				SubtitleText = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "StyledText",
+					Name = "Subtitle",
+					Page = "Text",
+				},
+				SubtitleFont = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Font",
+					Name = "Subtitle Font",
+					ControlGroup = 111,
+					Page = "Text",
+				},
+				SubtitleStyle = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Style",
+					Name = "Subtitle Style",
+					ControlGroup = 111,
+					Page = "Text",
+				},
+				SubtitleSize = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Size",
+					Name = "Subtitle Size",
+					Page = "Text",
+					Default = 0.026,
+				},
+				SubtitleTracking = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "CharacterSpacing",
+					Name = "Subtitle Letter Spacing",
+					Page = "Text",
+					Default = 1.9,
+				},
+				SubtitleLeading = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "LineSpacing",
+					Name = "Subtitle Line Spacing",
+					Page = "Text",
+					Default = 1,
+				},
+				SubtitleAlign = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "HorizontalJustificationNew",
+					Name = "Subtitle Alignment",
+					Page = "Text",
+				},
+				SubtitleRed = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Red1",
+					Name = "Subtitle Color",
+					ControlGroup = 11,
+					Page = "Text",
+				},
+				SubtitleGreen = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Green1",
+					Name = "Subtitle Color",
+					ControlGroup = 11,
+					Page = "Text",
+				},
+				SubtitleBlue = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Blue1",
+					Name = "Subtitle Color",
+					ControlGroup = 11,
+					Page = "Text",
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Letterbox",
+					Source = "Output",
+				},
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 0, 0 },
+			},
+			Tools = ordered() {
+				CONTROLS = Transform {
+					Inputs = {
+						AnimStart = Input {
+							Value = 8,
+						},
+						AnimDuration = Input {
+							Value = 28,
+						},
+						ImpactFrame = Input {
+							Value = 82,
+						},
+						ExitStart = Input {
+							Value = 140,
+						},
+						ExitDuration = Input {
+							Value = 28,
+						},
+						BackgroundIntensity = Input {
+							Value = 1,
+						},
+						ParticleIntensity = Input {
+							Value = 1,
+						},
+						GlowStrength = Input {
+							Value = 1,
+						},
+						ShadowStrength = Input {
+							Value = 0.7,
+						},
+						TextScale = Input {
+							Value = 1,
+						},
+						TextPosX = Input {
+							Value = 0.5,
+						},
+						TextPosY = Input {
+							Value = 0.5,
+						},
+						TextRotation = Input {
+							Value = 0,
+						},
+						MotionBlurAmount = Input {
+							Value = 1,
+						},
+						Letterbox = Input {
+							Value = 1,
+						},
+						StaggerFrames = Input {
+							Value = 4,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, -66 },
+					},
+					UserControls = ordered() {
+						AnimStart = {
+							LINKS_Name = "Animation Start (frames)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 8,
+							INP_MinScale = 0,
+							INP_MaxScale = 120,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+						AnimDuration = {
+							LINKS_Name = "Reveal Duration (frames)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 28,
+							INP_MinScale = 1,
+							INP_MaxScale = 144,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+						ImpactFrame = {
+							LINKS_Name = "Impact Frame",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 82,
+							INP_MinScale = 0,
+							INP_MaxScale = 240,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+						ExitStart = {
+							LINKS_Name = "Exit Start (frame)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 140,
+							INP_MinScale = 0,
+							INP_MaxScale = 300,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+						ExitDuration = {
+							LINKS_Name = "Exit Duration (frames)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 28,
+							INP_MinScale = 1,
+							INP_MaxScale = 120,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+						BackgroundIntensity = {
+							LINKS_Name = "Background Intensity",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MaxScale = 2,
+							ICS_ControlPage = "Controls",
+						},
+						ParticleIntensity = {
+							LINKS_Name = "Particle Intensity",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MaxScale = 2,
+							ICS_ControlPage = "Controls",
+						},
+						GlowStrength = {
+							LINKS_Name = "Glow Strength",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MaxScale = 3,
+							ICS_ControlPage = "Controls",
+						},
+						ShadowStrength = {
+							LINKS_Name = "Shadow Strength",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0.7,
+							INP_MinScale = 0,
+							INP_MaxScale = 1,
+							ICS_ControlPage = "Controls",
+						},
+						TextScale = {
+							LINKS_Name = "Text Scale",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0.2,
+							INP_MaxScale = 3,
+							ICS_ControlPage = "Controls",
+						},
+						TextPosX = {
+							LINKS_Name = "Text Position X",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							INP_MaxScale = 1,
+							ICS_ControlPage = "Controls",
+						},
+						TextPosY = {
+							LINKS_Name = "Text Position Y",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							INP_MaxScale = 1,
+							ICS_ControlPage = "Controls",
+						},
+						TextRotation = {
+							LINKS_Name = "Text Rotation",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0,
+							INP_MinScale = -180,
+							INP_MaxScale = 180,
+							ICS_ControlPage = "Controls",
+						},
+						MotionBlurAmount = {
+							LINKS_Name = "Motion Blur Amount",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MaxScale = 3,
+							ICS_ControlPage = "Controls",
+						},
+						Letterbox = {
+							LINKS_Name = "Letterbox (2.39:1)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MaxScale = 1,
+							ICS_ControlPage = "Controls",
+						},
+						StaggerFrames = {
+							LINKS_Name = "Stagger Interval (frames)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 4,
+							INP_MinScale = 0,
+							INP_MaxScale = 24,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+					},
+				},
+				ACCENT = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0.788235,
+						},
+						TopLeftGreen = Input {
+							Value = 0.643137,
+						},
+						TopLeftBlue = Input {
+							Value = 0.415686,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, -66 },
+					},
+				},
+				Studio = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Type = Input {
+							Value = FuID { "Gradient" },
+						},
+						GradientType = Input {
+							Value = FuID { "Linear" },
+						},
+						Start = Input {
+							Value = { 0.5, 1 },
+						},
+						End = Input {
+							Value = { 0.5, 0 },
+						},
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.019608, 0.015686, 0.015686, 1 },
+									[1] = { 0.062745, 0.054902, 0.047059, 1 }
+								}
+							},
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 0 },
+					},
+				},
+				TopPoolColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+						},
+						TopLeftGreen = Input {
+							Value = 0.92,
+						},
+						TopLeftBlue = Input {
+							Value = 0.8,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "TopPoolShape",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 0 },
+					},
+				},
+				TopPoolShape = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.6,
+						},
+						Center = Input {
+							Value = { 0.5, 0.62 },
+						},
+						Width = Input {
+							Value = 1.5,
+						},
+						Height = Input {
+							Value = 0.8,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 0 },
+					},
+				},
+				TopPool = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Studio",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "TopPoolColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "0.1*CONTROLS.BackgroundIntensity",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 0 },
+					},
+				},
+				MotesEmitter = pEmitter {
+					Inputs = {
+						Number = Input {
+							Value = 3,
+							Expression = "3*CONTROLS.ParticleIntensity",
+						},
+						Lifespan = Input {
+							Value = 300,
+						},
+						LifespanVariance = Input {
+							Value = 90,
+						},
+						Velocity = Input {
+							Value = 0.0008,
+						},
+						VelocityVariance = Input {
+							Value = 0.00048,
+						},
+						Angle = Input {
+							Value = 40,
+						},
+						AngleVariance = Input {
+							Value = 180,
+						},
+						Region = Input {
+							Value = FuID { "CubeRgn" },
+						},
+						["ParticleStyle.ColorControls"] = Input {
+							Value = 1,
+						},
+						["ParticleStyle.Red"] = Input {
+							Value = 0.9,
+						},
+						["ParticleStyle.Green"] = Input {
+							Value = 0.8,
+						},
+						["ParticleStyle.Blue"] = Input {
+							Value = 0.6,
+						},
+						["ParticleStyle.Size"] = Input {
+							Value = 0.3,
+						},
+						["ParticleStyle.SizeVariance"] = Input {
+							Value = 0.18,
+						},
+						["CubeRgn.Width"] = Input {
+							Value = 2.4,
+						},
+						["CubeRgn.Height"] = Input {
+							Value = 1.4,
+						},
+						["CubeRgn.Depth"] = Input {
+							Value = 1,
+						},
+						["Transform3DOp.Translate.Y"] = Input {
+							Value = 0,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 0 },
+					},
+				},
+				MotesTurb = pTurbulence {
+					Inputs = {
+						Input = Input {
+							SourceOp = "MotesEmitter",
+							Source = "Output",
+						},
+						XStrength = Input {
+							Value = 0.05,
+						},
+						YStrength = Input {
+							Value = 0.05,
+						},
+						ZStrength = Input {
+							Value = 0.025,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 550, 0 },
+					},
+				},
+				MotesRender = pRender {
+					Inputs = {
+						Input = Input {
+							SourceOp = "MotesTurb",
+							Source = "Output",
+						},
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 660, 0 },
+					},
+				},
+				MotesGlow = SoftGlow {
+					Inputs = {
+						Input = Input {
+							SourceOp = "MotesRender",
+							Source = "Output",
+						},
+						Threshold = Input {
+							Value = 0.1,
+						},
+						XGlowSize = Input {
+							Value = 2,
+						},
+						Gain = Input {
+							Value = 1,
+							Expression = "1.2*CONTROLS.GlowStrength",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 770, 0 },
+					},
+				},
+				Motes = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "TopPool",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "MotesGlow",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(CONTROLS.ParticleIntensity, 1)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 880, 0 },
+					},
+				},
+				MainTitle = TextPlus {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						StyledText = Input {
+							Value = "ASCENDANT",
+						},
+						Font = Input {
+							Value = "Cinzel",
+						},
+						Style = Input {
+							Value = "Bold",
+						},
+						Size = Input {
+							Value = 0.1,
+						},
+						CharacterSpacing = Input {
+							Value = 1.12,
+						},
+						LineSpacing = Input {
+							Value = 1,
+						},
+						VerticalJustificationNew = Input {
+							Value = 3,
+						},
+						HorizontalJustificationNew = Input {
+							Value = 3,
+						},
+						Red1 = Input {
+							Value = 0.929412,
+						},
+						Green1 = Input {
+							Value = 0.901961,
+						},
+						Blue1 = Input {
+							Value = 0.847059,
+						},
+						Alpha1 = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 66 },
+					},
+				},
+				IvoryShadeMatte = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "MainTitle",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Alpha" },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 66 },
+					},
+				},
+				IvoryShade = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Type = Input {
+							Value = FuID { "Gradient" },
+						},
+						GradientType = Input {
+							Value = FuID { "Linear" },
+						},
+						Start = Input {
+							Value = { 0.5, 0.62 },
+						},
+						End = Input {
+							Value = { 0.5, 0.38 },
+						},
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.639216, 0.603922, 0.541176, 1 },
+									[0.55] = { 1, 1, 1, 1 },
+									[1] = { 0.847059, 0.815686, 0.760784, 1 }
+								}
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "IvoryShadeMatte",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 66 },
+					},
+				},
+				IvoryFace = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "MainTitle",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "IvoryShade",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Multiply" },
+						},
+						Blend = Input {
+							Value = 0.6,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 66 },
+					},
+				},
+				SheenBand = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.04,
+						},
+						Width = Input {
+							Value = 0.05,
+						},
+						Height = Input {
+							Value = 2,
+						},
+						Angle = Input {
+							Value = 25,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(-0.2 + 1.4*(0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.ImpactFrame + 1)) / max(22, 1), 0), 1))), 0.5)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 66 },
+					},
+				},
+				SheenClip = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "MainTitle",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Alpha" },
+						},
+						PaintMode = Input {
+							Value = FuID { "Multiply" },
+						},
+						EffectMask = Input {
+							SourceOp = "SheenBand",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 550, 66 },
+					},
+				},
+				SheenColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+						},
+						TopLeftGreen = Input {
+							Value = 0.97,
+						},
+						TopLeftBlue = Input {
+							Value = 0.9,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "SheenClip",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 660, 66 },
+					},
+				},
+				Sheen = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "IvoryFace",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SheenColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "0.6*CONTROLS.GlowStrength*min(max(min(max((time - (CONTROLS.ImpactFrame + 1)) / max(22, 1), 0), 1)*20, 0), 1)*(1-min(max((min(max((time - (CONTROLS.ImpactFrame + 1)) / max(22, 1), 0), 1)-0.95)*20, 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 770, 66 },
+					},
+				},
+				SlotHolder = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0,
+						},
+						TopLeftGreen = Input {
+							Value = 0,
+						},
+						TopLeftBlue = Input {
+							Value = 0,
+						},
+						TopLeftAlpha = Input {
+							Value = 0,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 132 },
+					},
+				},
+				AssemblyHolder = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0,
+						},
+						TopLeftGreen = Input {
+							Value = 0,
+						},
+						TopLeftBlue = Input {
+							Value = 0,
+						},
+						TopLeftAlpha = Input {
+							Value = 0,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 132 },
+					},
+				},
+				LetterSlot0 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0,
+						},
+						Center = Input {
+							Value = { 0.21125, 0.5 },
+						},
+						Width = Input {
+							Value = 0.0845,
+						},
+						Height = Input {
+							Value = 0.4,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 132 },
+					},
+				},
+				LetterSlice0 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "SlotHolder",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Sheen",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						EffectMask = Input {
+							SourceOp = "LetterSlot0",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 132 },
+					},
+				},
+				LetterMove0 = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterSlice0",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5 + -0.159*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*0.00)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + -0.020*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*0.00)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159), 0.5 + 0.250*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*0.00)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + -0.040*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*0.00)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159) + 0.2*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*4.20)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "(1 + 0.9*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*0.00)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))))*(1 - 0.35*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*4.20)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = 0,
+							Expression = "22.0*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*0.00)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) - 10.0*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*4.20)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)",
+						},
+						Pivot = Input {
+							Value = { 0.21125, 0.5 },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 132 },
+					},
+				},
+				LetterBlur0 = Blur {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterMove0",
+							Source = "Output",
+						},
+						XBlurSize = Input {
+							Value = 1,
+							Expression = "10*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*0.00)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4)))*CONTROLS.MotionBlurAmount",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 132 },
+					},
+				},
+				LetterLand0 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "AssemblyHolder",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "LetterBlur0",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(max(min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*0.00)) / max(CONTROLS.AnimDuration, 1), 0), 1)*3, 0), 1)*(1 - min(max(pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*4.20)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)*1.4, 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 132 },
+					},
+				},
+				LetterSlot1 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0,
+						},
+						Center = Input {
+							Value = { 0.29375, 0.5 },
+						},
+						Width = Input {
+							Value = 0.0845,
+						},
+						Height = Input {
+							Value = 0.4,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 660, 132 },
+					},
+				},
+				LetterSlice1 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "SlotHolder",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Sheen",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						EffectMask = Input {
+							SourceOp = "LetterSlot1",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 770, 132 },
+					},
+				},
+				LetterMove1 = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterSlice1",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5 + -0.127*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*2.70)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + 0.020*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*2.70)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159), 0.5 + -0.200*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*2.70)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + 0.040*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*2.70)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159) + 0.2*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*3.00)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "(1 + 0.9*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*2.70)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))))*(1 - 0.35*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*3.00)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = 0,
+							Expression = "-22.0*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*2.70)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) - -10.0*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*3.00)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)",
+						},
+						Pivot = Input {
+							Value = { 0.29375, 0.5 },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 880, 132 },
+					},
+				},
+				LetterBlur1 = Blur {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterMove1",
+							Source = "Output",
+						},
+						XBlurSize = Input {
+							Value = 1,
+							Expression = "10*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*2.70)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4)))*CONTROLS.MotionBlurAmount",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 990, 132 },
+					},
+				},
+				LetterLand1 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "LetterLand0",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "LetterBlur1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(max(min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*2.70)) / max(CONTROLS.AnimDuration, 1), 0), 1)*3, 0), 1)*(1 - min(max(pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*3.00)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)*1.4, 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1100, 132 },
+					},
+				},
+				LetterSlot2 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0,
+						},
+						Center = Input {
+							Value = { 0.37625, 0.5 },
+						},
+						Width = Input {
+							Value = 0.0845,
+						},
+						Height = Input {
+							Value = 0.4,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1320, 132 },
+					},
+				},
+				LetterSlice2 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "SlotHolder",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Sheen",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						EffectMask = Input {
+							SourceOp = "LetterSlot2",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1430, 132 },
+					},
+				},
+				LetterMove2 = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterSlice2",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5 + -0.136*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*4.70)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + -0.020*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*4.70)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159), 0.5 + 0.250*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*4.70)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + -0.040*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*4.70)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159) + 0.2*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*1.80)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "(1 + 0.9*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*4.70)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))))*(1 - 0.35*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*1.80)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = 0,
+							Expression = "22.0*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*4.70)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) - 10.0*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*1.80)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)",
+						},
+						Pivot = Input {
+							Value = { 0.37625, 0.5 },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1540, 132 },
+					},
+				},
+				LetterBlur2 = Blur {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterMove2",
+							Source = "Output",
+						},
+						XBlurSize = Input {
+							Value = 1,
+							Expression = "10*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*4.70)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4)))*CONTROLS.MotionBlurAmount",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1650, 132 },
+					},
+				},
+				LetterLand2 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "LetterLand1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "LetterBlur2",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(max(min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*4.70)) / max(CONTROLS.AnimDuration, 1), 0), 1)*3, 0), 1)*(1 - min(max(pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*1.80)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)*1.4, 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1760, 132 },
+					},
+				},
+				LetterSlot3 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0,
+						},
+						Center = Input {
+							Value = { 0.45875, 0.5 },
+						},
+						Width = Input {
+							Value = 0.0845,
+						},
+						Height = Input {
+							Value = 0.4,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1980, 132 },
+					},
+				},
+				LetterSlice3 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "SlotHolder",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Sheen",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						EffectMask = Input {
+							SourceOp = "LetterSlot3",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2090, 132 },
+					},
+				},
+				LetterMove3 = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterSlice3",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5 + -0.156*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*6.80)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + 0.020*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*6.80)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159), 0.5 + -0.200*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*6.80)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + 0.040*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*6.80)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159) + 0.2*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*0.60)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "(1 + 0.9*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*6.80)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))))*(1 - 0.35*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*0.60)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = 0,
+							Expression = "-22.0*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*6.80)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) - -10.0*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*0.60)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)",
+						},
+						Pivot = Input {
+							Value = { 0.45875, 0.5 },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2200, 132 },
+					},
+				},
+				LetterBlur3 = Blur {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterMove3",
+							Source = "Output",
+						},
+						XBlurSize = Input {
+							Value = 1,
+							Expression = "10*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*6.80)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4)))*CONTROLS.MotionBlurAmount",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2310, 132 },
+					},
+				},
+				LetterLand3 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "LetterLand2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "LetterBlur3",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(max(min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*6.80)) / max(CONTROLS.AnimDuration, 1), 0), 1)*3, 0), 1)*(1 - min(max(pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*0.60)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)*1.4, 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2420, 132 },
+					},
+				},
+				LetterSlot4 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0,
+						},
+						Center = Input {
+							Value = { 0.54125, 0.5 },
+						},
+						Width = Input {
+							Value = 0.0845,
+						},
+						Height = Input {
+							Value = 0.4,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 198 },
+					},
+				},
+				LetterSlice4 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "SlotHolder",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Sheen",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						EffectMask = Input {
+							SourceOp = "LetterSlot4",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 198 },
+					},
+				},
+				LetterMove4 = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterSlice4",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5 + 0.148*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*7.60)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + -0.020*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*7.60)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159), 0.5 + 0.250*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*7.60)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + -0.040*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*7.60)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159) + 0.2*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*0.00)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "(1 + 0.9*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*7.60)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))))*(1 - 0.35*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*0.00)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = 0,
+							Expression = "22.0*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*7.60)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) - 10.0*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*0.00)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)",
+						},
+						Pivot = Input {
+							Value = { 0.54125, 0.5 },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 198 },
+					},
+				},
+				LetterBlur4 = Blur {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterMove4",
+							Source = "Output",
+						},
+						XBlurSize = Input {
+							Value = 1,
+							Expression = "10*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*7.60)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4)))*CONTROLS.MotionBlurAmount",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 198 },
+					},
+				},
+				LetterLand4 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "LetterLand3",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "LetterBlur4",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(max(min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*7.60)) / max(CONTROLS.AnimDuration, 1), 0), 1)*3, 0), 1)*(1 - min(max(pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*0.00)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)*1.4, 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 198 },
+					},
+				},
+				LetterSlot5 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0,
+						},
+						Center = Input {
+							Value = { 0.62375, 0.5 },
+						},
+						Width = Input {
+							Value = 0.0845,
+						},
+						Height = Input {
+							Value = 0.4,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 660, 198 },
+					},
+				},
+				LetterSlice5 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "SlotHolder",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Sheen",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						EffectMask = Input {
+							SourceOp = "LetterSlot5",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 770, 198 },
+					},
+				},
+				LetterMove5 = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterSlice5",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5 + 0.148*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*5.30)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + 0.020*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*5.30)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159), 0.5 + -0.200*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*5.30)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + 0.040*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*5.30)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159) + 0.2*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*1.20)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "(1 + 0.9*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*5.30)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))))*(1 - 0.35*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*1.20)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = 0,
+							Expression = "-22.0*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*5.30)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) - -10.0*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*1.20)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)",
+						},
+						Pivot = Input {
+							Value = { 0.62375, 0.5 },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 880, 198 },
+					},
+				},
+				LetterBlur5 = Blur {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterMove5",
+							Source = "Output",
+						},
+						XBlurSize = Input {
+							Value = 1,
+							Expression = "10*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*5.30)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4)))*CONTROLS.MotionBlurAmount",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 990, 198 },
+					},
+				},
+				LetterLand5 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "LetterLand4",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "LetterBlur5",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(max(min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*5.30)) / max(CONTROLS.AnimDuration, 1), 0), 1)*3, 0), 1)*(1 - min(max(pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*1.20)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)*1.4, 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1100, 198 },
+					},
+				},
+				LetterSlot6 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0,
+						},
+						Center = Input {
+							Value = { 0.70625, 0.5 },
+						},
+						Width = Input {
+							Value = 0.0845,
+						},
+						Height = Input {
+							Value = 0.4,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1320, 198 },
+					},
+				},
+				LetterSlice6 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "SlotHolder",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Sheen",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						EffectMask = Input {
+							SourceOp = "LetterSlot6",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1430, 198 },
+					},
+				},
+				LetterMove6 = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterSlice6",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5 + 0.121*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*3.40)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + -0.020*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*3.40)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159), 0.5 + 0.250*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*3.40)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + -0.040*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*3.40)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159) + 0.2*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*2.40)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "(1 + 0.9*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*3.40)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))))*(1 - 0.35*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*2.40)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = 0,
+							Expression = "22.0*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*3.40)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) - 10.0*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*2.40)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)",
+						},
+						Pivot = Input {
+							Value = { 0.70625, 0.5 },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1540, 198 },
+					},
+				},
+				LetterBlur6 = Blur {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterMove6",
+							Source = "Output",
+						},
+						XBlurSize = Input {
+							Value = 1,
+							Expression = "10*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*3.40)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4)))*CONTROLS.MotionBlurAmount",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1650, 198 },
+					},
+				},
+				LetterLand6 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "LetterLand5",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "LetterBlur6",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(max(min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*3.40)) / max(CONTROLS.AnimDuration, 1), 0), 1)*3, 0), 1)*(1 - min(max(pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*2.40)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)*1.4, 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1760, 198 },
+					},
+				},
+				LetterSlot7 = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0,
+						},
+						Center = Input {
+							Value = { 0.78875, 0.5 },
+						},
+						Width = Input {
+							Value = 0.0845,
+						},
+						Height = Input {
+							Value = 0.4,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1980, 198 },
+					},
+				},
+				LetterSlice7 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "SlotHolder",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Sheen",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						EffectMask = Input {
+							SourceOp = "LetterSlot7",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2090, 198 },
+					},
+				},
+				LetterMove7 = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterSlice7",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5 + 0.108*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*1.00)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + 0.020*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*1.00)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159), 0.5 + -0.200*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*1.00)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) + 0.040*sin((1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*1.00)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))*3.14159) + 0.2*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*3.60)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "(1 + 0.9*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*1.00)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))))*(1 - 0.35*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*3.60)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5))",
+						},
+						Angle = Input {
+							Value = 0,
+							Expression = "-22.0*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*1.00)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4))) - -10.0*pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*3.60)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)",
+						},
+						Pivot = Input {
+							Value = { 0.78875, 0.5 },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2200, 198 },
+					},
+				},
+				LetterBlur7 = Blur {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterMove7",
+							Source = "Output",
+						},
+						XBlurSize = Input {
+							Value = 1,
+							Expression = "10*(1 - (1 - pow(1 - min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*1.00)) / max(CONTROLS.AnimDuration, 1), 0), 1), 4)))*CONTROLS.MotionBlurAmount",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2310, 198 },
+					},
+				},
+				LetterLand7 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "LetterLand6",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "LetterBlur7",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(max(min(max((time - (CONTROLS.AnimStart + CONTROLS.StaggerFrames*1.00)) / max(CONTROLS.AnimDuration, 1), 0), 1)*3, 0), 1)*(1 - min(max(pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.StaggerFrames*3.60)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2.5)*1.4, 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2420, 198 },
+					},
+				},
+				TitlePlace = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "LetterLand7",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(CONTROLS.TextPosX + 0, CONTROLS.TextPosY + 0)",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "CONTROLS.TextScale * (1 + 0.04*(0.5 - 0.5*cos(3.14159265*min(max((time - (0)) / max(180, 1), 0), 1))))",
+						},
+						Angle = Input {
+							Value = 0,
+							Expression = "CONTROLS.TextRotation + 0",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 297 },
+					},
+				},
+				ShadowMatte = ColorCorrector {
+					Inputs = {
+						Input = Input {
+							SourceOp = "TitlePlace",
+							Source = "Output",
+						},
+						MasterRGBGain = Input {
+							Value = 0,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 297 },
+					},
+				},
+				ShadowOffset = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "ShadowMatte",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.503, 0.485)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 297 },
+					},
+				},
+				ShadowSoft = Blur {
+					Inputs = {
+						Input = Input {
+							SourceOp = "ShadowOffset",
+							Source = "Output",
+						},
+						XBlurSize = Input {
+							Value = 10,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 297 },
+					},
+				},
+				ShadowMerge = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Motes",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "ShadowSoft",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "0.55*CONTROLS.ShadowStrength",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 297 },
+					},
+				},
+				LettersOverStudio = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "ShadowMerge",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "TitlePlace",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 550, 297 },
+					},
+				},
+				BaselineRuleColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftRed*1.0",
+						},
+						TopLeftGreen = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftGreen*1.0",
+						},
+						TopLeftBlue = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftBlue*1.0",
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "BaselineRuleShape",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 363 },
+					},
+				},
+				BaselineRuleShape = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0006,
+						},
+						Center = Input {
+							Value = { 0.5, 0.435 },
+						},
+						Width = Input {
+							Value = 0.01,
+							Expression = "0.68*(0.5 - 0.5*cos(3.14159265*min(max((time - ((CONTROLS.AnimStart + 0.85*CONTROLS.AnimDuration))) / max((CONTROLS.ImpactFrame - (CONTROLS.AnimStart + 0.85*CONTROLS.AnimDuration)), 1), 0), 1)))",
+						},
+						Height = Input {
+							Value = 0.0018,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 363 },
+					},
+				},
+				BaselineGlow = SoftGlow {
+					Inputs = {
+						Input = Input {
+							SourceOp = "BaselineRuleColor",
+							Source = "Output",
+						},
+						Threshold = Input {
+							Value = 0.05,
+						},
+						XGlowSize = Input {
+							Value = 6,
+						},
+						Gain = Input {
+							Value = 1,
+							Expression = "CONTROLS.GlowStrength*(0.6 + 1.5*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 10)))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 363 },
+					},
+				},
+				BaselineRule = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "LettersOverStudio",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "BaselineGlow",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "1 - (0.5 - 0.5*cos(3.14159265*min(max((min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1) - 0.3)/0.6, 0), 1)))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 363 },
+					},
+				},
+				Subtitle = TextPlus {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						StyledText = Input {
+							Value = "A STORY IN NINE LETTERS",
+						},
+						Font = Input {
+							Value = "Teko",
+						},
+						Style = Input {
+							Value = "SemiBold",
+						},
+						Size = Input {
+							Value = 0.026,
+						},
+						CharacterSpacing = Input {
+							Value = 1.9,
+						},
+						LineSpacing = Input {
+							Value = 1,
+						},
+						VerticalJustificationNew = Input {
+							Value = 3,
+						},
+						HorizontalJustificationNew = Input {
+							Value = 3,
+						},
+						Red1 = Input {
+							Value = 0.8,
+						},
+						Green1 = Input {
+							Value = 0.76,
+						},
+						Blue1 = Input {
+							Value = 0.68,
+						},
+						Alpha1 = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 363 },
+					},
+				},
+				SubtitlePlace = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Subtitle",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(CONTROLS.TextPosX, CONTROLS.TextPosY + -0.1)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 550, 363 },
+					},
+				},
+				SubtitleMerge = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "BaselineRule",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SubtitlePlace",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "(min(max((time - (CONTROLS.ImpactFrame + 10) + 14) / 14, 0), 1) * (1 - min(max((time - (CONTROLS.ExitStart - 2)) / 10, 0), 1)))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 660, 363 },
+					},
+				},
+				VignetteColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0,
+						},
+						TopLeftGreen = Input {
+							Value = 0,
+						},
+						TopLeftBlue = Input {
+							Value = 0,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "VignetteShape",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 770, 363 },
+					},
+				},
+				VignetteShape = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.45,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+						},
+						Width = Input {
+							Value = 1.25,
+						},
+						Height = Input {
+							Value = 1.25,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Invert = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 880, 363 },
+					},
+				},
+				Vignette = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "SubtitleMerge",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "VignetteColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 0.55,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 990, 363 },
+					},
+				},
+				Grain = FilmGrain {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Vignette",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1100, 363 },
+					},
+				},
+				LetterboxColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0,
+						},
+						TopLeftGreen = Input {
+							Value = 0,
+						},
+						TopLeftBlue = Input {
+							Value = 0,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "LetterboxShape",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1210, 363 },
+					},
+				},
+				LetterboxShape = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+						},
+						Width = Input {
+							Value = 1,
+						},
+						Height = Input {
+							Value = 0.7438,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Invert = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1320, 363 },
+					},
+				},
+				Letterbox = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Grain",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "LetterboxColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "CONTROLS.Letterbox",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1430, 363 },
+					},
+				},
+			},
+		},
+	},
+	ActiveTool = "T29_Cinematic_Letter_Assembly",
+}

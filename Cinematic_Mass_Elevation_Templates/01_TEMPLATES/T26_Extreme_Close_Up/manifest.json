@@ -1,0 +1,303 @@
+{
+  "id": "T26",
+  "name": "Extreme Close-Up",
+  "slug": "Extreme_Close_Up",
+  "category": "F - Cinematic Typography and Camera Movement",
+  "version": "1.0.0",
+  "concept": "A macro study of the lettering: we start inside the lacquered surface of one letter and pull out to the name.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 200,
+  "duration_seconds": 8.333,
+  "phases": {
+    "build_up": [
+      0,
+      112
+    ],
+    "impact_frame": 112,
+    "hero_hold": [
+      112,
+      168
+    ],
+    "exit": [
+      168,
+      194
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Bebas Neue",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T26_Extreme_Close_Up.setting",
+  "fusion_composition": "source/T26_Extreme_Close_Up.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 45,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "EllipseMask",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ShadowStrength",
+    "ImpactIntensity",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Shadow Strength",
+    "Impact Intensity",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T26_Extreme_Close_Up.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Intimate room tone"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "swell",
+      "note": "Slow tonal swell under the pull-back (0-112)"
+    },
+    {
+      "frame": 30,
+      "seconds": 1.25,
+      "cue": "shimmer",
+      "note": "Glint shimmer"
+    },
+    {
+      "frame": 100,
+      "seconds": 4.167,
+      "cue": "rwhoosh",
+      "note": "Soft reverse whoosh"
+    },
+    {
+      "frame": 112,
+      "seconds": 4.667,
+      "cue": "impact",
+      "note": "Restrained low hit on the settle"
+    },
+    {
+      "frame": 113,
+      "seconds": 4.708,
+      "cue": "shimmer",
+      "note": "Focus-snap glint"
+    },
+    {
+      "frame": 168,
+      "seconds": 7.0,
+      "cue": "tail",
+      "note": "Defocus tail"
+    }
+  ],
+  "techniques": [
+    "boosted raster close-up",
+    "backward dolly",
+    "2.5D perspective tilt",
+    "macro depth of field",
+    "travelling glint",
+    "focus snap",
+    "rack-focus exit"
+  ],
+  "design": {
+    "entrance": "Extreme macro crop on the bevel of the first letter with shallow depth of field and a raking edge light; the camera dollies backward on a long eased move while the tilt flattens out.",
+    "reveal": "The pull-back lands exactly on the impact frame with a tiny settle; focus snaps crisp and the edge light flares.",
+    "camera": "Backward dolly from 6.5x with perspective tilt/yaw unwinding to frontal; macro DOF opening to full focus.",
+    "material": "Deep crimson gloss lacquer with fine grain, warm bevel highlights and a travelling specular glint.",
+    "exit": "Rack focus: the title defocuses into soft bokeh and the light fades."
+  },
+  "fusion_notes": [
+    "Fusion zooms the vector Text+ itself (Size/Center driven by expressions) so the close-up stays crisp; use 'Text Scale' to resize the final title. The preview also tilts/yaws the camera for perspective, which the 2D Fusion graph approximates with a slight rotation."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t26.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 45,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 143,
+        "K": 87,
+        "?": 7
+      },
+      "setting_expressions": 28,
+      "published_controls": 37,
+      "text_nodes": [
+        "Subtitle",
+        "MainTitle"
+      ],
+      "comp_tools": 45,
+      "comp_input_evidence": {
+        "S": 143,
+        "K": 87,
+        "?": 7
+      },
+      "comp_expressions": 28
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 8.333,
+      "frames": 200,
+      "audio": true,
+      "bytes": 2406357,
+      "sample_means": [
+        23.5,
+        19.1,
+        16.8,
+        8.4,
+        5.4,
+        6.0,
+        6.7,
+        5.5,
+        0.7
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 20.5,
+      "title_band_contrast": 36.3
+    },
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:12:50+00:00"
+  }
+}

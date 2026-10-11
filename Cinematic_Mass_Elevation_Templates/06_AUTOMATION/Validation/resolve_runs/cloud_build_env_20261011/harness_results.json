@@ -1,0 +1,10 @@
+{
+ "run_id": "cloud_build_env_20261011",
+ "mock": false,
+ "host": "Linux-6.18.44-fc-v114-x86_64-with-glibc2.39",
+ "python": "3.13.16",
+ "templates": {},
+ "connection": {
+  "connected": false
+ }
+}

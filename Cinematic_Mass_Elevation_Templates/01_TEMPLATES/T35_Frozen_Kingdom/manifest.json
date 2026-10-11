@@ -1,0 +1,281 @@
+{
+  "id": "T35",
+  "name": "Frozen Kingdom",
+  "slug": "Frozen_Kingdom",
+  "category": "G - Atmospheric and Environmental Cinema",
+  "version": "1.0.0",
+  "concept": "In a hall of ice spires the title freezes into existence: frost crawls across an invisible pane and becomes letters.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 204,
+  "duration_seconds": 8.5,
+  "phases": {
+    "build_up": [
+      0,
+      88
+    ],
+    "impact_frame": 92,
+    "hero_hold": [
+      92,
+      164
+    ],
+    "exit": [
+      164,
+      200
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Cinzel",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T35_Frozen_Kingdom.setting",
+  "fusion_composition": "source/T35_Frozen_Kingdom.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 157,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "PolylineMask",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Letterbox (2.39:1)",
+    "Frost Light Color",
+    "Frost Light Color",
+    "Frost Light Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T35_Frozen_Kingdom.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "wind",
+      "note": "Cold high wind, glassy air"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Low icy drone"
+    },
+    {
+      "frame": 14,
+      "seconds": 0.583,
+      "cue": "ice",
+      "note": "Crackling frost growth (continuous)"
+    },
+    {
+      "frame": 60,
+      "seconds": 2.5,
+      "cue": "riser",
+      "note": "Crystalline riser"
+    },
+    {
+      "frame": 92,
+      "seconds": 3.833,
+      "cue": "ice",
+      "note": "Ice lock: sharp glassy crack"
+    },
+    {
+      "frame": 92,
+      "seconds": 3.833,
+      "cue": "sub",
+      "note": "Soft sub under the lock"
+    },
+    {
+      "frame": 94,
+      "seconds": 3.917,
+      "cue": "shimmer",
+      "note": "Glint shimmer"
+    },
+    {
+      "frame": 164,
+      "seconds": 6.833,
+      "cue": "wind",
+      "note": "Sublimation hiss / vapour"
+    },
+    {
+      "frame": 190,
+      "seconds": 7.917,
+      "cue": "tail",
+      "note": "Glassy tail"
+    }
+  ],
+  "techniques": [
+    "frost-front reveal field",
+    "growing frost dendrites (crack_lines/draw_partial)",
+    "parallax ice spires",
+    "falling ice glints",
+    "cold rim light",
+    "sublimation exit"
+  ],
+  "design": {
+    "entrance": "Frost propagation: from four nucleation points, branching frost dendrites grow and the letters crystallise behind the advancing frost front (white rime at the front, clear ice behind).",
+    "reveal": "At the impact frame the ice 'locks': a cold glint sweeps the faces and a ring of fine crystals bursts outward.",
+    "camera": "Slow lateral glide with parallax between two layers of ice spires, ground mist and falling ice.",
+    "material": "Clear blue ice with refracted inner texture, sharp cold specular and pale rim light.",
+    "exit": "The ice sublimates: the frost front runs backwards and the letters evaporate into rising cold vapour."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t35.py",
+    "parameters_used": []
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 157,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 626,
+        "K": 338,
+        "?": 14
+      },
+      "setting_expressions": 63,
+      "published_controls": 36,
+      "text_nodes": [
+        "Subtitle",
+        "MainTitle"
+      ],
+      "comp_tools": 157,
+      "comp_input_evidence": {
+        "S": 626,
+        "K": 338,
+        "?": 14
+      },
+      "comp_expressions": 63
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 8.5,
+      "frames": 204,
+      "audio": true,
+      "bytes": 3598923,
+      "sample_means": [
+        11.6,
+        11.7,
+        13.3,
+        13.7,
+        14.3,
+        14.1,
+        14.2,
+        14.2,
+        14.8
+      ],
+      "hero_blown_fraction": 0.0001,
+      "hero_contrast": 20.0,
+      "title_band_contrast": 31.1
+    },
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:13:22+00:00"
+  }
+}

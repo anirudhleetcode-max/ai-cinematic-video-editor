@@ -22,3 +22,8 @@ tests/real_media/*
 *.mp3
 *.webm
 *.m4v
+# Cinematic Mass Elevation Templates: keep preview videos and shared SFX
+!Cinematic_Mass_Elevation_Templates/01_TEMPLATES/*/preview/*.mp4
+!Cinematic_Mass_Elevation_Templates/02_SHARED_ASSETS/Sound_Effects/*.wav
+Cinematic_Mass_Elevation_Templates/06_AUTOMATION/Validation/_tmp/
+Cinematic_Mass_Elevation_Templates/04_FINAL_RENDERS/**/*.mov
