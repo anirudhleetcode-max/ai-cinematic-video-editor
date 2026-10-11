@@ -22,7 +22,7 @@ class T15(Design):
     ID = "T15"
     NAME = "Diamond Cut"
     SLUG = "Diamond_Cut"
-    CATEGORY = "B - Premium Materials"
+    CATEGORY = "C - 3D Metal and Premium Materials"
     CONCEPT = "A flawless, faceted crystal title displayed like a jewel on midnight velvet."
     ENTRANCE = ("A controlled orbit: the camera arcs around the cut-crystal title (yaw 55 deg and a slight "
                 "pitch resolving to front-on) while hundreds of facets catch and lose the light.")

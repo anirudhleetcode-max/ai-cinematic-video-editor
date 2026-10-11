@@ -46,7 +46,7 @@ class T13(Design):
     ID = "T13"
     NAME = "Titanium Edge"
     SLUG = "Titanium_Edge"
-    CATEGORY = "B - Premium Materials"
+    CATEGORY = "C - 3D Metal and Premium Materials"
     CONCEPT = "Precision-machined titanium lettering assembled like a mechanism from horizontal slats."
     ENTRANCE = ("Guide rails draw on, then six horizontal slats of the extruded titanium title slide in from "
                 "alternating sides, out of depth, locking into alignment one by one with a crisp mechanical snap.")

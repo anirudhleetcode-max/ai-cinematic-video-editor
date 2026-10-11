@@ -26,7 +26,7 @@ class T12(Design):
     ID = "T12"
     NAME = "Chrome Dominion"
     SLUG = "Chrome_Dominion"
-    CATEGORY = "B - Premium Materials"
+    CATEGORY = "C - 3D Metal and Premium Materials"
     CONCEPT = "A mirror-chrome monolith title stands up in a black studio lit only by hard strip softboxes."
     ENTRANCE = ("Studio strip lights clunk on one by one; the chrome title, lying back on the glossy floor, pivots "
                 "upright on its base (X rotation 78 deg to 0) toward a low-angle camera.")

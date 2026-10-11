@@ -49,7 +49,7 @@ class T18(Design):
     ID = "T18"
     NAME = "Dark Sorcery"
     SLUG = "Dark_Sorcery"
-    CATEGORY = "C - Mythic Atmospheres"
+    CATEGORY = "D - Mythic, Epic and Fantasy"
     CONCEPT = "An occult invocation: a ritual circle of original runes ignites in swirling smoke and summons the title."
     ENTRANCE = ("Smoke spirals inward around a vertical ritual circle whose rings trace on and whose runes ignite "
                 "one by one; the letters condense out of the vortex through a spiral, edge-glowing dissolve.")

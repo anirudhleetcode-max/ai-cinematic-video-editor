@@ -150,13 +150,14 @@ class TextSprite:
         ys, xs = np.nonzero(m > 0.02)
         if len(xs) == 0:
             xs, ys = np.array([W // 2]), np.array([H // 2])
-        self.ink = (xs.min(), ys.min(), xs.max(), ys.max())
+        # plain Python numbers: NumPy-2 int64 scalars would promote float32 frames to float64
+        self.ink = (int(xs.min()), int(ys.min()), int(xs.max()), int(ys.max()))
         self.mask = m
         self.h, self.w = m.shape
-        self.anchor = ((self.ink[0] + self.ink[2]) / 2, (self.ink[1] + self.ink[3]) / 2)
-        self.ink_w = self.ink[2] - self.ink[0]
-        self.ink_h = self.ink[3] - self.ink[1]
-        self.cap_px = cap_px
+        self.anchor = ((self.ink[0] + self.ink[2]) / 2.0, (self.ink[1] + self.ink[3]) / 2.0)
+        self.ink_w = float(self.ink[2] - self.ink[0])
+        self.ink_h = float(self.ink[3] - self.ink[1])
+        self.cap_px = float(cap_px)
         self._dist = None
 
     @property

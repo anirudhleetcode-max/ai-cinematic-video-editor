@@ -36,7 +36,7 @@ class T14(Design):
     ID = "T14"
     NAME = "Forged in Fire"
     SLUG = "Forged_In_Fire"
-    CATEGORY = "B - Premium Materials"
+    CATEGORY = "C - 3D Metal and Premium Materials"
     CONCEPT = "A dark smithy: a glowing blank of iron is hammered, strike by strike, into razor-sharp letterforms."
     ENTRANCE = ("A soft, swollen, dull-red billet in the rough shape of the title heats up in the dark; three "
                 "hammer strikes (left, right, centre) each flatten it, sharpen the edges and throw sparks.")

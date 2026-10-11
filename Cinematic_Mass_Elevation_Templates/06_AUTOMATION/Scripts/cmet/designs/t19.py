@@ -24,7 +24,7 @@ class T19(Design):
     ID = "T19"
     NAME = "Cosmic Overlord"
     SLUG = "Cosmic_Overlord"
-    CATEGORY = "C - Mythic Atmospheres"
+    CATEGORY = "D - Mythic, Epic and Fantasy"
     CONCEPT = "A sovereign title assembles like a constellation above a planet while a star rises over its limb."
     ENTRANCE = ("A slow camera approach through three parallax star layers and drifting nebula; the letters drift "
                 "in from deep space as points of light, linked by fading constellation lines, and lock into place.")

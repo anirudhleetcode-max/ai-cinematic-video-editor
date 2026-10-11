@@ -21,7 +21,7 @@ class T11(Design):
     ID = "T11"
     NAME = "Golden Emperor"
     SLUG = "Golden_Emperor"
-    CATEGORY = "B - Premium Materials"
+    CATEGORY = "C - 3D Metal and Premium Materials"
     CONCEPT = "A regal, restrained gold title: solid polished bullion letterforms turn to face the camera in a dark hall."
     ENTRANCE = ("The extruded gold title glides forward from depth while turning from a three-quarter angle to "
                 "face the lens (yaw -38 deg to 0) under a slow, elegant camera push.")

@@ -22,7 +22,7 @@ class T17(Design):
     ID = "T17"
     NAME = "Celestial Ascent"
     SLUG = "Celestial_Ascent"
-    CATEGORY = "C - Mythic Atmospheres"
+    CATEGORY = "D - Mythic, Epic and Fantasy"
     CONCEPT = "A heavenly reveal high above the cloud sea: the title descends through luminous clouds into sunlight."
     ENTRANCE = ("The camera climbs out of a bank of glowing cloud; layered clouds stream past the lens while the "
                 "pale title descends slowly from above into frame, half-veiled by passing vapour.")

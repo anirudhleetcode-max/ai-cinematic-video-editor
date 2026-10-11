@@ -34,7 +34,7 @@ class T16(Design):
     ID = "T16"
     NAME = "Ancient Titan"
     SLUG = "Ancient_Titan"
-    CATEGORY = "C - Mythic Atmospheres"
+    CATEGORY = "D - Mythic, Epic and Fantasy"
     CONCEPT = "A colossal carved-stone title rises out of the ground of a ruined, hazy ancient valley."
     ENTRANCE = ("Under a continuous low rumble the monumental stone letters grind up out of the earth, shedding "
                 "dust and grit, while ground dust billows along their base.")

@@ -24,7 +24,7 @@ class T20(Design):
     ID = "T20"
     NAME = "Phoenix Reborn"
     SLUG = "Phoenix_Reborn"
-    CATEGORY = "C - Mythic Atmospheres"
+    CATEGORY = "D - Mythic, Epic and Fantasy"
     CONCEPT = "Renewal and power: a rising double spiral of living sparks becomes the title, which ignites reborn."
     ENTRANCE = ("Two intertwined helices of glowing particles spiral up from the dark, widen at the top and then "
                 "stream inward, each spark flying to its own point on the letterforms.")
@@ -129,10 +129,10 @@ class T20(Design):
             pu = np.clip((u - dl) / (1 - 0.25), 0, 1)  # per-particle progress
             # helix (first 60%)
             hu = np.clip(pu / 0.6, 0, 1)
-            theta = (ph * 6.0 + hu * 9.0 + strand * math.pi + t * 1.2)
-            radius = 0.20 + 0.55 * hu ** 1.5
-            hxp = hxn + np.cos(theta) * radius
-            hyp = 1.05 - hu * (1.05 - hyn + 0.35) + (ph - 0.5) * 0.35 * (1 - hu)
+            hyp = 1.05 - hu * (1.05 - hyn + 0.30) + (ph - 0.5) * 0.9 * (1 - 0.6 * hu)
+            theta = -hyp * 6.5 + strand * math.pi + t * 2.2 + jit[:, 0] * 0.12
+            radius = (0.16 + 0.5 * hu ** 1.5) * (1 + 0.25 * (0.5 - (hyp - hyn)))
+            hxp = hxn + np.cos(theta) * radius + jit[:, 1] * 0.012
             hz = 1.0 + 0.35 * np.sin(theta)
             # convergence (last 40%)
             cu = np.clip((pu - 0.6) / 0.4, 0, 1)
