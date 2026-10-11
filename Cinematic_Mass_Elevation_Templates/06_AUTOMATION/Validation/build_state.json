@@ -198,6 +198,45 @@
    "thumb_frame": 78
   }
  },
+ "T34": {
+  "preview": {
+   "params_read": [
+    "ACCENT_COLOR",
+    "ANIMATION_DURATION",
+    "ANIMATION_START",
+    "BACKGROUND_INTENSITY",
+    "BEVEL_AMOUNT",
+    "DURATION",
+    "EXIT_DURATION",
+    "EXIT_START",
+    "FONT_FAMILY",
+    "FONT_SIZE",
+    "GLOW_STRENGTH",
+    "IMPACT_FRAME",
+    "IMPACT_INTENSITY",
+    "LETTERBOX",
+    "LETTER_SPACING",
+    "LINE_SPACING",
+    "MAIN_TITLE",
+    "PARTICLE_INTENSITY",
+    "SHADOW_STRENGTH",
+    "SUBTITLE",
+    "SUB_FONT_FAMILY",
+    "TEXT_ALIGNMENT",
+    "TEXT_COLOR",
+    "TEXT_POSITION_X",
+    "TEXT_POSITION_Y",
+    "TEXT_ROTATION",
+    "TEXT_SCALE",
+    "TITLE_WIDTH"
+   ],
+   "path": "01_TEMPLATES/T34_Underwater_Colossus/preview/T34_Underwater_Colossus.mp4",
+   "rc": 0,
+   "rendered_at": "2026-10-11T18:37:55+00:00",
+   "seconds": 411.3,
+   "thumb_frame": 154
+  }
+ },
  "T40": {
   "preview": {
    "params_read": [
