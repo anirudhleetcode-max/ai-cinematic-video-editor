@@ -21,17 +21,21 @@ SEEDS = ((-0.42, -0.15, 0.00), (-0.14, 0.25, 0.22), (0.16, -0.2, 0.10), (0.43, 0
 
 
 def spires(seed, n, y_base, h_rng, w_rng, spread=2.2, gap=0.0):
-    """Ice spires along the ground; `gap` keeps |x| < gap clear (title area)."""
+    """Clusters of ice shards along the ground (main shard + a leaning
+    secondary one); `gap` keeps |x| < gap clear (title area)."""
     r = np.random.default_rng(seed)
     out = []
     for i in range(n):
         x = -spread + 2 * spread * (i + r.uniform(0.15, 0.85)) / n
         if abs(x) < gap:
             x = math.copysign(gap + r.uniform(0, 0.25), x if x != 0 else 1)
-        h = r.uniform(*h_rng)
+        h = r.uniform(*h_rng) * r.uniform(0.55, 1.0)
         w = r.uniform(*w_rng)
-        lean = r.uniform(-0.12, 0.12) * h
-        out.append((x, y_base, w, h, lean, r.uniform(0.35, 0.65)))
+        out.append((x, y_base, w, h, r.uniform(-0.1, 0.1) * h, r.uniform(0.35, 0.65)))
+        side = r.choice([-1, 1])
+        h2 = h * r.uniform(0.35, 0.7)
+        out.append((x + side * w * 0.9, y_base + 0.01, w * 0.7, h2, side * r.uniform(0.25, 0.5) * h2,
+                    r.uniform(0.35, 0.65)))
     return out
 
 
@@ -103,6 +107,7 @@ class T35(Design):
 
         def draw_spires(layer_spires, par, lit_col, dark_col, edge_col, blur_px):
             buf = np.zeros((H // 2, W // 2, 3), np.float32)
+            am = np.zeros((H // 2, W // 2), np.float32)
             s = H / 4  # half-res pixels per normalised unit
             for (x, yb, w, h, lean, split) in layer_spires:
                 X = (x + pan * par) * s + W / 4
@@ -111,18 +116,19 @@ class T35(Design):
                 L = (X - w * s, Yb)
                 Rr = (X + w * s, Yb)
                 M = (X + (split - 0.5) * w * s, Yb)
+                cv2.fillPoly(am, [np.int32([tip, L, Rr])], 1.0, cv2.LINE_AA)
                 cv2.fillPoly(buf, [np.int32([tip, L, M])], tuple(float(v) for v in lit_col), cv2.LINE_AA)
                 cv2.fillPoly(buf, [np.int32([tip, M, Rr])], tuple(float(v) for v in dark_col), cv2.LINE_AA)
                 cv2.line(buf, (int(tip[0]), int(tip[1])), (int(L[0]), int(L[1])), tuple(float(v) for v in edge_col),
                          1, cv2.LINE_AA)
             if blur_px:
                 buf = cv2.GaussianBlur(buf, (0, 0), blur_px)
-            return cv2.resize(buf, (W, H))
+                am = cv2.GaussianBlur(am, (0, 0), blur_px)
+            return cv2.resize(buf, (W, H)), cv2.resize(am, (W, H))[..., None]
 
-        sp_far = c.cache.setdefault("spf", spires(5, 16, 0.5, (0.35, 0.9), (0.04, 0.09)))
-        sp_near = c.cache.setdefault("spn", spires(9, 8, 1.0, (0.9, 1.9), (0.08, 0.16), 2.6, 1.25))
-        far = draw_spires(sp_far, 0.4, (0.10, 0.18, 0.27), (0.04, 0.08, 0.13), acc * 0.5, 1.6 * k)
-        mfar = (far.max(2) > 0.01).astype(np.float32)[..., None]
+        sp_far = c.cache.setdefault("spf", spires(5, 9, 0.5, (0.4, 1.1), (0.05, 0.1)))
+        sp_near = c.cache.setdefault("spn", spires(9, 6, 1.0, (1.0, 2.0), (0.09, 0.17), 2.6, 1.3))
+        far, mfar = draw_spires(sp_far, 0.4, (0.10, 0.18, 0.27), (0.04, 0.08, 0.13), acc * 0.5, 1.6 * k)
         bg = bg * (1 - mfar) + far * bgI
         mist_f = D.shaped(D.plane(H, W, t, 1.2, (0.01, 0.0), 13, 1.0, (pan * 0.5, 0), stretch=(3, 1)), 0.25, 1.0)
         bg += (mist_f * np.clip((ny - 0.0) * 1.5, 0, 1) * 0.12 * bgI)[..., None] * (acc * 0.5 + 0.3)
@@ -186,8 +192,7 @@ class T35(Design):
                                     flicker=0.6, t=t)
 
         # near spires (foreground parallax), falling ice, ground mist
-        near = draw_spires(sp_near, 1.4, (0.05, 0.10, 0.16), (0.015, 0.03, 0.05), acc * 0.35, 2.5 * k)
-        mn = cv2.GaussianBlur((near.max(2) > 0.005).astype(np.float32), (0, 0), 2 * k)[..., None]
+        near, mn = draw_spires(sp_near, 1.4, (0.06, 0.12, 0.19), (0.015, 0.03, 0.05), acc * 0.45, 2.5 * k)
         img = img * (1 - mn) + near * bgI
         if nP:
             P = c.cache.get("ice")
@@ -245,7 +250,7 @@ class T35(Design):
             return F.merge(g, name, base, x, blend=f"min({BG}, 1)")
 
         g.at(0, 2)
-        bg = spire_layer("SpiresFar", 5, 16, 0.5, (0.35, 0.9), (0.04, 0.09), 2.2, 0.0, "#1a2e45", "#0a1521", 0.02, bg)
+        bg = spire_layer("SpiresFar", 5, 9, 0.5, (0.4, 1.1), (0.05, 0.1), 2.2, 0.0, "#1a2e45", "#0a1521", 0.02, bg)
         bg = D.f_fog(g, "GroundMistFar", bg, "#000000", "#2c4a63", 2.0, "1", (0.0004, 0.0), blend=f"0.4*{BG}")
 
         g.at(0, 4)
@@ -314,7 +319,7 @@ class T35(Design):
                             center_y=0.0, turbulence=0.1, glow=4,
                             number_expr=f"180*{ctl('ParticleIntensity')}*{window(I, I + ' + 2', 1, 1)}")
         g.at(0, 10)
-        scene = spire_layer("SpiresNear", 9, 8, 1.0, (0.9, 1.9), (0.08, 0.16), 2.6, 1.25, "#0d1a29", "#04080e", 0.07, scene)
+        scene = spire_layer("SpiresNear", 9, 6, 1.0, (1.0, 2.0), (0.09, 0.17), 2.6, 1.3, "#0d1a29", "#04080e", 0.07, scene)
         scene = F.particles(g, "FallingIce", scene, number=10, lifespan=140, velocity=0.004, angle=-90, angle_var=20,
                             size=0.22, color=(0.85, 0.94, 1.0), region="CubeRgn", region_size=(2.4, 0.1, 1.0),
                             center_y=0.7, turbulence=0.08, glow=3)

@@ -14,8 +14,8 @@ from . import _c_helpers as X
 
 LACQUER = Material(base=(0.6, 0.05, 0.07), spec=(1.0, 0.92, 0.85), spec_power=90, spec_gain=0.9, diffuse=0.7,
                    ambient=0.06, metal=0.3, env_sky=(0.9, 0.82, 0.75), env_horizon=(0.03, 0.02, 0.02),
-                   env_ground=(0.08, 0.05, 0.04), env_sharp=12, bevel=0.06, texture="grain", tex_amount=0.06,
-                   bump=0.02, rim=(1.0, 0.85, 0.7), seed=26)
+                   env_ground=(0.08, 0.05, 0.04), env_sharp=12, bevel=0.06, texture="grain", tex_amount=0.03,
+                   bump=0.0, rim=(1.0, 0.85, 0.7), seed=26)
 
 BOOST = 3.0     # title raster boost for the extreme close-up
 Z0 = 6.5        # start dolly zoom
@@ -37,9 +37,9 @@ class T26(Design):
                   "travelling glint", "focus snap", "rack-focus exit"]
     DURATION_FRAMES = 200
     DEFAULTS = dict(MAIN_TITLE="CLOSER", SUBTITLE="EVERY DETAIL MATTERS", FONT_FAMILY="bebas",
-                    TEXT_COLOR="#9E1620", ACCENT_COLOR="#FFD9B8", ANIMATION_START=0, ANIMATION_DURATION=112,
+                    TEXT_COLOR="#B81C26", ACCENT_COLOR="#FFD9B8", ANIMATION_START=0, ANIMATION_DURATION=112,
                     IMPACT_FRAME=112, HOLD_DURATION=60, EXIT_START=168, EXIT_DURATION=26, LETTER_SPACING=0.05,
-                    TITLE_WIDTH=0.5, SHADOW_STRENGTH=0.6)
+                    TITLE_WIDTH=0.6, SHADOW_STRENGTH=0.6)
     SOUND = [(0, "atmos", "Intimate room tone"), (0, "swell", "Slow tonal swell under the pull-back (0-112)"),
              (30, "shimmer", "Glint shimmer"), (100, "rwhoosh", "Soft reverse whoosh"),
              (112, "impact", "Restrained low hit on the settle"), (113, "shimmer", "Focus-snap glint"),
@@ -84,19 +84,24 @@ class T26(Design):
         key = "shade"
         if key not in c.cache:
             sh = c.shaded(LACQUER, sprite=sp, name="boosted")
-            rgb, a = sh.shade(light=(-0.55, -0.6, 0.6), base=tc, rim_gain=0.0, light_gain=1.0)
+            rgb, a = sh.shade(light=(-0.55, -0.6, 0.6), base=tc, rim_gain=0.0, light_gain=1.25)
             rim = np.clip((1 - sh.nz) * 2.5, 0, 1) * np.clip(-sh.ny * 0.7 - sh.nx * 0.5 + 0.3, 0, 1) * sp.mask
             spec = np.clip((1 - sh.nz) * 1.6, 0, 1) * sp.mask
             c.cache[key] = (rgb, a, np.repeat(rim[..., None], 3, 2) * acc, np.repeat(spec[..., None], 3, 2))
         rgb, a, rim, spec = c.cache[key]
 
         # camera: pull back, pan from the crop point, perspective unwinding
-        g0 = sp.glyphs[0] if sp.glyphs else None
-        if g0 is not None:
-            tx = (g0.box[0] + (g0.box[2] - g0.box[0]) * 0.18 - sp.anchor[0]) / BOOST
-            ty = (g0.box[1] + (g0.box[3] - g0.box[1]) * 0.12 - sp.anchor[1]) / BOOST
-        else:
-            tx, ty = 0.0, 0.0
+        if "crop" not in c.cache:
+            tx = ty = 0.0
+            if sp.glyphs:
+                b = [int(v) for v in sp.glyphs[0].box]
+                ys_, xs_ = np.nonzero(sp.mask[b[1]:b[3], b[0]:b[2]] > 0.5)
+                if len(xs_):
+                    i = int(np.argmin(xs_ + ys_))      # upper-left bevel of the first letter
+                    tx = (b[0] + xs_[i] + 0.06 * sp.cap_px - sp.anchor[0]) / BOOST
+                    ty = (b[1] + ys_[i] + 0.06 * sp.cap_px - sp.anchor[1]) / BOOST
+            c.cache["crop"] = (tx, ty)
+        tx, ty = c.cache["crop"]
         w = (1 - e) ** 1.3
         tilt = 24 * (1 - e) ** 1.5
         yaw = -14 * (1 - e) ** 1.5
@@ -106,7 +111,7 @@ class T26(Design):
         L = c.layer()
         c.place(L, cam, rgb, a, sp, s)
         Lr = c.layer()
-        rim_gain = (0.25 + 0.35 * (1 - e) + 1.4 * hit) * p["GLOW_STRENGTH"] * (1 - K.smooth(ex))
+        rim_gain = (0.5 + 0.3 * (1 - e) + 1.4 * hit) * p["GLOW_STRENGTH"] * (1 - K.smooth(ex))
         c.place(Lr, cam, rim * rim_gain + 0, a, sp, s, add=True)
         Ls = c.layer()
         c.place(Ls, cam, spec, a, sp, s, add=True)
