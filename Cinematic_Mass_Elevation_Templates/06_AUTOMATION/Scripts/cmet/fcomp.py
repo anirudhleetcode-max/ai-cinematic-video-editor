@@ -464,3 +464,42 @@ def subtitle_text(g: Graph, name, text, font, style, size, tracking=1.3, color=(
                   label="Subtitle", group=11, y_off=-0.14):
     t = title_text(g, name, text, font, style, size, tracking, color, publish_label=label, group=group)
     return t, xf(g, f"{name}Place", t, center=f"Point({ctl('TextPosX')}, {ctl('TextPosY')} + {y_off})")
+
+
+def std_controls(g: Graph, p, extra=None):
+    """CONTROLS node seeded from the template's default timing params."""
+    return g.controls(timing=dict(AnimStart=p["ANIMATION_START"], AnimDuration=p["ANIMATION_DURATION"],
+                                  ImpactFrame=p["IMPACT_FRAME"], HoldDuration=p["HOLD_DURATION"],
+                                  ExitStart=p["EXIT_START"], ExitDuration=p["EXIT_DURATION"]), extra=extra)
+
+
+def shard_polys(n=8, seed=3, box=(0.05, 0.3, 0.95, 0.7)):
+    """Irregular convex shards tiling `box` (x0,y0,x1,y1 normalised): a jittered
+    grid of quads, returned as lists of (x,y) points. Used to fracture a title
+    in Fusion with closed PolylineMasks."""
+    import random
+    r = random.Random(seed)
+    cols = max(2, int(round(n / 2)))
+    rows = 2
+    x0, y0, x1, y1 = box
+    xs = [x0 + (x1 - x0) * i / cols for i in range(cols + 1)]
+    ys = [y0 + (y1 - y0) * j / rows for j in range(rows + 1)]
+    grid = {}
+    for i, x in enumerate(xs):
+        for j, y in enumerate(ys):
+            jx = 0 if i in (0, cols) else r.uniform(-0.35, 0.35) * (x1 - x0) / cols
+            jy = 0 if j in (0, rows) else r.uniform(-0.3, 0.3) * (y1 - y0) / rows
+            grid[(i, j)] = (x + jx, y + jy)
+    polys = []
+    for i in range(cols):
+        for j in range(rows):
+            polys.append([grid[(i, j)], grid[(i + 1, j)], grid[(i + 1, j + 1)], grid[(i, j + 1)]])
+    return polys
+
+
+def closed_poly_mask(g: Graph, name, pts, soft=0.001):
+    t = g.add("PolylineMask", name)
+    plist = [OrderedDict(Linear=True, X=round(x - 0.5, 5), Y=round(y - 0.5, 5)) for x, y in pts]
+    t.set(SoftEdge=soft, MaskWidth=g.W, MaskHeight=g.H, UseFrameFormatSettings=1)
+    t.setk("Polyline", Call("Polyline", OrderedDict(Closed=True, Points=plist)))
+    return t

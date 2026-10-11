@@ -316,3 +316,41 @@ def render(design: Design, out_path, W=1920, H=1080, overrides=None, frames=None
     dt = time_ = _time.time() - t0
     return {"rc": rc, "seconds": round(dt, 1), "frames": len(list(rng)), "mean_luma": means,
             "params_read": sorted(p.read), "stills": still_imgs}
+
+
+# ---------------------------------------------------------------------------
+# Convenience helpers shared by designs
+# ---------------------------------------------------------------------------
+def apply_shake(c: Ctx, img, amp=0.005, decay=0.35, freq=16, seed=1):
+    """Impact camera shake applied to the finished frame (SHAKE_AMOUNT aware)."""
+    sx, sy = c.shake(amp, decay, freq, seed)
+    if abs(sx) + abs(sy) > 0.05:
+        W, H = c.W, c.H
+        M = np.float32([[1.01, 0, -0.005 * W + sx], [0, 1.01, -0.005 * H + sy]])
+        img = cv2.warpAffine(img, M, (W, H), borderMode=cv2.BORDER_REFLECT)
+    return img
+
+
+def subtitle(c: Ctx, img, cam, t_in, t_out, color, y_rel=0.8, key="SUBTITLE", rel=0.22, tracking=0.35,
+             fade=0.8, grow=0.05, font_key=None):
+    """Composite a flat-coloured subtitle/tagline under the title."""
+    ss = c.sub(key, rel, tracking, font_key)
+    if ss is None:
+        return img
+    su = K.prog(c.t, t_in, fade)
+    so = K.smooth(su) * (1 - K.smooth(K.prog(c.t, t_out, 0.5)))
+    if so <= 0:
+        return img
+    sp = c.title()
+    L = c.layer()
+    srgb = np.empty((ss.h, ss.w, 3), np.float32)
+    srgb[...] = K.col(color)
+    c.place(L, cam, srgb, ss.mask, ss, 1.0 + grow * (1 - K.ease_out(su)), off=(0, sp.ink_h * y_rel, 0),
+            opacity=so)
+    return comp(img, L)
+
+
+def flat_rgb(sprite, color):
+    rgb = np.empty((sprite.h, sprite.w, 3), np.float32)
+    rgb[...] = K.col(color)
+    return rgb

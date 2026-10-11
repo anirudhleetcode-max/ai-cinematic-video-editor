@@ -296,6 +296,8 @@ def fft_noise(size=512, beta=2.0, seed=0, ridged=False):
     f = np.sqrt(fx * fx + fy * fy)
     f[0, 0] = 1.0
     spec = np.fft.fft2(white) / (f ** (beta / 2.0))
+    if beta >= 1.9:  # soft atmospherics: roll off the grain
+        spec = spec * np.exp(-(f / (0.045 + 0.06 * (3.0 - min(beta, 3.0)))) ** 2)
     spec[0, 0] = 0
     n = np.real(np.fft.ifft2(spec))
     n = (n - n.mean()) / (n.std() * 3.2) + 0.5

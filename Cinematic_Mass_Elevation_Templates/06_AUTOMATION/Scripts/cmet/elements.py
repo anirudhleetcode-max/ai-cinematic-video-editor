@@ -109,7 +109,7 @@ def particle_layer(H, W, P: Particles, x, y, color, base_size=2.0, intensity=1.0
 # --------------------------------------------------------------------------
 # Atmospheres
 # --------------------------------------------------------------------------
-def fog(H, W, t, color, density=0.5, scale=1.6, speed=(0.012, 0.0), seed=1, warp=0.25, height=None,
+def fog(H, W, t, color, density=0.5, scale=1.6, speed=(0.012, 0.0), seed=1, warp=0.1, height=None,
         contrast=1.6):
     n = fbm_field(H, W, t, scale, speed, seed, beta=2.4, evolve=0.03, warp=warp)
     n = np.clip((n - 0.5) * contrast + 0.5, 0, 1)
@@ -131,9 +131,11 @@ def smoke(H, W, t, color, density=0.6, scale=2.2, rise=0.03, seed=4, light=None)
 
 
 def clouds(H, W, t, top, bottom, seed=3, scale=1.4, speed=0.01, light_dir=(0.0, -1.0), contrast=2.0):
-    n = fbm_field(H, W, t, scale, (speed, speed * 0.2), seed, beta=2.6, evolve=0.02, warp=0.4)
-    sh = np.roll(n, (int(light_dir[1] * 6 * H / 1080), int(light_dir[0] * 6 * H / 1080)), (0, 1))
-    lit = np.clip((n - sh) * 6 + 0.5, 0, 1)
+    n = (fbm_field(H, W, t, scale, (speed, speed * 0.2), seed, beta=2.4, evolve=0.02, warp=0.08) * 0.65
+         + fbm_field(H, W, t, scale * 2.3, (speed * 1.6, speed * 0.3), seed + 9, beta=2.0, evolve=0.03, warp=0.05) * 0.35)
+    sh = np.roll(n, (int(light_dir[1] * 18 * H / 1080), int(light_dir[0] * 18 * H / 1080)), (0, 1))
+    lit = np.clip((n - sh) * 1.8 + 0.5, 0, 1)
+    lit = blur(lit, 6 * H / 1080)
     d = np.clip((n - 0.42) * contrast, 0, 1)
     c = col(bottom)[None, None, :] * (1 - lit[..., None]) + col(top)[None, None, :] * lit[..., None]
     return c * d[..., None], d

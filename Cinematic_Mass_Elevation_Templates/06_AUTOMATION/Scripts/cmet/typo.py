@@ -218,6 +218,7 @@ def _normals(sprite: TextSprite, m: Material):
         tex = material_texture(sprite, m)
         if m.bump > 0:
             h = h + tex * m.bump * (m.bevel * sprite.cap_px) * 0.08
+    h = h.astype(F32)
     gx = cv2.Sobel(h, cv2.CV_32F, 1, 0, ksize=3) / 8.0
     gy = cv2.Sobel(h, cv2.CV_32F, 0, 1, ksize=3) / 8.0
     k = bev * m.bevel_strength
