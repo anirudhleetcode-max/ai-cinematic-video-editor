@@ -60,6 +60,14 @@ Limits:
 3. Change *Main Title* and drag *Impact Frame*. The rim ignition and the burst should move with it.
 4. If a node shows an error or a value looks wrong, see `07_DOCUMENTATION/Troubleshooting.md`. Notes on uncertain input names are in `COMPATIBILITY_REPORT.md`.
 
+## Per-template manual test list
+
+`Resolve_Test_Checklist.md` (in this folder) lists, for each template:
+- its frame count and impact frame;
+- its depth model (3D or 2.5D);
+- the input names that could not be confirmed and should be checked first;
+- any Fusion-specific approximations.
+
 ## What lives where
 
 | Folder | Contents |
@@ -68,3 +76,4 @@ Limits:
 | `Fusion_Compositions/` | 40 flat `.comp` compositions (same node graphs, ungrouped) |
 | `Media/` | Empty on purpose. The templates use no external media; everything is procedural. |
 | `install_titles.ps1` | Installer for macros and fonts (Windows / macOS / Linux PowerShell 7) |
+| `Resolve_Test_Checklist.md` | What to check per template in your first Resolve session |

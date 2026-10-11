@@ -48,6 +48,16 @@ python 06_AUTOMATION/Scripts/render_title.py T26 --set MAIN_TITLE="YOUR TITLE" -
 
 Default font: **Bebas Neue Regular** (OFL, bundled in `02_SHARED_ASSETS/Fonts/` - install it before opening the macro, or pick any installed font in the Inspector).
 
+## Fusion notes and limitations
+
+- Fusion zooms the vector Text+ itself (Size/Center driven by expressions) so the close-up stays crisp; use 'Text Scale' to resize the final title. The preview also tilts/yaws the camera for perspective, which the 2D Fusion graph approximates with a slight rotation.
+
+## Check in Resolve (unconfirmed input names)
+
+These inputs are set in the macro but their names could not be confirmed against documentation. Fusion ignores unknown inputs when it loads a file, so if one is wrong only that setting falls back to its default. Check these first when you open the template:
+
+`pEmitter.Transform3DOp.Translate.Y`, `pRender.Height`, `pRender.UseFrameFormatSettings`, `pRender.Width`, `pTurbulence.XStrength`, `pTurbulence.YStrength`, `pTurbulence.ZStrength`
+
 ## Verification status (honest)
 
 | Level | Status |

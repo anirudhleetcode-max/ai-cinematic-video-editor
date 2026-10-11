@@ -195,39 +195,31 @@
     "erosion reveal / exit",
     "keystone low-angle title"
   ],
+  "design": {
+    "entrance": "A rolling wall of sand crosses the frame from right to left; the title is uncovered behind its leading edge, letter by letter, with a sand-blasted edge.",
+    "reveal": "Gust peak as the wall front passes the title centre: sand streak burst, short shake, the sun breaks through.",
+    "camera": "Low-angle composition (low horizon, keystoned title looming up) with a slow lateral drift over parallax dunes.",
+    "material": "Warm weathered sandstone, low sun rim from the right, dusty ambient fill.",
+    "exit": "A second dust front returns and erodes the letters into wind-blown sand from right to left."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "CornerPositioner.BottomLeft",
+    "CornerPositioner.BottomRight",
+    "CornerPositioner.TopLeft",
+    "CornerPositioner.TopRight",
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t33.py",
-    "parameters_used": [
-      "ACCENT_COLOR",
-      "ANIMATION_DURATION",
-      "ANIMATION_START",
-      "BACKGROUND_INTENSITY",
-      "BEVEL_AMOUNT",
-      "DURATION",
-      "EXIT_DURATION",
-      "EXIT_START",
-      "FONT_FAMILY",
-      "FONT_SIZE",
-      "GLOW_STRENGTH",
-      "IMPACT_FRAME",
-      "IMPACT_INTENSITY",
-      "LETTERBOX",
-      "LETTER_SPACING",
-      "LINE_SPACING",
-      "MAIN_TITLE",
-      "PARTICLE_INTENSITY",
-      "SHADOW_STRENGTH",
-      "SHAKE_AMOUNT",
-      "SUBTITLE",
-      "SUB_FONT_FAMILY",
-      "TEXT_ALIGNMENT",
-      "TEXT_COLOR",
-      "TEXT_POSITION_X",
-      "TEXT_POSITION_Y",
-      "TEXT_ROTATION",
-      "TEXT_SCALE",
-      "TITLE_WIDTH"
-    ]
+    "parameters_used": []
   },
   "verification": {
     "lua_parse": "PASS",
@@ -236,6 +228,19 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 67,
+      "unconfirmed_inputs": [
+        "CornerPositioner.BottomLeft",
+        "CornerPositioner.BottomRight",
+        "CornerPositioner.TopLeft",
+        "CornerPositioner.TopRight",
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 236,
         "K": 189,
@@ -281,6 +286,6 @@
       "title_band_contrast": 46.3
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:48:20+00:00"
+    "validated_at": "2026-10-11T20:07:00+00:00"
   }
 }

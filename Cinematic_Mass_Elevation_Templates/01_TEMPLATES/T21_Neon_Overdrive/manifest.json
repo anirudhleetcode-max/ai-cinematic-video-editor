@@ -181,6 +181,20 @@
     "floor glow pool",
     "power-down wipe"
   ],
+  "design": {
+    "entrance": "Camera glides over a receding neon floor grid (fast, then decelerating) while a neon tube traces the letter edges left-to-right with short starter flickers.",
+    "reveal": "At the impact frame the letter faces power up with a single digital slice-distortion hit.",
+    "camera": "Low forward glide over the grid that brakes into a slow drift; no shake (energy is in the light).",
+    "material": "Dark glass faces that fill with cool white light; magenta (ACCENT) neon tube inside the letter edge.",
+    "exit": "Power-down: the tubes cut out right-to-left with a stutter, faces drain, the grid goes dark from the horizon."
+  },
+  "fusion_notes": [
+    "Floor grid lines are PolylineMask/RectangleMask shapes in the 'FloorGrid*' nodes; move 'GridLinesV*' points to change the vanishing point."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "Transform.EffectMask"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t21.py",
     "parameters_used": [
@@ -218,6 +232,9 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 71,
+      "unconfirmed_inputs": [
+        "Transform.EffectMask"
+      ],
       "setting_input_evidence": {
         "S": 334,
         "K": 123,
@@ -263,6 +280,6 @@
       "title_band_contrast": 77.2
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:50:37+00:00"
+    "validated_at": "2026-10-11T20:06:29+00:00"
   }
 }

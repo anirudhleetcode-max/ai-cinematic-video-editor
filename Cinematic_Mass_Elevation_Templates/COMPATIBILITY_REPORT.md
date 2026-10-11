@@ -89,3 +89,49 @@ these differences from what Resolve produces:
 
 The 3D templates use Fusion's real `Text3D` geometry in the source. Their previews approximate the
 extruded solid with perspective-projected slices.
+
+## 6. Measured status of the delivered collection
+
+These figures come from `06_AUTOMATION/Validation/test_results.md` and `QUALITY_ASSURANCE_REPORT.md`.
+
+| Verification level | Result |
+|---|---|
+| 1. Structural validation of the Fusion sources (`.setting` and `.comp`) | **40 / 40 pass**. All parse in Lua 5.5. No dangling connections, expression references or controls. Only known tool IDs are used. No `exp()` or `^` in any expression. |
+| 2. Standalone preview rendering (reference renderer → H.264) | **40 / 40 pass**. Every preview: 1920x1080, exact frame count, decodes without errors, audio present, motion, no black middle section, hero frame <6% clipped, visible entrance and exit. |
+| 3. DaVinci Resolve import and rendering | **0 / 40 tested.** Resolve is not available in the build environment. |
+
+Inputs set in the macros, graded against the evidence table (S confirmed, K known usage, ? unconfirmed):
+- 11,259 S
+- 6,777 K
+- 442 ? (2.4%)
+
+The 442 unconfirmed settings use only 21 distinct input names. Every template's README lists the ones it uses, and so does `05_RESOLVE_IMPORT/Resolve_Test_Checklist.md`.
+
+| Unconfirmed input | Templates | What to check |
+|---|---|---|
+| `pRender.Width/Height/UseFrameFormatSettings` | 35 | Particle layer resolution matches the timeline |
+| `pTurbulence.X/Y/ZStrength`, `pEmitter.Transform3DOp.Translate.*` | 33 | Particles drift and start in the intended place |
+| `Renderer3D.RendererOpenGL.LightingEnabled/Supersampling` | 5 (3D) | 3D title is lit and anti-aliased |
+| `CornerPositioner.TopLeft/TopRight/BottomLeft/BottomRight` | 3 (T27, T33, T39) | Perspective keystone of the title |
+| `Transform.FlipVert` | 3 (T11, T12, T32) | Floor reflection is mirrored |
+| `Displace.Foreground`, `pDirectionalForce.*`, `EffectMask` on Transform/DirectionalBlur | 1-3 each | Heat haze, distortion and gravity effects |
+
+**Compatibility assumptions that need manual testing in Resolve**
+
+1. **Edit-page templates folder.** Resolve picks up `.setting` macros from `Templates/Edit/Titles` (per-user folder).
+2. **Expressions.** Simple Expressions evaluate `pow`, `min`, `max`, `sin`, `cos`, `abs`, `floor`, `Point` and `time` as used here, and `ToolName.Control` references resolve inside a macro.
+3. **Published controls.** User controls on the CONTROLS Transform publish correctly through `InstanceInput`.
+4. **Masks.** Bitmap-mask chaining (`EffectMask` + `PaintMode`) behaves as documented. This drives the material fills, rims, sweeps and dissolves.
+5. **Polylines.** `PolylineMask` point tables load (lightning, shards, cracks, shutter, emblem shapes).
+6. **Fonts.** The bundled OFL fonts resolve by family/style name once installed.
+7. **3D templates.** OpenGL Renderer3D renders the Text3D, MtlBlinn and light rigs (T11, T12, T13, T15, T28).
+8. **Telugu.** Text+ shaping of Telugu text has not been tested.
+
+**Approximations in the Fusion versions** (recorded in each README's "Fusion notes" section). Where the preview animates per letter or per particle target, the Fusion graph uses an equivalent whole-string mechanism:
+- T29 uses slot masks for the per-letter stagger.
+- T37 uses a soft wipe.
+- T09, T19, T20 and T23 approximate particle convergence.
+
+## 7. 4K
+
+No 4K batch was rendered. 30 GB was free at delivery; a full UHD ProRes set needs about 28–30 GB. The reliable 1080p deliverables came first. Use `render_all.ps1 -Mode final` for 4K, selectively.

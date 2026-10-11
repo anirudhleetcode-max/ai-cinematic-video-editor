@@ -32,5 +32,6 @@
   "SHAKE_AMOUNT": 1.0,
   "LETTERBOX": 1.0,
   "DURATION": 180,
-  "QUALITY": "preview"
+  "QUALITY": "preview",
+  "STAGGER_FRAMES": 4
 }

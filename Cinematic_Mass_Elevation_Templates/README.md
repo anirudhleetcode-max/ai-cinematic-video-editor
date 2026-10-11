@@ -17,9 +17,13 @@ Every template ships as:
 >
 > The previews were rendered by this project's Python reference renderer, not by Fusion.
 >
-> See [COMPATIBILITY_REPORT.md](COMPATIBILITY_REPORT.md) and [QUALITY_ASSURANCE_REPORT.md](QUALITY_ASSURANCE_REPORT.md).
+> See [COMPATIBILITY_REPORT.md](COMPATIBILITY_REPORT.md), [QUALITY_ASSURANCE_REPORT.md](QUALITY_ASSURANCE_REPORT.md) and
+> `05_RESOLVE_IMPORT/Resolve_Test_Checklist.md`.
 
 ## Start here
+
+The status of every template, the exact Resolve steps and the known limitations are in **[FINAL_REPORT.md](FINAL_REPORT.md)**.
+
 
 1. Browse: open **[TEMPLATE_CATALOG.html](TEMPLATE_CATALOG.html)** (works offline). You can also use
    [TEMPLATE_CATALOG.md](TEMPLATE_CATALOG.md) or the contact sheet

@@ -189,40 +189,27 @@
     "light wrap on silhouette edges",
     "backlight surge"
   ],
+  "design": {
+    "entrance": "Rack focus: the title starts large, soft and dim in the foreground and pulls into focus while the backlight slowly rises behind the abstract figure silhouette.",
+    "reveal": "Backlight surge at the impact frame: light rays burst around the silhouette, smoke billows outward, title rim ignites.",
+    "camera": "Controlled crane-up and push; smoke, figure and light source at three parallax depths.",
+    "material": "Brushed silver title with warm backlit rim; procedural figure silhouette with light-wrapped edges.",
+    "exit": "The backlight dies, the title racks back out of focus and the figure dissolves into the smoke."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t36.py",
-    "parameters_used": [
-      "ACCENT_COLOR",
-      "ANIMATION_DURATION",
-      "ANIMATION_START",
-      "BACKGROUND_INTENSITY",
-      "BEVEL_AMOUNT",
-      "DURATION",
-      "EXIT_DURATION",
-      "EXIT_START",
-      "FONT_FAMILY",
-      "FONT_SIZE",
-      "GLOW_STRENGTH",
-      "IMPACT_FRAME",
-      "IMPACT_INTENSITY",
-      "LETTERBOX",
-      "LETTER_SPACING",
-      "LINE_SPACING",
-      "MAIN_TITLE",
-      "MOTION_BLUR_AMOUNT",
-      "PARTICLE_INTENSITY",
-      "SHADOW_STRENGTH",
-      "SHAKE_AMOUNT",
-      "SUBTITLE",
-      "SUB_FONT_FAMILY",
-      "TEXT_ALIGNMENT",
-      "TEXT_COLOR",
-      "TEXT_POSITION_X",
-      "TEXT_POSITION_Y",
-      "TEXT_ROTATION",
-      "TEXT_SCALE",
-      "TITLE_WIDTH"
-    ]
+    "parameters_used": []
   },
   "verification": {
     "lua_parse": "PASS",
@@ -231,6 +218,15 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 57,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 191,
         "K": 150,
@@ -239,8 +235,8 @@
       "setting_expressions": 36,
       "published_controls": 38,
       "text_nodes": [
-        "MainTitle",
-        "Subtitle"
+        "Subtitle",
+        "MainTitle"
       ],
       "comp_tools": 57,
       "comp_input_evidence": {
@@ -276,6 +272,6 @@
       "title_band_contrast": 49.1
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:48:37+00:00"
+    "validated_at": "2026-10-11T20:07:10+00:00"
   }
 }

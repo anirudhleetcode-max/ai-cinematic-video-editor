@@ -187,6 +187,24 @@
     "micro residual fringe",
     "depth split exit"
   ],
+  "design": {
+    "entrance": "Red, green and blue channel copies of the title float apart on different depth planes (with two faint violet depth echoes) and slide together under a camera yaw that reveals their parallax.",
+    "reveal": "Precisely on the impact frame all planes align into a single white wordmark; a thin light line snaps outward.",
+    "camera": "Yaw drift that settles to frontal exactly at alignment; micro shake on the snap.",
+    "material": "Satin white face with a soft bevel; additive RGB channel planes; violet echo planes.",
+    "exit": "The planes split again in depth (red back, blue forward) and dissolve with a soft defocus."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t24.py",
     "parameters_used": [
@@ -226,6 +244,15 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 58,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 181,
         "K": 134,
@@ -271,6 +298,6 @@
       "title_band_contrast": 78.1
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:50:44+00:00"
+    "validated_at": "2026-10-11T20:06:36+00:00"
   }
 }

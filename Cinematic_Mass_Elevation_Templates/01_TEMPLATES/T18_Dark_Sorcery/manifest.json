@@ -1,0 +1,323 @@
+{
+  "id": "T18",
+  "name": "Dark Sorcery",
+  "slug": "Dark_Sorcery",
+  "category": "D - Mythic, Epic and Fantasy",
+  "version": "1.0.0",
+  "concept": "An occult invocation: a ritual circle of original runes ignites in swirling smoke and summons the title.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 192,
+  "duration_seconds": 8.0,
+  "phases": {
+    "build_up": [
+      0,
+      80
+    ],
+    "impact_frame": 82,
+    "hero_hold": [
+      82,
+      146
+    ],
+    "exit": [
+      146,
+      180
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Cinzel",
+    "Marcellus SC"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T18_Dark_Sorcery.setting",
+  "fusion_composition": "source/T18_Dark_Sorcery.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 88,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "DirectionalBlur",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "PolylineMask",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ImpactIntensity",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "ExtrusionDepth",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Impact Intensity",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Extrusion Depth",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T18_Dark_Sorcery.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Dark drone, low choir"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "wind",
+      "note": "Swirling wind"
+    },
+    {
+      "frame": 10,
+      "seconds": 0.417,
+      "cue": "whoosh",
+      "note": "Smoke spiral"
+    },
+    {
+      "frame": 20,
+      "seconds": 0.833,
+      "cue": "digital",
+      "note": "Rune ignitions (soft ticks)"
+    },
+    {
+      "frame": 40,
+      "seconds": 1.667,
+      "cue": "heartbeat",
+      "note": "Ritual heartbeat"
+    },
+    {
+      "frame": 64,
+      "seconds": 2.667,
+      "cue": "riser",
+      "note": "Invocation riser"
+    },
+    {
+      "frame": 82,
+      "seconds": 3.417,
+      "cue": "impact",
+      "note": "Arcane impact"
+    },
+    {
+      "frame": 82,
+      "seconds": 3.417,
+      "cue": "swell",
+      "note": "Choir swell"
+    },
+    {
+      "frame": 84,
+      "seconds": 3.5,
+      "cue": "shimmer",
+      "note": "Energy ring"
+    },
+    {
+      "frame": 146,
+      "seconds": 6.083,
+      "cue": "rwhoosh",
+      "note": "Vortex suck"
+    },
+    {
+      "frame": 170,
+      "seconds": 7.083,
+      "cue": "tail",
+      "note": "Dark tail"
+    }
+  ],
+  "techniques": [
+    "procedural original runes",
+    "concentric energy rings",
+    "polar smoke vortex",
+    "spiral dissolve",
+    "energy pulse ring",
+    "swirl-warp exit"
+  ],
+  "design": {
+    "entrance": "Smoke spirals inward around a vertical ritual circle whose rings trace on and whose runes ignite one by one; the letters condense out of the vortex through a spiral, edge-glowing dissolve.",
+    "reveal": "At the impact frame the circle flares, an energy ring pulses outward and the runes burn bright, then settle to a slow, breathing glow behind a smoked-silver title.",
+    "camera": "Locked-off with a slow creeping push and a subtle counter-rotation of the circle layers.",
+    "material": "Smoked dark silver with violet rim light and faint inner glow along the edges; glowing runes and rings are emissive and drawn behind the title only.",
+    "exit": "The circle collapses inward and the title is twisted into the vortex and swallowed by the smoke."
+  },
+  "fusion_notes": [
+    "The Fusion version draws 6 representative runes as PolylineMasks on a rotating Transform; the preview renders the full 29-rune circle. Add or reshape runes by editing the RuneN polylines."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t18.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "EXTRUSION_DEPTH",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 88,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 374,
+        "K": 172,
+        "?": 7
+      },
+      "setting_expressions": 86,
+      "published_controls": 39,
+      "text_nodes": [
+        "MainTitle",
+        "Subtitle"
+      ],
+      "comp_tools": 88,
+      "comp_input_evidence": {
+        "S": 374,
+        "K": 172,
+        "?": 7
+      },
+      "comp_expressions": 86
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 8.0,
+      "frames": 192,
+      "audio": true,
+      "bytes": 3743636,
+      "sample_means": [
+        4.1,
+        5.2,
+        10.1,
+        12.3,
+        15.7,
+        14.0,
+        15.5,
+        9.2,
+        6.8
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 28.8,
+      "title_band_contrast": 37.9
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T20:06:20+00:00"
+  }
+}

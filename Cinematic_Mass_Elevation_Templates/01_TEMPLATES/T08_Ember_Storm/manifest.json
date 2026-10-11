@@ -1,0 +1,296 @@
+{
+  "id": "T08",
+  "name": "Ember Storm",
+  "slug": "Ember_Storm",
+  "category": "B - Fire, Explosions and Impact",
+  "version": "1.0.0",
+  "concept": "A slow, elegant reveal inside a storm of embers layered in depth - cinematic focus does the storytelling.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 240,
+  "duration_seconds": 10.0,
+  "phases": {
+    "build_up": [
+      0,
+      118
+    ],
+    "impact_frame": 118,
+    "hero_hold": [
+      118,
+      192
+    ],
+    "exit": [
+      192,
+      240
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Marcellus SC",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T08_Ember_Storm.setting",
+  "fusion_composition": "source/T08_Ember_Storm.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 63,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ImpactIntensity",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Impact Intensity",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T08_Ember_Storm.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Warm airy drone"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "wind",
+      "note": "Soft wind carrying embers"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "fire",
+      "note": "Distant fire crackle"
+    },
+    {
+      "frame": 30,
+      "seconds": 1.25,
+      "cue": "swell",
+      "note": "Long orchestral-style swell into the focus lock"
+    },
+    {
+      "frame": 118,
+      "seconds": 4.917,
+      "cue": "swell",
+      "note": "Warm bloom as focus locks"
+    },
+    {
+      "frame": 120,
+      "seconds": 5.0,
+      "cue": "shimmer",
+      "note": "Satin sheen shimmer"
+    },
+    {
+      "frame": 190,
+      "seconds": 7.917,
+      "cue": "wind",
+      "note": "Gust as focus racks away"
+    },
+    {
+      "frame": 210,
+      "seconds": 8.75,
+      "cue": "tail",
+      "note": "Long airy tail"
+    }
+  ],
+  "techniques": [
+    "three-layer particle depth",
+    "animated focus distance (rack focus)",
+    "bokeh / DOF",
+    "parallax crane",
+    "light swell",
+    "satin sweep"
+  ],
+  "design": {
+    "entrance": "Rack focus: the shot opens focused on foreground embers with the title a soft glow behind smoke; focus pulls slowly to the title plane while the smoke thins.",
+    "reveal": "As focus locks, a gentle warm swell blooms behind the letters, the embers swirl and a satin sheen glides across.",
+    "camera": "Slow lateral crane with real parallax between three ember depth layers; selective focus (bokeh near and far).",
+    "material": "Satin gold with soft warm reflections and an ember-orange rim; embers glow with flicker and bokeh.",
+    "exit": "Focus racks back to the near embers; the title melts into bokeh and fades with the storm."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Z",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t08.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 63,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Z",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 195,
+        "K": 157,
+        "?": 21
+      },
+      "setting_expressions": 42,
+      "published_controls": 37,
+      "text_nodes": [
+        "MainTitle",
+        "Subtitle"
+      ],
+      "comp_tools": 63,
+      "comp_input_evidence": {
+        "S": 195,
+        "K": 157,
+        "?": 21
+      },
+      "comp_expressions": 42
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 10.0,
+      "frames": 240,
+      "audio": true,
+      "bytes": 4168015,
+      "sample_means": [
+        8.4,
+        8.5,
+        8.4,
+        8.2,
+        8.7,
+        12.3,
+        9.8,
+        8.5,
+        2.3
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 24.0,
+      "title_band_contrast": 38.0
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T20:05:53+00:00"
+  }
+}

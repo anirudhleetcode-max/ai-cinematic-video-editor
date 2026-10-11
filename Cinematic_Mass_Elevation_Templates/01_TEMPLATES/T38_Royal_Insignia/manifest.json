@@ -120,7 +120,7 @@
     "Subtitle Color"
   ],
   "preview": "preview/T38_Royal_Insignia.mp4",
-  "thumbnail": null,
+  "thumbnail": "preview/thumbnail.jpg",
   "readme": "README.md",
   "parameters": "documentation/parameters.md",
   "sound_design": "documentation/sound_design.md",
@@ -190,9 +190,70 @@
     "light sweep / glint",
     "independent emblem scale & rotation controls"
   ],
+  "design": {
+    "entrance": "Ordered assembly: rings sweep on, ticks and beads click around the dial, laurel leaves bloom up both sides, chevrons slide in, banner rules extend - while the whole emblem settles its rotation.",
+    "reveal": "At the impact frame the emblem locks: a gold glint sweeps it, the title appears on the banner with a light sweep.",
+    "camera": "Near-static premium framing with a very slow push; dust motes drift in the light.",
+    "material": "Polished gold insignia (ACCENT), embossed with a soft top light; ivory-silver title; deep royal velvet.",
+    "exit": "The emblem rotates and expands past the camera while dissolving; the title fades a beat later."
+  },
+  "fusion_notes": [
+    "Emblem Scale / Emblem Rotation (Look page) transform the insignia independently of the title.",
+    "The emblem colour follows the Accent Color control; the title colour is the Main Title Color."
+  ],
+  "extra_parameters": {
+    "EMBLEM_SCALE": {
+      "default": 1.0,
+      "description": "Emblem scale, independent of the title"
+    },
+    "EMBLEM_ROTATION": {
+      "default": 0.0,
+      "description": "Emblem rotation in degrees, independent of the title"
+    }
+  },
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t38.py",
-    "parameters_used": []
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EMBLEM_ROTATION",
+      "EMBLEM_SCALE",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
   },
   "verification": {
     "lua_parse": "PASS",
@@ -201,6 +262,15 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 119,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 641,
         "K": 259,
@@ -220,14 +290,32 @@
       },
       "comp_expressions": 146
     },
-    "preview": "FAIL: preview missing or truncated",
+    "preview": "PASS",
     "preview_details": {
-      "errors": [
-        "preview missing or truncated"
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 8.167,
+      "frames": 196,
+      "audio": true,
+      "bytes": 2682656,
+      "sample_means": [
+        9.6,
+        11.1,
+        12.6,
+        10.8,
+        16.0,
+        14.6,
+        14.5,
+        14.5,
+        12.9
       ],
-      "warnings": []
+      "hero_blown_fraction": 0.0001,
+      "hero_contrast": 24.7,
+      "title_band_contrast": 33.1
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:48:41+00:00"
+    "validated_at": "2026-10-11T20:07:15+00:00"
   }
 }

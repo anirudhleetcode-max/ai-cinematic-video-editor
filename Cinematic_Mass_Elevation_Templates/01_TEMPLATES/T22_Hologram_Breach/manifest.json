@@ -196,6 +196,38 @@
     "beam dust",
     "vertical collapse exit"
   ],
+  "design": {
+    "entrance": "Emitter pad powers on and opens a volumetric beam; the title materialises as horizontal scan segments in a designed non-sequential order, each sliding into register with a short blink.",
+    "reveal": "At the impact frame a lock-in scan pass sweeps the title: interference stops and the image stabilises.",
+    "camera": "Locked-off with a slow lateral parallax drift; no shake (precision device).",
+    "material": "Emissive cyan light: scan lines, brighter edge fresnel, bottom-up projector falloff, faint interference.",
+    "exit": "Projector cut: the hologram collapses vertically into the beam, the beam retracts into the emitter."
+  },
+  "fusion_notes": [
+    "Extra controls: 'Flicker Amount' (FlickerAmount) and 'Glitch Amount' (GlitchAmount) scale the pre-lock flicker and the interference slice displacement; set both to 0 for a perfectly stable hologram. The final hold is always stable.",
+    "Reference renderer: the same controls are FLICKER_AMOUNT and GLITCH_AMOUNT (0 = perfectly stable).",
+    "Fusion assembles 7 horizontal bands (preview: 9); the interference streaks are a stretched FastNoise."
+  ],
+  "extra_parameters": {
+    "FLICKER_AMOUNT": {
+      "default": 1.0,
+      "description": "Pre-lock hologram flicker amount (0 = none)"
+    },
+    "GLITCH_AMOUNT": {
+      "default": 1.0,
+      "description": "Interference / slice-glitch amount (0 = none)"
+    }
+  },
+  "unconfirmed_fusion_inputs": [
+    "Transform.EffectMask",
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t22.py",
     "parameters_used": [
@@ -234,6 +266,16 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 73,
+      "unconfirmed_inputs": [
+        "Transform.EffectMask",
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 266,
         "K": 140,
@@ -242,8 +284,8 @@
       "setting_expressions": 51,
       "published_controls": 38,
       "text_nodes": [
-        "Subtitle",
-        "MainTitle"
+        "MainTitle",
+        "Subtitle"
       ],
       "comp_tools": 73,
       "comp_input_evidence": {
@@ -279,6 +321,6 @@
       "title_band_contrast": 77.5
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:50:40+00:00"
+    "validated_at": "2026-10-11T20:06:31+00:00"
   }
 }

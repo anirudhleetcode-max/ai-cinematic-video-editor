@@ -48,6 +48,16 @@ python 06_AUTOMATION/Scripts/render_title.py T30 --set MAIN_TITLE="YOUR TITLE" -
 
 Default font: **Russo One Regular** (OFL, bundled in `02_SHARED_ASSETS/Fonts/` - install it before opening the macro, or pick any installed font in the Inspector).
 
+## Fusion notes and limitations
+
+- Motion blur: 'Motion Blur Amount' scales the DirectionalBlur (Zoom type) length on the title and on the speed-line field.
+
+## Check in Resolve (unconfirmed input names)
+
+These inputs are set in the macro but their names could not be confirmed against documentation. Fusion ignores unknown inputs when it loads a file, so if one is wrong only that setting falls back to its default. Check these first when you open the template:
+
+`DirectionalBlur.EffectMask`
+
 ## Verification status (honest)
 
 | Level | Status |

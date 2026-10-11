@@ -1,0 +1,335 @@
+{
+  "id": "T14",
+  "name": "Forged in Fire",
+  "slug": "Forged_In_Fire",
+  "category": "C - 3D Metal and Premium Materials",
+  "version": "1.0.0",
+  "concept": "A dark smithy: a glowing blank of iron is hammered, strike by strike, into razor-sharp letterforms.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 228,
+  "duration_seconds": 9.5,
+  "phases": {
+    "build_up": [
+      0,
+      64
+    ],
+    "impact_frame": 112,
+    "hero_hold": [
+      112,
+      184
+    ],
+    "exit": [
+      184,
+      220
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Staatliches",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T14_Forged_In_Fire.setting",
+  "fusion_composition": "source/T14_Forged_In_Fire.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 74,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ImpactIntensity",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "ExtrusionDepth",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Impact Intensity",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Extrusion Depth",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T14_Forged_In_Fire.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Forge roar bed"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "fire",
+      "note": "Coal bed crackle"
+    },
+    {
+      "frame": 14,
+      "seconds": 0.583,
+      "cue": "swell",
+      "note": "Heat swell"
+    },
+    {
+      "frame": 64,
+      "seconds": 2.667,
+      "cue": "hammer",
+      "note": "Strike 1"
+    },
+    {
+      "frame": 64,
+      "seconds": 2.667,
+      "cue": "debris",
+      "note": "Spark spray"
+    },
+    {
+      "frame": 88,
+      "seconds": 3.667,
+      "cue": "hammer",
+      "note": "Strike 2"
+    },
+    {
+      "frame": 88,
+      "seconds": 3.667,
+      "cue": "debris",
+      "note": "Spark spray"
+    },
+    {
+      "frame": 106,
+      "seconds": 4.417,
+      "cue": "rwhoosh",
+      "note": "Wind-up"
+    },
+    {
+      "frame": 112,
+      "seconds": 4.667,
+      "cue": "hammer",
+      "note": "Final strike"
+    },
+    {
+      "frame": 112,
+      "seconds": 4.667,
+      "cue": "impact",
+      "note": "Heavy anvil impact"
+    },
+    {
+      "frame": 112,
+      "seconds": 4.667,
+      "cue": "sub",
+      "note": "Sub drop"
+    },
+    {
+      "frame": 140,
+      "seconds": 5.833,
+      "cue": "water",
+      "note": "Quench hiss / steam"
+    },
+    {
+      "frame": 184,
+      "seconds": 7.667,
+      "cue": "tail",
+      "note": "Cooling metal ticks + tail"
+    }
+  ],
+  "techniques": [
+    "2.5D extrusion stack",
+    "multi-strike timing",
+    "progressive sharpening",
+    "spark bursts",
+    "emissive heat ramp",
+    "glowing seams",
+    "controlled cooling",
+    "quench steam"
+  ],
+  "design": {
+    "entrance": "A soft, swollen, dull-red billet in the rough shape of the title heats up in the dark; three hammer strikes (left, right, centre) each flatten it, sharpen the edges and throw sparks.",
+    "reveal": "The final strike on the impact frame locks the crisp forged title at white-orange heat; glowing seams pulse, then the metal cools in a controlled way to dark hammered iron with ember-red seams.",
+    "camera": "Static, heavy framing with a hard jolt on every strike and a slow creep-in during cooling.",
+    "material": "Hammered dark iron (concrete-grain bump, flat chamfer) with emissive heat driven by a blackbody ramp; edge and crack seams stay hot longest; forge underlight from below.",
+    "exit": "The last heat drains from the seams and quench steam rolls over the cold iron until it is gone."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t14.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "EXTRUSION_DEPTH",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 74,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 260,
+        "K": 173,
+        "?": 21
+      },
+      "setting_expressions": 52,
+      "published_controls": 39,
+      "text_nodes": [
+        "MainTitle",
+        "Subtitle"
+      ],
+      "comp_tools": 74,
+      "comp_input_evidence": {
+        "S": 260,
+        "K": 173,
+        "?": 21
+      },
+      "comp_expressions": 52
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 9.5,
+      "frames": 228,
+      "audio": true,
+      "bytes": 5113583,
+      "sample_means": [
+        4.2,
+        4.4,
+        5.8,
+        7.7,
+        32.3,
+        6.1,
+        9.3,
+        9.3,
+        11.6
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 12.4,
+      "title_band_contrast": 20.5
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T20:06:07+00:00"
+  }
+}

@@ -1,0 +1,320 @@
+{
+  "id": "T06",
+  "name": "Inferno Reveal",
+  "slug": "Inferno_Reveal",
+  "category": "B - Fire, Explosions and Impact",
+  "version": "1.0.0",
+  "concept": "The title emerges out of controlled firelight and smoke, seen through rising heat.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 192,
+  "duration_seconds": 8.0,
+  "phases": {
+    "build_up": [
+      0,
+      72
+    ],
+    "impact_frame": 72,
+    "hero_hold": [
+      72,
+      154
+    ],
+    "exit": [
+      154,
+      188
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Staatliches",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T06_Inferno_Reveal.setting",
+  "fusion_composition": "source/T06_Inferno_Reveal.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 83,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "Displace",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ImpactIntensity",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "ExtrusionDepth",
+    "MotionBlurAmount",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Impact Intensity",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Extrusion Depth",
+    "Motion Blur Amount",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T06_Inferno_Reveal.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "fire",
+      "note": "Fire bed roar"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Low rumble"
+    },
+    {
+      "frame": 6,
+      "seconds": 0.25,
+      "cue": "swell",
+      "note": "Heat swell as smoke parts"
+    },
+    {
+      "frame": 40,
+      "seconds": 1.667,
+      "cue": "crackle",
+      "note": "Wood/ember crackle"
+    },
+    {
+      "frame": 68,
+      "seconds": 2.833,
+      "cue": "rwhoosh",
+      "note": "Air sucked into the flare"
+    },
+    {
+      "frame": 72,
+      "seconds": 3.0,
+      "cue": "whoosh",
+      "note": "Flame flare whoosh"
+    },
+    {
+      "frame": 72,
+      "seconds": 3.0,
+      "cue": "impact",
+      "note": "Soft heavy hit"
+    },
+    {
+      "frame": 74,
+      "seconds": 3.083,
+      "cue": "debris",
+      "note": "Spark scatter"
+    },
+    {
+      "frame": 154,
+      "seconds": 6.417,
+      "cue": "fire",
+      "note": "Burn-away crackle"
+    },
+    {
+      "frame": 176,
+      "seconds": 7.333,
+      "cue": "tail",
+      "note": "Smouldering tail"
+    }
+  ],
+  "techniques": [
+    "procedural fire bed",
+    "heat-shimmer displacement",
+    "smoke curtain",
+    "rising sparks with DOF",
+    "flare burst",
+    "bottom-up burn-away with ember release"
+  ],
+  "design": {
+    "entrance": "Behind a curtain of smoke and strong heat shimmer the title slowly comes forward; the smoke thins and the distortion settles as the fire rises behind it.",
+    "reveal": "A restrained flare: flames lick up, a burst of sparks rises and the orange rim light peaks, then settles.",
+    "camera": "Locked-off with a gentle forward creep; small heat-jolt at the flare.",
+    "material": "Charred bronze lettering lit from below by the fire, orange rim from behind, warm halo for separation.",
+    "exit": "The title burns away from the bottom up behind a glowing ember edge, releasing embers that rise with the heat."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "Displace.Foreground",
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t06.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "EXTRUSION_DEPTH",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "MOTION_BLUR_AMOUNT",
+      "PARTICLE_INTENSITY",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 83,
+      "unconfirmed_inputs": [
+        "Displace.Foreground",
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 276,
+        "K": 248,
+        "?": 22
+      },
+      "setting_expressions": 66,
+      "published_controls": 40,
+      "text_nodes": [
+        "MainTitle",
+        "Subtitle"
+      ],
+      "comp_tools": 83,
+      "comp_input_evidence": {
+        "S": 276,
+        "K": 248,
+        "?": 22
+      },
+      "comp_expressions": 66
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 8.0,
+      "frames": 192,
+      "audio": true,
+      "bytes": 4744323,
+      "sample_means": [
+        6.2,
+        7.9,
+        12.1,
+        21.3,
+        16.5,
+        15.3,
+        12.3,
+        10.9,
+        0.9
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 26.7,
+      "title_band_contrast": 35.2
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T20:05:47+00:00"
+  }
+}

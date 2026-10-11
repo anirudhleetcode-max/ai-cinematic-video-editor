@@ -175,6 +175,26 @@
     "focus snap",
     "rack-focus exit"
   ],
+  "design": {
+    "entrance": "Extreme macro crop on the bevel of the first letter with shallow depth of field and a raking edge light; the camera dollies backward on a long eased move while the tilt flattens out.",
+    "reveal": "The pull-back lands exactly on the impact frame with a tiny settle; focus snaps crisp and the edge light flares.",
+    "camera": "Backward dolly from 6.5x with perspective tilt/yaw unwinding to frontal; macro DOF opening to full focus.",
+    "material": "Deep crimson gloss lacquer with fine grain, warm bevel highlights and a travelling specular glint.",
+    "exit": "Rack focus: the title defocuses into soft bokeh and the light fades."
+  },
+  "fusion_notes": [
+    "Fusion zooms the vector Text+ itself (Size/Center driven by expressions) so the close-up stays crisp; use 'Text Scale' to resize the final title. The preview also tilts/yaws the camera for perspective, which the 2D Fusion graph approximates with a slight rotation."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t26.py",
     "parameters_used": [
@@ -215,6 +235,15 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 45,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 143,
         "K": 87,
@@ -223,8 +252,8 @@
       "setting_expressions": 28,
       "published_controls": 37,
       "text_nodes": [
-        "Subtitle",
-        "MainTitle"
+        "MainTitle",
+        "Subtitle"
       ],
       "comp_tools": 45,
       "comp_input_evidence": {
@@ -260,6 +289,6 @@
       "title_band_contrast": 36.3
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:50:49+00:00"
+    "validated_at": "2026-10-11T20:06:40+00:00"
   }
 }

@@ -1,0 +1,319 @@
+{
+  "id": "T17",
+  "name": "Celestial Ascent",
+  "slug": "Celestial_Ascent",
+  "category": "D - Mythic, Epic and Fantasy",
+  "version": "1.0.0",
+  "concept": "A heavenly reveal high above the cloud sea: the title descends through luminous clouds into sunlight.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 210,
+  "duration_seconds": 8.75,
+  "phases": {
+    "build_up": [
+      0,
+      96
+    ],
+    "impact_frame": 96,
+    "hero_hold": [
+      96,
+      162
+    ],
+    "exit": [
+      162,
+      204
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Cinzel",
+    "Marcellus SC"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T17_Celestial_Ascent.setting",
+  "fusion_composition": "source/T17_Celestial_Ascent.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 56,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "DirectionalBlur",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "ExtrusionDepth",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Extrusion Depth",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T17_Celestial_Ascent.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "wind",
+      "note": "High-altitude wind"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Airy choir pad"
+    },
+    {
+      "frame": 10,
+      "seconds": 0.417,
+      "cue": "swell",
+      "note": "Rising strings"
+    },
+    {
+      "frame": 40,
+      "seconds": 1.667,
+      "cue": "whoosh",
+      "note": "Cloud layer passes"
+    },
+    {
+      "frame": 70,
+      "seconds": 2.917,
+      "cue": "whoosh",
+      "note": "Cloud layer passes"
+    },
+    {
+      "frame": 80,
+      "seconds": 3.333,
+      "cue": "riser",
+      "note": "Light riser"
+    },
+    {
+      "frame": 96,
+      "seconds": 4.0,
+      "cue": "swell",
+      "note": "Sun crest swell"
+    },
+    {
+      "frame": 96,
+      "seconds": 4.0,
+      "cue": "shimmer",
+      "note": "Radiance shimmer"
+    },
+    {
+      "frame": 96,
+      "seconds": 4.0,
+      "cue": "sub",
+      "note": "Soft sub bloom"
+    },
+    {
+      "frame": 162,
+      "seconds": 6.75,
+      "cue": "whoosh",
+      "note": "Ascent whoosh"
+    },
+    {
+      "frame": 186,
+      "seconds": 7.75,
+      "cue": "tail",
+      "note": "Airy tail"
+    }
+  ],
+  "techniques": [
+    "layered cloud parallax",
+    "volumetric god rays (radial smear of occluded sun)",
+    "backlit rim",
+    "cloud pass-through",
+    "descending title",
+    "ascend-out exit"
+  ],
+  "design": {
+    "entrance": "The camera climbs out of a bank of glowing cloud; layered clouds stream past the lens while the pale title descends slowly from above into frame, half-veiled by passing vapour.",
+    "reveal": "On the impact frame the sun crests directly behind the letters: volumetric shafts of light fan out around the title and its edges ignite with a warm-white rim.",
+    "camera": "Measured vertical ascent (cloud layers parallax downward), slow push; no shake.",
+    "material": "Backlit alabaster/ivory stone with soft specular, strong warm-white rim from the sun behind, gentle 2.5D depth; atmospheric scattering softens the far cloud sea.",
+    "exit": "The title keeps ascending up and out of frame into the light while the clouds close beneath the camera."
+  },
+  "fusion_notes": [
+    "God rays are made with a Zoom-type DirectionalBlur of the sun disc masked by the inverted title and cloud alpha (no dedicated Rays tool is used, for compatibility). Move SunCore/RaysSmear centre together if you reposition the title."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t17.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "EXTRUSION_DEPTH",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 56,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 208,
+        "K": 142,
+        "?": 7
+      },
+      "setting_expressions": 43,
+      "published_controls": 38,
+      "text_nodes": [
+        "Subtitle",
+        "MainTitle"
+      ],
+      "comp_tools": 56,
+      "comp_input_evidence": {
+        "S": 208,
+        "K": 142,
+        "?": 7
+      },
+      "comp_expressions": 43
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 8.75,
+      "frames": 210,
+      "audio": true,
+      "bytes": 4355014,
+      "sample_means": [
+        88.7,
+        82.6,
+        71.7,
+        68.6,
+        89.0,
+        82.1,
+        78.1,
+        86.1,
+        91.8
+      ],
+      "hero_blown_fraction": 0.0083,
+      "hero_contrast": 70.4,
+      "title_band_contrast": 56.6
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T20:06:16+00:00"
+  }
+}

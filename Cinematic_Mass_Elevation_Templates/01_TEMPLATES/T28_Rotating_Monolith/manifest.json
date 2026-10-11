@@ -197,6 +197,30 @@
     "floor dust",
     "edge-on exit"
   ],
+  "design": {
+    "entrance": "The extruded title approaches from depth almost edge-on (78 deg yaw, pitched back 18 deg) and rotates on two axes into view - a weighty oblique turn, never a flat spin.",
+    "reveal": "At the impact frame the rotation locks at a three-quarter angle (thickness still visible); the overhead light flares across the bevels and floor dust lifts.",
+    "camera": "Real 3D: Camera3D slowly arcs (x-offset) while the solid rotates; light shaft stays fixed.",
+    "material": "Brushed graphite with silver bevels, cool rim; extrusion sides in deep graphite.",
+    "exit": "The monolith keeps turning to edge-on and recedes into the dark while the light shaft closes."
+  },
+  "fusion_notes": [
+    "True 3D: edit the text in the Text3D node ('Main Title (3D)'); rotation is on MonolithText3D Transform3DOp.Rotate.X/Y via expressions.",
+    "Material colour is the 'Material Color' control (MtlBlinn diffuse).",
+    "The preview adds a faint mirrored floor reflection; the Fusion graph uses a floor light pool instead (add a second Renderer3D with a flipped camera if a true reflection is wanted)."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "Renderer3D.RendererOpenGL.LightingEnabled",
+    "Renderer3D.RendererOpenGL.Supersampling",
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t28.py",
     "parameters_used": [
@@ -239,6 +263,17 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 43,
+      "unconfirmed_inputs": [
+        "Renderer3D.RendererOpenGL.LightingEnabled",
+        "Renderer3D.RendererOpenGL.Supersampling",
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 141,
         "K": 114,
@@ -247,8 +282,8 @@
       "setting_expressions": 36,
       "published_controls": 36,
       "text_nodes": [
-        "Subtitle",
-        "MonolithText3D"
+        "MonolithText3D",
+        "Subtitle"
       ],
       "comp_tools": 43,
       "comp_input_evidence": {
@@ -284,6 +319,6 @@
       "title_band_contrast": 47.2
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:50:55+00:00"
+    "validated_at": "2026-10-11T20:06:46+00:00"
   }
 }

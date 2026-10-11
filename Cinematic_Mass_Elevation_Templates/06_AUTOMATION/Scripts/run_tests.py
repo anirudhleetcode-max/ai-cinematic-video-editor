@@ -146,19 +146,23 @@ def test_template(i):
     check("thumbnail", os.path.exists(os.path.join(tdir, "preview", "thumbnail.jpg")))
     # template-specific parameters actually change the output ----------------
     if d.EXTRA_PARAMS:
-        f = min(p["DURATION"] - 1, p["IMPACT_FRAME"] + 10)
+        # an effect may live only in part of the timeline (e.g. pre-lock flicker), so scan it
         changed = []
         for k, (dflt, _, kind) in d.EXTRA_PARAMS.items():
             alt = (dflt * 2 + 6) if kind == "frame" else (0.0 if dflt else 0.6) if kind == "float" else dflt
             if k.endswith("ROTATION"):
                 alt = 35.0
-            frs = []
-            for val in (dflt, alt):
-                c = Ctx(d, d.params({k: val}), 480, 270)
-                fr = f if kind != "frame" else max(1, p["ANIMATION_START"] + 8)
-                c.fr, c.t = fr, fr / 24
-                frs.append(d.frame(c))
-            changed.append((k, float(np.abs(frs[0] - frs[1]).mean()) > 1e-3))
+            hit = False
+            for fr in range(0, p["DURATION"], 6):
+                frs = []
+                for val in (dflt, alt):
+                    c = Ctx(d, d.params({k: val}), 320, 180)
+                    c.fr, c.t = fr, fr / 24
+                    frs.append(d.frame(c))
+                if float(np.abs(frs[0] - frs[1]).mean()) > 1e-3:
+                    hit = True
+                    break
+            changed.append((k, hit))
         check("extra_params_functional", all(v for _, v in changed), str(changed))
     return res
 

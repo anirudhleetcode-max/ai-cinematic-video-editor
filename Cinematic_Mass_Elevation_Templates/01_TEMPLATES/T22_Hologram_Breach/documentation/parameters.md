@@ -103,11 +103,13 @@ Used by the Python reference renderer that produced the preview (also usable for
 | `LETTERBOX` | 1.0 | 2.39:1 letterbox amount (0 = full frame) |
 | `DURATION` | 192 | Total length in frames |
 | `QUALITY` | "preview" | preview | final |
+| `FLICKER_AMOUNT` | 1.0 | Pre-lock hologram flicker amount (0 = none) |
+| `GLITCH_AMOUNT` | 1.0 | Interference / slice-glitch amount (0 = none) |
 
 Parameters this template's preview renderer actually reads are listed in `manifest.json` under `reference_renderer.parameters_used`; others have no effect for this design.
 
 ## C. Manual-edit notes
 
 - Extra controls: 'Flicker Amount' (FlickerAmount) and 'Glitch Amount' (GlitchAmount) scale the pre-lock flicker and the interference slice displacement; set both to 0 for a perfectly stable hologram. The final hold is always stable.
-- Preview renderer mapping: the reference preview has no separate flicker/glitch parameters; both scale with IMPACT_INTENSITY there (0 = no flicker, no glitch).
+- Reference renderer: the same controls are FLICKER_AMOUNT and GLITCH_AMOUNT (0 = perfectly stable).
 - Fusion assembles 7 horizontal bands (preview: 9); the interference streaks are a stretched FastNoise.

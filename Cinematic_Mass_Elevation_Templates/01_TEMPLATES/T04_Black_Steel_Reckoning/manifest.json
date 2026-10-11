@@ -1,0 +1,316 @@
+{
+  "id": "T04",
+  "name": "Black Steel Reckoning",
+  "slug": "Black_Steel_Reckoning",
+  "category": "A - Dark, Powerful Mass Elevation",
+  "version": "1.0.0",
+  "concept": "Military-industrial and restrained: a slab of brushed steel lettering is machined into place.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 168,
+  "duration_seconds": 7.0,
+  "phases": {
+    "build_up": [
+      0,
+      60
+    ],
+    "impact_frame": 60,
+    "hero_hold": [
+      60,
+      134
+    ],
+    "exit": [
+      134,
+      164
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Black Ops One",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T04_Black_Steel_Reckoning.setting",
+  "fusion_composition": "source/T04_Black_Steel_Reckoning.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 76,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "DirectionalBlur",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ImpactIntensity",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "ExtrusionDepth",
+    "MotionBlurAmount",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Impact Intensity",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Extrusion Depth",
+    "Motion Blur Amount",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T04_Black_Steel_Reckoning.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Industrial hall tone, distant machinery"
+    },
+    {
+      "frame": 10,
+      "seconds": 0.417,
+      "cue": "whoosh",
+      "note": "Heavy slide (servo whoosh)"
+    },
+    {
+      "frame": 32,
+      "seconds": 1.333,
+      "cue": "metal",
+      "note": "Hard stop clank"
+    },
+    {
+      "frame": 42,
+      "seconds": 1.75,
+      "cue": "rwhoosh",
+      "note": "Short pneumatic pull before the seat"
+    },
+    {
+      "frame": 60,
+      "seconds": 2.5,
+      "cue": "hammer",
+      "note": "Steel seat impact"
+    },
+    {
+      "frame": 60,
+      "seconds": 2.5,
+      "cue": "sub",
+      "note": "Sub thump"
+    },
+    {
+      "frame": 63,
+      "seconds": 2.625,
+      "cue": "metal",
+      "note": "Locking rails clamp"
+    },
+    {
+      "frame": 66,
+      "seconds": 2.75,
+      "cue": "shimmer",
+      "note": "Specular rake ring-out"
+    },
+    {
+      "frame": 134,
+      "seconds": 5.583,
+      "cue": "whoosh",
+      "note": "Slide back into shadow"
+    },
+    {
+      "frame": 150,
+      "seconds": 6.25,
+      "cue": "tail",
+      "note": "Hall reverb tail"
+    }
+  ],
+  "techniques": [
+    "staged mechanical timing",
+    "lateral motion blur",
+    "locking rails",
+    "volumetric light shafts",
+    "industrial pillar silhouettes",
+    "narrow specular rake",
+    "camera recoil"
+  ],
+  "design": {
+    "entrance": "Multi-stage mechanical move: lateral slide with motion blur -> hard stop -> beat -> forward seat -> two steel locking rails clamp the title.",
+    "reveal": "Short metallic impact pulse, slight camera recoil and a narrow specular highlight raking across the steel.",
+    "camera": "Slow lateral track that stops dead on the impact frame; small recoil kick, no drift afterwards.",
+    "material": "Brushed steel face with flat chamfer, blackened metal sides and rails, restrained cold-silver highlights.",
+    "exit": "The rails release and the title slides back and sideways out of the light into shadow."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t04.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "EXTRUSION_DEPTH",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "MOTION_BLUR_AMOUNT",
+      "PARTICLE_INTENSITY",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 76,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 310,
+        "K": 155,
+        "?": 7
+      },
+      "setting_expressions": 54,
+      "published_controls": 39,
+      "text_nodes": [
+        "MainTitle",
+        "Subtitle"
+      ],
+      "comp_tools": 76,
+      "comp_input_evidence": {
+        "S": 310,
+        "K": 155,
+        "?": 7
+      },
+      "comp_expressions": 54
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 7.0,
+      "frames": 168,
+      "audio": true,
+      "bytes": 2278182,
+      "sample_means": [
+        4.6,
+        5.5,
+        5.6,
+        8.2,
+        6.7,
+        6.8,
+        6.7,
+        5.1,
+        3.0
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 15.6,
+      "title_band_contrast": 26.2
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T20:05:41+00:00"
+  }
+}

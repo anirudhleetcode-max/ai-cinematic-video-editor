@@ -32,5 +32,7 @@
   "SHAKE_AMOUNT": 1.0,
   "LETTERBOX": 1.0,
   "DURATION": 192,
-  "QUALITY": "preview"
+  "QUALITY": "preview",
+  "FLICKER_AMOUNT": 1.0,
+  "GLITCH_AMOUNT": 1.0
 }

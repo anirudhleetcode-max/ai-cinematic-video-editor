@@ -189,6 +189,20 @@
     "slow-motion creep",
     "reverse ramp exit"
   ],
+  "design": {
+    "entrance": "A hyper-fast approach from the vanishing point through rushing speed lines, with zoom/directional blur proportional to velocity, then a hard speed-ramp deceleration.",
+    "reveal": "At the impact frame the title brakes to a near standstill: red edge flash, anamorphic streak, speed lines freeze and drift; a slow-motion creep carries the long, readable hold.",
+    "camera": "Forward rush with impact jolt; then a barely-moving slow-motion creep.",
+    "material": "Gloss white enamel with red (ACCENT) rim and impact accent.",
+    "exit": "Reverse ramp: the title accelerates away into the vanishing point with zoom blur as the lines rush again."
+  },
+  "fusion_notes": [
+    "Motion blur: 'Motion Blur Amount' scales the DirectionalBlur (Zoom type) length on the title and on the speed-line field."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "DirectionalBlur.EffectMask"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t30.py",
     "parameters_used": [
@@ -230,6 +244,9 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 41,
+      "unconfirmed_inputs": [
+        "DirectionalBlur.EffectMask"
+      ],
       "setting_input_evidence": {
         "S": 139,
         "K": 85,
@@ -238,8 +255,8 @@
       "setting_expressions": 25,
       "published_controls": 39,
       "text_nodes": [
-        "Subtitle",
-        "MainTitle"
+        "MainTitle",
+        "Subtitle"
       ],
       "comp_tools": 41,
       "comp_input_evidence": {
@@ -275,6 +292,6 @@
       "title_band_contrast": 59.7
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:51:01+00:00"
+    "validated_at": "2026-10-11T20:06:52+00:00"
   }
 }

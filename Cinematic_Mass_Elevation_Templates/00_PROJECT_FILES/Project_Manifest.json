@@ -1,13 +1,13 @@
 {
  "project": "Cinematic Mass Elevation Templates",
  "version": "1.0.0",
- "generated_at": "2026-10-11T18:03:31+00:00",
- "template_count": 1,
+ "generated_at": "2026-10-11T20:25:14+00:00",
+ "template_count": 40,
  "templates": [
   {
    "id": "T01",
    "name": "Obsidian Impact",
-   "category": "A - Dark Mass Elevation",
+   "category": "A - Dark, Powerful Mass Elevation",
    "dir": "01_TEMPLATES/T01_Obsidian_Impact",
    "duration_frames": 192,
    "true_3d": false,
@@ -17,20 +17,570 @@
    "source_check": true,
    "preview_check": true,
    "resolve_tested": false
+  },
+  {
+   "id": "T02",
+   "name": "Thunder God",
+   "category": "A - Dark, Powerful Mass Elevation",
+   "dir": "01_TEMPLATES/T02_Thunder_God",
+   "duration_frames": 192,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T02_Thunder_God/source/T02_Thunder_God.setting",
+   "fusion_composition": "01_TEMPLATES/T02_Thunder_God/source/T02_Thunder_God.comp",
+   "preview": "01_TEMPLATES/T02_Thunder_God/preview/T02_Thunder_God.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T03",
+   "name": "Molten Core",
+   "category": "A - Dark, Powerful Mass Elevation",
+   "dir": "01_TEMPLATES/T03_Molten_Core",
+   "duration_frames": 216,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T03_Molten_Core/source/T03_Molten_Core.setting",
+   "fusion_composition": "01_TEMPLATES/T03_Molten_Core/source/T03_Molten_Core.comp",
+   "preview": "01_TEMPLATES/T03_Molten_Core/preview/T03_Molten_Core.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T04",
+   "name": "Black Steel Reckoning",
+   "category": "A - Dark, Powerful Mass Elevation",
+   "dir": "01_TEMPLATES/T04_Black_Steel_Reckoning",
+   "duration_frames": 168,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T04_Black_Steel_Reckoning/source/T04_Black_Steel_Reckoning.setting",
+   "fusion_composition": "01_TEMPLATES/T04_Black_Steel_Reckoning/source/T04_Black_Steel_Reckoning.comp",
+   "preview": "01_TEMPLATES/T04_Black_Steel_Reckoning/preview/T04_Black_Steel_Reckoning.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T05",
+   "name": "Shattered Monolith",
+   "category": "A - Dark, Powerful Mass Elevation",
+   "dir": "01_TEMPLATES/T05_Shattered_Monolith",
+   "duration_frames": 240,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T05_Shattered_Monolith/source/T05_Shattered_Monolith.setting",
+   "fusion_composition": "01_TEMPLATES/T05_Shattered_Monolith/source/T05_Shattered_Monolith.comp",
+   "preview": "01_TEMPLATES/T05_Shattered_Monolith/preview/T05_Shattered_Monolith.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T06",
+   "name": "Inferno Reveal",
+   "category": "B - Fire, Explosions and Impact",
+   "dir": "01_TEMPLATES/T06_Inferno_Reveal",
+   "duration_frames": 192,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T06_Inferno_Reveal/source/T06_Inferno_Reveal.setting",
+   "fusion_composition": "01_TEMPLATES/T06_Inferno_Reveal/source/T06_Inferno_Reveal.comp",
+   "preview": "01_TEMPLATES/T06_Inferno_Reveal/preview/T06_Inferno_Reveal.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T07",
+   "name": "Explosive Arrival",
+   "category": "B - Fire, Explosions and Impact",
+   "dir": "01_TEMPLATES/T07_Explosive_Arrival",
+   "duration_frames": 144,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T07_Explosive_Arrival/source/T07_Explosive_Arrival.setting",
+   "fusion_composition": "01_TEMPLATES/T07_Explosive_Arrival/source/T07_Explosive_Arrival.comp",
+   "preview": "01_TEMPLATES/T07_Explosive_Arrival/preview/T07_Explosive_Arrival.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T08",
+   "name": "Ember Storm",
+   "category": "B - Fire, Explosions and Impact",
+   "dir": "01_TEMPLATES/T08_Ember_Storm",
+   "duration_frames": 240,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T08_Ember_Storm/source/T08_Ember_Storm.setting",
+   "fusion_composition": "01_TEMPLATES/T08_Ember_Storm/source/T08_Ember_Storm.comp",
+   "preview": "01_TEMPLATES/T08_Ember_Storm/preview/T08_Ember_Storm.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T09",
+   "name": "Ashes of Power",
+   "category": "B - Fire, Explosions and Impact",
+   "dir": "01_TEMPLATES/T09_Ashes_of_Power",
+   "duration_frames": 204,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T09_Ashes_of_Power/source/T09_Ashes_of_Power.setting",
+   "fusion_composition": "01_TEMPLATES/T09_Ashes_of_Power/source/T09_Ashes_of_Power.comp",
+   "preview": "01_TEMPLATES/T09_Ashes_of_Power/preview/T09_Ashes_of_Power.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T10",
+   "name": "Shockwave Dominance",
+   "category": "B - Fire, Explosions and Impact",
+   "dir": "01_TEMPLATES/T10_Shockwave_Dominance",
+   "duration_frames": 156,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T10_Shockwave_Dominance/source/T10_Shockwave_Dominance.setting",
+   "fusion_composition": "01_TEMPLATES/T10_Shockwave_Dominance/source/T10_Shockwave_Dominance.comp",
+   "preview": "01_TEMPLATES/T10_Shockwave_Dominance/preview/T10_Shockwave_Dominance.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T11",
+   "name": "Golden Emperor",
+   "category": "C - 3D Metal and Premium Materials",
+   "dir": "01_TEMPLATES/T11_Golden_Emperor",
+   "duration_frames": 216,
+   "true_3d": true,
+   "fusion_macro": "01_TEMPLATES/T11_Golden_Emperor/source/T11_Golden_Emperor.setting",
+   "fusion_composition": "01_TEMPLATES/T11_Golden_Emperor/source/T11_Golden_Emperor.comp",
+   "preview": "01_TEMPLATES/T11_Golden_Emperor/preview/T11_Golden_Emperor.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T12",
+   "name": "Chrome Dominion",
+   "category": "C - 3D Metal and Premium Materials",
+   "dir": "01_TEMPLATES/T12_Chrome_Dominion",
+   "duration_frames": 180,
+   "true_3d": true,
+   "fusion_macro": "01_TEMPLATES/T12_Chrome_Dominion/source/T12_Chrome_Dominion.setting",
+   "fusion_composition": "01_TEMPLATES/T12_Chrome_Dominion/source/T12_Chrome_Dominion.comp",
+   "preview": "01_TEMPLATES/T12_Chrome_Dominion/preview/T12_Chrome_Dominion.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T13",
+   "name": "Titanium Edge",
+   "category": "C - 3D Metal and Premium Materials",
+   "dir": "01_TEMPLATES/T13_Titanium_Edge",
+   "duration_frames": 168,
+   "true_3d": true,
+   "fusion_macro": "01_TEMPLATES/T13_Titanium_Edge/source/T13_Titanium_Edge.setting",
+   "fusion_composition": "01_TEMPLATES/T13_Titanium_Edge/source/T13_Titanium_Edge.comp",
+   "preview": "01_TEMPLATES/T13_Titanium_Edge/preview/T13_Titanium_Edge.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T14",
+   "name": "Forged in Fire",
+   "category": "C - 3D Metal and Premium Materials",
+   "dir": "01_TEMPLATES/T14_Forged_In_Fire",
+   "duration_frames": 228,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T14_Forged_In_Fire/source/T14_Forged_In_Fire.setting",
+   "fusion_composition": "01_TEMPLATES/T14_Forged_In_Fire/source/T14_Forged_In_Fire.comp",
+   "preview": "01_TEMPLATES/T14_Forged_In_Fire/preview/T14_Forged_In_Fire.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T15",
+   "name": "Diamond Cut",
+   "category": "C - 3D Metal and Premium Materials",
+   "dir": "01_TEMPLATES/T15_Diamond_Cut",
+   "duration_frames": 204,
+   "true_3d": true,
+   "fusion_macro": "01_TEMPLATES/T15_Diamond_Cut/source/T15_Diamond_Cut.setting",
+   "fusion_composition": "01_TEMPLATES/T15_Diamond_Cut/source/T15_Diamond_Cut.comp",
+   "preview": "01_TEMPLATES/T15_Diamond_Cut/preview/T15_Diamond_Cut.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T16",
+   "name": "Ancient Titan",
+   "category": "D - Mythic, Epic and Fantasy",
+   "dir": "01_TEMPLATES/T16_Ancient_Titan",
+   "duration_frames": 240,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T16_Ancient_Titan/source/T16_Ancient_Titan.setting",
+   "fusion_composition": "01_TEMPLATES/T16_Ancient_Titan/source/T16_Ancient_Titan.comp",
+   "preview": "01_TEMPLATES/T16_Ancient_Titan/preview/T16_Ancient_Titan.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T17",
+   "name": "Celestial Ascent",
+   "category": "D - Mythic, Epic and Fantasy",
+   "dir": "01_TEMPLATES/T17_Celestial_Ascent",
+   "duration_frames": 210,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T17_Celestial_Ascent/source/T17_Celestial_Ascent.setting",
+   "fusion_composition": "01_TEMPLATES/T17_Celestial_Ascent/source/T17_Celestial_Ascent.comp",
+   "preview": "01_TEMPLATES/T17_Celestial_Ascent/preview/T17_Celestial_Ascent.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T18",
+   "name": "Dark Sorcery",
+   "category": "D - Mythic, Epic and Fantasy",
+   "dir": "01_TEMPLATES/T18_Dark_Sorcery",
+   "duration_frames": 192,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T18_Dark_Sorcery/source/T18_Dark_Sorcery.setting",
+   "fusion_composition": "01_TEMPLATES/T18_Dark_Sorcery/source/T18_Dark_Sorcery.comp",
+   "preview": "01_TEMPLATES/T18_Dark_Sorcery/preview/T18_Dark_Sorcery.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T19",
+   "name": "Cosmic Overlord",
+   "category": "D - Mythic, Epic and Fantasy",
+   "dir": "01_TEMPLATES/T19_Cosmic_Overlord",
+   "duration_frames": 236,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T19_Cosmic_Overlord/source/T19_Cosmic_Overlord.setting",
+   "fusion_composition": "01_TEMPLATES/T19_Cosmic_Overlord/source/T19_Cosmic_Overlord.comp",
+   "preview": "01_TEMPLATES/T19_Cosmic_Overlord/preview/T19_Cosmic_Overlord.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T20",
+   "name": "Phoenix Reborn",
+   "category": "D - Mythic, Epic and Fantasy",
+   "dir": "01_TEMPLATES/T20_Phoenix_Reborn",
+   "duration_frames": 156,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T20_Phoenix_Reborn/source/T20_Phoenix_Reborn.setting",
+   "fusion_composition": "01_TEMPLATES/T20_Phoenix_Reborn/source/T20_Phoenix_Reborn.comp",
+   "preview": "01_TEMPLATES/T20_Phoenix_Reborn/preview/T20_Phoenix_Reborn.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T21",
+   "name": "Neon Overdrive",
+   "category": "E - Sci-Fi and Futuristic Motion Graphics",
+   "dir": "01_TEMPLATES/T21_Neon_Overdrive",
+   "duration_frames": 168,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T21_Neon_Overdrive/source/T21_Neon_Overdrive.setting",
+   "fusion_composition": "01_TEMPLATES/T21_Neon_Overdrive/source/T21_Neon_Overdrive.comp",
+   "preview": "01_TEMPLATES/T21_Neon_Overdrive/preview/T21_Neon_Overdrive.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T22",
+   "name": "Hologram Breach",
+   "category": "E - Sci-Fi and Futuristic Motion Graphics",
+   "dir": "01_TEMPLATES/T22_Hologram_Breach",
+   "duration_frames": 192,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T22_Hologram_Breach/source/T22_Hologram_Breach.setting",
+   "fusion_composition": "01_TEMPLATES/T22_Hologram_Breach/source/T22_Hologram_Breach.comp",
+   "preview": "01_TEMPLATES/T22_Hologram_Breach/preview/T22_Hologram_Breach.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T23",
+   "name": "Digital Awakening",
+   "category": "E - Sci-Fi and Futuristic Motion Graphics",
+   "dir": "01_TEMPLATES/T23_Digital_Awakening",
+   "duration_frames": 216,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T23_Digital_Awakening/source/T23_Digital_Awakening.setting",
+   "fusion_composition": "01_TEMPLATES/T23_Digital_Awakening/source/T23_Digital_Awakening.comp",
+   "preview": "01_TEMPLATES/T23_Digital_Awakening/preview/T23_Digital_Awakening.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T24",
+   "name": "Quantum Split",
+   "category": "E - Sci-Fi and Futuristic Motion Graphics",
+   "dir": "01_TEMPLATES/T24_Quantum_Split",
+   "duration_frames": 156,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T24_Quantum_Split/source/T24_Quantum_Split.setting",
+   "fusion_composition": "01_TEMPLATES/T24_Quantum_Split/source/T24_Quantum_Split.comp",
+   "preview": "01_TEMPLATES/T24_Quantum_Split/preview/T24_Quantum_Split.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T25",
+   "name": "Future Warlord",
+   "category": "E - Sci-Fi and Futuristic Motion Graphics",
+   "dir": "01_TEMPLATES/T25_Future_Warlord",
+   "duration_frames": 228,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T25_Future_Warlord/source/T25_Future_Warlord.setting",
+   "fusion_composition": "01_TEMPLATES/T25_Future_Warlord/source/T25_Future_Warlord.comp",
+   "preview": "01_TEMPLATES/T25_Future_Warlord/preview/T25_Future_Warlord.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T26",
+   "name": "Extreme Close-Up",
+   "category": "F - Cinematic Typography and Camera Movement",
+   "dir": "01_TEMPLATES/T26_Extreme_Close_Up",
+   "duration_frames": 200,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T26_Extreme_Close_Up/source/T26_Extreme_Close_Up.setting",
+   "fusion_composition": "01_TEMPLATES/T26_Extreme_Close_Up/source/T26_Extreme_Close_Up.comp",
+   "preview": "01_TEMPLATES/T26_Extreme_Close_Up/preview/T26_Extreme_Close_Up.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T27",
+   "name": "Low-Angle Titan",
+   "category": "F - Cinematic Typography and Camera Movement",
+   "dir": "01_TEMPLATES/T27_Low_Angle_Titan",
+   "duration_frames": 240,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T27_Low_Angle_Titan/source/T27_Low_Angle_Titan.setting",
+   "fusion_composition": "01_TEMPLATES/T27_Low_Angle_Titan/source/T27_Low_Angle_Titan.comp",
+   "preview": "01_TEMPLATES/T27_Low_Angle_Titan/preview/T27_Low_Angle_Titan.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T28",
+   "name": "Rotating Monolith",
+   "category": "F - Cinematic Typography and Camera Movement",
+   "dir": "01_TEMPLATES/T28_Rotating_Monolith",
+   "duration_frames": 204,
+   "true_3d": true,
+   "fusion_macro": "01_TEMPLATES/T28_Rotating_Monolith/source/T28_Rotating_Monolith.setting",
+   "fusion_composition": "01_TEMPLATES/T28_Rotating_Monolith/source/T28_Rotating_Monolith.comp",
+   "preview": "01_TEMPLATES/T28_Rotating_Monolith/preview/T28_Rotating_Monolith.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T29",
+   "name": "Cinematic Letter Assembly",
+   "category": "F - Cinematic Typography and Camera Movement",
+   "dir": "01_TEMPLATES/T29_Cinematic_Letter_Assembly",
+   "duration_frames": 180,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/source/T29_Cinematic_Letter_Assembly.setting",
+   "fusion_composition": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/source/T29_Cinematic_Letter_Assembly.comp",
+   "preview": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/preview/T29_Cinematic_Letter_Assembly.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T30",
+   "name": "Speed Ramp Dominance",
+   "category": "F - Cinematic Typography and Camera Movement",
+   "dir": "01_TEMPLATES/T30_Speed_Ramp_Dominance",
+   "duration_frames": 144,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T30_Speed_Ramp_Dominance/source/T30_Speed_Ramp_Dominance.setting",
+   "fusion_composition": "01_TEMPLATES/T30_Speed_Ramp_Dominance/source/T30_Speed_Ramp_Dominance.comp",
+   "preview": "01_TEMPLATES/T30_Speed_Ramp_Dominance/preview/T30_Speed_Ramp_Dominance.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T31",
+   "name": "Midnight Fog",
+   "category": "G - Atmospheric and Environmental Cinema",
+   "dir": "01_TEMPLATES/T31_Midnight_Fog",
+   "duration_frames": 216,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T31_Midnight_Fog/source/T31_Midnight_Fog.setting",
+   "fusion_composition": "01_TEMPLATES/T31_Midnight_Fog/source/T31_Midnight_Fog.comp",
+   "preview": "01_TEMPLATES/T31_Midnight_Fog/preview/T31_Midnight_Fog.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T32",
+   "name": "Rain and Steel",
+   "category": "G - Atmospheric and Environmental Cinema",
+   "dir": "01_TEMPLATES/T32_Rain_And_Steel",
+   "duration_frames": 192,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T32_Rain_And_Steel/source/T32_Rain_And_Steel.setting",
+   "fusion_composition": "01_TEMPLATES/T32_Rain_And_Steel/source/T32_Rain_And_Steel.comp",
+   "preview": "01_TEMPLATES/T32_Rain_And_Steel/preview/T32_Rain_And_Steel.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T33",
+   "name": "Desert Storm",
+   "category": "G - Atmospheric and Environmental Cinema",
+   "dir": "01_TEMPLATES/T33_Desert_Storm",
+   "duration_frames": 180,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T33_Desert_Storm/source/T33_Desert_Storm.setting",
+   "fusion_composition": "01_TEMPLATES/T33_Desert_Storm/source/T33_Desert_Storm.comp",
+   "preview": "01_TEMPLATES/T33_Desert_Storm/preview/T33_Desert_Storm.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T34",
+   "name": "Underwater Colossus",
+   "category": "G - Atmospheric and Environmental Cinema",
+   "dir": "01_TEMPLATES/T34_Underwater_Colossus",
+   "duration_frames": 240,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T34_Underwater_Colossus/source/T34_Underwater_Colossus.setting",
+   "fusion_composition": "01_TEMPLATES/T34_Underwater_Colossus/source/T34_Underwater_Colossus.comp",
+   "preview": "01_TEMPLATES/T34_Underwater_Colossus/preview/T34_Underwater_Colossus.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T35",
+   "name": "Frozen Kingdom",
+   "category": "G - Atmospheric and Environmental Cinema",
+   "dir": "01_TEMPLATES/T35_Frozen_Kingdom",
+   "duration_frames": 204,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T35_Frozen_Kingdom/source/T35_Frozen_Kingdom.setting",
+   "fusion_composition": "01_TEMPLATES/T35_Frozen_Kingdom/source/T35_Frozen_Kingdom.comp",
+   "preview": "01_TEMPLATES/T35_Frozen_Kingdom/preview/T35_Frozen_Kingdom.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T36",
+   "name": "Hero Silhouette",
+   "category": "H - Signature Hero Elevations",
+   "dir": "01_TEMPLATES/T36_Hero_Silhouette",
+   "duration_frames": 168,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T36_Hero_Silhouette/source/T36_Hero_Silhouette.setting",
+   "fusion_composition": "01_TEMPLATES/T36_Hero_Silhouette/source/T36_Hero_Silhouette.comp",
+   "preview": "01_TEMPLATES/T36_Hero_Silhouette/preview/T36_Hero_Silhouette.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T37",
+   "name": "Legacy Reveal",
+   "category": "H - Signature Hero Elevations",
+   "dir": "01_TEMPLATES/T37_Legacy_Reveal",
+   "duration_frames": 228,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T37_Legacy_Reveal/source/T37_Legacy_Reveal.setting",
+   "fusion_composition": "01_TEMPLATES/T37_Legacy_Reveal/source/T37_Legacy_Reveal.comp",
+   "preview": "01_TEMPLATES/T37_Legacy_Reveal/preview/T37_Legacy_Reveal.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T38",
+   "name": "Royal Insignia",
+   "category": "H - Signature Hero Elevations",
+   "dir": "01_TEMPLATES/T38_Royal_Insignia",
+   "duration_frames": 196,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T38_Royal_Insignia/source/T38_Royal_Insignia.setting",
+   "fusion_composition": "01_TEMPLATES/T38_Royal_Insignia/source/T38_Royal_Insignia.comp",
+   "preview": "01_TEMPLATES/T38_Royal_Insignia/preview/T38_Royal_Insignia.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T39",
+   "name": "Final Boss",
+   "category": "H - Signature Hero Elevations",
+   "dir": "01_TEMPLATES/T39_Final_Boss",
+   "duration_frames": 156,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T39_Final_Boss/source/T39_Final_Boss.setting",
+   "fusion_composition": "01_TEMPLATES/T39_Final_Boss/source/T39_Final_Boss.comp",
+   "preview": "01_TEMPLATES/T39_Final_Boss/preview/T39_Final_Boss.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
+  },
+  {
+   "id": "T40",
+   "name": "Ultimate Mass Elevation",
+   "category": "H - Signature Hero Elevations",
+   "dir": "01_TEMPLATES/T40_Ultimate_Mass_Elevation",
+   "duration_frames": 240,
+   "true_3d": false,
+   "fusion_macro": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/source/T40_Ultimate_Mass_Elevation.setting",
+   "fusion_composition": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/source/T40_Ultimate_Mass_Elevation.comp",
+   "preview": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/preview/T40_Ultimate_Mass_Elevation.mp4",
+   "source_check": true,
+   "preview_check": true,
+   "resolve_tested": false
   }
  ],
  "totals": {
-  "bytes": 17698094,
-  "files": 114
+  "bytes": 178592674,
+  "files": 708
  },
  "files": [
   {
    "path": "00_PROJECT_FILES/DaVinci_Resolve_Project/build_resolve_project.py",
-   "bytes": 6234
+   "bytes": 6221
+  },
+  {
+   "path": "00_PROJECT_FILES/Project_Manifest.json",
+   "bytes": 90602
   },
   {
    "path": "01_TEMPLATES/T01_Obsidian_Impact/README.md",
-   "bytes": 3536
+   "bytes": 4034
   },
   {
    "path": "01_TEMPLATES/T01_Obsidian_Impact/configuration/default_params.json",
@@ -50,23 +600,1583 @@
   },
   {
    "path": "01_TEMPLATES/T01_Obsidian_Impact/manifest.json",
-   "bytes": 6133
+   "bytes": 7230
   },
   {
    "path": "01_TEMPLATES/T01_Obsidian_Impact/preview/T01_Obsidian_Impact.mp4",
-   "bytes": 4839154
+   "bytes": 3085750
   },
   {
    "path": "01_TEMPLATES/T01_Obsidian_Impact/preview/thumbnail.jpg",
-   "bytes": 57660
+   "bytes": 55818
   },
   {
    "path": "01_TEMPLATES/T01_Obsidian_Impact/source/T01_Obsidian_Impact.comp",
-   "bytes": 43828
+   "bytes": 43898
   },
   {
    "path": "01_TEMPLATES/T01_Obsidian_Impact/source/T01_Obsidian_Impact.setting",
-   "bytes": 54612
+   "bytes": 54782
+  },
+  {
+   "path": "01_TEMPLATES/T02_Thunder_God/README.md",
+   "bytes": 4100
+  },
+  {
+   "path": "01_TEMPLATES/T02_Thunder_God/configuration/default_params.json",
+   "bytes": 868
+  },
+  {
+   "path": "01_TEMPLATES/T02_Thunder_God/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T02_Thunder_God/documentation/parameters.md",
+   "bytes": 6114
+  },
+  {
+   "path": "01_TEMPLATES/T02_Thunder_God/documentation/sound_design.md",
+   "bytes": 939
+  },
+  {
+   "path": "01_TEMPLATES/T02_Thunder_God/manifest.json",
+   "bytes": 7436
+  },
+  {
+   "path": "01_TEMPLATES/T02_Thunder_God/preview/T02_Thunder_God.mp4",
+   "bytes": 3559807
+  },
+  {
+   "path": "01_TEMPLATES/T02_Thunder_God/preview/thumbnail.jpg",
+   "bytes": 52189
+  },
+  {
+   "path": "01_TEMPLATES/T02_Thunder_God/source/T02_Thunder_God.comp",
+   "bytes": 40309
+  },
+  {
+   "path": "01_TEMPLATES/T02_Thunder_God/source/T02_Thunder_God.setting",
+   "bytes": 50700
+  },
+  {
+   "path": "01_TEMPLATES/T03_Molten_Core/README.md",
+   "bytes": 4207
+  },
+  {
+   "path": "01_TEMPLATES/T03_Molten_Core/configuration/default_params.json",
+   "bytes": 868
+  },
+  {
+   "path": "01_TEMPLATES/T03_Molten_Core/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T03_Molten_Core/documentation/parameters.md",
+   "bytes": 6261
+  },
+  {
+   "path": "01_TEMPLATES/T03_Molten_Core/documentation/sound_design.md",
+   "bytes": 1005
+  },
+  {
+   "path": "01_TEMPLATES/T03_Molten_Core/manifest.json",
+   "bytes": 7733
+  },
+  {
+   "path": "01_TEMPLATES/T03_Molten_Core/preview/T03_Molten_Core.mp4",
+   "bytes": 4335835
+  },
+  {
+   "path": "01_TEMPLATES/T03_Molten_Core/preview/thumbnail.jpg",
+   "bytes": 66733
+  },
+  {
+   "path": "01_TEMPLATES/T03_Molten_Core/source/T03_Molten_Core.comp",
+   "bytes": 61599
+  },
+  {
+   "path": "01_TEMPLATES/T03_Molten_Core/source/T03_Molten_Core.setting",
+   "bytes": 74012
+  },
+  {
+   "path": "01_TEMPLATES/T04_Black_Steel_Reckoning/README.md",
+   "bytes": 4265
+  },
+  {
+   "path": "01_TEMPLATES/T04_Black_Steel_Reckoning/configuration/default_params.json",
+   "bytes": 869
+  },
+  {
+   "path": "01_TEMPLATES/T04_Black_Steel_Reckoning/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T04_Black_Steel_Reckoning/documentation/parameters.md",
+   "bytes": 6280
+  },
+  {
+   "path": "01_TEMPLATES/T04_Black_Steel_Reckoning/documentation/sound_design.md",
+   "bytes": 988
+  },
+  {
+   "path": "01_TEMPLATES/T04_Black_Steel_Reckoning/manifest.json",
+   "bytes": 7765
+  },
+  {
+   "path": "01_TEMPLATES/T04_Black_Steel_Reckoning/preview/T04_Black_Steel_Reckoning.mp4",
+   "bytes": 2278182
+  },
+  {
+   "path": "01_TEMPLATES/T04_Black_Steel_Reckoning/preview/thumbnail.jpg",
+   "bytes": 47495
+  },
+  {
+   "path": "01_TEMPLATES/T04_Black_Steel_Reckoning/source/T04_Black_Steel_Reckoning.comp",
+   "bytes": 49726
+  },
+  {
+   "path": "01_TEMPLATES/T04_Black_Steel_Reckoning/source/T04_Black_Steel_Reckoning.setting",
+   "bytes": 61083
+  },
+  {
+   "path": "01_TEMPLATES/T05_Shattered_Monolith/README.md",
+   "bytes": 4275
+  },
+  {
+   "path": "01_TEMPLATES/T05_Shattered_Monolith/configuration/default_params.json",
+   "bytes": 873
+  },
+  {
+   "path": "01_TEMPLATES/T05_Shattered_Monolith/configuration/render_profile.json",
+   "bytes": 836
+  },
+  {
+   "path": "01_TEMPLATES/T05_Shattered_Monolith/documentation/parameters.md",
+   "bytes": 6141
+  },
+  {
+   "path": "01_TEMPLATES/T05_Shattered_Monolith/documentation/sound_design.md",
+   "bytes": 993
+  },
+  {
+   "path": "01_TEMPLATES/T05_Shattered_Monolith/manifest.json",
+   "bytes": 7733
+  },
+  {
+   "path": "01_TEMPLATES/T05_Shattered_Monolith/preview/T05_Shattered_Monolith.mp4",
+   "bytes": 4040532
+  },
+  {
+   "path": "01_TEMPLATES/T05_Shattered_Monolith/preview/thumbnail.jpg",
+   "bytes": 56907
+  },
+  {
+   "path": "01_TEMPLATES/T05_Shattered_Monolith/source/T05_Shattered_Monolith.comp",
+   "bytes": 92864
+  },
+  {
+   "path": "01_TEMPLATES/T05_Shattered_Monolith/source/T05_Shattered_Monolith.setting",
+   "bytes": 107462
+  },
+  {
+   "path": "01_TEMPLATES/T06_Inferno_Reveal/README.md",
+   "bytes": 4237
+  },
+  {
+   "path": "01_TEMPLATES/T06_Inferno_Reveal/configuration/default_params.json",
+   "bytes": 867
+  },
+  {
+   "path": "01_TEMPLATES/T06_Inferno_Reveal/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T06_Inferno_Reveal/documentation/parameters.md",
+   "bytes": 6403
+  },
+  {
+   "path": "01_TEMPLATES/T06_Inferno_Reveal/documentation/sound_design.md",
+   "bytes": 927
+  },
+  {
+   "path": "01_TEMPLATES/T06_Inferno_Reveal/manifest.json",
+   "bytes": 7786
+  },
+  {
+   "path": "01_TEMPLATES/T06_Inferno_Reveal/preview/T06_Inferno_Reveal.mp4",
+   "bytes": 4744323
+  },
+  {
+   "path": "01_TEMPLATES/T06_Inferno_Reveal/preview/thumbnail.jpg",
+   "bytes": 66850
+  },
+  {
+   "path": "01_TEMPLATES/T06_Inferno_Reveal/source/T06_Inferno_Reveal.comp",
+   "bytes": 54530
+  },
+  {
+   "path": "01_TEMPLATES/T06_Inferno_Reveal/source/T06_Inferno_Reveal.setting",
+   "bytes": 66667
+  },
+  {
+   "path": "01_TEMPLATES/T07_Explosive_Arrival/README.md",
+   "bytes": 5003
+  },
+  {
+   "path": "01_TEMPLATES/T07_Explosive_Arrival/configuration/default_params.json",
+   "bytes": 858
+  },
+  {
+   "path": "01_TEMPLATES/T07_Explosive_Arrival/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T07_Explosive_Arrival/documentation/parameters.md",
+   "bytes": 6951
+  },
+  {
+   "path": "01_TEMPLATES/T07_Explosive_Arrival/documentation/sound_design.md",
+   "bytes": 1010
+  },
+  {
+   "path": "01_TEMPLATES/T07_Explosive_Arrival/manifest.json",
+   "bytes": 8788
+  },
+  {
+   "path": "01_TEMPLATES/T07_Explosive_Arrival/preview/T07_Explosive_Arrival.mp4",
+   "bytes": 4328490
+  },
+  {
+   "path": "01_TEMPLATES/T07_Explosive_Arrival/preview/thumbnail.jpg",
+   "bytes": 74841
+  },
+  {
+   "path": "01_TEMPLATES/T07_Explosive_Arrival/source/T07_Explosive_Arrival.comp",
+   "bytes": 52551
+  },
+  {
+   "path": "01_TEMPLATES/T07_Explosive_Arrival/source/T07_Explosive_Arrival.setting",
+   "bytes": 64434
+  },
+  {
+   "path": "01_TEMPLATES/T08_Ember_Storm/README.md",
+   "bytes": 4236
+  },
+  {
+   "path": "01_TEMPLATES/T08_Ember_Storm/configuration/default_params.json",
+   "bytes": 877
+  },
+  {
+   "path": "01_TEMPLATES/T08_Ember_Storm/configuration/render_profile.json",
+   "bytes": 836
+  },
+  {
+   "path": "01_TEMPLATES/T08_Ember_Storm/documentation/parameters.md",
+   "bytes": 6000
+  },
+  {
+   "path": "01_TEMPLATES/T08_Ember_Storm/documentation/sound_design.md",
+   "bytes": 889
+  },
+  {
+   "path": "01_TEMPLATES/T08_Ember_Storm/manifest.json",
+   "bytes": 7344
+  },
+  {
+   "path": "01_TEMPLATES/T08_Ember_Storm/preview/T08_Ember_Storm.mp4",
+   "bytes": 4168015
+  },
+  {
+   "path": "01_TEMPLATES/T08_Ember_Storm/preview/thumbnail.jpg",
+   "bytes": 57525
+  },
+  {
+   "path": "01_TEMPLATES/T08_Ember_Storm/source/T08_Ember_Storm.comp",
+   "bytes": 39667
+  },
+  {
+   "path": "01_TEMPLATES/T08_Ember_Storm/source/T08_Ember_Storm.setting",
+   "bytes": 49750
+  },
+  {
+   "path": "01_TEMPLATES/T09_Ashes_of_Power/README.md",
+   "bytes": 4250
+  },
+  {
+   "path": "01_TEMPLATES/T09_Ashes_of_Power/configuration/default_params.json",
+   "bytes": 876
+  },
+  {
+   "path": "01_TEMPLATES/T09_Ashes_of_Power/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T09_Ashes_of_Power/documentation/parameters.md",
+   "bytes": 6267
+  },
+  {
+   "path": "01_TEMPLATES/T09_Ashes_of_Power/documentation/sound_design.md",
+   "bytes": 918
+  },
+  {
+   "path": "01_TEMPLATES/T09_Ashes_of_Power/manifest.json",
+   "bytes": 7659
+  },
+  {
+   "path": "01_TEMPLATES/T09_Ashes_of_Power/preview/T09_Ashes_of_Power.mp4",
+   "bytes": 4338758
+  },
+  {
+   "path": "01_TEMPLATES/T09_Ashes_of_Power/preview/thumbnail.jpg",
+   "bytes": 55396
+  },
+  {
+   "path": "01_TEMPLATES/T09_Ashes_of_Power/source/T09_Ashes_of_Power.comp",
+   "bytes": 54796
+  },
+  {
+   "path": "01_TEMPLATES/T09_Ashes_of_Power/source/T09_Ashes_of_Power.setting",
+   "bytes": 66704
+  },
+  {
+   "path": "01_TEMPLATES/T10_Shockwave_Dominance/README.md",
+   "bytes": 4675
+  },
+  {
+   "path": "01_TEMPLATES/T10_Shockwave_Dominance/configuration/default_params.json",
+   "bytes": 867
+  },
+  {
+   "path": "01_TEMPLATES/T10_Shockwave_Dominance/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T10_Shockwave_Dominance/documentation/parameters.md",
+   "bytes": 6723
+  },
+  {
+   "path": "01_TEMPLATES/T10_Shockwave_Dominance/documentation/sound_design.md",
+   "bytes": 1000
+  },
+  {
+   "path": "01_TEMPLATES/T10_Shockwave_Dominance/manifest.json",
+   "bytes": 8340
+  },
+  {
+   "path": "01_TEMPLATES/T10_Shockwave_Dominance/preview/T10_Shockwave_Dominance.mp4",
+   "bytes": 2992892
+  },
+  {
+   "path": "01_TEMPLATES/T10_Shockwave_Dominance/preview/thumbnail.jpg",
+   "bytes": 54543
+  },
+  {
+   "path": "01_TEMPLATES/T10_Shockwave_Dominance/source/T10_Shockwave_Dominance.comp",
+   "bytes": 50745
+  },
+  {
+   "path": "01_TEMPLATES/T10_Shockwave_Dominance/source/T10_Shockwave_Dominance.setting",
+   "bytes": 62318
+  },
+  {
+   "path": "01_TEMPLATES/T11_Golden_Emperor/README.md",
+   "bytes": 4490
+  },
+  {
+   "path": "01_TEMPLATES/T11_Golden_Emperor/configuration/default_params.json",
+   "bytes": 868
+  },
+  {
+   "path": "01_TEMPLATES/T11_Golden_Emperor/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T11_Golden_Emperor/documentation/parameters.md",
+   "bytes": 6163
+  },
+  {
+   "path": "01_TEMPLATES/T11_Golden_Emperor/documentation/sound_design.md",
+   "bytes": 931
+  },
+  {
+   "path": "01_TEMPLATES/T11_Golden_Emperor/manifest.json",
+   "bytes": 8180
+  },
+  {
+   "path": "01_TEMPLATES/T11_Golden_Emperor/preview/T11_Golden_Emperor.mp4",
+   "bytes": 2787795
+  },
+  {
+   "path": "01_TEMPLATES/T11_Golden_Emperor/preview/thumbnail.jpg",
+   "bytes": 49381
+  },
+  {
+   "path": "01_TEMPLATES/T11_Golden_Emperor/source/T11_Golden_Emperor.comp",
+   "bytes": 34665
+  },
+  {
+   "path": "01_TEMPLATES/T11_Golden_Emperor/source/T11_Golden_Emperor.setting",
+   "bytes": 43975
+  },
+  {
+   "path": "01_TEMPLATES/T12_Chrome_Dominion/README.md",
+   "bytes": 4931
+  },
+  {
+   "path": "01_TEMPLATES/T12_Chrome_Dominion/configuration/default_params.json",
+   "bytes": 875
+  },
+  {
+   "path": "01_TEMPLATES/T12_Chrome_Dominion/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T12_Chrome_Dominion/documentation/parameters.md",
+   "bytes": 6667
+  },
+  {
+   "path": "01_TEMPLATES/T12_Chrome_Dominion/documentation/sound_design.md",
+   "bytes": 1018
+  },
+  {
+   "path": "01_TEMPLATES/T12_Chrome_Dominion/manifest.json",
+   "bytes": 8449
+  },
+  {
+   "path": "01_TEMPLATES/T12_Chrome_Dominion/preview/T12_Chrome_Dominion.mp4",
+   "bytes": 1453232
+  },
+  {
+   "path": "01_TEMPLATES/T12_Chrome_Dominion/preview/thumbnail.jpg",
+   "bytes": 47797
+  },
+  {
+   "path": "01_TEMPLATES/T12_Chrome_Dominion/source/T12_Chrome_Dominion.comp",
+   "bytes": 37902
+  },
+  {
+   "path": "01_TEMPLATES/T12_Chrome_Dominion/source/T12_Chrome_Dominion.setting",
+   "bytes": 47411
+  },
+  {
+   "path": "01_TEMPLATES/T13_Titanium_Edge/README.md",
+   "bytes": 4561
+  },
+  {
+   "path": "01_TEMPLATES/T13_Titanium_Edge/configuration/default_params.json",
+   "bytes": 874
+  },
+  {
+   "path": "01_TEMPLATES/T13_Titanium_Edge/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T13_Titanium_Edge/documentation/parameters.md",
+   "bytes": 6307
+  },
+  {
+   "path": "01_TEMPLATES/T13_Titanium_Edge/documentation/sound_design.md",
+   "bytes": 1014
+  },
+  {
+   "path": "01_TEMPLATES/T13_Titanium_Edge/manifest.json",
+   "bytes": 8089
+  },
+  {
+   "path": "01_TEMPLATES/T13_Titanium_Edge/preview/T13_Titanium_Edge.mp4",
+   "bytes": 1487221
+  },
+  {
+   "path": "01_TEMPLATES/T13_Titanium_Edge/preview/thumbnail.jpg",
+   "bytes": 45012
+  },
+  {
+   "path": "01_TEMPLATES/T13_Titanium_Edge/source/T13_Titanium_Edge.comp",
+   "bytes": 46926
+  },
+  {
+   "path": "01_TEMPLATES/T13_Titanium_Edge/source/T13_Titanium_Edge.setting",
+   "bytes": 57149
+  },
+  {
+   "path": "01_TEMPLATES/T14_Forged_In_Fire/README.md",
+   "bytes": 4436
+  },
+  {
+   "path": "01_TEMPLATES/T14_Forged_In_Fire/configuration/default_params.json",
+   "bytes": 868
+  },
+  {
+   "path": "01_TEMPLATES/T14_Forged_In_Fire/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T14_Forged_In_Fire/documentation/parameters.md",
+   "bytes": 6264
+  },
+  {
+   "path": "01_TEMPLATES/T14_Forged_In_Fire/documentation/sound_design.md",
+   "bytes": 1009
+  },
+  {
+   "path": "01_TEMPLATES/T14_Forged_In_Fire/manifest.json",
+   "bytes": 8183
+  },
+  {
+   "path": "01_TEMPLATES/T14_Forged_In_Fire/preview/T14_Forged_In_Fire.mp4",
+   "bytes": 5113583
+  },
+  {
+   "path": "01_TEMPLATES/T14_Forged_In_Fire/preview/thumbnail.jpg",
+   "bytes": 56336
+  },
+  {
+   "path": "01_TEMPLATES/T14_Forged_In_Fire/source/T14_Forged_In_Fire.comp",
+   "bytes": 52725
+  },
+  {
+   "path": "01_TEMPLATES/T14_Forged_In_Fire/source/T14_Forged_In_Fire.setting",
+   "bytes": 63914
+  },
+  {
+   "path": "01_TEMPLATES/T15_Diamond_Cut/README.md",
+   "bytes": 4744
+  },
+  {
+   "path": "01_TEMPLATES/T15_Diamond_Cut/configuration/default_params.json",
+   "bytes": 872
+  },
+  {
+   "path": "01_TEMPLATES/T15_Diamond_Cut/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T15_Diamond_Cut/documentation/parameters.md",
+   "bytes": 6435
+  },
+  {
+   "path": "01_TEMPLATES/T15_Diamond_Cut/documentation/sound_design.md",
+   "bytes": 948
+  },
+  {
+   "path": "01_TEMPLATES/T15_Diamond_Cut/manifest.json",
+   "bytes": 8150
+  },
+  {
+   "path": "01_TEMPLATES/T15_Diamond_Cut/preview/T15_Diamond_Cut.mp4",
+   "bytes": 2326796
+  },
+  {
+   "path": "01_TEMPLATES/T15_Diamond_Cut/preview/thumbnail.jpg",
+   "bytes": 54427
+  },
+  {
+   "path": "01_TEMPLATES/T15_Diamond_Cut/source/T15_Diamond_Cut.comp",
+   "bytes": 32529
+  },
+  {
+   "path": "01_TEMPLATES/T15_Diamond_Cut/source/T15_Diamond_Cut.setting",
+   "bytes": 41483
+  },
+  {
+   "path": "01_TEMPLATES/T16_Ancient_Titan/README.md",
+   "bytes": 4353
+  },
+  {
+   "path": "01_TEMPLATES/T16_Ancient_Titan/configuration/default_params.json",
+   "bytes": 872
+  },
+  {
+   "path": "01_TEMPLATES/T16_Ancient_Titan/configuration/render_profile.json",
+   "bytes": 836
+  },
+  {
+   "path": "01_TEMPLATES/T16_Ancient_Titan/documentation/parameters.md",
+   "bytes": 6267
+  },
+  {
+   "path": "01_TEMPLATES/T16_Ancient_Titan/documentation/sound_design.md",
+   "bytes": 901
+  },
+  {
+   "path": "01_TEMPLATES/T16_Ancient_Titan/manifest.json",
+   "bytes": 7763
+  },
+  {
+   "path": "01_TEMPLATES/T16_Ancient_Titan/preview/T16_Ancient_Titan.mp4",
+   "bytes": 9526096
+  },
+  {
+   "path": "01_TEMPLATES/T16_Ancient_Titan/preview/thumbnail.jpg",
+   "bytes": 84090
+  },
+  {
+   "path": "01_TEMPLATES/T16_Ancient_Titan/source/T16_Ancient_Titan.comp",
+   "bytes": 58489
+  },
+  {
+   "path": "01_TEMPLATES/T16_Ancient_Titan/source/T16_Ancient_Titan.setting",
+   "bytes": 71014
+  },
+  {
+   "path": "01_TEMPLATES/T17_Celestial_Ascent/README.md",
+   "bytes": 4642
+  },
+  {
+   "path": "01_TEMPLATES/T17_Celestial_Ascent/configuration/default_params.json",
+   "bytes": 876
+  },
+  {
+   "path": "01_TEMPLATES/T17_Celestial_Ascent/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T17_Celestial_Ascent/documentation/parameters.md",
+   "bytes": 6412
+  },
+  {
+   "path": "01_TEMPLATES/T17_Celestial_Ascent/documentation/sound_design.md",
+   "bytes": 944
+  },
+  {
+   "path": "01_TEMPLATES/T17_Celestial_Ascent/manifest.json",
+   "bytes": 8067
+  },
+  {
+   "path": "01_TEMPLATES/T17_Celestial_Ascent/preview/T17_Celestial_Ascent.mp4",
+   "bytes": 4355014
+  },
+  {
+   "path": "01_TEMPLATES/T17_Celestial_Ascent/preview/thumbnail.jpg",
+   "bytes": 61225
+  },
+  {
+   "path": "01_TEMPLATES/T17_Celestial_Ascent/source/T17_Celestial_Ascent.comp",
+   "bytes": 38439
+  },
+  {
+   "path": "01_TEMPLATES/T17_Celestial_Ascent/source/T17_Celestial_Ascent.setting",
+   "bytes": 48533
+  },
+  {
+   "path": "01_TEMPLATES/T18_Dark_Sorcery/README.md",
+   "bytes": 4579
+  },
+  {
+   "path": "01_TEMPLATES/T18_Dark_Sorcery/configuration/default_params.json",
+   "bytes": 875
+  },
+  {
+   "path": "01_TEMPLATES/T18_Dark_Sorcery/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T18_Dark_Sorcery/documentation/parameters.md",
+   "bytes": 6485
+  },
+  {
+   "path": "01_TEMPLATES/T18_Dark_Sorcery/documentation/sound_design.md",
+   "bytes": 949
+  },
+  {
+   "path": "01_TEMPLATES/T18_Dark_Sorcery/manifest.json",
+   "bytes": 8086
+  },
+  {
+   "path": "01_TEMPLATES/T18_Dark_Sorcery/preview/T18_Dark_Sorcery.mp4",
+   "bytes": 3743636
+  },
+  {
+   "path": "01_TEMPLATES/T18_Dark_Sorcery/preview/thumbnail.jpg",
+   "bytes": 81257
+  },
+  {
+   "path": "01_TEMPLATES/T18_Dark_Sorcery/source/T18_Dark_Sorcery.comp",
+   "bytes": 60233
+  },
+  {
+   "path": "01_TEMPLATES/T18_Dark_Sorcery/source/T18_Dark_Sorcery.setting",
+   "bytes": 72900
+  },
+  {
+   "path": "01_TEMPLATES/T19_Cosmic_Overlord/README.md",
+   "bytes": 4625
+  },
+  {
+   "path": "01_TEMPLATES/T19_Cosmic_Overlord/configuration/default_params.json",
+   "bytes": 886
+  },
+  {
+   "path": "01_TEMPLATES/T19_Cosmic_Overlord/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T19_Cosmic_Overlord/documentation/parameters.md",
+   "bytes": 6481
+  },
+  {
+   "path": "01_TEMPLATES/T19_Cosmic_Overlord/documentation/sound_design.md",
+   "bytes": 911
+  },
+  {
+   "path": "01_TEMPLATES/T19_Cosmic_Overlord/manifest.json",
+   "bytes": 7850
+  },
+  {
+   "path": "01_TEMPLATES/T19_Cosmic_Overlord/preview/T19_Cosmic_Overlord.mp4",
+   "bytes": 2885963
+  },
+  {
+   "path": "01_TEMPLATES/T19_Cosmic_Overlord/preview/thumbnail.jpg",
+   "bytes": 59192
+  },
+  {
+   "path": "01_TEMPLATES/T19_Cosmic_Overlord/source/T19_Cosmic_Overlord.comp",
+   "bytes": 41402
+  },
+  {
+   "path": "01_TEMPLATES/T19_Cosmic_Overlord/source/T19_Cosmic_Overlord.setting",
+   "bytes": 51763
+  },
+  {
+   "path": "01_TEMPLATES/T20_Phoenix_Reborn/README.md",
+   "bytes": 4738
+  },
+  {
+   "path": "01_TEMPLATES/T20_Phoenix_Reborn/configuration/default_params.json",
+   "bytes": 870
+  },
+  {
+   "path": "01_TEMPLATES/T20_Phoenix_Reborn/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T20_Phoenix_Reborn/documentation/parameters.md",
+   "bytes": 6582
+  },
+  {
+   "path": "01_TEMPLATES/T20_Phoenix_Reborn/documentation/sound_design.md",
+   "bytes": 885
+  },
+  {
+   "path": "01_TEMPLATES/T20_Phoenix_Reborn/manifest.json",
+   "bytes": 8196
+  },
+  {
+   "path": "01_TEMPLATES/T20_Phoenix_Reborn/preview/T20_Phoenix_Reborn.mp4",
+   "bytes": 4239150
+  },
+  {
+   "path": "01_TEMPLATES/T20_Phoenix_Reborn/preview/thumbnail.jpg",
+   "bytes": 63134
+  },
+  {
+   "path": "01_TEMPLATES/T20_Phoenix_Reborn/source/T20_Phoenix_Reborn.comp",
+   "bytes": 46306
+  },
+  {
+   "path": "01_TEMPLATES/T20_Phoenix_Reborn/source/T20_Phoenix_Reborn.setting",
+   "bytes": 57416
+  },
+  {
+   "path": "01_TEMPLATES/T21_Neon_Overdrive/README.md",
+   "bytes": 4231
+  },
+  {
+   "path": "01_TEMPLATES/T21_Neon_Overdrive/configuration/default_params.json",
+   "bytes": 867
+  },
+  {
+   "path": "01_TEMPLATES/T21_Neon_Overdrive/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T21_Neon_Overdrive/documentation/parameters.md",
+   "bytes": 6015
+  },
+  {
+   "path": "01_TEMPLATES/T21_Neon_Overdrive/documentation/sound_design.md",
+   "bytes": 959
+  },
+  {
+   "path": "01_TEMPLATES/T21_Neon_Overdrive/manifest.json",
+   "bytes": 7079
+  },
+  {
+   "path": "01_TEMPLATES/T21_Neon_Overdrive/preview/T21_Neon_Overdrive.mp4",
+   "bytes": 2012254
+  },
+  {
+   "path": "01_TEMPLATES/T21_Neon_Overdrive/preview/thumbnail.jpg",
+   "bytes": 64597
+  },
+  {
+   "path": "01_TEMPLATES/T21_Neon_Overdrive/source/T21_Neon_Overdrive.comp",
+   "bytes": 50270
+  },
+  {
+   "path": "01_TEMPLATES/T21_Neon_Overdrive/source/T21_Neon_Overdrive.setting",
+   "bytes": 61225
+  },
+  {
+   "path": "01_TEMPLATES/T22_Hologram_Breach/README.md",
+   "bytes": 5086
+  },
+  {
+   "path": "01_TEMPLATES/T22_Hologram_Breach/configuration/default_params.json",
+   "bytes": 913
+  },
+  {
+   "path": "01_TEMPLATES/T22_Hologram_Breach/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T22_Hologram_Breach/documentation/parameters.md",
+   "bytes": 6647
+  },
+  {
+   "path": "01_TEMPLATES/T22_Hologram_Breach/documentation/sound_design.md",
+   "bytes": 965
+  },
+  {
+   "path": "01_TEMPLATES/T22_Hologram_Breach/manifest.json",
+   "bytes": 8403
+  },
+  {
+   "path": "01_TEMPLATES/T22_Hologram_Breach/preview/T22_Hologram_Breach.mp4",
+   "bytes": 2440472
+  },
+  {
+   "path": "01_TEMPLATES/T22_Hologram_Breach/preview/thumbnail.jpg",
+   "bytes": 50521
+  },
+  {
+   "path": "01_TEMPLATES/T22_Hologram_Breach/source/T22_Hologram_Breach.comp",
+   "bytes": 45882
+  },
+  {
+   "path": "01_TEMPLATES/T22_Hologram_Breach/source/T22_Hologram_Breach.setting",
+   "bytes": 56692
+  },
+  {
+   "path": "01_TEMPLATES/T23_Digital_Awakening/README.md",
+   "bytes": 4500
+  },
+  {
+   "path": "01_TEMPLATES/T23_Digital_Awakening/configuration/default_params.json",
+   "bytes": 867
+  },
+  {
+   "path": "01_TEMPLATES/T23_Digital_Awakening/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T23_Digital_Awakening/documentation/parameters.md",
+   "bytes": 6144
+  },
+  {
+   "path": "01_TEMPLATES/T23_Digital_Awakening/documentation/sound_design.md",
+   "bytes": 955
+  },
+  {
+   "path": "01_TEMPLATES/T23_Digital_Awakening/manifest.json",
+   "bytes": 7658
+  },
+  {
+   "path": "01_TEMPLATES/T23_Digital_Awakening/preview/T23_Digital_Awakening.mp4",
+   "bytes": 3676959
+  },
+  {
+   "path": "01_TEMPLATES/T23_Digital_Awakening/preview/thumbnail.jpg",
+   "bytes": 46564
+  },
+  {
+   "path": "01_TEMPLATES/T23_Digital_Awakening/source/T23_Digital_Awakening.comp",
+   "bytes": 33824
+  },
+  {
+   "path": "01_TEMPLATES/T23_Digital_Awakening/source/T23_Digital_Awakening.setting",
+   "bytes": 43292
+  },
+  {
+   "path": "01_TEMPLATES/T24_Quantum_Split/README.md",
+   "bytes": 4249
+  },
+  {
+   "path": "01_TEMPLATES/T24_Quantum_Split/configuration/default_params.json",
+   "bytes": 870
+  },
+  {
+   "path": "01_TEMPLATES/T24_Quantum_Split/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T24_Quantum_Split/documentation/parameters.md",
+   "bytes": 5986
+  },
+  {
+   "path": "01_TEMPLATES/T24_Quantum_Split/documentation/sound_design.md",
+   "bytes": 899
+  },
+  {
+   "path": "01_TEMPLATES/T24_Quantum_Split/manifest.json",
+   "bytes": 7436
+  },
+  {
+   "path": "01_TEMPLATES/T24_Quantum_Split/preview/T24_Quantum_Split.mp4",
+   "bytes": 2572539
+  },
+  {
+   "path": "01_TEMPLATES/T24_Quantum_Split/preview/thumbnail.jpg",
+   "bytes": 53783
+  },
+  {
+   "path": "01_TEMPLATES/T24_Quantum_Split/source/T24_Quantum_Split.comp",
+   "bytes": 38025
+  },
+  {
+   "path": "01_TEMPLATES/T24_Quantum_Split/source/T24_Quantum_Split.setting",
+   "bytes": 47706
+  },
+  {
+   "path": "01_TEMPLATES/T25_Future_Warlord/README.md",
+   "bytes": 4512
+  },
+  {
+   "path": "01_TEMPLATES/T25_Future_Warlord/configuration/default_params.json",
+   "bytes": 866
+  },
+  {
+   "path": "01_TEMPLATES/T25_Future_Warlord/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T25_Future_Warlord/documentation/parameters.md",
+   "bytes": 6233
+  },
+  {
+   "path": "01_TEMPLATES/T25_Future_Warlord/documentation/sound_design.md",
+   "bytes": 984
+  },
+  {
+   "path": "01_TEMPLATES/T25_Future_Warlord/manifest.json",
+   "bytes": 7908
+  },
+  {
+   "path": "01_TEMPLATES/T25_Future_Warlord/preview/T25_Future_Warlord.mp4",
+   "bytes": 2942387
+  },
+  {
+   "path": "01_TEMPLATES/T25_Future_Warlord/preview/thumbnail.jpg",
+   "bytes": 51459
+  },
+  {
+   "path": "01_TEMPLATES/T25_Future_Warlord/source/T25_Future_Warlord.comp",
+   "bytes": 63226
+  },
+  {
+   "path": "01_TEMPLATES/T25_Future_Warlord/source/T25_Future_Warlord.setting",
+   "bytes": 75919
+  },
+  {
+   "path": "01_TEMPLATES/T26_Extreme_Close_Up/README.md",
+   "bytes": 4583
+  },
+  {
+   "path": "01_TEMPLATES/T26_Extreme_Close_Up/configuration/default_params.json",
+   "bytes": 865
+  },
+  {
+   "path": "01_TEMPLATES/T26_Extreme_Close_Up/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T26_Extreme_Close_Up/documentation/parameters.md",
+   "bytes": 6367
+  },
+  {
+   "path": "01_TEMPLATES/T26_Extreme_Close_Up/documentation/sound_design.md",
+   "bytes": 841
+  },
+  {
+   "path": "01_TEMPLATES/T26_Extreme_Close_Up/manifest.json",
+   "bytes": 7588
+  },
+  {
+   "path": "01_TEMPLATES/T26_Extreme_Close_Up/preview/T26_Extreme_Close_Up.mp4",
+   "bytes": 2406357
+  },
+  {
+   "path": "01_TEMPLATES/T26_Extreme_Close_Up/preview/thumbnail.jpg",
+   "bytes": 48648
+  },
+  {
+   "path": "01_TEMPLATES/T26_Extreme_Close_Up/source/T26_Extreme_Close_Up.comp",
+   "bytes": 29082
+  },
+  {
+   "path": "01_TEMPLATES/T26_Extreme_Close_Up/source/T26_Extreme_Close_Up.setting",
+   "bytes": 38094
+  },
+  {
+   "path": "01_TEMPLATES/T27_Low_Angle_Titan/README.md",
+   "bytes": 4659
+  },
+  {
+   "path": "01_TEMPLATES/T27_Low_Angle_Titan/configuration/default_params.json",
+   "bytes": 858
+  },
+  {
+   "path": "01_TEMPLATES/T27_Low_Angle_Titan/configuration/render_profile.json",
+   "bytes": 836
+  },
+  {
+   "path": "01_TEMPLATES/T27_Low_Angle_Titan/documentation/parameters.md",
+   "bytes": 6376
+  },
+  {
+   "path": "01_TEMPLATES/T27_Low_Angle_Titan/documentation/sound_design.md",
+   "bytes": 944
+  },
+  {
+   "path": "01_TEMPLATES/T27_Low_Angle_Titan/manifest.json",
+   "bytes": 8172
+  },
+  {
+   "path": "01_TEMPLATES/T27_Low_Angle_Titan/preview/T27_Low_Angle_Titan.mp4",
+   "bytes": 6700305
+  },
+  {
+   "path": "01_TEMPLATES/T27_Low_Angle_Titan/preview/thumbnail.jpg",
+   "bytes": 69166
+  },
+  {
+   "path": "01_TEMPLATES/T27_Low_Angle_Titan/source/T27_Low_Angle_Titan.comp",
+   "bytes": 39977
+  },
+  {
+   "path": "01_TEMPLATES/T27_Low_Angle_Titan/source/T27_Low_Angle_Titan.setting",
+   "bytes": 50199
+  },
+  {
+   "path": "01_TEMPLATES/T28_Rotating_Monolith/README.md",
+   "bytes": 4831
+  },
+  {
+   "path": "01_TEMPLATES/T28_Rotating_Monolith/configuration/default_params.json",
+   "bytes": 861
+  },
+  {
+   "path": "01_TEMPLATES/T28_Rotating_Monolith/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T28_Rotating_Monolith/documentation/parameters.md",
+   "bytes": 6603
+  },
+  {
+   "path": "01_TEMPLATES/T28_Rotating_Monolith/documentation/sound_design.md",
+   "bytes": 913
+  },
+  {
+   "path": "01_TEMPLATES/T28_Rotating_Monolith/manifest.json",
+   "bytes": 8420
+  },
+  {
+   "path": "01_TEMPLATES/T28_Rotating_Monolith/preview/T28_Rotating_Monolith.mp4",
+   "bytes": 2012665
+  },
+  {
+   "path": "01_TEMPLATES/T28_Rotating_Monolith/preview/thumbnail.jpg",
+   "bytes": 44930
+  },
+  {
+   "path": "01_TEMPLATES/T28_Rotating_Monolith/source/T28_Rotating_Monolith.comp",
+   "bytes": 31544
+  },
+  {
+   "path": "01_TEMPLATES/T28_Rotating_Monolith/source/T28_Rotating_Monolith.setting",
+   "bytes": 40563
+  },
+  {
+   "path": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/README.md",
+   "bytes": 5230
+  },
+  {
+   "path": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/configuration/default_params.json",
+   "bytes": 899
+  },
+  {
+   "path": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/documentation/parameters.md",
+   "bytes": 7011
+  },
+  {
+   "path": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/documentation/sound_design.md",
+   "bytes": 891
+  },
+  {
+   "path": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/manifest.json",
+   "bytes": 8444
+  },
+  {
+   "path": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/preview/T29_Cinematic_Letter_Assembly.mp4",
+   "bytes": 2857212
+  },
+  {
+   "path": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/preview/thumbnail.jpg",
+   "bytes": 54010
+  },
+  {
+   "path": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/source/T29_Cinematic_Letter_Assembly.comp",
+   "bytes": 56558
+  },
+  {
+   "path": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/source/T29_Cinematic_Letter_Assembly.setting",
+   "bytes": 67805
+  },
+  {
+   "path": "01_TEMPLATES/T30_Speed_Ramp_Dominance/README.md",
+   "bytes": 4316
+  },
+  {
+   "path": "01_TEMPLATES/T30_Speed_Ramp_Dominance/configuration/default_params.json",
+   "bytes": 865
+  },
+  {
+   "path": "01_TEMPLATES/T30_Speed_Ramp_Dominance/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T30_Speed_Ramp_Dominance/documentation/parameters.md",
+   "bytes": 6392
+  },
+  {
+   "path": "01_TEMPLATES/T30_Speed_Ramp_Dominance/documentation/sound_design.md",
+   "bytes": 934
+  },
+  {
+   "path": "01_TEMPLATES/T30_Speed_Ramp_Dominance/manifest.json",
+   "bytes": 7400
+  },
+  {
+   "path": "01_TEMPLATES/T30_Speed_Ramp_Dominance/preview/T30_Speed_Ramp_Dominance.mp4",
+   "bytes": 2133663
+  },
+  {
+   "path": "01_TEMPLATES/T30_Speed_Ramp_Dominance/preview/thumbnail.jpg",
+   "bytes": 44555
+  },
+  {
+   "path": "01_TEMPLATES/T30_Speed_Ramp_Dominance/source/T30_Speed_Ramp_Dominance.comp",
+   "bytes": 27925
+  },
+  {
+   "path": "01_TEMPLATES/T30_Speed_Ramp_Dominance/source/T30_Speed_Ramp_Dominance.setting",
+   "bytes": 37158
+  },
+  {
+   "path": "01_TEMPLATES/T31_Midnight_Fog/README.md",
+   "bytes": 4241
+  },
+  {
+   "path": "01_TEMPLATES/T31_Midnight_Fog/configuration/default_params.json",
+   "bytes": 867
+  },
+  {
+   "path": "01_TEMPLATES/T31_Midnight_Fog/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T31_Midnight_Fog/documentation/parameters.md",
+   "bytes": 5877
+  },
+  {
+   "path": "01_TEMPLATES/T31_Midnight_Fog/documentation/sound_design.md",
+   "bytes": 953
+  },
+  {
+   "path": "01_TEMPLATES/T31_Midnight_Fog/manifest.json",
+   "bytes": 6790
+  },
+  {
+   "path": "01_TEMPLATES/T31_Midnight_Fog/preview/T31_Midnight_Fog.mp4",
+   "bytes": 6640606
+  },
+  {
+   "path": "01_TEMPLATES/T31_Midnight_Fog/preview/thumbnail.jpg",
+   "bytes": 65671
+  },
+  {
+   "path": "01_TEMPLATES/T31_Midnight_Fog/source/T31_Midnight_Fog.comp",
+   "bytes": 40784
+  },
+  {
+   "path": "01_TEMPLATES/T31_Midnight_Fog/source/T31_Midnight_Fog.setting",
+   "bytes": 50977
+  },
+  {
+   "path": "01_TEMPLATES/T32_Rain_And_Steel/README.md",
+   "bytes": 4282
+  },
+  {
+   "path": "01_TEMPLATES/T32_Rain_And_Steel/configuration/default_params.json",
+   "bytes": 866
+  },
+  {
+   "path": "01_TEMPLATES/T32_Rain_And_Steel/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T32_Rain_And_Steel/documentation/parameters.md",
+   "bytes": 6004
+  },
+  {
+   "path": "01_TEMPLATES/T32_Rain_And_Steel/documentation/sound_design.md",
+   "bytes": 992
+  },
+  {
+   "path": "01_TEMPLATES/T32_Rain_And_Steel/manifest.json",
+   "bytes": 7691
+  },
+  {
+   "path": "01_TEMPLATES/T32_Rain_And_Steel/preview/T32_Rain_And_Steel.mp4",
+   "bytes": 3396314
+  },
+  {
+   "path": "01_TEMPLATES/T32_Rain_And_Steel/preview/thumbnail.jpg",
+   "bytes": 83873
+  },
+  {
+   "path": "01_TEMPLATES/T32_Rain_And_Steel/source/T32_Rain_And_Steel.comp",
+   "bytes": 53732
+  },
+  {
+   "path": "01_TEMPLATES/T32_Rain_And_Steel/source/T32_Rain_And_Steel.setting",
+   "bytes": 65100
+  },
+  {
+   "path": "01_TEMPLATES/T33_Desert_Storm/README.md",
+   "bytes": 4374
+  },
+  {
+   "path": "01_TEMPLATES/T33_Desert_Storm/configuration/default_params.json",
+   "bytes": 873
+  },
+  {
+   "path": "01_TEMPLATES/T33_Desert_Storm/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T33_Desert_Storm/documentation/parameters.md",
+   "bytes": 5988
+  },
+  {
+   "path": "01_TEMPLATES/T33_Desert_Storm/documentation/sound_design.md",
+   "bytes": 981
+  },
+  {
+   "path": "01_TEMPLATES/T33_Desert_Storm/manifest.json",
+   "bytes": 7326
+  },
+  {
+   "path": "01_TEMPLATES/T33_Desert_Storm/preview/T33_Desert_Storm.mp4",
+   "bytes": 7723920
+  },
+  {
+   "path": "01_TEMPLATES/T33_Desert_Storm/preview/thumbnail.jpg",
+   "bytes": 81920
+  },
+  {
+   "path": "01_TEMPLATES/T33_Desert_Storm/source/T33_Desert_Storm.comp",
+   "bytes": 45542
+  },
+  {
+   "path": "01_TEMPLATES/T33_Desert_Storm/source/T33_Desert_Storm.setting",
+   "bytes": 56399
+  },
+  {
+   "path": "01_TEMPLATES/T34_Underwater_Colossus/README.md",
+   "bytes": 4296
+  },
+  {
+   "path": "01_TEMPLATES/T34_Underwater_Colossus/configuration/default_params.json",
+   "bytes": 871
+  },
+  {
+   "path": "01_TEMPLATES/T34_Underwater_Colossus/configuration/render_profile.json",
+   "bytes": 836
+  },
+  {
+   "path": "01_TEMPLATES/T34_Underwater_Colossus/documentation/parameters.md",
+   "bytes": 6023
+  },
+  {
+   "path": "01_TEMPLATES/T34_Underwater_Colossus/documentation/sound_design.md",
+   "bytes": 969
+  },
+  {
+   "path": "01_TEMPLATES/T34_Underwater_Colossus/manifest.json",
+   "bytes": 6997
+  },
+  {
+   "path": "01_TEMPLATES/T34_Underwater_Colossus/preview/T34_Underwater_Colossus.mp4",
+   "bytes": 5861419
+  },
+  {
+   "path": "01_TEMPLATES/T34_Underwater_Colossus/preview/thumbnail.jpg",
+   "bytes": 65642
+  },
+  {
+   "path": "01_TEMPLATES/T34_Underwater_Colossus/source/T34_Underwater_Colossus.comp",
+   "bytes": 43748
+  },
+  {
+   "path": "01_TEMPLATES/T34_Underwater_Colossus/source/T34_Underwater_Colossus.setting",
+   "bytes": 54437
+  },
+  {
+   "path": "01_TEMPLATES/T35_Frozen_Kingdom/README.md",
+   "bytes": 4298
+  },
+  {
+   "path": "01_TEMPLATES/T35_Frozen_Kingdom/configuration/default_params.json",
+   "bytes": 880
+  },
+  {
+   "path": "01_TEMPLATES/T35_Frozen_Kingdom/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T35_Frozen_Kingdom/documentation/parameters.md",
+   "bytes": 5898
+  },
+  {
+   "path": "01_TEMPLATES/T35_Frozen_Kingdom/documentation/sound_design.md",
+   "bytes": 913
+  },
+  {
+   "path": "01_TEMPLATES/T35_Frozen_Kingdom/manifest.json",
+   "bytes": 6867
+  },
+  {
+   "path": "01_TEMPLATES/T35_Frozen_Kingdom/preview/T35_Frozen_Kingdom.mp4",
+   "bytes": 3598923
+  },
+  {
+   "path": "01_TEMPLATES/T35_Frozen_Kingdom/preview/thumbnail.jpg",
+   "bytes": 58381
+  },
+  {
+   "path": "01_TEMPLATES/T35_Frozen_Kingdom/source/T35_Frozen_Kingdom.comp",
+   "bytes": 113874
+  },
+  {
+   "path": "01_TEMPLATES/T35_Frozen_Kingdom/source/T35_Frozen_Kingdom.setting",
+   "bytes": 132425
+  },
+  {
+   "path": "01_TEMPLATES/T36_Hero_Silhouette/README.md",
+   "bytes": 4257
+  },
+  {
+   "path": "01_TEMPLATES/T36_Hero_Silhouette/configuration/default_params.json",
+   "bytes": 869
+  },
+  {
+   "path": "01_TEMPLATES/T36_Hero_Silhouette/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T36_Hero_Silhouette/documentation/parameters.md",
+   "bytes": 6145
+  },
+  {
+   "path": "01_TEMPLATES/T36_Hero_Silhouette/documentation/sound_design.md",
+   "bytes": 911
+  },
+  {
+   "path": "01_TEMPLATES/T36_Hero_Silhouette/manifest.json",
+   "bytes": 6922
+  },
+  {
+   "path": "01_TEMPLATES/T36_Hero_Silhouette/preview/T36_Hero_Silhouette.mp4",
+   "bytes": 4593207
+  },
+  {
+   "path": "01_TEMPLATES/T36_Hero_Silhouette/preview/thumbnail.jpg",
+   "bytes": 70013
+  },
+  {
+   "path": "01_TEMPLATES/T36_Hero_Silhouette/source/T36_Hero_Silhouette.comp",
+   "bytes": 39405
+  },
+  {
+   "path": "01_TEMPLATES/T36_Hero_Silhouette/source/T36_Hero_Silhouette.setting",
+   "bytes": 49612
+  },
+  {
+   "path": "01_TEMPLATES/T37_Legacy_Reveal/README.md",
+   "bytes": 4236
+  },
+  {
+   "path": "01_TEMPLATES/T37_Legacy_Reveal/configuration/default_params.json",
+   "bytes": 896
+  },
+  {
+   "path": "01_TEMPLATES/T37_Legacy_Reveal/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T37_Legacy_Reveal/documentation/parameters.md",
+   "bytes": 5907
+  },
+  {
+   "path": "01_TEMPLATES/T37_Legacy_Reveal/documentation/sound_design.md",
+   "bytes": 802
+  },
+  {
+   "path": "01_TEMPLATES/T37_Legacy_Reveal/manifest.json",
+   "bytes": 6437
+  },
+  {
+   "path": "01_TEMPLATES/T37_Legacy_Reveal/preview/T37_Legacy_Reveal.mp4",
+   "bytes": 2851935
+  },
+  {
+   "path": "01_TEMPLATES/T37_Legacy_Reveal/preview/thumbnail.jpg",
+   "bytes": 49966
+  },
+  {
+   "path": "01_TEMPLATES/T37_Legacy_Reveal/source/T37_Legacy_Reveal.comp",
+   "bytes": 52126
+  },
+  {
+   "path": "01_TEMPLATES/T37_Legacy_Reveal/source/T37_Legacy_Reveal.setting",
+   "bytes": 63341
+  },
+  {
+   "path": "01_TEMPLATES/T38_Royal_Insignia/README.md",
+   "bytes": 4867
+  },
+  {
+   "path": "01_TEMPLATES/T38_Royal_Insignia/configuration/default_params.json",
+   "bytes": 921
+  },
+  {
+   "path": "01_TEMPLATES/T38_Royal_Insignia/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T38_Royal_Insignia/documentation/parameters.md",
+   "bytes": 6532
+  },
+  {
+   "path": "01_TEMPLATES/T38_Royal_Insignia/documentation/sound_design.md",
+   "bytes": 948
+  },
+  {
+   "path": "01_TEMPLATES/T38_Royal_Insignia/manifest.json",
+   "bytes": 8188
+  },
+  {
+   "path": "01_TEMPLATES/T38_Royal_Insignia/preview/T38_Royal_Insignia.mp4",
+   "bytes": 2682656
+  },
+  {
+   "path": "01_TEMPLATES/T38_Royal_Insignia/preview/thumbnail.jpg",
+   "bytes": 60776
+  },
+  {
+   "path": "01_TEMPLATES/T38_Royal_Insignia/source/T38_Royal_Insignia.comp",
+   "bytes": 93690
+  },
+  {
+   "path": "01_TEMPLATES/T38_Royal_Insignia/source/T38_Royal_Insignia.setting",
+   "bytes": 108758
+  },
+  {
+   "path": "01_TEMPLATES/T39_Final_Boss/README.md",
+   "bytes": 4348
+  },
+  {
+   "path": "01_TEMPLATES/T39_Final_Boss/configuration/default_params.json",
+   "bytes": 880
+  },
+  {
+   "path": "01_TEMPLATES/T39_Final_Boss/configuration/render_profile.json",
+   "bytes": 835
+  },
+  {
+   "path": "01_TEMPLATES/T39_Final_Boss/documentation/parameters.md",
+   "bytes": 6424
+  },
+  {
+   "path": "01_TEMPLATES/T39_Final_Boss/documentation/sound_design.md",
+   "bytes": 951
+  },
+  {
+   "path": "01_TEMPLATES/T39_Final_Boss/manifest.json",
+   "bytes": 7406
+  },
+  {
+   "path": "01_TEMPLATES/T39_Final_Boss/preview/T39_Final_Boss.mp4",
+   "bytes": 2986078
+  },
+  {
+   "path": "01_TEMPLATES/T39_Final_Boss/preview/thumbnail.jpg",
+   "bytes": 58683
+  },
+  {
+   "path": "01_TEMPLATES/T39_Final_Boss/source/T39_Final_Boss.comp",
+   "bytes": 49229
+  },
+  {
+   "path": "01_TEMPLATES/T39_Final_Boss/source/T39_Final_Boss.setting",
+   "bytes": 60560
+  },
+  {
+   "path": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/README.md",
+   "bytes": 4599
+  },
+  {
+   "path": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/configuration/default_params.json",
+   "bytes": 886
+  },
+  {
+   "path": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/configuration/render_profile.json",
+   "bytes": 836
+  },
+  {
+   "path": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/documentation/parameters.md",
+   "bytes": 6774
+  },
+  {
+   "path": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/documentation/sound_design.md",
+   "bytes": 1144
+  },
+  {
+   "path": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/manifest.json",
+   "bytes": 8711
+  },
+  {
+   "path": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/preview/T40_Ultimate_Mass_Elevation.mp4",
+   "bytes": 2828167
+  },
+  {
+   "path": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/preview/thumbnail.jpg",
+   "bytes": 51585
+  },
+  {
+   "path": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/source/T40_Ultimate_Mass_Elevation.comp",
+   "bytes": 60792
+  },
+  {
+   "path": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/source/T40_Ultimate_Mass_Elevation.setting",
+   "bytes": 74915
   },
   {
    "path": "02_SHARED_ASSETS/Backgrounds/README.md",
@@ -293,20 +2403,660 @@
    "bytes": 134444
   },
   {
+   "path": "03_PREVIEWS/Contact_Sheets/contact_sheet_all.jpg",
+   "bytes": 819891
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/contact_sheet_strips.jpg",
+   "bytes": 720940
+  },
+  {
    "path": "03_PREVIEWS/Contact_Sheets/per_template/T01_Obsidian_Impact_strip.jpg",
-   "bytes": 33052
+   "bytes": 31658
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T02_Thunder_God_strip.jpg",
+   "bytes": 45885
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T03_Molten_Core_strip.jpg",
+   "bytes": 37334
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T04_Black_Steel_Reckoning_strip.jpg",
+   "bytes": 26948
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T05_Shattered_Monolith_strip.jpg",
+   "bytes": 31985
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T06_Inferno_Reveal_strip.jpg",
+   "bytes": 41307
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T07_Explosive_Arrival_strip.jpg",
+   "bytes": 36871
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T08_Ember_Storm_strip.jpg",
+   "bytes": 33845
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T09_Ashes_of_Power_strip.jpg",
+   "bytes": 31506
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T10_Shockwave_Dominance_strip.jpg",
+   "bytes": 32749
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T11_Golden_Emperor_strip.jpg",
+   "bytes": 26779
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T12_Chrome_Dominion_strip.jpg",
+   "bytes": 33167
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T13_Titanium_Edge_strip.jpg",
+   "bytes": 29262
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T14_Forged_In_Fire_strip.jpg",
+   "bytes": 37498
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T15_Diamond_Cut_strip.jpg",
+   "bytes": 28681
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T16_Ancient_Titan_strip.jpg",
+   "bytes": 58798
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T17_Celestial_Ascent_strip.jpg",
+   "bytes": 51481
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T18_Dark_Sorcery_strip.jpg",
+   "bytes": 55369
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T19_Cosmic_Overlord_strip.jpg",
+   "bytes": 44020
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T20_Phoenix_Reborn_strip.jpg",
+   "bytes": 44700
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T21_Neon_Overdrive_strip.jpg",
+   "bytes": 37236
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T22_Hologram_Breach_strip.jpg",
+   "bytes": 29690
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T23_Digital_Awakening_strip.jpg",
+   "bytes": 32006
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T24_Quantum_Split_strip.jpg",
+   "bytes": 36787
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T25_Future_Warlord_strip.jpg",
+   "bytes": 31025
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T26_Extreme_Close_Up_strip.jpg",
+   "bytes": 28676
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T27_Low_Angle_Titan_strip.jpg",
+   "bytes": 44076
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T28_Rotating_Monolith_strip.jpg",
+   "bytes": 27739
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T29_Cinematic_Letter_Assembly_strip.jpg",
+   "bytes": 29343
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T30_Speed_Ramp_Dominance_strip.jpg",
+   "bytes": 30234
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T31_Midnight_Fog_strip.jpg",
+   "bytes": 40776
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T32_Rain_And_Steel_strip.jpg",
+   "bytes": 31404
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T33_Desert_Storm_strip.jpg",
+   "bytes": 56947
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T34_Underwater_Colossus_strip.jpg",
+   "bytes": 41987
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T35_Frozen_Kingdom_strip.jpg",
+   "bytes": 41316
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T36_Hero_Silhouette_strip.jpg",
+   "bytes": 43579
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T37_Legacy_Reveal_strip.jpg",
+   "bytes": 27385
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T38_Royal_Insignia_strip.jpg",
+   "bytes": 37470
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T39_Final_Boss_strip.jpg",
+   "bytes": 24680
+  },
+  {
+   "path": "03_PREVIEWS/Contact_Sheets/per_template/T40_Ultimate_Mass_Elevation_strip.jpg",
+   "bytes": 30281
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T01_Obsidian_Impact.jpg",
+   "bytes": 13343
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T02_Thunder_God.jpg",
+   "bytes": 11913
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T03_Molten_Core.jpg",
+   "bytes": 14692
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T04_Black_Steel_Reckoning.jpg",
+   "bytes": 10454
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T05_Shattered_Monolith.jpg",
+   "bytes": 12250
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T06_Inferno_Reveal.jpg",
+   "bytes": 15971
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T07_Explosive_Arrival.jpg",
+   "bytes": 16844
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T08_Ember_Storm.jpg",
+   "bytes": 13338
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T09_Ashes_of_Power.jpg",
+   "bytes": 11567
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T10_Shockwave_Dominance.jpg",
+   "bytes": 11869
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T11_Golden_Emperor.jpg",
+   "bytes": 10987
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T12_Chrome_Dominion.jpg",
+   "bytes": 12216
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T13_Titanium_Edge.jpg",
+   "bytes": 10270
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T14_Forged_In_Fire.jpg",
+   "bytes": 11710
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T15_Diamond_Cut.jpg",
+   "bytes": 11958
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T16_Ancient_Titan.jpg",
+   "bytes": 18614
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T17_Celestial_Ascent.jpg",
+   "bytes": 14555
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T18_Dark_Sorcery.jpg",
+   "bytes": 21270
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T19_Cosmic_Overlord.jpg",
+   "bytes": 14483
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T20_Phoenix_Reborn.jpg",
+   "bytes": 14859
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T21_Neon_Overdrive.jpg",
+   "bytes": 14531
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T22_Hologram_Breach.jpg",
+   "bytes": 11051
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T23_Digital_Awakening.jpg",
+   "bytes": 10207
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T24_Quantum_Split.jpg",
+   "bytes": 12211
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T25_Future_Warlord.jpg",
+   "bytes": 10270
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T26_Extreme_Close_Up.jpg",
+   "bytes": 11203
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T27_Low_Angle_Titan.jpg",
+   "bytes": 15699
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T28_Rotating_Monolith.jpg",
+   "bytes": 10209
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T29_Cinematic_Letter_Assembly.jpg",
+   "bytes": 11876
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T30_Speed_Ramp_Dominance.jpg",
+   "bytes": 9670
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T31_Midnight_Fog.jpg",
+   "bytes": 14842
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T32_Rain_And_Steel.jpg",
+   "bytes": 19722
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T33_Desert_Storm.jpg",
+   "bytes": 18550
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T34_Underwater_Colossus.jpg",
+   "bytes": 14404
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T35_Frozen_Kingdom.jpg",
+   "bytes": 13573
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T36_Hero_Silhouette.jpg",
+   "bytes": 16166
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T37_Legacy_Reveal.jpg",
+   "bytes": 11092
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T38_Royal_Insignia.jpg",
+   "bytes": 13620
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T39_Final_Boss.jpg",
+   "bytes": 13319
+  },
+  {
+   "path": "03_PREVIEWS/Thumbnails/T40_Ultimate_Mass_Elevation.jpg",
+   "bytes": 12493
   },
   {
    "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T01_Obsidian_Impact.comp",
-   "bytes": 43828
+   "bytes": 43898
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T02_Thunder_God.comp",
+   "bytes": 40309
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T03_Molten_Core.comp",
+   "bytes": 61599
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T04_Black_Steel_Reckoning.comp",
+   "bytes": 49726
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T05_Shattered_Monolith.comp",
+   "bytes": 92864
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T06_Inferno_Reveal.comp",
+   "bytes": 54530
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T07_Explosive_Arrival.comp",
+   "bytes": 52551
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T08_Ember_Storm.comp",
+   "bytes": 39667
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T09_Ashes_of_Power.comp",
+   "bytes": 54796
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T10_Shockwave_Dominance.comp",
+   "bytes": 50745
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T11_Golden_Emperor.comp",
+   "bytes": 34665
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T12_Chrome_Dominion.comp",
+   "bytes": 37902
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T13_Titanium_Edge.comp",
+   "bytes": 46926
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T14_Forged_In_Fire.comp",
+   "bytes": 52725
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T15_Diamond_Cut.comp",
+   "bytes": 32529
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T16_Ancient_Titan.comp",
+   "bytes": 58489
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T17_Celestial_Ascent.comp",
+   "bytes": 38439
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T18_Dark_Sorcery.comp",
+   "bytes": 60233
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T19_Cosmic_Overlord.comp",
+   "bytes": 41402
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T20_Phoenix_Reborn.comp",
+   "bytes": 46306
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T21_Neon_Overdrive.comp",
+   "bytes": 50270
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T22_Hologram_Breach.comp",
+   "bytes": 45882
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T23_Digital_Awakening.comp",
+   "bytes": 33824
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T24_Quantum_Split.comp",
+   "bytes": 38025
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T25_Future_Warlord.comp",
+   "bytes": 63226
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T26_Extreme_Close_Up.comp",
+   "bytes": 29082
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T27_Low_Angle_Titan.comp",
+   "bytes": 39977
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T28_Rotating_Monolith.comp",
+   "bytes": 31544
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T29_Cinematic_Letter_Assembly.comp",
+   "bytes": 56558
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T30_Speed_Ramp_Dominance.comp",
+   "bytes": 27925
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T31_Midnight_Fog.comp",
+   "bytes": 40784
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T32_Rain_And_Steel.comp",
+   "bytes": 53732
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T33_Desert_Storm.comp",
+   "bytes": 45542
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T34_Underwater_Colossus.comp",
+   "bytes": 43748
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T35_Frozen_Kingdom.comp",
+   "bytes": 113874
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T36_Hero_Silhouette.comp",
+   "bytes": 39405
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T37_Legacy_Reveal.comp",
+   "bytes": 52126
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T38_Royal_Insignia.comp",
+   "bytes": 93690
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T39_Final_Boss.comp",
+   "bytes": 49229
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Compositions/T40_Ultimate_Mass_Elevation.comp",
+   "bytes": 60792
   },
   {
    "path": "05_RESOLVE_IMPORT/Fusion_Macros/T01_Obsidian_Impact.setting",
-   "bytes": 54612
+   "bytes": 54782
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T02_Thunder_God.setting",
+   "bytes": 50700
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T03_Molten_Core.setting",
+   "bytes": 74012
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T04_Black_Steel_Reckoning.setting",
+   "bytes": 61083
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T05_Shattered_Monolith.setting",
+   "bytes": 107462
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T06_Inferno_Reveal.setting",
+   "bytes": 66667
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T07_Explosive_Arrival.setting",
+   "bytes": 64434
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T08_Ember_Storm.setting",
+   "bytes": 49750
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T09_Ashes_of_Power.setting",
+   "bytes": 66704
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T10_Shockwave_Dominance.setting",
+   "bytes": 62318
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T11_Golden_Emperor.setting",
+   "bytes": 43975
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T12_Chrome_Dominion.setting",
+   "bytes": 47411
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T13_Titanium_Edge.setting",
+   "bytes": 57149
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T14_Forged_In_Fire.setting",
+   "bytes": 63914
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T15_Diamond_Cut.setting",
+   "bytes": 41483
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T16_Ancient_Titan.setting",
+   "bytes": 71014
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T17_Celestial_Ascent.setting",
+   "bytes": 48533
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T18_Dark_Sorcery.setting",
+   "bytes": 72900
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T19_Cosmic_Overlord.setting",
+   "bytes": 51763
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T20_Phoenix_Reborn.setting",
+   "bytes": 57416
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T21_Neon_Overdrive.setting",
+   "bytes": 61225
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T22_Hologram_Breach.setting",
+   "bytes": 56692
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T23_Digital_Awakening.setting",
+   "bytes": 43292
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T24_Quantum_Split.setting",
+   "bytes": 47706
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T25_Future_Warlord.setting",
+   "bytes": 75919
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T26_Extreme_Close_Up.setting",
+   "bytes": 38094
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T27_Low_Angle_Titan.setting",
+   "bytes": 50199
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T28_Rotating_Monolith.setting",
+   "bytes": 40563
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T29_Cinematic_Letter_Assembly.setting",
+   "bytes": 67805
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T30_Speed_Ramp_Dominance.setting",
+   "bytes": 37158
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T31_Midnight_Fog.setting",
+   "bytes": 50977
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T32_Rain_And_Steel.setting",
+   "bytes": 65100
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T33_Desert_Storm.setting",
+   "bytes": 56399
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T34_Underwater_Colossus.setting",
+   "bytes": 54437
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T35_Frozen_Kingdom.setting",
+   "bytes": 132425
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T36_Hero_Silhouette.setting",
+   "bytes": 49612
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T37_Legacy_Reveal.setting",
+   "bytes": 63341
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T38_Royal_Insignia.setting",
+   "bytes": 108758
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T39_Final_Boss.setting",
+   "bytes": 60560
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Fusion_Macros/T40_Ultimate_Mass_Elevation.setting",
+   "bytes": 74915
   },
   {
    "path": "05_RESOLVE_IMPORT/Import_Instructions.md",
-   "bytes": 4870
+   "bytes": 5248
+  },
+  {
+   "path": "05_RESOLVE_IMPORT/Resolve_Test_Checklist.md",
+   "bytes": 14056
   },
   {
    "path": "05_RESOLVE_IMPORT/install_titles.ps1",
@@ -314,11 +3064,11 @@
   },
   {
    "path": "06_AUTOMATION/Scripts/build.py",
-   "bytes": 9544
+   "bytes": 9933
   },
   {
    "path": "06_AUTOMATION/Scripts/catalog.py",
-   "bytes": 11328
+   "bytes": 13306
   },
   {
    "path": "06_AUTOMATION/Scripts/check_design.py",
@@ -330,7 +3080,7 @@
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/base.py",
-   "bytes": 13806
+   "bytes": 13990
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/core.py",
@@ -342,11 +3092,11 @@
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/designs/_b_helpers.py",
-   "bytes": 5512
+   "bytes": 5541
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/designs/_c_helpers.py",
-   "bytes": 5827
+   "bytes": 6890
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/designs/_d_helpers.py",
@@ -354,43 +3104,163 @@
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/designs/t01.py",
-   "bytes": 14026
+   "bytes": 14036
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/designs/t02.py",
-   "bytes": 14562
+   "bytes": 14572
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/designs/t03.py",
-   "bytes": 21977
+   "bytes": 22445
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t04.py",
+   "bytes": 17033
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t05.py",
+   "bytes": 22479
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t06.py",
+   "bytes": 20453
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t07.py",
+   "bytes": 21095
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t08.py",
+   "bytes": 12867
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t09.py",
+   "bytes": 20143
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t10.py",
+   "bytes": 18035
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/designs/t11.py",
-   "bytes": 10955
+   "bytes": 10996
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/designs/t12.py",
-   "bytes": 13298
+   "bytes": 13335
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t13.py",
+   "bytes": 14338
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t14.py",
+   "bytes": 16687
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t15.py",
+   "bytes": 13660
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t16.py",
+   "bytes": 21623
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t17.py",
+   "bytes": 13150
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t18.py",
+   "bytes": 19836
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t19.py",
+   "bytes": 16810
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t20.py",
+   "bytes": 15740
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/designs/t21.py",
-   "bytes": 13251
+   "bytes": 13264
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/designs/t22.py",
-   "bytes": 15243
+   "bytes": 15372
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t23.py",
+   "bytes": 15976
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t24.py",
+   "bytes": 10987
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t25.py",
+   "bytes": 20510
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t26.py",
+   "bytes": 11792
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t27.py",
+   "bytes": 13577
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t28.py",
+   "bytes": 12307
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t29.py",
+   "bytes": 14311
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t30.py",
+   "bytes": 11787
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/designs/t31.py",
-   "bytes": 13051
+   "bytes": 13061
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/designs/t32.py",
-   "bytes": 17061
+   "bytes": 17071
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t33.py",
+   "bytes": 15598
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t34.py",
+   "bytes": 14015
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t35.py",
+   "bytes": 19364
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t36.py",
+   "bytes": 14177
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t37.py",
+   "bytes": 13622
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t38.py",
+   "bytes": 21095
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/cmet/designs/t39.py",
+   "bytes": 13946
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/designs/t40.py",
-   "bytes": 18559
+   "bytes": 18560
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/elements.py",
@@ -398,7 +3268,7 @@
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/export.py",
-   "bytes": 11632
+   "bytes": 12759
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/fcomp.py",
@@ -406,7 +3276,7 @@
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/fusion.py",
-   "bytes": 16991
+   "bytes": 17100
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/fusion_ref.py",
@@ -422,11 +3292,19 @@
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/typo.py",
-   "bytes": 20077
+   "bytes": 20216
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/validate.py",
-   "bytes": 9239
+   "bytes": 9588
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/final_report.py",
+   "bytes": 8014
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/fix_categories.py",
+   "bytes": 1010
   },
   {
    "path": "06_AUTOMATION/Scripts/make_sfx_library.py",
@@ -434,23 +3312,39 @@
   },
   {
    "path": "06_AUTOMATION/Scripts/qa.py",
-   "bytes": 8646
+   "bytes": 11736
   },
   {
    "path": "06_AUTOMATION/Scripts/render_title.py",
-   "bytes": 3714
+   "bytes": 3729
+  },
+  {
+   "path": "06_AUTOMATION/Scripts/run_tests.py",
+   "bytes": 14160
   },
   {
    "path": "06_AUTOMATION/Scripts/stills.py",
    "bytes": 1017
   },
   {
+   "path": "06_AUTOMATION/Scripts/strip.py",
+   "bytes": 1619
+  },
+  {
    "path": "06_AUTOMATION/Validation/build_state.json",
-   "bytes": 977
+   "bytes": 31394
+  },
+  {
+   "path": "06_AUTOMATION/Validation/test_results.json",
+   "bytes": 34771
+  },
+  {
+   "path": "06_AUTOMATION/Validation/test_results.md",
+   "bytes": 2001
   },
   {
    "path": "07_DOCUMENTATION/Developer_Authoring_Guide.md",
-   "bytes": 8638
+   "bytes": 8693
   },
   {
    "path": "07_DOCUMENTATION/Rendering_Guide.md",
@@ -470,7 +3364,35 @@
   },
   {
    "path": "CHECKPOINT.md",
-   "bytes": 904
+   "bytes": 913
+  },
+  {
+   "path": "COMPATIBILITY_REPORT.md",
+   "bytes": 10387
+  },
+  {
+   "path": "FINAL_REPORT.md",
+   "bytes": 10926
+  },
+  {
+   "path": "INSTALLATION_GUIDE.md",
+   "bytes": 2090
+  },
+  {
+   "path": "QUALITY_ASSURANCE_REPORT.md",
+   "bytes": 6098
+  },
+  {
+   "path": "README.md",
+   "bytes": 5950
+  },
+  {
+   "path": "TEMPLATE_CATALOG.html",
+   "bytes": 150253
+  },
+  {
+   "path": "TEMPLATE_CATALOG.md",
+   "bytes": 17763
   },
   {
    "path": "render_all.ps1",

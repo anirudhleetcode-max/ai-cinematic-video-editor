@@ -48,6 +48,25 @@ python 06_AUTOMATION/Scripts/render_title.py T29 --set MAIN_TITLE="YOUR TITLE" -
 
 Default font: **Cinzel Bold** (OFL, bundled in `02_SHARED_ASSETS/Fonts/` - install it before opening the macro, or pick any installed font in the Inspector).
 
+## Template-specific controls
+
+| Reference-renderer parameter | Default | Meaning |
+|---|---|---|
+| `STAGGER_FRAMES` | 4 | Base interval between letter arrivals (frames) |
+
+The matching Fusion sliders are listed in `documentation/parameters.md`.
+
+## Fusion notes and limitations
+
+- Per-letter animation: the preview animates every glyph on its own 3D arc. Fusion's per-character Text+ Follower could not be verified offline, so the Fusion graph keeps ONE editable Text+ and staggers 8 vertical slices ('LetterSlot0..7', RectangleMask slots across the title width) instead. For other title lengths, adjust the slot masks' Center/Width to match the letters.
+- Extra control 'Stagger Interval (frames)' (StaggerFrames) sets the base interval between arrivals; the designed rhythm multiplies it per slot. 'Reveal Duration' (AnimDuration) is the travel time of each letter/slot. In the reference renderer the same control is STAGGER_FRAMES.
+
+## Check in Resolve (unconfirmed input names)
+
+These inputs are set in the macro but their names could not be confirmed against documentation. Fusion ignores unknown inputs when it loads a file, so if one is wrong only that setting falls back to its default. Check these first when you open the template:
+
+`pEmitter.Transform3DOp.Translate.Y`, `pRender.Height`, `pRender.UseFrameFormatSettings`, `pRender.Width`, `pTurbulence.XStrength`, `pTurbulence.YStrength`, `pTurbulence.ZStrength`
+
 ## Verification status (honest)
 
 | Level | Status |

@@ -2,7 +2,7 @@
   "id": "T02",
   "name": "Thunder God",
   "slug": "Thunder_God",
-  "category": "A - Dark Mass Elevation",
+  "category": "A - Dark, Powerful Mass Elevation",
   "version": "1.0.0",
   "concept": "Storm-powered hero introduction: the title pushes through mist inside a living thunderstorm.",
   "aspect_ratio": "16:9",
@@ -189,6 +189,24 @@
     "edge arcs",
     "noise dissolve"
   ],
+  "design": {
+    "entrance": "Title travels forward through drifting mist while electrical light crawls behind the letterforms.",
+    "reveal": "A branching lightning strike behind the title flash-lights the scene and the clouds; edge arcs crackle.",
+    "camera": "Slow forward dolly with a small shock pulse (zoom kick) at the strike.",
+    "material": "Gunmetal with cool sky reflections and electric-blue rim; lightning drawn behind the title only.",
+    "exit": "Storm calms, the title dissolves back into the clouds through a noise-driven dissolve."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t02.py",
     "parameters_used": [
@@ -230,6 +248,15 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 59,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 226,
         "K": 155,
@@ -275,6 +302,6 @@
       "title_band_contrast": 34.0
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:12:19+00:00"
+    "validated_at": "2026-10-11T20:05:36+00:00"
   }
 }

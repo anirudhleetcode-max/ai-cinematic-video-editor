@@ -189,6 +189,30 @@
     "grit fall",
     "silhouette exit"
   ],
+  "design": {
+    "entrance": "Low camera near the ground: the giant lettering rises up into frame from below the horizon while the camera cranes up and the steep upward perspective slowly eases.",
+    "reveal": "At the impact frame the monument crests into full view - a low rumble, grit trickles off the letter tops and the setting sun rims the top edges.",
+    "camera": "Worm's-eye 2.5D perspective (tilt + wide lens), slow crane with a long ease; one restrained rumble.",
+    "material": "Weathered verdigris bronze with stone-like pitting; thick perspective extrusion showing the underside.",
+    "exit": "Haze rolls in across the ground and the monument drains to a silhouette, then into the dusk."
+  },
+  "fusion_notes": [
+    "The worm's-eye keystone is a CornerPositioner ('TitanKeystone'); its corner inputs (TopLeft/TopRight/BottomLeft/BottomRight) are driven by expressions - adjust the 0.6x top factor to change the perspective strength."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "CornerPositioner.BottomLeft",
+    "CornerPositioner.BottomRight",
+    "CornerPositioner.TopLeft",
+    "CornerPositioner.TopRight",
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t27.py",
     "parameters_used": [
@@ -231,6 +255,19 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 60,
+      "unconfirmed_inputs": [
+        "CornerPositioner.BottomLeft",
+        "CornerPositioner.BottomRight",
+        "CornerPositioner.TopLeft",
+        "CornerPositioner.TopRight",
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 207,
         "K": 147,
@@ -276,6 +313,6 @@
       "title_band_contrast": 39.9
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:50:53+00:00"
+    "validated_at": "2026-10-11T20:06:43+00:00"
   }
 }

@@ -1,0 +1,314 @@
+{
+  "id": "T09",
+  "name": "Ashes of Power",
+  "slug": "Ashes_of_Power",
+  "category": "B - Fire, Explosions and Impact",
+  "version": "1.0.0",
+  "concept": "Power rebuilt from ruin: falling ash and black dust are drawn together into solid lettering.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 204,
+  "duration_seconds": 8.5,
+  "phases": {
+    "build_up": [
+      0,
+      96
+    ],
+    "impact_frame": 96,
+    "hero_hold": [
+      96,
+      166
+    ],
+    "exit": [
+      166,
+      202
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Cinzel",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T09_Ashes_of_Power.setting",
+  "fusion_composition": "source/T09_Ashes_of_Power.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 85,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ShadowStrength",
+    "ImpactIntensity",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "ExtrusionDepth",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Shadow Strength",
+    "Impact Intensity",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Extrusion Depth",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T09_Ashes_of_Power.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Dry hollow wind bed"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "wind",
+      "note": "Ash-laden wind"
+    },
+    {
+      "frame": 8,
+      "seconds": 0.333,
+      "cue": "riser",
+      "note": "Granular riser while ash converges (8-96)"
+    },
+    {
+      "frame": 40,
+      "seconds": 1.667,
+      "cue": "debris",
+      "note": "Fine sand trickle"
+    },
+    {
+      "frame": 90,
+      "seconds": 3.75,
+      "cue": "rwhoosh",
+      "note": "Air drawn in"
+    },
+    {
+      "frame": 96,
+      "seconds": 4.0,
+      "cue": "impact",
+      "note": "Compaction thud"
+    },
+    {
+      "frame": 96,
+      "seconds": 4.0,
+      "cue": "sub",
+      "note": "Low sub"
+    },
+    {
+      "frame": 97,
+      "seconds": 4.042,
+      "cue": "debris",
+      "note": "Dust puff"
+    },
+    {
+      "frame": 166,
+      "seconds": 6.917,
+      "cue": "debris",
+      "note": "Crumble / sand pour"
+    },
+    {
+      "frame": 186,
+      "seconds": 7.75,
+      "cue": "tail",
+      "note": "Wind tail"
+    }
+  ],
+  "techniques": [
+    "targeted particle convergence onto glyph samples",
+    "granular accumulation mask",
+    "narrow vertical slit backlight",
+    "falling ash with flutter",
+    "compaction pulse",
+    "gravity crumble exit"
+  ],
+  "design": {
+    "entrance": "Ash drifts down through a dark void; grains peel off their fall and travel on curved paths onto points of the letter shapes, accumulating until the letters exist as dusty forms.",
+    "reveal": "On the impact frame the dust compacts into a solid, stable title; a controlled puff and a backlight pulse.",
+    "camera": "Slow push-in while the camera drifts gently downward with the ash.",
+    "material": "Compacted ash / charcoal-stone with grainy bump, pale rim from a narrow vertical backlight slit.",
+    "exit": "An erosion front crosses the title left to right; the released ash falls away under gravity."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t09.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "EXTRUSION_DEPTH",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 85,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 275,
+        "K": 242,
+        "?": 24
+      },
+      "setting_expressions": 60,
+      "published_controls": 39,
+      "text_nodes": [
+        "MainTitle",
+        "Subtitle"
+      ],
+      "comp_tools": 85,
+      "comp_input_evidence": {
+        "S": 275,
+        "K": 242,
+        "?": 24
+      },
+      "comp_expressions": 60
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 8.5,
+      "frames": 204,
+      "audio": true,
+      "bytes": 4338758,
+      "sample_means": [
+        3.0,
+        3.2,
+        3.7,
+        5.2,
+        9.6,
+        7.4,
+        7.1,
+        6.2,
+        1.1
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 23.2,
+      "title_band_contrast": 40.1
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T20:05:56+00:00"
+  }
+}

@@ -48,6 +48,12 @@ python 06_AUTOMATION/Scripts/render_title.py T24 --set MAIN_TITLE="YOUR TITLE" -
 
 Default font: **Staatliches Regular** (OFL, bundled in `02_SHARED_ASSETS/Fonts/` - install it before opening the macro, or pick any installed font in the Inspector).
 
+## Check in Resolve (unconfirmed input names)
+
+These inputs are set in the macro but their names could not be confirmed against documentation. Fusion ignores unknown inputs when it loads a file, so if one is wrong only that setting falls back to its default. Check these first when you open the template:
+
+`pEmitter.Transform3DOp.Translate.Y`, `pRender.Height`, `pRender.UseFrameFormatSettings`, `pRender.Width`, `pTurbulence.XStrength`, `pTurbulence.YStrength`, `pTurbulence.ZStrength`
+
 ## Verification status (honest)
 
 | Level | Status |

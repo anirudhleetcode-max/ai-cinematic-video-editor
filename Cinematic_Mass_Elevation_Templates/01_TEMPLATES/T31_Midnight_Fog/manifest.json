@@ -179,38 +179,27 @@
     "fog parting wave",
     "depth haze"
   ],
+  "design": {
+    "entrance": "Fog-condensation reveal: the letterforms resolve out of the mist through a soft noise threshold while four fog planes drift past at different depths.",
+    "reveal": "At the impact frame a slow pressure wave parts the near fog around the title; the moon beam brightens.",
+    "camera": "Very slow push-in with a gentle lateral drift; fog planes zoom at depth-dependent rates (parallax).",
+    "material": "Cool pewter with a soft directional moonlight from the upper left and a pale blue rim.",
+    "exit": "The fog closes back in: front planes thicken and drift across while the title sinks into haze."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t31.py",
-    "parameters_used": [
-      "ACCENT_COLOR",
-      "ANIMATION_DURATION",
-      "ANIMATION_START",
-      "BACKGROUND_INTENSITY",
-      "BEVEL_AMOUNT",
-      "DURATION",
-      "EXIT_DURATION",
-      "EXIT_START",
-      "FONT_FAMILY",
-      "FONT_SIZE",
-      "GLOW_STRENGTH",
-      "IMPACT_FRAME",
-      "IMPACT_INTENSITY",
-      "LETTERBOX",
-      "LETTER_SPACING",
-      "LINE_SPACING",
-      "MAIN_TITLE",
-      "PARTICLE_INTENSITY",
-      "SHADOW_STRENGTH",
-      "SUBTITLE",
-      "SUB_FONT_FAMILY",
-      "TEXT_ALIGNMENT",
-      "TEXT_COLOR",
-      "TEXT_POSITION_X",
-      "TEXT_POSITION_Y",
-      "TEXT_ROTATION",
-      "TEXT_SCALE",
-      "TITLE_WIDTH"
-    ]
+    "parameters_used": []
   },
   "verification": {
     "lua_parse": "PASS",
@@ -219,6 +208,15 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 62,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 217,
         "K": 193,
@@ -264,6 +262,6 @@
       "title_band_contrast": 41.3
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:48:10+00:00"
+    "validated_at": "2026-10-11T20:06:55+00:00"
   }
 }

@@ -1,18 +1,16 @@
 # Build checkpoint / progress log
 
-Resume from the last row marked DONE. All commands run from `06_AUTOMATION/Scripts/`.
+All commands run from `06_AUTOMATION/Scripts/`.
 
 | Phase | Status | Notes |
 |---|---|---|
-| 1 Environment audit | DONE | Linux cloud container; no Resolve/Fusion/Blender/PowerShell; FFmpeg 6.1.1, Python 3.13, PowerShell 7.6 (installed for script testing), NumPy, Pillow (raqm), OpenCV, lupa (Lua 5.5) |
-| 2 T01 prototype | DONE | Fusion macro + comp parse in real Lua; structure checks pass; 1080p preview passes media checks. NOT tested in Resolve. |
-| 3 Shared components | DONE | `cmet/fcomp.py` (Fusion), `cmet/core.py`, `typo.py`, `elements.py` (preview), `sfx.py` (audio) |
-| 4 T01-T10 | IN PROGRESS | T01, T02 done; T03-T10 being authored (parallel agent) |
-| 5 T11-T20 | IN PROGRESS | parallel agent |
-| 6 T21-T30 | IN PROGRESS | parallel agent |
-| 7 T31-T40 | IN PROGRESS | T40 flagship done; T31-T39 parallel agent |
-| 8 Catalog & previews | TOOLING DONE | catalog.py, qa.py, render_all.ps1, render_previews.ps1, install_titles.ps1 tested with pwsh |
-| 9 QA | TODO | |
-| 10 Final report | TODO | |
+| 1 Environment audit | DONE | Linux cloud container; no Resolve/Fusion/Blender; FFmpeg 6.1.1, Python 3.13, PowerShell 7.6 (installed for script testing) |
+| 2 T01 prototype | DONE | |
+| 3 Shared components | DONE | `cmet/` |
+| 4-7 T01-T40 | DONE | 40 design modules; all sources structurally valid |
+| 8 Catalog & previews | DONE | 40 x 1080p previews, strips, contact sheets, HTML/MD catalog |
+| 9 QA | DONE | `run_tests.py`: 40/40 templates, collection PASS |
+| 10 Final report | DONE | `FINAL_REPORT.md` |
+| Resolve testing | NOT POSSIBLE HERE | 0/40 tested in DaVinci Resolve (not installed); see `05_RESOLVE_IMPORT/Resolve_Test_Checklist.md` |
 
-Resume: `python build.py all --jobs 4` rebuilds sources/previews/validation for every template that has a design module.
+Rebuild everything: `python build.py all --jobs 4 && python qa.py && python catalog.py && python run_tests.py && python final_report.py`

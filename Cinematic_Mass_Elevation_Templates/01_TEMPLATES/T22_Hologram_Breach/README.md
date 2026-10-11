@@ -48,6 +48,27 @@ python 06_AUTOMATION/Scripts/render_title.py T22 --set MAIN_TITLE="YOUR TITLE" -
 
 Default font: **Orbitron Black** (OFL, bundled in `02_SHARED_ASSETS/Fonts/` - install it before opening the macro, or pick any installed font in the Inspector).
 
+## Template-specific controls
+
+| Reference-renderer parameter | Default | Meaning |
+|---|---|---|
+| `FLICKER_AMOUNT` | 1.0 | Pre-lock hologram flicker amount (0 = none) |
+| `GLITCH_AMOUNT` | 1.0 | Interference / slice-glitch amount (0 = none) |
+
+The matching Fusion sliders are listed in `documentation/parameters.md`.
+
+## Fusion notes and limitations
+
+- Extra controls: 'Flicker Amount' (FlickerAmount) and 'Glitch Amount' (GlitchAmount) scale the pre-lock flicker and the interference slice displacement; set both to 0 for a perfectly stable hologram. The final hold is always stable.
+- Reference renderer: the same controls are FLICKER_AMOUNT and GLITCH_AMOUNT (0 = perfectly stable).
+- Fusion assembles 7 horizontal bands (preview: 9); the interference streaks are a stretched FastNoise.
+
+## Check in Resolve (unconfirmed input names)
+
+These inputs are set in the macro but their names could not be confirmed against documentation. Fusion ignores unknown inputs when it loads a file, so if one is wrong only that setting falls back to its default. Check these first when you open the template:
+
+`Transform.EffectMask`, `pEmitter.Transform3DOp.Translate.Y`, `pRender.Height`, `pRender.UseFrameFormatSettings`, `pRender.Width`, `pTurbulence.XStrength`, `pTurbulence.YStrength`, `pTurbulence.ZStrength`
+
 ## Verification status (honest)
 
 | Level | Status |

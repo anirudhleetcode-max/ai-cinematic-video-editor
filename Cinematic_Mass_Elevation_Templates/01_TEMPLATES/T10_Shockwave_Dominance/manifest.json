@@ -1,0 +1,328 @@
+{
+  "id": "T10",
+  "name": "Shockwave Dominance",
+  "slug": "Shockwave_Dominance",
+  "category": "B - Fire, Explosions and Impact",
+  "version": "1.0.0",
+  "concept": "A title that lands like a strike: everything around it is pushed outward by a radial shockwave.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 156,
+  "duration_seconds": 6.5,
+  "phases": {
+    "build_up": [
+      0,
+      26
+    ],
+    "impact_frame": 26,
+    "hero_hold": [
+      26,
+      124
+    ],
+    "exit": [
+      124,
+      150
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T10_Shockwave_Dominance.setting",
+  "fusion_composition": "source/T10_Shockwave_Dominance.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 79,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "DirectionalBlur",
+    "Displace",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ShadowStrength",
+    "ImpactIntensity",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "ExtrusionDepth",
+    "MotionBlurAmount",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Shadow Strength",
+    "Impact Intensity",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Extrusion Depth",
+    "Motion Blur Amount",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T10_Shockwave_Dominance.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Low pressure drone"
+    },
+    {
+      "frame": 4,
+      "seconds": 0.167,
+      "cue": "rwhoosh",
+      "note": "Air inhale before the strike"
+    },
+    {
+      "frame": 18,
+      "seconds": 0.75,
+      "cue": "whoosh",
+      "note": "Title slam whoosh"
+    },
+    {
+      "frame": 26,
+      "seconds": 1.083,
+      "cue": "impact",
+      "note": "Massive impact"
+    },
+    {
+      "frame": 26,
+      "seconds": 1.083,
+      "cue": "sub",
+      "note": "Sub-bass boom"
+    },
+    {
+      "frame": 27,
+      "seconds": 1.125,
+      "cue": "whoosh",
+      "note": "Shockwave air blast outward"
+    },
+    {
+      "frame": 30,
+      "seconds": 1.25,
+      "cue": "debris",
+      "note": "Fine debris rattle"
+    },
+    {
+      "frame": 60,
+      "seconds": 2.5,
+      "cue": "swell",
+      "note": "Ray swell under the hold"
+    },
+    {
+      "frame": 124,
+      "seconds": 5.167,
+      "cue": "rwhoosh",
+      "note": "Implosion suck"
+    },
+    {
+      "frame": 146,
+      "seconds": 6.083,
+      "cue": "impact",
+      "note": "Final soft hit as it collapses"
+    },
+    {
+      "frame": 148,
+      "seconds": 6.167,
+      "cue": "tail",
+      "note": "Tail"
+    }
+  ],
+  "techniques": [
+    "accelerating slam with zoom blur",
+    "inhale anticipation",
+    "independent shockwave ring(s)",
+    "refraction displacement band",
+    "volumetric rays through letter gaps",
+    "implosion exit"
+  ],
+  "design": {
+    "entrance": "A short inhale (the air darkens and haze is pulled inward), then the title slams down from in front of the camera, accelerating into its mark with zoom blur.",
+    "reveal": "Radial impact: a crisp crimson ring, a wide pressure-haze ring and a refraction band travel outward independently of the title; light rays stream from behind the letters.",
+    "camera": "Hard zoom kick and short violent shake at the strike, then a slow dominant push-in.",
+    "material": "Polished dark chrome with crimson rim and floor reflection tint, hard drop shadow on the haze.",
+    "exit": "Implosion: a ring collapses back inward while the title compresses into a point of light."
+  },
+  "fusion_notes": [
+    "The shockwave is fully independent of the title: ShockRingPrimary / ShockRingHaze (expanding EllipseMask rings) and ShockRefraction (Displace driven by RefractRingShape) all key off Impact Frame and scale with Impact Intensity. Move their Center inputs together to relocate the impact point."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "Displace.Foreground",
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t10.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "EXTRUSION_DEPTH",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "MOTION_BLUR_AMOUNT",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 79,
+      "unconfirmed_inputs": [
+        "Displace.Foreground",
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 314,
+        "K": 141,
+        "?": 8
+      },
+      "setting_expressions": 67,
+      "published_controls": 40,
+      "text_nodes": [
+        "MainTitle",
+        "Subtitle"
+      ],
+      "comp_tools": 79,
+      "comp_input_evidence": {
+        "S": 314,
+        "K": 141,
+        "?": 8
+      },
+      "comp_expressions": 67
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 6.5,
+      "frames": 156,
+      "audio": true,
+      "bytes": 2992892,
+      "sample_means": [
+        3.0,
+        4.5,
+        9.4,
+        8.8,
+        8.8,
+        9.2,
+        9.6,
+        8.8,
+        0.7
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 19.9,
+      "title_band_contrast": 34.2
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T20:05:58+00:00"
+  }
+}

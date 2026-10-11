@@ -1,0 +1,335 @@
+{
+  "id": "T07",
+  "name": "Explosive Arrival",
+  "slug": "Explosive_Arrival",
+  "category": "B - Fire, Explosions and Impact",
+  "version": "1.0.0",
+  "concept": "A procedural detonation behind the title throws it into frame: fireball, smoke, shockwave and debris.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 144,
+  "duration_seconds": 6.0,
+  "phases": {
+    "build_up": [
+      0,
+      24
+    ],
+    "impact_frame": 24,
+    "hero_hold": [
+      24,
+      114
+    ],
+    "exit": [
+      114,
+      136
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Anton",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T07_Explosive_Arrival.setting",
+  "fusion_composition": "source/T07_Explosive_Arrival.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 81,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "DirectionalBlur",
+    "Displace",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pDirectionalForce",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ShadowStrength",
+    "ImpactIntensity",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "ExtrusionDepth",
+    "MotionBlurAmount",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Shadow Strength",
+    "Impact Intensity",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Extrusion Depth",
+    "Motion Blur Amount",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T07_Explosive_Arrival.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Tense low room tone"
+    },
+    {
+      "frame": 4,
+      "seconds": 0.167,
+      "cue": "heartbeat",
+      "note": "Single heavy pulse"
+    },
+    {
+      "frame": 8,
+      "seconds": 0.333,
+      "cue": "riser",
+      "note": "Short charge riser (8-24)"
+    },
+    {
+      "frame": 22,
+      "seconds": 0.917,
+      "cue": "rwhoosh",
+      "note": "Reverse suck into the blast"
+    },
+    {
+      "frame": 24,
+      "seconds": 1.0,
+      "cue": "impact",
+      "note": "Detonation boom"
+    },
+    {
+      "frame": 24,
+      "seconds": 1.0,
+      "cue": "sub",
+      "note": "Sub-bass drop"
+    },
+    {
+      "frame": 25,
+      "seconds": 1.042,
+      "cue": "debris",
+      "note": "Debris + glass scatter"
+    },
+    {
+      "frame": 26,
+      "seconds": 1.083,
+      "cue": "fire",
+      "note": "Fireball roar / burning tail"
+    },
+    {
+      "frame": 60,
+      "seconds": 2.5,
+      "cue": "crackle",
+      "note": "Embers crackle"
+    },
+    {
+      "frame": 110,
+      "seconds": 4.583,
+      "cue": "whoosh",
+      "note": "Fly-through whoosh"
+    },
+    {
+      "frame": 120,
+      "seconds": 5.0,
+      "cue": "tail",
+      "note": "Explosion reverb tail"
+    }
+  ],
+  "techniques": [
+    "procedural fireball (noise + radial density + temperature ramp)",
+    "lit smoke billow",
+    "shockwave ring + displacement",
+    "ballistic debris (dark chunks + burning streaks)",
+    "zoom-blur arrival",
+    "fly-through exit"
+  ],
+  "design": {
+    "entrance": "A short charged beat (ignition point flickering in the dark), then the blast hurls the title forward out of the fireball core with zoom blur.",
+    "reveal": "Expanding fireball cooling into billowing lit smoke, a fast shockwave ring with refraction, ballistic debris and embers - all behind/around the title, never permanently over it.",
+    "camera": "Locked-off, heavy concussive shake on detonation, then a very slow settle-in push.",
+    "material": "Pale blast-worn concrete/steel plate, flat chamfer, fire rim light from behind, hard drop shadow on the smoke.",
+    "exit": "The title rushes past camera (fly-through with zoom blur) as the smoke closes in."
+  },
+  "fusion_notes": [
+    "Debris on/off: set Particle Intensity to 0 to disable all debris and embers (DebrisEmitter/EmberEmitter Number = count x ParticleIntensity); values between 0 and 2 scale the amount.",
+    "Explosion strength: Impact Intensity scales fireball size and brightness, the flash, both shockwave rings and the shockwave refraction (0 = title arrives without the blast).",
+    "The fireball is FastNoise inside an expanding soft EllipseMask; to re-centre the blast move FireballShape, FireCoreShape, SmokeShape, ShockRingA/B Shape centres together."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "Displace.Foreground",
+    "pDirectionalForce.Direction",
+    "pDirectionalForce.Strength",
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t07.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "EXTRUSION_DEPTH",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "MOTION_BLUR_AMOUNT",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 81,
+      "unconfirmed_inputs": [
+        "Displace.Foreground",
+        "pDirectionalForce.Direction",
+        "pDirectionalForce.Strength",
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 308,
+        "K": 185,
+        "?": 18
+      },
+      "setting_expressions": 68,
+      "published_controls": 40,
+      "text_nodes": [
+        "Subtitle",
+        "MainTitle"
+      ],
+      "comp_tools": 81,
+      "comp_input_evidence": {
+        "S": 308,
+        "K": 185,
+        "?": 18
+      },
+      "comp_expressions": 68
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 6.0,
+      "frames": 144,
+      "audio": true,
+      "bytes": 4328490,
+      "sample_means": [
+        1.4,
+        3.0,
+        36.4,
+        23.0,
+        19.7,
+        18.7,
+        18.8,
+        19.8,
+        12.4
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 31.7,
+      "title_band_contrast": 38.7
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T20:05:50+00:00"
+  }
+}

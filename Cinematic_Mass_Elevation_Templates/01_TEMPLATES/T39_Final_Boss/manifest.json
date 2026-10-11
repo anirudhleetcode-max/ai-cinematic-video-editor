@@ -200,41 +200,31 @@
     "short impact shake",
     "snap-back exit"
   ],
+  "design": {
+    "entrance": "A long ominous build (smoke, heartbeat red underlight), then a very fast 10-frame launch from deep space straight at the lens with zoom motion blur.",
+    "reveal": "Hard impact: short violent shake, layered smoke blasts outward, red underlight flares; then a dead-stable hero hold.",
+    "camera": "Aggressive low three-quarter perspective on the extruded title; locked-off after a short impact shake.",
+    "material": "Pitted dark iron, deep 2.5D extrusion, blood-red underlight and rim pulsing with a heartbeat.",
+    "exit": "The red light cuts and the title is yanked back into the abyss in a fast pull."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "CornerPositioner.BottomLeft",
+    "CornerPositioner.BottomRight",
+    "CornerPositioner.TopLeft",
+    "CornerPositioner.TopRight",
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t39.py",
-    "parameters_used": [
-      "ACCENT_COLOR",
-      "ANIMATION_DURATION",
-      "ANIMATION_START",
-      "BACKGROUND_INTENSITY",
-      "BEVEL_AMOUNT",
-      "DURATION",
-      "EXIT_DURATION",
-      "EXIT_START",
-      "EXTRUSION_DEPTH",
-      "FONT_FAMILY",
-      "FONT_SIZE",
-      "GLOW_STRENGTH",
-      "IMPACT_FRAME",
-      "IMPACT_INTENSITY",
-      "LETTERBOX",
-      "LETTER_SPACING",
-      "LINE_SPACING",
-      "MAIN_TITLE",
-      "MOTION_BLUR_AMOUNT",
-      "PARTICLE_INTENSITY",
-      "SHADOW_STRENGTH",
-      "SHAKE_AMOUNT",
-      "SUBTITLE",
-      "SUB_FONT_FAMILY",
-      "TEXT_ALIGNMENT",
-      "TEXT_COLOR",
-      "TEXT_POSITION_X",
-      "TEXT_POSITION_Y",
-      "TEXT_ROTATION",
-      "TEXT_SCALE",
-      "TITLE_WIDTH"
-    ]
+    "parameters_used": []
   },
   "verification": {
     "lua_parse": "PASS",
@@ -243,6 +233,19 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 74,
+      "unconfirmed_inputs": [
+        "CornerPositioner.BottomLeft",
+        "CornerPositioner.BottomRight",
+        "CornerPositioner.TopLeft",
+        "CornerPositioner.TopRight",
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 241,
         "K": 188,
@@ -251,8 +254,8 @@
       "setting_expressions": 61,
       "published_controls": 40,
       "text_nodes": [
-        "Subtitle",
-        "MainTitle"
+        "MainTitle",
+        "Subtitle"
       ],
       "comp_tools": 74,
       "comp_input_evidence": {
@@ -288,6 +291,6 @@
       "title_band_contrast": 29.9
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:48:46+00:00"
+    "validated_at": "2026-10-11T20:07:18+00:00"
   }
 }

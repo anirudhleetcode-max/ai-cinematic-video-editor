@@ -2,7 +2,7 @@
   "id": "T01",
   "name": "Obsidian Impact",
   "slug": "Obsidian_Impact",
-  "category": "A - Dark Mass Elevation",
+  "category": "A - Dark, Powerful Mass Elevation",
   "version": "1.0.0",
   "concept": "Monumental black-glass lettering emerges from total darkness and is carved out by a hard backlight.",
   "aspect_ratio": "16:9",
@@ -178,6 +178,24 @@
     "light sweep",
     "2.5D extrusion"
   ],
+  "design": {
+    "entrance": "Deep forward travel from far depth while the title is still unlit (silhouette emergence).",
+    "reveal": "At the impact frame a sharp warm backlight ignites the letter edges; restrained dust burst and shards.",
+    "camera": "Slow continuous push-in, short decaying impact shake.",
+    "material": "Obsidian black glass with conchoidal bump, dark-steel bevel, warm rim light; 2.5D extrusion stack.",
+    "exit": "Edge light drains away, then the title sinks back into darkness."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t01.py",
     "parameters_used": [
@@ -220,6 +238,15 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 69,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 261,
         "K": 139,
@@ -228,8 +255,8 @@
       "setting_expressions": 55,
       "published_controls": 39,
       "text_nodes": [
-        "MainTitle",
-        "Subtitle"
+        "Subtitle",
+        "MainTitle"
       ],
       "comp_tools": 69,
       "comp_input_evidence": {
@@ -265,6 +292,6 @@
       "title_band_contrast": 45.7
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:12:16+00:00"
+    "validated_at": "2026-10-11T20:05:34+00:00"
   }
 }

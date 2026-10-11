@@ -199,6 +199,27 @@
     "dust shake-off",
     "visor overlay"
   ],
+  "design": {
+    "entrance": "A restrained HUD boots (brackets search, then lock onto a recessed bay); the bay's twin armoured shutters unlock with a small jolt.",
+    "reveal": "At the impact frame the shutters slam open, the title pushes forward out of the recess under a hard top light; dust shakes off the frame and the HUD settles to quiet corner brackets.",
+    "camera": "Static tripod with a heavy slam shake; the HUD is a stable visor overlay (unaffected by shake).",
+    "material": "Matte military ceramic lettering; brushed gunmetal shutters with accent hazard stripes; HUD in ACCENT.",
+    "exit": "The shutters slam closed again and the HUD powers down line by line."
+  },
+  "fusion_notes": [
+    "HUD elements (BracketFrame*, Reticle*, RangeTicks) follow the Accent colour; their brightness is the 'HUD' merges' Blend.",
+    "Shutter plates are RectangleMask-driven solids (ShutterTop/ShutterBottom) clipped to the bay."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t25.py",
     "parameters_used": [
@@ -239,6 +260,15 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 101,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 484,
         "K": 216,
@@ -284,6 +314,6 @@
       "title_band_contrast": 35.5
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:50:47+00:00"
+    "validated_at": "2026-10-11T20:06:38+00:00"
   }
 }

@@ -184,6 +184,26 @@
     "node lattice",
     "decompile exit"
   ],
+  "design": {
+    "entrance": "Hundreds of disorganised points and short data lines drift in depth, then converge in a left-to-right wave onto a lattice inside the letterforms, forming a wireframe of the title.",
+    "reveal": "At the impact frame the point-lattice resolves block-by-block into the solid wordmark with an edge pulse.",
+    "camera": "Slow drift-in with depth parallax on the background node lattice.",
+    "material": "Clean white emissive face with a mint inner edge; mint data points and lines on a deep navy void.",
+    "exit": "Decompile: the wordmark de-resolves block-by-block back into points that float upward and dissipate."
+  },
+  "fusion_notes": [
+    "The Fusion version converges a pEmitter point field (Transform scale/centre onto the title) and resolves the wordmark with a FastNoise threshold; the preview converges points sampled from the actual glyph shapes and resolves in square blocks."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t23.py",
     "parameters_used": [
@@ -222,6 +242,15 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 53,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 190,
         "K": 127,
@@ -267,6 +296,6 @@
       "title_band_contrast": 69.9
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:50:42+00:00"
+    "validated_at": "2026-10-11T20:06:33+00:00"
   }
 }

@@ -190,6 +190,32 @@
     "sheen sweep",
     "staggered reverse exit"
   ],
+  "design": {
+    "entrance": "Letters travel in individually from depth on curved, rotating paths. Outer letters arrive first, alternating sides, with a designed non-uniform rhythm; the centre letter lands last.",
+    "reveal": "Each landing ticks a glint on the champagne baseline; at the impact frame the rule flashes and a sheen crosses the word.",
+    "camera": "Gentle locked-off push; depth comes from the letters' own 3D arcs.",
+    "material": "Ivory porcelain lettering with a soft bevel; champagne (ACCENT) baseline rule and glints.",
+    "exit": "Letters lift away in reverse order with the same rhythm, rotating back into depth."
+  },
+  "fusion_notes": [
+    "Per-letter animation: the preview animates every glyph on its own 3D arc. Fusion's per-character Text+ Follower could not be verified offline, so the Fusion graph keeps ONE editable Text+ and staggers 8 vertical slices ('LetterSlot0..7', RectangleMask slots across the title width) instead. For other title lengths, adjust the slot masks' Center/Width to match the letters.",
+    "Extra control 'Stagger Interval (frames)' (StaggerFrames) sets the base interval between arrivals; the designed rhythm multiplies it per slot. 'Reveal Duration' (AnimDuration) is the travel time of each letter/slot. In the reference renderer the same control is STAGGER_FRAMES."
+  ],
+  "extra_parameters": {
+    "STAGGER_FRAMES": {
+      "default": 4,
+      "description": "Base interval between letter arrivals (frames)"
+    }
+  },
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t29.py",
     "parameters_used": [
@@ -232,6 +258,15 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 81,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 275,
         "K": 149,
@@ -240,8 +275,8 @@
       "setting_expressions": 60,
       "published_controls": 39,
       "text_nodes": [
-        "MainTitle",
-        "Subtitle"
+        "Subtitle",
+        "MainTitle"
       ],
       "comp_tools": 81,
       "comp_input_evidence": {
@@ -277,6 +312,6 @@
       "title_band_contrast": 42.0
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:50:58+00:00"
+    "validated_at": "2026-10-11T20:06:49+00:00"
   }
 }

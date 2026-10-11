@@ -184,38 +184,27 @@
     "cold rim light",
     "sublimation exit"
   ],
+  "design": {
+    "entrance": "Frost propagation: from four nucleation points, branching frost dendrites grow and the letters crystallise behind the advancing frost front (white rime at the front, clear ice behind).",
+    "reveal": "At the impact frame the ice 'locks': a cold glint sweeps the faces and a ring of fine crystals bursts outward.",
+    "camera": "Slow lateral glide with parallax between two layers of ice spires, ground mist and falling ice.",
+    "material": "Clear blue ice with refracted inner texture, sharp cold specular and pale rim light.",
+    "exit": "The ice sublimates: the frost front runs backwards and the letters evaporate into rising cold vapour."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t35.py",
-    "parameters_used": [
-      "ACCENT_COLOR",
-      "ANIMATION_DURATION",
-      "ANIMATION_START",
-      "BACKGROUND_INTENSITY",
-      "BEVEL_AMOUNT",
-      "DURATION",
-      "EXIT_DURATION",
-      "EXIT_START",
-      "FONT_FAMILY",
-      "FONT_SIZE",
-      "GLOW_STRENGTH",
-      "IMPACT_FRAME",
-      "IMPACT_INTENSITY",
-      "LETTERBOX",
-      "LETTER_SPACING",
-      "LINE_SPACING",
-      "MAIN_TITLE",
-      "PARTICLE_INTENSITY",
-      "SHADOW_STRENGTH",
-      "SUBTITLE",
-      "SUB_FONT_FAMILY",
-      "TEXT_ALIGNMENT",
-      "TEXT_COLOR",
-      "TEXT_POSITION_X",
-      "TEXT_POSITION_Y",
-      "TEXT_ROTATION",
-      "TEXT_SCALE",
-      "TITLE_WIDTH"
-    ]
+    "parameters_used": []
   },
   "verification": {
     "lua_parse": "PASS",
@@ -224,6 +213,15 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 157,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 626,
         "K": 338,
@@ -232,8 +230,8 @@
       "setting_expressions": 63,
       "published_controls": 36,
       "text_nodes": [
-        "Subtitle",
-        "MainTitle"
+        "MainTitle",
+        "Subtitle"
       ],
       "comp_tools": 157,
       "comp_input_evidence": {
@@ -269,6 +267,6 @@
       "title_band_contrast": 31.1
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:48:32+00:00"
+    "validated_at": "2026-10-11T20:07:07+00:00"
   }
 }

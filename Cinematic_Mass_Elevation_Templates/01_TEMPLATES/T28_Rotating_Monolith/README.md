@@ -48,6 +48,18 @@ python 06_AUTOMATION/Scripts/render_title.py T28 --set MAIN_TITLE="YOUR TITLE" -
 
 Default font: **Anton Regular** (OFL, bundled in `02_SHARED_ASSETS/Fonts/` - install it before opening the macro, or pick any installed font in the Inspector).
 
+## Fusion notes and limitations
+
+- True 3D: edit the text in the Text3D node ('Main Title (3D)'); rotation is on MonolithText3D Transform3DOp.Rotate.X/Y via expressions.
+- Material colour is the 'Material Color' control (MtlBlinn diffuse).
+- The preview adds a faint mirrored floor reflection; the Fusion graph uses a floor light pool instead (add a second Renderer3D with a flipped camera if a true reflection is wanted).
+
+## Check in Resolve (unconfirmed input names)
+
+These inputs are set in the macro but their names could not be confirmed against documentation. Fusion ignores unknown inputs when it loads a file, so if one is wrong only that setting falls back to its default. Check these first when you open the template:
+
+`Renderer3D.RendererOpenGL.LightingEnabled`, `Renderer3D.RendererOpenGL.Supersampling`, `pEmitter.Transform3DOp.Translate.Y`, `pRender.Height`, `pRender.UseFrameFormatSettings`, `pRender.Width`, `pTurbulence.XStrength`, `pTurbulence.YStrength`, `pTurbulence.ZStrength`
+
 ## Verification status (honest)
 
 | Level | Status |

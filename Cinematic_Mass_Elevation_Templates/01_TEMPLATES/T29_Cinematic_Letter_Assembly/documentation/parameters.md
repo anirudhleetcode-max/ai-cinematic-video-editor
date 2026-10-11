@@ -105,10 +105,11 @@ Used by the Python reference renderer that produced the preview (also usable for
 | `LETTERBOX` | 1.0 | 2.39:1 letterbox amount (0 = full frame) |
 | `DURATION` | 180 | Total length in frames |
 | `QUALITY` | "preview" | preview | final |
+| `STAGGER_FRAMES` | 4 | Base interval between letter arrivals (frames) |
 
 Parameters this template's preview renderer actually reads are listed in `manifest.json` under `reference_renderer.parameters_used`; others have no effect for this design.
 
 ## C. Manual-edit notes
 
 - Per-letter animation: the preview animates every glyph on its own 3D arc. Fusion's per-character Text+ Follower could not be verified offline, so the Fusion graph keeps ONE editable Text+ and staggers 8 vertical slices ('LetterSlot0..7', RectangleMask slots across the title width) instead. For other title lengths, adjust the slot masks' Center/Width to match the letters.
-- Extra control 'Stagger Interval (frames)' (StaggerFrames) sets the base interval between arrivals; the designed rhythm multiplies it per slot. 'Reveal Duration' (AnimDuration) is the travel time of each letter/slot. In the preview the interval is the design default STAGGER_FRAMES (4).
+- Extra control 'Stagger Interval (frames)' (StaggerFrames) sets the base interval between arrivals; the designed rhythm multiplies it per slot. 'Reveal Duration' (AnimDuration) is the travel time of each letter/slot. In the reference renderer the same control is STAGGER_FRAMES.

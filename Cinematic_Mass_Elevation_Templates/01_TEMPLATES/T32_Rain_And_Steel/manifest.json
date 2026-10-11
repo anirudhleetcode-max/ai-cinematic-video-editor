@@ -193,6 +193,24 @@
     "rippled floor reflection",
     "rain splash rings"
   ],
+  "design": {
+    "entrance": "The title cranes up from below the eye-line in near darkness, rain falling through cold ambient light.",
+    "reveal": "Three overhead floodlights clunk on in sequence (with a short electrical flicker) - rain turns into lit streaks, the wet steel lights up and its reflection appears on the flooded floor.",
+    "camera": "Restrained slow lateral truck (wall, rain and floor at different parallax); tiny clunk shake only.",
+    "material": "Dark brushed wet steel: hard top specular, running water streaks over the faces, mirror-wet floor.",
+    "exit": "The floodlights cut out one by one; the last silhouette fades with the rain."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "DirectionalBlur.EffectMask",
+    "Transform.EffectMask",
+    "Transform.FlipVert",
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t32.py",
     "parameters_used": [
@@ -233,6 +251,15 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 79,
+      "unconfirmed_inputs": [
+        "DirectionalBlur.EffectMask",
+        "Transform.EffectMask",
+        "Transform.FlipVert",
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width"
+      ],
       "setting_input_evidence": {
         "S": 306,
         "K": 197,
@@ -241,8 +268,8 @@
       "setting_expressions": 57,
       "published_controls": 37,
       "text_nodes": [
-        "Subtitle",
-        "MainTitle"
+        "MainTitle",
+        "Subtitle"
       ],
       "comp_tools": 79,
       "comp_input_evidence": {
@@ -278,6 +305,6 @@
       "title_band_contrast": 45.0
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:48:15+00:00"
+    "validated_at": "2026-10-11T20:06:57+00:00"
   }
 }

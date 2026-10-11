@@ -188,38 +188,27 @@
     "refraction wobble",
     "slow-motion ascent"
   ],
+  "design": {
+    "entrance": "Slow-motion ascent: the title rises from below the frame and out of the depth haze, the water colour clearing off it as it approaches.",
+    "reveal": "It settles at the impact frame - a slow silt plume billows out from its base and the caustic light from the surface lands on the faces.",
+    "camera": "Weightless slow drift and gentle push; marine snow and haze planes drift at different depths; refraction wobble.",
+    "material": "Algae-tinted weathered stone with animated caustic light projected onto the letter faces.",
+    "exit": "The colossus sinks back into the dark while the light shafts dim and the haze closes."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t34.py",
-    "parameters_used": [
-      "ACCENT_COLOR",
-      "ANIMATION_DURATION",
-      "ANIMATION_START",
-      "BACKGROUND_INTENSITY",
-      "BEVEL_AMOUNT",
-      "DURATION",
-      "EXIT_DURATION",
-      "EXIT_START",
-      "FONT_FAMILY",
-      "FONT_SIZE",
-      "GLOW_STRENGTH",
-      "IMPACT_FRAME",
-      "IMPACT_INTENSITY",
-      "LETTERBOX",
-      "LETTER_SPACING",
-      "LINE_SPACING",
-      "MAIN_TITLE",
-      "PARTICLE_INTENSITY",
-      "SHADOW_STRENGTH",
-      "SUBTITLE",
-      "SUB_FONT_FAMILY",
-      "TEXT_ALIGNMENT",
-      "TEXT_COLOR",
-      "TEXT_POSITION_X",
-      "TEXT_POSITION_Y",
-      "TEXT_ROTATION",
-      "TEXT_SCALE",
-      "TITLE_WIDTH"
-    ]
+    "parameters_used": []
   },
   "verification": {
     "lua_parse": "PASS",
@@ -228,6 +217,15 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 65,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 220,
         "K": 192,
@@ -273,6 +271,6 @@
       "title_band_contrast": 41.7
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:48:27+00:00"
+    "validated_at": "2026-10-11T20:07:04+00:00"
   }
 }

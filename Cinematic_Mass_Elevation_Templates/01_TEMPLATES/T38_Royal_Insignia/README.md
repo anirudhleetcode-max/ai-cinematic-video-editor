@@ -48,6 +48,26 @@ python 06_AUTOMATION/Scripts/render_title.py T38 --set MAIN_TITLE="YOUR TITLE" -
 
 Default font: **Cinzel Decorative Black** (OFL, bundled in `02_SHARED_ASSETS/Fonts/` - install it before opening the macro, or pick any installed font in the Inspector).
 
+## Template-specific controls
+
+| Reference-renderer parameter | Default | Meaning |
+|---|---|---|
+| `EMBLEM_SCALE` | 1.0 | Emblem scale, independent of the title |
+| `EMBLEM_ROTATION` | 0.0 | Emblem rotation in degrees, independent of the title |
+
+The matching Fusion sliders are listed in `documentation/parameters.md`.
+
+## Fusion notes and limitations
+
+- Emblem Scale / Emblem Rotation (Look page) transform the insignia independently of the title.
+- The emblem colour follows the Accent Color control; the title colour is the Main Title Color.
+
+## Check in Resolve (unconfirmed input names)
+
+These inputs are set in the macro but their names could not be confirmed against documentation. Fusion ignores unknown inputs when it loads a file, so if one is wrong only that setting falls back to its default. Check these first when you open the template:
+
+`pEmitter.Transform3DOp.Translate.Y`, `pRender.Height`, `pRender.UseFrameFormatSettings`, `pRender.Width`, `pTurbulence.XStrength`, `pTurbulence.YStrength`, `pTurbulence.ZStrength`
+
 ## Verification status (honest)
 
 | Level | Status |
@@ -55,6 +75,6 @@ Default font: **Cinzel Decorative Black** (OFL, bundled in `02_SHARED_ASSETS/Fon
 | Fusion source parses as Lua table (real Lua interpreter) | PASS |
 | Graph structure (connections, expression references, published controls) | PASS |
 | Opened / rendered inside DaVinci Resolve or Fusion | **NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)** |
-| Preview video rendered and checked (ffprobe, duration, size, non-black) | FAIL: preview missing or truncated |
+| Preview video rendered and checked (ffprobe, duration, size, non-black) | PASS |
 
 The preview was rendered by this project's Python reference renderer, which implements the same design, timing and controls but is **not** Fusion. Expect the Fusion render to differ in detail (noise character, particle look, glow falloff). See `COMPATIBILITY_REPORT.md` at the project root.

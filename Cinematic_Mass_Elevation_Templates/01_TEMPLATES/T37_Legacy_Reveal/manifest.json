@@ -164,38 +164,27 @@
     "slow light sweep",
     "warm light leak"
   ],
+  "design": {
+    "entrance": "Letter-by-letter fade with a gentle upward settle and slight tracking contraction; a gold hairline draws outward beneath.",
+    "reveal": "At the impact frame a slow warm light sweep glides across the letters and the scene gently brightens (no shake).",
+    "camera": "Very slow push-in with a subtle drift; bokeh and motes at different depths provide restrained parallax.",
+    "material": "Satin ivory serif with a soft gold edge light; gold ornamental rule.",
+    "exit": "Everything softly lifts and dissolves into warm glow, letters fading last-to-first, to warm black."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
   "reference_renderer": {
     "module": "06_AUTOMATION/Scripts/cmet/designs/t37.py",
-    "parameters_used": [
-      "ACCENT_COLOR",
-      "ANIMATION_DURATION",
-      "ANIMATION_START",
-      "BACKGROUND_INTENSITY",
-      "BEVEL_AMOUNT",
-      "DURATION",
-      "EXIT_DURATION",
-      "EXIT_START",
-      "FONT_FAMILY",
-      "FONT_SIZE",
-      "GLOW_STRENGTH",
-      "IMPACT_FRAME",
-      "IMPACT_INTENSITY",
-      "LETTERBOX",
-      "LETTER_SPACING",
-      "LINE_SPACING",
-      "MAIN_TITLE",
-      "PARTICLE_INTENSITY",
-      "SHADOW_STRENGTH",
-      "SUBTITLE",
-      "SUB_FONT_FAMILY",
-      "TEXT_ALIGNMENT",
-      "TEXT_COLOR",
-      "TEXT_POSITION_X",
-      "TEXT_POSITION_Y",
-      "TEXT_ROTATION",
-      "TEXT_SCALE",
-      "TITLE_WIDTH"
-    ]
+    "parameters_used": []
   },
   "verification": {
     "lua_parse": "PASS",
@@ -204,6 +193,15 @@
       "errors": [],
       "warnings": [],
       "setting_tools": 81,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
       "setting_input_evidence": {
         "S": 376,
         "K": 134,
@@ -212,8 +210,8 @@
       "setting_expressions": 84,
       "published_controls": 36,
       "text_nodes": [
-        "MainTitle",
-        "Subtitle"
+        "Subtitle",
+        "MainTitle"
       ],
       "comp_tools": 81,
       "comp_input_evidence": {
@@ -249,6 +247,6 @@
       "title_band_contrast": 35.1
     },
     "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T18:48:41+00:00"
+    "validated_at": "2026-10-11T20:07:12+00:00"
   }
 }
