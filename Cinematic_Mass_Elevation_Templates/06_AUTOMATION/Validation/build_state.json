@@ -606,6 +606,46 @@
    "thumb_frame": 126
   }
  },
+ "T16": {
+  "preview": {
+   "params_read": [
+    "ACCENT_COLOR",
+    "ANIMATION_DURATION",
+    "ANIMATION_START",
+    "BACKGROUND_INTENSITY",
+    "BEVEL_AMOUNT",
+    "DURATION",
+    "EXIT_DURATION",
+    "EXIT_START",
+    "EXTRUSION_DEPTH",
+    "FONT_FAMILY",
+    "FONT_SIZE",
+    "GLOW_STRENGTH",
+    "IMPACT_FRAME",
+    "IMPACT_INTENSITY",
+    "LETTERBOX",
+    "LETTER_SPACING",
+    "LINE_SPACING",
+    "MAIN_TITLE",
+    "PARTICLE_INTENSITY",
+    "SHADOW_STRENGTH",
+    "SHAKE_AMOUNT",
+    "SUBTITLE",
+    "SUB_FONT_FAMILY",
+    "TEXT_ALIGNMENT",
+    "TEXT_COLOR",
+    "TEXT_POSITION_X",
+    "TEXT_POSITION_Y",
+    "TEXT_ROTATION",
+    "TEXT_SCALE"
+   ],
+   "path": "01_TEMPLATES/T16_Ancient_Titan/preview/T16_Ancient_Titan.mp4",
+   "rc": 0,
+   "rendered_at": "2026-10-11T19:57:58+00:00",
+   "seconds": 412.7,
+   "thumb_frame": 142
+  }
+ },
  "T17": {
   "preview": {
    "params_read": [
@@ -643,6 +683,46 @@
    "rendered_at": "2026-10-11T19:57:47+00:00",
    "seconds": 315.0,
    "thumb_frame": 126
+  }
+ },
+ "T18": {
+  "preview": {
+   "params_read": [
+    "ACCENT_COLOR",
+    "ANIMATION_DURATION",
+    "ANIMATION_START",
+    "BACKGROUND_INTENSITY",
+    "BEVEL_AMOUNT",
+    "DURATION",
+    "EXIT_DURATION",
+    "EXIT_START",
+    "EXTRUSION_DEPTH",
+    "FONT_FAMILY",
+    "FONT_SIZE",
+    "GLOW_STRENGTH",
+    "IMPACT_FRAME",
+    "IMPACT_INTENSITY",
+    "LETTERBOX",
+    "LETTER_SPACING",
+    "LINE_SPACING",
+    "MAIN_TITLE",
+    "PARTICLE_INTENSITY",
+    "SHAKE_AMOUNT",
+    "SUBTITLE",
+    "SUB_FONT_FAMILY",
+    "TEXT_ALIGNMENT",
+    "TEXT_COLOR",
+    "TEXT_POSITION_X",
+    "TEXT_POSITION_Y",
+    "TEXT_ROTATION",
+    "TEXT_SCALE",
+    "TITLE_WIDTH"
+   ],
+   "path": "01_TEMPLATES/T18_Dark_Sorcery/preview/T18_Dark_Sorcery.mp4",
+   "rc": 0,
+   "rendered_at": "2026-10-11T19:58:09+00:00",
+   "seconds": 295.6,
+   "thumb_frame": 112
   }
  },
  "T21": {
