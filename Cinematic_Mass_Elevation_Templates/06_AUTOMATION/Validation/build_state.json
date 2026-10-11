@@ -1,0 +1,51 @@
+{
+ "T01": {
+  "preview": {
+   "params_read": [
+    "ACCENT_COLOR",
+    "ANIMATION_DURATION",
+    "ANIMATION_START",
+    "BACKGROUND_INTENSITY",
+    "BEVEL_AMOUNT",
+    "DURATION",
+    "EXIT_DURATION",
+    "EXIT_START",
+    "EXTRUSION_DEPTH",
+    "FONT_FAMILY",
+    "FONT_SIZE",
+    "GLOW_STRENGTH",
+    "IMPACT_FRAME",
+    "IMPACT_INTENSITY",
+    "LETTERBOX",
+    "LETTER_SPACING",
+    "LINE_SPACING",
+    "MAIN_TITLE",
+    "PARTICLE_INTENSITY",
+    "SHADOW_STRENGTH",
+    "SHAKE_AMOUNT",
+    "SUBTITLE",
+    "SUB_FONT_FAMILY",
+    "TEXT_ALIGNMENT",
+    "TEXT_COLOR",
+    "TEXT_POSITION_X",
+    "TEXT_POSITION_Y",
+    "TEXT_ROTATION",
+    "TEXT_SCALE",
+    "TITLE_WIDTH"
+   ],
+   "path": "01_TEMPLATES/T01_Obsidian_Impact/preview/T01_Obsidian_Impact.mp4",
+   "rc": 0,
+   "rendered_at": "2026-10-11T17:46:22+00:00",
+   "seconds": 290.9,
+   "thumb_frame": 114
+  }
+ },
+ "_validation": {
+  "T01": {
+   "errors": [],
+   "preview": true,
+   "source": true,
+   "warnings": []
+  }
+ }
+}
