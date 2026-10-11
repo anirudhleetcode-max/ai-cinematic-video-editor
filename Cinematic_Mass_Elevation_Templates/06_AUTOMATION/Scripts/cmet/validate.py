@@ -81,6 +81,8 @@ def check_source(setting_path, comp_path):
                         r["errors"].append(f"{kind}: unbalanced expression in {n}.{inp}")
                     if "^" in ex:
                         r["warnings"].append(f"{kind}: '^' used in {n}.{inp}")
+                    if re.search(r"\bexp\(", ex):
+                        r["warnings"].append(f"{kind}: unconfirmed exp() used in {n}.{inp}")
         text_nodes = [n for n, (tid, inp, _) in tools.items()
                       if tid in ("TextPlus", "Text3D") and "StyledText" in inp]
         if not text_nodes:

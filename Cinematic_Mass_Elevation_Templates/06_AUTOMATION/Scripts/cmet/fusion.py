@@ -12,7 +12,7 @@ Animation is driven by Simple Expressions that reference a single CONTROLS
 tool carrying user controls (timing, intensities). This makes the timing
 controls genuinely functional: changing CONTROLS.ImpactFrame re-times every
 coupled effect. Only conservative expression functions are used
-(min, max, abs, sin, cos, exp, floor, pow, Point, time) - `pow` rather than `^`.
+(min, max, abs, sin, cos, floor, pow, Point, time) - `pow` rather than `^` or `exp`.
 """
 from __future__ import annotations
 
@@ -153,7 +153,8 @@ def e_inout(u):
 
 def decay(start, frames):
     """Impact envelope: 0 before start, 1 at start then exponential decay."""
-    return f"(min(max((time - ({start}) + 1), 0), 1) * exp(-max(time - ({start}), 0) / {frames}))"
+    # pow(e, -x) instead of exp(-x): pow is confirmed in Fusion Simple Expressions, exp is not
+    return f"(min(max((time - ({start}) + 1), 0), 1) * pow(2.718282, -max(time - ({start}), 0) / {frames}))"
 
 
 def step(start):

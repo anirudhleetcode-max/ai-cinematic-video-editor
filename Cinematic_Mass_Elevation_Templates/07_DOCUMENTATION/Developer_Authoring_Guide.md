@@ -93,7 +93,7 @@ Performance budget: <= 2.5 s per 1080p frame on one core. Cache static things in
 - Expressions only (no keyframes): build them with `prog(start, dur)`, `e_out(u)`, `e_in(u)`,
   `e_inout(u)`, `decay(frame, frames)`, `step(frame)`, `window(a, b, fin, fout)`, `shake(...)`,
   `clamp01(x)`; refer to controls with `ctl("ImpactFrame")` etc. Allowed functions inside expressions:
-  min, max, abs, sin, cos, exp, floor, pow, Point, time. **Never use `^`.**
+  min, max, abs, sin, cos, floor, pow, Point, time. **Never use `^` or `exp()`** (use `pow(2.718282, x)`; `decay()` already does).
 - Components (`cmet/fcomp.py`): `solid`, `accent_solid`, `gradient_bg`, `noise` (FastNoise), `ellipse`,
   `rect`, `bitmap_mask`, `masked`, `merge` (mode: Normal/Screen/Multiply/Overlay/...), `xf` (Transform),
   `blur`, `softglow`, `dirblur`, `cc`, `bc`, `title_text`, `subtitle_text`, `fill_material`, `edge_light`,
