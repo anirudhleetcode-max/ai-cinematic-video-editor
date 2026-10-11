@@ -65,22 +65,24 @@ class T04(Design):
         shafts = c.cache.get("shafts")
         if shafts is None:
             s = np.zeros((h2, w2), np.float32)
-            for ox, ang, spr, gain in ((-1.25, 52, 2.6, 1.0), (-0.55, 61, 1.8, 0.7), (0.35, 70, 1.4, 0.45),
-                                       (-1.9, 44, 3.2, 0.6)):
-                s += E.light_cone(h2, w2, (ox, -1.35), ang, spr, length=3.2, softness=0.4) * gain
+            for ox, ang, spr, gain in ((-1.5, 50, 7.0, 0.9), (-0.7, 60, 5.0, 0.6), (0.25, 68, 4.0, 0.4)):
+                s += E.light_cone(h2, w2, (ox, -1.6), ang, spr, length=3.5, softness=0.15) * gain
+            s = K.blur(s, 3.0)
             shafts = c.cache["shafts"] = s
         px = pan_px / (H / 2)
         sh_shift = np.roll(shafts, int(px * 0.3 * h2 / 2), axis=1)
-        smoke = K.fbm_field(h2, w2, t, 1.8, (0.018, -0.006), 17, beta=2.2, evolve=0.04, warp=0.4)
-        vol = sh_shift * (0.35 + 1.1 * smoke)
+        smoke = K.fbm_field(h2, w2, t, 1.3, (0.016, -0.005), 17, beta=2.4, evolve=0.04, warp=0.3)
+        vol = sh_shift * (0.25 + 1.3 * smoke)
+        back = K.soft_spot(h2, w2, -0.3 + px * 0.2, -0.45, 1.9, 0.9, 1.2) * (0.25 + 0.5 * smoke)
+        bg = bg + (back * 0.045 * dim)[..., None] * np.array([0.75, 0.8, 0.88], np.float32)
         fogl = np.clip((smoke - 0.45) * 1.5, 0, 1) * 0.02
-        bg = bg + (vol * 0.16 * dim)[..., None] * acc + fogl[..., None] * np.array([0.6, 0.65, 0.7], np.float32)
+        bg = bg + (vol * 0.13 * dim)[..., None] * acc + fogl[..., None] * np.array([0.6, 0.65, 0.7], np.float32)
         # pillars (silhouettes with a thin lit edge on the shaft side)
         for x0, hw, dz in PILLARS:
             xc = x0 + px * (0.7 / dz)
             m = np.clip((hw - np.abs(nx - xc)) / 0.004, 0, 1)
             edge = np.exp(-((nx - (xc - hw)) / 0.006) ** 2) * (ny < 0.9)
-            bg = bg * (1 - m[..., None] * 0.92) + (edge * 0.05 * dim)[..., None] * acc
+            bg = bg * (1 - m[..., None] * 0.94) + (edge * 0.035 * dim)[..., None] * acc
         # overhead beam
         beam = np.clip((0.035 - np.abs(ny + 0.8 - 0.02 * nx)) / 0.003, 0, 1)
         bg = bg * (1 - beam[..., None] * 0.9)
@@ -156,14 +158,16 @@ class T04(Design):
         if lock_u > 0:
             rel = K.ease_in(K.prog(t, c.exit_start - 0.05, 0.3), 2)
             for side_y, sgn in ((-1, -1), (1, 1)):
-                bw, bh = int(sp.ink_w * 1.12), max(3, int(sp.cap_px * 0.055))
+                bw, bh = int(sp.ink_w * 1.12), max(4, int(sp.cap_px * 0.09))
                 bar = np.empty((bh, bw, 3), np.float32)
                 g = np.linspace(1.0, 0.25, bh, dtype=np.float32)[:, None, None]
                 bar[...] = (0.10 * g + 0.02) * np.array([1.0, 1.03, 1.08], np.float32)
-                bar[:1] += 0.22 * acc * (1 + 3 * hit)
+                bar[:2] += 0.2 * acc * (1 + 3 * hit)
+                for rx in np.linspace(bw * 0.04, bw * 0.96, 9).astype(int):      # rivets
+                    cv2.circle(bar, (int(rx), bh // 2), max(1, bh // 4), (0.16, 0.17, 0.18), -1, cv2.LINE_AA)
                 am = np.ones((bh, bw), np.float32)
                 travel = (1 - K.ease_out(lock_u, 4)) * sgn * W * 0.9 + rel * sgn * W * 0.9
-                by = hy + side_y * (sp.ink_h * 0.5 + sp.cap_px * 0.16)
+                by = hy + side_y * (sp.ink_h * 0.5 + sp.cap_px * 0.2)
                 place_sprite(L, cam, bar, am, (0, 0, bw, bh), (bw / 2, bh / 2),
                              (hx + travel + exit_x, by, exit_z * 0.6), 1.0, (0, 0, p["TEXT_ROTATION"]), None,
                              (1 - K.smooth((ex - 0.4) / 0.4)))
@@ -197,10 +201,10 @@ class T04(Design):
         bg = F.gradient_bg(g, "HallTone", [(0, "#030405", 1), (1, "#010101", 1)])
         haze = F.noise(g, "ShaftSmoke", "#000000", "#ffffff", detail=6, scale=2.2, seethe_rate=0.05, contrast=1.5,
                        center="Point(0.5 + time*0.0009, 0.5 - time*0.0003)")
-        sh1 = F.rect(g, "ShaftA", (0.34, 0.62), 0.07, 2.2, 0.06, angle=38)
-        sh2 = F.rect(g, "ShaftB", (0.5, 0.6), 0.045, 2.2, 0.05, angle=29)
+        sh1 = F.rect(g, "ShaftA", (0.3, 0.62), 0.16, 2.4, 0.12, angle=38)
+        sh2 = F.rect(g, "ShaftB", (0.48, 0.6), 0.11, 2.4, 0.1, angle=29)
         sh2.conn("EffectMask", sh1, "Mask")
-        sh3 = F.rect(g, "ShaftC", (0.68, 0.58), 0.03, 2.2, 0.04, angle=20)
+        sh3 = F.rect(g, "ShaftC", (0.66, 0.58), 0.08, 2.4, 0.08, angle=20)
         sh3.conn("EffectMask", sh2, "Mask")
         shaft_c = F.accent_solid(g, "ShaftColor", 0.5)
         F.masked(shaft_c, sh3)
@@ -266,8 +270,8 @@ class T04(Design):
         g.at(0, 10)
         lock = e_out(prog(f"{I} + 1", 5), 4)
         rel = e_in(prog(f"{ES} - 1", 7), 2)
-        for nm, sgn, dy in (("RailTop", -1, 0.085), ("RailBottom", 1, -0.085)):
-            rm = F.rect(g, f"{nm}Shape", (0.5, 0.5), 0.62, 0.009, 0.0008)
+        for nm, sgn, dy in (("RailTop", -1, 0.092), ("RailBottom", 1, -0.092)):
+            rm = F.rect(g, f"{nm}Shape", (0.5, 0.5), 0.62, 0.014, 0.0008)
             rm.expr("Width", f"0.62*{ctl('TextScale')}", 0.62)
             rm.expr("Center", (f"Point({ctl('TextPosX')} + {sgn}*0.9*(1 - {lock}) + {sgn}*0.9*{rel} - 0.18*{exe},"
                                f" {ctl('TextPosY')} + {dy}*{ctl('TextScale')})"), [0.5, 0.5])

@@ -48,7 +48,7 @@ class T23(Design):
     DEFAULTS = dict(MAIN_TITLE="AWAKENING", SUBTITLE="SYSTEM ONLINE", FONT_FAMILY="orbitron_med",
                     TEXT_COLOR="#F2FFFB", ACCENT_COLOR="#3CF0C0", ANIMATION_START=6, ANIMATION_DURATION=90,
                     IMPACT_FRAME=104, HOLD_DURATION=72, EXIT_START=178, EXIT_DURATION=30, LETTER_SPACING=0.1,
-                    TITLE_WIDTH=0.62, SHADOW_STRENGTH=0.0)
+                    TITLE_WIDTH=0.68, SHADOW_STRENGTH=0.0)
     SOUND = [(0, "atmos", "Deep digital room tone"), (6, "digital", "Data chatter as points appear"),
              (30, "swell", "Rising tonal swell while points converge"), (70, "digital", "Lattice lock ticks"),
              (98, "rwhoosh", "Reverse suck into resolve"), (104, "impact", "Clean digital impact (resolve)"),
@@ -169,7 +169,7 @@ class T23(Design):
             pts += X.lines_buf(H, W, segs, (1, 1, 1), 1.0, k, ints)
         pts = pts * (acc * 0.85 + 0.25)
         # data streaks (procedural data-like lines) during the build and the decompile
-        busy = (1 - K.smooth(K.prog(t, imp, 0.6))) * K.smooth(K.prog(t, T0, 0.5)) + 0.6 * K.window(ex, 0.05, 0.6, 0.1, 0.3)
+        busy = (1 - K.smooth(K.prog(t, imp, 0.6))) * K.smooth(K.prog(t, T0, 0.5)) + 0.6 * K.smooth(ex * 8) * (1 - K.smooth(K.prog(ex, 0.5, 0.4)))
         if busy > 0.01 and PI > 0:
             segs, ints = [], []
             for j in range(int(26 * PI)):
