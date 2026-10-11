@@ -1,5 +1,5 @@
 {
- "run_at": "2026-10-11T20:27:55+00:00",
+ "run_at": "2026-10-11T21:27:43+00:00",
  "templates": [
   {
    "id": "T01",
@@ -1294,6 +1294,14 @@
   "no_running_builds": {
    "ok": true,
    "detail": "[]"
+  },
+  "resolve_results_40": {
+   "ok": true,
+   "detail": "40 entries"
+  },
+  "resolve_claims_match_evidence": {
+   "ok": true,
+   "detail": ""
   },
   "no_fake_drp": {
    "ok": true,

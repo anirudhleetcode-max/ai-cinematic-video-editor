@@ -1,6 +1,6 @@
 # Quality Assurance Report
 
-Generated 2026-10-11T20:25:14+00:00 by `06_AUTOMATION/Scripts/qa.py` from the validated manifests.
+Generated 2026-10-11T21:15:55+00:00 by `06_AUTOMATION/Scripts/qa.py` from the validated manifests.
 
 ## Three separate verification levels
 
@@ -72,4 +72,4 @@ Every preview was reduced to a six-frame strip (build-up, pre-impact, impact+3, 
 - Machine-specific paths in shipped text files: 0 (none)
 - Categories: A - Dark, Powerful Mass Elevation: T01, T02, T03, T04, T05; B - Fire, Explosions and Impact: T06, T07, T08, T09, T10; C - 3D Metal and Premium Materials: T11, T12, T13, T14, T15; D - Mythic, Epic and Fantasy: T16, T17, T18, T19, T20; E - Sci-Fi and Futuristic Motion Graphics: T21, T22, T23, T24, T25; F - Cinematic Typography and Camera Movement: T26, T27, T28, T29, T30; G - Atmospheric and Environmental Cinema: T31, T32, T33, T34, T35; H - Signature Hero Elevations: T36, T37, T38, T39, T40
 - Genuine 3D (Text3D) templates: T11, T12, T13, T15, T28
-- Project size: 178.6 MB in 708 files; free space at QA time: 31.1 GB
+- Project size: 179.0 MB in 724 files; free space at QA time: 31.1 GB

@@ -1,0 +1,3 @@
+21:08:58 cannot import DaVinciResolveScript: ModuleNotFoundError("No module named 'DaVinciResolveScript'")
+21:08:58 hint: set RESOLVE_SCRIPT_API / RESOLVE_SCRIPT_LIB / PYTHONPATH (run_resolve_tests.ps1 does this)
+21:08:58 NOT CONNECTED - nothing tested. See harness_log.txt

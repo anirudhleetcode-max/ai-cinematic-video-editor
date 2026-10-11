@@ -141,7 +141,7 @@ def test_template(i):
     dp = json.load(open(os.path.join(tdir, "configuration", "default_params.json"), encoding="utf-8"))
     check("extra_params_documented", all(k in dp for k in d.EXTRA_PARAMS), str(list(d.EXTRA_PARAMS)))
     rd = open(os.path.join(tdir, "README.md"), encoding="utf-8").read()
-    check("readme_text_and_status", "Change the title text" in rd and "Opened / rendered inside DaVinci Resolve" in rd)
+    check("readme_text_and_status", "Change the title text" in rd and "D. Renders in DaVinci Resolve" in rd)
     check("sound_sheet", os.path.getsize(os.path.join(tdir, "documentation", "sound_design.md")) > 200)
     check("thumbnail", os.path.exists(os.path.join(tdir, "preview", "thumbnail.jpg")))
     # template-specific parameters actually change the output ----------------
@@ -196,6 +196,27 @@ def collection_checks(results):
     ps = subprocess.run(["pgrep", "-af", "python3 build.py (previews|validate)"], capture_output=True, text=True).stdout
     ps = [l for l in ps.splitlines() if "pgrep" not in l]
     out["no_running_builds"] = (not ps, str(ps[:2]))
+    rc_p = os.path.join(ROOT, "06_AUTOMATION", "Validation", "resolve_test_results.json")
+    if os.path.exists(rc_p):
+        rc = json.load(open(rc_p, encoding="utf-8"))["templates"]
+        mism = []
+        for d in sorted(os.listdir(TPL)):
+            mf = os.path.join(TPL, d, "manifest.json")
+            if not os.path.exists(mf):
+                continue
+            mm = json.load(open(mf, encoding="utf-8"))
+            claimed = (mm["verification"].get("resolve") or {}).get("status")
+            actual = rc.get(mm["id"], {}).get("status", "NOT TESTED")
+            if claimed != actual:
+                mism.append(f"{mm['id']}: manifest {claimed} vs results {actual}")
+            if actual == "PASS":
+                ev = rc[mm["id"]]["levels"].get("D_render", {}).get("output")
+                if not ev or not os.path.exists(os.path.join(ROOT, ev)):
+                    mism.append(f"{mm['id']}: PASS without render evidence on disk")
+        out["resolve_results_40"] = (len(rc) == 40, f"{len(rc)} entries")
+        out["resolve_claims_match_evidence"] = (not mism, "; ".join(mism[:4]))
+    else:
+        out["resolve_results_40"] = (False, "resolve_test_results.json missing")
     out["no_fake_drp"] = (not any(f.endswith(".drp") for dp, dn, fn in os.walk(ROOT) for f in fn), "")
     return {k: {"ok": bool(v[0]), "detail": v[1]} for k, v in out.items()}
 

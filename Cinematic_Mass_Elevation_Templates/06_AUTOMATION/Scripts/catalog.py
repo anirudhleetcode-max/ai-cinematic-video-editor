@@ -70,6 +70,9 @@ def html_catalog(ms):
         ok_prv = v["preview"] == "PASS"
         prev = f"01_TEMPLATES/{d}/{m['preview']}" if m.get("preview") else ""
         thumb = f"01_TEMPLATES/{d}/{m['thumbnail']}" if m.get("thumbnail") else ""
+        rs = (m["verification"].get("resolve") or {}).get("status", "NOT TESTED")
+        rst = {"PASS": "tested, PASS", "FAIL": "tested, FAIL", "BLOCKED": "blocked (not tested)"}.get(rs, "not tested")
+        rcls = {"PASS": "ok", "FAIL": "bad"}.get(rs, "na")
         ex = m.get("extra_parameters") or {}
         extra = ("<dt>Template-specific parameters</dt><dd>" + html.escape(", ".join(
             f"{k} (default {v['default']})" for k, v in ex.items())) + "</dd>") if ex else ""
@@ -107,7 +110,7 @@ def html_catalog(ms):
       <li class="{'ok' if v['lua_parse'] == 'PASS' else 'bad'}">Fusion source parses (Lua)</li>
       <li class="{'ok' if ok_src else 'bad'}">Graph structure checks</li>
       <li class="{'ok' if ok_prv else 'bad'}">Preview media checks</li>
-      <li class="na">Resolve: not tested</li>
+      <li class="{rcls}">Resolve: {rst}</li>
     </ul>
     <p class="links">
       <a href="01_TEMPLATES/{d}/README.md">README</a> &middot;
@@ -196,7 +199,7 @@ def md_catalog(ms):
          "sheet `03_PREVIEWS/Contact_Sheets/contact_sheet_all.jpg`.", "",
          "Verification columns: **Src** = Fusion source parses in a real Lua interpreter and passes structural "
          "checks; **Prev** = preview MP4 passes ffprobe/duration/size/non-black/motion/exposure checks; "
-         "**Resolve** = opened inside DaVinci Resolve (not possible in the build environment).", "",
+         "**Resolve** = result of the DaVinci Resolve test harness (`06_AUTOMATION/Resolve/`); BLOCKED means no Resolve was available to test with.", "",
          "| # | Template | Category | Dur | Depth | Concept | Src | Prev | Resolve | Files |",
          "|---|---|---|---|---|---|---|---|---|---|"]
     for m in ms:
@@ -205,7 +208,7 @@ def md_catalog(ms):
         L.append(f"| {m['id']} | **{m['name']}** | {m['category']} | {m['duration_seconds']:.1f}s | "
                  f"{'3D' if m['true_3d'] else '2.5D'} | {m['concept']} | "
                  f"{'PASS' if v['structure'] == 'PASS' else 'FAIL'} | {'PASS' if v['preview'] == 'PASS' else 'FAIL'} | "
-                 f"not tested | [README](01_TEMPLATES/{d}/README.md) / "
+                 f"{(m['verification'].get('resolve') or {}).get('status', 'NOT TESTED')} | [README](01_TEMPLATES/{d}/README.md) / "
                  f"[.setting](01_TEMPLATES/{d}/{m['fusion_macro']}) / "
                  f"[preview](01_TEMPLATES/{d}/{m['preview']}) |")
     L.append("")

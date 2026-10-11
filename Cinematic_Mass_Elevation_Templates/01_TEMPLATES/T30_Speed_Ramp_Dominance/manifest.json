@@ -291,7 +291,16 @@
       "hero_contrast": 34.3,
       "title_band_contrast": 59.7
     },
-    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T20:06:52+00:00"
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:13:03+00:00"
   }
 }

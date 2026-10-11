@@ -82,8 +82,23 @@ def strips_sheet(ms):
 
 def resolve_checklist(ms):
     """Per-template manual test list for the first Resolve session."""
-    L = ["# DaVinci Resolve manual test checklist", "",
-         "Nothing in this library has been opened in DaVinci Resolve yet. Use this list during the first session.",
+    st = {}
+    for m in ms:
+        k = (m["verification"].get("resolve") or {}).get("status", "NOT TESTED")
+        st[k] = st.get(k, 0) + 1
+    L = ["# DaVinci Resolve test checklist", "",
+         "Current Resolve status: " + ", ".join("%s %d/40" % kv for kv in sorted(st.items())) +
+         " (from `06_AUTOMATION/Validation/resolve_test_results.json`).", "",
+         "## Automated test (recommended)", "",
+         "On the Windows PC with DaVinci Resolve, from `06_AUTOMATION/Resolve/`:", "",
+         "1. `powershell -ExecutionPolicy Bypass -File .\\run_resolve_tests.ps1 -AuditOnly` (read-only audit).",
+         "2. Start Resolve. Set *Preferences > User > Editing > Standard Generator Duration* to 10 s. In Resolve Studio, "
+         "also set *Preferences > System > General > External scripting using* to Local.",
+         "3. `powershell -ExecutionPolicy Bypass -File .\\run_resolve_tests.ps1 -Templates T01` (end-to-end check on T01 first).",
+         "4. If T01 passes: `powershell -ExecutionPolicy Bypass -File .\\run_resolve_tests.ps1` (all 40).",
+         "", "In the free edition, use *Workspace > Scripts > Utility > CMET_Run_Resolve_Tests*, then `run_resolve_tests.ps1 -Analyze <run id>`. "
+         "Details: `06_AUTOMATION/Resolve/README.md`.", "", "## Manual checks", "",
+         "Use this list for manual verification, and for any template the automated run marks FAIL, BLOCKED or NOT TESTED.",
          "It is generated from the validated manifests by `qa.py`.", "",
          "For each template:",
          "1. Install it (see Import_Instructions.md), add it to a 24 fps timeline and trim it to the frame count shown.",
@@ -91,11 +106,12 @@ def resolve_checklist(ms):
          "3. Scrub the build-up, the impact frame, the hold and the exit, and compare them with the preview MP4.",
          "4. Edit *Main Title* and move *Impact Frame*; the effects should re-time.",
          "5. Check the listed unconfirmed inputs. If one of these settings is missing, set it by hand.",
-         "", "| ID | Name | Frames | Impact | Depth | Unconfirmed inputs to check | Notes |", "|---|---|---|---|---|---|---|"]
+         "", "| ID | Name | Resolve status | Frames | Impact | Depth | Unconfirmed inputs to check | Notes |", "|---|---|---|---|---|---|---|---|"]
     for m in ms:
         un = ", ".join(f"`{x}`" for x in m.get("unconfirmed_fusion_inputs", [])) or "-"
         notes = " ".join(m.get("fusion_notes", []))[:220].replace("|", "/")
-        L.append(f"| {m['id']} | {m['name']} | {m['duration_frames']} | {m['phases']['impact_frame']} | "
+        L.append(f"| {m['id']} | {m['name']} | {(m['verification'].get('resolve') or {}).get('status', 'NOT TESTED')} | "
+                 f"{m['duration_frames']} | {m['phases']['impact_frame']} | "
                  f"{'3D' if m['true_3d'] else '2.5D'} | {un} | {notes or '-'} |")
     L.append("")
     open(os.path.join(ROOT, "05_RESOLVE_IMPORT", "Resolve_Test_Checklist.md"), "w", encoding="utf-8").write("\n".join(L))
@@ -159,7 +175,8 @@ def main():
                        "preview": f"01_TEMPLATES/{m['_dir']}/{m['preview']}" if m.get("preview") else None,
                        "source_check": m["verification"]["structure"] == "PASS",
                        "preview_check": m["verification"]["preview"] == "PASS",
-                       "resolve_tested": False} for m in ms],
+                       "resolve_status": (m["verification"].get("resolve") or {}).get("status", "NOT TESTED")}
+                      for m in ms],
         "totals": {"bytes": total, "files": len(files)},
         "files": files,
     }

@@ -1,0 +1,31 @@
+{
+  "time": "2026-10-11T21:08:34",
+  "windows": false,
+  "os": "Ubuntu 24.04.5 LTS",
+  "project_drive_free_gb": 29.0,
+  "project_root": "<repo>/Cinematic_Mass_Elevation_Templates",
+  "resolve_installed": false,
+  "resolve_running": false,
+  "scripting_api_dir": false,
+  "scripting_module": false,
+  "python": "/usr/bin/python",
+  "python_version": "3.13.16 64-bit",
+  "python_numpy_cv2": true,
+  "ffmpeg": true,
+  "fonts_missing": [
+    "Anton",
+    "Bebas Neue",
+    "Black Ops One",
+    "Russo One",
+    "Cinzel",
+    "Cinzel Decorative",
+    "Marcellus SC",
+    "Orbitron",
+    "Audiowide",
+    "Staatliches",
+    "Teko",
+    "Ramabhadra",
+    "Noto Sans Telugu"
+  ],
+  "titles_installed": 0
+}

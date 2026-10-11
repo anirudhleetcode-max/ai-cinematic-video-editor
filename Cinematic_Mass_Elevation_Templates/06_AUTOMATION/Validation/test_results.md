@@ -1,4 +1,4 @@
-# Test results (2026-10-11T20:27:55+00:00)
+# Test results (2026-10-11T21:27:43+00:00)
 
 Templates passing every check: **40/40**. Collection checks: **PASS**.
 
@@ -17,6 +17,8 @@ Templates passing every check: **40/40**. Collection checks: **PASS**.
 | no_private_paths | PASS | [] |
 | no_partial_files | PASS | [] |
 | no_running_builds | PASS | [] |
+| resolve_results_40 | PASS | 40 entries |
+| resolve_claims_match_evidence | PASS |  |
 | no_fake_drp | PASS |  |
 
 ## Per template

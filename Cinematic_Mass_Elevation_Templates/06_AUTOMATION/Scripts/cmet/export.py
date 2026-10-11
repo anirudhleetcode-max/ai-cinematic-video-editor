@@ -203,10 +203,14 @@ Default font: **{fam[2]} {fam[3]}** (OFL, bundled in `02_SHARED_ASSETS/Fonts/` -
 
 | Level | Status |
 |---|---|
-| Fusion source parses as Lua table (real Lua interpreter) | {ver['lua_parse']} |
-| Graph structure (connections, expression references, published controls) | {ver['structure']} |
-| Opened / rendered inside DaVinci Resolve or Fusion | **{ver['resolve_tested']}** |
-| Preview video rendered and checked (ffprobe, duration, size, non-black) | {ver['preview']} |
+| A. Fusion source structure (real Lua parse, connections, expressions, published controls) | {ver['lua_parse']} / {ver['structure']} |
+| B. Standalone Python preview (ffprobe, duration, size, motion, exposure) | {ver['preview']} |
+| C. Composition loads in DaVinci Resolve | **{ver.get('resolve', {}).get('C_load', 'NOT TESTED')}** |
+| D. Renders in DaVinci Resolve | **{ver.get('resolve', {}).get('D_render', 'NOT TESTED')}** |
+| E. Text and controls editable in Resolve | **{ver.get('resolve', {}).get('E_edit', 'NOT TESTED')}** |
+| F. Visual comparison Resolve vs. preview | **{ver.get('resolve', {}).get('F_visual', 'NOT TESTED')}** |
+
+Resolve status: {ver['resolve_tested']}. To test it on your machine, see `06_AUTOMATION/Resolve/README.md`.
 
 The preview was rendered by this project's Python reference renderer, which implements the same design, timing and controls but is **not** Fusion. Expect the Fusion render to differ in detail (noise character, particle look, glow falloff). See `COMPATIBILITY_REPORT.md` at the project root.
 """

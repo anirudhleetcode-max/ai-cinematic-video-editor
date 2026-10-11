@@ -230,8 +230,8 @@
       "setting_expressions": 63,
       "published_controls": 36,
       "text_nodes": [
-        "MainTitle",
-        "Subtitle"
+        "Subtitle",
+        "MainTitle"
       ],
       "comp_tools": 157,
       "comp_input_evidence": {
@@ -266,7 +266,16 @@
       "hero_contrast": 20.0,
       "title_band_contrast": 31.1
     },
-    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
-    "validated_at": "2026-10-11T20:07:07+00:00"
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:13:22+00:00"
   }
 }

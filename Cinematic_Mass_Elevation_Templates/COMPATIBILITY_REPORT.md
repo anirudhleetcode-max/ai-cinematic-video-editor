@@ -96,9 +96,12 @@ These figures come from `06_AUTOMATION/Validation/test_results.md` and `QUALITY_
 
 | Verification level | Result |
 |---|---|
-| 1. Structural validation of the Fusion sources (`.setting` and `.comp`) | **40 / 40 pass**. All parse in Lua 5.5. No dangling connections, expression references or controls. Only known tool IDs are used. No `exp()` or `^` in any expression. |
-| 2. Standalone preview rendering (reference renderer → H.264) | **40 / 40 pass**. Every preview: 1920x1080, exact frame count, decodes without errors, audio present, motion, no black middle section, hero frame <6% clipped, visible entrance and exit. |
-| 3. DaVinci Resolve import and rendering | **0 / 40 tested.** Resolve is not available in the build environment. |
+| A. Structural validation of the Fusion sources (`.setting` and `.comp`) | **40 / 40 pass**. All parse in Lua 5.5. No dangling connections, expression references or controls. Only known tool IDs are used. No `exp()` or `^` in any expression. |
+| B. Standalone preview rendering (reference renderer → H.264) | **40 / 40 pass**. Every preview: 1920x1080, exact frame count, decodes without errors, audio present, motion, no black middle section, hero frame <6% clipped, visible entrance and exit. |
+| C. Composition loads in DaVinci Resolve | **BLOCKED 40/40.** The Resolve test harness ran but could not connect: no Resolve in that environment. |
+| D. Renders in DaVinci Resolve | **BLOCKED 40/40** |
+| E. Text and controls editable in Resolve | **BLOCKED 40/40** |
+| F. Visual comparison Resolve vs. preview | **BLOCKED 40/40** |
 
 Inputs set in the macros, graded against the evidence table (S confirmed, K known usage, ? unconfirmed):
 - 11,259 S
@@ -135,3 +138,31 @@ The 442 unconfirmed settings use only 21 distinct input names. Every template's 
 ## 7. 4K
 
 No 4K batch was rendered. 30 GB was free at delivery; a full UHD ProRes set needs about 28–30 GB. The reliable 1080p deliverables came first. Use `render_all.ps1 -Mode final` for 4K, selectively.
+
+## 8. Resolve testing: environment audit and workflow
+
+**Audit of the environment this library was built and checked in**
+(`06_AUTOMATION/Validation/resolve/cloud_build_env_audit_20261011.md`, produced by `run_resolve_tests.ps1 -AuditOnly`):
+
+| Item | Finding |
+|---|---|
+| OS | Ubuntu 24.04 cloud container. Not Windows; no desktop session; no GPU. |
+| DaVinci Resolve | Not installed |
+| Resolve scripting module | Not present |
+| Link to the user's PC | None (the session cannot reach the user's computer) |
+| Free disk | 29 GB |
+
+**Evidence that Resolve was unreachable.** The real harness was run in that environment as run
+`cloud_build_env_20261011`. Its log, `06_AUTOMATION/Validation/resolve_runs/cloud_build_env_20261011/harness_log.txt`,
+shows that `DaVinciResolveScript` cannot be imported. The analyzer therefore recorded C, D, E and F as BLOCKED for all
+40 templates, in `06_AUTOMATION/Validation/resolve_test_results.json`. No Resolve result in this repository was
+simulated or inferred.
+
+**How to obtain real results.** `06_AUTOMATION/Resolve/README.md` describes the full workflow:
+- An audit-only mode.
+- An end-to-end T01 run first, then all 40.
+- Safety rules: a new test project per run, no overwrites, outputs kept separate.
+
+The harness is exercised against a **mock** Resolve API by `06_AUTOMATION/Resolve/selftest/selftest_mock.py`. That
+self-test proves the control flow and the pass/fail logic, including that an injected failure is reported as FAIL. It
+is not compatibility evidence, and mock results are refused by the merge step.

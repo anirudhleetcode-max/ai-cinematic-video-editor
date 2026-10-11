@@ -72,9 +72,13 @@ These inputs are set in the macro but their names could not be confirmed against
 
 | Level | Status |
 |---|---|
-| Fusion source parses as Lua table (real Lua interpreter) | PASS |
-| Graph structure (connections, expression references, published controls) | PASS |
-| Opened / rendered inside DaVinci Resolve or Fusion | **NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)** |
-| Preview video rendered and checked (ffprobe, duration, size, non-black) | PASS |
+| A. Fusion source structure (real Lua parse, connections, expressions, published controls) | PASS / PASS |
+| B. Standalone Python preview (ffprobe, duration, size, motion, exposure) | PASS |
+| C. Composition loads in DaVinci Resolve | **BLOCKED** |
+| D. Renders in DaVinci Resolve | **BLOCKED** |
+| E. Text and controls editable in Resolve | **BLOCKED** |
+| F. Visual comparison Resolve vs. preview | **BLOCKED** |
+
+Resolve status: BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json). To test it on your machine, see `06_AUTOMATION/Resolve/README.md`.
 
 The preview was rendered by this project's Python reference renderer, which implements the same design, timing and controls but is **not** Fusion. Expect the Fusion render to differ in detail (noise character, particle look, glow falloff). See `COMPATIBILITY_REPORT.md` at the project root.

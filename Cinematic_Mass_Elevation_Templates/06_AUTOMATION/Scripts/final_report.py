@@ -29,6 +29,21 @@ def main():
     n3 = [m["id"] for m in ms if m["true_3d"]]
     size = sum(os.path.getsize(os.path.join(dp, f)) for dp, _, fn in os.walk(ROOT) for f in fn)
     free = shutil.disk_usage(ROOT).free
+    rcanon_p = os.path.join(ROOT, "06_AUTOMATION", "Validation", "resolve_test_results.json")
+    rcanon = json.load(open(rcanon_p, encoding="utf-8")) if os.path.exists(rcanon_p) else {"templates": {}}
+    rv = {m["id"]: (m["verification"].get("resolve") or {"status": "NOT TESTED"}) for m in ms}
+
+    def rcount(level):
+        c = {}
+        for v in rv.values():
+            k = v.get(level, "NOT TESTED") or "NOT TESTED"
+            c[k] = c.get(k, 0) + 1
+        return ", ".join("**%s %d/%d**" % (k, c[k], n) for k in sorted(c))
+
+    lc = rcanon.get("last_connection") or {}
+    rconn = ("connected: %s %s (run %s)" % (lc.get("product"), lc.get("version"), rcanon.get("last_run"))
+             if lc.get("connected") else "**not connected** - last harness run `%s` could not reach DaVinci Resolve "
+             "(no Resolve installation in that environment)" % rcanon.get("last_run"))
     L = [
         "# Final Report - Cinematic Mass Elevation Templates", "",
         f"Generated {datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')} by "
@@ -38,9 +53,14 @@ def main():
         "| Item | Result |", "|---|---|",
         f"| Template definitions | **{n}** (T01-T40, 8 categories A-H as in the brief) |",
         f"| Editable Fusion compositions | **{n} macros (.setting) + {n} flat compositions (.comp)** |",
-        f"| Level 1 - structural validation of Fusion sources | **{src}/{n} PASS** |",
-        f"| Level 2 - standalone preview rendering (1080p, checked) | **{prv}/{n} PASS** |",
-        f"| Level 3 - DaVinci Resolve import / render | **0/{n} tested** - Resolve is not available in the build environment |",
+        f"| A. Fusion source structural validation | **{src}/{n} PASS** |",
+        f"| B. Standalone Python preview validation (1080p) | **{prv}/{n} PASS** |",
+        f"| C. DaVinci Resolve composition loading | {rcount('C_load')} |",
+        f"| D. DaVinci Resolve rendering | {rcount('D_render')} |",
+        f"| E. Editable text and controls (in Resolve) | {rcount('E_edit')} |",
+        f"| F. Visual comparison Resolve vs. preview | {rcount('F_visual')} |",
+        f"| Overall Resolve status | {rcount('status')} |",
+        f"| Resolve connection | {rconn} |",
         f"| Full acceptance test suite (`run_tests.py`) | **{allpass}/{n} templates pass every check; collection checks "
         f"{'PASS' if all(v['ok'] for v in coll.values()) else 'FAIL'}** |",
         f"| Genuine 3D (Text3D/Renderer3D) | {len(n3)}: {', '.join(n3)} |",
@@ -51,8 +71,8 @@ def main():
         "| 4K | Not batch-rendered (optional; `render_all.ps1 -Mode final`) |",
         "",
         "## All 40 templates", "",
-        "| ID | Template | Category | Length | Depth | Fusion source | Preview | Tests | Preview path |",
-        "|---|---|---|---|---|---|---|---|---|",
+        "| ID | Template | Category | Length | Depth | A Source | B Preview | Tests | Resolve (C/D/E/F) | Preview path |",
+        "|---|---|---|---|---|---|---|---|---|---|",
     ]
     for m in ms:
         r = by.get(m["id"], {"checks": {}, "errors": ["not tested"]})
@@ -60,7 +80,27 @@ def main():
                  f"{m['duration_seconds']:.1f}s | {'3D' if m['true_3d'] else '2.5D'} | "
                  f"{'PASS' if m['verification']['structure'] == 'PASS' else 'FAIL'} | "
                  f"{'PASS' if m['verification']['preview'] == 'PASS' else 'FAIL'} | "
-                 f"{sum(r['checks'].values())}/{len(r['checks'])} | `01_TEMPLATES/{m['_dir']}/{m['preview']}` |")
+                 f"{sum(r['checks'].values())}/{len(r['checks'])} | "
+                 f"{rv[m['id']].get('status')} ({rv[m['id']].get('C_load')}/{rv[m['id']].get('D_render')}/"
+                 f"{rv[m['id']].get('E_edit')}/{rv[m['id']].get('F_visual')}) | `01_TEMPLATES/{m['_dir']}/{m['preview']}` |")
+    groups = {}
+    for tid, v in rv.items():
+        groups.setdefault(v.get("status", "NOT TESTED"), []).append(tid)
+    L += ["", "## Resolve test lists", ""]
+    for k in ("PASS", "FAIL", "BLOCKED", "NOT TESTED"):
+        L.append("- **%s (%d):** %s" % (k, len(groups.get(k, [])), ", ".join(sorted(groups.get(k, []))) or "none"))
+    L += ["", "## Manual actions still required", "",
+          "1. On the Windows PC with DaVinci Resolve, run the read-only audit: "
+          "`powershell -ExecutionPolicy Bypass -File 06_AUTOMATION\\Resolve\\run_resolve_tests.ps1 -AuditOnly`.",
+          "2. Start Resolve. Set *Preferences > User > Editing > Standard Generator Duration* to 10 s. "
+          "In Resolve Studio, also set *Preferences > System > General > External scripting using* to Local.",
+          "3. Run the end-to-end T01 test: `run_resolve_tests.ps1 -Templates T01`. "
+          "In the free edition, use *Workspace > Scripts > Utility > CMET_Run_Resolve_Tests*.",
+          "4. If T01 passes, run all 40 (`run_resolve_tests.ps1`), then commit "
+          "`06_AUTOMATION/Validation/resolve_runs/<run>/` and `resolve_test_results.json`. Re-run "
+          "`build.py validate`, `qa.py`, `catalog.py` and `final_report.py`, or hand the results back to Claude "
+          "to analyse and fix any FAIL templates.",
+          "5. Review the side-by-side sheets in `resolve_runs/<run>/comparisons/` (level F visual review).", ""]
     L += ["", "Collection checks: " + ", ".join(f"{k} {'PASS' if v['ok'] else 'FAIL'}" for k, v in coll.items()), "",
           "## Where things are", "",
           "| What | Path |", "|---|---|",
@@ -95,7 +135,7 @@ def main():
           "`python 06_AUTOMATION/Scripts/render_title.py T40 --set MAIN_TITLE=\"YOUR TITLE\" --res 3840x2160 --codec prores --out title.mov`.",
           "",
           "## Known limitations", "",
-          "- **Untested in Resolve.** No template has been opened in DaVinci Resolve or Fusion. Compatibility rests on "
+          "- **Resolve testing.** See the Summary (levels C-F). Until the harness has run on a machine with Resolve, compatibility rests on "
           "documentation-sourced node and input IDs plus static validation.",
           "  - 2.4% of the inputs set in the macros are unconfirmed (21 distinct names, mostly particle sub-inputs). "
           "If one is wrong, Fusion loses only that setting.",

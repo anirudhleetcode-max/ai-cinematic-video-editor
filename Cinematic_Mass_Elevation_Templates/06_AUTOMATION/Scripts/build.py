@@ -57,6 +57,37 @@ def save_state(s):
     json.dump(s, open(STATE, "w"), indent=1, sort_keys=True)
 
 
+RESOLVE_CANON = os.path.join(ROOT, "06_AUTOMATION", "Validation", "resolve_test_results.json")
+
+
+def _resolve_canon():
+    if os.path.exists(RESOLVE_CANON):
+        return json.load(open(RESOLVE_CANON, encoding="utf-8")).get("templates", {})
+    return {}
+
+
+def resolve_levels(tid):
+    r = _resolve_canon().get(tid)
+    if not r:
+        return {"status": "NOT TESTED", "C_load": "NOT TESTED", "D_render": "NOT TESTED", "E_edit": "NOT TESTED",
+                "F_visual": "NOT TESTED", "run_id": None}
+    lv = r.get("levels", {})
+    return {"status": r.get("status"), "run_id": r.get("run_id"),
+            **{k: lv.get(k, {}).get("status", "NOT TESTED") for k in ("C_load", "D_render", "E_edit", "F_visual")},
+            "detail": (lv.get("C_load", {}).get("detail") or "")[:200]}
+
+
+def resolve_summary(tid):
+    r = resolve_levels(tid)
+    if r["status"] == "BLOCKED":
+        return ("BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run %s "
+                "(see 06_AUTOMATION/Validation/resolve_test_results.json)" % r["run_id"])
+    if r["status"] in ("PASS", "FAIL"):
+        return "%s in DaVinci Resolve (run %s): load %s, render %s, edit %s" % (r["status"], r["run_id"], r["C_load"],
+                                                                                 r["D_render"], r["E_edit"])
+    return "NOT TESTED in DaVinci Resolve"
+
+
 def cmd_sources(ids):
     res = {}
     for tid in ids:
@@ -167,7 +198,8 @@ def cmd_validate(ids):
                 "source_details": {k: v for k, v in src.items() if k not in ("ok",)},
                 "preview": "PASS" if prv.get("ok") else "FAIL: " + "; ".join(prv.get("errors", [])[:5]),
                 "preview_details": {k: v for k, v in prv.items() if k != "ok"},
-                "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+                "resolve_tested": resolve_summary(tid),
+                "resolve": resolve_levels(tid),
                 "validated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
             },
         }

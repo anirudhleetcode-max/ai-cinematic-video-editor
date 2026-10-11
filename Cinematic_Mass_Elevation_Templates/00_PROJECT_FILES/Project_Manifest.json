@@ -1,7 +1,7 @@
 {
  "project": "Cinematic Mass Elevation Templates",
  "version": "1.0.0",
- "generated_at": "2026-10-11T20:25:14+00:00",
+ "generated_at": "2026-10-11T21:15:55+00:00",
  "template_count": 40,
  "templates": [
   {
@@ -16,7 +16,7 @@
    "preview": "01_TEMPLATES/T01_Obsidian_Impact/preview/T01_Obsidian_Impact.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T02",
@@ -30,7 +30,7 @@
    "preview": "01_TEMPLATES/T02_Thunder_God/preview/T02_Thunder_God.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T03",
@@ -44,7 +44,7 @@
    "preview": "01_TEMPLATES/T03_Molten_Core/preview/T03_Molten_Core.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T04",
@@ -58,7 +58,7 @@
    "preview": "01_TEMPLATES/T04_Black_Steel_Reckoning/preview/T04_Black_Steel_Reckoning.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T05",
@@ -72,7 +72,7 @@
    "preview": "01_TEMPLATES/T05_Shattered_Monolith/preview/T05_Shattered_Monolith.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T06",
@@ -86,7 +86,7 @@
    "preview": "01_TEMPLATES/T06_Inferno_Reveal/preview/T06_Inferno_Reveal.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T07",
@@ -100,7 +100,7 @@
    "preview": "01_TEMPLATES/T07_Explosive_Arrival/preview/T07_Explosive_Arrival.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T08",
@@ -114,7 +114,7 @@
    "preview": "01_TEMPLATES/T08_Ember_Storm/preview/T08_Ember_Storm.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T09",
@@ -128,7 +128,7 @@
    "preview": "01_TEMPLATES/T09_Ashes_of_Power/preview/T09_Ashes_of_Power.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T10",
@@ -142,7 +142,7 @@
    "preview": "01_TEMPLATES/T10_Shockwave_Dominance/preview/T10_Shockwave_Dominance.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T11",
@@ -156,7 +156,7 @@
    "preview": "01_TEMPLATES/T11_Golden_Emperor/preview/T11_Golden_Emperor.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T12",
@@ -170,7 +170,7 @@
    "preview": "01_TEMPLATES/T12_Chrome_Dominion/preview/T12_Chrome_Dominion.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T13",
@@ -184,7 +184,7 @@
    "preview": "01_TEMPLATES/T13_Titanium_Edge/preview/T13_Titanium_Edge.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T14",
@@ -198,7 +198,7 @@
    "preview": "01_TEMPLATES/T14_Forged_In_Fire/preview/T14_Forged_In_Fire.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T15",
@@ -212,7 +212,7 @@
    "preview": "01_TEMPLATES/T15_Diamond_Cut/preview/T15_Diamond_Cut.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T16",
@@ -226,7 +226,7 @@
    "preview": "01_TEMPLATES/T16_Ancient_Titan/preview/T16_Ancient_Titan.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T17",
@@ -240,7 +240,7 @@
    "preview": "01_TEMPLATES/T17_Celestial_Ascent/preview/T17_Celestial_Ascent.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T18",
@@ -254,7 +254,7 @@
    "preview": "01_TEMPLATES/T18_Dark_Sorcery/preview/T18_Dark_Sorcery.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T19",
@@ -268,7 +268,7 @@
    "preview": "01_TEMPLATES/T19_Cosmic_Overlord/preview/T19_Cosmic_Overlord.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T20",
@@ -282,7 +282,7 @@
    "preview": "01_TEMPLATES/T20_Phoenix_Reborn/preview/T20_Phoenix_Reborn.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T21",
@@ -296,7 +296,7 @@
    "preview": "01_TEMPLATES/T21_Neon_Overdrive/preview/T21_Neon_Overdrive.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T22",
@@ -310,7 +310,7 @@
    "preview": "01_TEMPLATES/T22_Hologram_Breach/preview/T22_Hologram_Breach.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T23",
@@ -324,7 +324,7 @@
    "preview": "01_TEMPLATES/T23_Digital_Awakening/preview/T23_Digital_Awakening.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T24",
@@ -338,7 +338,7 @@
    "preview": "01_TEMPLATES/T24_Quantum_Split/preview/T24_Quantum_Split.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T25",
@@ -352,7 +352,7 @@
    "preview": "01_TEMPLATES/T25_Future_Warlord/preview/T25_Future_Warlord.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T26",
@@ -366,7 +366,7 @@
    "preview": "01_TEMPLATES/T26_Extreme_Close_Up/preview/T26_Extreme_Close_Up.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T27",
@@ -380,7 +380,7 @@
    "preview": "01_TEMPLATES/T27_Low_Angle_Titan/preview/T27_Low_Angle_Titan.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T28",
@@ -394,7 +394,7 @@
    "preview": "01_TEMPLATES/T28_Rotating_Monolith/preview/T28_Rotating_Monolith.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T29",
@@ -408,7 +408,7 @@
    "preview": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/preview/T29_Cinematic_Letter_Assembly.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T30",
@@ -422,7 +422,7 @@
    "preview": "01_TEMPLATES/T30_Speed_Ramp_Dominance/preview/T30_Speed_Ramp_Dominance.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T31",
@@ -436,7 +436,7 @@
    "preview": "01_TEMPLATES/T31_Midnight_Fog/preview/T31_Midnight_Fog.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T32",
@@ -450,7 +450,7 @@
    "preview": "01_TEMPLATES/T32_Rain_And_Steel/preview/T32_Rain_And_Steel.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T33",
@@ -464,7 +464,7 @@
    "preview": "01_TEMPLATES/T33_Desert_Storm/preview/T33_Desert_Storm.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T34",
@@ -478,7 +478,7 @@
    "preview": "01_TEMPLATES/T34_Underwater_Colossus/preview/T34_Underwater_Colossus.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T35",
@@ -492,7 +492,7 @@
    "preview": "01_TEMPLATES/T35_Frozen_Kingdom/preview/T35_Frozen_Kingdom.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T36",
@@ -506,7 +506,7 @@
    "preview": "01_TEMPLATES/T36_Hero_Silhouette/preview/T36_Hero_Silhouette.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T37",
@@ -520,7 +520,7 @@
    "preview": "01_TEMPLATES/T37_Legacy_Reveal/preview/T37_Legacy_Reveal.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T38",
@@ -534,7 +534,7 @@
    "preview": "01_TEMPLATES/T38_Royal_Insignia/preview/T38_Royal_Insignia.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T39",
@@ -548,7 +548,7 @@
    "preview": "01_TEMPLATES/T39_Final_Boss/preview/T39_Final_Boss.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   },
   {
    "id": "T40",
@@ -562,12 +562,12 @@
    "preview": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/preview/T40_Ultimate_Mass_Elevation.mp4",
    "source_check": true,
    "preview_check": true,
-   "resolve_tested": false
+   "resolve_status": "BLOCKED"
   }
  ],
  "totals": {
-  "bytes": 178592674,
-  "files": 708
+  "bytes": 179017275,
+  "files": 724
  },
  "files": [
   {
@@ -576,11 +576,11 @@
   },
   {
    "path": "00_PROJECT_FILES/Project_Manifest.json",
-   "bytes": 90602
+   "bytes": 92398
   },
   {
    "path": "01_TEMPLATES/T01_Obsidian_Impact/README.md",
-   "bytes": 4034
+   "bytes": 4335
   },
   {
    "path": "01_TEMPLATES/T01_Obsidian_Impact/configuration/default_params.json",
@@ -600,7 +600,7 @@
   },
   {
    "path": "01_TEMPLATES/T01_Obsidian_Impact/manifest.json",
-   "bytes": 7230
+   "bytes": 7584
   },
   {
    "path": "01_TEMPLATES/T01_Obsidian_Impact/preview/T01_Obsidian_Impact.mp4",
@@ -620,7 +620,7 @@
   },
   {
    "path": "01_TEMPLATES/T02_Thunder_God/README.md",
-   "bytes": 4100
+   "bytes": 4401
   },
   {
    "path": "01_TEMPLATES/T02_Thunder_God/configuration/default_params.json",
@@ -640,7 +640,7 @@
   },
   {
    "path": "01_TEMPLATES/T02_Thunder_God/manifest.json",
-   "bytes": 7436
+   "bytes": 7790
   },
   {
    "path": "01_TEMPLATES/T02_Thunder_God/preview/T02_Thunder_God.mp4",
@@ -660,7 +660,7 @@
   },
   {
    "path": "01_TEMPLATES/T03_Molten_Core/README.md",
-   "bytes": 4207
+   "bytes": 4508
   },
   {
    "path": "01_TEMPLATES/T03_Molten_Core/configuration/default_params.json",
@@ -680,7 +680,7 @@
   },
   {
    "path": "01_TEMPLATES/T03_Molten_Core/manifest.json",
-   "bytes": 7733
+   "bytes": 8087
   },
   {
    "path": "01_TEMPLATES/T03_Molten_Core/preview/T03_Molten_Core.mp4",
@@ -700,7 +700,7 @@
   },
   {
    "path": "01_TEMPLATES/T04_Black_Steel_Reckoning/README.md",
-   "bytes": 4265
+   "bytes": 4566
   },
   {
    "path": "01_TEMPLATES/T04_Black_Steel_Reckoning/configuration/default_params.json",
@@ -720,7 +720,7 @@
   },
   {
    "path": "01_TEMPLATES/T04_Black_Steel_Reckoning/manifest.json",
-   "bytes": 7765
+   "bytes": 8119
   },
   {
    "path": "01_TEMPLATES/T04_Black_Steel_Reckoning/preview/T04_Black_Steel_Reckoning.mp4",
@@ -740,7 +740,7 @@
   },
   {
    "path": "01_TEMPLATES/T05_Shattered_Monolith/README.md",
-   "bytes": 4275
+   "bytes": 4576
   },
   {
    "path": "01_TEMPLATES/T05_Shattered_Monolith/configuration/default_params.json",
@@ -760,7 +760,7 @@
   },
   {
    "path": "01_TEMPLATES/T05_Shattered_Monolith/manifest.json",
-   "bytes": 7733
+   "bytes": 8087
   },
   {
    "path": "01_TEMPLATES/T05_Shattered_Monolith/preview/T05_Shattered_Monolith.mp4",
@@ -780,7 +780,7 @@
   },
   {
    "path": "01_TEMPLATES/T06_Inferno_Reveal/README.md",
-   "bytes": 4237
+   "bytes": 4538
   },
   {
    "path": "01_TEMPLATES/T06_Inferno_Reveal/configuration/default_params.json",
@@ -800,7 +800,7 @@
   },
   {
    "path": "01_TEMPLATES/T06_Inferno_Reveal/manifest.json",
-   "bytes": 7786
+   "bytes": 8140
   },
   {
    "path": "01_TEMPLATES/T06_Inferno_Reveal/preview/T06_Inferno_Reveal.mp4",
@@ -820,7 +820,7 @@
   },
   {
    "path": "01_TEMPLATES/T07_Explosive_Arrival/README.md",
-   "bytes": 5003
+   "bytes": 5304
   },
   {
    "path": "01_TEMPLATES/T07_Explosive_Arrival/configuration/default_params.json",
@@ -840,7 +840,7 @@
   },
   {
    "path": "01_TEMPLATES/T07_Explosive_Arrival/manifest.json",
-   "bytes": 8788
+   "bytes": 9142
   },
   {
    "path": "01_TEMPLATES/T07_Explosive_Arrival/preview/T07_Explosive_Arrival.mp4",
@@ -860,7 +860,7 @@
   },
   {
    "path": "01_TEMPLATES/T08_Ember_Storm/README.md",
-   "bytes": 4236
+   "bytes": 4537
   },
   {
    "path": "01_TEMPLATES/T08_Ember_Storm/configuration/default_params.json",
@@ -880,7 +880,7 @@
   },
   {
    "path": "01_TEMPLATES/T08_Ember_Storm/manifest.json",
-   "bytes": 7344
+   "bytes": 7698
   },
   {
    "path": "01_TEMPLATES/T08_Ember_Storm/preview/T08_Ember_Storm.mp4",
@@ -900,7 +900,7 @@
   },
   {
    "path": "01_TEMPLATES/T09_Ashes_of_Power/README.md",
-   "bytes": 4250
+   "bytes": 4551
   },
   {
    "path": "01_TEMPLATES/T09_Ashes_of_Power/configuration/default_params.json",
@@ -920,7 +920,7 @@
   },
   {
    "path": "01_TEMPLATES/T09_Ashes_of_Power/manifest.json",
-   "bytes": 7659
+   "bytes": 8013
   },
   {
    "path": "01_TEMPLATES/T09_Ashes_of_Power/preview/T09_Ashes_of_Power.mp4",
@@ -940,7 +940,7 @@
   },
   {
    "path": "01_TEMPLATES/T10_Shockwave_Dominance/README.md",
-   "bytes": 4675
+   "bytes": 4976
   },
   {
    "path": "01_TEMPLATES/T10_Shockwave_Dominance/configuration/default_params.json",
@@ -960,7 +960,7 @@
   },
   {
    "path": "01_TEMPLATES/T10_Shockwave_Dominance/manifest.json",
-   "bytes": 8340
+   "bytes": 8694
   },
   {
    "path": "01_TEMPLATES/T10_Shockwave_Dominance/preview/T10_Shockwave_Dominance.mp4",
@@ -980,7 +980,7 @@
   },
   {
    "path": "01_TEMPLATES/T11_Golden_Emperor/README.md",
-   "bytes": 4490
+   "bytes": 4791
   },
   {
    "path": "01_TEMPLATES/T11_Golden_Emperor/configuration/default_params.json",
@@ -1000,7 +1000,7 @@
   },
   {
    "path": "01_TEMPLATES/T11_Golden_Emperor/manifest.json",
-   "bytes": 8180
+   "bytes": 8534
   },
   {
    "path": "01_TEMPLATES/T11_Golden_Emperor/preview/T11_Golden_Emperor.mp4",
@@ -1020,7 +1020,7 @@
   },
   {
    "path": "01_TEMPLATES/T12_Chrome_Dominion/README.md",
-   "bytes": 4931
+   "bytes": 5232
   },
   {
    "path": "01_TEMPLATES/T12_Chrome_Dominion/configuration/default_params.json",
@@ -1040,7 +1040,7 @@
   },
   {
    "path": "01_TEMPLATES/T12_Chrome_Dominion/manifest.json",
-   "bytes": 8449
+   "bytes": 8803
   },
   {
    "path": "01_TEMPLATES/T12_Chrome_Dominion/preview/T12_Chrome_Dominion.mp4",
@@ -1060,7 +1060,7 @@
   },
   {
    "path": "01_TEMPLATES/T13_Titanium_Edge/README.md",
-   "bytes": 4561
+   "bytes": 4862
   },
   {
    "path": "01_TEMPLATES/T13_Titanium_Edge/configuration/default_params.json",
@@ -1080,7 +1080,7 @@
   },
   {
    "path": "01_TEMPLATES/T13_Titanium_Edge/manifest.json",
-   "bytes": 8089
+   "bytes": 8443
   },
   {
    "path": "01_TEMPLATES/T13_Titanium_Edge/preview/T13_Titanium_Edge.mp4",
@@ -1100,7 +1100,7 @@
   },
   {
    "path": "01_TEMPLATES/T14_Forged_In_Fire/README.md",
-   "bytes": 4436
+   "bytes": 4737
   },
   {
    "path": "01_TEMPLATES/T14_Forged_In_Fire/configuration/default_params.json",
@@ -1120,7 +1120,7 @@
   },
   {
    "path": "01_TEMPLATES/T14_Forged_In_Fire/manifest.json",
-   "bytes": 8183
+   "bytes": 8537
   },
   {
    "path": "01_TEMPLATES/T14_Forged_In_Fire/preview/T14_Forged_In_Fire.mp4",
@@ -1140,7 +1140,7 @@
   },
   {
    "path": "01_TEMPLATES/T15_Diamond_Cut/README.md",
-   "bytes": 4744
+   "bytes": 5045
   },
   {
    "path": "01_TEMPLATES/T15_Diamond_Cut/configuration/default_params.json",
@@ -1160,7 +1160,7 @@
   },
   {
    "path": "01_TEMPLATES/T15_Diamond_Cut/manifest.json",
-   "bytes": 8150
+   "bytes": 8504
   },
   {
    "path": "01_TEMPLATES/T15_Diamond_Cut/preview/T15_Diamond_Cut.mp4",
@@ -1180,7 +1180,7 @@
   },
   {
    "path": "01_TEMPLATES/T16_Ancient_Titan/README.md",
-   "bytes": 4353
+   "bytes": 4654
   },
   {
    "path": "01_TEMPLATES/T16_Ancient_Titan/configuration/default_params.json",
@@ -1200,7 +1200,7 @@
   },
   {
    "path": "01_TEMPLATES/T16_Ancient_Titan/manifest.json",
-   "bytes": 7763
+   "bytes": 8117
   },
   {
    "path": "01_TEMPLATES/T16_Ancient_Titan/preview/T16_Ancient_Titan.mp4",
@@ -1220,7 +1220,7 @@
   },
   {
    "path": "01_TEMPLATES/T17_Celestial_Ascent/README.md",
-   "bytes": 4642
+   "bytes": 4943
   },
   {
    "path": "01_TEMPLATES/T17_Celestial_Ascent/configuration/default_params.json",
@@ -1240,7 +1240,7 @@
   },
   {
    "path": "01_TEMPLATES/T17_Celestial_Ascent/manifest.json",
-   "bytes": 8067
+   "bytes": 8421
   },
   {
    "path": "01_TEMPLATES/T17_Celestial_Ascent/preview/T17_Celestial_Ascent.mp4",
@@ -1260,7 +1260,7 @@
   },
   {
    "path": "01_TEMPLATES/T18_Dark_Sorcery/README.md",
-   "bytes": 4579
+   "bytes": 4880
   },
   {
    "path": "01_TEMPLATES/T18_Dark_Sorcery/configuration/default_params.json",
@@ -1280,7 +1280,7 @@
   },
   {
    "path": "01_TEMPLATES/T18_Dark_Sorcery/manifest.json",
-   "bytes": 8086
+   "bytes": 8440
   },
   {
    "path": "01_TEMPLATES/T18_Dark_Sorcery/preview/T18_Dark_Sorcery.mp4",
@@ -1300,7 +1300,7 @@
   },
   {
    "path": "01_TEMPLATES/T19_Cosmic_Overlord/README.md",
-   "bytes": 4625
+   "bytes": 4926
   },
   {
    "path": "01_TEMPLATES/T19_Cosmic_Overlord/configuration/default_params.json",
@@ -1320,7 +1320,7 @@
   },
   {
    "path": "01_TEMPLATES/T19_Cosmic_Overlord/manifest.json",
-   "bytes": 7850
+   "bytes": 8204
   },
   {
    "path": "01_TEMPLATES/T19_Cosmic_Overlord/preview/T19_Cosmic_Overlord.mp4",
@@ -1340,7 +1340,7 @@
   },
   {
    "path": "01_TEMPLATES/T20_Phoenix_Reborn/README.md",
-   "bytes": 4738
+   "bytes": 5039
   },
   {
    "path": "01_TEMPLATES/T20_Phoenix_Reborn/configuration/default_params.json",
@@ -1360,7 +1360,7 @@
   },
   {
    "path": "01_TEMPLATES/T20_Phoenix_Reborn/manifest.json",
-   "bytes": 8196
+   "bytes": 8550
   },
   {
    "path": "01_TEMPLATES/T20_Phoenix_Reborn/preview/T20_Phoenix_Reborn.mp4",
@@ -1380,7 +1380,7 @@
   },
   {
    "path": "01_TEMPLATES/T21_Neon_Overdrive/README.md",
-   "bytes": 4231
+   "bytes": 4532
   },
   {
    "path": "01_TEMPLATES/T21_Neon_Overdrive/configuration/default_params.json",
@@ -1400,7 +1400,7 @@
   },
   {
    "path": "01_TEMPLATES/T21_Neon_Overdrive/manifest.json",
-   "bytes": 7079
+   "bytes": 7433
   },
   {
    "path": "01_TEMPLATES/T21_Neon_Overdrive/preview/T21_Neon_Overdrive.mp4",
@@ -1420,7 +1420,7 @@
   },
   {
    "path": "01_TEMPLATES/T22_Hologram_Breach/README.md",
-   "bytes": 5086
+   "bytes": 5387
   },
   {
    "path": "01_TEMPLATES/T22_Hologram_Breach/configuration/default_params.json",
@@ -1440,7 +1440,7 @@
   },
   {
    "path": "01_TEMPLATES/T22_Hologram_Breach/manifest.json",
-   "bytes": 8403
+   "bytes": 8757
   },
   {
    "path": "01_TEMPLATES/T22_Hologram_Breach/preview/T22_Hologram_Breach.mp4",
@@ -1460,7 +1460,7 @@
   },
   {
    "path": "01_TEMPLATES/T23_Digital_Awakening/README.md",
-   "bytes": 4500
+   "bytes": 4801
   },
   {
    "path": "01_TEMPLATES/T23_Digital_Awakening/configuration/default_params.json",
@@ -1480,7 +1480,7 @@
   },
   {
    "path": "01_TEMPLATES/T23_Digital_Awakening/manifest.json",
-   "bytes": 7658
+   "bytes": 8012
   },
   {
    "path": "01_TEMPLATES/T23_Digital_Awakening/preview/T23_Digital_Awakening.mp4",
@@ -1500,7 +1500,7 @@
   },
   {
    "path": "01_TEMPLATES/T24_Quantum_Split/README.md",
-   "bytes": 4249
+   "bytes": 4550
   },
   {
    "path": "01_TEMPLATES/T24_Quantum_Split/configuration/default_params.json",
@@ -1520,7 +1520,7 @@
   },
   {
    "path": "01_TEMPLATES/T24_Quantum_Split/manifest.json",
-   "bytes": 7436
+   "bytes": 7790
   },
   {
    "path": "01_TEMPLATES/T24_Quantum_Split/preview/T24_Quantum_Split.mp4",
@@ -1540,7 +1540,7 @@
   },
   {
    "path": "01_TEMPLATES/T25_Future_Warlord/README.md",
-   "bytes": 4512
+   "bytes": 4813
   },
   {
    "path": "01_TEMPLATES/T25_Future_Warlord/configuration/default_params.json",
@@ -1560,7 +1560,7 @@
   },
   {
    "path": "01_TEMPLATES/T25_Future_Warlord/manifest.json",
-   "bytes": 7908
+   "bytes": 8262
   },
   {
    "path": "01_TEMPLATES/T25_Future_Warlord/preview/T25_Future_Warlord.mp4",
@@ -1580,7 +1580,7 @@
   },
   {
    "path": "01_TEMPLATES/T26_Extreme_Close_Up/README.md",
-   "bytes": 4583
+   "bytes": 4884
   },
   {
    "path": "01_TEMPLATES/T26_Extreme_Close_Up/configuration/default_params.json",
@@ -1600,7 +1600,7 @@
   },
   {
    "path": "01_TEMPLATES/T26_Extreme_Close_Up/manifest.json",
-   "bytes": 7588
+   "bytes": 7942
   },
   {
    "path": "01_TEMPLATES/T26_Extreme_Close_Up/preview/T26_Extreme_Close_Up.mp4",
@@ -1620,7 +1620,7 @@
   },
   {
    "path": "01_TEMPLATES/T27_Low_Angle_Titan/README.md",
-   "bytes": 4659
+   "bytes": 4960
   },
   {
    "path": "01_TEMPLATES/T27_Low_Angle_Titan/configuration/default_params.json",
@@ -1640,7 +1640,7 @@
   },
   {
    "path": "01_TEMPLATES/T27_Low_Angle_Titan/manifest.json",
-   "bytes": 8172
+   "bytes": 8526
   },
   {
    "path": "01_TEMPLATES/T27_Low_Angle_Titan/preview/T27_Low_Angle_Titan.mp4",
@@ -1660,7 +1660,7 @@
   },
   {
    "path": "01_TEMPLATES/T28_Rotating_Monolith/README.md",
-   "bytes": 4831
+   "bytes": 5132
   },
   {
    "path": "01_TEMPLATES/T28_Rotating_Monolith/configuration/default_params.json",
@@ -1680,7 +1680,7 @@
   },
   {
    "path": "01_TEMPLATES/T28_Rotating_Monolith/manifest.json",
-   "bytes": 8420
+   "bytes": 8774
   },
   {
    "path": "01_TEMPLATES/T28_Rotating_Monolith/preview/T28_Rotating_Monolith.mp4",
@@ -1700,7 +1700,7 @@
   },
   {
    "path": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/README.md",
-   "bytes": 5230
+   "bytes": 5531
   },
   {
    "path": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/configuration/default_params.json",
@@ -1720,7 +1720,7 @@
   },
   {
    "path": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/manifest.json",
-   "bytes": 8444
+   "bytes": 8798
   },
   {
    "path": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/preview/T29_Cinematic_Letter_Assembly.mp4",
@@ -1740,7 +1740,7 @@
   },
   {
    "path": "01_TEMPLATES/T30_Speed_Ramp_Dominance/README.md",
-   "bytes": 4316
+   "bytes": 4617
   },
   {
    "path": "01_TEMPLATES/T30_Speed_Ramp_Dominance/configuration/default_params.json",
@@ -1760,7 +1760,7 @@
   },
   {
    "path": "01_TEMPLATES/T30_Speed_Ramp_Dominance/manifest.json",
-   "bytes": 7400
+   "bytes": 7754
   },
   {
    "path": "01_TEMPLATES/T30_Speed_Ramp_Dominance/preview/T30_Speed_Ramp_Dominance.mp4",
@@ -1780,7 +1780,7 @@
   },
   {
    "path": "01_TEMPLATES/T31_Midnight_Fog/README.md",
-   "bytes": 4241
+   "bytes": 4542
   },
   {
    "path": "01_TEMPLATES/T31_Midnight_Fog/configuration/default_params.json",
@@ -1800,7 +1800,7 @@
   },
   {
    "path": "01_TEMPLATES/T31_Midnight_Fog/manifest.json",
-   "bytes": 6790
+   "bytes": 7144
   },
   {
    "path": "01_TEMPLATES/T31_Midnight_Fog/preview/T31_Midnight_Fog.mp4",
@@ -1820,7 +1820,7 @@
   },
   {
    "path": "01_TEMPLATES/T32_Rain_And_Steel/README.md",
-   "bytes": 4282
+   "bytes": 4583
   },
   {
    "path": "01_TEMPLATES/T32_Rain_And_Steel/configuration/default_params.json",
@@ -1840,7 +1840,7 @@
   },
   {
    "path": "01_TEMPLATES/T32_Rain_And_Steel/manifest.json",
-   "bytes": 7691
+   "bytes": 8045
   },
   {
    "path": "01_TEMPLATES/T32_Rain_And_Steel/preview/T32_Rain_And_Steel.mp4",
@@ -1860,7 +1860,7 @@
   },
   {
    "path": "01_TEMPLATES/T33_Desert_Storm/README.md",
-   "bytes": 4374
+   "bytes": 4675
   },
   {
    "path": "01_TEMPLATES/T33_Desert_Storm/configuration/default_params.json",
@@ -1880,7 +1880,7 @@
   },
   {
    "path": "01_TEMPLATES/T33_Desert_Storm/manifest.json",
-   "bytes": 7326
+   "bytes": 7680
   },
   {
    "path": "01_TEMPLATES/T33_Desert_Storm/preview/T33_Desert_Storm.mp4",
@@ -1900,7 +1900,7 @@
   },
   {
    "path": "01_TEMPLATES/T34_Underwater_Colossus/README.md",
-   "bytes": 4296
+   "bytes": 4597
   },
   {
    "path": "01_TEMPLATES/T34_Underwater_Colossus/configuration/default_params.json",
@@ -1920,7 +1920,7 @@
   },
   {
    "path": "01_TEMPLATES/T34_Underwater_Colossus/manifest.json",
-   "bytes": 6997
+   "bytes": 7351
   },
   {
    "path": "01_TEMPLATES/T34_Underwater_Colossus/preview/T34_Underwater_Colossus.mp4",
@@ -1940,7 +1940,7 @@
   },
   {
    "path": "01_TEMPLATES/T35_Frozen_Kingdom/README.md",
-   "bytes": 4298
+   "bytes": 4599
   },
   {
    "path": "01_TEMPLATES/T35_Frozen_Kingdom/configuration/default_params.json",
@@ -1960,7 +1960,7 @@
   },
   {
    "path": "01_TEMPLATES/T35_Frozen_Kingdom/manifest.json",
-   "bytes": 6867
+   "bytes": 7221
   },
   {
    "path": "01_TEMPLATES/T35_Frozen_Kingdom/preview/T35_Frozen_Kingdom.mp4",
@@ -1980,7 +1980,7 @@
   },
   {
    "path": "01_TEMPLATES/T36_Hero_Silhouette/README.md",
-   "bytes": 4257
+   "bytes": 4558
   },
   {
    "path": "01_TEMPLATES/T36_Hero_Silhouette/configuration/default_params.json",
@@ -2000,7 +2000,7 @@
   },
   {
    "path": "01_TEMPLATES/T36_Hero_Silhouette/manifest.json",
-   "bytes": 6922
+   "bytes": 7276
   },
   {
    "path": "01_TEMPLATES/T36_Hero_Silhouette/preview/T36_Hero_Silhouette.mp4",
@@ -2020,7 +2020,7 @@
   },
   {
    "path": "01_TEMPLATES/T37_Legacy_Reveal/README.md",
-   "bytes": 4236
+   "bytes": 4537
   },
   {
    "path": "01_TEMPLATES/T37_Legacy_Reveal/configuration/default_params.json",
@@ -2040,7 +2040,7 @@
   },
   {
    "path": "01_TEMPLATES/T37_Legacy_Reveal/manifest.json",
-   "bytes": 6437
+   "bytes": 6791
   },
   {
    "path": "01_TEMPLATES/T37_Legacy_Reveal/preview/T37_Legacy_Reveal.mp4",
@@ -2060,7 +2060,7 @@
   },
   {
    "path": "01_TEMPLATES/T38_Royal_Insignia/README.md",
-   "bytes": 4867
+   "bytes": 5168
   },
   {
    "path": "01_TEMPLATES/T38_Royal_Insignia/configuration/default_params.json",
@@ -2080,7 +2080,7 @@
   },
   {
    "path": "01_TEMPLATES/T38_Royal_Insignia/manifest.json",
-   "bytes": 8188
+   "bytes": 8542
   },
   {
    "path": "01_TEMPLATES/T38_Royal_Insignia/preview/T38_Royal_Insignia.mp4",
@@ -2100,7 +2100,7 @@
   },
   {
    "path": "01_TEMPLATES/T39_Final_Boss/README.md",
-   "bytes": 4348
+   "bytes": 4649
   },
   {
    "path": "01_TEMPLATES/T39_Final_Boss/configuration/default_params.json",
@@ -2120,7 +2120,7 @@
   },
   {
    "path": "01_TEMPLATES/T39_Final_Boss/manifest.json",
-   "bytes": 7406
+   "bytes": 7760
   },
   {
    "path": "01_TEMPLATES/T39_Final_Boss/preview/T39_Final_Boss.mp4",
@@ -2140,7 +2140,7 @@
   },
   {
    "path": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/README.md",
-   "bytes": 4599
+   "bytes": 4900
   },
   {
    "path": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/configuration/default_params.json",
@@ -2160,7 +2160,7 @@
   },
   {
    "path": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/manifest.json",
-   "bytes": 8711
+   "bytes": 9065
   },
   {
    "path": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/preview/T40_Ultimate_Mass_Elevation.mp4",
@@ -3056,19 +3056,55 @@
   },
   {
    "path": "05_RESOLVE_IMPORT/Resolve_Test_Checklist.md",
-   "bytes": 14056
+   "bytes": 15382
   },
   {
    "path": "05_RESOLVE_IMPORT/install_titles.ps1",
    "bytes": 3850
   },
   {
+   "path": "06_AUTOMATION/Resolve/CMET_Run_Resolve_Tests_stub.py",
+   "bytes": 775
+  },
+  {
+   "path": "06_AUTOMATION/Resolve/README.md",
+   "bytes": 6320
+  },
+  {
+   "path": "06_AUTOMATION/Resolve/analyze_resolve_run.py",
+   "bytes": 14395
+  },
+  {
+   "path": "06_AUTOMATION/Resolve/build_inventory.py",
+   "bytes": 4137
+  },
+  {
+   "path": "06_AUTOMATION/Resolve/resolve_harness.py",
+   "bytes": 19826
+  },
+  {
+   "path": "06_AUTOMATION/Resolve/resolve_test_inventory.json",
+   "bytes": 246002
+  },
+  {
+   "path": "06_AUTOMATION/Resolve/run_resolve_tests.ps1",
+   "bytes": 10561
+  },
+  {
+   "path": "06_AUTOMATION/Resolve/selftest/DaVinciResolveScript.py",
+   "bytes": 5276
+  },
+  {
+   "path": "06_AUTOMATION/Resolve/selftest/selftest_mock.py",
+   "bytes": 1567
+  },
+  {
    "path": "06_AUTOMATION/Scripts/build.py",
-   "bytes": 9933
+   "bytes": 11314
   },
   {
    "path": "06_AUTOMATION/Scripts/catalog.py",
-   "bytes": 13306
+   "bytes": 13634
   },
   {
    "path": "06_AUTOMATION/Scripts/check_design.py",
@@ -3268,7 +3304,7 @@
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/export.py",
-   "bytes": 12759
+   "bytes": 13148
   },
   {
    "path": "06_AUTOMATION/Scripts/cmet/fcomp.py",
@@ -3300,7 +3336,7 @@
   },
   {
    "path": "06_AUTOMATION/Scripts/final_report.py",
-   "bytes": 8014
+   "bytes": 10839
   },
   {
    "path": "06_AUTOMATION/Scripts/fix_categories.py",
@@ -3312,7 +3348,7 @@
   },
   {
    "path": "06_AUTOMATION/Scripts/qa.py",
-   "bytes": 11736
+   "bytes": 13187
   },
   {
    "path": "06_AUTOMATION/Scripts/render_title.py",
@@ -3320,7 +3356,7 @@
   },
   {
    "path": "06_AUTOMATION/Scripts/run_tests.py",
-   "bytes": 14160
+   "bytes": 15346
   },
   {
    "path": "06_AUTOMATION/Scripts/stills.py",
@@ -3333,6 +3369,34 @@
   {
    "path": "06_AUTOMATION/Validation/build_state.json",
    "bytes": 31394
+  },
+  {
+   "path": "06_AUTOMATION/Validation/resolve/cloud_build_env_audit_20261011.json",
+   "bytes": 698
+  },
+  {
+   "path": "06_AUTOMATION/Validation/resolve/cloud_build_env_audit_20261011.md",
+   "bytes": 675
+  },
+  {
+   "path": "06_AUTOMATION/Validation/resolve_runs/cloud_build_env_20261011/harness_log.txt",
+   "bytes": 274
+  },
+  {
+   "path": "06_AUTOMATION/Validation/resolve_runs/cloud_build_env_20261011/harness_results.json",
+   "bytes": 195
+  },
+  {
+   "path": "06_AUTOMATION/Validation/resolve_runs/cloud_build_env_20261011/resolve_test_results.json",
+   "bytes": 26445
+  },
+  {
+   "path": "06_AUTOMATION/Validation/resolve_runs/cloud_build_env_20261011/resolve_test_results.md",
+   "bytes": 3593
+  },
+  {
+   "path": "06_AUTOMATION/Validation/resolve_test_results.json",
+   "bytes": 27787
   },
   {
    "path": "06_AUTOMATION/Validation/test_results.json",
@@ -3368,11 +3432,11 @@
   },
   {
    "path": "COMPATIBILITY_REPORT.md",
-   "bytes": 10387
+   "bytes": 12164
   },
   {
    "path": "FINAL_REPORT.md",
-   "bytes": 10926
+   "bytes": 14306
   },
   {
    "path": "INSTALLATION_GUIDE.md",
@@ -3380,7 +3444,7 @@
   },
   {
    "path": "QUALITY_ASSURANCE_REPORT.md",
-   "bytes": 6098
+   "bytes": 6065
   },
   {
    "path": "README.md",
