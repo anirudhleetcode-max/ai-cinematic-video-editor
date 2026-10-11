@@ -1,0 +1,2154 @@
+-- T13_Titanium_Edge: Cinematic Mass Elevation Templates (flat composition)
+-- Final image: tool 'Letterbox'. In Resolve's Fusion page connect it to MediaOut1.
+Composition {
+	CurrentTime = 0,
+	RenderRange = { 0, 167 },
+	GlobalRange = { 0, 167 },
+	HiQ = true,
+	PlaybackUpdateMode = 0,
+	Version = "Fusion 18 (generated)",
+	SavedOutputs = 0,
+	HeldTools = 0,
+	DisabledTools = 0,
+	LockedTools = 0,
+	AudioOffset = 0,
+	Resumable = true,
+	OutputClips = { },
+	Tools = ordered() {
+		CONTROLS = Transform {
+			Inputs = {
+				AnimStart = Input {
+					Value = 12,
+				},
+				AnimDuration = Input {
+					Value = 50,
+				},
+				ImpactFrame = Input {
+					Value = 62,
+				},
+				ExitStart = Input {
+					Value = 128,
+				},
+				ExitDuration = Input {
+					Value = 26,
+				},
+				BackgroundIntensity = Input {
+					Value = 1,
+				},
+				GlowStrength = Input {
+					Value = 1,
+				},
+				ImpactIntensity = Input {
+					Value = 1,
+				},
+				ShakeAmount = Input {
+					Value = 1,
+				},
+				TextScale = Input {
+					Value = 1,
+				},
+				TextPosX = Input {
+					Value = 0.5,
+				},
+				TextPosY = Input {
+					Value = 0.5,
+				},
+				TextRotation = Input {
+					Value = 0,
+				},
+				ExtrusionDepth = Input {
+					Value = 1,
+				},
+				BevelAmount = Input {
+					Value = 1,
+				},
+				Letterbox = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 0, -66 },
+			},
+			UserControls = ordered() {
+				AnimStart = {
+					LINKS_Name = "Animation Start (frames)",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 12,
+					INP_MinScale = 0,
+					INP_MaxScale = 120,
+					INP_Integer = true,
+					ICS_ControlPage = "Controls",
+				},
+				AnimDuration = {
+					LINKS_Name = "Reveal Duration (frames)",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 50,
+					INP_MinScale = 1,
+					INP_MaxScale = 144,
+					INP_Integer = true,
+					ICS_ControlPage = "Controls",
+				},
+				ImpactFrame = {
+					LINKS_Name = "Impact Frame",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 62,
+					INP_MinScale = 0,
+					INP_MaxScale = 240,
+					INP_Integer = true,
+					ICS_ControlPage = "Controls",
+				},
+				ExitStart = {
+					LINKS_Name = "Exit Start (frame)",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 128,
+					INP_MinScale = 0,
+					INP_MaxScale = 300,
+					INP_Integer = true,
+					ICS_ControlPage = "Controls",
+				},
+				ExitDuration = {
+					LINKS_Name = "Exit Duration (frames)",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 26,
+					INP_MinScale = 1,
+					INP_MaxScale = 120,
+					INP_Integer = true,
+					ICS_ControlPage = "Controls",
+				},
+				BackgroundIntensity = {
+					LINKS_Name = "Background Intensity",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 1,
+					INP_MinScale = 0,
+					INP_MaxScale = 2,
+					ICS_ControlPage = "Controls",
+				},
+				GlowStrength = {
+					LINKS_Name = "Glow Strength",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 1,
+					INP_MinScale = 0,
+					INP_MaxScale = 3,
+					ICS_ControlPage = "Controls",
+				},
+				ImpactIntensity = {
+					LINKS_Name = "Impact Intensity",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 1,
+					INP_MinScale = 0,
+					INP_MaxScale = 2,
+					ICS_ControlPage = "Controls",
+				},
+				ShakeAmount = {
+					LINKS_Name = "Camera Shake",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 1,
+					INP_MinScale = 0,
+					INP_MaxScale = 3,
+					ICS_ControlPage = "Controls",
+				},
+				TextScale = {
+					LINKS_Name = "Text Scale",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 1,
+					INP_MinScale = 0.2,
+					INP_MaxScale = 3,
+					ICS_ControlPage = "Controls",
+				},
+				TextPosX = {
+					LINKS_Name = "Text Position X",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 0.5,
+					INP_MinScale = 0,
+					INP_MaxScale = 1,
+					ICS_ControlPage = "Controls",
+				},
+				TextPosY = {
+					LINKS_Name = "Text Position Y",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 0.5,
+					INP_MinScale = 0,
+					INP_MaxScale = 1,
+					ICS_ControlPage = "Controls",
+				},
+				TextRotation = {
+					LINKS_Name = "Text Rotation",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 0,
+					INP_MinScale = -180,
+					INP_MaxScale = 180,
+					ICS_ControlPage = "Controls",
+				},
+				ExtrusionDepth = {
+					LINKS_Name = "Extrusion Depth",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 1,
+					INP_MinScale = 0,
+					INP_MaxScale = 3,
+					ICS_ControlPage = "Controls",
+				},
+				BevelAmount = {
+					LINKS_Name = "Bevel Amount",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 1,
+					INP_MinScale = 0,
+					INP_MaxScale = 3,
+					ICS_ControlPage = "Controls",
+				},
+				Letterbox = {
+					LINKS_Name = "Letterbox (2.39:1)",
+					LINKID_DataType = "Number",
+					INPID_InputControl = "SliderControl",
+					INP_Default = 1,
+					INP_MinScale = 0,
+					INP_MaxScale = 1,
+					ICS_ControlPage = "Controls",
+				},
+			},
+		},
+		ACCENT = Background {
+			Inputs = {
+				Width = Input {
+					Value = 1920,
+				},
+				Height = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				TopLeftRed = Input {
+					Value = 0.556863,
+				},
+				TopLeftGreen = Input {
+					Value = 0.784314,
+				},
+				TopLeftBlue = Input {
+					Value = 1,
+				},
+				TopLeftAlpha = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 110, -66 },
+			},
+		},
+		SlateGradient = Background {
+			Inputs = {
+				Width = Input {
+					Value = 1920,
+				},
+				Height = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				Type = Input {
+					Value = FuID { "Gradient" },
+				},
+				GradientType = Input {
+					Value = FuID { "Radial" },
+				},
+				Start = Input {
+					Value = { 0.5, 0.5 },
+				},
+				End = Input {
+					Value = { 1.2, 0 },
+				},
+				Gradient = Input {
+					Value = Gradient {
+						Colors = {
+							[0] = { 0.082353, 0.101961, 0.133333, 1 },
+							[1] = { 0.007843, 0.011765, 0.019608, 1 }
+						}
+					},
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 0, 0 },
+			},
+		},
+		TechGrid = FastNoise {
+			Inputs = {
+				Width = Input {
+					Value = 1920,
+				},
+				Height = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				Detail = Input {
+					Value = 1,
+				},
+				XScale = Input {
+					Value = 40,
+				},
+				SeetheRate = Input {
+					Value = 0,
+				},
+				Contrast = Input {
+					Value = 4,
+				},
+				Brightness = Input {
+					Value = 0,
+				},
+				Angle = Input {
+					Value = 0,
+				},
+				Color1Red = Input {
+					Value = 0,
+				},
+				Color1Green = Input {
+					Value = 0,
+				},
+				Color1Blue = Input {
+					Value = 0,
+				},
+				Color1Alpha = Input {
+					Value = 1,
+				},
+				Color2Red = Input {
+					Value = 0.164706,
+				},
+				Color2Green = Input {
+					Value = 0.203922,
+				},
+				Color2Blue = Input {
+					Value = 0.258824,
+				},
+				Color2Alpha = Input {
+					Value = 1,
+				},
+				Discontinuous = Input {
+					Value = 1,
+				},
+				EffectMask = Input {
+					SourceOp = "GridFalloff",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 110, 0 },
+			},
+		},
+		GridFalloff = EllipseMask {
+			Inputs = {
+				SoftEdge = Input {
+					Value = 0.5,
+				},
+				Center = Input {
+					Value = { 0.5, 0.5 },
+				},
+				Width = Input {
+					Value = 1.6,
+				},
+				Height = Input {
+					Value = 0.9,
+				},
+				Angle = Input {
+					Value = 0,
+				},
+				MaskWidth = Input {
+					Value = 1920,
+				},
+				MaskHeight = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 220, 0 },
+			},
+		},
+		GridMerge = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "SlateGradient",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "TechGrid",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				ApplyMode = Input {
+					Value = FuID { "Screen" },
+				},
+				Blend = Input {
+					Value = 1,
+					Expression = "0.25*CONTROLS.BackgroundIntensity",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 330, 0 },
+			},
+		},
+		RailTopColor = Background {
+			Inputs = {
+				Width = Input {
+					Value = 1920,
+				},
+				Height = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				TopLeftRed = Input {
+					Value = 1,
+					Expression = "ACCENT.TopLeftRed*1.0",
+				},
+				TopLeftGreen = Input {
+					Value = 1,
+					Expression = "ACCENT.TopLeftGreen*1.0",
+				},
+				TopLeftBlue = Input {
+					Value = 1,
+					Expression = "ACCENT.TopLeftBlue*1.0",
+				},
+				TopLeftAlpha = Input {
+					Value = 1,
+				},
+				EffectMask = Input {
+					SourceOp = "RailTopShape",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 440, 0 },
+			},
+		},
+		RailTopShape = RectangleMask {
+			Inputs = {
+				SoftEdge = Input {
+					Value = 0.0008,
+				},
+				Center = Input {
+					Value = { 0.5, 0.585 },
+				},
+				Width = Input {
+					Value = 0.84,
+					Expression = "0.84*((1 - pow(1 - min(max((time - (1)) / max(11, 1), 0), 1), 3)) - pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.ExitDuration*0.4)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2))",
+				},
+				Height = Input {
+					Value = 0.0016,
+				},
+				Angle = Input {
+					Value = 0,
+				},
+				MaskWidth = Input {
+					Value = 1920,
+				},
+				MaskHeight = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 550, 0 },
+			},
+		},
+		RailTop = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "GridMerge",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "RailTopColor",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				ApplyMode = Input {
+					Value = FuID { "Screen" },
+				},
+				Blend = Input {
+					Value = 1,
+					Expression = "CONTROLS.BackgroundIntensity*(0.35 - 0.2*min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1) + 0.3*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 6)))",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 660, 0 },
+			},
+		},
+		RailBottomColor = Background {
+			Inputs = {
+				Width = Input {
+					Value = 1920,
+				},
+				Height = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				TopLeftRed = Input {
+					Value = 1,
+					Expression = "ACCENT.TopLeftRed*1.0",
+				},
+				TopLeftGreen = Input {
+					Value = 1,
+					Expression = "ACCENT.TopLeftGreen*1.0",
+				},
+				TopLeftBlue = Input {
+					Value = 1,
+					Expression = "ACCENT.TopLeftBlue*1.0",
+				},
+				TopLeftAlpha = Input {
+					Value = 1,
+				},
+				EffectMask = Input {
+					SourceOp = "RailBottomShape",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 770, 0 },
+			},
+		},
+		RailBottomShape = RectangleMask {
+			Inputs = {
+				SoftEdge = Input {
+					Value = 0.0008,
+				},
+				Center = Input {
+					Value = { 0.5, 0.415 },
+				},
+				Width = Input {
+					Value = 0.84,
+					Expression = "0.84*((1 - pow(1 - min(max((time - (1)) / max(11, 1), 0), 1), 3)) - pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.ExitDuration*0.4)) / max(CONTROLS.ExitDuration*0.6, 1), 0), 1), 2))",
+				},
+				Height = Input {
+					Value = 0.0016,
+				},
+				Angle = Input {
+					Value = 0,
+				},
+				MaskWidth = Input {
+					Value = 1920,
+				},
+				MaskHeight = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 880, 0 },
+			},
+		},
+		RailBottom = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "RailTop",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "RailBottomColor",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				ApplyMode = Input {
+					Value = FuID { "Screen" },
+				},
+				Blend = Input {
+					Value = 1,
+					Expression = "CONTROLS.BackgroundIntensity*(0.35 - 0.2*min(max(time - (CONTROLS.ImpactFrame) + 1, 0), 1) + 0.3*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 6)))",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 990, 0 },
+			},
+		},
+		ScanColor = Background {
+			Inputs = {
+				Width = Input {
+					Value = 1920,
+				},
+				Height = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				TopLeftRed = Input {
+					Value = 1,
+					Expression = "ACCENT.TopLeftRed*1.0",
+				},
+				TopLeftGreen = Input {
+					Value = 1,
+					Expression = "ACCENT.TopLeftGreen*1.0",
+				},
+				TopLeftBlue = Input {
+					Value = 1,
+					Expression = "ACCENT.TopLeftBlue*1.0",
+				},
+				TopLeftAlpha = Input {
+					Value = 1,
+				},
+				EffectMask = Input {
+					SourceOp = "ScanShape",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 1100, 0 },
+			},
+		},
+		ScanShape = RectangleMask {
+			Inputs = {
+				SoftEdge = Input {
+					Value = 0.004,
+				},
+				Center = Input {
+					Value = { 0.5, 0.5 },
+					Expression = "Point(-0.05 + 1.1*min(max((time - (2)) / max(CONTROLS.AnimStart + CONTROLS.AnimDuration, 1), 0), 1), 0.5)",
+				},
+				Width = Input {
+					Value = 0.003,
+				},
+				Height = Input {
+					Value = 0.5,
+				},
+				Angle = Input {
+					Value = 0,
+				},
+				MaskWidth = Input {
+					Value = 1920,
+				},
+				MaskHeight = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 1210, 0 },
+			},
+		},
+		ScanLine = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "RailBottom",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "ScanColor",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				ApplyMode = Input {
+					Value = FuID { "Screen" },
+				},
+				Blend = Input {
+					Value = 1,
+					Expression = "0.3*CONTROLS.BackgroundIntensity*(1 - min(max(time - (CONTROLS.AnimStart + CONTROLS.AnimDuration) + 1, 0), 1))",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 1320, 0 },
+			},
+		},
+		TitaniumMtl = MtlBlinn {
+			Inputs = {
+				["Diffuse.Color.Red"] = Input {
+					Value = 0.603922,
+				},
+				["Diffuse.Color.Green"] = Input {
+					Value = 0.639216,
+				},
+				["Diffuse.Color.Blue"] = Input {
+					Value = 0.682353,
+				},
+				["Specular.Color.Red"] = Input {
+					Value = 0.8,
+				},
+				["Specular.Color.Green"] = Input {
+					Value = 0.9,
+				},
+				["Specular.Color.Blue"] = Input {
+					Value = 1,
+				},
+				["Specular.Intensity"] = Input {
+					Value = 1,
+				},
+				["Specular.Exponent"] = Input {
+					Value = 120,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 0, 66 },
+			},
+		},
+		TitaniumText3D = Text3D {
+			Inputs = {
+				StyledText = Input {
+					Value = "TITANIUM",
+				},
+				Font = Input {
+					Value = "Russo One",
+				},
+				Style = Input {
+					Value = "Regular",
+				},
+				Size = Input {
+					Value = 0.4,
+				},
+				CharacterSpacing = Input {
+					Value = 1.05,
+				},
+				ExtrusionStyle = Input {
+					Value = 1,
+				},
+				ExtrusionDepth = Input {
+					Value = 0.1,
+					Expression = "0.1*CONTROLS.ExtrusionDepth",
+				},
+				BevelDepth = Input {
+					Value = 0.012,
+					Expression = "0.012*CONTROLS.BevelAmount",
+				},
+				BevelWidth = Input {
+					Value = 0.012,
+					Expression = "0.012*CONTROLS.BevelAmount",
+				},
+				MaterialInput = Input {
+					SourceOp = "TitaniumMtl",
+					Source = "MaterialOutput",
+				},
+				["Transform3DOp.Rotate.Y"] = Input {
+					Value = 0,
+					Expression = "14*(1 - (0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration + 14, 1), 0), 1))))",
+				},
+				["Transform3DOp.Rotate.X"] = Input {
+					Value = 0,
+					Expression = "0",
+				},
+				["Transform3DOp.Translate.Z"] = Input {
+					Value = 0,
+					Expression = "0",
+				},
+				["Transform3DOp.Translate.X"] = Input {
+					Value = 0,
+					Expression = "(CONTROLS.TextPosX - 0.5)*4",
+				},
+				["Transform3DOp.Translate.Y"] = Input {
+					Value = 0,
+					Expression = "(CONTROLS.TextPosY - 0.5)*2.25",
+				},
+				["Transform3DOp.Rotate.Z"] = Input {
+					Value = 0,
+					Expression = "CONTROLS.TextRotation",
+				},
+				["Transform3DOp.Scale.X"] = Input {
+					Value = 1,
+					Expression = "CONTROLS.TextScale",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 110, 66 },
+			},
+		},
+		TitaniumCamera = Camera3D {
+			Inputs = {
+				["Transform3DOp.Translate.Z"] = Input {
+					Value = 4,
+					Expression = "4.2 - 0.25*(0.5 - 0.5*cos(3.14159265*min(max((time - (0)) / max(168, 1), 0), 1)))",
+				},
+				["Transform3DOp.Translate.X"] = Input {
+					Value = 0,
+					Expression = "0",
+				},
+				["Transform3DOp.Translate.Y"] = Input {
+					Value = 0,
+					Expression = "0.05",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 220, 66 },
+			},
+		},
+		TitaniumKey = LightDirectional {
+			Inputs = {
+				Red = Input {
+					Value = 0.85,
+				},
+				Green = Input {
+					Value = 0.92,
+				},
+				Blue = Input {
+					Value = 1,
+				},
+				Intensity = Input {
+					Value = 1.2,
+				},
+				["Transform3DOp.Rotate.X"] = Input {
+					Value = -35,
+				},
+				["Transform3DOp.Rotate.Y"] = Input {
+					Value = -25,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 330, 66 },
+			},
+		},
+		TitaniumAmbient = LightAmbient {
+			Inputs = {
+				Intensity = Input {
+					Value = 0.1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 440, 66 },
+			},
+		},
+		TitaniumScene = Merge3D {
+			Inputs = {
+				SceneInput1 = Input {
+					SourceOp = "TitaniumText3D",
+					Source = "Output",
+				},
+				SceneInput2 = Input {
+					SourceOp = "TitaniumCamera",
+					Source = "Output",
+				},
+				SceneInput3 = Input {
+					SourceOp = "TitaniumKey",
+					Source = "Output",
+				},
+				SceneInput4 = Input {
+					SourceOp = "TitaniumAmbient",
+					Source = "Output",
+				},
+				SceneInput5 = Input {
+					SourceOp = "TitaniumRim",
+					Source = "Output",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 550, 66 },
+			},
+		},
+		TitaniumRim = LightSpot {
+			Inputs = {
+				Red = Input {
+					Value = 0.6,
+				},
+				Green = Input {
+					Value = 0.8,
+				},
+				Blue = Input {
+					Value = 1,
+				},
+				Intensity = Input {
+					Value = 2,
+				},
+				ConeAngle = Input {
+					Value = 40,
+				},
+				["Transform3DOp.Translate.Z"] = Input {
+					Value = -3,
+				},
+				["Transform3DOp.Translate.Y"] = Input {
+					Value = 1.5,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 660, 66 },
+			},
+		},
+		TitaniumRender = Renderer3D {
+			Inputs = {
+				Width = Input {
+					Value = 1920,
+				},
+				Height = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				SceneInput = Input {
+					SourceOp = "TitaniumScene",
+					Source = "Output",
+				},
+				RendererType = Input {
+					Value = FuID { "RendererOpenGL" },
+				},
+				CameraSelector = Input {
+					Value = FuID { "TitaniumCamera" },
+				},
+				["RendererOpenGL.LightingEnabled"] = Input {
+					Value = 1,
+				},
+				["RendererOpenGL.Supersampling"] = Input {
+					Value = 2,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 770, 66 },
+			},
+		},
+		SlatClear = Background {
+			Inputs = {
+				Width = Input {
+					Value = 1920,
+				},
+				Height = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				TopLeftRed = Input {
+					Value = 0,
+				},
+				TopLeftGreen = Input {
+					Value = 0,
+				},
+				TopLeftBlue = Input {
+					Value = 0,
+				},
+				TopLeftAlpha = Input {
+					Value = 0,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 0, 132 },
+			},
+		},
+		Slat1Shape = RectangleMask {
+			Inputs = {
+				SoftEdge = Input {
+					Value = 0,
+				},
+				Center = Input {
+					Value = { 0.5, 0.619167 },
+					Expression = "Point(0.5, 0.6192 + CONTROLS.TextPosY - 0.5)",
+				},
+				Width = Input {
+					Value = 1.2,
+				},
+				Height = Input {
+					Value = 0.111667,
+					Expression = "0.1117*(1 - pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.ExitDuration*0.00)) / max(CONTROLS.ExitDuration*0.55, 1), 0), 1), 2))",
+				},
+				Angle = Input {
+					Value = 0,
+				},
+				MaskWidth = Input {
+					Value = 1920,
+				},
+				MaskHeight = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 0, 165 },
+			},
+		},
+		Slat1Cut = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "SlatClear",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "TitaniumRender",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				EffectMask = Input {
+					SourceOp = "Slat1Shape",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 110, 165 },
+			},
+		},
+		Slat1Slide = Transform {
+			Inputs = {
+				Input = Input {
+					SourceOp = "Slat1Cut",
+					Source = "Output",
+				},
+				Center = Input {
+					Value = { 0.5, 0.5 },
+					Expression = "Point(0.5 + -1*0.9*(1 - (1 - pow(1 - min(max((time - ((CONTROLS.AnimStart + 0*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1), 4))), 0.5)",
+				},
+				Size = Input {
+					Value = 1,
+					Expression = "1 - 0.25*(1 - (1 - pow(1 - min(max((time - ((CONTROLS.AnimStart + 0*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1), 4)))",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 220, 165 },
+			},
+		},
+		Slat1Join = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "SlatClear",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "Slat1Slide",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				Blend = Input {
+					Value = 1,
+					Expression = "min(min(max((time - ((CONTROLS.AnimStart + 0*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1)*4, 1)",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 330, 165 },
+			},
+		},
+		Slat6Shape = RectangleMask {
+			Inputs = {
+				SoftEdge = Input {
+					Value = 0,
+				},
+				Center = Input {
+					Value = { 0.5, 0.380833 },
+					Expression = "Point(0.5, 0.3808 + CONTROLS.TextPosY - 0.5)",
+				},
+				Width = Input {
+					Value = 1.2,
+				},
+				Height = Input {
+					Value = 0.111667,
+					Expression = "0.1117*(1 - pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.ExitDuration*0.40)) / max(CONTROLS.ExitDuration*0.55, 1), 0), 1), 2))",
+				},
+				Angle = Input {
+					Value = 0,
+				},
+				MaskWidth = Input {
+					Value = 1920,
+				},
+				MaskHeight = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 110, 165 },
+			},
+		},
+		Slat6Cut = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "SlatClear",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "TitaniumRender",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				EffectMask = Input {
+					SourceOp = "Slat6Shape",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 220, 165 },
+			},
+		},
+		Slat6Slide = Transform {
+			Inputs = {
+				Input = Input {
+					SourceOp = "Slat6Cut",
+					Source = "Output",
+				},
+				Center = Input {
+					Value = { 0.5, 0.5 },
+					Expression = "Point(0.5 + 1*0.9*(1 - (1 - pow(1 - min(max((time - ((CONTROLS.AnimStart + 1*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1), 4))), 0.5)",
+				},
+				Size = Input {
+					Value = 1,
+					Expression = "1 - 0.25*(1 - (1 - pow(1 - min(max((time - ((CONTROLS.AnimStart + 1*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1), 4)))",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 330, 165 },
+			},
+		},
+		Slat6Join = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "Slat1Join",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "Slat6Slide",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				Blend = Input {
+					Value = 1,
+					Expression = "min(min(max((time - ((CONTROLS.AnimStart + 1*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1)*4, 1)",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 440, 165 },
+			},
+		},
+		Slat3Shape = RectangleMask {
+			Inputs = {
+				SoftEdge = Input {
+					Value = 0,
+				},
+				Center = Input {
+					Value = { 0.5, 0.515833 },
+					Expression = "Point(0.5, 0.5158 + CONTROLS.TextPosY - 0.5)",
+				},
+				Width = Input {
+					Value = 1.2,
+				},
+				Height = Input {
+					Value = 0.031667,
+					Expression = "0.0317*(1 - pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.ExitDuration*0.16)) / max(CONTROLS.ExitDuration*0.55, 1), 0), 1), 2))",
+				},
+				Angle = Input {
+					Value = 0,
+				},
+				MaskWidth = Input {
+					Value = 1920,
+				},
+				MaskHeight = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 220, 165 },
+			},
+		},
+		Slat3Cut = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "SlatClear",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "TitaniumRender",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				EffectMask = Input {
+					SourceOp = "Slat3Shape",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 330, 165 },
+			},
+		},
+		Slat3Slide = Transform {
+			Inputs = {
+				Input = Input {
+					SourceOp = "Slat3Cut",
+					Source = "Output",
+				},
+				Center = Input {
+					Value = { 0.5, 0.5 },
+					Expression = "Point(0.5 + -1*0.9*(1 - (1 - pow(1 - min(max((time - ((CONTROLS.AnimStart + 2*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1), 4))), 0.5)",
+				},
+				Size = Input {
+					Value = 1,
+					Expression = "1 - 0.25*(1 - (1 - pow(1 - min(max((time - ((CONTROLS.AnimStart + 2*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1), 4)))",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 440, 165 },
+			},
+		},
+		Slat3Join = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "Slat6Join",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "Slat3Slide",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				Blend = Input {
+					Value = 1,
+					Expression = "min(min(max((time - ((CONTROLS.AnimStart + 2*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1)*4, 1)",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 550, 165 },
+			},
+		},
+		Slat4Shape = RectangleMask {
+			Inputs = {
+				SoftEdge = Input {
+					Value = 0,
+				},
+				Center = Input {
+					Value = { 0.5, 0.484167 },
+					Expression = "Point(0.5, 0.4842 + CONTROLS.TextPosY - 0.5)",
+				},
+				Width = Input {
+					Value = 1.2,
+				},
+				Height = Input {
+					Value = 0.031667,
+					Expression = "0.0317*(1 - pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.ExitDuration*0.24)) / max(CONTROLS.ExitDuration*0.55, 1), 0), 1), 2))",
+				},
+				Angle = Input {
+					Value = 0,
+				},
+				MaskWidth = Input {
+					Value = 1920,
+				},
+				MaskHeight = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 330, 165 },
+			},
+		},
+		Slat4Cut = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "SlatClear",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "TitaniumRender",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				EffectMask = Input {
+					SourceOp = "Slat4Shape",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 440, 165 },
+			},
+		},
+		Slat4Slide = Transform {
+			Inputs = {
+				Input = Input {
+					SourceOp = "Slat4Cut",
+					Source = "Output",
+				},
+				Center = Input {
+					Value = { 0.5, 0.5 },
+					Expression = "Point(0.5 + 1*0.9*(1 - (1 - pow(1 - min(max((time - ((CONTROLS.AnimStart + 3*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1), 4))), 0.5)",
+				},
+				Size = Input {
+					Value = 1,
+					Expression = "1 - 0.25*(1 - (1 - pow(1 - min(max((time - ((CONTROLS.AnimStart + 3*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1), 4)))",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 550, 165 },
+			},
+		},
+		Slat4Join = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "Slat3Join",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "Slat4Slide",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				Blend = Input {
+					Value = 1,
+					Expression = "min(min(max((time - ((CONTROLS.AnimStart + 3*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1)*4, 1)",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 660, 165 },
+			},
+		},
+		Slat2Shape = RectangleMask {
+			Inputs = {
+				SoftEdge = Input {
+					Value = 0,
+				},
+				Center = Input {
+					Value = { 0.5, 0.5475 },
+					Expression = "Point(0.5, 0.5475 + CONTROLS.TextPosY - 0.5)",
+				},
+				Width = Input {
+					Value = 1.2,
+				},
+				Height = Input {
+					Value = 0.031667,
+					Expression = "0.0317*(1 - pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.ExitDuration*0.08)) / max(CONTROLS.ExitDuration*0.55, 1), 0), 1), 2))",
+				},
+				Angle = Input {
+					Value = 0,
+				},
+				MaskWidth = Input {
+					Value = 1920,
+				},
+				MaskHeight = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 440, 165 },
+			},
+		},
+		Slat2Cut = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "SlatClear",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "TitaniumRender",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				EffectMask = Input {
+					SourceOp = "Slat2Shape",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 550, 165 },
+			},
+		},
+		Slat2Slide = Transform {
+			Inputs = {
+				Input = Input {
+					SourceOp = "Slat2Cut",
+					Source = "Output",
+				},
+				Center = Input {
+					Value = { 0.5, 0.5 },
+					Expression = "Point(0.5 + 1*0.9*(1 - (1 - pow(1 - min(max((time - ((CONTROLS.AnimStart + 4*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1), 4))), 0.5)",
+				},
+				Size = Input {
+					Value = 1,
+					Expression = "1 - 0.25*(1 - (1 - pow(1 - min(max((time - ((CONTROLS.AnimStart + 4*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1), 4)))",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 660, 165 },
+			},
+		},
+		Slat2Join = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "Slat4Join",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "Slat2Slide",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				Blend = Input {
+					Value = 1,
+					Expression = "min(min(max((time - ((CONTROLS.AnimStart + 4*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1)*4, 1)",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 770, 165 },
+			},
+		},
+		Slat5Shape = RectangleMask {
+			Inputs = {
+				SoftEdge = Input {
+					Value = 0,
+				},
+				Center = Input {
+					Value = { 0.5, 0.4525 },
+					Expression = "Point(0.5, 0.4525 + CONTROLS.TextPosY - 0.5)",
+				},
+				Width = Input {
+					Value = 1.2,
+				},
+				Height = Input {
+					Value = 0.031667,
+					Expression = "0.0317*(1 - pow(min(max((time - (CONTROLS.ExitStart + CONTROLS.ExitDuration*0.32)) / max(CONTROLS.ExitDuration*0.55, 1), 0), 1), 2))",
+				},
+				Angle = Input {
+					Value = 0,
+				},
+				MaskWidth = Input {
+					Value = 1920,
+				},
+				MaskHeight = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 550, 165 },
+			},
+		},
+		Slat5Cut = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "SlatClear",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "TitaniumRender",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				EffectMask = Input {
+					SourceOp = "Slat5Shape",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 660, 165 },
+			},
+		},
+		Slat5Slide = Transform {
+			Inputs = {
+				Input = Input {
+					SourceOp = "Slat5Cut",
+					Source = "Output",
+				},
+				Center = Input {
+					Value = { 0.5, 0.5 },
+					Expression = "Point(0.5 + -1*0.9*(1 - (1 - pow(1 - min(max((time - ((CONTROLS.AnimStart + 5*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1), 4))), 0.5)",
+				},
+				Size = Input {
+					Value = 1,
+					Expression = "1 - 0.25*(1 - (1 - pow(1 - min(max((time - ((CONTROLS.AnimStart + 5*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1), 4)))",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 770, 165 },
+			},
+		},
+		Slat5Join = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "Slat2Join",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "Slat5Slide",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				Blend = Input {
+					Value = 1,
+					Expression = "min(min(max((time - ((CONTROLS.AnimStart + 5*CONTROLS.AnimDuration*0.58/5))) / max((CONTROLS.AnimDuration*0.42), 1), 0), 1)*4, 1)",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 880, 165 },
+			},
+		},
+		EdgeSweepBand = RectangleMask {
+			Inputs = {
+				SoftEdge = Input {
+					Value = 0.02,
+				},
+				Width = Input {
+					Value = 0.025,
+				},
+				Height = Input {
+					Value = 2,
+				},
+				Angle = Input {
+					Value = 55,
+				},
+				MaskWidth = Input {
+					Value = 1920,
+				},
+				MaskHeight = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				Center = Input {
+					Value = { 0.5, 0.5 },
+					Expression = "Point(-0.2 + 1.4*(0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.ImpactFrame + 4)) / max(26, 1), 0), 1))), 0.5)",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 0, 231 },
+			},
+		},
+		EdgeSweepClip = BitmapMask {
+			Inputs = {
+				Image = Input {
+					SourceOp = "TitaniumRender",
+					Source = "Output",
+				},
+				Channel = Input {
+					Value = FuID { "Alpha" },
+				},
+				PaintMode = Input {
+					Value = FuID { "Multiply" },
+				},
+				EffectMask = Input {
+					SourceOp = "EdgeSweepBand",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 110, 231 },
+			},
+		},
+		EdgeSweepColor = Background {
+			Inputs = {
+				Width = Input {
+					Value = 1920,
+				},
+				Height = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				TopLeftRed = Input {
+					Value = 0.85,
+				},
+				TopLeftGreen = Input {
+					Value = 0.93,
+				},
+				TopLeftBlue = Input {
+					Value = 1,
+				},
+				TopLeftAlpha = Input {
+					Value = 1,
+				},
+				EffectMask = Input {
+					SourceOp = "EdgeSweepClip",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 220, 231 },
+			},
+		},
+		EdgeSweep = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "Slat5Join",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "EdgeSweepColor",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				ApplyMode = Input {
+					Value = FuID { "Screen" },
+				},
+				Blend = Input {
+					Value = 1,
+					Expression = "1.0*CONTROLS.GlowStrength*min(max(min(max((time - (CONTROLS.ImpactFrame + 4)) / max(26, 1), 0), 1)*20, 0), 1)*(1-min(max((min(max((time - (CONTROLS.ImpactFrame + 4)) / max(26, 1), 0), 1)-0.95)*20, 0), 1))",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 330, 231 },
+			},
+		},
+		SeamLightShift = Transform {
+			Inputs = {
+				Input = Input {
+					SourceOp = "TitaniumRender",
+					Source = "Output",
+				},
+				Center = Input {
+					Value = { 0.5, 0.498 },
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 440, 231 },
+			},
+		},
+		SeamLightMaskA = BitmapMask {
+			Inputs = {
+				Image = Input {
+					SourceOp = "TitaniumRender",
+					Source = "Output",
+				},
+				Channel = Input {
+					Value = FuID { "Alpha" },
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 550, 231 },
+			},
+		},
+		SeamLightMaskB = BitmapMask {
+			Inputs = {
+				Image = Input {
+					SourceOp = "SeamLightShift",
+					Source = "Output",
+				},
+				Channel = Input {
+					Value = FuID { "Alpha" },
+				},
+				PaintMode = Input {
+					Value = FuID { "Subtract" },
+				},
+				EffectMask = Input {
+					SourceOp = "SeamLightMaskA",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 660, 231 },
+			},
+		},
+		SeamLightColor = Background {
+			Inputs = {
+				Width = Input {
+					Value = 1920,
+				},
+				Height = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				TopLeftRed = Input {
+					Value = 1,
+					Expression = "ACCENT.TopLeftRed*1.4",
+				},
+				TopLeftGreen = Input {
+					Value = 1,
+					Expression = "ACCENT.TopLeftGreen*1.4",
+				},
+				TopLeftBlue = Input {
+					Value = 1,
+					Expression = "ACCENT.TopLeftBlue*1.4",
+				},
+				TopLeftAlpha = Input {
+					Value = 1,
+				},
+				EffectMask = Input {
+					SourceOp = "SeamLightMaskB",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 770, 231 },
+			},
+		},
+		SeamLightSoft = Blur {
+			Inputs = {
+				Input = Input {
+					SourceOp = "SeamLightColor",
+					Source = "Output",
+				},
+				XBlurSize = Input {
+					Value = 0.8,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 880, 231 },
+			},
+		},
+		SeamFlash = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "EdgeSweep",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "SeamLightSoft",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				ApplyMode = Input {
+					Value = FuID { "Screen" },
+				},
+				Blend = Input {
+					Value = 1,
+					Expression = "min(CONTROLS.GlowStrength*(0.2 + 1.2*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 5))), 1)*(1 - min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1))",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 990, 231 },
+			},
+		},
+		TitleOverSlate = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "ScanLine",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "SeamFlash",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 1100, 231 },
+			},
+		},
+		LockFlashColor = Background {
+			Inputs = {
+				Width = Input {
+					Value = 1920,
+				},
+				Height = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				TopLeftRed = Input {
+					Value = 0.556863,
+				},
+				TopLeftGreen = Input {
+					Value = 0.784314,
+				},
+				TopLeftBlue = Input {
+					Value = 1,
+				},
+				TopLeftAlpha = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 1210, 231 },
+			},
+		},
+		LockFlash = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "TitleOverSlate",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "LockFlashColor",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				ApplyMode = Input {
+					Value = FuID { "Screen" },
+				},
+				Blend = Input {
+					Value = 1,
+					Expression = "0.06*CONTROLS.ImpactIntensity*(min(max((time - (CONTROLS.ImpactFrame + 0) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame + 0), 0) / 5))",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 1320, 231 },
+			},
+		},
+		Subtitle = TextPlus {
+			Inputs = {
+				Width = Input {
+					Value = 1920,
+				},
+				Height = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				StyledText = Input {
+					Value = "ENGINEERED TO ENDURE",
+				},
+				Font = Input {
+					Value = "Orbitron",
+				},
+				Style = Input {
+					Value = "Medium",
+				},
+				Size = Input {
+					Value = 0.022,
+				},
+				CharacterSpacing = Input {
+					Value = 2,
+				},
+				LineSpacing = Input {
+					Value = 1,
+				},
+				VerticalJustificationNew = Input {
+					Value = 3,
+				},
+				HorizontalJustificationNew = Input {
+					Value = 3,
+				},
+				Red1 = Input {
+					Value = 0.62,
+				},
+				Green1 = Input {
+					Value = 0.7,
+				},
+				Blue1 = Input {
+					Value = 0.8,
+				},
+				Alpha1 = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 0, 297 },
+			},
+		},
+		SubtitlePlace = Transform {
+			Inputs = {
+				Input = Input {
+					SourceOp = "Subtitle",
+					Source = "Output",
+				},
+				Center = Input {
+					Value = { 0.5, 0.5 },
+					Expression = "Point(CONTROLS.TextPosX, CONTROLS.TextPosY + -0.14)",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 110, 297 },
+			},
+		},
+		SubtitleMerge = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "LockFlash",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "SubtitlePlace",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				Blend = Input {
+					Value = 1,
+					Expression = "(min(max((time - (CONTROLS.ImpactFrame + 8) + 18) / 18, 0), 1) * (1 - min(max((time - (CONTROLS.ExitStart - 2)) / 12, 0), 1)))",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 220, 297 },
+			},
+		},
+		Camera = Transform {
+			Inputs = {
+				Input = Input {
+					SourceOp = "SubtitleMerge",
+					Source = "Output",
+				},
+				Center = Input {
+					Value = { 0.5, 0.5 },
+					Expression = "Point(0.5 + (0.003*CONTROLS.ShakeAmount*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 3))) * (sin(time*1.900*1.31 + 1.0) * 0.6 + sin(time*1.900*2.71 + 3.100) * 0.3 + sin(time*1.900*5.17 + 7.700) * 0.1), 0.5 + (0.003*CONTROLS.ShakeAmount*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 3))) * (sin(time*2.300*1.31 + 2.7) * 0.6 + sin(time*2.300*2.71 + 8.370) * 0.3 + sin(time*2.300*5.17 + 20.790) * 0.1))",
+				},
+				Size = Input {
+					Value = 1,
+					Expression = "1.0 + (1.04 - 1.0)*(0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.AnimStart)) / max((CONTROLS.ExitStart + CONTROLS.ExitDuration - CONTROLS.AnimStart), 1), 0), 1)))",
+				},
+				Edges = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 330, 297 },
+			},
+		},
+		VignetteColor = Background {
+			Inputs = {
+				Width = Input {
+					Value = 1920,
+				},
+				Height = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				TopLeftRed = Input {
+					Value = 0,
+				},
+				TopLeftGreen = Input {
+					Value = 0,
+				},
+				TopLeftBlue = Input {
+					Value = 0,
+				},
+				TopLeftAlpha = Input {
+					Value = 1,
+				},
+				EffectMask = Input {
+					SourceOp = "VignetteShape",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 440, 297 },
+			},
+		},
+		VignetteShape = EllipseMask {
+			Inputs = {
+				SoftEdge = Input {
+					Value = 0.45,
+				},
+				Center = Input {
+					Value = { 0.5, 0.5 },
+				},
+				Width = Input {
+					Value = 1.25,
+				},
+				Height = Input {
+					Value = 1.25,
+				},
+				Angle = Input {
+					Value = 0,
+				},
+				MaskWidth = Input {
+					Value = 1920,
+				},
+				MaskHeight = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				Invert = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 550, 297 },
+			},
+		},
+		Vignette = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "Camera",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "VignetteColor",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				Blend = Input {
+					Value = 0.45,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 660, 297 },
+			},
+		},
+		Grain = FilmGrain {
+			Inputs = {
+				Input = Input {
+					SourceOp = "Vignette",
+					Source = "Output",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 770, 297 },
+			},
+		},
+		LetterboxColor = Background {
+			Inputs = {
+				Width = Input {
+					Value = 1920,
+				},
+				Height = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				TopLeftRed = Input {
+					Value = 0,
+				},
+				TopLeftGreen = Input {
+					Value = 0,
+				},
+				TopLeftBlue = Input {
+					Value = 0,
+				},
+				TopLeftAlpha = Input {
+					Value = 1,
+				},
+				EffectMask = Input {
+					SourceOp = "LetterboxShape",
+					Source = "Mask",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 880, 297 },
+			},
+		},
+		LetterboxShape = RectangleMask {
+			Inputs = {
+				SoftEdge = Input {
+					Value = 0,
+				},
+				Center = Input {
+					Value = { 0.5, 0.5 },
+				},
+				Width = Input {
+					Value = 1,
+				},
+				Height = Input {
+					Value = 0.7438,
+				},
+				Angle = Input {
+					Value = 0,
+				},
+				MaskWidth = Input {
+					Value = 1920,
+				},
+				MaskHeight = Input {
+					Value = 1080,
+				},
+				UseFrameFormatSettings = Input {
+					Value = 1,
+				},
+				Invert = Input {
+					Value = 1,
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 990, 297 },
+			},
+		},
+		Letterbox = Merge {
+			Inputs = {
+				Background = Input {
+					SourceOp = "Grain",
+					Source = "Output",
+				},
+				Foreground = Input {
+					SourceOp = "LetterboxColor",
+					Source = "Output",
+				},
+				PerformDepthMerge = Input {
+					Value = 0,
+				},
+				Blend = Input {
+					Value = 1,
+					Expression = "CONTROLS.Letterbox",
+				},
+			},
+			ViewInfo = OperatorInfo {
+				Pos = { 1100, 297 },
+			},
+		},
+	},
+	Prefs = {
+		Comp = {
+			FrameFormat = {
+				Name = "Custom",
+				Width = 1920,
+				Height = 1080,
+				AspectX = 1,
+				AspectY = 1,
+				Rate = 24,
+				GuideRatio = 1.777778,
+				DepthFull = 2,
+				DepthPreview = 2,
+				DepthInteractive = 2,
+			},
+			Unsorted = {
+				GlobalStart = 0,
+				GlobalEnd = 167,
+				RenderStart = 0,
+				RenderEnd = 167,
+			},
+		},
+	},
+}

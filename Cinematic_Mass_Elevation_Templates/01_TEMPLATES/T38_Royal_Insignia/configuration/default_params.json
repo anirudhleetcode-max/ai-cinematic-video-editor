@@ -32,5 +32,7 @@
   "SHAKE_AMOUNT": 1.0,
   "LETTERBOX": 1.0,
   "DURATION": 196,
-  "QUALITY": "preview"
+  "QUALITY": "preview",
+  "EMBLEM_SCALE": 1.0,
+  "EMBLEM_ROTATION": 0.0
 }

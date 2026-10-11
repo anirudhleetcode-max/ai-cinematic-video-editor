@@ -105,6 +105,8 @@ Used by the Python reference renderer that produced the preview (also usable for
 | `LETTERBOX` | 1.0 | 2.39:1 letterbox amount (0 = full frame) |
 | `DURATION` | 196 | Total length in frames |
 | `QUALITY` | "preview" | preview | final |
+| `EMBLEM_SCALE` | 1.0 | Emblem scale, independent of the title |
+| `EMBLEM_ROTATION` | 0.0 | Emblem rotation in degrees, independent of the title |
 
 Parameters this template's preview renderer actually reads are listed in `manifest.json` under `reference_renderer.parameters_used`; others have no effect for this design.
 
