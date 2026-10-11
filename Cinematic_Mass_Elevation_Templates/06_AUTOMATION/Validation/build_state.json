@@ -120,6 +120,46 @@
    "thumb_frame": 90
   }
  },
+ "T05": {
+  "preview": {
+   "params_read": [
+    "ACCENT_COLOR",
+    "ANIMATION_DURATION",
+    "ANIMATION_START",
+    "BACKGROUND_INTENSITY",
+    "BEVEL_AMOUNT",
+    "DURATION",
+    "EXIT_DURATION",
+    "EXIT_START",
+    "EXTRUSION_DEPTH",
+    "FONT_FAMILY",
+    "FONT_SIZE",
+    "GLOW_STRENGTH",
+    "IMPACT_FRAME",
+    "IMPACT_INTENSITY",
+    "LETTERBOX",
+    "LETTER_SPACING",
+    "LINE_SPACING",
+    "MAIN_TITLE",
+    "PARTICLE_INTENSITY",
+    "SHAKE_AMOUNT",
+    "SUBTITLE",
+    "SUB_FONT_FAMILY",
+    "TEXT_ALIGNMENT",
+    "TEXT_COLOR",
+    "TEXT_POSITION_X",
+    "TEXT_POSITION_Y",
+    "TEXT_ROTATION",
+    "TEXT_SCALE",
+    "TITLE_WIDTH"
+   ],
+   "path": "01_TEMPLATES/T05_Shattered_Monolith/preview/T05_Shattered_Monolith.mp4",
+   "rc": 0,
+   "rendered_at": "2026-10-11T19:42:45+00:00",
+   "seconds": 244.9,
+   "thumb_frame": 138
+  }
+ },
  "T21": {
   "preview": {
    "params_read": [
