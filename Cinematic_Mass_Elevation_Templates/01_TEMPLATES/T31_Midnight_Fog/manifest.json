@@ -1,0 +1,269 @@
+{
+  "id": "T31",
+  "name": "Midnight Fog",
+  "slug": "Midnight_Fog",
+  "category": "G - Atmospheric and Environmental Cinema",
+  "version": "1.0.0",
+  "concept": "A moonlit midnight moor: the title lives inside layered fog and slowly condenses out of it.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 216,
+  "duration_seconds": 9.0,
+  "phases": {
+    "build_up": [
+      0,
+      106
+    ],
+    "impact_frame": 112,
+    "hero_hold": [
+      112,
+      172
+    ],
+    "exit": [
+      172,
+      212
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Bebas Neue",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T31_Midnight_Fog.setting",
+  "fusion_composition": "source/T31_Midnight_Fog.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 62,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "PolylineMask",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Letterbox (2.39:1)",
+    "Moonlight Color",
+    "Moonlight Color",
+    "Moonlight Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T31_Midnight_Fog.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Night air bed, distant low drone"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "wind",
+      "note": "Soft wind through the fog"
+    },
+    {
+      "frame": 10,
+      "seconds": 0.417,
+      "cue": "swell",
+      "note": "Slow pad swell under the condensation reveal"
+    },
+    {
+      "frame": 100,
+      "seconds": 4.167,
+      "cue": "rwhoosh",
+      "note": "Soft reverse air into the parting"
+    },
+    {
+      "frame": 112,
+      "seconds": 4.667,
+      "cue": "sub",
+      "note": "Deep sub pulse as the fog parts (no hard hit)"
+    },
+    {
+      "frame": 114,
+      "seconds": 4.75,
+      "cue": "shimmer",
+      "note": "Faint cold shimmer on the moonlit edge"
+    },
+    {
+      "frame": 172,
+      "seconds": 7.167,
+      "cue": "wind",
+      "note": "Fog rolls back in"
+    },
+    {
+      "frame": 180,
+      "seconds": 7.5,
+      "cue": "tail",
+      "note": "Long reverb tail"
+    }
+  ],
+  "techniques": [
+    "4-plane volumetric fog with parallax",
+    "fog behind and in front of the title",
+    "noise-threshold condensation reveal",
+    "volumetric moon beam",
+    "fog parting wave",
+    "depth haze"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t31.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 62,
+      "setting_input_evidence": {
+        "S": 217,
+        "K": 193,
+        "?": 7
+      },
+      "setting_expressions": 48,
+      "published_controls": 36,
+      "text_nodes": [
+        "Subtitle",
+        "MainTitle"
+      ],
+      "comp_tools": 62,
+      "comp_input_evidence": {
+        "S": 217,
+        "K": 193,
+        "?": 7
+      },
+      "comp_expressions": 48
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 9.0,
+      "frames": 216,
+      "audio": true,
+      "bytes": 6640606,
+      "sample_means": [
+        19.4,
+        19.6,
+        20.1,
+        20.9,
+        21.0,
+        21.9,
+        21.0,
+        20.2,
+        21.7
+      ],
+      "hero_blown_fraction": 0.0001,
+      "hero_contrast": 27.1,
+      "title_band_contrast": 41.3
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T18:48:10+00:00"
+  }
+}
