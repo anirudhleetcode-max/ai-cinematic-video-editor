@@ -1,0 +1,286 @@
+{
+  "id": "T33",
+  "name": "Desert Storm",
+  "slug": "Desert_Storm",
+  "category": "G - Atmospheric and Environmental Cinema",
+  "version": "1.0.0",
+  "concept": "A towering haboob sweeps across the dunes; when it passes, a sandstone monument title is standing there.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 180,
+  "duration_seconds": 7.5,
+  "phases": {
+    "build_up": [
+      0,
+      90
+    ],
+    "impact_frame": 48,
+    "hero_hold": [
+      48,
+      134
+    ],
+    "exit": [
+      134,
+      174
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Staatliches",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T33_Desert_Storm.setting",
+  "fusion_composition": "source/T33_Desert_Storm.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 67,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "CornerPositioner",
+    "DirectionalBlur",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "PolylineMask",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Letterbox (2.39:1)",
+    "Sun Color",
+    "Sun Color",
+    "Sun Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T33_Desert_Storm.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "wind",
+      "note": "Howling desert wind bed"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Low rumble of the approaching storm"
+    },
+    {
+      "frame": 6,
+      "seconds": 0.25,
+      "cue": "whoosh",
+      "note": "Dust wall roar sweeping right to left"
+    },
+    {
+      "frame": 40,
+      "seconds": 1.667,
+      "cue": "debris",
+      "note": "Sand hiss / grit"
+    },
+    {
+      "frame": 46,
+      "seconds": 1.917,
+      "cue": "impact",
+      "note": "Gust peak - dull heavy thud"
+    },
+    {
+      "frame": 46,
+      "seconds": 1.917,
+      "cue": "sub",
+      "note": "Sub drop"
+    },
+    {
+      "frame": 52,
+      "seconds": 2.167,
+      "cue": "swell",
+      "note": "Warm swell as the sun breaks through"
+    },
+    {
+      "frame": 134,
+      "seconds": 5.583,
+      "cue": "wind",
+      "note": "Second gust"
+    },
+    {
+      "frame": 140,
+      "seconds": 5.833,
+      "cue": "debris",
+      "note": "Letters crumbling into sand"
+    },
+    {
+      "frame": 168,
+      "seconds": 7.0,
+      "cue": "tail",
+      "note": "Wind tail"
+    }
+  ],
+  "techniques": [
+    "advancing dust wall with density front",
+    "3 parallax dust planes",
+    "parallax dune ridges",
+    "sun god rays through dust",
+    "erosion reveal / exit",
+    "keystone low-angle title"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t33.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 67,
+      "setting_input_evidence": {
+        "S": 236,
+        "K": 189,
+        "?": 11
+      },
+      "setting_expressions": 47,
+      "published_controls": 37,
+      "text_nodes": [
+        "Subtitle",
+        "MainTitle"
+      ],
+      "comp_tools": 67,
+      "comp_input_evidence": {
+        "S": 236,
+        "K": 189,
+        "?": 11
+      },
+      "comp_expressions": 47
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 7.5,
+      "frames": 180,
+      "audio": true,
+      "bytes": 7723920,
+      "sample_means": [
+        34.5,
+        42.3,
+        46.6,
+        51.5,
+        53.6,
+        52.7,
+        51.7,
+        55.9,
+        45.9
+      ],
+      "hero_blown_fraction": 0.0027,
+      "hero_contrast": 43.9,
+      "title_band_contrast": 46.3
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T18:48:20+00:00"
+  }
+}

@@ -1,0 +1,283 @@
+{
+  "id": "T32",
+  "name": "Rain and Steel",
+  "slug": "Rain_And_Steel",
+  "category": "G - Atmospheric and Environmental Cinema",
+  "version": "1.0.0",
+  "concept": "A rain-soaked industrial yard at night: wet steel lettering waits in the dark until the floodlights hit.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 192,
+  "duration_seconds": 8.0,
+  "phases": {
+    "build_up": [
+      0,
+      58
+    ],
+    "impact_frame": 64,
+    "hero_hold": [
+      64,
+      150
+    ],
+    "exit": [
+      150,
+      184
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Russo One",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T32_Rain_And_Steel.setting",
+  "fusion_composition": "source/T32_Rain_And_Steel.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 79,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "DirectionalBlur",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "PolylineMask",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Letterbox (2.39:1)",
+    "Floodlight Color",
+    "Floodlight Color",
+    "Floodlight Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T32_Rain_And_Steel.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "rain",
+      "note": "Heavy rain bed on steel"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Industrial hum, distant"
+    },
+    {
+      "frame": 4,
+      "seconds": 0.167,
+      "cue": "riser",
+      "note": "Low metallic riser under the crane-up"
+    },
+    {
+      "frame": 58,
+      "seconds": 2.417,
+      "cue": "metal",
+      "note": "Relay click / lamp 1 clunk"
+    },
+    {
+      "frame": 64,
+      "seconds": 2.667,
+      "cue": "impact",
+      "note": "Floodlight slam: heavy metallic clunk + sub"
+    },
+    {
+      "frame": 64,
+      "seconds": 2.667,
+      "cue": "hammer",
+      "note": "Steel resonance"
+    },
+    {
+      "frame": 69,
+      "seconds": 2.875,
+      "cue": "metal",
+      "note": "Lamp 3 clunk"
+    },
+    {
+      "frame": 70,
+      "seconds": 2.917,
+      "cue": "water",
+      "note": "Water sheeting off steel"
+    },
+    {
+      "frame": 150,
+      "seconds": 6.25,
+      "cue": "metal",
+      "note": "Breakers cut, lamp by lamp"
+    },
+    {
+      "frame": 175,
+      "seconds": 7.292,
+      "cue": "tail",
+      "note": "Rain tail"
+    }
+  ],
+  "techniques": [
+    "procedural corrugated steel wall",
+    "three-depth rain",
+    "volumetric floodlight cones",
+    "running water specular streaks",
+    "rippled floor reflection",
+    "rain splash rings"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t32.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 79,
+      "setting_input_evidence": {
+        "S": 306,
+        "K": 197,
+        "?": 11
+      },
+      "setting_expressions": 57,
+      "published_controls": 37,
+      "text_nodes": [
+        "Subtitle",
+        "MainTitle"
+      ],
+      "comp_tools": 79,
+      "comp_input_evidence": {
+        "S": 306,
+        "K": 197,
+        "?": 11
+      },
+      "comp_expressions": 57
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 8.0,
+      "frames": 192,
+      "audio": true,
+      "bytes": 3396314,
+      "sample_means": [
+        0.9,
+        1.4,
+        1.4,
+        19.9,
+        20.5,
+        20.8,
+        20.6,
+        1.6,
+        0.9
+      ],
+      "hero_blown_fraction": 0.0009,
+      "hero_contrast": 31.2,
+      "title_band_contrast": 45.0
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T18:48:15+00:00"
+  }
+}

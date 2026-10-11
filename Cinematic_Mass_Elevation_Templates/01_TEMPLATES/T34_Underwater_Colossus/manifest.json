@@ -1,0 +1,278 @@
+{
+  "id": "T34",
+  "name": "Underwater Colossus",
+  "slug": "Underwater_Colossus",
+  "category": "G - Atmospheric and Environmental Cinema",
+  "version": "1.0.0",
+  "concept": "A sunken monument of colossal stone letters rises out of the deep into the light from the surface.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 240,
+  "duration_seconds": 10.0,
+  "phases": {
+    "build_up": [
+      0,
+      124
+    ],
+    "impact_frame": 124,
+    "hero_hold": [
+      124,
+      190
+    ],
+    "exit": [
+      190,
+      236
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Anton",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T34_Underwater_Colossus.setting",
+  "fusion_composition": "source/T34_Underwater_Colossus.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 65,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "PolylineMask",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ImpactIntensity",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Impact Intensity",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Letterbox (2.39:1)",
+    "Surface Light Color",
+    "Surface Light Color",
+    "Surface Light Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T34_Underwater_Colossus.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "water",
+      "note": "Deep underwater ambience, muffled pressure"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Whale-like low drone"
+    },
+    {
+      "frame": 12,
+      "seconds": 0.5,
+      "cue": "swell",
+      "note": "Slow rising swell under the ascent"
+    },
+    {
+      "frame": 110,
+      "seconds": 4.583,
+      "cue": "rwhoosh",
+      "note": "Muffled reverse surge"
+    },
+    {
+      "frame": 124,
+      "seconds": 5.167,
+      "cue": "sub",
+      "note": "Deep muffled thoom as it settles"
+    },
+    {
+      "frame": 126,
+      "seconds": 5.25,
+      "cue": "debris",
+      "note": "Silt plume hiss (soft)"
+    },
+    {
+      "frame": 140,
+      "seconds": 5.833,
+      "cue": "shimmer",
+      "note": "Caustic light shimmer"
+    },
+    {
+      "frame": 190,
+      "seconds": 7.917,
+      "cue": "swell",
+      "note": "Descending swell"
+    },
+    {
+      "frame": 220,
+      "seconds": 9.167,
+      "cue": "tail",
+      "note": "Long underwater tail"
+    }
+  ],
+  "techniques": [
+    "surface light shafts",
+    "projected caustics on the title",
+    "marine snow with depth of field",
+    "layered blue-green haze",
+    "silt plume",
+    "refraction wobble",
+    "slow-motion ascent"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t34.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 65,
+      "setting_input_evidence": {
+        "S": 220,
+        "K": 192,
+        "?": 14
+      },
+      "setting_expressions": 58,
+      "published_controls": 37,
+      "text_nodes": [
+        "MainTitle",
+        "Subtitle"
+      ],
+      "comp_tools": 65,
+      "comp_input_evidence": {
+        "S": 220,
+        "K": 192,
+        "?": 14
+      },
+      "comp_expressions": 58
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 10.0,
+      "frames": 240,
+      "audio": true,
+      "bytes": 5861419,
+      "sample_means": [
+        17.9,
+        18.3,
+        20.4,
+        21.8,
+        22.7,
+        24.3,
+        25.2,
+        20.8,
+        15.9
+      ],
+      "hero_blown_fraction": 0.0003,
+      "hero_contrast": 29.5,
+      "title_band_contrast": 41.7
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T18:48:27+00:00"
+  }
+}
