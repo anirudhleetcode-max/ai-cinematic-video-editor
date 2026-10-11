@@ -1,0 +1,6451 @@
+-- T35_Frozen_Kingdom: Cinematic Mass Elevation Templates
+-- Generated Fusion macro (MacroOperator). Install into
+--   <Fusion support>/Templates/Edit/Titles/ to use as an Edit-page title,
+-- or drag this file into the Fusion page node editor.
+{
+	Tools = ordered() {
+		T35_Frozen_Kingdom = MacroOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Templates:/Edit/Titles/",
+					},
+				},
+				HelpPage = "Cinematic Mass Elevation Templates - T35_Frozen_Kingdom",
+			},
+			Inputs = ordered() {
+				CONTROLS_AnimStart = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "AnimStart",
+					Name = "Animation Start (frames)",
+					Page = "Timing",
+					Default = 14,
+				},
+				CONTROLS_AnimDuration = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "AnimDuration",
+					Name = "Reveal Duration (frames)",
+					Page = "Timing",
+					Default = 74,
+				},
+				CONTROLS_ImpactFrame = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "ImpactFrame",
+					Name = "Impact Frame",
+					Page = "Timing",
+					Default = 92,
+				},
+				CONTROLS_ExitStart = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "ExitStart",
+					Name = "Exit Start (frame)",
+					Page = "Timing",
+					Default = 164,
+				},
+				CONTROLS_ExitDuration = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "ExitDuration",
+					Name = "Exit Duration (frames)",
+					Page = "Timing",
+					Default = 36,
+				},
+				CONTROLS_BackgroundIntensity = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "BackgroundIntensity",
+					Name = "Background Intensity",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_ParticleIntensity = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "ParticleIntensity",
+					Name = "Particle Intensity",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_GlowStrength = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "GlowStrength",
+					Name = "Glow Strength",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_TextScale = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "TextScale",
+					Name = "Text Scale",
+					Page = "Look",
+					Default = 1,
+				},
+				CONTROLS_TextPosX = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "TextPosX",
+					Name = "Text Position X",
+					Page = "Look",
+					Default = 0.5,
+				},
+				CONTROLS_TextPosY = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "TextPosY",
+					Name = "Text Position Y",
+					Page = "Look",
+					Default = 0.5,
+				},
+				CONTROLS_TextRotation = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "TextRotation",
+					Name = "Text Rotation",
+					Page = "Look",
+					Default = 0,
+				},
+				CONTROLS_Letterbox = InstanceInput {
+					SourceOp = "CONTROLS",
+					Source = "Letterbox",
+					Name = "Letterbox (2.39:1)",
+					Page = "Look",
+					Default = 1,
+				},
+				AccentRed = InstanceInput {
+					SourceOp = "ACCENT",
+					Source = "TopLeftRed",
+					Name = "Frost Light Color",
+					ControlGroup = 90,
+					Page = "Look",
+				},
+				AccentGreen = InstanceInput {
+					SourceOp = "ACCENT",
+					Source = "TopLeftGreen",
+					Name = "Frost Light Color",
+					ControlGroup = 90,
+					Page = "Look",
+				},
+				AccentBlue = InstanceInput {
+					SourceOp = "ACCENT",
+					Source = "TopLeftBlue",
+					Name = "Frost Light Color",
+					ControlGroup = 90,
+					Page = "Look",
+				},
+				MainTitleText = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "StyledText",
+					Name = "Main Title",
+					Page = "Text",
+				},
+				MainTitleFont = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Font",
+					Name = "Main Title Font",
+					ControlGroup = 110,
+					Page = "Text",
+				},
+				MainTitleStyle = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Style",
+					Name = "Main Title Style",
+					ControlGroup = 110,
+					Page = "Text",
+				},
+				MainTitleSize = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Size",
+					Name = "Main Title Size",
+					Page = "Text",
+					Default = 0.16,
+				},
+				MainTitleTracking = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "CharacterSpacing",
+					Name = "Main Title Letter Spacing",
+					Page = "Text",
+					Default = 1.05,
+				},
+				MainTitleLeading = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "LineSpacing",
+					Name = "Main Title Line Spacing",
+					Page = "Text",
+					Default = 1,
+				},
+				MainTitleAlign = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "HorizontalJustificationNew",
+					Name = "Main Title Alignment",
+					Page = "Text",
+				},
+				MainTitleRed = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Red1",
+					Name = "Main Title Color",
+					ControlGroup = 10,
+					Page = "Text",
+				},
+				MainTitleGreen = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Green1",
+					Name = "Main Title Color",
+					ControlGroup = 10,
+					Page = "Text",
+				},
+				MainTitleBlue = InstanceInput {
+					SourceOp = "MainTitle",
+					Source = "Blue1",
+					Name = "Main Title Color",
+					ControlGroup = 10,
+					Page = "Text",
+				},
+				SubtitleText = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "StyledText",
+					Name = "Subtitle",
+					Page = "Text",
+				},
+				SubtitleFont = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Font",
+					Name = "Subtitle Font",
+					ControlGroup = 111,
+					Page = "Text",
+				},
+				SubtitleStyle = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Style",
+					Name = "Subtitle Style",
+					ControlGroup = 111,
+					Page = "Text",
+				},
+				SubtitleSize = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Size",
+					Name = "Subtitle Size",
+					Page = "Text",
+					Default = 0.03,
+				},
+				SubtitleTracking = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "CharacterSpacing",
+					Name = "Subtitle Letter Spacing",
+					Page = "Text",
+					Default = 1.5,
+				},
+				SubtitleLeading = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "LineSpacing",
+					Name = "Subtitle Line Spacing",
+					Page = "Text",
+					Default = 1,
+				},
+				SubtitleAlign = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "HorizontalJustificationNew",
+					Name = "Subtitle Alignment",
+					Page = "Text",
+				},
+				SubtitleRed = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Red1",
+					Name = "Subtitle Color",
+					ControlGroup = 11,
+					Page = "Text",
+				},
+				SubtitleGreen = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Green1",
+					Name = "Subtitle Color",
+					ControlGroup = 11,
+					Page = "Text",
+				},
+				SubtitleBlue = InstanceInput {
+					SourceOp = "Subtitle",
+					Source = "Blue1",
+					Name = "Subtitle Color",
+					ControlGroup = 11,
+					Page = "Text",
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Letterbox",
+					Source = "Output",
+				},
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 0, 0 },
+			},
+			Tools = ordered() {
+				CONTROLS = Transform {
+					Inputs = {
+						AnimStart = Input {
+							Value = 14,
+						},
+						AnimDuration = Input {
+							Value = 74,
+						},
+						ImpactFrame = Input {
+							Value = 92,
+						},
+						ExitStart = Input {
+							Value = 164,
+						},
+						ExitDuration = Input {
+							Value = 36,
+						},
+						BackgroundIntensity = Input {
+							Value = 1,
+						},
+						ParticleIntensity = Input {
+							Value = 1,
+						},
+						GlowStrength = Input {
+							Value = 1,
+						},
+						TextScale = Input {
+							Value = 1,
+						},
+						TextPosX = Input {
+							Value = 0.5,
+						},
+						TextPosY = Input {
+							Value = 0.5,
+						},
+						TextRotation = Input {
+							Value = 0,
+						},
+						Letterbox = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, -66 },
+					},
+					UserControls = ordered() {
+						AnimStart = {
+							LINKS_Name = "Animation Start (frames)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 14,
+							INP_MinScale = 0,
+							INP_MaxScale = 120,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+						AnimDuration = {
+							LINKS_Name = "Reveal Duration (frames)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 74,
+							INP_MinScale = 1,
+							INP_MaxScale = 144,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+						ImpactFrame = {
+							LINKS_Name = "Impact Frame",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 92,
+							INP_MinScale = 0,
+							INP_MaxScale = 240,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+						ExitStart = {
+							LINKS_Name = "Exit Start (frame)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 164,
+							INP_MinScale = 0,
+							INP_MaxScale = 300,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+						ExitDuration = {
+							LINKS_Name = "Exit Duration (frames)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 36,
+							INP_MinScale = 1,
+							INP_MaxScale = 120,
+							INP_Integer = true,
+							ICS_ControlPage = "Controls",
+						},
+						BackgroundIntensity = {
+							LINKS_Name = "Background Intensity",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MaxScale = 2,
+							ICS_ControlPage = "Controls",
+						},
+						ParticleIntensity = {
+							LINKS_Name = "Particle Intensity",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MaxScale = 2,
+							ICS_ControlPage = "Controls",
+						},
+						GlowStrength = {
+							LINKS_Name = "Glow Strength",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MaxScale = 3,
+							ICS_ControlPage = "Controls",
+						},
+						TextScale = {
+							LINKS_Name = "Text Scale",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0.2,
+							INP_MaxScale = 3,
+							ICS_ControlPage = "Controls",
+						},
+						TextPosX = {
+							LINKS_Name = "Text Position X",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							INP_MaxScale = 1,
+							ICS_ControlPage = "Controls",
+						},
+						TextPosY = {
+							LINKS_Name = "Text Position Y",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							INP_MaxScale = 1,
+							ICS_ControlPage = "Controls",
+						},
+						TextRotation = {
+							LINKS_Name = "Text Rotation",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 0,
+							INP_MinScale = -180,
+							INP_MaxScale = 180,
+							ICS_ControlPage = "Controls",
+						},
+						Letterbox = {
+							LINKS_Name = "Letterbox (2.39:1)",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MaxScale = 1,
+							ICS_ControlPage = "Controls",
+						},
+					},
+				},
+				ACCENT = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0.611765,
+						},
+						TopLeftGreen = Input {
+							Value = 0.839216,
+						},
+						TopLeftBlue = Input {
+							Value = 1,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, -66 },
+					},
+				},
+				ColdHall = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Type = Input {
+							Value = FuID { "Gradient" },
+						},
+						GradientType = Input {
+							Value = FuID { "Linear" },
+						},
+						Start = Input {
+							Value = { 0.5, 1 },
+						},
+						End = Input {
+							Value = { 0.5, 0 },
+						},
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.011765, 0.019608, 0.047059, 1 },
+									[1] = { 0.035294, 0.066667, 0.098039, 1 }
+								}
+							},
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 0 },
+					},
+				},
+				HallGlowColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftRed*0.3",
+						},
+						TopLeftGreen = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftGreen*0.3",
+						},
+						TopLeftBlue = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftBlue*0.3",
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "HallGlowShape",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 0 },
+					},
+				},
+				HallGlowShape = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.6,
+						},
+						Center = Input {
+							Value = { 0.5, 0.55 },
+						},
+						Width = Input {
+							Value = 1.2,
+						},
+						Height = Input {
+							Value = 0.6,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 0 },
+					},
+				},
+				HallGlow = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "ColdHall",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "HallGlowColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "0.5*CONTROLS.BackgroundIntensity",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 0 },
+					},
+				},
+				SpiresFar0Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.53959,
+										Y = 0.12748,
+									},
+									{
+										Linear = true,
+										X = -0.53873,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = -0.52128,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 66 },
+					},
+				},
+				SpiresFar0Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.53959,
+										Y = 0.12748,
+									},
+									{
+										Linear = true,
+										X = -0.52128,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = -0.50256,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 66 },
+					},
+				},
+				SpiresFar1Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.484,
+										Y = -0.1169,
+									},
+									{
+										Linear = true,
+										X = -0.51703,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = -0.50247,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar0Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 66 },
+					},
+				},
+				SpiresFar1Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.484,
+										Y = -0.1169,
+									},
+									{
+										Linear = true,
+										X = -0.50247,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = -0.49171,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar0Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 66 },
+					},
+				},
+				SpiresFar2Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.38842,
+										Y = -0.03965,
+									},
+									{
+										Linear = true,
+										X = -0.4256,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = -0.39497,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar1Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 66 },
+					},
+				},
+				SpiresFar2Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.38842,
+										Y = -0.03965,
+									},
+									{
+										Linear = true,
+										X = -0.39497,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = -0.37007,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar1Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 550, 66 },
+					},
+				},
+				SpiresFar3Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.44434,
+										Y = -0.15249,
+									},
+									{
+										Linear = true,
+										X = -0.44225,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = -0.42179,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar2Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 660, 66 },
+					},
+				},
+				SpiresFar3Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.44434,
+										Y = -0.15249,
+									},
+									{
+										Linear = true,
+										X = -0.42179,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = -0.40339,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar2Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 770, 66 },
+					},
+				},
+				SpiresFar4Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.33027,
+										Y = 0.01514,
+									},
+									{
+										Linear = true,
+										X = -0.34371,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = -0.31585,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar3Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 880, 66 },
+					},
+				},
+				SpiresFar4Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.33027,
+										Y = 0.01514,
+									},
+									{
+										Linear = true,
+										X = -0.31585,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = -0.29084,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar3Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 990, 66 },
+					},
+				},
+				SpiresFar5Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.37142,
+										Y = -0.14111,
+									},
+									{
+										Linear = true,
+										X = -0.35956,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = -0.339,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar4Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1100, 66 },
+					},
+				},
+				SpiresFar5Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.37142,
+										Y = -0.14111,
+									},
+									{
+										Linear = true,
+										X = -0.339,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = -0.32256,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar4Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1210, 66 },
+					},
+				},
+				SpiresFar6Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.1856,
+										Y = -0.00357,
+									},
+									{
+										Linear = true,
+										X = -0.20498,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = -0.18572,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar5Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1320, 66 },
+					},
+				},
+				SpiresFar6Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.1856,
+										Y = -0.00357,
+									},
+									{
+										Linear = true,
+										X = -0.18572,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = -0.1627,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar5Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1430, 66 },
+					},
+				},
+				SpiresFar7Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.13579,
+										Y = -0.14072,
+									},
+									{
+										Linear = true,
+										X = -0.17961,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = -0.16563,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar6Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1540, 66 },
+					},
+				},
+				SpiresFar7Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.13579,
+										Y = -0.14072,
+									},
+									{
+										Linear = true,
+										X = -0.16563,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = -0.15002,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar6Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1650, 66 },
+					},
+				},
+				SpiresFar8Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.04372,
+										Y = 0.08418,
+									},
+									{
+										Linear = true,
+										X = -0.05908,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = -0.03515,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar7Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1760, 66 },
+					},
+				},
+				SpiresFar8Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.04372,
+										Y = 0.08418,
+									},
+									{
+										Linear = true,
+										X = -0.03515,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = -0.00848,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar7Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1870, 66 },
+					},
+				},
+				SpiresFar9Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.09389,
+										Y = -0.07873,
+									},
+									{
+										Linear = true,
+										X = -0.07426,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = -0.05795,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar8Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1980, 66 },
+					},
+				},
+				SpiresFar9Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.09389,
+										Y = -0.07873,
+									},
+									{
+										Linear = true,
+										X = -0.05795,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = -0.03884,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar8Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2090, 66 },
+					},
+				},
+				SpiresFar10Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.08617,
+										Y = 0.05998,
+									},
+									{
+										Linear = true,
+										X = 0.06483,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = 0.09428,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar9Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2200, 66 },
+					},
+				},
+				SpiresFar10Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.08617,
+										Y = 0.05998,
+									},
+									{
+										Linear = true,
+										X = 0.09428,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = 0.11672,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar9Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2310, 66 },
+					},
+				},
+				SpiresFar11Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.15547,
+										Y = -0.10317,
+									},
+									{
+										Linear = true,
+										X = 0.09596,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = 0.11443,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar10Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2420, 66 },
+					},
+				},
+				SpiresFar11Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.15547,
+										Y = -0.10317,
+									},
+									{
+										Linear = true,
+										X = 0.11443,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = 0.13228,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar10Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2530, 66 },
+					},
+				},
+				SpiresFar12Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.24839,
+										Y = 0.14217,
+									},
+									{
+										Linear = true,
+										X = 0.2263,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = 0.24801,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar11Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2640, 66 },
+					},
+				},
+				SpiresFar12Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.24839,
+										Y = 0.14217,
+									},
+									{
+										Linear = true,
+										X = 0.24801,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = 0.27367,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar11Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2750, 66 },
+					},
+				},
+				SpiresFar13Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.19251,
+										Y = -0.10304,
+									},
+									{
+										Linear = true,
+										X = 0.21209,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = 0.22935,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar12Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2860, 66 },
+					},
+				},
+				SpiresFar13Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.19251,
+										Y = -0.10304,
+									},
+									{
+										Linear = true,
+										X = 0.22935,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = 0.24525,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar12Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2970, 66 },
+					},
+				},
+				SpiresFar14Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.41086,
+										Y = 0.05558,
+									},
+									{
+										Linear = true,
+										X = 0.38106,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = 0.39991,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar13Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3080, 66 },
+					},
+				},
+				SpiresFar14Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.41086,
+										Y = 0.05558,
+									},
+									{
+										Linear = true,
+										X = 0.39991,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = 0.42017,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar13Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3190, 66 },
+					},
+				},
+				SpiresFar15Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.45976,
+										Y = -0.07176,
+									},
+									{
+										Linear = true,
+										X = 0.40452,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = 0.42002,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar14Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3300, 66 },
+					},
+				},
+				SpiresFar15Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.45976,
+										Y = -0.07176,
+									},
+									{
+										Linear = true,
+										X = 0.42002,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = 0.4319,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar14Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3410, 66 },
+					},
+				},
+				SpiresFar16Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.60725,
+										Y = 0.16429,
+									},
+									{
+										Linear = true,
+										X = 0.58111,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = 0.59901,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar15Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3520, 66 },
+					},
+				},
+				SpiresFar16Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.60725,
+										Y = 0.16429,
+									},
+									{
+										Linear = true,
+										X = 0.59901,
+										Y = -0.25,
+									},
+									{
+										Linear = true,
+										X = 0.61354,
+										Y = -0.25,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar15Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3630, 66 },
+					},
+				},
+				SpiresFar17Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.65877,
+										Y = -0.02977,
+									},
+									{
+										Linear = true,
+										X = 0.60057,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = 0.61348,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar16Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3740, 66 },
+					},
+				},
+				SpiresFar17Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.65877,
+										Y = -0.02977,
+									},
+									{
+										Linear = true,
+										X = 0.61348,
+										Y = -0.255,
+									},
+									{
+										Linear = true,
+										X = 0.62326,
+										Y = -0.255,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar16Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3850, 66 },
+					},
+				},
+				SpiresFarLitColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0.101961,
+						},
+						TopLeftGreen = Input {
+							Value = 0.180392,
+						},
+						TopLeftBlue = Input {
+							Value = 0.270588,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar17Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3960, 66 },
+					},
+				},
+				SpiresFarDarkColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0.039216,
+						},
+						TopLeftGreen = Input {
+							Value = 0.082353,
+						},
+						TopLeftBlue = Input {
+							Value = 0.129412,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresFar17Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4070, 66 },
+					},
+				},
+				SpiresFarFaces = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "SpiresFarLitColor",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SpiresFarDarkColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4180, 66 },
+					},
+				},
+				SpiresFarParallax = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "SpiresFarFaces",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5 + 0.02*(0.5 - (0.5 - 0.5*cos(3.14159265*min(max((time - (0)) / max(204, 1), 0), 1)))), 0.5)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4290, 66 },
+					},
+				},
+				SpiresFar = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "HallGlow",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SpiresFarParallax",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(CONTROLS.BackgroundIntensity, 1)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4400, 66 },
+					},
+				},
+				GroundMistFarNoise = FastNoise {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Detail = Input {
+							Value = 5,
+						},
+						XScale = Input {
+							Value = 2,
+						},
+						SeetheRate = Input {
+							Value = 0.03,
+						},
+						Contrast = Input {
+							Value = 1.4,
+						},
+						Brightness = Input {
+							Value = 0,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						Color1Red = Input {
+							Value = 0,
+						},
+						Color1Green = Input {
+							Value = 0,
+						},
+						Color1Blue = Input {
+							Value = 0,
+						},
+						Color1Alpha = Input {
+							Value = 1,
+						},
+						Color2Red = Input {
+							Value = 0.172549,
+						},
+						Color2Green = Input {
+							Value = 0.290196,
+						},
+						Color2Blue = Input {
+							Value = 0.388235,
+						},
+						Color2Alpha = Input {
+							Value = 1,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5 + time*0.0004, 0.5 + time*0.0)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4510, 66 },
+					},
+				},
+				GroundMistFarDepth = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "GroundMistFarNoise",
+							Source = "Output",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "1",
+						},
+						Edges = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4620, 66 },
+					},
+				},
+				GroundMistFar = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "SpiresFar",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "GroundMistFarDepth",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "0.4*CONTROLS.BackgroundIntensity",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4730, 66 },
+					},
+				},
+				MainTitle = TextPlus {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						StyledText = Input {
+							Value = "WINTERFALL",
+						},
+						Font = Input {
+							Value = "Cinzel",
+						},
+						Style = Input {
+							Value = "Bold",
+						},
+						Size = Input {
+							Value = 0.16,
+						},
+						CharacterSpacing = Input {
+							Value = 1.05,
+						},
+						LineSpacing = Input {
+							Value = 1,
+						},
+						VerticalJustificationNew = Input {
+							Value = 3,
+						},
+						HorizontalJustificationNew = Input {
+							Value = 3,
+						},
+						Red1 = Input {
+							Value = 0.862745,
+						},
+						Green1 = Input {
+							Value = 0.921569,
+						},
+						Blue1 = Input {
+							Value = 0.980392,
+						},
+						Alpha1 = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 132 },
+					},
+				},
+				IceRefractionMatte = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "MainTitle",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Alpha" },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 132 },
+					},
+				},
+				IceRefraction = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Type = Input {
+							Value = FuID { "Gradient" },
+						},
+						GradientType = Input {
+							Value = FuID { "Linear" },
+						},
+						Start = Input {
+							Value = { 0.5, 0.62 },
+						},
+						End = Input {
+							Value = { 0.5, 0.38 },
+						},
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0.435294, 0.560784, 0.690196, 1 },
+									[0.4] = { 0.784314, 0.870588, 0.94902, 1 },
+									[0.5] = { 1, 1, 1, 1 },
+									[0.6] = { 0.611765, 0.713725, 0.811765, 1 },
+									[1] = { 0.301961, 0.415686, 0.533333, 1 }
+								}
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "IceRefractionMatte",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 132 },
+					},
+				},
+				IceFace = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "MainTitle",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "IceRefraction",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Multiply" },
+						},
+						Blend = Input {
+							Value = 0.8,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 132 },
+					},
+				},
+				ColdRimShift = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "MainTitle",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5015, 0.497 },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 132 },
+					},
+				},
+				ColdRimMaskA = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "MainTitle",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Alpha" },
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 550, 132 },
+					},
+				},
+				ColdRimMaskB = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "ColdRimShift",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Alpha" },
+						},
+						PaintMode = Input {
+							Value = FuID { "Subtract" },
+						},
+						EffectMask = Input {
+							SourceOp = "ColdRimMaskA",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 660, 132 },
+					},
+				},
+				ColdRimColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftRed*1.4",
+						},
+						TopLeftGreen = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftGreen*1.4",
+						},
+						TopLeftBlue = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftBlue*1.4",
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "ColdRimMaskB",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 770, 132 },
+					},
+				},
+				ColdRimSoft = Blur {
+					Inputs = {
+						Input = Input {
+							SourceOp = "ColdRimColor",
+							Source = "Output",
+						},
+						XBlurSize = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 880, 132 },
+					},
+				},
+				ColdRimMerge = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "IceFace",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "ColdRimSoft",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(CONTROLS.GlowStrength*(0.6 + 0.8*(min(max((time - (CONTROLS.ImpactFrame) + 1), 0), 1) * pow(2.718282, -max(time - (CONTROLS.ImpactFrame), 0) / 10))), 1)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 990, 132 },
+					},
+				},
+				LockGlintBand = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.04,
+						},
+						Width = Input {
+							Value = 0.05,
+						},
+						Height = Input {
+							Value = 2,
+						},
+						Angle = Input {
+							Value = 40,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(-0.2 + 1.4*(0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.ImpactFrame)) / max(22, 1), 0), 1))), 0.5)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1100, 132 },
+					},
+				},
+				LockGlintClip = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "MainTitle",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Alpha" },
+						},
+						PaintMode = Input {
+							Value = FuID { "Multiply" },
+						},
+						EffectMask = Input {
+							SourceOp = "LockGlintBand",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1210, 132 },
+					},
+				},
+				LockGlintColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+						},
+						TopLeftGreen = Input {
+							Value = 0.95,
+						},
+						TopLeftBlue = Input {
+							Value = 0.85,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "LockGlintClip",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1320, 132 },
+					},
+				},
+				LockGlint = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "ColdRimMerge",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "LockGlintColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "1.0*CONTROLS.GlowStrength*min(max(min(max((time - (CONTROLS.ImpactFrame)) / max(22, 1), 0), 1)*20, 0), 1)*(1-min(max((min(max((time - (CONTROLS.ImpactFrame)) / max(22, 1), 0), 1)-0.95)*20, 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1430, 132 },
+					},
+				},
+				FrostRamp = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Type = Input {
+							Value = FuID { "Gradient" },
+						},
+						GradientType = Input {
+							Value = FuID { "Linear" },
+						},
+						Start = Input {
+							Value = { 0.2, 0.5 },
+						},
+						End = Input {
+							Value = { 0.8, 0.5 },
+						},
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0] = { 0, 0, 0, 1 },
+									[1] = { 1, 1, 1, 1 }
+								}
+							},
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 198 },
+					},
+				},
+				FrostNoise = FastNoise {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Detail = Input {
+							Value = 8,
+						},
+						XScale = Input {
+							Value = 12,
+						},
+						SeetheRate = Input {
+							Value = 0,
+						},
+						Contrast = Input {
+							Value = 1.6,
+						},
+						Brightness = Input {
+							Value = 0,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						Color1Red = Input {
+							Value = 0,
+						},
+						Color1Green = Input {
+							Value = 0,
+						},
+						Color1Blue = Input {
+							Value = 0,
+						},
+						Color1Alpha = Input {
+							Value = 1,
+						},
+						Color2Red = Input {
+							Value = 1,
+						},
+						Color2Green = Input {
+							Value = 1,
+						},
+						Color2Blue = Input {
+							Value = 1,
+						},
+						Color2Alpha = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 198 },
+					},
+				},
+				FrostField = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "FrostRamp",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "FrostNoise",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Overlay" },
+						},
+						Blend = Input {
+							Value = 0.6,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 198 },
+					},
+				},
+				FrostFront = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "FrostField",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Luminance" },
+						},
+						Low = Input {
+							Value = 0,
+							Expression = "1.1*(0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1))) - 0.08 - 1.2*pow(min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1), 1.5)",
+						},
+						High = Input {
+							Value = 0,
+							Expression = "1.1*(0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1))) - 1.2*pow(min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1), 1.5)",
+						},
+						Invert = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 198 },
+					},
+				},
+				TitleHolder = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0,
+						},
+						TopLeftGreen = Input {
+							Value = 0,
+						},
+						TopLeftBlue = Input {
+							Value = 0,
+						},
+						TopLeftAlpha = Input {
+							Value = 0,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 198 },
+					},
+				},
+				TitleCrystallise = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "TitleHolder",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "LockGlint",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						EffectMask = Input {
+							SourceOp = "FrostFront",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 550, 198 },
+					},
+				},
+				TitlePlace = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "TitleCrystallise",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(CONTROLS.TextPosX + 0, CONTROLS.TextPosY + 0)",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "CONTROLS.TextScale * (1)",
+						},
+						Angle = Input {
+							Value = 0,
+							Expression = "CONTROLS.TextRotation + 0",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 660, 198 },
+					},
+				},
+				IceGlow = SoftGlow {
+					Inputs = {
+						Input = Input {
+							SourceOp = "TitlePlace",
+							Source = "Output",
+						},
+						Threshold = Input {
+							Value = 0.7,
+						},
+						XGlowSize = Input {
+							Value = 9,
+						},
+						Gain = Input {
+							Value = 1,
+							Expression = "0.6*CONTROLS.GlowStrength",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 770, 198 },
+					},
+				},
+				TitleInHall = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "GroundMistFar",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "IceGlow",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 880, 198 },
+					},
+				},
+				Dendrite0_0 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = -0.24312,
+										Y = -0.05021,
+									},
+									{
+										Linear = true,
+										X = -0.24548,
+										Y = -0.05606,
+									},
+									{
+										Linear = true,
+										X = -0.24836,
+										Y = -0.06111,
+									},
+									{
+										Linear = true,
+										X = -0.25013,
+										Y = -0.06759,
+									},
+								},
+							},
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 264 },
+					},
+				},
+				Dendrite0_1 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = -0.23418,
+										Y = -0.07019,
+									},
+									{
+										Linear = true,
+										X = -0.23089,
+										Y = -0.06597,
+									},
+									{
+										Linear = true,
+										X = -0.22704,
+										Y = -0.06375,
+									},
+									{
+										Linear = true,
+										X = -0.22301,
+										Y = -0.06443,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite0_0",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 264 },
+					},
+				},
+				Dendrite0_2 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = -0.2604,
+										Y = -0.012,
+									},
+									{
+										Linear = true,
+										X = -0.25589,
+										Y = -0.01554,
+									},
+									{
+										Linear = true,
+										X = -0.25286,
+										Y = -0.02389,
+									},
+									{
+										Linear = true,
+										X = -0.24997,
+										Y = -0.03255,
+									},
+									{
+										Linear = true,
+										X = -0.24751,
+										Y = -0.03884,
+									},
+									{
+										Linear = true,
+										X = -0.24393,
+										Y = -0.04286,
+									},
+									{
+										Linear = true,
+										X = -0.24312,
+										Y = -0.05021,
+									},
+									{
+										Linear = true,
+										X = -0.24032,
+										Y = -0.0575,
+									},
+									{
+										Linear = true,
+										X = -0.23782,
+										Y = -0.06065,
+									},
+									{
+										Linear = true,
+										X = -0.23418,
+										Y = -0.07019,
+									},
+									{
+										Linear = true,
+										X = -0.23419,
+										Y = -0.07998,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite0_1",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 264 },
+					},
+				},
+				Dendrite0_3 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = -0.26512,
+										Y = -0.03855,
+									},
+									{
+										Linear = true,
+										X = -0.26716,
+										Y = -0.04477,
+									},
+									{
+										Linear = true,
+										X = -0.27047,
+										Y = -0.04891,
+									},
+									{
+										Linear = true,
+										X = -0.27439,
+										Y = -0.05078,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite0_2",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 264 },
+					},
+				},
+				FrostGrow0 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.05,
+						},
+						Center = Input {
+							Value = { 0.2396, 0.488 },
+						},
+						Width = Input {
+							Value = 0.01,
+							Expression = "(2.2*max((0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1))) - 0.00, 0))",
+						},
+						Height = Input {
+							Value = 0.01,
+							Expression = "(2.2*max((0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1))) - 0.00, 0))*1.7778",
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						PaintMode = Input {
+							Value = FuID { "Multiply" },
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite0_3",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 264 },
+					},
+				},
+				DendriteColor0 = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftRed*1.2",
+						},
+						TopLeftGreen = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftGreen*1.2",
+						},
+						TopLeftBlue = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftBlue*1.2",
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "FrostGrow0",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 550, 264 },
+					},
+				},
+				Dendrite1_0 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = -0.07403,
+										Y = 0.02389,
+									},
+									{
+										Linear = true,
+										X = -0.07113,
+										Y = 0.02891,
+									},
+									{
+										Linear = true,
+										X = -0.0676,
+										Y = 0.03245,
+									},
+									{
+										Linear = true,
+										X = -0.06379,
+										Y = 0.03491,
+									},
+								},
+							},
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 660, 264 },
+					},
+				},
+				Dendrite1_1 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = -0.0514,
+										Y = 0.03478,
+									},
+									{
+										Linear = true,
+										X = -0.04934,
+										Y = 0.04098,
+									},
+									{
+										Linear = true,
+										X = -0.04792,
+										Y = 0.04772,
+									},
+									{
+										Linear = true,
+										X = -0.0463,
+										Y = 0.05432,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite1_0",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 770, 264 },
+					},
+				},
+				Dendrite1_2 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = -0.0868,
+										Y = 0.02,
+									},
+									{
+										Linear = true,
+										X = -0.08328,
+										Y = 0.01948,
+									},
+									{
+										Linear = true,
+										X = -0.08074,
+										Y = 0.02256,
+									},
+									{
+										Linear = true,
+										X = -0.07805,
+										Y = 0.02567,
+									},
+									{
+										Linear = true,
+										X = -0.07403,
+										Y = 0.02389,
+									},
+									{
+										Linear = true,
+										X = -0.06774,
+										Y = 0.02645,
+									},
+									{
+										Linear = true,
+										X = -0.06275,
+										Y = 0.03056,
+									},
+									{
+										Linear = true,
+										X = -0.05689,
+										Y = 0.03174,
+									},
+									{
+										Linear = true,
+										X = -0.0514,
+										Y = 0.03478,
+									},
+									{
+										Linear = true,
+										X = -0.04765,
+										Y = 0.04319,
+									},
+									{
+										Linear = true,
+										X = -0.04555,
+										Y = 0.04811,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite1_1",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 880, 264 },
+					},
+				},
+				Dendrite1_3 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = -0.0868,
+										Y = 0.02,
+									},
+									{
+										Linear = true,
+										X = -0.08275,
+										Y = 0.01414,
+									},
+									{
+										Linear = true,
+										X = -0.07895,
+										Y = 0.01009,
+									},
+									{
+										Linear = true,
+										X = -0.07443,
+										Y = 0.00675,
+									},
+									{
+										Linear = true,
+										X = -0.07121,
+										Y = 0.0037,
+									},
+									{
+										Linear = true,
+										X = -0.06862,
+										Y = -0.003,
+									},
+									{
+										Linear = true,
+										X = -0.06545,
+										Y = -0.00412,
+									},
+									{
+										Linear = true,
+										X = -0.06087,
+										Y = -0.00223,
+									},
+									{
+										Linear = true,
+										X = -0.0567,
+										Y = -0.00348,
+									},
+									{
+										Linear = true,
+										X = -0.05247,
+										Y = -0.00468,
+									},
+									{
+										Linear = true,
+										X = -0.04716,
+										Y = -0.00639,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite1_2",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 990, 264 },
+					},
+				},
+				FrostGrow1 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.05,
+						},
+						Center = Input {
+							Value = { 0.4132, 0.52 },
+						},
+						Width = Input {
+							Value = 0.01,
+							Expression = "(2.2*max((0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1))) - 0.11, 0))",
+						},
+						Height = Input {
+							Value = 0.01,
+							Expression = "(2.2*max((0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1))) - 0.11, 0))*1.7778",
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						PaintMode = Input {
+							Value = FuID { "Multiply" },
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite1_3",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1100, 264 },
+					},
+				},
+				DendriteSet1 = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "DendriteColor0",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Alpha" },
+						},
+						EffectMask = Input {
+							SourceOp = "FrostGrow1",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1210, 264 },
+					},
+				},
+				DendriteColor1 = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftRed*1.2",
+						},
+						TopLeftGreen = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftGreen*1.2",
+						},
+						TopLeftBlue = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftBlue*1.2",
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "DendriteSet1",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1320, 264 },
+					},
+				},
+				Dendrite2_0 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = 0.0992,
+										Y = -0.016,
+									},
+									{
+										Linear = true,
+										X = 0.10426,
+										Y = -0.01097,
+									},
+									{
+										Linear = true,
+										X = 0.10608,
+										Y = -0.0039,
+									},
+									{
+										Linear = true,
+										X = 0.10772,
+										Y = 0.00106,
+									},
+									{
+										Linear = true,
+										X = 0.11087,
+										Y = 0.00585,
+									},
+									{
+										Linear = true,
+										X = 0.11427,
+										Y = 0.0099,
+									},
+									{
+										Linear = true,
+										X = 0.12022,
+										Y = 0.01296,
+									},
+									{
+										Linear = true,
+										X = 0.12614,
+										Y = 0.00931,
+									},
+									{
+										Linear = true,
+										X = 0.12942,
+										Y = 0.00821,
+									},
+									{
+										Linear = true,
+										X = 0.1349,
+										Y = 0.01243,
+									},
+									{
+										Linear = true,
+										X = 0.13627,
+										Y = 0.01868,
+									},
+								},
+							},
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1430, 264 },
+					},
+				},
+				Dendrite2_1 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = 0.07307,
+										Y = -0.07563,
+									},
+									{
+										Linear = true,
+										X = 0.0709,
+										Y = -0.0817,
+									},
+									{
+										Linear = true,
+										X = 0.06894,
+										Y = -0.08801,
+									},
+									{
+										Linear = true,
+										X = 0.06613,
+										Y = -0.09319,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite2_0",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1540, 264 },
+					},
+				},
+				Dendrite2_2 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = 0.0992,
+										Y = -0.016,
+									},
+									{
+										Linear = true,
+										X = 0.099,
+										Y = -0.02286,
+									},
+									{
+										Linear = true,
+										X = 0.09804,
+										Y = -0.03148,
+									},
+									{
+										Linear = true,
+										X = 0.09471,
+										Y = -0.03647,
+									},
+									{
+										Linear = true,
+										X = 0.09006,
+										Y = -0.0436,
+									},
+									{
+										Linear = true,
+										X = 0.08768,
+										Y = -0.05299,
+									},
+									{
+										Linear = true,
+										X = 0.08517,
+										Y = -0.05627,
+									},
+									{
+										Linear = true,
+										X = 0.08342,
+										Y = -0.06359,
+									},
+									{
+										Linear = true,
+										X = 0.08036,
+										Y = -0.07157,
+									},
+									{
+										Linear = true,
+										X = 0.07682,
+										Y = -0.0736,
+									},
+									{
+										Linear = true,
+										X = 0.07307,
+										Y = -0.07563,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite2_1",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1650, 264 },
+					},
+				},
+				Dendrite2_3 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = 0.0914,
+										Y = -0.00711,
+									},
+									{
+										Linear = true,
+										X = 0.09091,
+										Y = 0.00004,
+									},
+									{
+										Linear = true,
+										X = 0.09024,
+										Y = 0.00714,
+									},
+									{
+										Linear = true,
+										X = 0.09015,
+										Y = 0.01434,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite2_2",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1760, 264 },
+					},
+				},
+				FrostGrow2 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.05,
+						},
+						Center = Input {
+							Value = { 0.5992, 0.484 },
+						},
+						Width = Input {
+							Value = 0.01,
+							Expression = "(2.2*max((0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1))) - 0.05, 0))",
+						},
+						Height = Input {
+							Value = 0.01,
+							Expression = "(2.2*max((0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1))) - 0.05, 0))*1.7778",
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						PaintMode = Input {
+							Value = FuID { "Multiply" },
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite2_3",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1870, 264 },
+					},
+				},
+				DendriteSet2 = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "DendriteColor1",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Alpha" },
+						},
+						EffectMask = Input {
+							SourceOp = "FrostGrow2",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1980, 264 },
+					},
+				},
+				DendriteColor2 = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftRed*1.2",
+						},
+						TopLeftGreen = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftGreen*1.2",
+						},
+						TopLeftBlue = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftBlue*1.2",
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "DendriteSet2",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2090, 264 },
+					},
+				},
+				Dendrite3_0 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = 0.27483,
+										Y = 0.0186,
+									},
+									{
+										Linear = true,
+										X = 0.27555,
+										Y = 0.02569,
+									},
+									{
+										Linear = true,
+										X = 0.27886,
+										Y = 0.02984,
+									},
+									{
+										Linear = true,
+										X = 0.28241,
+										Y = 0.03331,
+									},
+								},
+							},
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2200, 264 },
+					},
+				},
+				Dendrite3_1 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = 0.27897,
+										Y = 0.03344,
+									},
+									{
+										Linear = true,
+										X = 0.28228,
+										Y = 0.03759,
+									},
+									{
+										Linear = true,
+										X = 0.28431,
+										Y = 0.04382,
+									},
+									{
+										Linear = true,
+										X = 0.28495,
+										Y = 0.05093,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite3_0",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2310, 264 },
+					},
+				},
+				Dendrite3_2 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = 0.2666,
+										Y = 0.0144,
+									},
+									{
+										Linear = true,
+										X = 0.27225,
+										Y = 0.01467,
+									},
+									{
+										Linear = true,
+										X = 0.27483,
+										Y = 0.0186,
+									},
+									{
+										Linear = true,
+										X = 0.27714,
+										Y = 0.02266,
+									},
+									{
+										Linear = true,
+										X = 0.27897,
+										Y = 0.03344,
+									},
+									{
+										Linear = true,
+										X = 0.28354,
+										Y = 0.04069,
+									},
+									{
+										Linear = true,
+										X = 0.28724,
+										Y = 0.04716,
+									},
+									{
+										Linear = true,
+										X = 0.28645,
+										Y = 0.05749,
+									},
+									{
+										Linear = true,
+										X = 0.28824,
+										Y = 0.06862,
+									},
+									{
+										Linear = true,
+										X = 0.29101,
+										Y = 0.07127,
+									},
+									{
+										Linear = true,
+										X = 0.29416,
+										Y = 0.07158,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite3_1",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2420, 264 },
+					},
+				},
+				Dendrite3_3 = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.0008,
+						},
+						BorderWidth = Input {
+							Value = 0.0012,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = false,
+								Points = {
+									{
+										Linear = true,
+										X = 0.26,
+										Y = 0.00558,
+									},
+									{
+										Linear = true,
+										X = 0.26235,
+										Y = -0.00029,
+									},
+									{
+										Linear = true,
+										X = 0.26291,
+										Y = -0.00742,
+									},
+									{
+										Linear = true,
+										X = 0.26379,
+										Y = -0.01445,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite3_2",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2530, 264 },
+					},
+				},
+				FrostGrow3 = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.05,
+						},
+						Center = Input {
+							Value = { 0.7666, 0.5144 },
+						},
+						Width = Input {
+							Value = 0.01,
+							Expression = "(2.2*max((0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1))) - 0.15, 0))",
+						},
+						Height = Input {
+							Value = 0.01,
+							Expression = "(2.2*max((0.5 - 0.5*cos(3.14159265*min(max((time - (CONTROLS.AnimStart)) / max(CONTROLS.AnimDuration, 1), 0), 1))) - 0.15, 0))*1.7778",
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						PaintMode = Input {
+							Value = FuID { "Multiply" },
+						},
+						EffectMask = Input {
+							SourceOp = "Dendrite3_3",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2640, 264 },
+					},
+				},
+				DendriteSet3 = BitmapMask {
+					Inputs = {
+						Image = Input {
+							SourceOp = "DendriteColor2",
+							Source = "Output",
+						},
+						Channel = Input {
+							Value = FuID { "Alpha" },
+						},
+						EffectMask = Input {
+							SourceOp = "FrostGrow3",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2750, 264 },
+					},
+				},
+				DendriteColor3 = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftRed*1.2",
+						},
+						TopLeftGreen = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftGreen*1.2",
+						},
+						TopLeftBlue = Input {
+							Value = 1,
+							Expression = "ACCENT.TopLeftBlue*1.2",
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "DendriteSet3",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2860, 264 },
+					},
+				},
+				DendritePlace = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "DendriteColor3",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(CONTROLS.TextPosX + 0, CONTROLS.TextPosY + 0)",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "CONTROLS.TextScale * (1)",
+						},
+						Angle = Input {
+							Value = 0,
+							Expression = "CONTROLS.TextRotation + 0",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2970, 264 },
+					},
+				},
+				DendriteGlow = SoftGlow {
+					Inputs = {
+						Input = Input {
+							SourceOp = "DendritePlace",
+							Source = "Output",
+						},
+						Threshold = Input {
+							Value = 0.1,
+						},
+						XGlowSize = Input {
+							Value = 4,
+						},
+						Gain = Input {
+							Value = 1,
+							Expression = "CONTROLS.GlowStrength",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3080, 264 },
+					},
+				},
+				Dendrites = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "TitleInHall",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "DendriteGlow",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "(0.7 - 0.45*(1 - pow(1 - min(max((time - (CONTROLS.ImpactFrame)) / max(36, 1), 0), 1), 2)))*(1 - min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3190, 264 },
+					},
+				},
+				CrystalBurstEmitter = pEmitter {
+					Inputs = {
+						Number = Input {
+							Value = 180,
+							Expression = "180*CONTROLS.ParticleIntensity*(min(max((time - (CONTROLS.ImpactFrame) + 1) / 1, 0), 1) * (1 - min(max((time - (CONTROLS.ImpactFrame + 2)) / 1, 0), 1)))",
+						},
+						Lifespan = Input {
+							Value = 26,
+						},
+						LifespanVariance = Input {
+							Value = 7.8,
+						},
+						Velocity = Input {
+							Value = 0.02,
+						},
+						VelocityVariance = Input {
+							Value = 0.012,
+						},
+						Angle = Input {
+							Value = 90,
+						},
+						AngleVariance = Input {
+							Value = 180,
+						},
+						Region = Input {
+							Value = FuID { "CubeRgn" },
+						},
+						["ParticleStyle.ColorControls"] = Input {
+							Value = 1,
+						},
+						["ParticleStyle.Red"] = Input {
+							Value = 0.85,
+						},
+						["ParticleStyle.Green"] = Input {
+							Value = 0.95,
+						},
+						["ParticleStyle.Blue"] = Input {
+							Value = 1,
+						},
+						["ParticleStyle.Size"] = Input {
+							Value = 0.25,
+						},
+						["ParticleStyle.SizeVariance"] = Input {
+							Value = 0.15,
+						},
+						["CubeRgn.Width"] = Input {
+							Value = 1.2,
+						},
+						["CubeRgn.Height"] = Input {
+							Value = 0.15,
+						},
+						["CubeRgn.Depth"] = Input {
+							Value = 0.2,
+						},
+						["Transform3DOp.Translate.Y"] = Input {
+							Value = 0,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3300, 264 },
+					},
+				},
+				CrystalBurstTurb = pTurbulence {
+					Inputs = {
+						Input = Input {
+							SourceOp = "CrystalBurstEmitter",
+							Source = "Output",
+						},
+						XStrength = Input {
+							Value = 0.1,
+						},
+						YStrength = Input {
+							Value = 0.1,
+						},
+						ZStrength = Input {
+							Value = 0.05,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3410, 264 },
+					},
+				},
+				CrystalBurstRender = pRender {
+					Inputs = {
+						Input = Input {
+							SourceOp = "CrystalBurstTurb",
+							Source = "Output",
+						},
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3520, 264 },
+					},
+				},
+				CrystalBurstGlow = SoftGlow {
+					Inputs = {
+						Input = Input {
+							SourceOp = "CrystalBurstRender",
+							Source = "Output",
+						},
+						Threshold = Input {
+							Value = 0.1,
+						},
+						XGlowSize = Input {
+							Value = 4,
+						},
+						Gain = Input {
+							Value = 1,
+							Expression = "1.2*CONTROLS.GlowStrength",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3630, 264 },
+					},
+				},
+				CrystalBurst = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Dendrites",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "CrystalBurstGlow",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(CONTROLS.ParticleIntensity, 1)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3740, 264 },
+					},
+				},
+				SpiresNear0Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.53335,
+										Y = 0.02851,
+									},
+									{
+										Linear = true,
+										X = -0.58901,
+										Y = -0.5,
+									},
+									{
+										Linear = true,
+										X = -0.54087,
+										Y = -0.5,
+									},
+								},
+							},
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 0, 330 },
+					},
+				},
+				SpiresNear0Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.53335,
+										Y = 0.02851,
+									},
+									{
+										Linear = true,
+										X = -0.54087,
+										Y = -0.5,
+									},
+									{
+										Linear = true,
+										X = -0.50339,
+										Y = -0.5,
+									},
+								},
+							},
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 110, 330 },
+					},
+				},
+				SpiresNear1Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.45645,
+										Y = -0.15017,
+									},
+									{
+										Linear = true,
+										X = -0.53764,
+										Y = -0.505,
+									},
+									{
+										Linear = true,
+										X = -0.50824,
+										Y = -0.505,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear0Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 220, 330 },
+					},
+				},
+				SpiresNear1Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.45645,
+										Y = -0.15017,
+									},
+									{
+										Linear = true,
+										X = -0.50824,
+										Y = -0.505,
+									},
+									{
+										Linear = true,
+										X = -0.47771,
+										Y = -0.505,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear0Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 330, 330 },
+					},
+				},
+				SpiresNear2Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.35219,
+										Y = -0.20573,
+									},
+									{
+										Linear = true,
+										X = -0.4122,
+										Y = -0.5,
+									},
+									{
+										Linear = true,
+										X = -0.36444,
+										Y = -0.5,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear1Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 440, 330 },
+					},
+				},
+				SpiresNear2Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.35219,
+										Y = -0.20573,
+									},
+									{
+										Linear = true,
+										X = -0.36444,
+										Y = -0.5,
+									},
+									{
+										Linear = true,
+										X = -0.32419,
+										Y = -0.5,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear1Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 550, 330 },
+					},
+				},
+				SpiresNear3Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.2961,
+										Y = -0.3695,
+									},
+									{
+										Linear = true,
+										X = -0.35939,
+										Y = -0.505,
+									},
+									{
+										Linear = true,
+										X = -0.33045,
+										Y = -0.505,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear2Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 660, 330 },
+					},
+				},
+				SpiresNear3Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.2961,
+										Y = -0.3695,
+									},
+									{
+										Linear = true,
+										X = -0.33045,
+										Y = -0.505,
+									},
+									{
+										Linear = true,
+										X = -0.29779,
+										Y = -0.505,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear2Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 770, 330 },
+					},
+				},
+				SpiresNear4Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.34712,
+										Y = 0.38638,
+									},
+									{
+										Linear = true,
+										X = -0.4328,
+										Y = -0.5,
+									},
+									{
+										Linear = true,
+										X = -0.37941,
+										Y = -0.5,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear3Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 880, 330 },
+					},
+				},
+				SpiresNear4Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.34712,
+										Y = 0.38638,
+									},
+									{
+										Linear = true,
+										X = -0.37941,
+										Y = -0.5,
+									},
+									{
+										Linear = true,
+										X = -0.33779,
+										Y = -0.5,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear3Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 990, 330 },
+					},
+				},
+				SpiresNear5Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.21211,
+										Y = -0.02274,
+									},
+									{
+										Linear = true,
+										X = -0.37579,
+										Y = -0.505,
+									},
+									{
+										Linear = true,
+										X = -0.34663,
+										Y = -0.505,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear4Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1100, 330 },
+					},
+				},
+				SpiresNear5Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = -0.21211,
+										Y = -0.02274,
+									},
+									{
+										Linear = true,
+										X = -0.34663,
+										Y = -0.505,
+									},
+									{
+										Linear = true,
+										X = -0.30929,
+										Y = -0.505,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear4Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1210, 330 },
+					},
+				},
+				SpiresNear6Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.37524,
+										Y = 0.16999,
+									},
+									{
+										Linear = true,
+										X = 0.37853,
+										Y = -0.5,
+									},
+									{
+										Linear = true,
+										X = 0.4049,
+										Y = -0.5,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear5Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1320, 330 },
+					},
+				},
+				SpiresNear6Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.37524,
+										Y = 0.16999,
+									},
+									{
+										Linear = true,
+										X = 0.4049,
+										Y = -0.5,
+									},
+									{
+										Linear = true,
+										X = 0.43793,
+										Y = -0.5,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear5Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1430, 330 },
+					},
+				},
+				SpiresNear7Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.50828,
+										Y = -0.04473,
+									},
+									{
+										Linear = true,
+										X = 0.41417,
+										Y = -0.505,
+									},
+									{
+										Linear = true,
+										X = 0.43325,
+										Y = -0.505,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear6Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1540, 330 },
+					},
+				},
+				SpiresNear7Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.50828,
+										Y = -0.04473,
+									},
+									{
+										Linear = true,
+										X = 0.43325,
+										Y = -0.505,
+									},
+									{
+										Linear = true,
+										X = 0.45575,
+										Y = -0.505,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear6Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1650, 330 },
+					},
+				},
+				SpiresNear8Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.42488,
+										Y = 0.02161,
+									},
+									{
+										Linear = true,
+										X = 0.36319,
+										Y = -0.5,
+									},
+									{
+										Linear = true,
+										X = 0.40697,
+										Y = -0.5,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear7Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1760, 330 },
+					},
+				},
+				SpiresNear8Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.42488,
+										Y = 0.02161,
+									},
+									{
+										Linear = true,
+										X = 0.40697,
+										Y = -0.5,
+									},
+									{
+										Linear = true,
+										X = 0.45572,
+										Y = -0.5,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear7Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1870, 330 },
+					},
+				},
+				SpiresNear9Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.51644,
+										Y = -0.21364,
+									},
+									{
+										Linear = true,
+										X = 0.41871,
+										Y = -0.505,
+									},
+									{
+										Linear = true,
+										X = 0.44884,
+										Y = -0.505,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear8Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 1980, 330 },
+					},
+				},
+				SpiresNear9Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.51644,
+										Y = -0.21364,
+									},
+									{
+										Linear = true,
+										X = 0.44884,
+										Y = -0.505,
+									},
+									{
+										Linear = true,
+										X = 0.48348,
+										Y = -0.505,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear8Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2090, 330 },
+					},
+				},
+				SpiresNear10Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.52921,
+										Y = 0.25314,
+									},
+									{
+										Linear = true,
+										X = 0.50965,
+										Y = -0.5,
+									},
+									{
+										Linear = true,
+										X = 0.55587,
+										Y = -0.5,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear9Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2200, 330 },
+					},
+				},
+				SpiresNear10Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.52921,
+										Y = 0.25314,
+									},
+									{
+										Linear = true,
+										X = 0.55587,
+										Y = -0.5,
+									},
+									{
+										Linear = true,
+										X = 0.59628,
+										Y = -0.5,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear9Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2310, 330 },
+					},
+				},
+				SpiresNear11Lit = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.47385,
+										Y = -0.22174,
+									},
+									{
+										Linear = true,
+										X = 0.48366,
+										Y = -0.505,
+									},
+									{
+										Linear = true,
+										X = 0.51106,
+										Y = -0.505,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear10Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2420, 330 },
+					},
+				},
+				SpiresNear11Dark = PolylineMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.001,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Polyline = Input {
+							Value = Polyline {
+								Closed = true,
+								Points = {
+									{
+										Linear = true,
+										X = 0.47385,
+										Y = -0.22174,
+									},
+									{
+										Linear = true,
+										X = 0.51106,
+										Y = -0.505,
+									},
+									{
+										Linear = true,
+										X = 0.5443,
+										Y = -0.505,
+									},
+								},
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear10Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2530, 330 },
+					},
+				},
+				SpiresNearLitColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0.05098,
+						},
+						TopLeftGreen = Input {
+							Value = 0.101961,
+						},
+						TopLeftBlue = Input {
+							Value = 0.160784,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear11Lit",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2640, 330 },
+					},
+				},
+				SpiresNearDarkColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0.015686,
+						},
+						TopLeftGreen = Input {
+							Value = 0.031373,
+						},
+						TopLeftBlue = Input {
+							Value = 0.054902,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "SpiresNear11Dark",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2750, 330 },
+					},
+				},
+				SpiresNearFaces = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "SpiresNearLitColor",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SpiresNearDarkColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2860, 330 },
+					},
+				},
+				SpiresNearParallax = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "SpiresNearFaces",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5 + 0.07*(0.5 - (0.5 - 0.5*cos(3.14159265*min(max((time - (0)) / max(204, 1), 0), 1)))), 0.5)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 2970, 330 },
+					},
+				},
+				SpiresNear = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "CrystalBurst",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SpiresNearParallax",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(CONTROLS.BackgroundIntensity, 1)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3080, 330 },
+					},
+				},
+				FallingIceEmitter = pEmitter {
+					Inputs = {
+						Number = Input {
+							Value = 10,
+							Expression = "10*CONTROLS.ParticleIntensity",
+						},
+						Lifespan = Input {
+							Value = 140,
+						},
+						LifespanVariance = Input {
+							Value = 42,
+						},
+						Velocity = Input {
+							Value = 0.004,
+						},
+						VelocityVariance = Input {
+							Value = 0.0024,
+						},
+						Angle = Input {
+							Value = -90,
+						},
+						AngleVariance = Input {
+							Value = 20,
+						},
+						Region = Input {
+							Value = FuID { "CubeRgn" },
+						},
+						["ParticleStyle.ColorControls"] = Input {
+							Value = 1,
+						},
+						["ParticleStyle.Red"] = Input {
+							Value = 0.85,
+						},
+						["ParticleStyle.Green"] = Input {
+							Value = 0.94,
+						},
+						["ParticleStyle.Blue"] = Input {
+							Value = 1,
+						},
+						["ParticleStyle.Size"] = Input {
+							Value = 0.22,
+						},
+						["ParticleStyle.SizeVariance"] = Input {
+							Value = 0.132,
+						},
+						["CubeRgn.Width"] = Input {
+							Value = 2.4,
+						},
+						["CubeRgn.Height"] = Input {
+							Value = 0.1,
+						},
+						["CubeRgn.Depth"] = Input {
+							Value = 1,
+						},
+						["Transform3DOp.Translate.Y"] = Input {
+							Value = 0.7,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3190, 330 },
+					},
+				},
+				FallingIceTurb = pTurbulence {
+					Inputs = {
+						Input = Input {
+							SourceOp = "FallingIceEmitter",
+							Source = "Output",
+						},
+						XStrength = Input {
+							Value = 0.08,
+						},
+						YStrength = Input {
+							Value = 0.08,
+						},
+						ZStrength = Input {
+							Value = 0.04,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3300, 330 },
+					},
+				},
+				FallingIceRender = pRender {
+					Inputs = {
+						Input = Input {
+							SourceOp = "FallingIceTurb",
+							Source = "Output",
+						},
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3410, 330 },
+					},
+				},
+				FallingIceGlow = SoftGlow {
+					Inputs = {
+						Input = Input {
+							SourceOp = "FallingIceRender",
+							Source = "Output",
+						},
+						Threshold = Input {
+							Value = 0.1,
+						},
+						XGlowSize = Input {
+							Value = 3,
+						},
+						Gain = Input {
+							Value = 1,
+							Expression = "1.2*CONTROLS.GlowStrength",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3520, 330 },
+					},
+				},
+				FallingIce = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "SpiresNear",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "FallingIceGlow",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						ApplyMode = Input {
+							Value = FuID { "Screen" },
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "min(CONTROLS.ParticleIntensity, 1)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3630, 330 },
+					},
+				},
+				VapourArea = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.5,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(CONTROLS.TextPosX, CONTROLS.TextPosY + 0.08*min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1))",
+						},
+						Width = Input {
+							Value = 1,
+						},
+						Height = Input {
+							Value = 0.5,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3740, 330 },
+					},
+				},
+				SublimationVapourNoise = FastNoise {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Detail = Input {
+							Value = 5,
+						},
+						XScale = Input {
+							Value = 3,
+						},
+						SeetheRate = Input {
+							Value = 0.03,
+						},
+						Contrast = Input {
+							Value = 1.4,
+						},
+						Brightness = Input {
+							Value = 0,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						Color1Red = Input {
+							Value = 0,
+						},
+						Color1Green = Input {
+							Value = 0,
+						},
+						Color1Blue = Input {
+							Value = 0,
+						},
+						Color1Alpha = Input {
+							Value = 0,
+						},
+						Color2Red = Input {
+							Value = 0.658824,
+						},
+						Color2Green = Input {
+							Value = 0.784314,
+						},
+						Color2Blue = Input {
+							Value = 0.878431,
+						},
+						Color2Alpha = Input {
+							Value = 1,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5 + time*0.0002, 0.5 + time*0.002)",
+						},
+						EffectMask = Input {
+							SourceOp = "VapourArea",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3850, 330 },
+					},
+				},
+				SublimationVapourDepth = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "SublimationVapourNoise",
+							Source = "Output",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "1",
+						},
+						Edges = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 3960, 330 },
+					},
+				},
+				SublimationVapour = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "FallingIce",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SublimationVapourDepth",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "0.7*min(max((time - (CONTROLS.ExitStart)) / max(CONTROLS.ExitDuration, 1), 0), 1)*(1 - min(max((time - (CONTROLS.ExitStart + CONTROLS.ExitDuration)) / max(12, 1), 0), 1))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4070, 330 },
+					},
+				},
+				Subtitle = TextPlus {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						StyledText = Input {
+							Value = "THE THRONE OF ICE AWAKENS",
+						},
+						Font = Input {
+							Value = "Teko",
+						},
+						Style = Input {
+							Value = "SemiBold",
+						},
+						Size = Input {
+							Value = 0.03,
+						},
+						CharacterSpacing = Input {
+							Value = 1.5,
+						},
+						LineSpacing = Input {
+							Value = 1,
+						},
+						VerticalJustificationNew = Input {
+							Value = 3,
+						},
+						HorizontalJustificationNew = Input {
+							Value = 3,
+						},
+						Red1 = Input {
+							Value = 0.75,
+						},
+						Green1 = Input {
+							Value = 0.86,
+						},
+						Blue1 = Input {
+							Value = 0.96,
+						},
+						Alpha1 = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4180, 330 },
+					},
+				},
+				SubtitlePlace = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Subtitle",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(CONTROLS.TextPosX, CONTROLS.TextPosY + -0.13)",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4290, 330 },
+					},
+				},
+				SubtitleMerge = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "SublimationVapour",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SubtitlePlace",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "(min(max((time - (CONTROLS.ImpactFrame + 14) + 18) / 18, 0), 1) * (1 - min(max((time - (CONTROLS.ExitStart - 5)) / 12, 0), 1)))",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4400, 330 },
+					},
+				},
+				Camera = Transform {
+					Inputs = {
+						Input = Input {
+							SourceOp = "SubtitleMerge",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+							Expression = "Point(0.5 + 0.01*(0.5 - (0.5 - 0.5*cos(3.14159265*min(max((time - (0)) / max(204, 1), 0), 1)))), 0.5)",
+						},
+						Size = Input {
+							Value = 1,
+							Expression = "1 + 0.04*(0.5 - 0.5*cos(3.14159265*min(max((time - (0)) / max(204, 1), 0), 1)))",
+						},
+						Edges = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4510, 330 },
+					},
+				},
+				VignetteColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0,
+						},
+						TopLeftGreen = Input {
+							Value = 0,
+						},
+						TopLeftBlue = Input {
+							Value = 0,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "VignetteShape",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4620, 330 },
+					},
+				},
+				VignetteShape = EllipseMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0.45,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+						},
+						Width = Input {
+							Value = 1.25,
+						},
+						Height = Input {
+							Value = 1.25,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Invert = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4730, 330 },
+					},
+				},
+				Vignette = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Camera",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "VignetteColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 0.55,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4840, 330 },
+					},
+				},
+				Grain = FilmGrain {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Vignette",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 4950, 330 },
+					},
+				},
+				LetterboxColor = Background {
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+						},
+						Height = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						TopLeftRed = Input {
+							Value = 0,
+						},
+						TopLeftGreen = Input {
+							Value = 0,
+						},
+						TopLeftBlue = Input {
+							Value = 0,
+						},
+						TopLeftAlpha = Input {
+							Value = 1,
+						},
+						EffectMask = Input {
+							SourceOp = "LetterboxShape",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 5060, 330 },
+					},
+				},
+				LetterboxShape = RectangleMask {
+					Inputs = {
+						SoftEdge = Input {
+							Value = 0,
+						},
+						Center = Input {
+							Value = { 0.5, 0.5 },
+						},
+						Width = Input {
+							Value = 1,
+						},
+						Height = Input {
+							Value = 0.7438,
+						},
+						Angle = Input {
+							Value = 0,
+						},
+						MaskWidth = Input {
+							Value = 1920,
+						},
+						MaskHeight = Input {
+							Value = 1080,
+						},
+						UseFrameFormatSettings = Input {
+							Value = 1,
+						},
+						Invert = Input {
+							Value = 1,
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 5170, 330 },
+					},
+				},
+				Letterbox = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Grain",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "LetterboxColor",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input {
+							Value = 0,
+						},
+						Blend = Input {
+							Value = 1,
+							Expression = "CONTROLS.Letterbox",
+						},
+					},
+					ViewInfo = OperatorInfo {
+						Pos = { 5280, 330 },
+					},
+				},
+			},
+		},
+	},
+	ActiveTool = "T35_Frozen_Kingdom",
+}
