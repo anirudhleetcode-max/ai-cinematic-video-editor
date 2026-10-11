@@ -1,0 +1,281 @@
+{
+  "id": "T36",
+  "name": "Hero Silhouette",
+  "slug": "Hero_Silhouette",
+  "category": "H - Signature Hero Elevations",
+  "version": "1.0.0",
+  "concept": "A lone caped figure stands in smoke against a blinding backlight; the title racks into focus in front of it.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 168,
+  "duration_seconds": 7.0,
+  "phases": {
+    "build_up": [
+      0,
+      60
+    ],
+    "impact_frame": 60,
+    "hero_hold": [
+      60,
+      132
+    ],
+    "exit": [
+      132,
+      164
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T36_Hero_Silhouette.setting",
+  "fusion_composition": "source/T36_Hero_Silhouette.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 57,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "DirectionalBlur",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "PolylineMask",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "MotionBlurAmount",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Motion Blur Amount",
+    "Letterbox (2.39:1)",
+    "Backlight Color",
+    "Backlight Color",
+    "Backlight Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T36_Hero_Silhouette.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Dark city wind / room tone"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "heartbeat",
+      "note": "Slow heartbeat"
+    },
+    {
+      "frame": 6,
+      "seconds": 0.25,
+      "cue": "riser",
+      "note": "Focus-pull riser"
+    },
+    {
+      "frame": 54,
+      "seconds": 2.25,
+      "cue": "rwhoosh",
+      "note": "Reverse air into the surge"
+    },
+    {
+      "frame": 60,
+      "seconds": 2.5,
+      "cue": "impact",
+      "note": "Deep cinematic hit + sub"
+    },
+    {
+      "frame": 60,
+      "seconds": 2.5,
+      "cue": "swell",
+      "note": "Backlight swell / choir-like pad"
+    },
+    {
+      "frame": 62,
+      "seconds": 2.583,
+      "cue": "wind",
+      "note": "Smoke billow gust"
+    },
+    {
+      "frame": 132,
+      "seconds": 5.5,
+      "cue": "rwhoosh",
+      "note": "Light drains"
+    },
+    {
+      "frame": 150,
+      "seconds": 6.25,
+      "cue": "tail",
+      "note": "Low tail"
+    }
+  ],
+  "techniques": [
+    "procedural figure silhouette (primitives)",
+    "occluded god rays",
+    "lit volumetric smoke",
+    "rack focus",
+    "light wrap on silhouette edges",
+    "backlight surge"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t36.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "MOTION_BLUR_AMOUNT",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 57,
+      "setting_input_evidence": {
+        "S": 191,
+        "K": 150,
+        "?": 7
+      },
+      "setting_expressions": 36,
+      "published_controls": 38,
+      "text_nodes": [
+        "MainTitle",
+        "Subtitle"
+      ],
+      "comp_tools": 57,
+      "comp_input_evidence": {
+        "S": 191,
+        "K": 150,
+        "?": 7
+      },
+      "comp_expressions": 36
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 7.0,
+      "frames": 168,
+      "audio": true,
+      "bytes": 4593207,
+      "sample_means": [
+        4.1,
+        9.7,
+        17.2,
+        39.9,
+        30.2,
+        29.0,
+        29.1,
+        24.1,
+        4.0
+      ],
+      "hero_blown_fraction": 0.0003,
+      "hero_contrast": 43.1,
+      "title_band_contrast": 49.1
+    },
+    "resolve_tested": "NOT TESTED (DaVinci Resolve/Fusion not available in the build environment)",
+    "validated_at": "2026-10-11T18:48:37+00:00"
+  }
+}
