@@ -241,6 +241,47 @@
    "thumb_frame": 102
   }
  },
+ "T07": {
+  "preview": {
+   "params_read": [
+    "ACCENT_COLOR",
+    "ANIMATION_START",
+    "BACKGROUND_INTENSITY",
+    "BEVEL_AMOUNT",
+    "DURATION",
+    "EXIT_DURATION",
+    "EXIT_START",
+    "EXTRUSION_DEPTH",
+    "FONT_FAMILY",
+    "FONT_SIZE",
+    "GLOW_STRENGTH",
+    "IMPACT_FRAME",
+    "IMPACT_INTENSITY",
+    "LETTERBOX",
+    "LETTER_SPACING",
+    "LINE_SPACING",
+    "MAIN_TITLE",
+    "MOTION_BLUR_AMOUNT",
+    "PARTICLE_INTENSITY",
+    "SHADOW_STRENGTH",
+    "SHAKE_AMOUNT",
+    "SUBTITLE",
+    "SUB_FONT_FAMILY",
+    "TEXT_ALIGNMENT",
+    "TEXT_COLOR",
+    "TEXT_POSITION_X",
+    "TEXT_POSITION_Y",
+    "TEXT_ROTATION",
+    "TEXT_SCALE",
+    "TITLE_WIDTH"
+   ],
+   "path": "01_TEMPLATES/T07_Explosive_Arrival/preview/T07_Explosive_Arrival.mp4",
+   "rc": 0,
+   "rendered_at": "2026-10-11T19:47:22+00:00",
+   "seconds": 321.1,
+   "thumb_frame": 54
+  }
+ },
  "T08": {
   "preview": {
    "params_read": [
