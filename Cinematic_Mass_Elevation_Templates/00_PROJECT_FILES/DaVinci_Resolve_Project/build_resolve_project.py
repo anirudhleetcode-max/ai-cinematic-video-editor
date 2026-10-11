@@ -41,7 +41,7 @@ import json
 import os
 import sys
 
-CMET_ROOT = os.environ.get("CMET_ROOT", "")  # e.g. r"C:\\Users\\you\\Documents\\Cinematic_Mass_Elevation_Templates"
+CMET_ROOT = os.environ.get("CMET_ROOT", "")  # e.g. r"D:\\Projects\\Cinematic_Mass_Elevation_Templates"
 PROJECT = "Cinematic_Mass_Elevation_Templates"
 
 

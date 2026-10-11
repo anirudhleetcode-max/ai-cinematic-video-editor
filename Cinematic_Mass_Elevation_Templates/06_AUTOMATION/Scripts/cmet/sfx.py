@@ -195,7 +195,7 @@ def glitch(seed=15, dur=0.8):
     x = np.zeros(n)
     p = 0
     while p < n:
-        L = int(r.uniform(0.01, 0.06) * SR)
+        L = min(int(r.uniform(0.01, 0.06) * SR), n - p)
         f = r.choice([220, 440, 1200, 3000, 60])
         tt = np.arange(L) / SR
         x[p:p + L] = (np.sign(np.sin(2 * np.pi * f * tt)) if r.random() < 0.5 else r.standard_normal(L)) * 0.4
