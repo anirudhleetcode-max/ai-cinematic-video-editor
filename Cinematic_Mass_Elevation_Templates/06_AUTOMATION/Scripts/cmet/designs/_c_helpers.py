@@ -164,3 +164,32 @@ def sub_window(start, end, fin=16, fout=12):
 def ex_expr():
     from ..fusion import prog
     return prog(ctl("ExitStart"), ctl("ExitDuration"))
+
+
+_LUMA = np.array([[0.0722, 0.7152, 0.2126]], np.float32)  # applied to RGB reversed below
+
+
+def grade_fast(img, contrast=1.0, shadows=None, highlights=None, sat=1.0):
+    """In-place, lower-memory equivalent of elements.grade(contrast, shadows, highlights, sat) for 1080p
+    (applied before finish(); same formulas)."""
+    img = np.ascontiguousarray(img, dtype=F32)
+    if contrast != 1.0:
+        img *= contrast
+        img += 0.18 * (1 - contrast)
+        np.maximum(img, 0, out=img)
+    if shadows is None and highlights is None and sat == 1.0:
+        return img
+    L = cv2.transform(img, np.array([[0.2126, 0.7152, 0.0722]], np.float32))
+    if L.ndim == 3:
+        L = L[..., 0]
+    if sat != 1.0:
+        img -= L[..., None]
+        img *= sat
+        img += L[..., None]
+    if shadows is not None:
+        w = np.clip(1 - L * 2.5, 0, 1)
+        img += w[..., None] * K.col(shadows)[None, None, :]
+    if highlights is not None:
+        w = np.clip((L - 0.45) * 2, 0, 1)
+        img += w[..., None] * K.col(highlights)[None, None, :]
+    return img

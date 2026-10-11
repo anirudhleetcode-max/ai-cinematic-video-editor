@@ -201,8 +201,8 @@ class T23(Design):
         glow_src = pts + L.rgb * (0.2 + 0.5 * hit)
         img += pts + (K.blur(glow_src, 5 * k) * 0.7 + K.blur(glow_src, 20 * k) * 0.4) * G
         img = subtitle(c, img, cam, imp + 0.5, c.exit_start - 0.1, tc * 0.55 + acc * 0.25, y_rel=0.82)
-        return c.finish(img, vignette=0.5, grain=0.03, bloom=(0.9, 0.4),
-                        grade=dict(shadows=(-0.003, 0.0, 0.006), contrast=1.04))
+        img = X.grade_fast(img, shadows=(-0.003, 0.0, 0.006), contrast=1.04)
+        return c.finish(img, vignette=0.5, grain=0.03, bloom=(0.9, 0.4))
 
     # ------------------------------------------------------------- Fusion --
     def fusion(self, g, p):

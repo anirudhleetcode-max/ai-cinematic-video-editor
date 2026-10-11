@@ -109,7 +109,7 @@ class T12(Design):
         bounce = 3.5 * math.exp(-max(0, t - imp) * 6) * math.sin(max(0, t - imp) * 22) * after
         rx = -78 * (1 - ue) - 74 * K.ease_in(ex, 2.2) + bounce
         # pivot about the bottom edge: rotate about anchor, then compensate so the base stays put
-        half = sp.ink_h * 0.5
+        half = float(sp.ink_h) * 0.5
         ang = math.radians(rx)
         off_y = half * (1 - math.cos(ang))
         off_z = -half * math.sin(ang)
@@ -134,7 +134,7 @@ class T12(Design):
         L = c.layer()
         op = K.smooth(K.prog(t, c.start - 0.1, 0.4)) * (1 - K.smooth(K.prog(t, c.exit_start + c.exit_dur * 0.7,
                                                                              c.exit_dur * 0.3)))
-        depth = 0.26 * sp.cap_px * p["EXTRUSION_DEPTH"]
+        depth = 0.26 * float(sp.cap_px) * p["EXTRUSION_DEPTH"]
         put_title(c, L, cam, rgb, a, sp, 1.0, rot=(rx, 0, 0), off=(0, off_y, off_z), depth=depth,
                   side=np.array((0.10, 0.105, 0.115)) * (0.5 + 0.5 * lg), slices=12,
                   side_light=lambda q: 0.15 + 0.85 * q ** 2.5, opacity=op)

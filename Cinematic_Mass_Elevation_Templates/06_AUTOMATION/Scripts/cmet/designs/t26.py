@@ -105,8 +105,10 @@ class T26(Design):
         w = (1 - e) ** 1.3
         tilt = 24 * (1 - e) ** 1.5
         yaw = -14 * (1 - e) ** 1.5
-        cam = c.cam(zoom=Z, fov_scale=1.0, tilt=tilt, yaw=yaw,
-                    pan=(-(tx + hx) * Z * w + hx * 0, -(ty + hy) * Z * w))
+        cam0 = c.cam(zoom=Z, fov_scale=1.3, tilt=tilt, yaw=yaw)
+        pt, _ = cam0.project(np.array([[hx + tx, hy + ty, 0.0]]))
+        cam = c.cam(zoom=Z, fov_scale=1.3, tilt=tilt, yaw=yaw,
+                    pan=((W / 2 - pt[0, 0]) * w, (H / 2 - pt[0, 1]) * w))
         s = 1.0 / BOOST
         L = c.layer()
         c.place(L, cam, rgb, a, sp, s)
@@ -139,8 +141,8 @@ class T26(Design):
         img += K.blur(np.maximum(img - 0.7, 0), 18 * k) * 0.5 * p["GLOW_STRENGTH"] * hit
         cam_s = c.cam(zoom=1.0)
         img = subtitle(c, img, cam_s, imp + 0.5, c.exit_start - 0.2, (0.75, 0.68, 0.62), y_rel=0.82)
-        return c.finish(img, vignette=0.55, grain=0.03, bloom=(0.8, 0.45),
-                        grade=dict(shadows=(0.004, 0.0, -0.002), highlights=(0.01, 0.004, -0.006), contrast=1.06))
+        img = X.grade_fast(img, shadows=(0.004, 0.0, -0.002), highlights=(0.01, 0.004, -0.006), contrast=1.06)
+        return c.finish(img, vignette=0.55, grain=0.03, bloom=(0.8, 0.45))
 
     # ------------------------------------------------------------- Fusion --
     def fusion(self, g, p):

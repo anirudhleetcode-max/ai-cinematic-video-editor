@@ -59,7 +59,7 @@ class T15(Design):
         key = "facetmaps"
         if key not in c.cache:
             rng = np.random.default_rng(71)
-            cell = max(6.0, 0.13 * sp.cap_px)
+            cell = max(6.0, 0.13 * float(sp.cap_px))
             n = int(sp.w * sp.h / (cell * cell))
             seeds = np.ones((sp.h, sp.w), np.uint8)
             xs = rng.integers(0, sp.w, n)
@@ -133,7 +133,7 @@ class T15(Design):
         cam = c.cam(zoom=zoom, fov_scale=1.0, yaw=0.0, tilt=0.0)
         L = c.layer()
         op = K.smooth(u * 3.5) * (1 - K.smooth(K.prog(t, c.exit_start + c.exit_dur * 0.5, c.exit_dur * 0.5)))
-        depth = 0.24 * sp.cap_px * p["EXTRUSION_DEPTH"]
+        depth = 0.24 * float(sp.cap_px) * p["EXTRUSION_DEPTH"]
         side = np.array((0.30, 0.34, 0.44)) * (0.5 + 0.5 * spot)
         put_title(c, L, cam, rgb, a, sp, 1.0, rot=(pitch, yaw, 0), off=(0, 0, zpos), depth=depth, side=side,
                   slices=10, side_light=lambda q: 0.35 + 0.65 * q, opacity=op)
@@ -146,8 +146,8 @@ class T15(Design):
                                                                      1.0)):
             gi = K.pulse(t, t0, 0.06, 0.45) * gain * p["GLOW_STRENGTH"] * (p["IMPACT_INTENSITY"] if t0 == imp else 1)
             if gi > 0.01:
-                gx = W / 2 + hx + gx_rel * sp.ink_w * zoom
-                gy = H / 2 + hy + gy_rel * sp.ink_h * zoom
+                gx = W / 2 + hx + gx_rel * float(sp.ink_w) * zoom
+                gy = H / 2 + hy + gy_rel * float(sp.ink_h) * zoom
                 for ch, dx in ((0, -3 * k), (1, 0), (2, 3 * k)):
                     g1 = glint(H, W, gx + dx, gy, 150 * k, (1, 1, 1), gi, rays=4, angle=0.0, thin=0.007)
                     img[..., ch] += g1[..., ch] * (0.9 + 0.1 * acc[ch])

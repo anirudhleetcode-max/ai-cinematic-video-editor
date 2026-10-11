@@ -25,6 +25,16 @@ def fire_rgb(acc, temp):
     return deep * np.clip(t * 3, 0, 1) + acc * np.clip(t * 1.6 - 0.2, 0, 1.2) + yel * np.clip(t - 0.55, 0, 1) * 1.6
 
 
+def soft_smoke(h, w, t, color, density, scale, rise, seed, light):
+    """Billowing smoke with low domain warp (the shared smoke() warps strongly into marble contours)."""
+    n = K.fbm_field(h, w, t, scale, (0.004, rise), seed, beta=2.5, evolve=0.05, warp=0.12)
+    n2 = K.fbm_field(h, w, t, scale * 2.1, (-0.003, rise * 1.4), seed + 3, beta=2.2, evolve=0.07, warp=0.08)
+    m = np.clip((0.7 * n + 0.3 * n2 - 0.42) * 2.0, 0, 1) ** 1.4
+    lx, ly, lr, lc = light
+    lit = 0.4 + 1.6 * K.soft_spot(h, w, lx, ly, lr)[..., None] * K.col(lc)[None, None, :]
+    return m[..., None] * K.col(color)[None, None, :] * density * lit
+
+
 class T06(Design):
     ID = "T06"
     NAME = "Inferno Reveal"
@@ -44,7 +54,7 @@ class T06(Design):
     DEFAULTS = dict(MAIN_TITLE="INFERNO", SUBTITLE="EVERYTHING BURNS", FONT_FAMILY="staatliches",
                     TEXT_COLOR="#7A6050", ACCENT_COLOR="#FF5A1F", ANIMATION_START=6, ANIMATION_DURATION=66,
                     IMPACT_FRAME=72, HOLD_DURATION=80, EXIT_START=154, EXIT_DURATION=34, LETTER_SPACING=0.08,
-                    TITLE_WIDTH=0.56, TEXT_POSITION_Y=0.53)
+                    TITLE_WIDTH=0.6, TEXT_POSITION_Y=0.54)
     SOUND = [(0, "fire", "Fire bed roar"), (0, "atmos", "Low rumble"), (6, "swell", "Heat swell as smoke parts"),
              (40, "crackle", "Wood/ember crackle"), (68, "rwhoosh", "Air sucked into the flare"),
              (72, "whoosh", "Flame flare whoosh"), (72, "impact", "Soft heavy hit"), (74, "debris", "Spark scatter"),
@@ -55,18 +65,17 @@ class T06(Design):
         H, W, t = c.H, c.W, c.t
         h4, w4 = H // 4, W // 4
         nx, ny = K.grid(h4, w4)
-        a = K.fft_noise(256, 1.7, 61)
-        b = K.fft_noise(256, 1.4, 62)
-        wob = K.sample(K.fft_noise(256, 2.2, 63), h4, w4, 1.5, 0.0, t * 0.15)
-        n1 = K.sample(a, h4, w4, 2.2, 0.03 * math.sin(t * 0.4), t * 0.42)
-        n2 = K.sample(b, h4, w4, 4.5, 0.05 * math.sin(t * 0.7 + 1), t * 0.85)
-        n = 0.62 * n1 + 0.38 * n2
-        n = cv2.remap(n, *[v.astype(np.float32) for v in K.pixgrid(h4, w4)][:1],
-                      K.pixgrid(h4, w4)[1], cv2.INTER_LINEAR) if False else n
+        a = K.fft_noise(256, 2.3, 61)
+        b = K.fft_noise(256, 2.0, 62)
+        wob = K.sample(K.fft_noise(256, 2.4, 63), h4, w4, 1.2, 0.0, t * 0.12)
+        n1 = K.sample(a, h4, w4, 1.7, 0.03 * math.sin(t * 0.4), t * 0.38, stretch=(1.0, 2.3))
+        n2 = K.sample(b, h4, w4, 3.4, 0.05 * math.sin(t * 0.7 + 1), t * 0.8, stretch=(1.0, 2.0))
+        n = 0.65 * n1 + 0.35 * n2
         top = 1.0 - reach
-        g = np.clip((ny - top + (wob - 0.5) * 0.25) / max(reach, 0.05), 0, 1.5)
+        g = np.clip((ny - top + (wob - 0.5) * 0.2) / max(reach, 0.05), 0, 1.2)
         shape = 0.55 + 0.45 * np.exp(-((nx - tcx) / 1.4) ** 2)
-        flame = np.clip(n * 1.5 + g * 1.05 - 1.05, 0, 1) * shape
+        flame = np.clip((n - 0.5) * 2.6 + g * 1.3 - 0.45, 0, 1) * np.clip(g * 3, 0, 1) * shape
+        flame = cv2.GaussianBlur(flame, (0, 0), 0.8)
         return flame
 
     def frame(self, c):
@@ -95,7 +104,7 @@ class T06(Design):
         bg = K.vgrad(h2, w2, (0.006, 0.004, 0.004), (0.05, 0.016, 0.006))
         glowpool = K.soft_spot(h2, w2, tcx, 0.9, 1.7, 0.8, 1.3) * (0.6 + 0.3 * ue + 0.8 * hit)
         bg += (glowpool * 0.12 * bgI)[..., None] * acc
-        sm = E.smoke(h2, w2, t, (0.10, 0.085, 0.075), density=0.9, scale=1.5, rise=0.05, seed=14,
+        sm = soft_smoke(h2, w2, t, (0.08, 0.068, 0.06), density=0.7, scale=1.0, rise=0.05, seed=14,
                      light=(tcx, 0.9, 1.2, acc * 1.6))
         bg += sm * bgI * (0.6 + 0.4 * (1 - ex))
         bg += cv2.resize(fire, (w2, h2))
@@ -162,11 +171,11 @@ class T06(Design):
         if PI > 0:
             P = c.cache.get("sparks")
             if P is None:
-                P = c.cache["sparks"] = E.Particles(int(170 * PI), seed=6, z=(0.4, 2.8))
+                P = c.cache["sparks"] = E.Particles(int(90 * PI), seed=6, z=(0.6, 2.2))
             x, y = P.drift(t, vel=(0.03, -0.22), turb=0.06, freq=1.1)
             vy = -0.012 * (0.5 + P.r)
-            img += E.particle_layer(H, W, P, x, y, acc * 1.2 + np.array([0.25, 0.1, 0.0]), 1.1,
-                                    0.7 * (0.6 + 0.4 * ue + hit), focus=1.0, dof=1.1, flicker=0.6, t=t,
+            img += E.particle_layer(H, W, P, x, y, acc * 1.2 + np.array([0.25, 0.1, 0.0]), 1.3,
+                                    0.9 * (0.6 + 0.4 * ue + hit), focus=1.0, dof=1.1, flicker=0.6, t=t,
                                     streak=(np.full(P.n, 0.002, np.float32), np.full(P.n, vy, np.float32)), glow=0.8)
             if after:
                 dt = t - imp
@@ -209,7 +218,7 @@ class T06(Design):
 
         # --- smoke curtain in front of the title during the emergence
         front = (0.85 * (1 - K.smooth(K.prog(t, c.start, c.reveal * 0.9))) + 0.05 + 0.35 * K.smooth(ex)) * bgI
-        fs = E.smoke(h2, w2, t * 1.2, (0.11, 0.09, 0.08), density=front, scale=1.2, rise=0.06, seed=19,
+        fs = soft_smoke(h2, w2, t * 1.2, (0.11, 0.09, 0.08), density=front, scale=0.9, rise=0.06, seed=19,
                      light=(tcx, 0.8, 1.4, acc * 1.4))
         img = img + cv2.resize(fs, (W, H))
         img = subtitle(c, img, cam, imp + 0.6, c.exit_start, (0.85, 0.62, 0.45), y_rel=0.92, tracking=0.5)
@@ -227,6 +236,8 @@ class T06(Design):
         BG = ctl("BackgroundIntensity")
         GL = ctl("GlowStrength")
         II = ctl("ImpactIntensity")
+        AD = ctl("AnimDuration")
+        ED = ctl("ExitDuration")
         u = prog(S, ctl("AnimDuration"))
         ue = e_inout(u)
         ex = prog(ES, ctl("ExitDuration"))
@@ -243,7 +254,7 @@ class T06(Design):
                         center="Point(0.5, 0.5 + time*0.009)")
         fire1.set(Angle=0.0)
         fsh = F.ellipse(g, "FireBedShape", (0.5, 0.0), 1.8, 0.6, 0.35)
-        fsh.expr("Height", f"(0.55 + 0.25*{prog(0, f'{S} + {ctl(chr(65) + chr(110) + chr(105) + chr(109) + chr(68) + chr(117) + chr(114) + chr(97) + chr(116) + chr(105) + chr(111) + chr(110))}')} + 0.5*{flare})"
+        fsh.expr("Height", f"(0.55 + 0.25*{prog(0, f'{S} + {AD}')} + 0.5*{flare})"
                            f"*(1 - 0.3*{ex})", 0.6)
         F.masked(fire1, fsh)
         bg = F.merge(g, "FireBed", bg, fire1, mode="Screen", blend=f"min({BG}, 1)")
@@ -319,14 +330,14 @@ class T06(Design):
         scene = F.particles(g, "FlareSparks", scene, number=140, lifespan=50, velocity=0.04, angle=90, angle_var=35,
                             size=0.3, color=(1.0, 0.7, 0.3), region="CubeRgn", region_size=(0.9, 0.05, 0.3),
                             center_y=-0.12, turbulence=0.3, glow=5, number_expr=burst)
-        rel = f"90*{ctl('ParticleIntensity')}*{window(ES, f'{ES} + {ctl(chr(69) + chr(120) + chr(105) + chr(116) + chr(68) + chr(117) + chr(114) + chr(97) + chr(116) + chr(105) + chr(111) + chr(110))}', 1, 1)}"
+        rel = f"90*{ctl('ParticleIntensity')}*{window(ES, f'{ES} + {ED}', 1, 1)}"
         scene = F.particles(g, "BurnEmbers", scene, number=90, lifespan=40, velocity=0.02, angle=90, angle_var=40,
                             size=0.25, color=(1.0, 0.55, 0.2), region="CubeRgn", region_size=(0.9, 0.15, 0.1),
                             center_y=0.0, turbulence=0.4, glow=4, number_expr=rel)
         fsmoke = F.noise(g, "SmokeCurtain", "#000000", "#3a302a", detail=6, scale=2.0, seethe_rate=0.06,
                          contrast=1.6, center="Point(0.5 - time*0.0005, 0.5 + time*0.003)")
         scene = F.merge(g, "SmokeCurtainMerge", scene, fsmoke, mode="Screen",
-                        blend=f"min({BG}*(0.85*(1 - {prog(S, f'0.9*{ctl(chr(65) + chr(110) + chr(105) + chr(109) + chr(68) + chr(117) + chr(114) + chr(97) + chr(116) + chr(105) + chr(111) + chr(110))}')}) + 0.05 + 0.35*{ex}), 1)")
+                        blend=f"min({BG}*(0.85*(1 - {prog(S, f'0.9*{AD}')}) + 0.05 + 0.35*{ex}), 1)")
         g.at(0, 14)
         sub, subp = F.subtitle_text(g, "Subtitle", p["SUBTITLE"], "Teko", "SemiBold", 0.03, 1.8,
                                     color=(0.85, 0.62, 0.45), y_off=-0.14)

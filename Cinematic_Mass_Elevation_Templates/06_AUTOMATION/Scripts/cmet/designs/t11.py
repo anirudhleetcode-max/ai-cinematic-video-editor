@@ -100,12 +100,12 @@ class T11(Design):
         cam = c.cam(zoom=zoom, tilt=-5 * (1 - ue), fov_scale=0.95)
         L = c.layer()
         op = K.smooth(u * 3) * (1 - K.smooth(K.prog(t, c.exit_start + c.exit_dur * 0.5, c.exit_dur * 0.5)))
-        depth = 0.30 * sp.cap_px * p["EXTRUSION_DEPTH"]
+        depth = 0.30 * float(sp.cap_px) * p["EXTRUSION_DEPTH"]
         side = np.array((0.36, 0.23, 0.09))
         put_title(c, L, cam, rgb, a, sp, 1.0, rot=(tilt_obj, yaw, 0), off=(0, settle, zpos), depth=depth,
                   side=side * (0.6 + 0.4 * lg), slices=14, side_light=lambda q: 0.25 + 0.75 * q ** 1.6, opacity=op)
         bg = drop_shadow(bg, L, p["SHADOW_STRENGTH"] * 0.5, (0, 22), 34, k)
-        y_floor = H / 2 + (hy + sp.ink_h * 0.5 * zoom) * 1.0 + 6 * k
+        y_floor = H / 2 + (hy + float(sp.ink_h) * 0.5 * zoom) * 1.0 + 6 * k
         img = comp(bg, L)
         img = floor_reflection(img, L, y_floor, 0.28 * bgI, 0.14, 5, k)
         # warm halo from the hot highlights only
@@ -114,8 +114,8 @@ class T11(Design):
         # ---- glint on a serif when the sweep passes
         if 0 < sw < 1 and op > 0.5:
             gpos = -0.75 + 1.5 * K.ease_in_out(sw)
-            gx = W / 2 + hx + gpos * sp.ink_w * zoom * 0.95
-            gy = H / 2 + hy - sp.ink_h * 0.46 * zoom
+            gx = W / 2 + hx + gpos * float(sp.ink_w) * zoom * 0.95
+            gy = H / 2 + hy - float(sp.ink_h) * 0.46 * zoom
             gi = math.exp(-((sw - 0.55) / 0.12) ** 2) * 1.3 * p["GLOW_STRENGTH"]
             img += glint(H, W, gx, gy, 110 * k, (1.0, 0.9, 0.75), gi, rays=2, angle=0.0, thin=0.008)
 

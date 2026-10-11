@@ -51,6 +51,7 @@ def floor_reflection(img, L, y_floor, strength=0.35, fall=0.18, soft=4.0, k=1.0)
     """Mirror the title layer about the horizontal line y_floor (pixels) and add
     it below as a glossy-floor reflection that fades with distance."""
     H, W = L.a.shape
+    y_floor = float(y_floor)
     if strength <= 0:
         return img
     M = np.float32([[1, 0, 0], [0, -1, 2 * y_floor]])

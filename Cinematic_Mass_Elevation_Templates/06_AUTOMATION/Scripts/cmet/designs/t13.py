@@ -101,8 +101,8 @@ class T13(Design):
         drift = 1 + 0.03 * T
         bg += (c.cache["grid"] * 0.025 * bgI)[..., None] * (0.5 + 0.5 * acc)
         zoom = 0.97 + 0.06 * K.ease_in_out(T, 2)
-        top = H / 2 + hy - sp.ink_h * 0.62 * zoom
-        bot = H / 2 + hy + sp.ink_h * 0.62 * zoom
+        top = H / 2 + hy - float(sp.ink_h) * 0.62 * zoom
+        bot = H / 2 + hy + float(sp.ink_h) * 0.62 * zoom
         rail_in = K.ease_out(K.prog(t, 0.05, 0.45), 3)
         rail_out = K.ease_in(K.prog(t, c.exit_start + c.exit_dur * 0.4, c.exit_dur * 0.6), 2)
         rail_len = W * 0.42 * (rail_in - rail_out)
@@ -138,7 +138,7 @@ class T13(Design):
         edges = np.linspace(ink0, ink1, N_SLATS + 1)
         edges[0], edges[-1] = 0, sp.h
         times = slat_times(c)
-        depth = 0.18 * sp.cap_px * p["EXTRUSION_DEPTH"]
+        depth = 0.18 * float(sp.cap_px) * p["EXTRUSION_DEPTH"]
         side = np.array((0.11, 0.12, 0.135))
         seams = []
         for i in range(N_SLATS):
@@ -174,7 +174,7 @@ class T13(Design):
         for ys, lvl in seams:
             yy = H / 2 + hy + (ys - sp.anchor[1]) * zoom
             m = (np.exp(-((K.pixgrid(H, W)[1] - yy) / (1.5 * k)) ** 2)
-                 * (np.abs(K.pixgrid(H, W)[0] - W / 2 - hx) < sp.ink_w * 0.55 * zoom))
+                 * (np.abs(K.pixgrid(H, W)[0] - W / 2 - hx) < float(sp.ink_w) * 0.55 * zoom))
             img += (m * L.a * lvl * 1.2 * p["GLOW_STRENGTH"])[..., None] * acc
         img += K.blur(np.maximum(L.rgb - 0.9, 0), 5 * k) * 0.5 * p["GLOW_STRENGTH"]
         img += (K.soft_spot(H, W, hx / (H / 2), hy / (H / 2), 1.2, 0.35, 2) * 0.06 * hit)[..., None] * acc

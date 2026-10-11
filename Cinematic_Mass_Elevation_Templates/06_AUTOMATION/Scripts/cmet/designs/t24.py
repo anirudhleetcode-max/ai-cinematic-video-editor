@@ -116,8 +116,8 @@ class T24(Design):
             img += (line * hit * 1.5)[..., None] * (acc * 0.6 + 0.6)
         img = apply_shake(c, img, 0.0025, 0.12, 22)
         img = subtitle(c, img, cam, imp + 0.4, c.exit_start - 0.2, tc * 0.6 + acc * 0.15, y_rel=0.86)
-        return c.finish(img, vignette=0.5, grain=0.03, bloom=(0.85, 0.4),
-                        grade=dict(shadows=(0.002, 0.0, 0.006), contrast=1.05))
+        img = X.grade_fast(img, shadows=(0.002, 0.0, 0.006), contrast=1.05)
+        return c.finish(img, vignette=0.5, grain=0.03, bloom=(0.85, 0.4))
 
     # ------------------------------------------------------------- Fusion --
     def fusion(self, g, p):

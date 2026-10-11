@@ -235,9 +235,8 @@ class T25(Design):
                 cut = int(H * K.smooth(K.prog(ex, 0.2, 0.5)))
                 hb[:cut] = 0
             img += (hb + K.blur(hb, 3 * k) * 0.6) * hud_lvl
-        return c.finish(img, vignette=0.55, grain=0.035, bloom=(0.8, 0.4),
-                        grade=dict(shadows=(0.0, 0.002, 0.004), highlights=(0.01, 0.005, -0.006), contrast=1.08,
-                                   sat=0.9))
+        img = X.grade_fast(img, shadows=(0.0, 0.002, 0.004), highlights=(0.01, 0.005, -0.006), contrast=1.08, sat=0.9)
+        return c.finish(img, vignette=0.55, grain=0.035, bloom=(0.8, 0.4))
 
     # ------------------------------------------------------------- Fusion --
     def fusion(self, g, p):

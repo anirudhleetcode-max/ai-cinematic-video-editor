@@ -105,11 +105,11 @@ class T14(Design):
             soft = soft + 2.0 * K.smooth(K.prog(t, nxt - 0.5, 0.5))  # swells slightly before each strike
         key = ("forgemaps",)
         if key not in c.cache:
-            cr = K.sample(K.fft_noise(256, 2.0, 63, True), sp.h, sp.w, 2.2 * sp.h / max(1, sp.cap_px))
+            cr = K.sample(K.fft_noise(256, 2.0, 63, True), sp.h, sp.w, 2.2 * sp.h / max(1, float(sp.cap_px)))
             cracks = np.clip((cr - 0.86) * 9, 0, 1) * sp.mask
             c.cache[key] = (cracks, sp.dist)
         cracks, dist = c.cache[key]
-        edge_hot = np.clip(1 - dist / max(1.0, 0.09 * sp.cap_px), 0, 1) * sp.mask
+        edge_hot = np.clip(1 - dist / max(1.0, 0.09 * float(sp.cap_px)), 0, 1) * sp.mask
         # emissive heat: whole body + hotter edges / cracks; hot spot where the last strike landed
         body = heat * (0.7 + 0.3 * sh.tex if sh.tex is not None else 0.8)
         if nstr > 0 and t < imp + 1.5:
@@ -134,7 +134,7 @@ class T14(Design):
         L = c.layer()
         op = K.smooth(K.prog(t, c.start, 0.8)) * (1 - K.smooth(K.prog(t, c.exit_start + c.exit_dur * 0.55,
                                                                          c.exit_dur * 0.45)))
-        depth = 0.10 * sp.cap_px * p["EXTRUSION_DEPTH"] * (1 if nstr > 0 else 0.4)
+        depth = 0.10 * float(sp.cap_px) * p["EXTRUSION_DEPTH"] * (1 if nstr > 0 else 0.4)
         side = np.array((0.05, 0.035, 0.03)) + heat_col(np.array(heat * 0.6)) * 0.25
         put_title(c, L, cam, rgb, a, sp, scale, off=(0, dip, 0), depth=depth, side=side, slices=8,
                   side_light=lambda q: 0.3 + 0.7 * q, opacity=op)
@@ -158,8 +158,8 @@ class T14(Design):
                     spd = r.uniform(0.4, 2.2, n)
                     B = c.cache[("sparks", si)] = (n, ang, spd, r.random(n))
                 n, ang, spd, rr = B
-                ox = (hx + STRIKE_X[si] * sp.ink_w) / (H / 2)
-                oy = (hy - sp.ink_h * 0.45) / (H / 2)
+                ox = (hx + STRIKE_X[si] * float(sp.ink_w)) / (H / 2)
+                oy = (hy - float(sp.ink_h) * 0.45) / (H / 2)
                 dist_ = spd * (1 - np.exp(-dt * 3)) / 3 * 1.1
                 gx = ox + np.cos(ang) * dist_
                 gy = oy + np.sin(ang) * dist_ * 0.8 + 0.9 * dt * dt

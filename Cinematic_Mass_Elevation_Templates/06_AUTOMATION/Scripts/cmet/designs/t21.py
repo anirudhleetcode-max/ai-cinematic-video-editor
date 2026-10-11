@@ -137,8 +137,8 @@ class T21(Design):
 
         img = subtitle(c, img, cam, imp + 0.4, c.exit_start - 0.1, K.col(p["TEXT_COLOR"]) * 0.55 + acc * 0.25,
                        y_rel=0.95)
-        return c.finish(img, vignette=0.5, grain=0.03, bloom=(0.85, 0.45),
-                        grade=dict(shadows=(0.0, -0.002, 0.008), contrast=1.04))
+        img = X.grade_fast(img, shadows=(0.0, -0.002, 0.008), contrast=1.04)
+        return c.finish(img, vignette=0.5, grain=0.03, bloom=(0.85, 0.45))
 
     # ------------------------------------------------------------- Fusion --
     def fusion(self, g, p):

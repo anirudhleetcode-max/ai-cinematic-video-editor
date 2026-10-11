@@ -166,8 +166,8 @@ class T22(Design):
         img = bg + holo + (K.blur(holo, 5 * k) * 0.6 + K.blur(holo, 24 * k) * 0.45) * G
 
         img = subtitle(c, img, cam, imp + 0.35, c.exit_start - 0.2, tc * 0.6 + acc * 0.2, y_rel=0.85)
-        return c.finish(img, vignette=0.55, grain=0.03, bloom=(0.9, 0.4),
-                        grade=dict(shadows=(-0.002, 0.0, 0.006), contrast=1.03))
+        img = X.grade_fast(img, shadows=(-0.002, 0.0, 0.006), contrast=1.03)
+        return c.finish(img, vignette=0.55, grain=0.03, bloom=(0.9, 0.4))
 
     # ------------------------------------------------------------- Fusion --
     def fusion(self, g, p):
