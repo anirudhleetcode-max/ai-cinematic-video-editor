@@ -1,0 +1,1030 @@
+{
+ "run_id": "cloud_build_env_20261011",
+ "mock": false,
+ "analyzed_at": "2026-10-11T21:08:58",
+ "connection": {
+  "connected": false
+ },
+ "host": "Linux-6.18.44-fc-v114-x86_64-with-glibc2.39",
+ "templates": {
+  "T01": {
+   "id": "T01",
+   "name": "Obsidian Impact",
+   "category": "A - Dark, Powerful Mass Elevation",
+   "fusion_source": "01_TEMPLATES/T01_Obsidian_Impact/source/T01_Obsidian_Impact.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T02": {
+   "id": "T02",
+   "name": "Thunder God",
+   "category": "A - Dark, Powerful Mass Elevation",
+   "fusion_source": "01_TEMPLATES/T02_Thunder_God/source/T02_Thunder_God.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T03": {
+   "id": "T03",
+   "name": "Molten Core",
+   "category": "A - Dark, Powerful Mass Elevation",
+   "fusion_source": "01_TEMPLATES/T03_Molten_Core/source/T03_Molten_Core.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T04": {
+   "id": "T04",
+   "name": "Black Steel Reckoning",
+   "category": "A - Dark, Powerful Mass Elevation",
+   "fusion_source": "01_TEMPLATES/T04_Black_Steel_Reckoning/source/T04_Black_Steel_Reckoning.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T05": {
+   "id": "T05",
+   "name": "Shattered Monolith",
+   "category": "A - Dark, Powerful Mass Elevation",
+   "fusion_source": "01_TEMPLATES/T05_Shattered_Monolith/source/T05_Shattered_Monolith.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T06": {
+   "id": "T06",
+   "name": "Inferno Reveal",
+   "category": "B - Fire, Explosions and Impact",
+   "fusion_source": "01_TEMPLATES/T06_Inferno_Reveal/source/T06_Inferno_Reveal.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T07": {
+   "id": "T07",
+   "name": "Explosive Arrival",
+   "category": "B - Fire, Explosions and Impact",
+   "fusion_source": "01_TEMPLATES/T07_Explosive_Arrival/source/T07_Explosive_Arrival.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T08": {
+   "id": "T08",
+   "name": "Ember Storm",
+   "category": "B - Fire, Explosions and Impact",
+   "fusion_source": "01_TEMPLATES/T08_Ember_Storm/source/T08_Ember_Storm.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T09": {
+   "id": "T09",
+   "name": "Ashes of Power",
+   "category": "B - Fire, Explosions and Impact",
+   "fusion_source": "01_TEMPLATES/T09_Ashes_of_Power/source/T09_Ashes_of_Power.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T10": {
+   "id": "T10",
+   "name": "Shockwave Dominance",
+   "category": "B - Fire, Explosions and Impact",
+   "fusion_source": "01_TEMPLATES/T10_Shockwave_Dominance/source/T10_Shockwave_Dominance.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T11": {
+   "id": "T11",
+   "name": "Golden Emperor",
+   "category": "C - 3D Metal and Premium Materials",
+   "fusion_source": "01_TEMPLATES/T11_Golden_Emperor/source/T11_Golden_Emperor.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T12": {
+   "id": "T12",
+   "name": "Chrome Dominion",
+   "category": "C - 3D Metal and Premium Materials",
+   "fusion_source": "01_TEMPLATES/T12_Chrome_Dominion/source/T12_Chrome_Dominion.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T13": {
+   "id": "T13",
+   "name": "Titanium Edge",
+   "category": "C - 3D Metal and Premium Materials",
+   "fusion_source": "01_TEMPLATES/T13_Titanium_Edge/source/T13_Titanium_Edge.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T14": {
+   "id": "T14",
+   "name": "Forged in Fire",
+   "category": "C - 3D Metal and Premium Materials",
+   "fusion_source": "01_TEMPLATES/T14_Forged_In_Fire/source/T14_Forged_In_Fire.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T15": {
+   "id": "T15",
+   "name": "Diamond Cut",
+   "category": "C - 3D Metal and Premium Materials",
+   "fusion_source": "01_TEMPLATES/T15_Diamond_Cut/source/T15_Diamond_Cut.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T16": {
+   "id": "T16",
+   "name": "Ancient Titan",
+   "category": "D - Mythic, Epic and Fantasy",
+   "fusion_source": "01_TEMPLATES/T16_Ancient_Titan/source/T16_Ancient_Titan.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T17": {
+   "id": "T17",
+   "name": "Celestial Ascent",
+   "category": "D - Mythic, Epic and Fantasy",
+   "fusion_source": "01_TEMPLATES/T17_Celestial_Ascent/source/T17_Celestial_Ascent.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T18": {
+   "id": "T18",
+   "name": "Dark Sorcery",
+   "category": "D - Mythic, Epic and Fantasy",
+   "fusion_source": "01_TEMPLATES/T18_Dark_Sorcery/source/T18_Dark_Sorcery.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T19": {
+   "id": "T19",
+   "name": "Cosmic Overlord",
+   "category": "D - Mythic, Epic and Fantasy",
+   "fusion_source": "01_TEMPLATES/T19_Cosmic_Overlord/source/T19_Cosmic_Overlord.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T20": {
+   "id": "T20",
+   "name": "Phoenix Reborn",
+   "category": "D - Mythic, Epic and Fantasy",
+   "fusion_source": "01_TEMPLATES/T20_Phoenix_Reborn/source/T20_Phoenix_Reborn.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T21": {
+   "id": "T21",
+   "name": "Neon Overdrive",
+   "category": "E - Sci-Fi and Futuristic Motion Graphics",
+   "fusion_source": "01_TEMPLATES/T21_Neon_Overdrive/source/T21_Neon_Overdrive.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T22": {
+   "id": "T22",
+   "name": "Hologram Breach",
+   "category": "E - Sci-Fi and Futuristic Motion Graphics",
+   "fusion_source": "01_TEMPLATES/T22_Hologram_Breach/source/T22_Hologram_Breach.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T23": {
+   "id": "T23",
+   "name": "Digital Awakening",
+   "category": "E - Sci-Fi and Futuristic Motion Graphics",
+   "fusion_source": "01_TEMPLATES/T23_Digital_Awakening/source/T23_Digital_Awakening.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T24": {
+   "id": "T24",
+   "name": "Quantum Split",
+   "category": "E - Sci-Fi and Futuristic Motion Graphics",
+   "fusion_source": "01_TEMPLATES/T24_Quantum_Split/source/T24_Quantum_Split.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T25": {
+   "id": "T25",
+   "name": "Future Warlord",
+   "category": "E - Sci-Fi and Futuristic Motion Graphics",
+   "fusion_source": "01_TEMPLATES/T25_Future_Warlord/source/T25_Future_Warlord.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T26": {
+   "id": "T26",
+   "name": "Extreme Close-Up",
+   "category": "F - Cinematic Typography and Camera Movement",
+   "fusion_source": "01_TEMPLATES/T26_Extreme_Close_Up/source/T26_Extreme_Close_Up.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T27": {
+   "id": "T27",
+   "name": "Low-Angle Titan",
+   "category": "F - Cinematic Typography and Camera Movement",
+   "fusion_source": "01_TEMPLATES/T27_Low_Angle_Titan/source/T27_Low_Angle_Titan.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T28": {
+   "id": "T28",
+   "name": "Rotating Monolith",
+   "category": "F - Cinematic Typography and Camera Movement",
+   "fusion_source": "01_TEMPLATES/T28_Rotating_Monolith/source/T28_Rotating_Monolith.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T29": {
+   "id": "T29",
+   "name": "Cinematic Letter Assembly",
+   "category": "F - Cinematic Typography and Camera Movement",
+   "fusion_source": "01_TEMPLATES/T29_Cinematic_Letter_Assembly/source/T29_Cinematic_Letter_Assembly.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T30": {
+   "id": "T30",
+   "name": "Speed Ramp Dominance",
+   "category": "F - Cinematic Typography and Camera Movement",
+   "fusion_source": "01_TEMPLATES/T30_Speed_Ramp_Dominance/source/T30_Speed_Ramp_Dominance.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T31": {
+   "id": "T31",
+   "name": "Midnight Fog",
+   "category": "G - Atmospheric and Environmental Cinema",
+   "fusion_source": "01_TEMPLATES/T31_Midnight_Fog/source/T31_Midnight_Fog.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T32": {
+   "id": "T32",
+   "name": "Rain and Steel",
+   "category": "G - Atmospheric and Environmental Cinema",
+   "fusion_source": "01_TEMPLATES/T32_Rain_And_Steel/source/T32_Rain_And_Steel.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T33": {
+   "id": "T33",
+   "name": "Desert Storm",
+   "category": "G - Atmospheric and Environmental Cinema",
+   "fusion_source": "01_TEMPLATES/T33_Desert_Storm/source/T33_Desert_Storm.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T34": {
+   "id": "T34",
+   "name": "Underwater Colossus",
+   "category": "G - Atmospheric and Environmental Cinema",
+   "fusion_source": "01_TEMPLATES/T34_Underwater_Colossus/source/T34_Underwater_Colossus.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T35": {
+   "id": "T35",
+   "name": "Frozen Kingdom",
+   "category": "G - Atmospheric and Environmental Cinema",
+   "fusion_source": "01_TEMPLATES/T35_Frozen_Kingdom/source/T35_Frozen_Kingdom.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T36": {
+   "id": "T36",
+   "name": "Hero Silhouette",
+   "category": "H - Signature Hero Elevations",
+   "fusion_source": "01_TEMPLATES/T36_Hero_Silhouette/source/T36_Hero_Silhouette.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T37": {
+   "id": "T37",
+   "name": "Legacy Reveal",
+   "category": "H - Signature Hero Elevations",
+   "fusion_source": "01_TEMPLATES/T37_Legacy_Reveal/source/T37_Legacy_Reveal.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T38": {
+   "id": "T38",
+   "name": "Royal Insignia",
+   "category": "H - Signature Hero Elevations",
+   "fusion_source": "01_TEMPLATES/T38_Royal_Insignia/source/T38_Royal_Insignia.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T39": {
+   "id": "T39",
+   "name": "Final Boss",
+   "category": "H - Signature Hero Elevations",
+   "fusion_source": "01_TEMPLATES/T39_Final_Boss/source/T39_Final_Boss.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  },
+  "T40": {
+   "id": "T40",
+   "name": "Ultimate Mass Elevation",
+   "category": "H - Signature Hero Elevations",
+   "fusion_source": "01_TEMPLATES/T40_Ultimate_Mass_Elevation/source/T40_Ultimate_Mass_Elevation.setting",
+   "levels": {
+    "C_load": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "D_render": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "E_edit": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    },
+    "F_visual": {
+     "status": "BLOCKED",
+     "detail": "no connection to DaVinci Resolve"
+    }
+   },
+   "status": "BLOCKED"
+  }
+ },
+ "summary": {
+  "levels": {
+   "C_load": {
+    "BLOCKED": 40
+   },
+   "D_render": {
+    "BLOCKED": 40
+   },
+   "E_edit": {
+    "BLOCKED": 40
+   },
+   "F_visual": {
+    "BLOCKED": 40
+   }
+  },
+  "overall": {
+   "BLOCKED": 40
+  }
+ }
+}

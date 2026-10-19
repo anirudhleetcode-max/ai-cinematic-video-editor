@@ -1,0 +1,323 @@
+{
+  "id": "T05",
+  "name": "Shattered Monolith",
+  "slug": "Shattered_Monolith",
+  "category": "A - Dark, Powerful Mass Elevation",
+  "version": "1.0.0",
+  "concept": "Monumental stone typography assembled from fragments drifting in an atmospheric void - scale, not noise.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 240,
+  "duration_seconds": 10.0,
+  "phases": {
+    "build_up": [
+      0,
+      108
+    ],
+    "impact_frame": 108,
+    "hero_hold": [
+      108,
+      180
+    ],
+    "exit": [
+      180,
+      236
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Cinzel",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T05_Shattered_Monolith.setting",
+  "fusion_composition": "source/T05_Shattered_Monolith.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 118,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "PolylineMask",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ImpactIntensity",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "ExtrusionDepth",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Impact Intensity",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Extrusion Depth",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T05_Shattered_Monolith.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Vast hollow void drone"
+    },
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "wind",
+      "note": "Thin high wind"
+    },
+    {
+      "frame": 12,
+      "seconds": 0.5,
+      "cue": "riser",
+      "note": "Slow tectonic riser as the shards converge (12-108)"
+    },
+    {
+      "frame": 60,
+      "seconds": 2.5,
+      "cue": "debris",
+      "note": "Grinding stone passes"
+    },
+    {
+      "frame": 100,
+      "seconds": 4.167,
+      "cue": "rwhoosh",
+      "note": "Air pulled into the final lock"
+    },
+    {
+      "frame": 108,
+      "seconds": 4.5,
+      "cue": "impact",
+      "note": "Stone lock impact"
+    },
+    {
+      "frame": 108,
+      "seconds": 4.5,
+      "cue": "sub",
+      "note": "Sub drop"
+    },
+    {
+      "frame": 109,
+      "seconds": 4.542,
+      "cue": "debris",
+      "note": "Chips + dust scatter"
+    },
+    {
+      "frame": 180,
+      "seconds": 7.5,
+      "cue": "crackle",
+      "note": "Stone cracking spreads"
+    },
+    {
+      "frame": 210,
+      "seconds": 8.75,
+      "cue": "tail",
+      "note": "Low tail into silence"
+    }
+  ],
+  "techniques": [
+    "Voronoi / polygon fracture",
+    "staggered convergence",
+    "camera orbit",
+    "floating rock parallax",
+    "chip + dust burst",
+    "seam sealing",
+    "spreading cracks"
+  ],
+  "design": {
+    "entrance": "Dark stone shards float scattered in depth, then converge on staggered paths (translation, tumble, depth) and lock together into the title.",
+    "reveal": "The last pieces lock on the impact frame: a small outward puff of chips and dust, joints seal over a second.",
+    "camera": "Slow orbit (yaw from left to right) with perspective shift and background parallax; tiny lock jolt.",
+    "material": "Weathered, chipped stone with bump texture, flat chamfer, cool directional rim light from upper left.",
+    "exit": "Fine cracks spread through the surface from several origins, light leaks faintly through them, then the scene fades."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t05.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "EXTRUSION_DEPTH",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 118,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 396,
+        "K": 276,
+        "?": 7
+      },
+      "setting_expressions": 96,
+      "published_controls": 38,
+      "text_nodes": [
+        "MainTitle",
+        "Subtitle"
+      ],
+      "comp_tools": 118,
+      "comp_input_evidence": {
+        "S": 396,
+        "K": 276,
+        "?": 7
+      },
+      "comp_expressions": 96
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 10.0,
+      "frames": 240,
+      "audio": true,
+      "bytes": 4040532,
+      "sample_means": [
+        9.9,
+        10.3,
+        11.2,
+        12.5,
+        13.7,
+        13.9,
+        13.8,
+        13.1,
+        1.4
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 19.6,
+      "title_band_contrast": 32.0
+    },
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:11:49+00:00"
+  }
+}

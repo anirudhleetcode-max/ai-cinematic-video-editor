@@ -1,0 +1,294 @@
+{
+  "id": "T21",
+  "name": "Neon Overdrive",
+  "slug": "Neon_Overdrive",
+  "category": "E - Sci-Fi and Futuristic Motion Graphics",
+  "version": "1.0.0",
+  "concept": "A night-drive title: neon tubes ignite around the letterforms above a receding light grid.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 168,
+  "duration_seconds": 7.0,
+  "phases": {
+    "build_up": [
+      0,
+      54
+    ],
+    "impact_frame": 60,
+    "hero_hold": [
+      60,
+      126
+    ],
+    "exit": [
+      126,
+      158
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Audiowide",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T21_Neon_Overdrive.setting",
+  "fusion_composition": "source/T21_Neon_Overdrive.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 71,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "EllipseMask",
+    "FilmGrain",
+    "Merge",
+    "PolylineMask",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "GlowStrength",
+    "ImpactIntensity",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Glow Strength",
+    "Impact Intensity",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T21_Neon_Overdrive.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Low synth drone bed"
+    },
+    {
+      "frame": 6,
+      "seconds": 0.25,
+      "cue": "riser",
+      "note": "Electric riser under the glide (frames 6-60)"
+    },
+    {
+      "frame": 10,
+      "seconds": 0.417,
+      "cue": "crackle",
+      "note": "Neon starter ticks as the tube traces"
+    },
+    {
+      "frame": 56,
+      "seconds": 2.333,
+      "cue": "rwhoosh",
+      "note": "Reverse suck into power-up"
+    },
+    {
+      "frame": 60,
+      "seconds": 2.5,
+      "cue": "impact",
+      "note": "Synth-bass hit: faces power up"
+    },
+    {
+      "frame": 60,
+      "seconds": 2.5,
+      "cue": "glitch",
+      "note": "Short digital slice glitch"
+    },
+    {
+      "frame": 61,
+      "seconds": 2.542,
+      "cue": "sub",
+      "note": "Sub drop"
+    },
+    {
+      "frame": 126,
+      "seconds": 5.25,
+      "cue": "digital",
+      "note": "Power-down stutter"
+    },
+    {
+      "frame": 140,
+      "seconds": 5.833,
+      "cue": "tail",
+      "note": "Electric hum tail"
+    }
+  ],
+  "techniques": [
+    "perspective floor grid",
+    "edge-tube draw-on",
+    "starter flicker",
+    "slice distortion",
+    "floor glow pool",
+    "power-down wipe"
+  ],
+  "design": {
+    "entrance": "Camera glides over a receding neon floor grid (fast, then decelerating) while a neon tube traces the letter edges left-to-right with short starter flickers.",
+    "reveal": "At the impact frame the letter faces power up with a single digital slice-distortion hit.",
+    "camera": "Low forward glide over the grid that brakes into a slow drift; no shake (energy is in the light).",
+    "material": "Dark glass faces that fill with cool white light; magenta (ACCENT) neon tube inside the letter edge.",
+    "exit": "Power-down: the tubes cut out right-to-left with a stutter, faces drain, the grid goes dark from the horizon."
+  },
+  "fusion_notes": [
+    "Floor grid lines are PolylineMask/RectangleMask shapes in the 'FloorGrid*' nodes; move 'GridLinesV*' points to change the vanishing point."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "Transform.EffectMask"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t21.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 71,
+      "unconfirmed_inputs": [
+        "Transform.EffectMask"
+      ],
+      "setting_input_evidence": {
+        "S": 334,
+        "K": 123,
+        "?": 3
+      },
+      "setting_expressions": 53,
+      "published_controls": 36,
+      "text_nodes": [
+        "MainTitle",
+        "Subtitle"
+      ],
+      "comp_tools": 71,
+      "comp_input_evidence": {
+        "S": 334,
+        "K": 123,
+        "?": 3
+      },
+      "comp_expressions": 53
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 7.0,
+      "frames": 168,
+      "audio": true,
+      "bytes": 2012254,
+      "sample_means": [
+        1.0,
+        5.3,
+        14.2,
+        17.4,
+        18.4,
+        18.5,
+        18.5,
+        4.4,
+        0.9
+      ],
+      "hero_blown_fraction": 0.0102,
+      "hero_contrast": 48.4,
+      "title_band_contrast": 77.2
+    },
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:12:38+00:00"
+  }
+}

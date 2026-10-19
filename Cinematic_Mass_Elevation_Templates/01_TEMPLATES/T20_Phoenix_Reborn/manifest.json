@@ -1,0 +1,329 @@
+{
+  "id": "T20",
+  "name": "Phoenix Reborn",
+  "slug": "Phoenix_Reborn",
+  "category": "D - Mythic, Epic and Fantasy",
+  "version": "1.0.0",
+  "concept": "Renewal and power: a rising double spiral of living sparks becomes the title, which ignites reborn.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 156,
+  "duration_seconds": 6.5,
+  "phases": {
+    "build_up": [
+      0,
+      64
+    ],
+    "impact_frame": 64,
+    "hero_hold": [
+      64,
+      118
+    ],
+    "exit": [
+      118,
+      150
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Bebas Neue",
+    "Cinzel"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T20_Phoenix_Reborn.setting",
+  "fusion_composition": "source/T20_Phoenix_Reborn.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 74,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ImpactIntensity",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "ExtrusionDepth",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Impact Intensity",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Extrusion Depth",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T20_Phoenix_Reborn.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Warm low drone"
+    },
+    {
+      "frame": 6,
+      "seconds": 0.25,
+      "cue": "fire",
+      "note": "Soft flame bed"
+    },
+    {
+      "frame": 6,
+      "seconds": 0.25,
+      "cue": "riser",
+      "note": "Spiral riser"
+    },
+    {
+      "frame": 20,
+      "seconds": 0.833,
+      "cue": "whoosh",
+      "note": "Spiral swirl"
+    },
+    {
+      "frame": 40,
+      "seconds": 1.667,
+      "cue": "rwhoosh",
+      "note": "Sparks rush inward"
+    },
+    {
+      "frame": 64,
+      "seconds": 2.667,
+      "cue": "impact",
+      "note": "Ignition hit"
+    },
+    {
+      "frame": 64,
+      "seconds": 2.667,
+      "cue": "swell",
+      "note": "Rebirth swell"
+    },
+    {
+      "frame": 66,
+      "seconds": 2.75,
+      "cue": "shimmer",
+      "note": "Ember shimmer"
+    },
+    {
+      "frame": 118,
+      "seconds": 4.917,
+      "cue": "whoosh",
+      "note": "Ember lift-off"
+    },
+    {
+      "frame": 132,
+      "seconds": 5.5,
+      "cue": "tail",
+      "note": "Tail"
+    }
+  ],
+  "techniques": [
+    "3D helix particle spiral",
+    "per-particle target convergence",
+    "ignition flash",
+    "wing arcs",
+    "cooling edge heat",
+    "bottom-up ember dissolve exit"
+  ],
+  "design": {
+    "entrance": "Two intertwined helices of glowing particles spiral up from the dark, widen at the top and then stream inward, each spark flying to its own point on the letterforms.",
+    "reveal": "On the impact frame the converged sparks ignite the title in a bright white-gold flash that throws two wing-like arcs of embers outward, then settles into a clean, readable gold hold.",
+    "camera": "Slow upward tilt following the spiral, small lift-and-settle at the ignition.",
+    "material": "Radiant sun-gold metal with crimson rim light and a white-hot edge that cools after ignition; emissive particles with soft bloom.",
+    "exit": "The title is reborn again as embers: it dissolves bottom-to-top into sparks that spiral up and away."
+  },
+  "fusion_notes": [
+    "The spiral is two pEmitters whose positions orbit the vertical axis by expression (helix); per-particle target convergence onto the glyphs is approximated by a radial zoom-in of the particle render plus the ignition flash (Fusion particles cannot target text pixels without extra tools)."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.X",
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pEmitter.Transform3DOp.Translate.Z",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t20.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "EXTRUSION_DEPTH",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 74,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.X",
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pEmitter.Transform3DOp.Translate.Z",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 251,
+        "K": 159,
+        "?": 32
+      },
+      "setting_expressions": 52,
+      "published_controls": 39,
+      "text_nodes": [
+        "Subtitle",
+        "MainTitle"
+      ],
+      "comp_tools": 74,
+      "comp_input_evidence": {
+        "S": 251,
+        "K": 159,
+        "?": 32
+      },
+      "comp_expressions": 52
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 6.5,
+      "frames": 156,
+      "audio": true,
+      "bytes": 4239150,
+      "sample_means": [
+        4.9,
+        8.0,
+        11.5,
+        12.7,
+        22.9,
+        16.0,
+        14.6,
+        11.6,
+        5.4
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 26.3,
+      "title_band_contrast": 40.5
+    },
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:12:34+00:00"
+  }
+}

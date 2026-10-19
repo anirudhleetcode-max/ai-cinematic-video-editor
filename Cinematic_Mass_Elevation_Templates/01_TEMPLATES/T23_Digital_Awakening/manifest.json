@@ -1,0 +1,310 @@
+{
+  "id": "T23",
+  "name": "Digital Awakening",
+  "slug": "Digital_Awakening",
+  "category": "E - Sci-Fi and Futuristic Motion Graphics",
+  "version": "1.0.0",
+  "concept": "A system boots: scattered data points and procedural lines organise themselves into a stable wordmark.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 216,
+  "duration_seconds": 9.0,
+  "phases": {
+    "build_up": [
+      0,
+      96
+    ],
+    "impact_frame": 104,
+    "hero_hold": [
+      104,
+      178
+    ],
+    "exit": [
+      178,
+      208
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Orbitron",
+    "Teko"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T23_Digital_Awakening.setting",
+  "fusion_composition": "source/T23_Digital_Awakening.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 53,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T23_Digital_Awakening.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Deep digital room tone"
+    },
+    {
+      "frame": 6,
+      "seconds": 0.25,
+      "cue": "digital",
+      "note": "Data chatter as points appear"
+    },
+    {
+      "frame": 30,
+      "seconds": 1.25,
+      "cue": "swell",
+      "note": "Rising tonal swell while points converge"
+    },
+    {
+      "frame": 70,
+      "seconds": 2.917,
+      "cue": "digital",
+      "note": "Lattice lock ticks"
+    },
+    {
+      "frame": 98,
+      "seconds": 4.083,
+      "cue": "rwhoosh",
+      "note": "Reverse suck into resolve"
+    },
+    {
+      "frame": 104,
+      "seconds": 4.333,
+      "cue": "impact",
+      "note": "Clean digital impact (resolve)"
+    },
+    {
+      "frame": 105,
+      "seconds": 4.375,
+      "cue": "shimmer",
+      "note": "Block-resolve shimmer"
+    },
+    {
+      "frame": 178,
+      "seconds": 7.417,
+      "cue": "digital",
+      "note": "Decompile chatter"
+    },
+    {
+      "frame": 190,
+      "seconds": 7.917,
+      "cue": "tail",
+      "note": "Airy tail"
+    }
+  ],
+  "techniques": [
+    "glyph-sampled point cloud",
+    "plexus lines",
+    "data streaks",
+    "block resolve",
+    "node lattice",
+    "decompile exit"
+  ],
+  "design": {
+    "entrance": "Hundreds of disorganised points and short data lines drift in depth, then converge in a left-to-right wave onto a lattice inside the letterforms, forming a wireframe of the title.",
+    "reveal": "At the impact frame the point-lattice resolves block-by-block into the solid wordmark with an edge pulse.",
+    "camera": "Slow drift-in with depth parallax on the background node lattice.",
+    "material": "Clean white emissive face with a mint inner edge; mint data points and lines on a deep navy void.",
+    "exit": "Decompile: the wordmark de-resolves block-by-block back into points that float upward and dissipate."
+  },
+  "fusion_notes": [
+    "The Fusion version converges a pEmitter point field (Transform scale/centre onto the title) and resolves the wordmark with a FastNoise threshold; the preview converges points sampled from the actual glyph shapes and resolves in square blocks."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t23.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "PARTICLE_INTENSITY",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 53,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 190,
+        "K": 127,
+        "?": 16
+      },
+      "setting_expressions": 41,
+      "published_controls": 36,
+      "text_nodes": [
+        "Subtitle",
+        "MainTitle"
+      ],
+      "comp_tools": 53,
+      "comp_input_evidence": {
+        "S": 190,
+        "K": 127,
+        "?": 16
+      },
+      "comp_expressions": 41
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 9.0,
+      "frames": 216,
+      "audio": true,
+      "bytes": 3676959,
+      "sample_means": [
+        2.0,
+        3.0,
+        4.3,
+        4.6,
+        12.2,
+        10.7,
+        10.7,
+        7.8,
+        2.2
+      ],
+      "hero_blown_fraction": 0.0037,
+      "hero_contrast": 39.8,
+      "title_band_contrast": 69.9
+    },
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:12:43+00:00"
+  }
+}

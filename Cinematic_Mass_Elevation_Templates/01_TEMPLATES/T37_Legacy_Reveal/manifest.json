@@ -1,0 +1,261 @@
+{
+  "id": "T37",
+  "name": "Legacy Reveal",
+  "slug": "Legacy_Reveal",
+  "category": "H - Signature Hero Elevations",
+  "version": "1.0.0",
+  "concept": "A quiet, premium tribute reveal for a name, an event or a dedication: warm light, soft bokeh, letters arriving one by one like a held breath.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 228,
+  "duration_seconds": 9.5,
+  "phases": {
+    "build_up": [
+      0,
+      102
+    ],
+    "impact_frame": 100,
+    "hero_hold": [
+      100,
+      180
+    ],
+    "exit": [
+      180,
+      224
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Marcellus SC"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T37_Legacy_Reveal.setting",
+  "fusion_composition": "source/T37_Legacy_Reveal.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 81,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "EllipseMask",
+    "FilmGrain",
+    "Merge",
+    "PolylineMask",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender",
+    "pTurbulence"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Letterbox (2.39:1)",
+    "Warm Gold Color",
+    "Warm Gold Color",
+    "Warm Gold Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T37_Legacy_Reveal.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Warm room tone, soft piano-pad bed"
+    },
+    {
+      "frame": 18,
+      "seconds": 0.75,
+      "cue": "shimmer",
+      "note": "Delicate shimmer per letter"
+    },
+    {
+      "frame": 60,
+      "seconds": 2.5,
+      "cue": "swell",
+      "note": "Gentle string swell"
+    },
+    {
+      "frame": 100,
+      "seconds": 4.167,
+      "cue": "swell",
+      "note": "Warm swell peak with the light sweep"
+    },
+    {
+      "frame": 102,
+      "seconds": 4.25,
+      "cue": "shimmer",
+      "note": "Soft chime"
+    },
+    {
+      "frame": 180,
+      "seconds": 7.5,
+      "cue": "tail",
+      "note": "Long warm reverb tail"
+    }
+  ],
+  "techniques": [
+    "per-glyph staggered fade",
+    "gold hairline ornament",
+    "drifting bokeh layer",
+    "floating motes with depth of field",
+    "slow light sweep",
+    "warm light leak"
+  ],
+  "design": {
+    "entrance": "Letter-by-letter fade with a gentle upward settle and slight tracking contraction; a gold hairline draws outward beneath.",
+    "reveal": "At the impact frame a slow warm light sweep glides across the letters and the scene gently brightens (no shake).",
+    "camera": "Very slow push-in with a subtle drift; bokeh and motes at different depths provide restrained parallax.",
+    "material": "Satin ivory serif with a soft gold edge light; gold ornamental rule.",
+    "exit": "Everything softly lifts and dissolves into warm glow, letters fading last-to-first, to warm black."
+  },
+  "fusion_notes": [],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pEmitter.Transform3DOp.Translate.Y",
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width",
+    "pTurbulence.XStrength",
+    "pTurbulence.YStrength",
+    "pTurbulence.ZStrength"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t37.py",
+    "parameters_used": []
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 81,
+      "unconfirmed_inputs": [
+        "pEmitter.Transform3DOp.Translate.Y",
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width",
+        "pTurbulence.XStrength",
+        "pTurbulence.YStrength",
+        "pTurbulence.ZStrength"
+      ],
+      "setting_input_evidence": {
+        "S": 376,
+        "K": 134,
+        "?": 14
+      },
+      "setting_expressions": 84,
+      "published_controls": 36,
+      "text_nodes": [
+        "Subtitle",
+        "MainTitle"
+      ],
+      "comp_tools": 81,
+      "comp_input_evidence": {
+        "S": 376,
+        "K": 134,
+        "?": 14
+      },
+      "comp_expressions": 84
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 9.5,
+      "frames": 228,
+      "audio": true,
+      "bytes": 2851935,
+      "sample_means": [
+        7.3,
+        8.1,
+        9.1,
+        10.0,
+        12.5,
+        10.9,
+        9.8,
+        8.5,
+        0.7
+      ],
+      "hero_blown_fraction": 0.0,
+      "hero_contrast": 21.2,
+      "title_band_contrast": 35.1
+    },
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:13:28+00:00"
+  }
+}

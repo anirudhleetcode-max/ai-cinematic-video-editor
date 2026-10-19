@@ -1,0 +1,318 @@
+{
+  "id": "T19",
+  "name": "Cosmic Overlord",
+  "slug": "Cosmic_Overlord",
+  "category": "D - Mythic, Epic and Fantasy",
+  "version": "1.0.0",
+  "concept": "A sovereign title assembles like a constellation above a planet while a star rises over its limb.",
+  "aspect_ratio": "16:9",
+  "default_resolution": "3840x2160",
+  "preview_resolution": "1920x1080",
+  "frame_rate": 24,
+  "duration_frames": 236,
+  "duration_seconds": 9.833,
+  "phases": {
+    "build_up": [
+      0,
+      112
+    ],
+    "impact_frame": 118,
+    "hero_hold": [
+      118,
+      192
+    ],
+    "exit": [
+      192,
+      226
+    ]
+  },
+  "editable_text": true,
+  "editable_colors": true,
+  "editable_timing": true,
+  "true_3d": false,
+  "uses_2_5d": true,
+  "depth_note": "2.5D layered compositing (no 3D geometry).",
+  "external_plugins_required": false,
+  "external_assets_required": false,
+  "font_dependencies": [
+    "Audiowide",
+    "Orbitron"
+  ],
+  "font_note": "OFL fonts bundled in 02_SHARED_ASSETS/Fonts; install them or choose any installed font.",
+  "fusion_macro": "source/T19_Cosmic_Overlord.setting",
+  "fusion_composition": "source/T19_Cosmic_Overlord.comp",
+  "fusion_output_tool": "Letterbox",
+  "fusion_tool_count": 64,
+  "fusion_tool_types": [
+    "Background",
+    "BitmapMask",
+    "Blur",
+    "ColorCorrector",
+    "DirectionalBlur",
+    "EllipseMask",
+    "FastNoise",
+    "FilmGrain",
+    "Merge",
+    "RectangleMask",
+    "SoftGlow",
+    "TextPlus",
+    "Transform",
+    "pEmitter",
+    "pRender"
+  ],
+  "fusion_controls": [
+    "AnimStart",
+    "AnimDuration",
+    "ImpactFrame",
+    "ExitStart",
+    "ExitDuration",
+    "BackgroundIntensity",
+    "ParticleIntensity",
+    "GlowStrength",
+    "ShakeAmount",
+    "TextScale",
+    "TextPosX",
+    "TextPosY",
+    "TextRotation",
+    "MotionBlurAmount",
+    "Letterbox"
+  ],
+  "fusion_published_controls": [
+    "Animation Start (frames)",
+    "Reveal Duration (frames)",
+    "Impact Frame",
+    "Exit Start (frame)",
+    "Exit Duration (frames)",
+    "Background Intensity",
+    "Particle Intensity",
+    "Glow Strength",
+    "Camera Shake",
+    "Text Scale",
+    "Text Position X",
+    "Text Position Y",
+    "Text Rotation",
+    "Motion Blur Amount",
+    "Letterbox (2.39:1)",
+    "Accent Color",
+    "Accent Color",
+    "Accent Color",
+    "Main Title",
+    "Main Title Font",
+    "Main Title Style",
+    "Main Title Size",
+    "Main Title Letter Spacing",
+    "Main Title Line Spacing",
+    "Main Title Alignment",
+    "Main Title Color",
+    "Main Title Color",
+    "Main Title Color",
+    "Subtitle",
+    "Subtitle Font",
+    "Subtitle Style",
+    "Subtitle Size",
+    "Subtitle Letter Spacing",
+    "Subtitle Line Spacing",
+    "Subtitle Alignment",
+    "Subtitle Color",
+    "Subtitle Color",
+    "Subtitle Color"
+  ],
+  "preview": "preview/T19_Cosmic_Overlord.mp4",
+  "thumbnail": "preview/thumbnail.jpg",
+  "readme": "README.md",
+  "parameters": "documentation/parameters.md",
+  "sound_design": "documentation/sound_design.md",
+  "render_profile": "configuration/render_profile.json",
+  "default_params": "configuration/default_params.json",
+  "sound_cues": [
+    {
+      "frame": 0,
+      "seconds": 0.0,
+      "cue": "atmos",
+      "note": "Deep space drone"
+    },
+    {
+      "frame": 20,
+      "seconds": 0.833,
+      "cue": "swell",
+      "note": "Cosmic pad swell"
+    },
+    {
+      "frame": 30,
+      "seconds": 1.25,
+      "cue": "shimmer",
+      "note": "Star points"
+    },
+    {
+      "frame": 60,
+      "seconds": 2.5,
+      "cue": "digital",
+      "note": "Constellation link ticks"
+    },
+    {
+      "frame": 100,
+      "seconds": 4.167,
+      "cue": "riser",
+      "note": "Solar riser"
+    },
+    {
+      "frame": 118,
+      "seconds": 4.917,
+      "cue": "impact",
+      "note": "Deep cosmic impact"
+    },
+    {
+      "frame": 118,
+      "seconds": 4.917,
+      "cue": "sub",
+      "note": "Sub drop"
+    },
+    {
+      "frame": 120,
+      "seconds": 5.0,
+      "cue": "shimmer",
+      "note": "Flare shimmer"
+    },
+    {
+      "frame": 192,
+      "seconds": 8.0,
+      "cue": "whoosh",
+      "note": "Fly-through whoosh"
+    },
+    {
+      "frame": 210,
+      "seconds": 8.75,
+      "cue": "tail",
+      "note": "Space tail"
+    }
+  ],
+  "techniques": [
+    "3-layer star parallax",
+    "animated nebula",
+    "planet limb + atmosphere",
+    "constellation assembly",
+    "per-glyph depth convergence",
+    "sunrise flare",
+    "fly-through exit"
+  ],
+  "design": {
+    "entrance": "A slow camera approach through three parallax star layers and drifting nebula; the letters drift in from deep space as points of light, linked by fading constellation lines, and lock into place.",
+    "reveal": "On the impact frame the star crests the planet's limb: the atmosphere ignites, a restrained anamorphic flare crosses the frame and the metal letters catch a warm sunrise rim.",
+    "camera": "Continuous forward dolly (star layers expand at different rates = parallax), gentle drift.",
+    "material": "Dark blue-steel with cool space reflections and a warm sunrise rim from below; glyphs are born as emissive star points that cool into metal.",
+    "exit": "The camera keeps travelling: it flies through the title, which swells past the lens as stars stretch."
+  },
+  "fusion_notes": [
+    "Per-glyph constellation convergence is approximated in Fusion by a point-cell dissolve plus scale/blur convergence of the whole title (TextPlus has no per-character transforms without a Follower modifier).",
+    "Star layers are pEmitter fields rendered by pRender and scaled by expressions for parallax."
+  ],
+  "extra_parameters": {},
+  "unconfirmed_fusion_inputs": [
+    "pRender.Height",
+    "pRender.UseFrameFormatSettings",
+    "pRender.Width"
+  ],
+  "reference_renderer": {
+    "module": "06_AUTOMATION/Scripts/cmet/designs/t19.py",
+    "parameters_used": [
+      "ACCENT_COLOR",
+      "ANIMATION_DURATION",
+      "ANIMATION_START",
+      "BACKGROUND_INTENSITY",
+      "BEVEL_AMOUNT",
+      "DURATION",
+      "EXIT_DURATION",
+      "EXIT_START",
+      "FONT_FAMILY",
+      "FONT_SIZE",
+      "GLOW_STRENGTH",
+      "IMPACT_FRAME",
+      "IMPACT_INTENSITY",
+      "LETTERBOX",
+      "LETTER_SPACING",
+      "LINE_SPACING",
+      "MAIN_TITLE",
+      "MOTION_BLUR_AMOUNT",
+      "PARTICLE_INTENSITY",
+      "SHADOW_STRENGTH",
+      "SHAKE_AMOUNT",
+      "SUBTITLE",
+      "SUB_FONT_FAMILY",
+      "TEXT_ALIGNMENT",
+      "TEXT_COLOR",
+      "TEXT_POSITION_X",
+      "TEXT_POSITION_Y",
+      "TEXT_ROTATION",
+      "TEXT_SCALE",
+      "TITLE_WIDTH"
+    ]
+  },
+  "verification": {
+    "lua_parse": "PASS",
+    "structure": "PASS",
+    "source_details": {
+      "errors": [],
+      "warnings": [],
+      "setting_tools": 64,
+      "unconfirmed_inputs": [
+        "pRender.Height",
+        "pRender.UseFrameFormatSettings",
+        "pRender.Width"
+      ],
+      "setting_input_evidence": {
+        "S": 227,
+        "K": 145,
+        "?": 9
+      },
+      "setting_expressions": 44,
+      "published_controls": 38,
+      "text_nodes": [
+        "Subtitle",
+        "MainTitle"
+      ],
+      "comp_tools": 64,
+      "comp_input_evidence": {
+        "S": 227,
+        "K": 145,
+        "?": 9
+      },
+      "comp_expressions": 44
+    },
+    "preview": "PASS",
+    "preview_details": {
+      "errors": [],
+      "warnings": [],
+      "codec": "h264",
+      "size": "1920x1080",
+      "duration": 9.833,
+      "frames": 236,
+      "audio": true,
+      "bytes": 2885963,
+      "sample_means": [
+        4.2,
+        5.6,
+        9.7,
+        11.7,
+        13.9,
+        14.4,
+        13.7,
+        13.3,
+        8.6
+      ],
+      "hero_blown_fraction": 0.0009,
+      "hero_contrast": 28.8,
+      "title_band_contrast": 39.9
+    },
+    "resolve_tested": "BLOCKED - not tested in DaVinci Resolve: no Resolve connection in the environment of run cloud_build_env_20261011 (see 06_AUTOMATION/Validation/resolve_test_results.json)",
+    "resolve": {
+      "status": "BLOCKED",
+      "run_id": "cloud_build_env_20261011",
+      "C_load": "BLOCKED",
+      "D_render": "BLOCKED",
+      "E_edit": "BLOCKED",
+      "F_visual": "BLOCKED",
+      "detail": "no connection to DaVinci Resolve"
+    },
+    "validated_at": "2026-10-11T21:12:31+00:00"
+  }
+}

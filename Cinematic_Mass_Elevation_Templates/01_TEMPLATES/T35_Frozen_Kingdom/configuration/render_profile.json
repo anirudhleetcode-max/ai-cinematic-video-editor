@@ -1,0 +1,34 @@
+{
+  "template": "T35",
+  "frame_rate": 24,
+  "duration_frames": 204,
+  "profiles": {
+    "preview": {
+      "width": 1920,
+      "height": 1080,
+      "codec": "H.264 (libx264, CRF 20, yuv420p)",
+      "container": "mp4",
+      "audio": "AAC 160k (procedural cue mix)"
+    },
+    "final_4k": {
+      "width": 3840,
+      "height": 2160,
+      "codec": "Apple ProRes 422 HQ (prores_ks profile 3)",
+      "container": "mov",
+      "audio": "PCM 16-bit 48 kHz"
+    },
+    "final_1080": {
+      "width": 1920,
+      "height": 1080,
+      "codec": "Apple ProRes 422 HQ",
+      "container": "mov"
+    }
+  },
+  "resolve_render_settings": {
+    "Format": "QuickTime",
+    "Codec": "Apple ProRes 422 HQ or H.264",
+    "Resolution": "3840x2160 (UHD) or timeline resolution",
+    "FrameRate": 24,
+    "Timeline length": "204 frames (8.50s)"
+  }
+}
