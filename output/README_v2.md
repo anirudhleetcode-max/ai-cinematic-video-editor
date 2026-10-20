@@ -6,6 +6,21 @@ v2 is re-rendered from the original source (`input/source.mov`, plus the same op
 
 ## What changed from v1
 
+### Bold, thick, vibrant doodle art
+- **Palette:** saturated colours throughout. Hot pink, vibrant lavender-purple, turquoise/aqua, coral red, lemon/golden yellow, warm orange, electric blue, purple and mint, with white highlights. Pastel tones were dropped as the main doodle colours.
+- **Ink rim:** every doodle stroke is drawn over a deep-plum rim 4 px wider than the stroke. This keeps doodles readable on both the light wall and the dark hair and clothing.
+- **Stroke widths:**
+  - sparkle details: about 2–4 px
+  - small lines: about 4–6 px
+  - main doodle outlines: about 6–8 px
+  - large illustrations: up to about 12 px (rainbow arcs)
+  - plus the ink rim
+- **Glow:** the doodle glow was lowered (strength 0.28) so the shapes stay crisp instead of turning into soft blobs.
+- **Fish:** 27 fish in turquoise, coral, pink, purple, yellow and lavender. They have eyes, fins and swaying tails, give off a steady stream of bubbles, and swim both ways at different speeds along gently curving paths. Some swim in pairs, and new fish keep arriving every 4–8 s.
+- **Flowers:** coloured petals, yellow centres with a white highlight, and green leaves. They turn slowly.
+- **Hearts:** filled hearts in vibrant colours, often trailed by two smaller hearts.
+- **Line art:** an extra bold squiggle, spiral, arrow or constellation draws itself onto empty wall every 2.6 s, then drifts and fades.
+
 ### A continuous doodle universe
 About 2,300 planned animation events: v1 had about 520.
 

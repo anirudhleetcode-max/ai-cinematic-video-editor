@@ -30,6 +30,34 @@ MW, MH = R.MW, R.MH
 CREAM = (235, 245, 255)
 
 
+INK = (70, 25, 85)                                # deep plum ink border
+
+
+class BoldLayer(R.Layer):
+    """Doodle layer with bold strokes: widths x2 and a dark ink rim behind
+    every stroke so saturated doodles stay readable on light and dark areas."""
+    bold = True
+
+    def poly(self, pts, color, alpha, thick=3, closed=True, fill=False):
+        if not self.bold:
+            return R.Layer.poly(self, pts, color, alpha, thick, closed, fill)
+        t = 0 if thick <= 0 else (thick * 2 if thick >= 2 else 2)
+        if fill and t == 0:
+            t = 2                                  # filled shapes get an ink edge too
+        if t > 0:
+            R.Layer.poly(self, pts, INK, alpha * 0.9, t + 4, closed, False)
+        if fill:
+            R.Layer.poly(self, pts, color, alpha, 0, closed, True)
+        if thick > 0:
+            R.Layer.poly(self, pts, color, alpha, t, closed, False)
+
+    def circle(self, c, r, color, alpha, thick=-1):
+        if self.bold and r >= 4:
+            R.Layer.circle(self, c, r + (2 if thick < 0 else 0), INK, alpha * 0.9,
+                           thick if thick < 0 else thick * 2 + 4)
+        R.Layer.circle(self, c, r, color, alpha, thick if thick < 0 else max(2, thick * 2))
+
+
 def reveal_poly(L, pts, prog, color, alpha, thick):
     n = max(2, int(len(pts) * min(1.0, prog)))
     L.poly(pts[:n], color, alpha, thick=thick, closed=False)
@@ -148,6 +176,29 @@ def draw_new(L, e, f):
             if j <= n:
                 tw = 0.5 + 0.5 * math.sin(tau * 4 + j * 1.7)
                 L.poly(R.xform(R.STAR4, P[j][0], P[j][1], 9 + 7 * tw, tau), WHITE, fade, 1, fill=True)
+    elif k == "daisy":
+        y += 8 * math.sin(tau * 1.6)
+        sc = s * 0.85 * min(1.0, tau / 0.35)
+        rot = tau * 0.5 + seed
+        for side in (-1, 1):                      # green leaves
+            leaf = R.ellipse_pts(side * 0.75, 0.75, 0.42, 0.17, side * 0.6, 20)
+            L.poly(R.xform(leaf, x, y, sc), MINT, fade, 1, fill=True)
+        pc = PALETTE[e.get("color", 0) % len(PALETTE)]
+        for i in range(7):
+            a = i * 2 * math.pi / 7 + rot
+            pet = R.ellipse_pts(0.55 * math.cos(a), 0.55 * math.sin(a), 0.42, 0.22, a, 22)
+            L.poly(R.xform(pet, x, y, sc), pc, fade, 1, fill=True)
+        L.circle((x, y), sc * 0.27, YELLOW, fade)
+        L.circle((x - sc * 0.08, y - sc * 0.08), sc * 0.08, WHITE, fade)
+    elif k in ("heart", "dheart", "heart_wing"):
+        R.draw_event(L, e, f)
+        if (e["f0"] + int(e["p0"][0])) % 2 == 0:  # small trailing hearts
+            for j in range(1, 3):
+                tj = max(0.0, tau - 0.25 * j)
+                hx = e["p0"][0] + e["v"][0] * tj + 10 * math.sin(tj * 2.2 + seed) - 18 * j
+                hy = e["p0"][1] + e["v"][1] * tj + 28 * j
+                P = R.xform(R.HEART, hx, hy, s * (0.35 - 0.08 * j), 0.2)
+                L.poly(P, PALETTE[(e.get("color", 0) + j) % len(PALETTE)], fade * 0.9, 1, fill=True)
     elif k == "petal":
         x += 40 * math.sin(tau * 1.3 + seed)
         rot = tau * 1.8 + seed
@@ -321,8 +372,10 @@ def render_frame(img, f, ema_mask, scene_start):
     img = beauty(img, mask_lo)
     base = R.grade(img, f) + light_leak(f)
 
-    L = R.Layer()
+    L = BoldLayer()
+    L.bold = False
     draw_frame(L, f)
+    L.bold = True
     active = np.nonzero((F0 <= f) & (f < F1))[0]
     for i in active:
         e = EVENTS[i]
@@ -331,6 +384,7 @@ def render_frame(img, f, ema_mask, scene_start):
     keep_out = cv2.dilate(mask_lo, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5)))
     keep_out = cv2.resize(cv2.GaussianBlur(keep_out, (0, 0), 1.5), (W, H)).astype(np.float32) / 255
     L.a = (L.a.astype(np.float32) * (1 - keep_out)).astype(np.uint8)
+    L.bold = False
     draw_outline(L, mask_lo, f, scene_start)
     for i in active:
         if EVENTS[i]["kind"] == "text":
@@ -340,7 +394,7 @@ def render_frame(img, f, ema_mask, scene_start):
     col = L.col.astype(np.float32)
     small = cv2.resize(col * a, (W // 4, H // 4), interpolation=cv2.INTER_AREA)
     glow = cv2.resize(cv2.GaussianBlur(small, (0, 0), 5), (W, H))
-    out = base * (1 - a) + col * a + glow * 0.5
+    out = base * (1 - a) + col * a + glow * 0.28
     tr = R.transition_amount(f)
     if tr > 0:
         out = out * (1 - tr) + R.CREAM * tr

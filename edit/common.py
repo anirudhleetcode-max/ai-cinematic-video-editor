@@ -20,18 +20,19 @@ SLOW_A, SLOW_B = 2393, 3032
 N_OUT = 3396
 SCENE_CUTS = [0, SLOW_A, SLOW_B]
 
-# Pastel palette (BGR)
-PINK = (203, 182, 255)
-LAVENDER = (250, 200, 215)
-BABY_BLUE = (255, 216, 168)
-MINT = (213, 245, 181)
-YELLOW = (168, 241, 255)
-PEACH = (164, 203, 255)
+# Vibrant doodle palette (BGR)
+PINK = (180, 80, 255)          # hot pink
+LAVENDER = (255, 110, 190)     # vibrant lavender-purple
+BABY_BLUE = (225, 210, 20)     # turquoise / aqua
+MINT = (120, 220, 60)          # mint green
+YELLOW = (40, 220, 255)        # lemon / golden yellow
+PEACH = (60, 150, 255)         # warm orange-peach
 WHITE = (255, 255, 255)
-CORAL = (140, 127, 255)
-PURPLE = (255, 140, 190)
+CORAL = (90, 90, 255)          # coral red
+PURPLE = (230, 90, 160)        # purple
+SKY = (255, 160, 60)           # sky / electric blue
 DARK_V = int(os.environ.get("EDIT_DARK_V", "58"))
-PALETTE = [PINK, LAVENDER, BABY_BLUE, MINT, YELLOW, PEACH, WHITE]
+PALETTE = [PINK, LAVENDER, BABY_BLUE, CORAL, YELLOW, PEACH, SKY, PURPLE, MINT]
 
 
 def segments(a, b):
