@@ -267,7 +267,7 @@ class K:
     dance2 = 70.0
     rest = 77.2
     climax = 79.73          # SLOW_A
-    hug = 93.6
+    hug = 98.1             # the ink pair echoes the real embrace once it is visible again
     stars = 97.5
     seated = 101.07         # SLOW_B
     heart = 101.8
@@ -817,7 +817,12 @@ def climax_wash(t):
     if a <= 0:
         return None
     r = 80 + 900 * ease_out((t - K.climax - 1.5) / 9.0)
-    cx, cy = TREE_BASE[0] / 8, (TREE_BASE[1] - 140) / 8
+    xf = world_xform(t)
+    if xf is None:
+        cx, cy = TREE_BASE[0] / 8, (TREE_BASE[1] - 140) / 8
+    else:
+        c = (np.array([TREE_BASE[0], TREE_BASE[1] - 140]) - xf[0]) * xf[2] + xf[1]
+        cx, cy = c[0] / 8, c[1] / 8
     d = np.sqrt((_XX - cx) ** 2 + ((_YY - cy) * 1.25) ** 2) * 8
     edge = np.clip((r - d) / 160 + (_NOISE - 0.5) * 1.2, 0, 1)
     tint = np.zeros((H // 8, W // 8, 3), np.float32)
@@ -1009,7 +1014,7 @@ def together(t, who):
         return base, dict(d=face, sit=ramp(t, K.rest, K.rest + 0.8), look=1.0, arms="rest")
     if t < K.hug - 1.0:                                    # stand and watch the lanterns rise
         return base, dict(d=face, look=1.0, arms="swing", happy=1)
-    if t < K.stars:                                        # the hug, mirroring the real one
+    if t < K.hug + 2.6:                                    # the hug, echoing the real one
         s = base - side * 22 * ramp(t, K.hug - 1.0, K.hug)
         return s, dict(d=face, arms="hug" if t > K.hug - 0.3 else "swing", happy=1, walk=None)
     if t < K.walk_home:
@@ -1021,6 +1026,41 @@ def together(t, who):
         return s, dict(d=-1, walk=(s0 - s) / 7.0, arms="hold", happy=1)
     a = 1 - ramp(t, K.home, K.home + 0.8)                  # step inside
     return S_WDOOR + (14 if who == "b" else 0), dict(d=-1, alpha=a, arms="hold")
+
+
+class _Affine:
+    """Proxy layer: p' = (p - src) * k + dst. Used for the climax close-up."""
+
+    def __init__(self, L, src, dst, k):
+        self.L, self.s, self.d, self.k = L, np.asarray(src, np.float64), np.asarray(dst, np.float64), k
+        self.col, self.a = L.col, L.a
+
+    def _t(self, pts):
+        return (np.asarray(pts, np.float64) - self.s) * self.k + self.d
+
+    def fill(self, pts, color, alpha):
+        self.L.fill(self._t(pts), color, alpha)
+
+    def line(self, pts, color, alpha, thick=2, closed=False):
+        self.L.line(self._t(pts), color, alpha, max(1, int(round(thick * self.k))), closed)
+
+    def dot(self, c, r, color, alpha):
+        self.L.dot(self._t([c])[0], r * self.k, color, alpha)
+
+    def ring(self, c, r, color, alpha, thick=2):
+        self.L.ring(self._t([c])[0], r * self.k, color, alpha, max(1, int(round(thick * self.k))))
+
+
+CLOSE_K = 1.45
+CLOSE_DST = (1180.0, 560.0)
+
+
+def world_xform(t):
+    """Seated take: the world as drawn. Standing scene (79.7-101.1 s): a closer
+    framing of the world centred on the tree, cut together with the footage."""
+    if K.climax <= t < K.seated:
+        return TREE_BASE, np.array(CLOSE_DST), CLOSE_K
+    return None
 
 
 class _Scaled:
@@ -1076,10 +1116,10 @@ def _title_sprite(text, size):
     return _title_cache[text]
 
 
-def draw_title(ink, t, cx=960, cy=150):
+def draw_title(ink, t, cx=980, cy=128):
     if t < K.title or t > K.horizon + 4:
         return
-    spr = _title_sprite("two voices", 92)
+    spr = _title_sprite("two voices", 68)
     h, w = spr.shape
     rev = ramp(t, K.title, K.title + 2.0)
     fade = 1 - ramp(t, K.horizon + 1.5, K.horizon + 3.6)
@@ -1095,13 +1135,15 @@ def draw_title(ink, t, cx=960, cy=150):
     up = ramp(t, K.title + 1.8, K.horizon + 0.2)
     if up > 0:
         y = cy + h / 2 - 6
-        ul = np.array([(cx - 150, y + 2), (cx, y - 2), (cx + 150, y + 3)])
+        ul = np.array([(cx - 118, y + 2), (cx, y - 2), (cx + 118, y + 3)])
         stroke(ink, spline(ul, 10), INK, 0.85 * fade, 2.2, up, 901, t, 0.4)
 
 
 # ---------------------------------------------------------------- compose a frame of the world
 def render_world(t):
-    ink, light = Layer(), Layer()
+    ink0, light0 = Layer(), Layer()
+    xf = world_xform(t)
+    ink, light = (ink0, light0) if xf is None else (_Affine(ink0, *xf), _Affine(light0, *xf))
     draw_sky(ink, light, t)
     draw_clouds(ink, t)
     draw_horizon(ink, t)
@@ -1125,7 +1167,7 @@ def render_world(t):
     draw_petals(ink, t, tips)
     draw_characters(ink, t)
     draw_retrace(light, t)
-    return ink, light
+    return ink0, light0
 
 
 GESTURE_BLOOMS = {}          # flower index -> bloom start time (filled by the planner)

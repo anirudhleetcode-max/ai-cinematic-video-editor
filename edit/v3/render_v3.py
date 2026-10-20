@@ -220,28 +220,37 @@ def render_frame(img, f, ema, det):
     draw_streams(light, t)
 
     keep = cv2.dilate(mask_lo, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3)))
-    keep = cv2.resize(cv2.GaussianBlur(keep, (0, 0), 1.2), (W, H)).astype(np.float32) / 255
-    wall = (1 - keep)[..., None]
+    keep = cv2.resize(cv2.GaussianBlur(keep, (0, 0), 1.2), (W, H))
 
-    ia = ink.a.astype(np.float32)[..., None] / 255 * wall
-    out = base * (1 - ia * (1 - ink.col.astype(np.float32) / 255))      # multiply ink into the wall
+    out = base
     cw = Wd.climax_wash(t)
     if cw is not None:
-        wa = (cw[0][..., None]) * wall
+        wa = cw[0][..., None] * (1 - keep.astype(np.float32)[..., None] / 255)
         out = out * (1 - wa * (1 - cw[1] / 255))
-    la = light.a.astype(np.float32)[..., None] / 255 * wall
-    lc = light.col.astype(np.float32) * la
-    small = cv2.resize(lc, (W // 4, H // 4), interpolation=cv2.INTER_AREA)
-    glow = cv2.resize(cv2.GaussianBlur(small, (0, 0), 6), (W, H))
-    out = out + lc * 0.85 + glow * 1.4
+    # composite the world only inside its bounding box (plus a glow margin)
+    occ = cv2.max(ink.a, light.a)
+    x, y, w, h = cv2.boundingRect(occ)
+    if w > 0 and h > 0:
+        m = 48
+        x0, y0 = max(0, x - m) // 4 * 4, max(0, y - m) // 4 * 4
+        x1, y1 = min(W, (x + w + m + 3) // 4 * 4), min(H, (y + h + m + 3) // 4 * 4)
+        sl = (slice(y0, y1), slice(x0, x1))
+        wall = (1 - keep[sl].astype(np.float32) / 255)[..., None]
+        ia = ink.a[sl].astype(np.float32)[..., None] * (wall / 255)
+        roi = out[sl] * (1 - ia * (1 - ink.col[sl].astype(np.float32) / 255))   # multiply ink
+        la = light.a[sl].astype(np.float32)[..., None] * (wall / 255)
+        lc = light.col[sl].astype(np.float32) * la
+        sw, sh = (x1 - x0) // 4, (y1 - y0) // 4
+        glow = cv2.resize(cv2.GaussianBlur(cv2.resize(lc, (sw, sh), interpolation=cv2.INTER_AREA), (0, 0), 6),
+                          (x1 - x0, y1 - y0))
+        out[sl] = roi + lc * 0.85 + glow * 1.4
 
-    cl = Wd.Layer()
-    draw_contour(cl, mask_lo, t, f)
-    ca = cl.a.astype(np.float32)[..., None] / 255
-    if ca.any():
-        out = out + cl.col.astype(np.float32) * ca * 0.8 + \
-            cv2.resize(cv2.GaussianBlur(cv2.resize(cl.col.astype(np.float32) * ca, (W // 4, H // 4)), (0, 0), 4),
-                       (W, H)) * 0.8
+    if Wd.env(t, Wd.K.window_w - 0.6, Wd.K.window_w + 2.8, 0.8, 1.6) > 0:
+        cl = Wd.Layer()
+        draw_contour(cl, mask_lo, t, f)
+        ca = cl.a.astype(np.float32)[..., None] / 255
+        c = cl.col.astype(np.float32) * ca
+        out = out + c * 0.8 + cv2.resize(cv2.GaussianBlur(cv2.resize(c, (W // 4, H // 4)), (0, 0), 4), (W, H)) * 0.8
 
     black, warm = transition(f)
     climax_glow = 0.1 * Wd.env(t, Wd.K.climax, Wd.K.seated + 0.5, 3, 2)
