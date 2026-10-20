@@ -1,6 +1,14 @@
 # Cute doodle music edit
 
-Final video: `output/cute_doodle_music_edit.mp4`. It is H.264 + AAC at 1920×1080 and 30 fps, 113.2 s long.
+Final video: `output/cute_doodle_music_edit.mp4`. It is H.264 High + AAC-LC stereo at 1920×1080 and 30 fps, 113.2 s long (3,396 frames), about 74 MB at 5.2 Mbps.
+
+The frames were first rendered at CRF 19, which came to 212 MB because film grain is costly to encode. The final file is that render re-encoded at CRF 21, capped at 5 Mbps, so it stays under GitHub's 100 MB file limit. `review_frames.jpg` shows 16 frames from across the edit.
+
+The final file was checked as follows:
+- All 3,396 frames decode.
+- ffmpeg's `blackdetect` and `freezedetect` found no black or frozen segments.
+- The audio is present for the full length (mean −29.2 dB, peak −0.2 dB).
+- Face crops were compared with the source frames.
 
 Source: `input/source.mov` from branch `claude/friendly-fermi-jn4h4o`, commit `b3437ef`. It is 1920×1080, 30 fps, 114.5 s, with stereo AAC audio.
 
