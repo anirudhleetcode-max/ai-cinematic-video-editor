@@ -44,7 +44,8 @@ LIGHT_CREAM = (215, 240, 255)
 # ---------------------------------------------------------------- timing helpers
 def _beats():
     try:
-        with open(os.path.join(WORK, "plan_v2.json")) as fh:
+        name = "beats.json" if os.path.exists(os.path.join(WORK, "beats.json")) else "plan_v2.json"
+        with open(os.path.join(WORK, name)) as fh:
             a = json.load(fh)["audio"]
         b = np.array(a["beats"])
         return b, b[a["downbeat_phase"]::4]
@@ -833,6 +834,7 @@ def climax_wash(t):
 
 # ---------------------------------------------------------------- characters
 CHAR_H = 64
+CHAR_SCALE = 1.22          # v4 overrides this from its config
 
 
 def draw_character(ink, x, y, pose, scarf, scarf_wash, seed, t, partner_dx=0.0):
@@ -1095,8 +1097,8 @@ def draw_characters(ink, t):
             continue
         s, pose = st
         x, y = path_pt(s)
-        draw_character(_Scaled(ink, (x, y - 1), 1.22), x, y - 1, pose, scarf, wash, seed, t,
-                       (other - x) / 1.22 if other is not None else 0.0)
+        draw_character(_Scaled(ink, (x, y - 1), CHAR_SCALE), x, y - 1, pose, scarf, wash, seed, t,
+                       (other - x) / CHAR_SCALE if other is not None else 0.0)
 
 
 # ---------------------------------------------------------------- title
