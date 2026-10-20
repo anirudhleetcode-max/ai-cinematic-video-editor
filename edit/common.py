@@ -30,6 +30,7 @@ PEACH = (164, 203, 255)
 WHITE = (255, 255, 255)
 CORAL = (140, 127, 255)
 PURPLE = (255, 140, 190)
+DARK_V = int(os.environ.get("EDIT_DARK_V", "58"))
 PALETTE = [PINK, LAVENDER, BABY_BLUE, MINT, YELLOW, PEACH, WHITE]
 
 
@@ -90,7 +91,7 @@ def person_mask(small_bgr):
     """
     sm = cv2.GaussianBlur(small_bgr, (5, 5), 0)
     hsv = cv2.cvtColor(sm, cv2.COLOR_BGR2HSV)
-    m = ((hsv[..., 1] > 38) | (hsv[..., 2] < 72)).astype(np.uint8) * 255
+    m = ((hsv[..., 1] > 38) | (hsv[..., 2] < DARK_V)).astype(np.uint8) * 255
     k = max(3, small_bgr.shape[1] // 160) | 1
     m = cv2.morphologyEx(m, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
     m = cv2.morphologyEx(m, cv2.MORPH_CLOSE,
@@ -104,4 +105,11 @@ def person_mask(small_bgr):
     pad = cv2.copyMakeBorder(keep, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=0)
     inv = 255 - pad
     cv2.floodFill(inv, None, (0, 0), 0)
-    return keep | inv[1:-1, 1:-1]
+    holes = inv[1:-1, 1:-1]
+    # only fill small holes (white undershirt, eyes); big enclosed areas are
+    # wall seen through an arm loop and must stay background
+    n, lab, st, _ = cv2.connectedComponentsWithStats(holes)
+    for i in range(1, n):
+        if st[i, 4] > m.size * 0.012:
+            holes[lab == i] = 0
+    return keep | holes
