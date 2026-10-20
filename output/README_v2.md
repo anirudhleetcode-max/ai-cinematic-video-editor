@@ -1,6 +1,6 @@
 # Cute doodle music edit: v2
 
-The final file is `output/cute_doodle_music_edit_v2.mp4`. The previous version, `output/cute_doodle_music_edit.mp4`, is unchanged. The checked specifications are in the "Output" section at the end.
+The final file is `output/cute_doodle_music_edit_v2.mp4`. The previous version, `output/cute_doodle_music_edit.mp4`, is unchanged. The checked specifications are in the "Output" section below.
 
 v2 is re-rendered from the original source (`input/source.mov`, plus the same optical-flow slow-motion hug clip), not from the v1 MP4. v1 has its thin outline baked into the pixels, so it couldn't be upgraded directly. The timeline, the uninterrupted original audio and the lip-sync are the same as v1.
 
@@ -68,5 +68,25 @@ See `ASSET_CREDITS.md`. In short, Pixabay was unreachable from this environment 
 ## Reproduce
 ```
 export EDIT_WORK=/scratch EDIT_SOURCE=/path/to/source.mov   # slowmo.mp4 must be in $EDIT_WORK (see README.md)
-cd edit && python3 plan_v2.py && python3 render_v2.py && ./finalize_v2.sh
+cd edit && python3 plan_v2.py && python3 augment_v2.py && python3 render_v2.py && ./finalize_v2.sh
 ```
+
+## Output
+
+**File:** `output/cute_doodle_music_edit_v2.mp4`, 99,834,578 bytes (about 95 MiB, below GitHub's 100 MiB file limit).
+
+| Property | Value |
+|---|---|
+| Video | H.264, 1920×1080, 30 fps, yuv420p, CRF 20 with a 6.5 Mbps cap |
+| Audio | AAC, 48 kHz, stereo, 192 kbps: the original song with a 0.3 s fade-in and a 1 s fade-out |
+| Duration | 113.200 s (3,396 frames), the same as v1 |
+
+The final file was checked as follows:
+- All 3,396 frames decode.
+- ffmpeg's `blackdetect` and `freezedetect` found no black or frozen segments.
+- The audio is present for the full length (mean −29.2 dB, peak −0.2 dB), with the same levels as v1.
+- 16 frames from 0.5 s to 112.5 s were inspected (`review_frames_v2.jpg`):
+  - the faces are unchanged and unobstructed
+  - the outline is thicker and glowing
+  - doodles are moving across the background in every sampled frame
+- Full-resolution frames were also inspected during testing.
