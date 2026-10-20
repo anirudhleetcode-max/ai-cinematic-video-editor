@@ -67,9 +67,17 @@ def read_frames(a, b, w=W, h=H):
             if len(buf) < w * h * 3:
                 break
             got += 1
+            last_buf = buf
             yield np.frombuffer(buf, np.uint8).reshape(h, w, 3)
         p.stdout.close()
         p.wait()
+        # minterpolate can end a few frames early: hold the last frame
+        # (covered by the sparkle flash at the cut back to the singing).
+        if path == SLOWMO and got and n - got <= 6:
+            last = np.frombuffer(last_buf, np.uint8).reshape(h, w, 3)
+            for _ in range(n - got):
+                yield last
+            got = n
         if got != n:
             raise RuntimeError(f"short read {path} start={s}: {got}/{n}")
 
