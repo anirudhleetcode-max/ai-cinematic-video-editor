@@ -32,6 +32,7 @@ CORAL = (90, 90, 255)          # coral red
 PURPLE = (230, 90, 160)        # purple
 SKY = (255, 160, 60)           # sky / electric blue
 DARK_V = int(os.environ.get("EDIT_DARK_V", "58"))
+SAT_T = int(os.environ.get("EDIT_SAT", "38"))     # v3 uses 58 (warm-lit wall is ~46)
 PALETTE = [PINK, LAVENDER, BABY_BLUE, CORAL, YELLOW, PEACH, SKY, PURPLE, MINT]
 
 
@@ -92,7 +93,7 @@ def person_mask(small_bgr):
     """
     sm = cv2.GaussianBlur(small_bgr, (5, 5), 0)
     hsv = cv2.cvtColor(sm, cv2.COLOR_BGR2HSV)
-    m = ((hsv[..., 1] > 38) | (hsv[..., 2] < DARK_V)).astype(np.uint8) * 255
+    m = ((hsv[..., 1] > SAT_T) | (hsv[..., 2] < DARK_V)).astype(np.uint8) * 255
     k = max(3, small_bgr.shape[1] // 160) | 1
     m = cv2.morphologyEx(m, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
     m = cv2.morphologyEx(m, cv2.MORPH_CLOSE,
