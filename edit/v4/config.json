@@ -38,7 +38,9 @@
       255
     ],
     "min_edge_contrast": 24,
-    "min_gap_points": 24
+    "min_gap_points": 24,
+    "min_run_points": 40,
+    "envelope_close_px": 31
   },
   "paint": {
     "enabled": true,

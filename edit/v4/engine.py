@@ -163,6 +163,12 @@ class ContourEngine:
             d = np.roll(ps, -2, 0) - np.roll(ps, 2, 0)
             nrm = np.stack([d[:, 1], -d[:, 0]], 1)
             nrm /= np.linalg.norm(nrm, axis=1, keepdims=True) + 1e-9
+            # orient normals outward: samples a few px along +n must be off the matte
+            probe = (ps + nrm * 3 * scale) / scale
+            xi = np.clip(probe[:, 0].astype(int), 0, mw - 1)
+            yi = np.clip(probe[:, 1].astype(int), 0, mh - 1)
+            if (mask[yi, xi] > 0).mean() > 0.5:
+                nrm = -nrm
             out.append((ps, nrm, border))
         return out
 
@@ -185,7 +191,16 @@ class ContourEngine:
         if alpha <= 0 or not c["enabled"]:
             return
         col = tuple(int(v) for v in c["color_bgr"])
+        # outer envelope only: concavities (arm/torso gaps, neckline, crossing
+        # hands) are inside a closed version of the matte -> not traced
+        ck = int(c.get("envelope_close_px", 31)) | 1
+        closed = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (ck, ck)))
+        mh, mw = mask.shape
         for ps, nrm, border in self.contours(mask, scale):
+            qo = (ps + nrm * 16) / scale
+            xi = np.clip(qo[:, 0].astype(int), 0, mw - 1)
+            yi = np.clip(qo[:, 1].astype(int), 0, mh - 1)
+            border = border | (closed[yi, xi] > 0)
             if img_small is not None:
                 ev = self.edge_evidence(img_small, ps, nrm, W / img_small.shape[1])
                 weak = ev < c.get("min_edge_contrast", 30)
@@ -222,7 +237,7 @@ class ContourEngine:
                 else:
                     runs.append(cur)
             for r in runs:
-                if len(r) < 10:
+                if len(r) < c.get("min_run_points", 40):        # no detached fragments
                     continue
                 r = r[:max(2, int(len(r) * prog))]
                 pts = q[r]
