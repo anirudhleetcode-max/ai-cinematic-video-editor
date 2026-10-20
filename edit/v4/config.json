@@ -8,7 +8,7 @@
     "master_crf": 16,
     "master_maxrate": "14M",
     "delivery_video_kbps": 11000,
-    "delivery_fallback_kbps": 6500,
+    "delivery_fallback_kbps": 6750,
     "audio_kbps": 256,
     "seed": 2026
   },

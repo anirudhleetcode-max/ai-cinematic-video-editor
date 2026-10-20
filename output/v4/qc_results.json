@@ -1,7 +1,7 @@
 {
   "file": "/home/user/ai-cinematic-video-editor/output/v4/cinematic_doodle_music_edit_v4.mp4",
-  "size_bytes": 159230571,
-  "bitrate_bps": 11253043,
+  "size_bytes": 99191173,
+  "bitrate_bps": 7009976,
   "duration_s": 113.2,
   "video": {
     "codec_name": "h264",
@@ -43,9 +43,9 @@
   ],
   "mean_volume_db": -29.3,
   "max_volume_db": -0.6,
-  "ssim_vs_master": 0.98781,
-  "ssim_db_vs_master": 19.140015,
-  "max_luma_jump": 33.27386474609375,
+  "ssim_vs_master": 0.984151,
+  "ssim_db_vs_master": 17.999935,
+  "max_luma_jump": 33.26908874511719,
   "luma_jumps_over_12": [
     52.77,
     54.2,

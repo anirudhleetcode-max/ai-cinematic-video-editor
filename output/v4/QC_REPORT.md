@@ -6,7 +6,7 @@
 
 | Check | Result |
 |---|---|
-| Size and bitrate | 159,230,571 bytes, 11.25 Mbps overall (two-pass at 11 Mbps from the master) |
+| Size and bitrate | **99,191,173 bytes, 7.01 Mbps overall** (two-pass at 6.75 Mbps video from the master, plus 256 kbps audio). This fits under GitHub's 100 MiB file limit; see "Delivery size" below. |
 | Video | H.264 High, 1920×1080, 30/1 fps, yuv420p, 113.200 s |
 | Frames decoded | **3,396 / 3,396** |
 | Audio | AAC, 48 kHz, stereo, 113.200 s, starting at 0.000. Mean −29.3 dB, peak −0.6 dB, the same as the source track. |
@@ -15,8 +15,17 @@
 | Frozen footage (`freezedetect`, d ≥ 1 s) | **None** |
 | Silences (−50 dB, ≥ 1.5 s) | Start at 18.52 s and 26.14 s, the song's own near-silent break. `silencedetect` on `source.mov` gives the same start times. |
 | Brightness jumps (frame-to-frame change > 12 levels) | 52.77 s and 54.2 s: the same jumps exist in the source (12.2 and 13.1 levels; movement in the shot). 79.63–79.80 s: the scene cut plus the designed warm flare. 101.07 s: the scene cut. **No unintended brightness flashes.** |
-| SSIM vs the 210 MB master (CRF 16) | 0.9878 (19.1 dB) |
+| SSIM vs the 210 MB master (CRF 16) | **0.9842** (18.0 dB). The 11 Mbps encode measured 0.9878. A full-resolution crop at the climax (`review/qc_master_vs_delivery_crop.jpg`) shows the bristle texture, granulation, ink lines and outline preserved. |
 | Automated checks | resolution, frame rate, all frames decode, duration, audio present, audio full length, no freezes, black only at fades: **all passed** |
+
+## Delivery size
+- **Plan:** deliver at 11 Mbps (159.2 MB) via Git LFS.
+- **What happened:** git-lfs 3.4.1 uploaded the object, but its `verify` call to `lfs.github.com` was refused with HTTP 403 by this environment's network proxy, so the push failed.
+- **Cleanup:**
+  - LFS tracking was removed (commit `830bbbc`).
+  - Commit `91f63a3` says it adds the video via LFS but contains only `.gitattributes`, because the file was ignored at that point.
+- **What was committed instead:** the 6.75 Mbps encode under 100 MiB. Every check above was run on this committed file.
+- **Not committed:** the 11 Mbps encode and the 14.8 Mbps master. Both passed the same automated checks before the fallback. With `lfs.github.com` allowed in the environment's network settings, the 11 Mbps version can be pushed via LFS.
 
 ## Prototype and review process
 1. **Stills at key moments** (full resolution). These revealed four defects, all fixed before the full render:
@@ -35,7 +44,7 @@
    Verified on four hard frames, then the whole film was re-rendered. The render manifest records the code commit (`c5c7639`).
 6. **Final file checks.** QC was run on the encoded delivery file. Opening, climax and ending strips, face comparisons and the difficult-mask frames were all regenerated from the delivery file (`output/v4/review/`).
 
-## Visual verification (from the delivery file)
+## Visual verification (from the committed delivery file)
 
 | Check | Result |
 |---|---|

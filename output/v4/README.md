@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Video** | `output/v4/cinematic_doodle_music_edit_v4.mp4`: 1920×1080, 30 fps, H.264 High, 11.25 Mbps, with the original AAC stereo soundtrack. 113.2 s, 159.2 MB, stored with Git LFS. |
+| **Video** | `output/v4/cinematic_doodle_music_edit_v4.mp4`: 1920×1080, 30 fps, H.264 High, 7.0 Mbps, with the original AAC stereo soundtrack. 113.2 s, 99.2 MB. Plain git, because Git LFS is blocked by this environment's proxy; see `QC_REPORT.md`. |
 | **Earlier versions** | v1, v2 and v3 (`output/*.mp4`, `output/cinematic_doodle_music_edit_v3.mp4`) and the source are unchanged. |
 
 ## Documents
@@ -36,7 +36,7 @@ cd edit/v4
 python3 pipeline.py prep           # source, slow-motion plate, beat grid, analysis cache
 python3 pipeline.py render         # ~33 min on 4 cores; chunks are resumable
 python3 pipeline.py master         # + original soundtrack
-python3 pipeline.py deliver        # two-pass 11 Mbps
+python3 pipeline.py deliver        # two-pass 11 Mbps (LFS); the committed file used pipeline.deliver(6750)
 python3 pipeline.py qc
 ```
 
