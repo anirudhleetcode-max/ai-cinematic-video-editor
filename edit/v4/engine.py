@@ -188,7 +188,24 @@ class ContourEngine:
         for ps, nrm, border in self.contours(mask, scale):
             if img_small is not None:
                 ev = self.edge_evidence(img_small, ps, nrm, W / img_small.shape[1])
-                border = border | (ev < c.get("min_edge_contrast", 30))
+                weak = ev < c.get("min_edge_contrast", 30)
+                # hysteresis: only long weak stretches are real "no edge" runs;
+                # short dips (motion blur, fine hair) stay drawn -> no gap flicker
+                n = len(weak)
+                if weak.any() and not weak.all():
+                    k0 = int(np.argmin(weak))                     # start inside a strong run
+                    order = np.roll(np.arange(n), -k0)
+                    run = []
+                    for i in order:
+                        if weak[i]:
+                            run.append(i)
+                        else:
+                            if 0 < len(run) < c.get("min_gap_points", 24):
+                                weak[run] = False
+                            run = []
+                    if 0 < len(run) < c.get("min_gap_points", 24):
+                        weak[run] = False
+                border = border | weak
             n = _pos_noise(ps, t)
             q = ps + nrm * (c["offset_px"] + c["jitter_px"] * n)[:, None]
             wv = c["width_px"] * (1 + c["width_variation"] * _pos_noise(ps * 0.7 + 300, t * 0.6, 0.013, 0.019, 0.007))
