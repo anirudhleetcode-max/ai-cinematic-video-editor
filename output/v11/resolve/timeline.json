@@ -1,0 +1,273 @@
+{
+ "fps": 30,
+ "width": 1920,
+ "height": 1080,
+ "frames": 900,
+ "shots": [
+  {
+   "id": "A1",
+   "file": "media/shots/A1.mp4",
+   "media_frames": 46,
+   "record_in": 0,
+   "record_out": 46,
+   "source_in": 0,
+   "desc": "Calm, both looking into the lens"
+  },
+  {
+   "id": "A2",
+   "file": "media/shots/A2.mp4",
+   "media_frames": 43,
+   "record_in": 46,
+   "record_out": 89,
+   "source_in": 0,
+   "desc": "Both put their hands to their heads"
+  },
+  {
+   "id": "A3",
+   "file": "media/shots/A3.mp4",
+   "media_frames": 20,
+   "record_in": 89,
+   "record_out": 105,
+   "source_in": 0,
+   "desc": "Peekaboo: hands over the face (slow punch-in)"
+  },
+  {
+   "id": "B1",
+   "file": "media/shots/B1.mp4",
+   "media_frames": 74,
+   "record_in": 105,
+   "record_out": 176,
+   "source_in": 3,
+   "desc": "The reveal: hands open into a smile. It continues A3's moment, so it doubles as a match cut"
+  },
+  {
+   "id": "B2",
+   "file": "media/shots/B2.mp4",
+   "media_frames": 50,
+   "record_in": 176,
+   "record_out": 224,
+   "source_in": 0,
+   "desc": "Both laughing into the camera"
+  },
+  {
+   "id": "B3",
+   "file": "media/shots/B3.mp4",
+   "media_frames": 77,
+   "record_in": 224,
+   "record_out": 294,
+   "source_in": 2,
+   "desc": "Two hair flips"
+  },
+  {
+   "id": "B4",
+   "file": "media/shots/B4.mp4",
+   "media_frames": 54,
+   "record_in": 294,
+   "record_out": 348,
+   "source_in": 0,
+   "desc": "A wave, a point, a thumbs-up"
+  },
+  {
+   "id": "B5",
+   "file": "media/shots/B5.mp4",
+   "media_frames": 47,
+   "record_in": 348,
+   "record_out": 392,
+   "source_in": 0,
+   "desc": "Close-up laugh, arm out"
+  },
+  {
+   "id": "B6",
+   "file": "media/shots/B6.mp4",
+   "media_frames": 48,
+   "record_in": 392,
+   "record_out": 434,
+   "source_in": 6,
+   "desc": "Hands fluttering"
+  },
+  {
+   "id": "B7",
+   "file": "media/shots/B7.mp4",
+   "media_frames": 48,
+   "record_in": 434,
+   "record_out": 478,
+   "source_in": 0,
+   "desc": "A finger to the lips"
+  },
+  {
+   "id": "B8",
+   "file": "media/shots/B8.mp4",
+   "media_frames": 46,
+   "record_in": 478,
+   "record_out": 521,
+   "source_in": 3,
+   "desc": "Hair flip and a point"
+  },
+  {
+   "id": "B9",
+   "file": "media/shots/B9.mp4",
+   "media_frames": 45,
+   "record_in": 521,
+   "record_out": 564,
+   "source_in": 0,
+   "desc": "Hands on her head"
+  },
+  {
+   "id": "B10",
+   "file": "media/shots/B10.mp4",
+   "media_frames": 45,
+   "record_in": 564,
+   "record_out": 607,
+   "source_in": 2,
+   "desc": "Standing, dancing gestures"
+  },
+  {
+   "id": "B11",
+   "file": "media/shots/B11.mp4",
+   "media_frames": 71,
+   "record_in": 607,
+   "record_out": 672,
+   "source_in": 0,
+   "desc": "Pointing to themselves, smiling"
+  },
+  {
+   "id": "C1",
+   "file": "media/shots/C1.mp4",
+   "media_frames": 53,
+   "record_in": 672,
+   "record_out": 716,
+   "source_in": 6,
+   "desc": "Slow motion: the reach"
+  },
+  {
+   "id": "C2",
+   "file": "media/shots/C2.mp4",
+   "media_frames": 48,
+   "record_in": 716,
+   "record_out": 757,
+   "source_in": 3,
+   "desc": "Slow motion: petals falling"
+  },
+  {
+   "id": "C3",
+   "file": "media/shots/C3.mp4",
+   "media_frames": 70,
+   "record_in": 757,
+   "record_out": 824,
+   "source_in": 3,
+   "desc": "Slow motion: the hug"
+  },
+  {
+   "id": "C4",
+   "file": "media/shots/C4.mp4",
+   "media_frames": 47,
+   "record_in": 824,
+   "record_out": 867,
+   "source_in": 0,
+   "desc": "Close-up smile"
+  },
+  {
+   "id": "C5",
+   "file": "media/shots/C5.mp4",
+   "media_frames": 36,
+   "record_in": 867,
+   "record_out": 900,
+   "source_in": 3,
+   "desc": "Both smiling to camera, back in colour"
+  }
+ ],
+ "transitions": [
+  {
+   "id": "T01",
+   "type": "star_iris",
+   "file": "media/transitions/T01_star_iris.mp4",
+   "record_in": 102,
+   "record_out": 109,
+   "reason": "THE DROP, the strongest hit in the song (3.51 s)"
+  },
+  {
+   "id": "T02",
+   "type": "whip_left",
+   "file": "media/transitions/T02_whip_left.mp4",
+   "record_in": 222,
+   "record_out": 226,
+   "reason": "accent 7.47 s"
+  },
+  {
+   "id": "T03",
+   "type": "zoom_punch",
+   "file": "media/transitions/T03_zoom_punch.mp4",
+   "record_in": 294,
+   "record_out": 299,
+   "reason": "accent 9.82 s"
+  },
+  {
+   "id": "T04",
+   "type": "brush_reveal",
+   "file": "media/transitions/T04_brush_reveal.mp4",
+   "record_in": 386,
+   "record_out": 395,
+   "reason": "bar downbeat 13.06 s"
+  },
+  {
+   "id": "T05",
+   "type": "heart_iris",
+   "file": "media/transitions/T05_heart_iris.mp4",
+   "record_in": 475,
+   "record_out": 482,
+   "reason": "bar downbeat 15.94 s"
+  },
+  {
+   "id": "T06",
+   "type": "whip_up",
+   "file": "media/transitions/T06_whip_up.mp4",
+   "record_in": 562,
+   "record_out": 566,
+   "reason": "bar downbeat 18.81 s"
+  },
+  {
+   "id": "T07",
+   "type": "light_leak",
+   "file": "media/transitions/T07_light_leak.mp4",
+   "record_in": 666,
+   "record_out": 678,
+   "reason": "second big hit (22.39 s), the final section"
+  },
+  {
+   "id": "T08",
+   "type": "dissolve",
+   "file": "media/transitions/T08_dissolve.mp4",
+   "record_in": 713,
+   "record_out": 719,
+   "reason": "beat 23.86 s; a soft change for the most tender shot"
+  },
+  {
+   "id": "T09",
+   "type": "circle_iris",
+   "file": "media/transitions/T09_circle_iris.mp4",
+   "record_in": 754,
+   "record_out": 761,
+   "reason": "accent 25.25 s"
+  },
+  {
+   "id": "T10",
+   "type": "star_iris",
+   "file": "media/transitions/T10_star_iris.mp4",
+   "record_in": 864,
+   "record_out": 871,
+   "reason": "accent 28.89 s, the last hit"
+  },
+  {
+   "id": "T11",
+   "type": "fade_to_cream",
+   "file": "media/transitions/T11_fade_to_cream.mp4",
+   "record_in": 890,
+   "record_out": 900,
+   "reason": "the song ends at 29.98 s"
+  }
+ ],
+ "audio": {
+  "file": "media/audio/OK_Kanmani_Song.mp3",
+  "record_in": 0
+ }
+}

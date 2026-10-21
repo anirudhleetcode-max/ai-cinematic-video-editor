@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE fcpxml>
+<fcpxml version="1.8">
+<resources>
+<format id="r0" name="FFVideoFormat1080p30" frameDuration="1/30s" width="1920" height="1080"/>
+<asset id="s0" name="A1" src="file:///PATH/TO/resolve/media/shots/A1.mp4" start="0s" duration="46/30s" hasVideo="1" format="r0"/>
+<asset id="s1" name="A2" src="file:///PATH/TO/resolve/media/shots/A2.mp4" start="0s" duration="43/30s" hasVideo="1" format="r0"/>
+<asset id="s2" name="A3" src="file:///PATH/TO/resolve/media/shots/A3.mp4" start="0s" duration="20/30s" hasVideo="1" format="r0"/>
+<asset id="s3" name="B1" src="file:///PATH/TO/resolve/media/shots/B1.mp4" start="0s" duration="74/30s" hasVideo="1" format="r0"/>
+<asset id="s4" name="B2" src="file:///PATH/TO/resolve/media/shots/B2.mp4" start="0s" duration="50/30s" hasVideo="1" format="r0"/>
+<asset id="s5" name="B3" src="file:///PATH/TO/resolve/media/shots/B3.mp4" start="0s" duration="77/30s" hasVideo="1" format="r0"/>
+<asset id="s6" name="B4" src="file:///PATH/TO/resolve/media/shots/B4.mp4" start="0s" duration="54/30s" hasVideo="1" format="r0"/>
+<asset id="s7" name="B5" src="file:///PATH/TO/resolve/media/shots/B5.mp4" start="0s" duration="47/30s" hasVideo="1" format="r0"/>
+<asset id="s8" name="B6" src="file:///PATH/TO/resolve/media/shots/B6.mp4" start="0s" duration="48/30s" hasVideo="1" format="r0"/>
+<asset id="s9" name="B7" src="file:///PATH/TO/resolve/media/shots/B7.mp4" start="0s" duration="48/30s" hasVideo="1" format="r0"/>
+<asset id="s10" name="B8" src="file:///PATH/TO/resolve/media/shots/B8.mp4" start="0s" duration="46/30s" hasVideo="1" format="r0"/>
+<asset id="s11" name="B9" src="file:///PATH/TO/resolve/media/shots/B9.mp4" start="0s" duration="45/30s" hasVideo="1" format="r0"/>
+<asset id="s12" name="B10" src="file:///PATH/TO/resolve/media/shots/B10.mp4" start="0s" duration="45/30s" hasVideo="1" format="r0"/>
+<asset id="s13" name="B11" src="file:///PATH/TO/resolve/media/shots/B11.mp4" start="0s" duration="71/30s" hasVideo="1" format="r0"/>
+<asset id="s14" name="C1" src="file:///PATH/TO/resolve/media/shots/C1.mp4" start="0s" duration="53/30s" hasVideo="1" format="r0"/>
+<asset id="s15" name="C2" src="file:///PATH/TO/resolve/media/shots/C2.mp4" start="0s" duration="48/30s" hasVideo="1" format="r0"/>
+<asset id="s16" name="C3" src="file:///PATH/TO/resolve/media/shots/C3.mp4" start="0s" duration="70/30s" hasVideo="1" format="r0"/>
+<asset id="s17" name="C4" src="file:///PATH/TO/resolve/media/shots/C4.mp4" start="0s" duration="47/30s" hasVideo="1" format="r0"/>
+<asset id="s18" name="C5" src="file:///PATH/TO/resolve/media/shots/C5.mp4" start="0s" duration="36/30s" hasVideo="1" format="r0"/>
+<asset id="t0" name="T01_star_iris" src="file:///PATH/TO/resolve/media/transitions/T01_star_iris.mp4" start="0s" duration="7/30s" hasVideo="1" format="r0"/>
+<asset id="t1" name="T02_whip_left" src="file:///PATH/TO/resolve/media/transitions/T02_whip_left.mp4" start="0s" duration="4/30s" hasVideo="1" format="r0"/>
+<asset id="t2" name="T03_zoom_punch" src="file:///PATH/TO/resolve/media/transitions/T03_zoom_punch.mp4" start="0s" duration="5/30s" hasVideo="1" format="r0"/>
+<asset id="t3" name="T04_brush_reveal" src="file:///PATH/TO/resolve/media/transitions/T04_brush_reveal.mp4" start="0s" duration="9/30s" hasVideo="1" format="r0"/>
+<asset id="t4" name="T05_heart_iris" src="file:///PATH/TO/resolve/media/transitions/T05_heart_iris.mp4" start="0s" duration="7/30s" hasVideo="1" format="r0"/>
+<asset id="t5" name="T06_whip_up" src="file:///PATH/TO/resolve/media/transitions/T06_whip_up.mp4" start="0s" duration="4/30s" hasVideo="1" format="r0"/>
+<asset id="t6" name="T07_light_leak" src="file:///PATH/TO/resolve/media/transitions/T07_light_leak.mp4" start="0s" duration="12/30s" hasVideo="1" format="r0"/>
+<asset id="t7" name="T08_dissolve" src="file:///PATH/TO/resolve/media/transitions/T08_dissolve.mp4" start="0s" duration="6/30s" hasVideo="1" format="r0"/>
+<asset id="t8" name="T09_circle_iris" src="file:///PATH/TO/resolve/media/transitions/T09_circle_iris.mp4" start="0s" duration="7/30s" hasVideo="1" format="r0"/>
+<asset id="t9" name="T10_star_iris" src="file:///PATH/TO/resolve/media/transitions/T10_star_iris.mp4" start="0s" duration="7/30s" hasVideo="1" format="r0"/>
+<asset id="t10" name="T11_fade_to_cream" src="file:///PATH/TO/resolve/media/transitions/T11_fade_to_cream.mp4" start="0s" duration="10/30s" hasVideo="1" format="r0"/>
+<asset id="au" name="OK_Kanmani_Song" src="file:///PATH/TO/resolve/media/audio/OK_Kanmani_Song.mp3" start="0s" duration="900/30s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="48000"/>
+</resources>
+<library><event name="OK Kanmani v11"><project name="OK Kanmani v11"><sequence format="r0" duration="900/30s" tcStart="0s" tcFormat="NDF" audioLayout="stereo" audioRate="48k"><spine>
+<asset-clip ref="s0" offset="0/30s" name="A1" start="0/30s" duration="46/30s" format="r0"><asset-clip ref="au" lane="-1" offset="0/30s" name="OK_Kanmani_Song" start="0s" duration="900/30s"/></asset-clip>
+<asset-clip ref="s1" offset="46/30s" name="A2" start="0/30s" duration="43/30s" format="r0"></asset-clip>
+<asset-clip ref="s2" offset="89/30s" name="A3" start="0/30s" duration="16/30s" format="r0"><asset-clip ref="t0" lane="1" offset="13/30s" name="T01_star_iris" start="0s" duration="7/30s" format="r0"/></asset-clip>
+<asset-clip ref="s3" offset="105/30s" name="B1" start="3/30s" duration="71/30s" format="r0"></asset-clip>
+<asset-clip ref="s4" offset="176/30s" name="B2" start="0/30s" duration="48/30s" format="r0"><asset-clip ref="t1" lane="1" offset="46/30s" name="T02_whip_left" start="0s" duration="4/30s" format="r0"/></asset-clip>
+<asset-clip ref="s5" offset="224/30s" name="B3" start="2/30s" duration="70/30s" format="r0"></asset-clip>
+<asset-clip ref="s6" offset="294/30s" name="B4" start="0/30s" duration="54/30s" format="r0"><asset-clip ref="t2" lane="1" offset="0/30s" name="T03_zoom_punch" start="0s" duration="5/30s" format="r0"/></asset-clip>
+<asset-clip ref="s7" offset="348/30s" name="B5" start="0/30s" duration="44/30s" format="r0"><asset-clip ref="t3" lane="1" offset="38/30s" name="T04_brush_reveal" start="0s" duration="9/30s" format="r0"/></asset-clip>
+<asset-clip ref="s8" offset="392/30s" name="B6" start="6/30s" duration="42/30s" format="r0"></asset-clip>
+<asset-clip ref="s9" offset="434/30s" name="B7" start="0/30s" duration="44/30s" format="r0"><asset-clip ref="t4" lane="1" offset="41/30s" name="T05_heart_iris" start="0s" duration="7/30s" format="r0"/></asset-clip>
+<asset-clip ref="s10" offset="478/30s" name="B8" start="3/30s" duration="43/30s" format="r0"></asset-clip>
+<asset-clip ref="s11" offset="521/30s" name="B9" start="0/30s" duration="43/30s" format="r0"><asset-clip ref="t5" lane="1" offset="41/30s" name="T06_whip_up" start="0s" duration="4/30s" format="r0"/></asset-clip>
+<asset-clip ref="s12" offset="564/30s" name="B10" start="2/30s" duration="43/30s" format="r0"></asset-clip>
+<asset-clip ref="s13" offset="607/30s" name="B11" start="0/30s" duration="65/30s" format="r0"><asset-clip ref="t6" lane="1" offset="59/30s" name="T07_light_leak" start="0s" duration="12/30s" format="r0"/></asset-clip>
+<asset-clip ref="s14" offset="672/30s" name="C1" start="6/30s" duration="44/30s" format="r0"><asset-clip ref="t7" lane="1" offset="47/30s" name="T08_dissolve" start="0s" duration="6/30s" format="r0"/></asset-clip>
+<asset-clip ref="s15" offset="716/30s" name="C2" start="3/30s" duration="41/30s" format="r0"><asset-clip ref="t8" lane="1" offset="41/30s" name="T09_circle_iris" start="0s" duration="7/30s" format="r0"/></asset-clip>
+<asset-clip ref="s16" offset="757/30s" name="C3" start="3/30s" duration="67/30s" format="r0"></asset-clip>
+<asset-clip ref="s17" offset="824/30s" name="C4" start="0/30s" duration="43/30s" format="r0"><asset-clip ref="t9" lane="1" offset="40/30s" name="T10_star_iris" start="0s" duration="7/30s" format="r0"/></asset-clip>
+<asset-clip ref="s18" offset="867/30s" name="C5" start="3/30s" duration="33/30s" format="r0"><asset-clip ref="t10" lane="1" offset="26/30s" name="T11_fade_to_cream" start="0s" duration="10/30s" format="r0"/></asset-clip>
+</spine></sequence></project></event></library>
+</fcpxml>
