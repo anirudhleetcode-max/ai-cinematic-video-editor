@@ -1,0 +1,33 @@
+{
+ "file": "output/v11/cute_doodle_ok_kanmani_v11.mp4",
+ "decoded_frames": 900,
+ "shot_cuts": 18,
+ "background_changes": 63,
+ "cut_offset_ms": {
+  "46": -5,
+  "89": -5,
+  "105": -12,
+  "176": 10,
+  "224": 2,
+  "294": -16,
+  "348": -10,
+  "392": 12,
+  "434": -11,
+  "478": -7,
+  "521": -2,
+  "564": -14,
+  "607": -9,
+  "672": 4,
+  "716": 3,
+  "757": -13,
+  "824": 4,
+  "867": 3
+ },
+ "bg_change_offset_ms_range": [
+  -22,
+  170
+ ],
+ "identical_consecutive": [],
+ "black_frames": [],
+ "near_frozen": []
+}

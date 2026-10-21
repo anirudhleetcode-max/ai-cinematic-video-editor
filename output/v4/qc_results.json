@@ -1,0 +1,69 @@
+{
+  "file": "/home/user/ai-cinematic-video-editor/output/v4/cinematic_doodle_music_edit_v4.mp4",
+  "size_bytes": 99191173,
+  "bitrate_bps": 7009976,
+  "duration_s": 113.2,
+  "video": {
+    "codec_name": "h264",
+    "profile": "High",
+    "width": 1920,
+    "height": 1080,
+    "r_frame_rate": "30/1",
+    "pix_fmt": "yuv420p",
+    "duration": "113.200000"
+  },
+  "audio": [
+    {
+      "codec_name": "aac",
+      "sample_rate": "48000",
+      "channels": 2,
+      "duration": "113.200000",
+      "start_time": "0.000000"
+    }
+  ],
+  "decoded_frames": 3396,
+  "black_segments": [
+    [
+      0.0,
+      0.233333
+    ],
+    [
+      113.033,
+      113.167
+    ]
+  ],
+  "freeze_segments": [],
+  "silence_segments": [
+    [
+      18.5168
+    ],
+    [
+      26.1413
+    ]
+  ],
+  "mean_volume_db": -29.3,
+  "max_volume_db": -0.6,
+  "ssim_vs_master": 0.984151,
+  "ssim_db_vs_master": 17.999935,
+  "max_luma_jump": 33.26908874511719,
+  "luma_jumps_over_12": [
+    52.77,
+    54.2,
+    79.63,
+    79.73,
+    79.77,
+    79.8,
+    101.07
+  ],
+  "checks": {
+    "resolution": true,
+    "frame_rate": true,
+    "all_frames_decode": true,
+    "duration": true,
+    "audio_present": true,
+    "audio_full_length": true,
+    "no_freezes": true,
+    "black_only_at_fades": true
+  },
+  "all_passed": true
+}

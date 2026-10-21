@@ -1,0 +1,46 @@
+{
+ "file": "output/v10/cinematic_doodle_music_edit_v10.mp4",
+ "decoded_frames": 300,
+ "planned_cuts": [
+  33,
+  89,
+  121,
+  134,
+  146,
+  157,
+  168,
+  179,
+  191,
+  257
+ ],
+ "cut_offset_ms_to_nearest_beat_or_accent": {
+  "33": -3,
+  "89": -5,
+  "121": -13,
+  "134": -3,
+  "146": 14,
+  "157": 9,
+  "168": -2,
+  "179": -12,
+  "191": 11,
+  "257": -1
+ },
+ "detected_cuts": [
+  89,
+  121,
+  134,
+  146,
+  157,
+  168,
+  179,
+  186,
+  191,
+  257,
+  299
+ ],
+ "identical_consecutive": [],
+ "black_frames_mean_lt_8": [
+  299
+ ],
+ "near_frozen": []
+}
