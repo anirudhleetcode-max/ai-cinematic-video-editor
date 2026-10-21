@@ -12,6 +12,7 @@ This package rebuilds the v11 edit as an editable Resolve timeline. Resolve's ow
 | `timeline.json` | The frame-exact layout that the files below are generated from |
 | `build_resolve_project.py` | Builds the project inside Resolve (see option 1 below) |
 | `OK_Kanmani_v11.fcpxml` | Timeline for File > Import > Timeline. Its paths point to `/PATH/TO/resolve/`, so relink to this folder when Resolve asks. |
+| `OK_Kanmani_v11_DOWNLOADS.fcpxml` | The same timeline with paths already set to `C:\Users\aniru\Downloads\OK_Kanmani_v11_resolve\resolve\`, the folder Windows **Extract All** creates in Downloads. No relinking is needed if the files are there. |
 | `OK_Kanmani_v11_V1.edl` | CMX3600 EDL of the cuts track |
 
 ## Timeline (1920×1080, 30 fps, 30.0 s)
