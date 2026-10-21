@@ -1,0 +1,102 @@
+{
+ "_doc": "Timing map of the reference reel's 10.0 s music excerpt, measured with librosa 0.11 (beat tracker and onset strength, 44.1 kHz). Times are seconds from the start of the excerpt, which is also the start of the v10 video.",
+ "tempo_bpm": 159.0,
+ "beat_period_s": 0.377,
+ "beats_s": [
+  0.36,
+  0.702,
+  1.103,
+  1.48,
+  1.846,
+  2.223,
+  2.601,
+  2.978,
+  3.355,
+  3.721,
+  4.104,
+  4.476,
+  4.853,
+  5.224,
+  5.602,
+  5.979,
+  6.356,
+  6.711,
+  7.1,
+  7.477,
+  7.854,
+  8.226,
+  8.591,
+  8.957,
+  9.34,
+  9.718
+ ],
+ "bar_downbeats_s": [
+  0.36,
+  1.846,
+  3.355,
+  4.853,
+  6.356,
+  7.854,
+  9.34
+ ],
+ "accents_s_strength": [
+  [
+   0.029,
+   1.46
+  ],
+  [
+   0.685,
+   2.01
+  ],
+  [
+   1.097,
+   2.16
+  ],
+  [
+   1.474,
+   1.71
+  ],
+  [
+   2.972,
+   1.4
+  ],
+  [
+   3.349,
+   1.81
+  ],
+  [
+   4.046,
+   2.43
+  ],
+  [
+   4.47,
+   1.64
+  ],
+  [
+   6.693,
+   1.54
+  ],
+  [
+   7.471,
+   1.79
+  ],
+  [
+   8.568,
+   2.31
+  ],
+  [
+   8.945,
+   1.49
+  ],
+  [
+   9.323,
+   1.52
+  ],
+  [
+   9.706,
+   1.86
+  ]
+ ],
+ "phrasing": "Six 4-beat bars from 0.36 s, plus a pickup at 0.03 s. Constant energy (RMS -9 to -23 dB per 0.1 s) and no silences or breaks. The excerpt ends mid-phrase at 10.0 s, with near-silence in its last 20 ms.",
+ "strongest_accent_s": 4.046
+}

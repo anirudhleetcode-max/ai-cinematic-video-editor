@@ -1,0 +1,77 @@
+{
+  "_doc": "v10 edit decision list. All positions are frame numbers at 30 fps. Output frame k shows at k/30 s. A scene's source frame is src_in + (k - start); the source is the project timeline in edit/common.py (79.77-101.07 s is the existing slow-motion plate). Cuts land on the first frame at or nearest each musical event in music.json. The renderer reads this file, so the render can be audited against it.",
+  "fps": 30,
+  "frames": 300,
+  "audio": {
+    "source": "reference reel (uploads/...WhatsApp_Video_2026-10-20_at_23.43.11.mp4), stream 1",
+    "range_s": [0.0, 10.0],
+    "offset_in_output_s": 0.0,
+    "processing": "none (stream copy, AAC 44.1 kHz stereo)"
+  },
+  "scenes": [
+    {
+      "id": "S1", "name": "Before the song", "start": 0, "end": 33, "src_in": 108,
+      "src_label": "3.60-4.70 s: calm, looking into the lens; left girl lifts a hand to her hair",
+      "motivation": "Song pickup (0.03 s) to the first accent at 1.10 s. A real-footage opening, like the reference's colour intro.",
+      "world": "cinematic_original", "subject": "colour_grade", "outline": "none",
+      "graphics": "A gold ink line draws in from the left edge and becomes the brush that reveals S2",
+      "mood": "calm, intimate"
+    },
+    {
+      "id": "S2", "name": "Ink and paper", "start": 33, "end": 89, "src_in": 444,
+      "src_label": "14.80-16.67 s: both laugh into the camera",
+      "motivation": "Lands on the accent at 1.10 s and holds for one 4-beat phrase plus a beat (1.87 s), so the laugh plays out uncut.",
+      "world": "ink_paper", "subject": "sepia_duotone", "outline": "ink_double",
+      "graphics": "Botanical ink drawings and hatched hills draw themselves on; slow parallax drift",
+      "mood": "playful, warm"
+    },
+    {
+      "id": "S3", "name": "Indigo paint", "start": 89, "end": 121, "src_in": 1059,
+      "src_label": "35.30-36.37 s: hands over the face, then a smiling reveal",
+      "motivation": "Hard cut on the strong onset at 2.97 s. The first paint stroke lands on the accent at 3.35 s, as the hands open.",
+      "world": "indigo_paint", "subject": "bw_contrast", "outline": "white_hairline",
+      "graphics": "Two v4 textured brush strokes (bristles, granulation, splatter) sweep across on the accents",
+      "mood": "dramatic reveal"
+    },
+    {
+      "id": "S4", "name": "Graphic burst", "start": 121, "end": 191, "src_in": 1467,
+      "src_label": "48.90-51.23 s: two hair flips, the most energetic movement in the footage",
+      "motivation": "Cut on the strongest accent in the song (4.05 s, off-beat). One continuous shot whose world changes on every beat, the reference's piece-to-piece device, with six curated panels.",
+      "world": "graphic_panels", "subject": "bw_warm", "outline": "paper_cut",
+      "panel_cuts": [134, 146, 157, 168, 179],
+      "graphics": "Six designed panels (gold constellation, coral sun rays, Bauhaus arcs, line waves, halftone, concentric arcs); a small settle on each cut",
+      "mood": "energetic"
+    },
+    {
+      "id": "S5", "name": "Golden sky", "start": 191, "end": 257, "src_in": 2676,
+      "src_label": "89.20-91.40 s (slow-motion plate): petals fall, an arm reaches up and swings",
+      "motivation": "Bar downbeat at 6.36 s, the start of the final phrase. The climax is the slow-motion petal moment.",
+      "world": "dream_sky", "subject": "golden_colour", "outline": "gold_line",
+      "graphics": "Painted dusk sky with clouds on three parallax layers, light beams and illustrated falling petals",
+      "mood": "climactic, dreamy"
+    },
+    {
+      "id": "S6", "name": "The embrace (v4)", "start": 257, "end": 300, "src_in": 2850,
+      "src_label": "95.00-96.43 s (slow-motion plate): the hug, both smiling, cheek to cheek",
+      "motivation": "Hard cut on the strong accent at 8.57 s. Resolves on the existing v4 climax frames (blue paint arcs, white pen outline), which are preserved.",
+      "world": "v4_render", "subject": "v4_render", "outline": "v4",
+      "graphics": "v4 paint arcs as rendered; a warm grade; the picture fades out over the last 8 frames as the excerpt ends",
+      "mood": "emotional resolution"
+    }
+  ],
+  "transitions": [
+    {"at": 33, "from": "S1", "to": "S2", "type": "brush_reveal", "frames_before": 6, "frames_after": 3,
+     "reason": "The gold line from S1 becomes a cream brush stroke that wipes the ink world in, completing just after the 1.10 s accent."},
+    {"at": 89, "from": "S2", "to": "S3", "type": "hard_cut", "reason": "On the strong onset at 2.97 s. A change of colour temperature (warm to indigo) gives the impact."},
+    {"at": 121, "from": "S3", "to": "S4", "type": "motion_matched_cut", "reason": "Her hands open outward at the end of S3, and the hair flip continues that outward motion at the start of S4. On the strongest accent (4.05 s)."},
+    {"at": 134, "type": "panel_cut", "reason": "beat 4.48 s"},
+    {"at": 146, "type": "panel_cut", "reason": "beat 4.85 s (bar downbeat)"},
+    {"at": 157, "type": "panel_cut", "reason": "beat 5.22 s"},
+    {"at": 168, "type": "panel_cut", "reason": "beat 5.60 s"},
+    {"at": 179, "type": "panel_cut", "reason": "beat 5.98 s"},
+    {"at": 191, "from": "S4", "to": "S5", "type": "light_transition", "frames_before": 6, "frames_after": 6,
+     "reason": "A warm gold light (not white, never full frame) swells into the bar downbeat at 6.36 s and clears to reveal the sky."},
+    {"at": 257, "from": "S5", "to": "S6", "type": "hard_cut", "reason": "On the strong accent at 8.57 s: from the reach to the embrace."},
+    {"at": 292, "type": "fade_out", "frames": 8, "reason": "The excerpt ends at 10.0 s; the picture resolves to black over the last two eighth-notes."}
+  ]
+}
