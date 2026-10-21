@@ -5,7 +5,7 @@ Writes output/v11/resolve/:
                               cut-out), including its transition overlap frames
   media/transitions/<n>.mp4   each transition exactly as rendered (iris, whip, zoom,
                               brush, light leak, dissolve, final fade)
-  media/audio/OK_Kanmani_Song.mp3
+  media/audio/OK_Kanmani_Song.wav  the song, decoded to 48 kHz PCM (exact length, no MP3 encoder delay)
   timeline.json               frame-exact layout (the single source for the files below)
   OK_Kanmani_v11.fcpxml       FCPXML 1.8 timeline (File > Import > Timeline)
   OK_Kanmani_v11_V1.edl       CMX3600 EDL of the cuts track (fallback)
@@ -110,8 +110,12 @@ def main():
         layout["transitions"].append(dict(id=f"T{k:02d}", type=tr["type"], file=rel, record_in=lo, record_out=hi,
                                           reason=tr["reason"]))
     os.makedirs(os.path.join(PKG, "media", "audio"))
-    shutil.copy(AUDIO, os.path.join(PKG, "media", "audio", "OK_Kanmani_Song.mp3"))
-    layout["audio"] = dict(file="media/audio/OK_Kanmani_Song.mp3", record_in=0)
+    wav = os.path.join(PKG, "media", "audio", "OK_Kanmani_Song.wav")
+    # WAV, not MP3: an MP3's encoder delay and padded header length make Resolve refuse to relink it
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", AUDIO, "-ar", "48000", "-ac", "2", "-c:a", "pcm_s16le", wav], check=True)
+    samples = int(subprocess.run(["ffprobe", "-v", "error", "-select_streams", "a:0", "-show_entries", "stream=duration_ts",
+                                  "-of", "csv=p=0", wav], capture_output=True, text=True, check=True).stdout.strip())
+    layout["audio"] = dict(file="media/audio/OK_Kanmani_Song.wav", record_in=0, samples=samples, rate=48000)
     json.dump(layout, open(os.path.join(PKG, "timeline.json"), "w"), indent=1)
 
     # ---- FCPXML 1.8 (paths are placeholders under /PATH/TO/resolve; Resolve offers to relink on import)
@@ -121,7 +125,8 @@ def main():
         res.append(f'<asset id="s{i}" name="{s["id"]}" src="{base}{s["file"]}" start="0s" duration="{rt(s["media_frames"])}" hasVideo="1" format="r0"/>')
     for i, t in enumerate(layout["transitions"]):
         res.append(f'<asset id="t{i}" name="{t["id"]}_{t["type"]}" src="{base}{t["file"]}" start="0s" duration="{rt(t["record_out"] - t["record_in"])}" hasVideo="1" format="r0"/>')
-    res.append(f'<asset id="au" name="OK_Kanmani_Song" src="{base}{layout["audio"]["file"]}" start="0s" duration="{rt(FRAMES)}" hasAudio="1" audioSources="1" audioChannels="2" audioRate="48000"/>')
+    adur = f'{layout["audio"]["samples"]}/48000s'
+    res.append(f'<asset id="au" name="OK_Kanmani_Song" src="{base}{layout["audio"]["file"]}" start="0s" duration="{adur}" hasAudio="1" audioSources="1" audioChannels="2" audioRate="48000"/>')
     spine = []
     for i, s in enumerate(layout["shots"]):
         kids = []
@@ -130,7 +135,7 @@ def main():
                 off = s["source_in"] + (t["record_in"] - s["record_in"])
                 kids.append(f'<asset-clip ref="t{j}" lane="1" offset="{rt(off)}" name="{t["id"]}_{t["type"]}" start="0s" duration="{rt(t["record_out"] - t["record_in"])}" format="r0"/>')
         if i == 0:
-            kids.append(f'<asset-clip ref="au" lane="-1" offset="{rt(s["source_in"])}" name="OK_Kanmani_Song" start="0s" duration="{rt(FRAMES)}"/>')
+            kids.append(f'<asset-clip ref="au" lane="-1" offset="{rt(s["source_in"])}" name="OK_Kanmani_Song" start="0s" duration="{adur}"/>')
         spine.append(f'<asset-clip ref="s{i}" offset="{rt(s["record_in"])}" name="{s["id"]}" start="{rt(s["source_in"])}" duration="{rt(s["record_out"] - s["record_in"])}" format="r0">'
                      + "".join(kids) + "</asset-clip>")
     xml = ('<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE fcpxml>\n<fcpxml version="1.8">\n<resources>\n' + "\n".join(res)

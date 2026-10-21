@@ -33,10 +33,10 @@
 <asset id="t8" name="T09_circle_iris" src="file:///PATH/TO/resolve/media/transitions/T09_circle_iris.mp4" start="0s" duration="7/30s" hasVideo="1" format="r0"/>
 <asset id="t9" name="T10_star_iris" src="file:///PATH/TO/resolve/media/transitions/T10_star_iris.mp4" start="0s" duration="7/30s" hasVideo="1" format="r0"/>
 <asset id="t10" name="T11_fade_to_cream" src="file:///PATH/TO/resolve/media/transitions/T11_fade_to_cream.mp4" start="0s" duration="10/30s" hasVideo="1" format="r0"/>
-<asset id="au" name="OK_Kanmani_Song" src="file:///PATH/TO/resolve/media/audio/OK_Kanmani_Song.mp3" start="0s" duration="900/30s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="48000"/>
+<asset id="au" name="OK_Kanmani_Song" src="file:///PATH/TO/resolve/media/audio/OK_Kanmani_Song.wav" start="0s" duration="1434157/48000s" hasAudio="1" audioSources="1" audioChannels="2" audioRate="48000"/>
 </resources>
 <library><event name="OK Kanmani v11"><project name="OK Kanmani v11"><sequence format="r0" duration="900/30s" tcStart="0s" tcFormat="NDF" audioLayout="stereo" audioRate="48k"><spine>
-<asset-clip ref="s0" offset="0/30s" name="A1" start="0/30s" duration="46/30s" format="r0"><asset-clip ref="au" lane="-1" offset="0/30s" name="OK_Kanmani_Song" start="0s" duration="900/30s"/></asset-clip>
+<asset-clip ref="s0" offset="0/30s" name="A1" start="0/30s" duration="46/30s" format="r0"><asset-clip ref="au" lane="-1" offset="0/30s" name="OK_Kanmani_Song" start="0s" duration="1434157/48000s"/></asset-clip>
 <asset-clip ref="s1" offset="46/30s" name="A2" start="0/30s" duration="43/30s" format="r0"></asset-clip>
 <asset-clip ref="s2" offset="89/30s" name="A3" start="0/30s" duration="16/30s" format="r0"><asset-clip ref="t0" lane="1" offset="13/30s" name="T01_star_iris" start="0s" duration="7/30s" format="r0"/></asset-clip>
 <asset-clip ref="s3" offset="105/30s" name="B1" start="3/30s" duration="71/30s" format="r0"></asset-clip>

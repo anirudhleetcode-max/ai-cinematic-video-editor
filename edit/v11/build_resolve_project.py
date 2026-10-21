@@ -65,7 +65,8 @@ for t in layout["transitions"]:
     clips.append({"mediaPoolItem": trans[os.path.basename(t["file"])], "startFrame": 0,
                   "endFrame": t["record_out"] - t["record_in"] - 1,
                   "trackIndex": 2, "recordFrame": start + t["record_in"], "mediaType": 1})
-clips.append({"mediaPoolItem": audio["OK_Kanmani_Song.mp3"], "startFrame": 0, "endFrame": layout["frames"] - 1,
+clips.append({"mediaPoolItem": audio["OK_Kanmani_Song.wav"], "startFrame": 0,
+              "endFrame": int(layout["audio"]["samples"] * 30 / layout["audio"]["rate"]) - 1,
               "trackIndex": 1, "recordFrame": start, "mediaType": 2})
 added = pool.AppendToTimeline(clips)
 print("OK Kanmani v11: placed %d of %d clips" % (len(added or []), len(clips)))

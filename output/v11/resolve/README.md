@@ -8,7 +8,7 @@ This package rebuilds the v11 edit as an editable Resolve timeline. Resolve's ow
 |---|---|
 | `media/shots/*.mp4` | The 19 shots as rendered: doodle background, sparkly outline, stickers, black-and-white cut-out. Each includes its transition overlap frames as handles. |
 | `media/transitions/*.mp4` | The 11 transitions exactly as rendered: star, heart and circle irises, whip pans, zoom punch, brush reveal, gold light leak, dissolve, fade to cream |
-| `media/audio/OK_Kanmani_Song.mp3` | The song |
+| `media/audio/OK_Kanmani_Song.wav` | The song as WAV, at its exact length. An MP3's encoder delay stops Resolve relinking it. |
 | `timeline.json` | The frame-exact layout that the files below are generated from |
 | `build_resolve_project.py` | Builds the project inside Resolve (see option 1 below) |
 | `OK_Kanmani_v11.fcpxml` | Timeline for File > Import > Timeline. Its paths point to `/PATH/TO/resolve/`, so relink to this folder when Resolve asks. |

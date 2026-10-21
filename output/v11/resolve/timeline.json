@@ -267,7 +267,9 @@
   }
  ],
  "audio": {
-  "file": "media/audio/OK_Kanmani_Song.mp3",
-  "record_in": 0
+  "file": "media/audio/OK_Kanmani_Song.wav",
+  "record_in": 0,
+  "samples": 1434157,
+  "rate": 48000
  }
 }
